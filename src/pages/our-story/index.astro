@@ -82,9 +82,9 @@ const schema = {
 .team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; }
 .team-card { text-align:center; cursor:pointer; }
 .team-card a { text-decoration:none; color:inherit; display:block; }
-.team-card .avatar { width:100%; aspect-ratio:1/1; object-fit:contain; background:#F3F0F8; display:block; border-radius:16px; transition:transform 0.4s ease; }
-.team-card:hover .avatar { transform:scale(1.03); }
-.team-card .info { padding:20px 0 0; }
+.team-card .photo { width:100%; aspect-ratio:1/1; border-radius:16px; overflow:hidden; background:#F3F0F8; margin-bottom:20px; }
+.team-card .photo img { width:100%; height:100%; object-fit:contain; display:block; background:#F3F0F8; transition:transform 0.4s ease; }
+.team-card:hover .photo img { transform:scale(1.03); }
 .team-card h3 { font-family:'Playfair Display',serif; font-size:20px; font-weight:400; letter-spacing:-0.3px; margin-bottom:4px; line-height:1.2; }
 .team-card .role { font-size:14px; color:#6C1A55; font-weight:400; }
 .legacy { position:relative; overflow:hidden; }
@@ -819,35 +819,30 @@ const schema = {
 <!-- THE PEOPLE BEHIND THE SCIENCE -->
 <section class="section">
   <div class="sh">
-    <div class="lbl">Leadership</div>
-    <h2>The people behind the science</h2>
+    <div class="lbl">The people behind the science</div>
+    <h2>Led by researchers, clinicians, and parents</h2>
+    <p>Our leadership team brings decades of experience across pharmaceutical research, clinical medicine, and stem cell science.</p>
   </div>
   <div class="team-grid">
     <div class="team-card anim">
       <a href="/our-story/jonas-wang">
-      <img class="avatar" src="/images/our%20story/jonas.jpg" alt="Jonas Wang, PhD" width="400" height="400" loading="lazy" decoding="async">
-      <div class="info">
-        <h3>Jonas Wang, PhD</h3>
-        <div class="role">Chairman</div>
-      </div>
+      <div class="photo"><img src="/images/our%20story/jonas.jpg" alt="Jonas Wang, PhD" width="400" height="400" loading="lazy" decoding="async"></div>
+      <h3>Jonas Wang, PhD</h3>
+      <div class="role">Chairman</div>
       </a>
     </div>
     <div class="team-card anim">
       <a href="/our-story/tong-young-lee">
-      <img class="avatar" src="/images/our%20story/lee.jpg" alt="Tong-Young Lee, PhD" width="400" height="400" loading="lazy" decoding="async">
-      <div class="info">
-        <h3>Tong-Young Lee, PhD</h3>
-        <div class="role">CEO</div>
-      </div>
+      <div class="photo"><img src="/images/our%20story/lee.jpg" alt="Tong-Young Lee, PhD" width="400" height="400" loading="lazy" decoding="async"></div>
+      <h3>Tong-Young Lee, PhD</h3>
+      <div class="role">CEO</div>
       </a>
     </div>
     <div class="team-card anim">
       <a href="/our-story/joseph-rosenthal">
-      <img class="avatar" src="/images/our%20story/rosenthal.jpg" alt="Joseph Rosenthal, MD" width="400" height="400" loading="lazy" decoding="async">
-      <div class="info">
-        <h3>Joseph Rosenthal, MD</h3>
-        <div class="role">Chief Medical Officer</div>
-      </div>
+      <div class="photo"><img src="/images/our%20story/rosenthal.jpg" alt="Joseph Rosenthal, MD" width="400" height="400" loading="lazy" decoding="async"></div>
+      <h3>Joseph Rosenthal, MD</h3>
+      <div class="role">Chief Medical Officer</div>
       </a>
     </div>
   </div>
