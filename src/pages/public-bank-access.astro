@@ -98,9 +98,9 @@ const faqItems = [
   <div class="section">
     <h2 class="section-title anim">What families are saying</h2>
     <div class="test-grid">
-      <div class="test-card anim"><p>"Our family is biracial so finding a match could be difficult in the future. Signing up with StemCyte to get Public Bank Access was a no brainer."</p><div class="name">Jennifer B.</div><div class="detail">Banked in 2022</div></div>
-      <div class="test-card anim" style="transition-delay:0.15s"><p>"As a cancer survivor, I know how important it is to have Public Bank Access. This gives me peace of mind!"</p><div class="name">Nikki</div><div class="detail">Banked in 2021</div></div>
-      <div class="test-card anim" style="transition-delay:0.3s"><p>"Getting another stem cell unit that could save your life is the best gift, not a teddy bear."</p><div class="name">Sam M.</div><div class="detail">Banked in 2022</div></div>
+      <div class="test-card anim"><p>“Our family is biracial so finding a match could be difficult in the future. Signing up with StemCyte to get Public Bank Access was a no brainer.”</p><div class="name">Jennifer B.</div><div class="detail">Banked in 2022</div></div>
+      <div class="test-card anim" style="transition-delay:0.15s"><p>“As a cancer survivor, I know how important it is to have Public Bank Access. This gives me peace of mind!”</p><div class="name">Nikki</div><div class="detail">Banked in 2021</div></div>
+      <div class="test-card anim" style="transition-delay:0.3s"><p>“Getting another stem cell unit that could save your life is the best gift, not a teddy bear.”</p><div class="name">Sam M.</div><div class="detail">Banked in 2022</div></div>
     </div>
   </div>
 </section>
@@ -108,7 +108,7 @@ const faqItems = [
 <!-- FAQ -->
 <div class="section">
   <h2 class="section-title anim">Frequently asked questions</h2>
-  <Accordion client:visible items={faqItems} />
+  <Accordion client:visible items={faqItems[0].items} />
 </div>
 
 <!-- CTA BANNER -->

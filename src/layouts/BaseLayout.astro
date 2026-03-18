@@ -19,7 +19,10 @@ interface Props {
   schema?: object;
 }
 
-const { title, description = 'StemCyte is a global regenerative therapeutics company offering cord blood banking, clinical stem cell therapy, and regenerative medicine since 1997.', schema } = Astro.props;
+const { title: rawTitle, description = 'StemCyte is a global regenerative therapeutics company offering cord blood banking, clinical stem cell therapy, and regenerative medicine since 1997.', schema } = Astro.props;
+
+// Prevent duplicate "| StemCyte" in title
+const title = rawTitle.replace(/\s*\|\s*StemCyte\s*$/i, '');
 
 // Base organization schema — included on every page
 const orgSchema = {
