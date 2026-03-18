@@ -79,17 +79,14 @@ const schema = {
 .split .photo { border-radius:12px; overflow:hidden; height:400px; }
 .split .photo img { width:100%; height:100%; object-fit:cover; display:block; }
 .split .text p { font-size:15px; color:#6B665D; line-height:1.7; margin-bottom:14px; }
-.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-.team-card { background:#fff; border-radius:16px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); transition:transform 0.2s ease, box-shadow 0.2s ease; cursor:pointer; }
-.team-card:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(108,26,85,0.1); }
+.team-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; }
+.team-card { text-align:center; cursor:pointer; }
 .team-card a { text-decoration:none; color:inherit; display:block; }
-.team-card .view-link { font-size:13px; font-weight:700; color:#6C1A55; margin-top:12px; display:inline-flex; align-items:center; gap:4px; }
-.team-card .view-link svg { width:14px; height:14px; }
-.team-card .avatar { width:100%; aspect-ratio:1/1; object-fit:contain; background:#F3F0F8; display:block; }
-.team-card .info { padding:24px; }
-.team-card h3 { font-size:18px; font-weight:700; margin-bottom:4px; }
-.team-card .role { font-size:13px; color:#6C1A55; font-weight:600; margin-bottom:10px; }
-.team-card p { font-size:14px; color:#6B6760; line-height:1.65; }
+.team-card .avatar { width:100%; aspect-ratio:1/1; object-fit:contain; background:#F3F0F8; display:block; border-radius:16px; transition:transform 0.4s ease; }
+.team-card:hover .avatar { transform:scale(1.03); }
+.team-card .info { padding:20px 0 0; }
+.team-card h3 { font-family:'Playfair Display',serif; font-size:20px; font-weight:400; letter-spacing:-0.3px; margin-bottom:4px; line-height:1.2; }
+.team-card .role { font-size:14px; color:#6C1A55; font-weight:400; }
 .legacy { position:relative; overflow:hidden; }
 .legacy .inner { display:grid; grid-template-columns:280px 1fr; gap:56px; align-items:start; max-width:1100px; margin:0 auto; }
 .legacy .photo-side { text-align:center; }
@@ -187,7 +184,7 @@ const schema = {
   .section, .section-full, .divider { padding-left:24px; padding-right:24px; }
   .split { grid-template-columns:1fr; gap:32px; }
   .split .photo { height:260px; }
-  .team-grid { grid-template-columns:1fr; }
+  .team-grid { grid-template-columns:1fr; max-width:320px; margin-left:auto; margin-right:auto; }
   .tl-item { grid-template-columns:1fr; gap:0; }
   .tl-content.left { text-align:left; padding-right:0; padding-left:44px; }
   .tl-accred-grid { grid-template-columns:1fr 1fr; }
@@ -822,41 +819,34 @@ const schema = {
 <!-- THE PEOPLE BEHIND THE SCIENCE -->
 <section class="section">
   <div class="sh">
-    <div class="lbl">The people behind the science</div>
-    <h2>Led by researchers, clinicians, and parents</h2>
-    <p>Our leadership team brings decades of experience across pharmaceutical research, clinical medicine, and stem cell science.</p>
+    <div class="lbl">Leadership</div>
+    <h2>The people behind the science</h2>
   </div>
   <div class="team-grid">
     <div class="team-card anim">
       <a href="/our-story/jonas-wang">
-      <img class="avatar" src="/images/our%20story/jonas.jpg" alt="Jonas Wang, PhD" width="120" height="120" loading="lazy" decoding="async">
+      <img class="avatar" src="/images/our%20story/jonas.jpg" alt="Jonas Wang, PhD" width="400" height="400" loading="lazy" decoding="async">
       <div class="info">
         <h3>Jonas Wang, PhD</h3>
         <div class="role">Chairman</div>
-        <p>30+ years in pharmaceutical research and business development. Former VP at Johnson &amp; Johnson and Director at Bristol-Myers Squibb. Holds 30+ patents across drug delivery and life science technologies.</p>
-        <span class="view-link">View full profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
       </div>
       </a>
     </div>
     <div class="team-card anim">
       <a href="/our-story/tong-young-lee">
-      <img class="avatar" src="/images/our%20story/lee.jpg" alt="Tong-Young Lee, PhD" width="120" height="120" loading="lazy" decoding="async">
+      <img class="avatar" src="/images/our%20story/lee.jpg" alt="Tong-Young Lee, PhD" width="400" height="400" loading="lazy" decoding="async">
       <div class="info">
         <h3>Tong-Young Lee, PhD</h3>
         <div class="role">CEO</div>
-        <p>Trained at Harvard Medical School under Dr. Judah Folkman, contributing to the development of Avastin, Lucentis, and Eylea. Led antibody drug development across multiple biotech ventures before joining StemCyte.</p>
-        <span class="view-link">View full profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
       </div>
       </a>
     </div>
     <div class="team-card anim">
       <a href="/our-story/joseph-rosenthal">
-      <img class="avatar" src="/images/our%20story/rosenthal.jpg" alt="Joseph Rosenthal, MD" width="120" height="120" loading="lazy" decoding="async">
+      <img class="avatar" src="/images/our%20story/rosenthal.jpg" alt="Joseph Rosenthal, MD" width="400" height="400" loading="lazy" decoding="async">
       <div class="info">
         <h3>Joseph Rosenthal, MD</h3>
         <div class="role">Chief Medical Officer</div>
-        <p>Professor Emeritus at City of Hope with over 25 years at the NCI-designated comprehensive cancer center. Former Barron Hilton Chair in Pediatrics and Director of Pediatric Hematology-Oncology.</p>
-        <span class="view-link">View full profile <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></span>
       </div>
       </a>
     </div>
