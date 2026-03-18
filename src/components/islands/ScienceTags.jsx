@@ -28,7 +28,7 @@ const DEFAULT_CATEGORIES = [
       { name: 'Multiple myeloma', tip: 'Cancer of plasma cells in the bone marrow. Transplant follows high-dose chemotherapy to restore healthy blood cell production.' },
       { name: 'Mantle cell lymphoma', tip: 'A rare B-cell lymphoma that tends to recur. Transplant can extend remission and improve long-term outcomes.' },
       { name: 'Follicular lymphoma', tip: 'A slow-growing but often recurring non-Hodgkin lymphoma. Transplant considered for cases that transform or stop responding to treatment.' },
-      { name: 'Waldenstr\u00F6m\'s', tip: 'Waldenstr\u00F6m\'s macroglobulinemia — a rare lymphoma producing excess antibody protein. Transplant for aggressive or treatment-resistant disease.' },
+      { name: 'Waldenström\'s', tip: 'Waldenström\'s macroglobulinemia — a rare lymphoma producing excess antibody protein. Transplant for aggressive or treatment-resistant disease.' },
     ],
   },
   {
@@ -160,8 +160,11 @@ const baseStyles = {
   },
 };
 
-function Tag({ name, tip, color }) {
-  const [showTip, setShowTip] = useState(false);
+function Tag({ name, tip, color, tagKey, openTip, setOpenTip }) {
+  const isHovered = useRef(false);
+  const isOpen = openTip === tagKey;
+
+  const showTip = isOpen || isHovered.current;
 
   return (
     <div
@@ -170,12 +173,12 @@ function Tag({ name, tip, color }) {
         ...baseStyles.tag,
         color,
       }}
-      onMouseEnter={() => setShowTip(true)}
-      onMouseLeave={() => setShowTip(false)}
-      onClick={() => setShowTip((prev) => !prev)}
+      onMouseEnter={() => { isHovered.current = true; setOpenTip(tagKey); }}
+      onMouseLeave={() => { isHovered.current = false; if (openTip === tagKey) setOpenTip(null); }}
+      onClick={() => setOpenTip(isOpen ? null : tagKey)}
     >
       {name}
-      <div style={{ ...baseStyles.tip, ...(showTip ? baseStyles.tipVisible : {}) }}>
+      <div style={{ ...baseStyles.tip, ...(isOpen ? baseStyles.tipVisible : {}) }}>
         {tip}
       </div>
     </div>
@@ -184,6 +187,7 @@ function Tag({ name, tip, color }) {
 
 export default function ScienceTags({ categories = DEFAULT_CATEGORIES }) {
   const containerRef = useRef(null);
+  const [openTip, setOpenTip] = useState(null);
 
   /* Mouse physics: scatter-nudge on disease tags */
   useEffect(() => {
@@ -267,7 +271,15 @@ export default function ScienceTags({ categories = DEFAULT_CATEGORIES }) {
           </div>
           <div style={baseStyles.tagWrap}>
             {cat.tags.map((tag, j) => (
-              <Tag key={j} name={tag.name} tip={tag.tip} color={cat.color} />
+              <Tag
+                key={j}
+                name={tag.name}
+                tip={tag.tip}
+                color={cat.color}
+                tagKey={`${i}-${j}`}
+                openTip={openTip}
+                setOpenTip={setOpenTip}
+              />
             ))}
           </div>
         </div>

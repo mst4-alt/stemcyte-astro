@@ -21,17 +21,16 @@ import PaymentForm from '../components/islands/PaymentForm.jsx';
 </BaseLayout>
 
 <style is:global>
-.hero { position:relative; min-height:540px; display:flex; align-items:flex-end; overflow:hidden; }
+.hero { position:relative; min-height:420px; display:flex; align-items:flex-end; overflow:hidden; }
 .vig { position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.5) 65%,rgba(0,0,0,0.72) 100%); z-index:1; }
-.ct { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:180px 48px 72px; width:100%; }
+.ct { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:160px 48px 56px; width:100%; }
 .lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:12px; }
-.hero h1 { font-family:'Playfair Display',serif; font-size:48px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; color:#fff; margin-bottom:16px; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; max-width:680px; margin-bottom:12px; color:#fff; }
 .sub { font-size:17px; color:rgba(255,255,255,0.55); max-width:540px; line-height:1.7; }
-.section { padding:80px 48px; max-width:800px; margin:0 auto; }
+.section { padding:80px 48px; max-width:900px; margin:0 auto; }
 @media (max-width:900px) {
-  .ct { padding:140px 24px 48px; }
-  .hero h1 { font-size:34px; }
+  .ct { padding:140px 24px 40px; }
+  .hero h1 { font-size:32px; }
   .section { padding:64px 24px; }
 }
-@media (max-width:600px) { .hero h1 { font-size:28px; } }
 </style>

@@ -40,12 +40,12 @@ const faqItems = [
         <h3>Expandable conditions</h3>
         <p>Private cells can be ideal for regeneration and acquired conditions. Donor cells are essential for treating certain cancers and genetic disorders where a child cannot use their own. PBA gives your family access to those donor units.</p>
       </div>
-      <div class="wim-card anim">
+      <div class="wim-card anim" style="transition-delay:0.15s">
         <div class="wim-icon" style="background:#F0F7F4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <h3>More volume when it counts</h3>
         <p>As children grow, volume needs increase. A single privately-banked unit may not be enough. Access to our public inventory ensures even adults can receive effective treatment.</p>
       </div>
-      <div class="wim-card anim">
+      <div class="wim-card anim" style="transition-delay:0.3s">
         <div class="wim-icon" style="background:#EDF5FF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B6DC4" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <h3>Viability assurance</h3>
         <p>Birth is unpredictable. In the rare event a hospital collection yields low volume or the sample is not usable, PBA provides access to a viable, sterile donor unit as a backup.</p>
@@ -75,7 +75,7 @@ const faqItems = [
       </ul>
       <a href="/pricing" class="btn-ghost">Add PBA to your plan</a>
     </div>
-    <div class="compare-card plus anim">
+    <div class="compare-card plus anim" style="transition-delay:0.15s">
       <div class="compare-badge">COVERS PARENTS TOO</div>
       <div class="compare-sublabel">FOR YOUR CHILD + PARENTS</div>
       <h3>Public Bank Access+</h3>
@@ -99,8 +99,8 @@ const faqItems = [
     <h2 class="section-title anim">What families are saying</h2>
     <div class="test-grid">
       <div class="test-card anim"><p>"Our family is biracial so finding a match could be difficult in the future. Signing up with StemCyte to get Public Bank Access was a no brainer."</p><div class="name">Jennifer B.</div><div class="detail">Banked in 2022</div></div>
-      <div class="test-card anim"><p>"As a cancer survivor, I know how important it is to have Public Bank Access. This gives me peace of mind!"</p><div class="name">Nikki</div><div class="detail">Banked in 2021</div></div>
-      <div class="test-card anim"><p>"Getting another stem cell unit that could save your life is the best gift, not a teddy bear."</p><div class="name">Sam M.</div><div class="detail">Banked in 2022</div></div>
+      <div class="test-card anim" style="transition-delay:0.15s"><p>"As a cancer survivor, I know how important it is to have Public Bank Access. This gives me peace of mind!"</p><div class="name">Nikki</div><div class="detail">Banked in 2021</div></div>
+      <div class="test-card anim" style="transition-delay:0.3s"><p>"Getting another stem cell unit that could save your life is the best gift, not a teddy bear."</p><div class="name">Sam M.</div><div class="detail">Banked in 2022</div></div>
     </div>
   </div>
 </section>
@@ -125,70 +125,74 @@ const faqItems = [
 </BaseLayout>
 
 <style is:global>
-.hero { position:relative; min-height:540px; display:flex; align-items:flex-end; overflow:hidden; }
-.vig { position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.5) 65%,rgba(0,0,0,0.72) 100%); z-index:1; }
+.hero { position:relative; min-height:560px; display:flex; align-items:center; overflow:hidden; }
+.vig { position:absolute; inset:0; background:radial-gradient(ellipse 70% 60% at 55% 50%,transparent 0%,rgba(0,0,0,0.15) 50%,rgba(0,0,0,0.55) 100%); z-index:1; }
 .ct { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:180px 48px 72px; width:100%; }
+.txt { max-width:520px; }
 .lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:12px; }
-.hero h1 { font-family:'Playfair Display',serif; font-size:48px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; max-width:680px; margin-bottom:16px; color:#fff; }
-.sub { font-size:17px; color:rgba(255,255,255,0.55); max-width:540px; line-height:1.7; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:46px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; margin-bottom:16px; color:#fff; }
+.sub { font-size:17px; color:rgba(255,255,255,0.6); max-width:520px; line-height:1.7; }
 .section { padding:80px 48px; max-width:1100px; margin:0 auto; }
 .section-lav { background:#F3F0F8; }
 .section-lav-deep { background:#EDE8F5; }
-.section-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:10px; }
-.section-title { font-family:'Playfair Display',serif; font-size:36px; font-weight:400; letter-spacing:-0.5px; margin-bottom:16px; line-height:1.15; }
-.section-sub { font-size:16px; color:#8A857A; max-width:520px; line-height:1.7; margin-bottom:32px; }
-.wim-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
-.wim-card { background:#fff; border-radius:12px; padding:28px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
-.wim-icon { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
-.wim-card h3 { font-size:16px; font-weight:700; margin-bottom:8px; }
-.wim-card p { font-size:14px; color:#8A857A; line-height:1.7; }
-.compare-wrap { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
-.compare-card { background:#fff; border-radius:12px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); position:relative; }
-.compare-badge { position:absolute; top:-10px; right:16px; background:#6C1A55; color:#fff; font-size:10px; font-weight:700; padding:4px 12px; border-radius:100px; }
-.compare-sublabel { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#8A857A; margin-bottom:8px; }
-.compare-card h3 { font-family:'Playfair Display',serif; font-size:24px; font-weight:400; margin-bottom:4px; }
-.compare-price { font-family:'Source Serif 4',serif; font-size:36px; color:#6C1A55; font-weight:400; }
-.compare-price-note { font-size:12px; color:#B0AB9E; margin-bottom:8px; }
-.compare-free { font-size:12px; color:#3D8B6A; font-weight:700; margin-bottom:12px; }
-.compare-desc { font-size:14px; color:#8A857A; line-height:1.7; margin-bottom:16px; }
-.compare-checks { list-style:none; padding:0; margin:0 0 20px; }
-.compare-checks li { display:flex; align-items:center; gap:8px; font-size:13px; font-weight:600; margin-bottom:8px; color:#2C2A26; }
-.check-circle { width:18px; height:18px; border-radius:50%; background:#F0F7F4; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.section-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:12px; text-align:center; }
+.section-title { font-family:'Playfair Display',serif; font-size:36px; font-weight:400; line-height:1.15; letter-spacing:-1px; text-align:center; margin-bottom:16px; color:#2C2A26; }
+.section-sub { font-size:16px; color:#8A857A; text-align:center; max-width:620px; margin:0 auto 48px; line-height:1.7; }
+.anim { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease, transform 0.6s ease; }
+.anim.visible { opacity:1; transform:translateY(0); }
+.wim-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:48px auto 0; }
+.wim-card { background:#fff; border-radius:12px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.wim-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+.wim-card h3 { font-size:16px; font-weight:700; margin-bottom:8px; color:#2C2A26; }
+.wim-card p { font-size:15px; color:#8A857A; line-height:1.7; }
+.compare-wrap { display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:840px; margin:0 auto; }
+.compare-card { background:#fff; border-radius:12px; padding:32px; position:relative; }
+.standard { border:1px solid #E8E2DC; }
+.plus { border:2px solid #C06AA5; box-shadow:0 8px 32px rgba(108,26,85,0.08); }
+.compare-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#6C1A55; color:#fff; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:6px 16px; border-radius:100px; white-space:nowrap; }
+.compare-sublabel { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#C06AA5; margin-bottom:8px; }
+.compare-card h3 { font-family:'Playfair Display',serif; font-size:28px; font-weight:400; margin-bottom:12px; color:#2C2A26; }
+.compare-price { font-family:'Source Serif 4',serif; font-size:36px; font-weight:400; color:#6C1A55; margin-bottom:4px; }
+.compare-price-note { font-size:13px; color:#8A857A; margin-bottom:8px; }
+.compare-free { font-size:14px; font-weight:700; color:#3D8B6A; margin-bottom:12px; }
+.compare-desc { font-size:15px; color:#8A857A; line-height:1.7; margin-bottom:20px; }
+.compare-checks { list-style:none; margin-bottom:24px; padding:0; }
+.compare-checks li { display:flex; align-items:flex-start; gap:10px; font-size:14px; color:#2C2A26; margin-bottom:12px; line-height:1.5; }
+.compare-checks li:last-child { margin-bottom:0; }
+.check-circle { width:20px; height:20px; border-radius:50%; background:#D4E8DC; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:1px; }
 .check-circle svg { width:12px; height:12px; }
-.btn-ghost { display:inline-block; padding:12px 28px; border-radius:100px; font-size:14px; font-weight:700; border:1px solid #E8E2DC; color:#6C1A55; text-decoration:none; transition:all 0.2s; }
-.btn-ghost:hover { border-color:#6C1A55; background:rgba(108,26,85,0.04); }
-.btn-plum { display:inline-block; padding:12px 28px; border-radius:100px; font-size:14px; font-weight:700; background:#6C1A55; color:#fff; text-decoration:none; transition:all 0.2s; }
-.btn-plum:hover { background:#5A1548; }
-.plus { border:2px solid #6C1A55; }
-.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
-.test-card { background:#fff; border-radius:12px; padding:24px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
-.test-card p { font-size:14px; color:#6B665D; line-height:1.7; font-style:italic; margin-bottom:12px; }
-.test-card .name { font-size:13px; font-weight:700; color:#2C2A26; }
-.test-card .detail { font-size:11px; color:#B0AB9E; }
-.cta-banner { margin:80px 48px; border-radius:16px; background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:80px 64px; text-align:center; position:relative; overflow:hidden; }
-.cta-banner .circle { position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(192,106,165,0.08); top:-200px; right:-100px; }
-.cta-banner h2 { font-family:'Playfair Display',serif; font-size:36px; color:#fff; margin-bottom:12px; position:relative; }
+.btn-ghost { display:inline-block; padding:14px 28px; border-radius:100px; font-size:14px; font-weight:700; border:1px solid #E8E2DC; background:transparent; color:#6C1A55; cursor:pointer; font-family:'Lato',sans-serif; text-decoration:none; text-align:center; width:100%; transition:all 0.25s; }
+.btn-ghost:hover { background:rgba(108,26,85,0.12); border-color:rgba(108,26,85,0.25); }
+.btn-plum { display:inline-block; padding:14px 28px; border-radius:100px; font-size:14px; font-weight:700; border:none; background:#6C1A55; color:#fff; cursor:pointer; font-family:'Lato',sans-serif; text-decoration:none; text-align:center; width:100%; transition:all 0.25s; }
+.btn-plum:hover { background:#8B3572; }
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:0 auto; }
+.test-card { background:#fff; border-radius:12px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.test-card p { font-size:15px; color:#2C2A26; line-height:1.7; margin-bottom:16px; font-style:italic; }
+.test-card .name { font-size:13px; font-weight:700; color:#6C1A55; }
+.test-card .detail { font-size:13px; color:#8A857A; }
+.cta-banner { background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:80px 48px; text-align:center; position:relative; overflow:hidden; }
+.cta-banner .circle { position:absolute; width:340px; height:340px; border-radius:50%; border:1px solid rgba(255,255,255,0.06); top:-80px; right:-60px; pointer-events:none; }
+.cta-banner h2 { font-family:'Playfair Display',serif; font-size:36px; font-weight:400; color:#fff; margin-bottom:12px; position:relative; z-index:2; }
 .cta-banner h2 em { font-style:italic; color:#E8A0D0; }
-.cta-sub { font-size:16px; color:rgba(255,255,255,0.5); margin-bottom:32px; position:relative; }
-.cta-btns { display:flex; gap:12px; justify-content:center; position:relative; }
-.cta-btn-w { background:#fff; color:#6C1A55; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; transition:all 0.25s; display:inline-block; }
+.cta-sub { font-size:16px; color:rgba(255,255,255,0.55); margin-bottom:32px; position:relative; z-index:2; }
+.cta-btns { display:flex; gap:12px; justify-content:center; position:relative; z-index:2; }
+.cta-btn-w { display:inline-block; padding:14px 32px; border-radius:100px; font-size:14px; font-weight:700; background:#fff; color:#6C1A55; text-decoration:none; font-family:'Lato',sans-serif; transition:all 0.25s; }
 .cta-btn-w:hover { background:rgba(255,255,255,0.85); }
-.cta-btn-g { background:transparent; color:#fff; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; border:1px solid rgba(255,255,255,0.25); text-decoration:none; transition:all 0.25s; display:inline-block; }
-.cta-btn-g:hover { background:rgba(255,255,255,0.20); }
-.anim { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
-.anim.vis { opacity:1; transform:translateY(0); }
+.cta-btn-g { display:inline-block; padding:14px 32px; border-radius:100px; font-size:14px; font-weight:700; background:transparent; color:#fff; border:1px solid rgba(255,255,255,0.25); text-decoration:none; font-family:'Lato',sans-serif; transition:all 0.25s; }
+.cta-btn-g:hover { background:rgba(255,255,255,0.20); border-color:rgba(255,255,255,0.35); }
 @media (max-width:900px) {
   .ct { padding:140px 24px 48px; }
   .hero h1 { font-size:34px; }
   .section { padding:64px 24px; }
   .wim-grid { grid-template-columns:1fr; }
-  .compare-wrap { grid-template-columns:1fr; }
+  .compare-wrap { grid-template-columns:1fr; max-width:440px; }
   .test-grid { grid-template-columns:1fr; }
-  .cta-banner { margin:48px 20px; padding:48px 24px; }
+  .cta-btns { flex-direction:column; align-items:center; }
 }
 @media (max-width:600px) {
   .hero h1 { font-size:28px; }
-  .cta-btns { flex-direction:column; align-items:center; }
+  .section-title { font-size:28px; }
+  .compare-card { padding:24px; }
 }
 </style>
 
@@ -196,10 +200,10 @@ const faqItems = [
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('vis'), 150);
+        e.target.classList.add('visible');
         obs.unobserve(e.target);
       }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.15 });
   document.querySelectorAll('.anim').forEach(el => obs.observe(el));
 </script>

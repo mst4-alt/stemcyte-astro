@@ -128,8 +128,18 @@ const schema = {
   </div>
 </section>
 
-<!-- PLUM DEEP — 80+ DISEASES (React Island) -->
-<ScienceTags client:visible />
+<!-- PLUM DEEP — 80+ DISEASES -->
+<section class="zone-plum-deep">
+  <div class="circle-deco"></div>
+  <div class="inner">
+    <div class="tc">
+      <div class="zlbl">What cord blood treats</div>
+      <h2>What these 80+ diseases actually are</h2>
+      <p class="lead">Hover over any condition to learn more. These are not future possibilities — these are being treated right now.</p>
+    </div>
+    <ScienceTags client:visible />
+  </div>
+</section>
 
 <!-- SAGE ZONE — CORD TISSUE -->
 <section class="zone zone-sage">
@@ -304,6 +314,15 @@ const schema = {
 .match-card .ml { font-size:14px; font-weight:700; color:#2C2A26; margin-top:6px; }
 .match-card .md { font-size:12px; color:#8A857A; margin-top:4px; }
 
+/* PLUM DEEP — 80+ DISEASES */
+.zone-plum-deep { background:#F3E8EE; padding:80px 48px; position:relative; overflow:visible; }
+.zone-plum-deep .circle-deco { position:absolute; width:400px; height:400px; border-radius:50%; background:#F0E0EB; opacity:0.25; right:-120px; bottom:-120px; z-index:0; }
+.zone-plum-deep .inner { max-width:1100px; margin:0 auto; position:relative; z-index:1; }
+.zone-plum-deep .tc { text-align:center; margin-bottom:40px; }
+.zone-plum-deep .zlbl { font-size:13px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:10px; }
+.zone-plum-deep h2 { font-family:'Playfair Display',serif; font-size:40px; font-weight:400; margin-bottom:10px; line-height:1.15; }
+.zone-plum-deep .lead { font-size:16px; color:#6B665D; max-width:520px; margin:0 auto; line-height:1.7; }
+
 /* SAGE ZONE */
 .zone-sage { background:#F0F7F4; }
 .zone-sage .zlbl { color:#3D8B6A; }
@@ -384,7 +403,7 @@ const schema = {
 @media (max-width:900px) {
   .ct { padding:140px 24px 48px; }
   .hero h1 { font-size:34px; }
-  .zone, .zone-sage-deep { padding:64px 24px; }
+  .zone, .zone-plum-deep, .zone-sage-deep { padding:64px 24px; }
   .cat-grid { grid-template-columns:1fr 1fr; }
   .match-grid { grid-template-columns:1fr; }
   .compare-grid { grid-template-columns:1fr; }
