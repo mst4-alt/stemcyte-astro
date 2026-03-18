@@ -24,7 +24,7 @@ const schema = {
 .hero-text .overline .pulse { width:6px; height:6px; border-radius:50%; background:#C06AA5; animation:pulse 2s ease infinite; }
 @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(192,106,165,0.4)} 50%{box-shadow:0 0 0 8px rgba(192,106,165,0)} }
 .hero h1 { font-family:'Playfair Display',serif; font-size:52px; font-weight:400; line-height:1.05; letter-spacing:-1.5px; color:#fff; margin-bottom:16px; }
-.hero .desc { font-size:16px; color:rgba(255,255,255,0.4); line-height:1.7; }
+.hero .desc { font-size:16px; color:rgba(255,255,255,0.55); line-height:1.7; }
 .hero .pi-link { display:inline-flex; align-items:center; gap:6px; margin-top:20px; font-size:13px; font-weight:700; color:#E8A0D0; text-decoration:none; transition:color 0.2s; }
 .hero .pi-link:hover { color:#fff; }
 .hero .pi-link svg { width:14px; height:14px; }
@@ -45,7 +45,7 @@ const schema = {
 .main table th { text-align:left; padding:10px 12px; background:#F3F0F8; font-size:12px; font-weight:700; color:#6C1A55; letter-spacing:0.5px; text-transform:uppercase; }
 .main table td { padding:10px 12px; border-bottom:1px solid #E8E2DC; color:#2C2A26; }
 .main table tr:last-child td { border-bottom:none; }
-.source { font-size:11px; color:#B0AB9E; line-height:1.6; }
+.source { font-size:11px; color:#8A857A; line-height:1.6; }
 .source a { color:#6C1A55; text-decoration:none; }
 .source a:hover { text-decoration:underline; }
 
@@ -63,7 +63,7 @@ const schema = {
 /* CHARTS */
 .chart-box { background:#fff; border-radius:12px; padding:32px; margin:28px 0; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
 .chart-title { font-size:16px; font-weight:700; color:#2C2A26; margin-bottom:2px; }
-.chart-sub { font-size:13px; color:#B0AB9E; margin-bottom:24px; }
+.chart-sub { font-size:13px; color:#8A857A; margin-bottom:24px; }
 
 /* Grouped vertical bar chart */
 .vbar-chart { display:flex; align-items:flex-end; gap:0; height:220px; padding:0 12px; position:relative; }
@@ -92,7 +92,7 @@ const schema = {
 .time-label { font-size:13px; font-weight:700; color:#2C2A26; width:110px; flex-shrink:0; }
 .time-bars { flex:1; display:flex; flex-direction:column; gap:3px; }
 .time-bar-row { display:flex; align-items:center; gap:8px; }
-.time-bar-row .tag { font-size:10px; color:#B0AB9E; width:68px; text-align:right; flex-shrink:0; }
+.time-bar-row .tag { font-size:10px; color:#8A857A; width:68px; text-align:right; flex-shrink:0; }
 .time-bar-row .track { flex:1; height:20px; background:#F5F2EE; border-radius:3px; position:relative; }
 .time-bar-row .fill { height:100%; border-radius:3px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; font-size:11px; font-weight:700; }
 .time-bar-row .fill.neutral { background:#D8D3CC; color:#7A756D; }
@@ -110,12 +110,12 @@ const schema = {
 .ae-val { font-size:11px; font-weight:700; }
 .ae-val.neutral { color:#A09A90; }
 .ae-val.accent { color:#6C1A55; }
-.ae-header { display:grid; grid-template-columns:1fr 96px 1fr; text-align:center; margin-bottom:10px; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#B0AB9E; }
+.ae-header { display:grid; grid-template-columns:1fr 96px 1fr; text-align:center; margin-bottom:10px; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#8A857A; }
 
 /* CTA */
 .cta-banner { background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:80px 48px; text-align:center; position:relative; z-index:2; }
 .cta-banner h2 { font-family:'Playfair Display',serif; font-size:36px; font-weight:400; color:#fff; margin-bottom:12px; }
-.cta-banner p { font-size:16px; color:rgba(255,255,255,0.5); margin-bottom:32px; }
+.cta-banner p { font-size:16px; color:rgba(255,255,255,0.65); margin-bottom:32px; }
 .cta-banner .btn { display:inline-block; background:#fff; color:#6C1A55; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; font-family:'Lato',sans-serif; transition:all 0.25s; }
 .cta-banner .btn:hover { background:rgba(255,255,255,0.85); }
 
@@ -296,11 +296,11 @@ const schema = {
 
     <!-- SIDEBAR -->
     <div class="sidebar">
-      <div class="side-card"><h4>Product Specifications</h4><div class="side-stat"><span class="sl">Min. TNC/unit</span><span class="sv">9&times;10&#x2078;</span></div><div class="side-stat"><span class="sl">Min. CD34+</span><span class="sv">1.25&times;10&#x2076;</span></div><div class="side-stat"><span class="sl">Min. dose (TNC/kg)</span><span class="sv">2.5&times;10&#x2077;</span></div><div class="side-stat"><span class="sl">Cryopreservant</span><span class="sv">10% DMSO</span></div><div class="side-stat"><span class="sl">Volume</span><span class="sv">25 mL</span></div><div class="side-stat"><span class="sl">Infusion Time</span><span class="sv">15&ndash;60 min</span></div></div>
-      <div class="side-card"><h4>Disease Categories</h4><div class="side-stat"><span class="sl">Cancers</span><span class="sv">22</span></div><div class="side-stat"><span class="sl">Immune Disorders</span><span class="sv">26</span></div><div class="side-stat"><span class="sl">Blood Disorders</span><span class="sv">14</span></div><div class="side-stat"><span class="sl">Metabolic Disorders</span><span class="sv">18</span></div></div>
-      <div class="side-card"><h4>Accreditations</h4><ul class="side-list"><li>FDA BLA Licensed</li><li>FACT Certified</li><li>AABB Accredited</li><li>NMDP Member</li><li>cGMP Compliant</li></ul></div>
-      <div class="side-card"><h4>Pipeline</h4><div class="side-stat"><span class="sl">Long COVID</span><span class="sv"><span class="phase-pill" style="background:rgba(108,26,85,0.08);color:#6C1A55;">Phase II / RMAT</span></span></div><div class="side-stat"><span class="sl">Acute Stroke</span><span class="sv"><span class="phase-pill" style="background:rgba(192,148,62,0.12);color:#9A7530;">Phase I</span></span></div><div class="side-stat"><span class="sl">Spinal Cord</span><span class="sv"><span class="phase-pill" style="background:rgba(192,148,62,0.12);color:#9A7530;">Active</span></span></div></div>
-      <div class="side-card"><h4>Collaborating Centers</h4><ul class="side-list"><li>City of Hope</li><li>Mayo Clinic</li><li>UCLA Medical Center</li><li>Stanford Hospital</li><li>Duke University</li><li>Children&rsquo;s Hospital LA</li><li>Mt. Sinai Medical Center</li></ul></div>
+      <div class="side-card"><h3 class="side-card-heading">Product Specifications</h3><div class="side-stat"><span class="sl">Min. TNC/unit</span><span class="sv">9&times;10&#x2078;</span></div><div class="side-stat"><span class="sl">Min. CD34+</span><span class="sv">1.25&times;10&#x2076;</span></div><div class="side-stat"><span class="sl">Min. dose (TNC/kg)</span><span class="sv">2.5&times;10&#x2077;</span></div><div class="side-stat"><span class="sl">Cryopreservant</span><span class="sv">10% DMSO</span></div><div class="side-stat"><span class="sl">Volume</span><span class="sv">25 mL</span></div><div class="side-stat"><span class="sl">Infusion Time</span><span class="sv">15&ndash;60 min</span></div></div>
+      <div class="side-card"><h3 class="side-card-heading">Disease Categories</h3><div class="side-stat"><span class="sl">Cancers</span><span class="sv">22</span></div><div class="side-stat"><span class="sl">Immune Disorders</span><span class="sv">26</span></div><div class="side-stat"><span class="sl">Blood Disorders</span><span class="sv">14</span></div><div class="side-stat"><span class="sl">Metabolic Disorders</span><span class="sv">18</span></div></div>
+      <div class="side-card"><h3 class="side-card-heading">Accreditations</h3><ul class="side-list"><li>FDA BLA Licensed</li><li>FACT Certified</li><li>AABB Accredited</li><li>NMDP Member</li><li>cGMP Compliant</li></ul></div>
+      <div class="side-card"><h3 class="side-card-heading">Pipeline</h3><div class="side-stat"><span class="sl">Long COVID</span><span class="sv"><span class="phase-pill" style="background:rgba(108,26,85,0.08);color:#6C1A55;">Phase II / RMAT</span></span></div><div class="side-stat"><span class="sl">Acute Stroke</span><span class="sv"><span class="phase-pill" style="background:rgba(192,148,62,0.12);color:#9A7530;">Phase I</span></span></div><div class="side-stat"><span class="sl">Spinal Cord</span><span class="sv"><span class="phase-pill" style="background:rgba(192,148,62,0.12);color:#9A7530;">Active</span></span></div></div>
+      <div class="side-card"><h3 class="side-card-heading">Collaborating Centers</h3><ul class="side-list"><li>City of Hope</li><li>Mayo Clinic</li><li>UCLA Medical Center</li><li>Stanford Hospital</li><li>Duke University</li><li>Children&rsquo;s Hospital LA</li><li>Mt. Sinai Medical Center</li></ul></div>
     </div>
   </div>
 </section>

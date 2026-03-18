@@ -12,7 +12,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .hero .circle-2 { position:absolute; width:300px; height:300px; border-radius:50%; background:rgba(108,26,85,0.04); bottom:-100px; right:-60px; }
 .hero .lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:12px; position:relative; }
 .hero h1 { font-family:'Playfair Display',serif; font-size:46px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; margin-bottom:16px; color:#2C2A26; position:relative; }
-.hero .sub { font-size:17px; color:#8A857A; max-width:600px; margin:0 auto; line-height:1.7; position:relative; }
+.hero .sub { font-size:17px; color:#6B6760; max-width:600px; margin:0 auto; line-height:1.7; position:relative; }
 
 /* SECTION */
 .section { padding:80px 48px; max-width:1100px; margin:0 auto; }
@@ -24,7 +24,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .prog-card .badge-free { color:#3D8B6A; background:#F0F7F4; }
 .prog-card .badge-disc { color:#6C1A55; background:#FBF5F9; }
 .prog-card h3 { font-family:'Playfair Display',serif; font-size:22px; font-weight:400; margin-bottom:10px; }
-.prog-card .desc { font-size:14px; color:#8A857A; line-height:1.7; flex:1; }
+.prog-card .desc { font-size:14px; color:#6B6760; line-height:1.7; flex:1; }
 .prog-card .btn-p { display:inline-block; text-decoration:none; background:#6C1A55; color:#fff; padding:14px 28px; border-radius:100px; font-size:14px; font-weight:700; font-family:'Lato',sans-serif; text-align:center; margin-top:20px; transition:all 0.25s; }
 .prog-card .btn-p:hover { background:#8B3572; }
 
@@ -37,7 +37,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .apply-section { background:#F3F0F8; padding:80px 48px; text-align:center; }
 .apply-section .inner { max-width:560px; margin:0 auto; }
 .apply-section h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; margin-bottom:16px; }
-.apply-section p { font-size:15px; color:#8A857A; line-height:1.7; margin-bottom:28px; }
+.apply-section p { font-size:15px; color:#6B6760; line-height:1.7; margin-bottom:28px; }
 .apply-section .btn-p { display:inline-block; text-decoration:none; background:#6C1A55; color:#fff; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; font-family:'Lato',sans-serif; transition:all 0.25s; }
 .apply-section .btn-p:hover { background:#8B3572; }
 
@@ -55,14 +55,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .faq-smooth.open .faq-q .icon::after { transform:rotate(90deg); }
 .faq-smooth .faq-a { max-height:0; overflow:hidden; transition:max-height 0.35s ease, opacity 0.3s ease; opacity:0; }
 .faq-smooth.open .faq-a { opacity:1; }
-.faq-smooth .faq-a-inner { padding:0 0 20px; font-size:15px; color:#8A857A; line-height:1.7; max-width:720px; }
+.faq-smooth .faq-a-inner { padding:0 0 20px; font-size:15px; color:#6B6760; line-height:1.7; max-width:720px; }
 
 /* CTA BANNER */
 .cta-banner { margin:80px 48px; border-radius:16px; background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:80px 64px; text-align:center; position:relative; overflow:hidden; }
 .cta-banner::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(192,106,165,0.08); top:-200px; right:-100px; }
 .cta-banner h2 { font-family:'Playfair Display',serif; font-size:36px; color:#fff; margin-bottom:12px; position:relative; }
 .cta-banner h2 em { font-style:italic; color:#E8A0D0; }
-.cta-banner p { font-size:16px; color:rgba(255,255,255,0.5); margin-bottom:32px; position:relative; }
+.cta-banner p { font-size:16px; color:rgba(255,255,255,0.65); margin-bottom:32px; position:relative; }
 .cta-banner .btns { display:flex; gap:12px; justify-content:center; position:relative; }
 .btn-w { display:inline-block; text-decoration:none; background:#fff; color:#6C1A55; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; border:none; cursor:pointer; font-family:'Lato',sans-serif; transition:all 0.25s; }
 .btn-w:hover { background:rgba(255,255,255,0.85); }
@@ -105,21 +105,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
     <div class="prog-card sibling">
       <div class="badge badge-free">FREE BANKING</div>
-      <h3>Sibling Donor Program</h3>
+      <h2 class="program-heading">Sibling Donor Program</h2>
       <p class="desc">Free processing and storage for families where a sibling has a diagnosis requiring stem cell transplantation.</p>
       <a href="tel:8663894659" class="btn-p">Contact us to apply</a>
     </div>
 
     <div class="prog-card military">
       <div class="badge badge-disc">DISCOUNT</div>
-      <h3>Military &amp; Public Servant</h3>
+      <h2 class="program-heading">Military &amp; Public Servant</h2>
       <p class="desc">Special pricing for active and retired military, police, fire, and EMT professionals.</p>
       <a href="tel:8663894659" class="btn-p">Call for pricing</a>
     </div>
 
     <div class="prog-card medical">
       <div class="badge badge-disc">DISCOUNT</div>
-      <h3>Medical Professional</h3>
+      <h2 class="program-heading">Medical Professional</h2>
       <p class="desc">Special pricing for physicians, nurses, and allied health professionals.</p>
       <a href="tel:8663894659" class="btn-p">Call for pricing</a>
     </div>

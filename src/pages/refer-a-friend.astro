@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 <BaseLayout title="Refer a Friend">
 
 <section class="hero" id="hero">
-  <img src="/images/Hero_2.jpeg" alt="StemCyte refer a friend" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center" />
+  <img src="/images/Hero_2.jpeg" alt="StemCyte refer a friend" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center" />
   <div class="vig"></div>
   <div class="ct">
     <div class="lbl">Referral Program</div>
@@ -75,17 +75,17 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .section { padding:80px 48px; max-width:900px; margin:0 auto; }
 .how-header { text-align:center; margin-bottom:40px; }
 .how-header h2 { font-family:'Playfair Display',serif; font-size:28px; font-weight:400; letter-spacing:-0.5px; margin-bottom:8px; }
-.how-header p { font-size:15px; color:#8A857A; }
+.how-header p { font-size:15px; color:#6B6760; }
 .steps { display:flex; gap:24px; margin-bottom:56px; }
 .step { flex:1; text-align:center; padding:28px 20px; background:#fff; border-radius:12px; box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03); }
 .step-num { display:inline-flex; align-items:center; justify-content:center; width:32px; height:32px; border-radius:50%; background:#F3F0F8; color:#6C1A55; font-size:14px; font-weight:700; margin-bottom:12px; }
 .step h3 { font-size:16px; font-weight:700; margin-bottom:6px; }
-.step p { font-size:14px; color:#8A857A; line-height:1.6; }
+.step p { font-size:14px; color:#6B6760; line-height:1.6; }
 .reward-banner { background:#F3F0F8; border-radius:12px; padding:24px 32px; margin-bottom:48px; display:flex; align-items:center; gap:16px; }
 .reward-icon { width:48px; height:48px; border-radius:50%; background:#6C1A55; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .reward-icon svg { width:24px; height:24px; }
 .reward-text h3 { font-size:16px; font-weight:700; margin-bottom:2px; }
-.reward-text p { font-size:14px; color:#8A857A; }
+.reward-text p { font-size:14px; color:#6B6760; }
 .form-card { background:#fff; border-radius:16px; padding:40px; box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03); }
 .form-section-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:20px; padding-bottom:12px; border-bottom:1px solid #E8E2DC; margin-top:32px; }
 .form-section-label.first { margin-top:0; }
@@ -102,7 +102,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .reward-opt label { display:flex; align-items:center; justify-content:center; gap:8px; padding:14px 20px; border:2px solid #E8E2DC; border-radius:10px; font-size:14px; font-weight:700; color:#8A857A; cursor:pointer; transition:all 0.2s; text-align:center; }
 .reward-opt input:checked + label { border-color:#6C1A55; color:#6C1A55; background:#FBF5F9; }
 .reward-opt label:hover { border-color:#C06AA5; }
-.disclaimer { font-size:12px; color:#B0AB9E; margin-top:8px; line-height:1.6; }
+.disclaimer { font-size:12px; color:#8A857A; margin-top:8px; line-height:1.6; }
 .submit-row { margin-top:32px; text-align:center; }
 .btn-submit { background:#6C1A55; color:#fff; padding:16px 48px; border-radius:100px; font-size:15px; font-weight:700; border:none; cursor:pointer; font-family:'Lato',sans-serif; transition:all 0.25s; }
 .btn-submit:hover { background:#8B3572; }

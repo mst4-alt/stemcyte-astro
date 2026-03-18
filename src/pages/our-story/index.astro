@@ -24,7 +24,7 @@ const schema = {
 .hero-lbl { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#C06AA5; margin-bottom:16px; display:inline-block; }
 .hero-globe h1 { font-family:'Playfair Display',serif; font-size:52px; font-weight:400; line-height:1.08; letter-spacing:-1.5px; color:#fff; text-align:center; max-width:700px; margin:0 auto 12px; }
 .hero-globe h1 em { font-style:italic; color:#E8A0D0; }
-.hero-sub { font-size:17px; color:rgba(255,255,255,0.4); text-align:center; max-width:540px; margin:0 auto 48px; line-height:1.7; }
+.hero-sub { font-size:17px; color:rgba(255,255,255,0.55); text-align:center; max-width:540px; margin:0 auto 48px; line-height:1.7; }
 .map-wrap { position:relative; width:100%; max-width:960px; margin:0 auto; }
 .map-wrap svg { width:100%; height:auto; display:block; }
 
@@ -74,7 +74,7 @@ const schema = {
 .sh { margin-bottom:40px; }
 .sh .lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:10px; }
 .sh h2 { font-family:'Playfair Display',serif; font-size:36px; font-weight:400; letter-spacing:-0.5px; margin-bottom:10px; line-height:1.15; }
-.sh p { font-size:16px; color:#8A857A; max-width:520px; line-height:1.7; }
+.sh p { font-size:16px; color:#6B6760; max-width:520px; line-height:1.7; }
 .split { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
 .split .photo { border-radius:12px; overflow:hidden; height:400px; }
 .split .photo img { width:100%; height:100%; object-fit:cover; display:block; }
@@ -89,7 +89,7 @@ const schema = {
 .team-card .info { padding:24px 28px 28px; }
 .team-card h3 { font-size:18px; font-weight:700; margin-bottom:4px; }
 .team-card .role { font-size:13px; color:#6C1A55; font-weight:600; margin-bottom:12px; }
-.team-card p { font-size:14px; color:#8A857A; line-height:1.7; }
+.team-card p { font-size:14px; color:#6B6760; line-height:1.7; }
 .legacy { position:relative; overflow:hidden; }
 .legacy .inner { display:grid; grid-template-columns:280px 1fr; gap:56px; align-items:start; max-width:1100px; margin:0 auto; }
 .legacy .photo-side { text-align:center; }
@@ -131,7 +131,7 @@ const schema = {
 .tl-pill { font-size:9px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; padding:2px 8px; border-radius:100px; }
 .tl-pill-accred { background:#D4E8DC; color:#2A6B4F; }
 .tl-pill-key { background:#FBF5F9; color:#6C1A55; }
-.tl-desc { font-size:14px; color:#8A857A; line-height:1.6; margin:0; }
+.tl-desc { font-size:14px; color:#6B6760; line-height:1.6; margin:0; }
 .tl-accred-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:12px; margin-top:48px; }
 .tl-accred-card { background:#fff; border-radius:12px; padding:20px 28px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
 .tl-accred-card .num { font-family:'Source Serif 4',serif; font-size:28px; color:#6C1A55; font-weight:400; }
@@ -143,13 +143,13 @@ const schema = {
 /* Timeline dark mode overrides */
 .tl-dark .sh .lbl { color:#C06AA5; }
 .tl-dark .sh h2 { color:#fff; }
-.tl-dark .sh p { color:rgba(255,255,255,0.4); }
-.tl-dark .tl-legend-label { color:rgba(255,255,255,0.4); }
+.tl-dark .sh p { color:rgba(255,255,255,0.55); }
+.tl-dark .tl-legend-label { color:rgba(255,255,255,0.55); }
 .tl-dark .tl-spine { background:rgba(255,255,255,0.08); }
 .tl-dark .tl-fill { background:linear-gradient(180deg,#E8A0D0,#C06AA5); }
 .tl-dark .tl-era-inner { background:linear-gradient(170deg,#3D0F31,#2A0A22); }
 .tl-dark .tl-era-year { color:#E8A0D0; }
-.tl-dark .tl-era-sub { color:rgba(255,255,255,0.4); }
+.tl-dark .tl-era-sub { color:rgba(255,255,255,0.55); }
 .tl-dark .tl-dot-major { background:#E8A0D0; border-color:#3D0F31; box-shadow:0 0 0 2px #E8A0D0; }
 .tl-dark .tl-dot-accred { background:#3D8B6A; border-color:#3D0F31; box-shadow:0 0 0 2px #3D8B6A; }
 .tl-dark .tl-dot-normal { background:rgba(255,255,255,0.2); }
@@ -163,12 +163,12 @@ const schema = {
 .tl-dark .tl-accred-card { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); }
 .tl-dark .tl-accred-card .num { color:#E8A0D0; }
 .tl-dark .tl-accred-card .desc { color:rgba(255,255,255,0.35); }
-.tl-dark .tl-footnote { color:rgba(255,255,255,0.3); }
+.tl-dark .tl-footnote { color:rgba(255,255,255,0.5); }
 .cta-banner { margin:80px 48px; border-radius:16px; background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:80px 64px; text-align:center; position:relative; overflow:hidden; }
 .cta-banner::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(192,106,165,0.08); top:-200px; right:-100px; }
 .cta-banner h2 { font-family:'Playfair Display',serif; font-size:36px; color:#fff; margin-bottom:12px; position:relative; }
 .cta-banner h2 em { font-style:italic; color:#E8A0D0; }
-.cta-banner p { font-size:16px; color:rgba(255,255,255,0.5); margin-bottom:32px; position:relative; }
+.cta-banner p { font-size:16px; color:rgba(255,255,255,0.65); margin-bottom:32px; position:relative; }
 .cta-banner .btns { display:flex; gap:12px; justify-content:center; position:relative; }
 .btn-w { background:#fff; color:#6C1A55; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; display:inline-block; transition:all 0.25s; }
 .btn-w:hover { background:rgba(255,255,255,0.85); }
@@ -919,7 +919,7 @@ const schema = {
 
     <!-- 1997 — founding -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-major"></div>
-      <div class="tl-content left"><div class="tl-year tl-year-plum">1997</div><div class="tl-title-row justify-end"><span class="tl-pill tl-pill-key">Key</span><h4 class="tl-title">StemCyte founded</h4></div><p class="tl-desc">First laboratory opens in California with a mission to build the world&rsquo;s most ethnically diverse cord blood bank.</p></div>
+      <div class="tl-content left"><div class="tl-year tl-year-plum">1997</div><div class="tl-title-row justify-end"><span class="tl-pill tl-pill-key">Key</span><h3 class="tl-title">StemCyte founded</h3></div><p class="tl-desc">First laboratory opens in California with a mission to build the world&rsquo;s most ethnically diverse cord blood bank.</p></div>
       <div></div>
     </div>
 
@@ -929,36 +929,36 @@ const schema = {
     <!-- 2001 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-normal"></div>
       <div></div>
-      <div class="tl-content right"><div class="tl-year tl-year-plum">2001</div><div class="tl-title-row"><h4 class="tl-title">First thalassemia transplant</h4></div><p class="tl-desc">World&rsquo;s first successful cord blood transplant for Thalassemia Major using a StemCyte unit.</p></div>
+      <div class="tl-content right"><div class="tl-year tl-year-plum">2001</div><div class="tl-title-row"><h3 class="tl-title">First thalassemia transplant</h3></div><p class="tl-desc">World&rsquo;s first successful cord blood transplant for Thalassemia Major using a StemCyte unit.</p></div>
     </div>
 
     <!-- 2002 AABB -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-accred"></div>
-      <div class="tl-content left"><div class="tl-year tl-year-green">2002</div><div class="tl-title-row justify-end"><span class="tl-pill tl-pill-accred">Accreditation</span><h4 class="tl-title tl-title-green">AABB accredited</h4></div><p class="tl-desc">Achieved AABB accreditation in USA and Taiwan &mdash; maintained continuously since.</p></div>
+      <div class="tl-content left"><div class="tl-year tl-year-green">2002</div><div class="tl-title-row justify-end"><span class="tl-pill tl-pill-accred">Accreditation</span><h3 class="tl-title tl-title-green">AABB accredited</h3></div><p class="tl-desc">Achieved AABB accreditation in USA and Taiwan &mdash; maintained continuously since.</p></div>
       <div></div>
     </div>
 
     <!-- 2003 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-normal"></div>
       <div></div>
-      <div class="tl-content right"><div class="tl-year tl-year-plum">2003</div><div class="tl-title-row"><h4 class="tl-title">First cord blood symposium</h4></div><p class="tl-desc">Hosts world&rsquo;s first Cord Blood Transplantation Symposium at City of Hope.</p></div>
+      <div class="tl-content right"><div class="tl-year tl-year-plum">2003</div><div class="tl-title-row"><h3 class="tl-title">First cord blood symposium</h3></div><p class="tl-desc">Hosts world&rsquo;s first Cord Blood Transplantation Symposium at City of Hope.</p></div>
     </div>
 
     <!-- 2005 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-normal"></div>
-      <div class="tl-content left"><div class="tl-year tl-year-plum">2005</div><div class="tl-title-row justify-end"><h4 class="tl-title">Private banking launches</h4></div><p class="tl-desc">Private banking opens in USA and Taiwan.</p></div>
+      <div class="tl-content left"><div class="tl-year tl-year-plum">2005</div><div class="tl-title-row justify-end"><h3 class="tl-title">Private banking launches</h3></div><p class="tl-desc">Private banking opens in USA and Taiwan.</p></div>
       <div></div>
     </div>
 
     <!-- 2006 FACT -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-accred"></div>
       <div></div>
-      <div class="tl-content right"><div class="tl-year tl-year-green">2006</div><div class="tl-title-row"><h4 class="tl-title tl-title-green">FACT accredited</h4><span class="tl-pill tl-pill-accred">Accreditation</span></div><p class="tl-desc">First privately-owned cord blood bank to achieve FACT accreditation for both allogeneic and autologous banking. First privately owned HRSA partner.</p></div>
+      <div class="tl-content right"><div class="tl-year tl-year-green">2006</div><div class="tl-title-row"><h3 class="tl-title tl-title-green">FACT accredited</h3><span class="tl-pill tl-pill-accred">Accreditation</span></div><p class="tl-desc">First privately-owned cord blood bank to achieve FACT accreditation for both allogeneic and autologous banking. First privately owned HRSA partner.</p></div>
     </div>
 
     <!-- 2008 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-normal"></div>
-      <div class="tl-content left"><div class="tl-year tl-year-plum">2008</div><div class="tl-title-row justify-end"><h4 class="tl-title">Expansion to India</h4></div><p class="tl-desc">Partnered with Apollo Hospital Group. US patent for stem cell brain damage treatments.</p></div>
+      <div class="tl-content left"><div class="tl-year tl-year-plum">2008</div><div class="tl-title-row justify-end"><h3 class="tl-title">Expansion to India</h3></div><p class="tl-desc">Partnered with Apollo Hospital Group. US patent for stem cell brain damage treatments.</p></div>
       <div></div>
     </div>
 
@@ -968,31 +968,31 @@ const schema = {
     <!-- 2010 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-normal"></div>
       <div></div>
-      <div class="tl-content right"><div class="tl-year tl-year-plum">2010</div><div class="tl-title-row"><h4 class="tl-title">Breakthrough trials</h4></div><p class="tl-desc">Stroke trial shows promising results. Spinal cord injury trial launched.</p></div>
+      <div class="tl-content right"><div class="tl-year tl-year-plum">2010</div><div class="tl-title-row"><h3 class="tl-title">Breakthrough trials</h3></div><p class="tl-desc">Stroke trial shows promising results. Spinal cord injury trial launched.</p></div>
     </div>
 
     <!-- 2014 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-normal"></div>
-      <div class="tl-content left"><div class="tl-year tl-year-plum">2014</div><div class="tl-title-row justify-end"><h4 class="tl-title">California UCBCP partner</h4></div><p class="tl-desc">Selected as statewide collection partner for California&rsquo;s Umbilical Cord Blood Collection Program.</p></div>
+      <div class="tl-content left"><div class="tl-year tl-year-plum">2014</div><div class="tl-title-row justify-end"><h3 class="tl-title">California UCBCP partner</h3></div><p class="tl-desc">Selected as statewide collection partner for California&rsquo;s Umbilical Cord Blood Collection Program.</p></div>
       <div></div>
     </div>
 
     <!-- 2015 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-major"></div>
       <div></div>
-      <div class="tl-content right"><div class="tl-year tl-year-plum">2015</div><div class="tl-title-row"><h4 class="tl-title">2,000th transplant shipped</h4><span class="tl-pill tl-pill-key">Key</span></div><p class="tl-desc">Major milestone. New state-of-the-art GMP facility opens in Baldwin Park, CA.</p></div>
+      <div class="tl-content right"><div class="tl-year tl-year-plum">2015</div><div class="tl-title-row"><h3 class="tl-title">2,000th transplant shipped</h3><span class="tl-pill tl-pill-key">Key</span></div><p class="tl-desc">Major milestone. New state-of-the-art GMP facility opens in Baldwin Park, CA.</p></div>
     </div>
 
     <!-- 2018 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-normal"></div>
-      <div class="tl-content left"><div class="tl-year tl-year-plum">2018</div><div class="tl-title-row justify-end"><h4 class="tl-title">FDA spinal cord trial approved</h4></div><p class="tl-desc">First hybrid bank with FDA Phase II approval for spinal cord injury treatment.</p></div>
+      <div class="tl-content left"><div class="tl-year tl-year-plum">2018</div><div class="tl-title-row justify-end"><h3 class="tl-title">FDA spinal cord trial approved</h3></div><p class="tl-desc">First hybrid bank with FDA Phase II approval for spinal cord injury treatment.</p></div>
       <div></div>
     </div>
 
     <!-- 2021 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-normal"></div>
       <div></div>
-      <div class="tl-content right"><div class="tl-year tl-year-plum">2021</div><div class="tl-title-row"><h4 class="tl-title">Stroke treatment published</h4></div><p class="tl-desc">Phase I success treating acute stroke with cord blood. Published in Cell Transplantation.</p></div>
+      <div class="tl-content right"><div class="tl-year tl-year-plum">2021</div><div class="tl-title-row"><h3 class="tl-title">Stroke treatment published</h3></div><p class="tl-desc">Phase I success treating acute stroke with cord blood. Published in Cell Transplantation.</p></div>
     </div>
 
     <!-- 2020s era -->
@@ -1000,26 +1000,26 @@ const schema = {
 
     <!-- 2022 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-major"></div>
-      <div class="tl-content left"><div class="tl-year tl-year-plum">2022</div><div class="tl-title-row justify-end"><span class="tl-pill tl-pill-key">Key</span><h4 class="tl-title">Post-COVID trial approved</h4></div><p class="tl-desc">FDA approves Phase II trial for Long COVID using cord blood stem cell therapy.</p></div>
+      <div class="tl-content left"><div class="tl-year tl-year-plum">2022</div><div class="tl-title-row justify-end"><span class="tl-pill tl-pill-key">Key</span><h3 class="tl-title">Post-COVID trial approved</h3></div><p class="tl-desc">FDA approves Phase II trial for Long COVID using cord blood stem cell therapy.</p></div>
       <div></div>
     </div>
 
     <!-- 2023 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-major"></div>
       <div></div>
-      <div class="tl-content right"><div class="tl-year tl-year-plum">2023</div><div class="tl-title-row"><h4 class="tl-title">HIV remission published in Cell</h4><span class="tl-pill tl-pill-key">Key</span></div><p class="tl-desc">Landmark case report: first woman to achieve HIV-1 remission using a CCR5&Delta;32 cord blood unit from StemCyte&rsquo;s registry.</p></div>
+      <div class="tl-content right"><div class="tl-year tl-year-plum">2023</div><div class="tl-title-row"><h3 class="tl-title">HIV remission published in Cell</h3><span class="tl-pill tl-pill-key">Key</span></div><p class="tl-desc">Landmark case report: first woman to achieve HIV-1 remission using a CCR5&Delta;32 cord blood unit from StemCyte&rsquo;s registry.</p></div>
     </div>
 
     <!-- 2024 FDA -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-accred"></div>
-      <div class="tl-content left"><div class="tl-year tl-year-green">2024</div><div class="tl-title-row justify-end"><span class="tl-pill tl-pill-accred">Accreditation</span><h4 class="tl-title tl-title-green">FDA biologics license</h4></div><p class="tl-desc">REGENECYTE (HPC, Cord Blood) receives FDA biologics license approval. RMAT designation for Long COVID.</p></div>
+      <div class="tl-content left"><div class="tl-year tl-year-green">2024</div><div class="tl-title-row justify-end"><span class="tl-pill tl-pill-accred">Accreditation</span><h3 class="tl-title tl-title-green">FDA biologics license</h3></div><p class="tl-desc">REGENECYTE (HPC, Cord Blood) receives FDA biologics license approval. RMAT designation for Long COVID.</p></div>
       <div></div>
     </div>
 
     <!-- 2025 -->
     <div class="tl-item anim"><div class="tl-dot tl-dot-normal"></div>
       <div></div>
-      <div class="tl-content right"><div class="tl-year tl-year-plum">2025</div><div class="tl-title-row"><h4 class="tl-title">Taiwan BIO Award</h4></div><p class="tl-desc">Innovation of the Year. Honored at the Presidential Office in Taiwan.</p></div>
+      <div class="tl-content right"><div class="tl-year tl-year-plum">2025</div><div class="tl-title-row"><h3 class="tl-title">Taiwan BIO Award</h3></div><p class="tl-desc">Innovation of the Year. Honored at the Presidential Office in Taiwan.</p></div>
     </div>
   </div>
 

@@ -16,7 +16,7 @@ const schema = {
   <div class="orb orb-a"></div>
   <div class="orb orb-b"></div>
   <div class="hero-inner">
-    <img class="hero-portrait" src="/images/our%20story/press_release_distribution_0452818_127664.jpg" alt="Lawrence D. Petz, MD" width="200" height="200" />
+    <img class="hero-portrait" fetchpriority="high" src="/images/our%20story/press_release_distribution_0452818_127664.jpg" alt="Lawrence D. Petz, MD" width="200" height="200" />
     <div class="hero-text">
       <a href="/our-story" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Our Story</a>
       <h1 class="hero-name">Lawrence D. Petz, MD</h1>
@@ -157,9 +157,9 @@ const schema = {
   <div class="sec-label">Leadership</div>
   <h2 class="sec-h2">Meet our team</h2>
   <div class="other-leaders">
-    <a href="/our-story/jonas-wang" class="other-card"><img class="other-avatar" src="/images/our%20story/jonas-sm.jpg" alt="Jonas Wang, PhD" width="64" height="64" /><div class="other-info"><h4>Jonas Wang, PhD</h4><span>Chairman</span></div><svg class="other-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
-    <a href="/our-story/tong-young-lee" class="other-card"><img class="other-avatar" src="/images/our%20story/lee-sm.jpg" alt="Tong-Young Lee, PhD" width="64" height="64" /><div class="other-info"><h4>Tong-Young Lee, PhD</h4><span>CEO</span></div><svg class="other-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
-    <a href="/our-story/joseph-rosenthal" class="other-card"><img class="other-avatar" src="/images/our%20story/rosenthal-sm.jpg" alt="Joseph Rosenthal, MD" width="64" height="64" /><div class="other-info"><h4>Joseph Rosenthal, MD</h4><span>Chief Medical Officer</span></div><svg class="other-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
+    <a href="/our-story/jonas-wang" class="other-card"><img class="other-avatar" src="/images/our%20story/jonas-sm.jpg" alt="Jonas Wang, PhD" width="64" height="64" /><div class="other-info"><h3 class="other-name">Jonas Wang, PhD</h3><span>Chairman</span></div><svg class="other-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
+    <a href="/our-story/tong-young-lee" class="other-card"><img class="other-avatar" src="/images/our%20story/lee-sm.jpg" alt="Tong-Young Lee, PhD" width="64" height="64" /><div class="other-info"><h3 class="other-name">Tong-Young Lee, PhD</h3><span>CEO</span></div><svg class="other-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
+    <a href="/our-story/joseph-rosenthal" class="other-card"><img class="other-avatar" src="/images/our%20story/rosenthal-sm.jpg" alt="Joseph Rosenthal, MD" width="64" height="64" /><div class="other-info"><h3 class="other-name">Joseph Rosenthal, MD</h3><span>Chief Medical Officer</span></div><svg class="other-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg></a>
   </div>
 </div></section>
 
@@ -181,7 +181,7 @@ const schema = {
 .back-link svg { width:16px; height:16px; }
 .hero-name { font-family:'Playfair Display',serif; font-size:42px; font-weight:400; line-height:1.1; letter-spacing:-1px; color:#fff; margin-bottom:8px; }
 .hero-role { font-size:14px; font-weight:700; color:#C06AA5; letter-spacing:0.5px; margin-bottom:14px; }
-.hero-sub { font-size:16px; color:rgba(255,255,255,0.4); line-height:1.7; max-width:540px; }
+.hero-sub { font-size:16px; color:rgba(255,255,255,0.55); line-height:1.7; max-width:540px; }
 @keyframes heroFade { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
 
 /* SHARED */
@@ -239,7 +239,7 @@ const schema = {
 .hiv-h2 { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; color:#fff; line-height:1.1; letter-spacing:-1px; margin-bottom:8px; }
 .hiv-em { font-style:italic; color:#E8A0D0; }
 .hiv-patient { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; color:rgba(255,255,255,0.45); margin-bottom:20px; font-weight:400; }
-.hiv-desc { font-size:15px; color:rgba(255,255,255,0.4); line-height:1.7; margin-bottom:12px; }
+.hiv-desc { font-size:15px; color:rgba(255,255,255,0.55); line-height:1.7; margin-bottom:12px; }
 .hiv-stemcyte { font-size:14px; color:rgba(232,160,208,0.6); line-height:1.6; margin-bottom:28px; padding-left:12px; border-left:2px solid rgba(232,160,208,0.2); }
 .hiv-cta { display:inline-flex; align-items:center; gap:8px; color:#E8A0D0; font-size:14px; font-weight:700; text-decoration:none; padding:12px 28px; border:1px solid rgba(232,160,208,0.3); border-radius:100px; transition:all 0.25s; }
 .hiv-cta:hover { background:rgba(232,160,208,0.08); border-color:rgba(232,160,208,0.5); }
@@ -288,7 +288,7 @@ const schema = {
 /* CTA */
 .cta-banner { background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:64px 48px; text-align:center; }
 .cta-banner h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; color:#fff; margin-bottom:12px; letter-spacing:-0.5px; }
-.cta-banner p { font-size:15px; color:rgba(255,255,255,0.5); margin-bottom:28px; max-width:500px; margin-left:auto; margin-right:auto; }
+.cta-banner p { font-size:15px; color:rgba(255,255,255,0.65); margin-bottom:28px; max-width:500px; margin-left:auto; margin-right:auto; }
 .cta-btn { display:inline-block; background:#fff; color:#6C1A55; padding:14px 36px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; transition:all 0.25s; }
 .cta-btn:hover { background:rgba(255,255,255,0.85); }
 

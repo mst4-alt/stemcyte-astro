@@ -16,7 +16,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .hero .lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:12px; }
 .hero h1 { font-family:'Playfair Display',serif; font-size:46px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; margin-bottom:16px; color:#fff; }
 .hero h1 em { font-style:italic; color:#E8A0D0; }
-.hero .sub { font-size:17px; color:rgba(255,255,255,0.4); max-width:540px; line-height:1.7; margin-bottom:32px; }
+.hero .sub { font-size:17px; color:rgba(255,255,255,0.55); max-width:540px; line-height:1.7; margin-bottom:32px; }
 .hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
 .hero-btns .btn-w { padding:14px 32px; border-radius:100px; background:#fff; color:#6C1A55; font-size:15px; font-weight:700; text-decoration:none; transition:background 0.2s; }
 .hero-btns .btn-w:hover { background:#F3F0F8; }
@@ -30,7 +30,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .section-lav { background:#F3F0F8; }
 .section-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:12px; text-align:center; }
 .section-title { font-family:'Playfair Display',serif; font-size:36px; font-weight:400; line-height:1.15; letter-spacing:-1px; text-align:center; margin-bottom:16px; color:#2C2A26; }
-.section-sub { font-size:16px; color:#8A857A; text-align:center; max-width:620px; margin:0 auto 48px; line-height:1.7; }
+.section-sub { font-size:16px; color:#6B6760; text-align:center; max-width:620px; margin:0 auto 48px; line-height:1.7; }
 
 /* ANIMATIONS */
 .anim { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease, transform 0.6s ease; }
@@ -49,7 +49,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .hl-icon { width:36px; height:36px; min-width:36px; background:#FBF5F9; border-radius:8px; display:flex; align-items:center; justify-content:center; }
 .hl-icon svg { width:20px; height:20px; }
 .hl-text h4 { font-size:15px; font-weight:700; color:#2C2A26; margin-bottom:4px; }
-.hl-text p { font-size:14px; color:#8A857A; line-height:1.6; }
+.hl-text p { font-size:14px; color:#6B6760; line-height:1.6; }
 
 /* TIER CARDS */
 .tiers-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:0 auto; }
@@ -96,7 +96,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .step { display:flex; flex-direction:column; align-items:center; text-align:center; flex:1; position:relative; }
 .step-circle { width:40px; height:40px; border-radius:50%; background:#6C1A55; color:#fff; font-family:'Source Serif 4',serif; font-size:18px; font-weight:400; display:flex; align-items:center; justify-content:center; margin-bottom:16px; position:relative; z-index:2; }
 .step h3 { font-size:16px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
-.step p { font-size:14px; color:#8A857A; line-height:1.6; max-width:180px; }
+.step p { font-size:14px; color:#6B6760; line-height:1.6; max-width:180px; }
 .step-connector { position:absolute; top:20px; left:calc(50% + 20px); width:calc(100% - 40px); height:0; border-top:1.5px solid #D8D0E0; z-index:1; }
 
 /* FAQ */
@@ -120,7 +120,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 /* DISCLAIMER */
 .disclaimer { max-width:760px; margin:0 auto; padding:48px 48px 64px; }
-.disclaimer p { font-size:12px; color:#8A857A; line-height:1.7; }
+.disclaimer p { font-size:12px; color:#6B6760; line-height:1.7; }
 
 /* RESPONSIVE */
 @media (max-width:900px) {
@@ -180,7 +180,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <svg viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
         </div>
         <div class="hl-text">
-          <h4>HLA typing for your family</h4>
+          <h3 class="feature-heading">HLA typing for your family</h3>
           <p>Covers up to 4 family members with clinical-grade HLA testing using a simple cheek swab kit mailed to your home.</p>
         </div>
       </div>
@@ -189,7 +189,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <svg viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18"/><path d="M9 3v18"/></svg>
         </div>
         <div class="hl-text">
-          <h4>Unit coverage included</h4>
+          <h3 class="feature-heading">Unit coverage included</h3>
           <p>If a match is found, the cost of the cord blood unit itself is covered by your plan &mdash; no additional acquisition fee.</p>
         </div>
       </div>
@@ -198,7 +198,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <svg viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
         </div>
         <div class="hl-text">
-          <h4>Search guarantee</h4>
+          <h3 class="feature-heading">Search guarantee</h3>
           <p>We guarantee a search of StemCyte&rsquo;s full public inventory within 48 hours of physician activation.</p>
         </div>
       </div>
@@ -207,7 +207,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <svg viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
         </div>
         <div class="hl-text">
-          <h4>Physician activation</h4>
+          <h3 class="feature-heading">Physician activation</h3>
           <p>When a transplant is needed, your physician contacts StemCyte directly to activate the search &mdash; no paperwork delay.</p>
         </div>
       </div>

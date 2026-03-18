@@ -79,10 +79,10 @@ body {
   cursor: pointer;
   transition: color 0.2s;
 }
-.nav.at-top .links a { color: rgba(255,255,255,0.55); }
+.nav.at-top .links a { color: rgba(255,255,255,0.75); }
 .nav.at-top .links a:hover { color: #fff; }
 .nav.at-top .links a.active { color: #fff; font-weight: 700; }
-.nav.scrolled .links a { color: #8A857A; }
+.nav.scrolled .links a { color: #6B6760; }
 .nav.scrolled .links a:hover { color: #2C2A26; }
 .nav.scrolled .links a.active { color: #6C1A55; font-weight: 700; }
 .nav .rg {
@@ -122,7 +122,7 @@ body {
 /* === FOOTER === */
 .footer {
   background: #3D0F31;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.5);
   padding: 64px 48px 32px;
 }
 .footer-in {
@@ -139,23 +139,25 @@ body {
   font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  color: rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.4);
   margin-bottom: 14px;
 }
 .footer .col a {
-  display: block;
+  display: flex;
+  align-items: center;
   font-size: 13px;
-  color: rgba(255,255,255,0.3);
+  color: rgba(255,255,255,0.5);
   text-decoration: none;
-  padding: 3px 0;
+  padding: 6px 0;
+  min-height: 44px;
 }
 .footer .col a:hover { color: #E8A0D0; }
 .footer .tags { display: flex; gap: 8px; margin-top: 16px; }
 .footer .tags span {
   font-size: 10px;
   font-weight: 700;
-  color: rgba(255,255,255,0.2);
-  border: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.4);
+  border: 1px solid rgba(255,255,255,0.15);
   padding: 4px 10px;
   border-radius: 4px;
 }
@@ -165,6 +167,7 @@ body {
   padding-top: 24px;
   border-top: 1px solid rgba(255,255,255,0.06);
   font-size: 11px;
+  color: rgba(255,255,255,0.45);
   display: flex;
   justify-content: space-between;
 }
@@ -256,6 +259,12 @@ body {
   .nav { padding: 16px 24px; }
   .nav .links, .nav .rg { display: none; }
   .hamburger { display: flex; }
+  .sheet-links a {
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   .footer { padding: 48px 24px 24px; }
   .footer-in { grid-template-columns: 1fr 1fr; gap: 32px; }
 }

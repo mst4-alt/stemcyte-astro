@@ -15,7 +15,7 @@ const schema = {
 
 <!-- HERO -->
 <section class="hero" id="hero">
-  <img src="/images/Hero_4.jpeg" alt="The Science of cord blood stem cells" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center" />
+  <img src="/images/Hero_4.jpeg" alt="The Science of cord blood stem cells" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center" />
   <div class="vig"></div>
   <div class="ct">
     <div class="lbl">The Science</div>
@@ -41,7 +41,7 @@ const schema = {
         <div class="journey-circle" style="background:#D4E4FF"><span style="color:#3B6DC4">1</span></div>
         <div class="journey-line"></div>
         <div class="journey-content">
-          <h4 style="color:#3B6DC4">Your baby is born with them</h4>
+          <h3 style="color:#3B6DC4">Your baby is born with them</h3>
           <p>The blood left in your baby's umbilical cord after birth is rich with <strong>stem cells</strong> — the same type used in bone marrow transplants for decades. They build your baby's entire blood and immune system.</p>
         </div>
       </div>
@@ -49,7 +49,7 @@ const schema = {
         <div class="journey-circle" style="background:#F0E0EB"><span style="color:#6C1A55">2</span></div>
         <div class="journey-line"></div>
         <div class="journey-content">
-          <h4 style="color:#6C1A55">They can rebuild what's broken</h4>
+          <h3 style="color:#6C1A55">They can rebuild what's broken</h3>
           <p>Every red blood cell, white blood cell, and platelet traces back to these stem cells. When someone fights leukemia, sickle cell disease, or an immune deficiency, <strong>a transplant can regenerate their entire blood and immune system</strong>.</p>
         </div>
       </div>
@@ -57,14 +57,14 @@ const schema = {
         <div class="journey-circle" style="background:#D4E8DC"><span style="color:#2A6B4F">3</span></div>
         <div class="journey-line"></div>
         <div class="journey-content">
-          <h4 style="color:#2A6B4F">They're younger and stronger</h4>
+          <h3 style="color:#2A6B4F">They're younger and stronger</h3>
           <p>Cord blood stem cells are <strong>more adaptable</strong> than adult bone marrow, cause fewer complications in transplant, and don't require a perfect donor match.</p>
         </div>
       </div>
       <div class="journey-step anim">
         <div class="journey-circle" style="background:#FDF5EB"><span style="color:#C4943E">4</span></div>
         <div class="journey-content">
-          <h4 style="color:#C4943E">You have one chance to collect them</h4>
+          <h3 style="color:#C4943E">You have one chance to collect them</h3>
           <p>Collection happens in the minutes after birth, after the cord is clamped and cut. <strong>Zero risk to mother or baby.</strong> If they're not collected, they're discarded forever.</p>
         </div>
       </div>
@@ -98,25 +98,25 @@ const schema = {
       <div class="cat-card" style="background:#FBF5F9;border-color:#F0E0EB">
         <div class="cat-icon" style="background:#F0E0EB"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg></div>
         <div class="cat-count" style="color:#6C1A55">22+</div>
-        <h4 style="color:#6C1A55">Cancers</h4>
+        <h3 style="color:#6C1A55">Cancers</h3>
         <div class="cat-desc">Leukemias, lymphomas, myeloma, and more</div>
       </div>
       <div class="cat-card" style="background:#EDF5FF;border-color:#D4E4FF">
         <div class="cat-icon" style="background:#D4E4FF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B6DC4" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg></div>
         <div class="cat-count" style="color:#3B6DC4">17+</div>
-        <h4 style="color:#3B6DC4">Blood disorders</h4>
+        <h3 style="color:#3B6DC4">Blood disorders</h3>
         <div class="cat-desc">Sickle cell, thalassemia, aplastic anemia</div>
       </div>
       <div class="cat-card" style="background:#F0F7F4;border-color:#D4E8DC">
         <div class="cat-icon" style="background:#D4E8DC"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2A6B4F" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div class="cat-count" style="color:#2A6B4F">30+</div>
-        <h4 style="color:#2A6B4F">Immune deficiencies</h4>
+        <h3 style="color:#2A6B4F">Immune deficiencies</h3>
         <div class="cat-desc">SCID, Wiskott-Aldrich, CGD, and many more</div>
       </div>
       <div class="cat-card" style="background:#FDF5EB;border-color:#F5E6CC">
         <div class="cat-icon" style="background:#F5E6CC"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4943E" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
         <div class="cat-count" style="color:#C4943E">16+</div>
-        <h4 style="color:#C4943E">Metabolic disorders</h4>
+        <h3 style="color:#C4943E">Metabolic disorders</h3>
         <div class="cat-desc">Hurler, Krabbe, ALD, Gaucher, and more</div>
       </div>
     </div>
@@ -339,8 +339,8 @@ const schema = {
 .ccard .cstats { display:flex; gap:16px; margin-bottom:12px; }
 .ccard .cst { text-align:center; }
 .ccard .cv { font-family:'Source Serif 4',serif; font-size:24px; font-weight:400; }
-.ccard .cd { font-size:10px; color:#B0AB9E; }
-.ccard p { font-size:13px; color:#8A857A; line-height:1.6; }
+.ccard .cd { font-size:10px; color:#8A857A; }
+.ccard p { font-size:13px; color:#6B6760; line-height:1.6; }
 .ccard-plum .ctag { background:#FBF5F9; color:#6C1A55; }
 .ccard-plum .ctype { color:#6C1A55; }
 .ccard-plum .cv { color:#6C1A55; }
@@ -366,7 +366,7 @@ const schema = {
 .sc-trial-card:last-child { margin-bottom:0; }
 .sc-trial-card .phase { display:inline-block; padding:3px 10px; border-radius:100px; font-size:10px; font-weight:700; margin-bottom:12px; background:#FBF5F9; color:#6C1A55; }
 .sc-trial-card h4 { font-size:15px; font-weight:700; margin-bottom:6px; }
-.sc-trial-card p { font-size:13px; color:#8A857A; line-height:1.6; margin-bottom:8px; }
+.sc-trial-card p { font-size:13px; color:#6B6760; line-height:1.6; margin-bottom:8px; }
 .sc-trial-card .source { font-size:11px; color:#6C1A55; font-weight:700; }
 .global-item { display:flex; gap:12px; align-items:flex-start; margin-bottom:20px; }
 .global-item:last-child { margin-bottom:0; }
@@ -377,7 +377,7 @@ const schema = {
 .tier { display:inline-block; padding:2px 8px; border-radius:100px; font-size:9px; font-weight:700; }
 .tier-inv { background:#F0F7F4; color:#2A6B4F; }
 .tier-pre { background:#F5F3F0; color:#8A857A; }
-.global-content p { font-size:13px; color:#8A857A; line-height:1.6; }
+.global-content p { font-size:13px; color:#6B6760; line-height:1.6; }
 .trial-stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
 .trial-stat { background:#fff; border-radius:12px; padding:24px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); text-align:center; }
 .trial-stat .tv { font-family:'Source Serif 4',serif; font-size:36px; color:#3D8B6A; font-weight:400; line-height:1; }
@@ -388,7 +388,7 @@ const schema = {
 .cta-banner::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(192,106,165,0.08); top:-200px; right:-100px; }
 .cta-banner h2 { font-family:'Playfair Display',serif; font-size:36px; color:#fff; margin-bottom:12px; position:relative; }
 .cta-banner h2 em { font-style:italic; color:#E8A0D0; }
-.cta-banner p { font-size:16px; color:rgba(255,255,255,0.5); margin-bottom:32px; position:relative; }
+.cta-banner p { font-size:16px; color:rgba(255,255,255,0.65); margin-bottom:32px; position:relative; }
 .cta-banner .btns { display:flex; gap:12px; justify-content:center; position:relative; }
 .btn-w { background:#fff; color:#6C1A55; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; border:none; cursor:pointer; font-family:'Lato',sans-serif; transition:all 0.25s; display:inline-block; text-decoration:none; }
 .btn-w:hover { background:rgba(255,255,255,0.85); }
