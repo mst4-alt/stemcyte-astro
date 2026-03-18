@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "additionalType": "https://schema.org/PrivacyPolicy",
+  "name": "Privacy Policy",
+  "description": "How StemCyte collects, uses, and protects your personal information.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "StemCyte, Inc."
+  }
+};
+---
+
+<BaseLayout title="Privacy Policy | StemCyte" schema={schema}>
+
+<style>
+  .pp-header { background:#3D0F31; padding:140px 48px 56px; }
+  .pp-header-inner { max-width:800px; margin:0 auto; }
+  .pp-header .lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:12px; }
+  .pp-header h1 { font-family:'Playfair Display',serif; font-size:40px; font-weight:400; line-height:1.15; letter-spacing:-1px; color:#fff; margin-bottom:12px; }
+  .pp-header .sub { font-size:15px; color:rgba(255,255,255,0.4); line-height:1.7; }
+
+  .pp-body { max-width:800px; margin:0 auto; padding:56px 48px 80px; }
+  .pp-intro { font-size:16px; line-height:1.8; color:#5A564E; margin-bottom:16px; }
+
+  .pp-section { margin-top:40px; }
+  .pp-section-num { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:8px; }
+  .pp-section h2 { font-family:'Playfair Display',serif; font-size:24px; font-weight:400; letter-spacing:-0.3px; color:#2C2A26; margin-bottom:16px; line-height:1.3; }
+  .pp-section p { font-size:15px; line-height:1.8; color:#5A564E; margin-bottom:12px; }
+  .pp-section ul { margin:12px 0 12px 24px; }
+  .pp-section ul li { font-size:15px; line-height:1.8; color:#5A564E; margin-bottom:6px; padding-left:4px; }
+  .pp-section ul li::marker { color:#C9A0C0; }
+  .pp-section a { color:#6C1A55; text-decoration:underline; text-underline-offset:2px; }
+  .pp-section a:hover { color:#8B2E72; }
+
+  .pp-contact-block { background:#F3F0F8; border-radius:12px; padding:24px 28px; margin-top:12px; }
+  .pp-contact-block p { font-size:15px; line-height:1.8; color:#5A564E; margin-bottom:4px; }
+  .pp-contact-block p:last-child { margin-bottom:0; }
+  .pp-contact-block a { color:#6C1A55; text-decoration:underline; text-underline-offset:2px; }
+
+  .pp-divider { height:1px; background:#E8E2DC; margin:40px 0 0; }
+  .pp-copyright { margin-top:32px; font-size:13px; color:#B0AB9E; }
+
+  @media (max-width:900px) {
+    .pp-header { padding:120px 24px 40px; }
+    .pp-header h1 { font-size:32px; }
+    .pp-body { padding:40px 24px 64px; }
+  }
+  @media (max-width:600px) {
+    .pp-header { padding:100px 20px 32px; }
+    .pp-header h1 { font-size:28px; }
+    .pp-body { padding:32px 20px 48px; }
+    .pp-section h2 { font-size:20px; }
+  }
+</style>
+
+<div class="pp-header" id="hero">
+  <div class="pp-header-inner">
+    <div class="lbl">Legal</div>
+    <h1>Privacy Policy</h1>
+    <p class="sub">How we collect, use, and protect your personal information.</p>
+  </div>
+</div>
+
+<div class="pp-body">
+  <p class="pp-intro">StemCyte, Inc. ("StemCyte," "we," "us," or "our") respects your privacy and is committed to protecting personal information entrusted to us. This Privacy Policy explains how we collect, use, disclose, retain, and protect personal information obtained through our websites, services, communications, and business operations.</p>
+
+  <p class="pp-intro">This policy applies to personal information collected online and offline, including through our websites, customer service interactions, enrollment processes, and marketing communications.</p>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 1</div>
+    <h2>Categories of Information We Collect</h2>
+    <p>We may collect the following categories of personal information:</p>
+    <ul>
+      <li><strong>Identifiers:</strong> Name, address, email address, phone number, IP address, account identifiers.</li>
+      <li><strong>Sensitive Personal Information (SPI):</strong> Government-issued identification numbers, health-related information, pregnancy and delivery details, and other information necessary for newborn stem cell banking services.</li>
+      <li><strong>Commercial Information:</strong> Products or services purchased or considered.</li>
+      <li><strong>Internet Activity:</strong> Website usage data, cookies, analytics data.</li>
+      <li><strong>Professional Information:</strong> Employment-related information (employees only).</li>
+    </ul>
+    <p>We do not knowingly collect information from children under 13 years of age.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 2</div>
+    <h2>How We Use Personal Information</h2>
+    <p>We use personal information for the following purposes:</p>
+    <ul>
+      <li>To provide requested services, including enrollment, storage, and customer support</li>
+      <li>To communicate regarding accounts, transactions, and service updates</li>
+      <li>To comply with legal, regulatory, and accreditation obligations</li>
+      <li>To improve our services, websites, and communications</li>
+      <li>To conduct internal audits, quality assurance, and research</li>
+      <li>To send marketing communications where permitted by law and consent</li>
+    </ul>
+    <p>We limit use of Sensitive Personal Information to purposes reasonably necessary to provide our services, comply with law, and ensure safety and integrity of our operations.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 3</div>
+    <h2>Cookies &amp; Tracking Technologies</h2>
+    <p>We use cookies and similar technologies to:</p>
+    <ul>
+      <li>Enable website functionality</li>
+      <li>Understand website usage and performance</li>
+      <li>Support advertising and analytics</li>
+    </ul>
+    <p>You may manage cookie preferences through your browser settings. Some cookies may be placed by authorized third-party analytics or advertising partners.</p>
+    <p>We do not respond to "Do Not Track" signals.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 4</div>
+    <h2>Sharing and Disclosure of Information</h2>
+    <p>We may disclose personal information to:</p>
+    <ul>
+      <li><strong>Service Providers:</strong> Vendors performing services on our behalf</li>
+      <li><strong>Healthcare Providers:</strong> As authorized by you</li>
+      <li><strong>Affiliates:</strong> For consistent business operations</li>
+      <li><strong>Legal Authorities:</strong> When required by law</li>
+    </ul>
+    <p>We do not sell personal information. We may "share" limited information for cross-context behavioral advertising as defined by California law. You may opt out of such sharing where applicable.</p>
+    <p>All the above categories exclude text messaging originator opt-in data and consent. SMS opt-in data and consent will not be shared with any third parties, excluding aggregators and providers of text message services.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 5</div>
+    <h2>Data Retention</h2>
+    <p>We retain personal information only for as long as reasonably necessary to:</p>
+    <ul>
+      <li>Fulfill the purposes described in this policy</li>
+      <li>Meet legal, regulatory, and accreditation requirements</li>
+      <li>Resolve disputes and enforce agreements</li>
+    </ul>
+    <p>Retention periods vary depending on data type and legal obligations.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 6</div>
+    <h2>Your Privacy Rights (California Residents)</h2>
+    <p>California residents have the right to:</p>
+    <ul>
+      <li>Know what personal information we collect</li>
+      <li>Access personal information</li>
+      <li>Correct inaccurate personal information</li>
+      <li>Delete personal information (subject to legal exceptions)</li>
+      <li>Limit use of Sensitive Personal Information</li>
+      <li>Opt out of sale or sharing of personal information</li>
+      <li>Not be discriminated against for exercising rights</li>
+    </ul>
+    <p>Requests may be submitted to: <a href="mailto:customerservice@stemcyte.com">customerservice@stemcyte.com</a>. Identity verification may be required. Requests will be fulfilled within statutory timeframes.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 7</div>
+    <h2>International Users</h2>
+    <p>If you access our services from outside the United States, your information may be transferred to and processed in the U.S. We process international data in accordance with applicable laws and safeguards.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 8</div>
+    <h2>Security Measures</h2>
+    <p>We maintain administrative, technical, and physical safeguards designed to protect personal information. No system is completely secure; users are responsible for safeguarding login credentials.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 9</div>
+    <h2>SMS Communications</h2>
+    <p>We may send SMS (text) messages to individuals who opt in to receive them. SMS messages may include service reminders, event notifications, transactional updates, and marketing communications where you have provided consent.</p>
+    <p>SMS opt-in data and consent will not be shared with any third parties, excluding aggregators and providers of text message services used to deliver messages on our behalf.</p>
+    <p>For full details on SMS message types, frequency, opt-out instructions, and carrier disclaimers, please see our <a href="/sms-terms">SMS Terms of Service</a>.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Section 10</div>
+    <h2>Contact Information</h2>
+    <div class="pp-contact-block">
+      <p><strong>StemCyte International, Ltd.</strong></p>
+      <p>13800 Live Oak Ave</p>
+      <p>Baldwin Park, CA 91706</p>
+      <p>Email: <a href="mailto:customerservice@stemcyte.com">customerservice@stemcyte.com</a></p>
+    </div>
+  </div>
+
+</div>
+
+</BaseLayout>

@@ -1,0 +1,215 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Us",
+  "description": "Get in touch with StemCyte. Reach our customer service team, billing department, public bank, or clinical team.",
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "StemCyte, Inc.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "13800 Live Oak Avenue",
+      "addressLocality": "Baldwin Park",
+      "addressRegion": "CA",
+      "postalCode": "91706",
+      "addressCountry": "US"
+    },
+    "telephone": "+1-866-389-4659",
+    "email": "customerservice@stemcyte.com"
+  }
+};
+---
+
+<BaseLayout title="Contact Us | StemCyte" description="Get in touch with StemCyte. Reach our customer service team, billing department, public bank, or clinical team." schema={schema}>
+
+<style>
+  .ct-hero { background:linear-gradient(180deg,#1a0820 0%,#2d1038 40%,#3D0F31 100%); padding:160px 48px 72px; position:relative; overflow:hidden; }
+  .ct-hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 70% 80%, rgba(108,26,85,0.2) 0%, transparent 60%); pointer-events:none; }
+  .ct-hero-inner { max-width:960px; margin:0 auto; position:relative; z-index:2; }
+  .ct-hero .overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#E8A0D0; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
+  .ct-hero .overline .dot { width:6px; height:6px; border-radius:50%; background:#E8A0D0; animation:pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(232,160,208,0.4)} 50%{box-shadow:0 0 0 8px rgba(232,160,208,0)} }
+  .ct-hero h1 { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; color:#fff; margin-bottom:16px; }
+  .ct-hero .subtitle { font-size:17px; color:rgba(255,255,255,0.5); line-height:1.7; max-width:560px; }
+
+  .ct-body { max-width:960px; margin:0 auto; padding:56px 48px 80px; }
+
+  .ct-primary { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-bottom:48px; }
+  .ct-card { background:#fff; border-radius:12px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); display:flex; flex-direction:column; }
+  .ct-card .card-icon { width:44px; height:44px; border-radius:11px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; flex-shrink:0; }
+  .ct-card .card-icon svg { width:22px; height:22px; }
+  .ct-card h3 { font-size:17px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
+  .ct-card .card-desc { font-size:14px; color:#8A857A; line-height:1.6; margin-bottom:16px; }
+  .ct-card .card-link { font-size:16px; font-weight:700; color:#6C1A55; text-decoration:none; transition:color 0.2s; margin-top:auto; }
+  .ct-card .card-link:hover { color:#8B2E72; }
+  .ct-card .card-sub { font-size:12px; color:#B0AB9E; margin-top:4px; }
+
+  .ct-section-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:8px; }
+  .ct-section h2 { font-family:'Playfair Display',serif; font-size:26px; font-weight:400; letter-spacing:-0.3px; color:#2C2A26; margin-bottom:24px; line-height:1.25; }
+
+  .dept-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:20px; }
+  .dept-card { background:#fff; border-radius:12px; padding:24px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+  .dept-card h4 { font-size:14px; font-weight:700; color:#2C2A26; margin-bottom:10px; padding-bottom:10px; border-bottom:1px solid #F0ECE6; }
+  .dept-card .dept-row { display:flex; align-items:center; gap:8px; padding:5px 0; }
+  .dept-card .dept-row svg { width:14px; height:14px; flex-shrink:0; color:#B0AB9E; }
+  .dept-card .dept-row a { font-size:13px; color:#5A564E; text-decoration:none; transition:color 0.2s; }
+  .dept-card .dept-row a:hover { color:#6C1A55; }
+  .dept-card .dept-row span { font-size:13px; color:#5A564E; }
+
+  .ct-divider { height:1px; background:#E8E2DC; margin:48px 0; }
+
+  .location-card { background:#fff; border-radius:12px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; }
+  .loc-info h3 { font-size:17px; font-weight:700; color:#2C2A26; margin-bottom:12px; }
+  .loc-info .loc-row { display:flex; align-items:flex-start; gap:10px; padding:6px 0; }
+  .loc-info .loc-row svg { width:16px; height:16px; flex-shrink:0; color:#8A857A; margin-top:2px; }
+  .loc-info .loc-row p { font-size:14px; color:#5A564E; line-height:1.6; margin:0; }
+  .loc-info .loc-row a { font-size:14px; color:#6C1A55; text-decoration:none; }
+  .loc-info .loc-row a:hover { text-decoration:underline; }
+  .loc-map { background:#F3F0F8; border-radius:8px; overflow:hidden; height:240px; }
+  .loc-map iframe { width:100%; height:100%; border:0; filter:saturate(0.7) contrast(0.95); }
+
+  .ct-cta-banner { background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:64px 48px; text-align:center; }
+  .ct-cta-banner h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; color:#fff; margin-bottom:12px; letter-spacing:-0.5px; }
+  .ct-cta-banner p { font-size:16px; color:rgba(255,255,255,0.5); margin-bottom:28px; max-width:480px; margin-left:auto; margin-right:auto; line-height:1.7; }
+  .ct-cta-banner .btn { display:inline-block; background:#fff; color:#6C1A55; padding:14px 36px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; transition:all 0.25s; }
+  .ct-cta-banner .btn:hover { background:rgba(255,255,255,0.85); }
+
+  @media (max-width:900px) {
+    .ct-hero { padding:130px 24px 56px; }
+    .ct-hero h1 { font-size:36px; }
+    .ct-body { padding:40px 24px 64px; }
+    .ct-primary { grid-template-columns:1fr; }
+    .dept-grid { grid-template-columns:1fr 1fr; }
+    .location-card { grid-template-columns:1fr; }
+    .ct-cta-banner { padding:48px 24px; }
+  }
+  @media (max-width:600px) {
+    .ct-hero { padding:110px 20px 40px; }
+    .ct-hero h1 { font-size:28px; }
+    .ct-hero .subtitle { font-size:15px; }
+    .ct-body { padding:32px 20px 48px; }
+    .dept-grid { grid-template-columns:1fr; }
+    .ct-cta-banner { padding:40px 20px; }
+    .ct-cta-banner h2 { font-size:24px; }
+  }
+</style>
+
+<div id="hero">
+<div class="ct-hero">
+  <div class="ct-hero-inner">
+    <div class="overline"><span class="dot"></span> Get in Touch</div>
+    <h1>Contact Us</h1>
+    <p class="subtitle">Whether you're an expecting parent, a current client, or a physician — we're here to help.</p>
+  </div>
+</div>
+</div>
+
+<div class="ct-body">
+
+  <div class="ct-primary">
+    <div class="ct-card">
+      <div class="card-icon" style="background:rgba(108,26,85,0.08);">
+        <svg viewBox="0 0 22 22" fill="none"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z" stroke="#6C1A55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Call Us</h3>
+      <p class="card-desc">Speak with our customer service team about enrollment, storage, or general inquiries.</p>
+      <a class="card-link" href="tel:8663894659">(866) 389-4659</a>
+      <p class="card-sub">Toll-free · Mon–Fri 9am–5pm PT</p>
+    </div>
+    <div class="ct-card">
+      <div class="card-icon" style="background:rgba(108,26,85,0.08);">
+        <svg viewBox="0 0 22 22" fill="none"><rect x="2" y="5" width="18" height="13" rx="2" stroke="#6C1A55" stroke-width="1.5"/><path d="M2 7l9 5.5L20 7" stroke="#6C1A55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Email Us</h3>
+      <p class="card-desc">Send us a message and we'll get back to you within one business day.</p>
+      <a class="card-link" href="mailto:customerservice@stemcyte.com">customerservice@stemcyte.com</a>
+    </div>
+  </div>
+
+  <div class="ct-section">
+    <div class="ct-section-label">Departments</div>
+    <h2>Reach the right team</h2>
+
+    <div class="dept-grid">
+      <div class="dept-card">
+        <h4>Billing &amp; Payments</h4>
+        <div class="dept-row">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M5 3h4l1 4-2 1a8 8 0 004 4l1-2 4 1.5v3A1.5 1.5 0 0115.5 16 12 12 0 013 3.5 1.5 1.5 0 014.5 2z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <a href="tel:6266462520">(626) 646-2520</a>
+        </div>
+        <div class="dept-row">
+          <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 4.5l6 3.5 6-3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <a href="mailto:AR@stemcyte.com">AR@stemcyte.com</a>
+        </div>
+      </div>
+
+      <div class="dept-card">
+        <h4>Public Cord Blood Bank</h4>
+        <div class="dept-row">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M5 3h4l1 4-2 1a8 8 0 004 4l1-2 4 1.5v3A1.5 1.5 0 0115.5 16 12 12 0 013 3.5 1.5 1.5 0 014.5 2z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <a href="tel:6266462500">(626) 646-2500</a>
+        </div>
+        <div class="dept-row">
+          <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 4.5l6 3.5 6-3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <a href="mailto:publicbank@stemcyte.com">publicbank@stemcyte.com</a>
+        </div>
+      </div>
+
+      <div class="dept-card">
+        <h4>Expanded Access (Physicians)</h4>
+        <div class="dept-row">
+          <svg viewBox="0 0 14 14" fill="none"><rect x="1" y="3" width="12" height="8" rx="1.5" stroke="currentColor" stroke-width="1.2"/><path d="M1 4.5l6 3.5 6-3.5" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <a href="mailto:expandedaccess@stemcyte.com">expandedaccess@stemcyte.com</a>
+        </div>
+        <div class="dept-row">
+          <svg viewBox="0 0 14 14" fill="none"><path d="M5 2h4v4M12 2L2 12" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"/></svg>
+          <a href="/expanded-access-policy">View policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ct-divider"></div>
+
+  <div class="ct-section">
+    <div class="ct-section-label">Headquarters</div>
+    <h2>Visit our facility</h2>
+
+    <div class="location-card">
+      <div class="loc-info">
+        <h3>StemCyte, Inc.</h3>
+        <div class="loc-row">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M8 1C5.24 1 3 3.24 3 6c0 3.75 5 9 5 9s5-5.25 5-9c0-2.76-2.24-5-5-5z" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="6" r="1.5" stroke="currentColor" stroke-width="1.5"/></svg>
+          <p>13800 Live Oak Avenue<br>Baldwin Park, CA 91706</p>
+        </div>
+        <div class="loc-row">
+          <svg viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.5"/><path d="M8 4v4.5l3 1.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <p>Monday – Friday<br>9:00 AM – 5:00 PM PT</p>
+        </div>
+        <div class="loc-row">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M5 2h6l1 4-2.5 1.5a9 9 0 004 4L15 9l1 4v2a1.5 1.5 0 01-1.5 1.5A13 13 0 012 4.5 1.5 1.5 0 013.5 3z" stroke="currentColor" stroke-width="1.2"/></svg>
+          <a href="tel:8663894659">(866) 389-4659</a>
+        </div>
+        <div class="loc-row">
+          <svg viewBox="0 0 16 16" fill="none"><path d="M2 4l6 8 6-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 2h14v11a1 1 0 01-1 1H2a1 1 0 01-1-1z" stroke="currentColor" stroke-width="1.2"/></svg>
+          <a href="https://maps.google.com/?q=StemCyte+Inc+13800+Live+Oak+Ave+Baldwin+Park+CA+91706" target="_blank" rel="noopener">Get directions →</a>
+        </div>
+      </div>
+      <div class="loc-map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3304.8!2d-117.9611!3d34.0861!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2d24c0a000001%3A0x8a8a8a8a8a8a8a8a!2s13800+Live+Oak+Ave%2C+Baldwin+Park%2C+CA+91706!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<section class="ct-cta-banner">
+  <h2>Ready to get started?</h2>
+  <p>Protect your baby's future with cord blood and cord tissue banking from StemCyte.</p>
+  <a class="btn" href="/pricing">View plans &amp; pricing →</a>
+</section>
+
+</BaseLayout>

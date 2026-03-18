@@ -1,0 +1,140 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="SMS Terms of Service | StemCyte">
+
+<style>
+  .pp-header { background:#3D0F31; padding:140px 48px 56px; }
+  .pp-header-inner { max-width:800px; margin:0 auto; }
+  .pp-header .lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:12px; }
+  .pp-header h1 { font-family:'Playfair Display',serif; font-size:40px; font-weight:400; line-height:1.15; letter-spacing:-1px; color:#fff; margin-bottom:12px; }
+  .pp-header .sub { font-size:15px; color:rgba(255,255,255,0.4); line-height:1.7; }
+
+  .pp-body { max-width:800px; margin:0 auto; padding:56px 48px 80px; }
+  .pp-intro { font-size:16px; line-height:1.8; color:#5A564E; margin-bottom:16px; }
+
+  .pp-section { margin-top:40px; }
+  .pp-section-num { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:8px; }
+  .pp-section h2 { font-family:'Playfair Display',serif; font-size:24px; font-weight:400; letter-spacing:-0.3px; color:#2C2A26; margin-bottom:16px; line-height:1.3; }
+  .pp-section h3 { font-size:16px; font-weight:700; color:#2C2A26; margin-bottom:8px; margin-top:20px; }
+  .pp-section h3:first-of-type { margin-top:0; }
+  .pp-section p { font-size:15px; line-height:1.8; color:#5A564E; margin-bottom:12px; }
+  .pp-section ul { margin:12px 0 12px 24px; }
+  .pp-section ul li { font-size:15px; line-height:1.8; color:#5A564E; margin-bottom:6px; padding-left:4px; }
+  .pp-section ul li::marker { color:#C9A0C0; }
+  .pp-section a { color:#6C1A55; text-decoration:underline; text-underline-offset:2px; }
+  .pp-section a:hover { color:#8B2E72; }
+
+  .pp-contact-block { background:#F3F0F8; border-radius:12px; padding:24px 28px; margin-top:12px; }
+  .pp-contact-block p { font-size:15px; line-height:1.8; color:#5A564E; margin-bottom:4px; }
+  .pp-contact-block p:last-child { margin-bottom:0; }
+  .pp-contact-block a { color:#6C1A55; text-decoration:underline; text-underline-offset:2px; }
+
+  @media (max-width:900px) {
+    .pp-header { padding:120px 24px 40px; }
+    .pp-header h1 { font-size:32px; }
+    .pp-body { padding:40px 24px 64px; }
+  }
+  @media (max-width:600px) {
+    .pp-header { padding:100px 20px 32px; }
+    .pp-header h1 { font-size:28px; }
+    .pp-body { padding:32px 20px 48px; }
+    .pp-section h2 { font-size:20px; }
+  }
+</style>
+
+<div class="pp-header" id="hero">
+  <div class="pp-header-inner">
+    <div class="lbl">Legal</div>
+    <h1>SMS Terms of Service</h1>
+    <p class="sub">Terms governing text message communications from StemCyte.</p>
+  </div>
+</div>
+
+<div class="pp-body">
+  <p class="pp-intro">By opting in to receive SMS messages from StemCyte, Inc. ("StemCyte"), you agree to receive text messages at the mobile number you provide. These SMS Terms of Service govern your receipt of text messages from StemCyte.</p>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Types of Messages</div>
+    <h2>Types of Messages</h2>
+    <p>Messages from StemCyte may include the following categories:</p>
+
+    <h3>Service and Operational Messages</h3>
+    <p>Non-marketing communications necessary to support your relationship with StemCyte, such as:</p>
+    <ul>
+      <li>Kit shipment or tracking notifications</li>
+      <li>Account or enrollment notices</li>
+      <li>Required consent, documentation, or compliance reminders</li>
+      <li>Service updates related to collection, processing, or storage</li>
+      <li>Customer support responses or follow-ups</li>
+    </ul>
+
+    <h3>Transactional Messages</h3>
+    <p>Messages confirming actions you have taken, including enrollment confirmations, payment-related notices, or status updates tied to a specific request.</p>
+
+    <h3>Event and Webinar Messages</h3>
+    <p>Reminders and updates related to webinars, events, or educational sessions you have registered for.</p>
+
+    <h3>Marketing and Promotional Messages (Optional)</h3>
+    <p>Messages related to promotions, educational offerings, or other marketing communications, where permitted by law and based on your consent preferences.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Frequency</div>
+    <h2>Message Frequency</h2>
+    <p>Message frequency varies by message type. You may receive multiple messages related to a specific event or transaction, and occasional messages for marketing purposes if you have opted in.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Rates</div>
+    <h2>Message and Data Rates</h2>
+    <p>Message and data rates may apply. Please contact your wireless carrier for details about your messaging plan.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Opt-Out</div>
+    <h2>Opt-Out</h2>
+    <p>You may opt out of all SMS messages at any time by replying STOP to any message you receive from StemCyte. After opting out, you will receive a confirmation message and will no longer receive SMS messages from us unless you opt in again.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Help</div>
+    <h2>Help</h2>
+    <p>For help or questions about SMS messaging from StemCyte, reply HELP to any message, or contact us at <a href="mailto:customerservice@stemcyte.com">customerservice@stemcyte.com</a>.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Data Sharing</div>
+    <h2>Data Sharing</h2>
+    <p>StemCyte does not use SMS messaging to request or transmit confidential medical, genetic, or highly sensitive health information.</p>
+    <p>Mobile opt-in data and consent will not be shared with any third parties for their marketing purposes. SMS-related information is used solely to deliver messages, manage communication preferences, and comply with applicable legal and regulatory requirements.</p>
+    <p>All the above categories exclude text messaging originator opt-in data and consent. This information will not be shared with any third parties, excluding aggregators and providers of text message services.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Carrier Disclaimer</div>
+    <h2>Carrier Disclaimer</h2>
+    <p>Carriers are not liable for delayed or undelivered messages. Delivery of messages is subject to effective transmission from your wireless carrier and network availability.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Privacy</div>
+    <h2>Privacy</h2>
+    <p>For information on how StemCyte collects, uses, and protects your personal information, please see our <a href="/privacy-policy">Privacy Policy</a>.</p>
+  </div>
+
+  <div class="pp-section">
+    <div class="pp-section-num">Contact</div>
+    <h2>Contact Information</h2>
+    <div class="pp-contact-block">
+      <p><strong>StemCyte International, Ltd.</strong></p>
+      <p>13800 Live Oak Ave</p>
+      <p>Baldwin Park, CA 91706</p>
+      <p>Email: <a href="mailto:customerservice@stemcyte.com">customerservice@stemcyte.com</a></p>
+    </div>
+  </div>
+
+</div>
+
+</BaseLayout>

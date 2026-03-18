@@ -1,0 +1,470 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Drug",
+  "name": "REGENECYTE® (HPC, Cord Blood)",
+  "description": "FDA-licensed hematopoietic progenitor cell therapy.",
+  "manufacturer": { "@type": "Organization", "name": "StemCyte, Inc." }
+};
+---
+
+<BaseLayout title="REGENECYTE® | StemCyte" schema={schema}>
+
+<style>
+
+@media(max-width:768px) {
+  .hero { padding:100px 24px 48px; min-height:auto; }
+  .body-sec { padding:48px 24px; }
+  .sidebar { grid-template-columns:1fr; }
+  .ae-row { grid-template-columns:1fr 72px 1fr; }
+}
+
+</style>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <canvas class="cell-canvas" id="cellCanvas"></canvas>
+  <div class="grid-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <div class="overline"><span class="pulse"></span> FDA-Licensed Biologics &bull; BLA 125764/0</div>
+      <h1>REGENECYTE<sup style="font-size:20px;">&reg;</sup><br><span style="font-size:28px;color:#E8A0D0;font-style:italic;">(HPC, Cord Blood)</span></h1>
+      <p class="desc">An allogeneic cord blood hematopoietic progenitor cell therapy indicated for hematopoietic and immunologic reconstitution in patients with disorders affecting the hematopoietic system that are inherited, acquired, or result from myeloablative treatment.</p>
+      <a class="pi-link" href="https://www.fda.gov/media/183744/download?attachment" target="_blank" rel="noopener">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12l8-8M4 4h8v8"/></svg>
+        Full Prescribing Information (FDA)
+      </a>
+    </div>
+    <div class="hero-meta">
+      <div class="meta-row"><span class="ml">Manufacturer</span><span class="mv">StemCyte, Inc.</span></div>
+      <div class="meta-row"><span class="ml">BLA Number</span><span class="mv">125764/0</span></div>
+      <div class="meta-row"><span class="ml">Product Code</span><span class="mv">S1393000 (ISBT 128)</span></div>
+      <div class="meta-row"><span class="ml">Administration</span><span class="mv">IV Infusion</span></div>
+      <div class="meta-row"><span class="ml">Storage</span><span class="mv">&le; &minus;150&deg;C</span></div>
+      <div class="meta-row"><span class="ml">Min. TNC/unit</span><span class="mv">9.0 &times; 10&#x2078;</span></div>
+      <div class="meta-row"><span class="ml">Min. CD34+</span><span class="mv">1.25 &times; 10&#x2076;</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<section class="body-sec">
+  <div class="body-inner">
+    <div class="main">
+
+      <h2>Indications &amp; Usage</h2>
+      <p>REGENECYTE is indicated for use in unrelated donor hematopoietic progenitor cell transplantation procedures in conjunction with an appropriate preparative regimen for hematopoietic and immunologic reconstitution in patients with disorders affecting the hematopoietic system that are inherited, acquired, or result from myeloablative treatment.</p>
+      <p>The risk-benefit assessment for an individual patient depends on patient characteristics including disease, stage, and risk factors; characteristics of the graft; and other available treatments or types of hematopoietic progenitor cells.</p>
+
+      <h2>Clinical Evidence</h2>
+      <p>The effectiveness of REGENECYTE was demonstrated across three studies: the prospective COBLT study (Study 1, n=324), retrospective docket and public data (Study 2, n=1,299), and a retrospective review of the REGENECYTE database (Study 3, n=54).</p>
+
+      <table>
+        <thead><tr><th>Endpoint</th><th>COBLT (n=324)</th><th>REGENECYTE (n=54)</th></tr></thead>
+        <tbody>
+          <tr><td>Neutrophil Recovery (Day 42)</td><td>76% (71&ndash;81%)</td><td><strong>91%</strong> (81&ndash;97%)</td></tr>
+          <tr><td>Platelet Recovery d100 (20K)</td><td>57% (51&ndash;63%)</td><td><strong>72%</strong> (58&ndash;83%)</td></tr>
+          <tr><td>Platelet Recovery d100 (50K)</td><td>46% (39&ndash;51%)</td><td><strong>73%</strong> (54&ndash;88%)</td></tr>
+          <tr><td>Median Neutrophil Recovery</td><td>27 days</td><td><strong>22 days</strong></td></tr>
+          <tr><td>Median Platelet Recovery (20K)</td><td>90 days</td><td><strong>50 days</strong></td></tr>
+          <tr><td>Median Platelet Recovery (50K)</td><td>113 days</td><td><strong>64 days</strong></td></tr>
+        </tbody>
+      </table>
+      <p class="source">95% CI shown in parentheses. Source: <a href="https://www.fda.gov/media/183744/download?attachment" target="_blank">FDA Prescribing Information, BLA 125764/0</a>.</p>
+
+      <!-- Engraftment chart -->
+      <div class="chart-box">
+        <div class="chart-title">Engraftment Rate</div>
+        <div class="chart-sub">Percentage of patients achieving hematopoietic recovery</div>
+        <div class="vbar-chart">
+          <div class="y-axis"><span>0</span><span>25</span><span>50</span><span>75</span><span>100</span></div>
+          <div class="gridlines"><div class="gl"></div><div class="gl"></div><div class="gl"></div><div class="gl"></div><div class="gl"></div></div>
+          <div class="vbar-groups">
+            <div class="vbar-group">
+              <div class="vbar-pair">
+                <div class="vbar neutral" style="height:167px;"><div class="vbar-val">76%</div></div>
+                <div class="vbar accent" style="height:200px;"><div class="vbar-val">91%</div></div>
+              </div>
+              <div class="vbar-label">Neutrophil<br>Day 42</div>
+            </div>
+            <div class="vbar-group">
+              <div class="vbar-pair">
+                <div class="vbar neutral" style="height:125px;"><div class="vbar-val">57%</div></div>
+                <div class="vbar accent" style="height:158px;"><div class="vbar-val">72%</div></div>
+              </div>
+              <div class="vbar-label">Platelet 20K<br>Day 100</div>
+            </div>
+            <div class="vbar-group">
+              <div class="vbar-pair">
+                <div class="vbar neutral" style="height:101px;"><div class="vbar-val">46%</div></div>
+                <div class="vbar accent" style="height:160px;"><div class="vbar-val">73%</div></div>
+              </div>
+              <div class="vbar-label">Platelet 50K<br>Day 100</div>
+            </div>
+          </div>
+        </div>
+        <div class="chart-legend">
+          <span><span class="ldot" style="background:#D8D3CC;"></span> COBLT (n=324)</span>
+          <span><span class="ldot" style="background:#6C1A55;"></span> REGENECYTE (n=54)</span>
+        </div>
+      </div>
+
+      <!-- Recovery time chart -->
+      <div class="chart-box">
+        <div class="chart-title">Time to Recovery</div>
+        <div class="chart-sub">Median days &mdash; shorter is better. Scale 0&ndash;120 days.</div>
+        <div class="chart-legend" style="margin-bottom:20px;margin-top:0;">
+          <span><span class="ldot" style="background:#D8D3CC;"></span> COBLT</span>
+          <span><span class="ldot" style="background:#6C1A55;"></span> REGENECYTE</span>
+        </div>
+        <div class="time-chart">
+          <div class="time-row">
+            <div class="time-label">Neutrophil</div>
+            <div class="time-bars">
+              <div class="time-bar-row"><div class="tag">COBLT</div><div class="track"><div class="fill neutral" style="width:22.5%;">27d</div></div></div>
+              <div class="time-bar-row"><div class="tag">REGENECYTE</div><div class="track"><div class="fill accent" style="width:18.3%;">22d</div></div></div>
+            </div>
+          </div>
+          <div class="time-row">
+            <div class="time-label">Platelet 20K</div>
+            <div class="time-bars">
+              <div class="time-bar-row"><div class="tag">COBLT</div><div class="track"><div class="fill neutral" style="width:75%;">90d</div></div></div>
+              <div class="time-bar-row"><div class="tag">REGENECYTE</div><div class="track"><div class="fill accent" style="width:41.7%;">50d</div></div></div>
+            </div>
+          </div>
+          <div class="time-row">
+            <div class="time-label">Platelet 50K</div>
+            <div class="time-bars">
+              <div class="time-bar-row"><div class="tag">COBLT</div><div class="track"><div class="fill neutral" style="width:94.2%;">113d</div></div></div>
+              <div class="time-bar-row"><div class="tag">REGENECYTE</div><div class="track"><div class="fill accent" style="width:53.3%;">64d</div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>Safety Profile</h2>
+      <p>Among the 54 patients who received REGENECYTE, 7% (n=4) had an infusion reaction based on 388 voluntary reports. This compares to 65.4% of infusions with any-grade reactions in the COBLT study (442 infusions).</p>
+
+      <!-- AE butterfly chart -->
+      <div class="chart-box">
+        <div class="chart-title">Infusion-Related Adverse Events</div>
+        <div class="chart-sub">COBLT (442 infusions) vs REGENECYTE (54 patients)</div>
+        <div class="ae-chart">
+          <div class="ae-header">
+            <span style="text-align:right;">&larr; COBLT</span>
+            <span></span>
+            <span style="text-align:left;color:#6C1A55;">REGENECYTE &rarr;</span>
+          </div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">65.4%</span><div class="ae-bar neutral" style="width:100%;"></div></div><div class="ae-center">Any Reaction</div><div class="ae-right"><div class="ae-bar accent" style="width:23.9%;"></div><span class="ae-val accent">15.6%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">48.0%</span><div class="ae-bar neutral" style="width:73.4%;"></div></div><div class="ae-center">Hypertension</div><div class="ae-right"><div class="ae-bar accent" style="width:5.7%;min-width:4px;"></div><span class="ae-val accent">3.7%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">14.5%</span><div class="ae-bar neutral" style="width:22.2%;"></div></div><div class="ae-center">Vomiting</div><div class="ae-right"><div class="ae-bar accent" style="width:2.9%;min-width:4px;"></div><span class="ae-val accent">1.9%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">12.7%</span><div class="ae-bar neutral" style="width:19.4%;"></div></div><div class="ae-center">Nausea</div><div class="ae-right"><div class="ae-bar accent" style="width:5.7%;min-width:4px;"></div><span class="ae-val accent">3.7%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">10.4%</span><div class="ae-bar neutral" style="width:15.9%;"></div></div><div class="ae-center">Bradycardia</div><div class="ae-right"><div class="ae-bar accent" style="width:0%;min-width:2px;"></div><span class="ae-val accent">0%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">5.2%</span><div class="ae-bar neutral" style="width:8%;"></div></div><div class="ae-center">Fever</div><div class="ae-right"><div class="ae-bar accent" style="width:0%;min-width:2px;"></div><span class="ae-val accent">0%</span></div></div>
+        </div>
+      </div>
+
+      <h2>Development Pipeline</h2>
+      <h3>Long COVID / Post-COVID Syndrome</h3>
+      <p>Phase II clinical trial completed in 2024. REGENECYTE received FDA Regenerative Medicine Advanced Therapy (RMAT) designation for Long COVID. Expanded Access program clearance received in 2026. Results published in peer-reviewed literature (NCT05682560).</p>
+      <h3>Acute Ischemic Stroke</h3>
+      <p>Phase I clinical trial results evaluating cord blood therapy for acute ischemic stroke were published in the Tzu Chi Medical Journal in 2025.</p>
+      <h3>Spinal Cord Injury</h3>
+      <p>StemCyte-sponsored clinical trial for spinal cord injury (MC001) is active.</p>
+
+      <h2>Mechanism of Action</h2>
+      <p>Hematopoietic stem/progenitor cells from REGENECYTE migrate to the bone marrow where they divide and mature. The mature cells are released into the bloodstream, partially or fully restoring blood counts and immune function.</p>
+      <p>In patients with enzymatic abnormalities due to certain severe storage disorders, mature leukocytes from transplantation may synthesize enzymes that circulate and improve cellular functions of native tissues.</p>
+
+      <h2>Dosage &amp; Administration</h2>
+      <p>For intravenous use only. Do not irradiate. The recommended minimum dose is 2.5 &times; 10&#x2077; nucleated cells/kg at cryopreservation. Matching for at least 4 of 6 HLA-A, HLA-B, and HLA-DRB1 alleles is recommended. Infuse over 15 to 60 minutes. Monitor the patient during and for at least six hours after administration.</p>
+
+      <p class="source" style="margin-top:48px;">All clinical data from <a href="https://www.fda.gov/media/183744/download?attachment" target="_blank">FDA Full Prescribing Information &mdash; REGENECYTE (HPC, Cord Blood), BLA 125764/0</a>.</p>
+    </div>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+      <div class="side-card"><h4>Product Specifications</h4><div class="side-stat"><span class="sl">Min. TNC/unit</span><span class="sv">9&times;10&#x2078;</span></div><div class="side-stat"><span class="sl">Min. CD34+</span><span class="sv">1.25&times;10&#x2076;</span></div><div class="side-stat"><span class="sl">Min. dose (TNC/kg)</span><span class="sv">2.5&times;10&#x2077;</span></div><div class="side-stat"><span class="sl">Cryopreservant</span><span class="sv">10% DMSO</span></div><div class="side-stat"><span class="sl">Volume</span><span class="sv">25 mL</span></div><div class="side-stat"><span class="sl">Infusion Time</span><span class="sv">15&ndash;60 min</span></div></div>
+      <div class="side-card"><h4>Disease Categories</h4><div class="side-stat"><span class="sl">Cancers</span><span class="sv">22</span></div><div class="side-stat"><span class="sl">Immune Disorders</span><span class="sv">26</span></div><div class="side-stat"><span class="sl">Blood Disorders</span><span class="sv">14</span></div><div class="side-stat"><span class="sl">Metabolic Disorders</span><span class="sv">18</span></div></div>
+      <div class="side-card"><h4>Accreditations</h4><ul class="side-list"><li>FDA BLA Licensed</li><li>FACT Certified</li><li>AABB Accredited</li><li>NMDP Member</li><li>cGMP Compliant</li></ul></div>
+      <div class="side-card"><h4>Pipeline</h4><div class="side-stat"><span class="sl">Long COVID</span><span class="sv"><span class="phase-pill" style="background:rgba(108,26,85,0.08);color:#6C1A55;">Phase II / RMAT</span></span></div><div class="side-stat"><span class="sl">Acute Stroke</span><span class="sv"><span class="phase-pill" style="background:rgba(192,148,62,0.12);color:#9A7530;">Phase I</span></span></div><div class="side-stat"><span class="sl">Spinal Cord</span><span class="sv"><span class="phase-pill" style="background:rgba(192,148,62,0.12);color:#9A7530;">Active</span></span></div></div>
+      <div class="side-card"><h4>Collaborating Centers</h4><ul class="side-list"><li>City of Hope</li><li>Mayo Clinic</li><li>UCLA Medical Center</li><li>Stanford Hospital</li><li>Duke University</li><li>Children&rsquo;s Hospital LA</li><li>Mt. Sinai Medical Center</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-banner">
+  <h2>Request REGENECYTE<sup style="font-size:18px;">&reg;</sup> for your patients</h2>
+  <p>Full prescribing information, unit availability, and clinical support.</p>
+  <a class="btn" href="#">Contact StemCyte &rarr;</a>
+</section>
+
+
+<script is:inline>
+(function() {
+  var canvas = document.getElementById('cellCanvas');
+  var ctx = canvas.getContext('2d');
+  var hero = document.getElementById('hero');
+  var W, H;
+  var cells = [];
+  var CELL_COUNT = 40;
+  var scrollVel = 0;
+  var lastScroll = 0;
+
+  var PUSH = 0.12;
+  var DEPTH_MUL = 0.025;
+  var SCATTER = 0.005;
+  var DECAY = 0.80;
+  var DRIFT = 0.015;
+
+  function resize() {
+    var rect = hero.getBoundingClientRect();
+    W = canvas.width = rect.width;
+    H = canvas.height = rect.height;
+    for (var i = 0; i < cells.length; i++) {
+      if (cells[i].x > W) cells[i].x = W - cells[i].size;
+      if (cells[i].y > H) cells[i].y = H - cells[i].size;
+    }
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  window.addEventListener('scroll', function() {
+    var cur = window.pageYOffset;
+    scrollVel = cur - lastScroll;
+    lastScroll = cur;
+  }, { passive: true });
+
+  function renderSprite(type, size, squeeze, blur, opacity) {
+    var pad = blur * 2 + 4;
+    var w = (size * 2 + pad * 2);
+    var h = (size * 2 + pad * 2);
+    var oc = document.createElement('canvas');
+    oc.width = Math.ceil(w);
+    oc.height = Math.ceil(h);
+    var ox = oc.getContext('2d');
+    ox.filter = 'blur(' + blur.toFixed(1) + 'px)';
+    ox.globalAlpha = opacity;
+    ox.translate(oc.width / 2, oc.height / 2);
+
+    if (type === 'rbc') {
+      ox.beginPath();
+      ox.ellipse(0, 0, size, size * squeeze, 0, 0, Math.PI * 2);
+      var g = ox.createRadialGradient(0, -size * 0.12, size * 0.1, 0, 0, size);
+      g.addColorStop(0, 'rgba(175,40,55,0.65)');
+      g.addColorStop(0.3, 'rgba(140,28,42,0.4)');
+      g.addColorStop(0.55, 'rgba(155,35,48,0.55)');
+      g.addColorStop(0.8, 'rgba(130,25,38,0.35)');
+      g.addColorStop(1, 'rgba(100,18,28,0.1)');
+      ox.fillStyle = g;
+      ox.fill();
+      ox.beginPath();
+      ox.ellipse(0, 0, size * 0.35, size * squeeze * 0.35, 0, 0, Math.PI * 2);
+      var g2 = ox.createRadialGradient(0, 0, 0, 0, 0, size * 0.35);
+      g2.addColorStop(0, 'rgba(70,12,20,0.3)');
+      g2.addColorStop(1, 'rgba(100,20,30,0.05)');
+      ox.fillStyle = g2;
+      ox.fill();
+      ox.beginPath();
+      ox.ellipse(0, 0, size * 0.95, size * squeeze * 0.95, 0, 0, Math.PI * 2);
+      ox.strokeStyle = 'rgba(200,60,80,0.08)';
+      ox.lineWidth = 1;
+      ox.stroke();
+
+    } else if (type === 'wbc') {
+      ox.beginPath();
+      ox.ellipse(0, 0, size, size * 0.88, 0, 0, Math.PI * 2);
+      var g = ox.createRadialGradient(-size * 0.1, -size * 0.1, 0, 0, 0, size);
+      g.addColorStop(0, 'rgba(230,195,210,0.25)');
+      g.addColorStop(0.4, 'rgba(200,140,170,0.12)');
+      g.addColorStop(1, 'rgba(180,100,140,0.02)');
+      ox.fillStyle = g;
+      ox.fill();
+      ox.beginPath();
+      ox.ellipse(0, 0, size, size * 0.88, 0, 0, Math.PI * 2);
+      ox.strokeStyle = 'rgba(200,130,160,0.1)';
+      ox.lineWidth = 1;
+      ox.stroke();
+      var lobes = 2 + Math.floor(size / 15);
+      for (var l = 0; l < lobes; l++) {
+        var la = (l / lobes) * Math.PI * 1.4 - 0.3;
+        var ld = size * 0.22;
+        var lr = size * 0.18;
+        ox.beginPath();
+        ox.ellipse(Math.cos(la) * ld, Math.sin(la) * ld, lr, lr * 0.8, la * 0.5, 0, Math.PI * 2);
+        ox.fillStyle = 'rgba(120,50,80,0.15)';
+        ox.fill();
+      }
+
+    } else if (type === 'plt') {
+      ox.beginPath();
+      ox.ellipse(0, 0, size, size * 0.7, 0, 0, Math.PI * 2);
+      var g = ox.createRadialGradient(0, 0, 0, 0, 0, size);
+      g.addColorStop(0, 'rgba(220,150,175,0.75)');
+      g.addColorStop(0.6, 'rgba(200,120,155,0.3)');
+      g.addColorStop(1, 'rgba(180,90,130,0.05)');
+      ox.fillStyle = g;
+      ox.fill();
+
+    } else {
+      ox.beginPath();
+      ox.arc(0, 0, size, 0, Math.PI * 2);
+      var g = ox.createRadialGradient(0, -size * 0.15, 0, 0, 0, size);
+      g.addColorStop(0, 'rgba(235,205,155,0.45)');
+      g.addColorStop(0.4, 'rgba(200,160,80,0.2)');
+      g.addColorStop(1, 'rgba(180,140,60,0.03)');
+      ox.fillStyle = g;
+      ox.fill();
+      ox.beginPath();
+      ox.arc(0, 0, size, 0, Math.PI * 2);
+      ox.strokeStyle = 'rgba(200,160,80,0.08)';
+      ox.lineWidth = 1;
+      ox.stroke();
+      ox.beginPath();
+      ox.arc(size * 0.05, -size * 0.05, size * 0.3, 0, Math.PI * 2);
+      ox.fillStyle = 'rgba(180,140,60,0.15)';
+      ox.fill();
+    }
+
+    return oc;
+  }
+
+  function makeCell() {
+    var type;
+    var r = Math.random();
+    if (r < 0.55) type = 'rbc';
+    else if (r < 0.72) type = 'wbc';
+    else if (r < 0.88) type = 'plt';
+    else type = 'stem';
+
+    var depth = 0.15 + Math.random() * 0.85;
+    var baseSize;
+    if (type === 'rbc') baseSize = 6 + Math.random() * 35;
+    else if (type === 'wbc') baseSize = 14 + Math.random() * 45;
+    else if (type === 'plt') baseSize = 2 + Math.random() * 7;
+    else baseSize = 6 + Math.random() * 22;
+
+    var size = Math.max(baseSize * depth, 2);
+    var blur = (1 - depth) * 20 + 4;
+    var speed = 0.1 + depth * 0.35;
+    var squeeze = 0.7 + Math.random() * 0.2;
+    var opacity = 0.1 + depth * 0.3;
+
+    var sprite = renderSprite(type, size, squeeze, blur, opacity);
+
+    return {
+      type: type,
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: (Math.random() - 0.5) * speed,
+      vy: (Math.random() - 0.5) * speed,
+      size: size, depth: depth,
+      rotation: Math.random() * Math.PI * 2,
+      rotSpeed: (Math.random() - 0.5) * 0.004,
+      sprite: sprite,
+      hw: sprite.width / 2,
+      hh: sprite.height / 2
+    };
+  }
+
+  for (var i = 0; i < CELL_COUNT; i++) cells.push(makeCell());
+
+  cells.sort(function(a, b) { return a.depth - b.depth; });
+
+  var GRID = 100;
+  function collideAll() {
+    var cols = Math.ceil(W / GRID) + 1;
+    var rows = Math.ceil(H / GRID) + 1;
+    var grid = {};
+
+    for (var i = 0; i < cells.length; i++) {
+      var c = cells[i];
+      if (c.type === 'plt') continue;
+      var gx = Math.floor(c.x / GRID);
+      var gy = Math.floor(c.y / GRID);
+      var key = gx + ',' + gy;
+      if (!grid[key]) grid[key] = [];
+      grid[key].push(i);
+    }
+
+    var keys = Object.keys(grid);
+    for (var k = 0; k < keys.length; k++) {
+      var bucket = grid[keys[k]];
+      for (var i = 0; i < bucket.length; i++) {
+        for (var j = i + 1; j < bucket.length; j++) {
+          collide(cells[bucket[i]], cells[bucket[j]]);
+        }
+      }
+      var parts = keys[k].split(',');
+      var gx = parseInt(parts[0]);
+      var gy = parseInt(parts[1]);
+      var neighbors = [(gx+1)+','+gy, gx+','+(gy+1), (gx+1)+','+(gy+1), (gx-1)+','+(gy+1)];
+      for (var n = 0; n < neighbors.length; n++) {
+        var nb = grid[neighbors[n]];
+        if (!nb) continue;
+        for (var i = 0; i < bucket.length; i++) {
+          for (var j = 0; j < nb.length; j++) {
+            collide(cells[bucket[i]], cells[nb[j]]);
+          }
+        }
+      }
+    }
+  }
+
+  function collide(a, b) {
+    var dx = a.x - b.x;
+    var dy = a.y - b.y;
+    var dist = dx * dx + dy * dy;
+    var minDist = a.size + b.size;
+    if (dist < minDist * minDist && dist > 0.01) {
+      dist = Math.sqrt(dist);
+      var nx = dx / dist;
+      var ny = dy / dist;
+      var push = (minDist - dist) * 0.015;
+      a.vx += nx * push; a.vy += ny * push;
+      b.vx -= nx * push; b.vy -= ny * push;
+    }
+  }
+
+  function update() {
+    var sv = scrollVel * PUSH;
+    scrollVel *= DECAY;
+    for (var i = 0; i < cells.length; i++) {
+      var c = cells[i];
+      c.vy += sv * c.depth * DEPTH_MUL;
+      c.vx += sv * (Math.random() - 0.5) * c.depth * SCATTER;
+      c.x += c.vx;
+      c.y += c.vy;
+      c.rotation += c.rotSpeed;
+      if (c.x - c.size < 0) { c.x = c.size; c.vx = Math.abs(c.vx) * 0.7; }
+      if (c.x + c.size > W) { c.x = W - c.size; c.vx = -Math.abs(c.vx) * 0.7; }
+      if (c.y - c.size < 0) { c.y = c.size; c.vy = Math.abs(c.vy) * 0.7; }
+      if (c.y + c.size > H) { c.y = H - c.size; c.vy = -Math.abs(c.vy) * 0.7; }
+      c.vx *= 0.995;
+      c.vy *= 0.995;
+      c.vx += (Math.random() - 0.5) * DRIFT;
+      c.vy += (Math.random() - 0.5) * DRIFT;
+    }
+    collideAll();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    for (var i = 0; i < cells.length; i++) {
+      var c = cells[i];
+      ctx.save();
+      ctx.translate(c.x, c.y);
+      ctx.rotate(c.rotation);
+      ctx.drawImage(c.sprite, -c.hw, -c.hh);
+      ctx.restore();
+    }
+  }
+
+  function loop() { update(); draw(); requestAnimationFrame(loop); }
+  loop();
+})();
+</script>
+
+</BaseLayout>

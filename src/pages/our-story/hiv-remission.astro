@@ -1,0 +1,289 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CellSphere from '../../components/islands/CellSphere.jsx';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The cord blood breakthrough that achieved HIV-1 remission",
+  "datePublished": "2023-03-16",
+  "publisher": { "@type": "Organization", "name": "StemCyte" },
+  "description": "How a StemCyte scientist's decades-long career in transfusion medicine led to a fundamentally new pathway toward curing HIV."
+};
+
+const stats1 = [
+  { count: 18000, suffix: '+', label: 'Cord blood units screened' },
+  { count: 300, suffix: '+', label: 'CCR5-\u039432 homozygous units in registry' },
+  { count: 6, suffix: '', label: 'Collaborating cord blood banks worldwide' },
+];
+
+const stats2 = [
+  { count: 55, suffix: ' mo', label: 'Cancer-free post-transplant' },
+  { count: 18, suffix: ' mo', label: 'Off antiretroviral therapy with no viral rebound' },
+  { count: 100, suffix: '%', label: 'Immune reconstitution by CCR5-\u039432 cord blood cells' },
+];
+
+const timelineItems = [
+  { year: '2007', title: 'The Berlin Patient', desc: 'Timothy Ray Brown becomes the first person cured of HIV through an adult stem cell transplant with CCR5-delta32 donor cells.', highlight: false },
+  { year: '2013', title: 'Dr. Petz publishes the cord blood hypothesis', desc: 'Petz et al. publish in Biology of Blood and Marrow Transplantation, proposing that CCR5-delta32 cord blood units could make HIV cure feasible for far more patients.', highlight: false },
+  { year: '2015', title: 'IMPAACT P1107 launches', desc: "The NIH-funded multi-center observational study formally begins, using StemCyte's pre-screened CCR5-delta32 cord blood units.", highlight: false },
+  { year: 'August 2017', title: 'The transplant', desc: "The New York Patient receives a haplo-cord transplant at Weill Cornell Medicine: a CCR5-delta32 cord blood unit from StemCyte's registry combined with haploidentical stem cells from a relative.", highlight: true },
+  { year: 'November 2018', title: 'First published report', desc: 'The case is presented at the American Society of Hematology (ASH) annual meeting, reporting early remission of both AML and HIV.', highlight: false },
+  { year: 'February 2022', title: 'Announced at CROI', desc: 'The IMPAACT P1107 team presents the case at CROI. The WHO reports it as the first case of HIV cure in a woman after stem cell transplantation.', highlight: false },
+  { year: 'March 2023', title: 'Published in Cell', desc: "The full case report is published in Cell. The paper is dedicated in memory of Dr. Lawrence Petz.", highlight: true },
+];
+---
+<BaseLayout title="HIV Remission — Cord Blood Breakthrough" schema={schema}>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <CellSphere client:visible />
+  <div class="orb orb-a"></div>
+  <div class="orb orb-b"></div>
+  <div class="orb orb-c"></div>
+  <div class="hero-inner">
+    <div class="overline"><span class="dot"></span> Published in Cell · March 2023</div>
+    <h1>The cord blood breakthrough that achieved <em>HIV-1 remission</em></h1>
+    <p class="hero-sub">How a StemCyte scientist's decades-long career in transfusion medicine led to a fundamentally new pathway toward curing HIV — one that could reach patients the previous approaches never could.</p>
+    <div class="pub-badge"><strong><em>Cell</em>, Vol. 186, Issue 6</strong><span> — HIV-1 remission and possible cure in a woman after haplo-cord blood transplant</span></div>
+  </div>
+</div>
+
+<!-- DR. PETZ BIO -->
+<section class="section">
+  <div class="inner">
+    <a href="/our-story" class="back-link anim">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg>
+      Back to Our Story
+    </a>
+    <div class="portrait-section">
+      <div class="portrait-col anim">
+        <img src="/images/our%20story/press_release_distribution_0452818_127664.jpg" alt="Dr. Lawrence D. Petz" width="280" height="336" />
+        <div class="name">Lawrence D. Petz, MD</div>
+        <div class="title-text">Chief Medical Officer, StemCyte<br/>Emeritus Professor, UCLA</div>
+      </div>
+      <div class="anim">
+        <div class="sec-label">The scientist</div>
+        <h2 class="sec-h2">A career built at the intersection of blood science and transplantation</h2>
+        <p class="body-p"><a href="/our-story/lawrence-petz" style="color:inherit;text-decoration:underline;text-decoration-color:#C06AA5;text-underline-offset:3px">Dr. Lawrence Petz</a> was one of the most distinguished transfusion medicine physicians of his generation. Before joining StemCyte as Chief Medical Officer, he spent decades shaping the field from two of the country's leading institutions.</p>
+        <p class="body-p">At City of Hope National Medical Center, he served as Chairman of the Division of Medicine, Section Head of Hematology, and Director of Clinical and Experimental Immunology. He then moved to UCLA Medical Center, where he was Director of Transfusion Medicine and Professor of Pathology & Laboratory Medicine.</p>
+        <p class="body-p">He authored the first bone marrow transplant textbook — <em>Clinical Bone Marrow Transplantation</em> (1983) — along with all three editions of <em>Clinical Practice of Transfusion Medicine</em> and co-authored <em>Immune Hemolytic Anemias</em>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- THE INSIGHT -->
+<section class="section section-lav">
+  <div class="inner">
+    <div class="anim">
+      <div class="sec-label">The insight</div>
+      <h2 class="sec-h2">A hypothesis that changed everything</h2>
+      <p class="body-p">In 2007, a man named Timothy Ray Brown — later known as the "Berlin Patient" — became the first person cured of HIV. His doctor had transplanted adult stem cells from a donor who carried a rare genetic mutation called CCR5-delta32, which prevents HIV from entering cells.</p>
+      <p class="body-p">It was a landmark moment in medicine. But it was also nearly impossible to repeat. Adult stem cell transplants require a very close HLA match between donor and recipient.</p>
+    </div>
+    <div class="insight-card anim">
+      <div class="quote">"Cure of HIV infections by hematopoietic cell transplantation can be accomplished much more readily using umbilical cord blood stem cells obtained from a modestly sized inventory of cryopreserved CCR5-&#916;32/&#916;32 cord blood units."</div>
+      <div class="attribution">— Dr. Lawrence Petz et al., <em>Biology of Blood and Marrow Transplantation</em>, 2013</div>
+    </div>
+    <div class="anim">
+      <p class="body-p">Dr. Petz recognized something others had missed. Cord blood transplants require significantly less stringent HLA matching than adult stem cell transplants. That meant a relatively small inventory of cord blood units carrying the CCR5-delta32 mutation could provide matches for a much larger and more diverse group of patients.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- BUILDING THE REGISTRY -->
+<section class="section">
+  <div class="inner">
+    <div class="anim">
+      <div class="sec-label">Building the registry</div>
+      <h2 class="sec-h2">Screening 18,000 cord blood units to find the needle in the haystack</h2>
+      <p class="body-p">Dr. Petz and his team at StemCyte undertook an enormous screening effort. Working across StemCyte's own inventory and collaborating with cord blood banks at Duke University, MD Anderson Cancer Center, the University of Colorado, St. Louis, Barcelona, and Sydney, they tested approximately 18,000 cord blood units for the CCR5-delta32 mutation.</p>
+      <p class="body-p">That registry — which now contains more than 300 CCR5-delta32 homozygous cord blood units — exists nowhere else in the world.</p>
+    </div>
+    <div class="result-grid anim">
+      {stats1.map(stat => (
+        <div class="result-card"><div class="num">{stat.count.toLocaleString()}{stat.suffix}</div><div class="rlbl">{stat.label}</div></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- TIMELINE -->
+<section class="section section-plum">
+  <div class="inner">
+    <div class="anim">
+      <div class="sec-label">How it unfolded</div>
+      <h2 class="sec-h2">From transplant to remission</h2>
+    </div>
+    <div class="tl">
+      <div class="tl-track"></div>
+      {timelineItems.map(item => (
+        <div class={`tl-item anim ${item.highlight ? 'tl-highlight' : ''}`}>
+          <div class="tl-dot"></div>
+          <div class="tl-year">{item.year}</div>
+          <div class="tl-title">{item.title}</div>
+          <div class="tl-desc">{item.desc}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- THE RESULTS -->
+<section class="section">
+  <div class="inner">
+    <div class="anim">
+      <div class="sec-label">The results</div>
+      <h2 class="sec-h2">A landmark outcome</h2>
+      <p class="body-p">The New York Patient's results, as published in <em>Cell</em>, demonstrated what Dr. Petz had hypothesized a decade earlier: cord blood carrying the CCR5-delta32 mutation could achieve HIV remission — and possibly cure.</p>
+    </div>
+    <div class="result-grid anim">
+      {stats2.map(stat => (
+        <div class="result-card"><div class="num">{stat.count.toLocaleString()}{stat.suffix}</div><div class="rlbl">{stat.label}</div></div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- DEDICATION -->
+<div class="dedication">
+  <div class="glow"></div>
+  <div class="ded-content anim">
+    <div class="ded-line"></div>
+    <div class="ded-text">"We would like to dedicate this manuscript in memory of Lawrence D. Petz, MD, who recently passed away, a pioneer in the field of cord blood cells."</div>
+    <div class="ded-attr">— Hsu, Van Besien, Glesby et al., <em>Cell</em>, March 2023</div>
+  </div>
+</div>
+
+<!-- SOURCES -->
+<section class="section">
+  <div class="inner">
+    <div class="sources">
+      <h4>Sources</h4>
+      <ol>
+        <li>Hsu J, Van Besien K, Glesby MJ, et al. HIV-1 remission and possible cure in a woman after haplo-cord blood transplant. <em>Cell</em>. 2023;186(6):1115–1126.e8. <a href="https://doi.org/10.1016/j.cell.2023.02.030" target="_blank" rel="noopener">doi:10.1016/j.cell.2023.02.030</a></li>
+        <li>Petz LD, Redei I, Bryson Y, et al. Hematopoietic cell transplantation with cord blood for cure of HIV infections. <em>Biol Blood Marrow Transplant</em>. 2013;19(3):393–397.</li>
+        <li>Petz LD, Burnett JC, Li H, et al. Progress toward curing HIV infection with hematopoietic cell transplantation. <em>Stem Cells Cloning</em>. 2015;8:109–116.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-banner">
+  <h2>Learn more about StemCyte's story</h2>
+  <p>From a California lab in 1997 to 2,300+ transplants in 35 countries — and a breakthrough published in <em>Cell</em>.</p>
+  <a href="/our-story" class="cta-btn">Read our full story</a>
+</div>
+
+</BaseLayout>
+
+<style>
+.hero { position:relative; min-height:600px; display:flex; align-items:center; justify-content:center; background:#0A0508; overflow:hidden; }
+.orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.15; pointer-events:none; }
+.orb-a { width:400px; height:400px; background:#6C1A55; top:-100px; left:-100px; }
+.orb-b { width:300px; height:300px; background:#E8A0D0; bottom:-50px; right:-50px; }
+.orb-c { width:200px; height:200px; background:#3D8B6A; top:50%; left:60%; }
+.hero-inner { position:relative; z-index:2; max-width:800px; text-align:center; padding:120px 48px 80px; }
+.overline { font-size:12px; color:#E8A0D0; font-weight:600; letter-spacing:0.5px; margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:8px; }
+.dot { width:6px; height:6px; border-radius:50%; background:#E8A0D0; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:48px; font-weight:400; color:#fff; line-height:1.1; letter-spacing:-1.5px; margin-bottom:20px; }
+.hero h1 em { font-style:italic; color:#E8A0D0; }
+.hero-sub { font-size:17px; color:rgba(255,255,255,0.45); line-height:1.7; max-width:640px; margin:0 auto 28px; }
+.pub-badge { font-size:12px; color:rgba(255,255,255,0.35); padding:12px 20px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; display:inline-block; }
+.pub-badge strong { color:rgba(255,255,255,0.6); }
+
+.section { padding:80px 48px; max-width:1100px; margin:0 auto; }
+.inner { max-width:800px; margin:0 auto; }
+.divider { max-width:1100px; margin:0 auto; padding:0 48px; }
+.divider-line { height:1px; background:#E8E2DC; }
+.section-lav { background:#F3F0F8; padding:80px 48px; max-width:100%; }
+.section-lav .inner { max-width:800px; }
+.section-plum { background:#FBF5F9; padding:80px 48px; max-width:100%; }
+.section-plum .inner { max-width:800px; }
+
+.back-link { display:inline-flex; align-items:center; gap:8px; font-size:13px; font-weight:700; color:#6C1A55; text-decoration:none; margin-bottom:40px; }
+.portrait-section { display:grid; grid-template-columns:280px 1fr; gap:48px; align-items:start; }
+.portrait-col { text-align:center; }
+.portrait-col img { border-radius:12px; width:100%; max-width:280px; }
+.name { font-size:18px; font-weight:700; margin-top:16px; }
+.title-text { font-size:13px; color:#8A857A; margin-top:4px; line-height:1.5; }
+.sec-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:10px; }
+.sec-h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; margin-bottom:16px; line-height:1.2; }
+.body-p { font-size:15px; color:#6B665D; line-height:1.8; margin-bottom:16px; }
+.body-p strong { color:#2C2A26; }
+.insight-card { background:#fff; border-radius:12px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,0.04); margin:32px 0; border-left:3px solid #6C1A55; }
+.quote { font-family:'Playfair Display',serif; font-size:18px; font-style:italic; color:#2C2A26; line-height:1.5; margin-bottom:12px; }
+.attribution { font-size:13px; color:#8A857A; }
+
+.result-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:32px; }
+.result-card { background:#fff; border-radius:12px; padding:24px; box-shadow:0 1px 3px rgba(0,0,0,0.04); text-align:center; }
+.result-card .num { font-family:'Source Serif 4',serif; font-size:36px; color:#6C1A55; font-weight:400; }
+.result-card .rlbl { font-size:12px; color:#8A857A; margin-top:4px; }
+
+.tl { position:relative; padding-left:40px; }
+.tl-track { position:absolute; left:12px; top:0; bottom:0; width:2px; background:#E8E2DC; }
+.tl-item { position:relative; margin-bottom:32px; }
+.tl-dot { position:absolute; left:-34px; top:4px; width:10px; height:10px; border-radius:50%; background:#C06AA5; border:2px solid #FBF5F9; }
+.tl-highlight .tl-dot { background:#6C1A55; width:14px; height:14px; left:-36px; top:2px; }
+.tl-year { font-family:'Source Serif 4',serif; font-size:14px; color:#6C1A55; font-weight:700; margin-bottom:4px; }
+.tl-title { font-size:16px; font-weight:700; margin-bottom:4px; }
+.tl-desc { font-size:14px; color:#8A857A; line-height:1.7; }
+
+.dedication { padding:80px 48px; text-align:center; background:#0A0508; position:relative; overflow:hidden; }
+.glow { position:absolute; width:400px; height:400px; border-radius:50%; background:rgba(108,26,85,0.15); filter:blur(100px); top:50%; left:50%; transform:translate(-50%,-50%); }
+.ded-content { position:relative; z-index:1; max-width:600px; margin:0 auto; }
+.ded-line { width:40px; height:2px; background:#C06AA5; margin:0 auto 24px; }
+.ded-text { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; color:rgba(255,255,255,0.7); line-height:1.5; margin-bottom:16px; }
+.ded-attr { font-size:13px; color:rgba(255,255,255,0.35); }
+
+.sources { margin-top:20px; }
+.sources h4 { font-size:14px; font-weight:700; margin-bottom:12px; }
+.sources ol { padding-left:20px; }
+.sources li { font-size:13px; color:#8A857A; line-height:1.6; margin-bottom:8px; }
+.sources a { color:#6C1A55; text-decoration:none; }
+
+.cta-banner { margin:0; border-radius:0; background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:80px 48px; text-align:center; }
+.cta-banner h2 { font-family:'Playfair Display',serif; font-size:32px; color:#fff; margin-bottom:12px; }
+.cta-banner p { font-size:15px; color:rgba(255,255,255,0.5); margin-bottom:28px; }
+.cta-btn { display:inline-block; background:#fff; color:#6C1A55; padding:14px 36px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; }
+
+.anim { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.anim.vis { opacity:1; transform:translateY(0); }
+
+@media (max-width:900px) {
+  .hero-inner { padding:100px 24px 60px; }
+  .hero h1 { font-size:34px; }
+  .section { padding:64px 24px; }
+  .section-lav, .section-plum { padding:64px 24px; }
+  .portrait-section { grid-template-columns:1fr; text-align:center; }
+  .result-grid { grid-template-columns:1fr; }
+  .dedication { padding:64px 24px; }
+}
+@media (max-width:600px) {
+  .hero h1 { font-size:28px; }
+}
+</style>
+
+<script>
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('vis'), 150);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.anim').forEach(el => obs.observe(el));
+</script>

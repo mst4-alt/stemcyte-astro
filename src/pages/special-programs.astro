@@ -1,0 +1,121 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Special Programs | StemCyte">
+
+<style>
+
+@media (max-width:600px) {
+  .hero h1 { font-size:28px; }
+  .cta-banner .btns { flex-direction:column; align-items:center; }
+}
+
+</style>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="circle-1"></div>
+  <div class="circle-2"></div>
+  <div class="lbl">SPECIAL PROGRAMS</div>
+  <h1>Discounts for families who qualify</h1>
+  <p class="sub">Special pricing for military families, medical professionals, and families with a child who needs a transplant.</p>
+</section>
+
+<!-- PROGRAM CARDS -->
+<section class="section anim">
+  <div class="cards-grid">
+
+    <div class="prog-card sibling">
+      <div class="badge badge-free">FREE BANKING</div>
+      <h3>Sibling Donor Program</h3>
+      <p class="desc">Free processing and storage for families where a sibling has a diagnosis requiring stem cell transplantation.</p>
+      <a href="tel:8663894659" class="btn-p">Contact us to apply</a>
+    </div>
+
+    <div class="prog-card military">
+      <div class="badge badge-disc">DISCOUNT</div>
+      <h3>Military &amp; Public Servant</h3>
+      <p class="desc">Special pricing for active and retired military, police, fire, and EMT professionals.</p>
+      <a href="tel:8663894659" class="btn-p">Call for pricing</a>
+    </div>
+
+    <div class="prog-card medical">
+      <div class="badge badge-disc">DISCOUNT</div>
+      <h3>Medical Professional</h3>
+      <p class="desc">Special pricing for physicians, nurses, and allied health professionals.</p>
+      <a href="tel:8663894659" class="btn-p">Call for pricing</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- HOW TO APPLY -->
+<section class="apply-section anim">
+  <div class="inner">
+    <h2>How to apply</h2>
+    <p>Call (866) 389-4659 or email customerservice@stemcyte.com. Provide any required documentation (military ID, medical license, or sibling diagnosis). Once verified, your discount is applied automatically &mdash; no promo codes needed.</p>
+    <a href="tel:8663894659" class="btn-p">Call (866) 389-4659</a>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section anim">
+  <h2>Frequently asked questions</h2>
+
+  <div class="faq-smooth" onclick="toggleFaq(this)">
+    <div class="faq-q">Can I combine multiple discounts?<div class="icon"></div></div>
+    <div class="faq-a"><div class="faq-a-inner">Discount programs cannot be combined with each other. However, all discount programs can be combined with add-on services like Public Bank Access and HLA typing.</div></div>
+  </div>
+
+  <div class="faq-smooth" onclick="toggleFaq(this)">
+    <div class="faq-q">Is the Sibling Donor Program really free?<div class="icon"></div></div>
+    <div class="faq-a"><div class="faq-a-inner">Yes. For qualifying families, StemCyte covers the full cost of processing and storage. There are no hidden fees.</div></div>
+  </div>
+
+  <div class="faq-smooth" onclick="toggleFaq(this)">
+    <div class="faq-q">How do I verify my military or medical professional status?<div class="icon"></div></div>
+    <div class="faq-a"><div class="faq-a-inner">We accept standard forms of verification &mdash; military ID, DD-214, medical license, or hospital credentials. Our team will guide you through the process.</div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner anim">
+  <h2>Every family deserves access to <em>stem cell protection</em></h2>
+  <p>Call us to find out if you qualify for special pricing.</p>
+  <div class="btns">
+    <a href="tel:8663894659" class="btn-w">Call (866) 389-4659</a>
+    <a href="/pricing" class="btn-gd">View pricing</a>
+  </div>
+</section>
+
+
+<script is:inline>
+// FAQ toggle
+function toggleFaq(el) {
+  var wasOpen = el.classList.contains('open');
+  document.querySelectorAll('.faq-smooth').forEach(function(f) {
+    f.classList.remove('open');
+    f.querySelector('.faq-a').style.maxHeight = '0';
+  });
+  if (!wasOpen) {
+    el.classList.add('open');
+    var a = el.querySelector('.faq-a');
+    var inner = el.querySelector('.faq-a-inner');
+    a.style.maxHeight = inner.scrollHeight + 'px';
+  }
+}
+
+// Scroll animations
+var obs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) {
+      setTimeout(function() { entry.target.classList.add('vis'); }, 150);
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.anim').forEach(function(el) { obs.observe(el); });
+</script>
+
+</BaseLayout>

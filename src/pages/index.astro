@@ -1,23 +1,340 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "StemCyte",
+  "url": "https://stemcyte.com",
+  "description": "StemCyte is a global regenerative therapeutics company offering cord blood banking, clinical stem cell therapy, and regenerative medicine since 1997.",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://stemcyte.com/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
 ---
+<BaseLayout title="Homepage" schema={schema}>
 
-<BaseLayout title="Cord Blood Banking & Stem Cell Therapy">
-  <section id="hero" style="position: relative; min-height: 80vh; display: flex; align-items: flex-end; padding: 0 48px 80px; background: linear-gradient(180deg, #3D0F31 0%, #6C1A55 100%);">
-    <div style="position: relative; z-index: 2; max-width: 680px;">
-      <h1 style="font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 400; color: #fff; line-height: 1.08; letter-spacing: -1.5px; margin-bottom: 16px;">
-        Protect your baby's future with cord blood banking
-      </h1>
-      <p style="font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.7; max-width: 540px;">
-        Placeholder homepage &mdash; the full site is being rebuilt in Astro.
-      </p>
+<!-- HERO -->
+<section class="hero" id="hero">
+  <video class="bg" autoplay muted loop playsinline>
+    <source src="/images/videos/Hero_1.mp4" type="video/mp4">
+  </video>
+  <div class="vig"></div>
+  <div class="ct">
+    <h1 class="fade-in fd1">Your baby's stem cells could save a <em>life</em></h1>
+    <p class="sub fade-in fd2">The one decision you can't make later.</p>
+    <div class="btns fade-in fd3">
+      <a href="/pricing" class="btn-p" style="display:inline-block;text-decoration:none">View plans &amp; pricing</a>
+      <a href="/the-science" class="btn-gl" style="display:inline-block;text-decoration:none">Why bank cord blood</a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section style="padding: 80px 48px; max-width: 900px; margin: 0 auto;">
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 400; color: #2C2A26; margin-bottom: 16px;">Foundation verified</h2>
-    <p style="font-size: 16px; color: #8A857A; line-height: 1.7;">
-      Nav, Footer, fonts, global styles, schema markup, and deployment are all working. Pages will be added in subsequent batches.
-    </p>
-  </section>
+<!-- TRUST BAR -->
+<div class="trust-bar anim">
+  <div class="trust-bar-inner">
+    <div class="trust-item">
+      <div class="t-val">2,300+</div>
+      <div class="t-lbl">Transplants worldwide</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="t-val">FDA</div>
+      <div class="t-lbl">Licensed</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="t-val">FACT</div>
+      <div class="t-lbl">Accredited</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="t-val">AABB</div>
+      <div class="t-lbl">Accredited</div>
+    </div>
+    <div class="trust-sep"></div>
+    <div class="trust-item">
+      <div class="t-val">1997</div>
+      <div class="t-lbl">Founded</div>
+    </div>
+  </div>
+</div>
+
+<!-- WHY STEMCYTE -->
+<section class="section">
+  <div class="sh">
+    <div class="lbl">The StemCyte advantage</div>
+    <h2>What no other cord blood bank can offer</h2>
+    <p>StemCyte is both a private and public cord blood bank — the only one that gives your family access to both.</p>
+  </div>
+  <div class="uv-grid">
+    <a href="/public-bank-access" class="uv-card anim">
+      <div class="ic" style="background:#FBF5F9"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3>Public bank access</h3>
+      <p>If your child needs more stem cells, StemCyte can provide a matching unit from our public bank — or search all global public banks. A benefit only StemCyte can offer.</p>
+      <span class="card-arrow">→</span>
+    </a>
+    <a href="/why-stemcyte" class="uv-card anim">
+      <div class="ic" style="background:#F0F7F4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3D8B6A" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+      <h3>FACT accredited</h3>
+      <p>The gold standard in cell therapy quality — voluntary for private banks, and globally recognized as the highest benchmark. Most private banks don't have it.</p>
+      <span class="card-arrow">→</span>
+    </a>
+    <a href="/lifesaver-guarantee" class="uv-card anim">
+      <div class="ic" style="background:#FDF5EB"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C4943E" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M9 12l2 2 4-4"/></svg></div>
+      <h3>LifeSaver Guarantee</h3>
+      <p>If your cord blood unit ever fails to engraft, StemCyte will refund all fees, pay $50,000, and provide a replacement unit from our donor bank — free of charge.</p>
+      <span class="card-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section-full" style="background:#F3F0F8">
+  <div class="inner">
+    <div class="sh">
+      <div class="lbl">How it works</div>
+      <h2>3 simple steps</h2>
+      <p>From enrollment to preservation — the entire process is designed to be effortless for you.</p>
+    </div>
+    <div class="steps-row anim">
+      <div class="s-card">
+        <div class="s-top"><div class="s-chip">1</div><h3>Enroll</h3></div>
+        <p>Sign up online or by phone. We ship an FDA-approved sterile collection kit to your home. Free shipping.</p>
+      </div>
+      <div class="s-conn"><div class="s-ln"></div></div>
+      <div class="s-card">
+        <div class="s-top"><div class="s-chip">2</div><h3>Collect</h3></div>
+        <p>Bring the kit to the hospital. Your OB collects after birth — safe, painless, takes minutes.</p>
+      </div>
+      <div class="s-conn"><div class="s-ln"></div></div>
+      <div class="s-card">
+        <div class="s-top"><div class="s-chip">3</div><h3>Store</h3></div>
+        <p>Our 24/7 courier picks up. Processing at our FDA-licensed lab. Cryopreserved for life.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="test-wrap">
+  <div class="test-in">
+    <div class="sh">
+      <div class="lbl">What families say</div>
+      <h2>Trusted by parents and physicians</h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card anim">
+        <blockquote>"We chose StemCyte because of their dedication to continuous research, clinical trials, and their dedication to helping families by being the only private bank offering public bank access."</blockquote>
+        <cite>Gabrielle Stone</cite>
+        <div class="role">Author, Eat Pray FML</div>
+      </div>
+      <div class="test-card anim">
+        <blockquote>"StemCyte really shines. Their experience in delivering valuable and viable stem cells for transplants is amazing. I highly recommend StemCyte."</blockquote>
+        <cite>Dr. Shahin Ghadir</cite>
+        <div class="role">Reproductive Endocrinologist</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING TEASER -->
+<section class="section-full" style="background:#F3F0F8">
+  <div style="max-width:1100px;margin:0 auto;text-align:center;padding:20px 0">
+    <div class="sh anim" style="text-align:center;max-width:100%">
+      <div class="lbl">Pricing</div>
+      <h2>Starts at less than $2 a day</h2>
+      <p style="max-width:520px;margin:0 auto 28px">Build your plan in minutes.</p>
+    </div>
+    <a href="/pricing" class="btn-p anim" style="display:inline-block;text-decoration:none">Build your plan →</a>
+  </div>
+</section>
+
+<!-- FAQ PREVIEW -->
+<section class="section">
+  <div class="sh anim">
+    <div class="lbl">Common questions</div>
+    <h2>What expecting parents ask most</h2>
+  </div>
+  <div class="faq-list anim">
+    <div class="faq-smooth">
+      <div class="faq-q">Can I still do delayed cord clamping?<div class="icon"></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. The American College of Obstetricians and Gynecologists recommends a 30–60 second delay, and cord blood can still be collected after that window. Most families do both. Talk to your OB about your birth plan — a short delay gives your baby the benefit of extra blood volume while still leaving plenty of cord blood for banking.</div></div>
+    </div>
+    <div class="faq-smooth">
+      <div class="faq-q">What if my child never needs it?<div class="icon"></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Cord blood stem cells aren't limited to the child they came from. Siblings have a 25% chance of being a perfect match, and parents are always a half-match. Beyond family use, cord blood is being studied in over 500 clinical trials for conditions like cerebral palsy, autism, and stroke. What can be treated today is just the beginning.</div></div>
+    </div>
+    <div class="faq-smooth">
+      <div class="faq-q">Why StemCyte over other cord blood banks?<div class="icon"></div></div>
+      <div class="faq-a"><div class="faq-a-inner">StemCyte is the only private bank that also operates a public cord blood bank — so if your child ever needs more stem cells than were stored, we can source a matching unit. We've provided units for over 2,300 transplants worldwide (1 in every 26), and every plan includes the LifeSaver Guarantee: full refund + $50,000 + a replacement unit if engraftment fails.</div></div>
+    </div>
+  </div>
+  <div class="faq-more anim"><a href="/faq">View all frequently asked questions →</a></div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner anim">
+  <h2>Your baby's stem cells can only be collected at <em>birth</em></h2>
+  <p>Don't let this once-in-a-lifetime opportunity pass.</p>
+  <div class="btns">
+    <a href="/pricing" class="btn-w" style="display:inline-block;text-decoration:none">Enroll now</a>
+    <a href="tel:8663894659" class="btn-gd" style="display:inline-block;text-decoration:none">Call (866) 389-4659</a>
+  </div>
+</section>
+
 </BaseLayout>
+
+<style>
+/* HERO */
+.hero { min-height:100vh; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; text-align:center; background:#000; }
+.hero .bg { position:absolute; inset:0; object-fit:cover; width:100%; height:100%; filter:saturate(0.7); }
+.hero .vig { position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0.15) 0%,rgba(0,0,0,0.55) 55%,rgba(0,0,0,0.78) 100%); }
+.hero .ct { position:relative; z-index:2; max-width:680px; padding:0 24px; margin-top:-60px; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:58px; font-weight:400; line-height:1.08; letter-spacing:-2px; color:#fff; margin-bottom:16px; }
+.hero h1 em { font-style:italic; color:#E8A0D0; }
+.hero .sub { font-size:17px; color:rgba(255,255,255,0.55); line-height:1.7; max-width:520px; margin:0 auto 36px; }
+.hero .btns { display:flex; gap:12px; justify-content:center; }
+.btn-p { background:#6C1A55; color:#fff; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; border:none; cursor:pointer; font-family:'Lato',sans-serif; transition:all 0.25s; }
+.btn-p:hover { background:#8B3572; }
+.btn-gl { background:rgba(255,255,255,0.12); color:#fff; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; border:1px solid rgba(255,255,255,0.2); cursor:pointer; font-family:'Lato',sans-serif; transition:all 0.25s; }
+.btn-gl:hover { background:rgba(255,255,255,0.20); border-color:rgba(255,255,255,0.35); }
+
+/* COMMON */
+.section { padding:80px 48px; max-width:1100px; margin:0 auto; }
+.section-full { padding:80px 48px; }
+.section-full .inner { max-width:1100px; margin:0 auto; }
+.sh { margin-bottom:40px; }
+.sh .lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:10px; }
+.sh h2 { font-family:'Playfair Display',serif; font-size:36px; font-weight:400; letter-spacing:-0.5px; margin-bottom:10px; line-height:1.15; }
+.sh p { font-size:16px; color:#8A857A; max-width:520px; line-height:1.7; }
+
+/* TRUST BAR */
+.trust-bar { padding:28px 48px; background:#FAF7F2; }
+.trust-bar-inner { max-width:1100px; margin:0 auto; display:flex; align-items:center; justify-content:center; }
+.trust-item { text-align:center; padding:0 32px; }
+.trust-item .t-val { font-family:'Source Serif 4',serif; font-size:26px; color:#6C1A55; font-weight:400; line-height:1.3; }
+.trust-item .t-lbl { font-size:11px; color:#8A857A; margin-top:2px; letter-spacing:0.5px; }
+.trust-sep { width:1px; height:40px; background:#E8E2DC; flex-shrink:0; }
+
+/* VALUE CARDS */
+.uv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+.uv-card { background:#fff; border-radius:12px; padding:28px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); text-decoration:none; color:inherit; display:block; transition:transform 0.25s ease, box-shadow 0.25s ease; position:relative; }
+.uv-card.vis:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,0.08),0 1px 3px rgba(0,0,0,0.04); }
+.uv-card .ic { width:48px; height:48px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+.uv-card h3 { font-size:16px; font-weight:700; margin-bottom:8px; color:#2C2A26; }
+.uv-card p { font-size:15px; color:#8A857A; line-height:1.7; }
+.uv-card .card-arrow { position:absolute; bottom:20px; right:20px; font-size:18px; color:#C06AA5; opacity:0; transition:opacity 0.25s; }
+.uv-card:hover .card-arrow { opacity:1; }
+
+/* STEPS V2 */
+.steps-row { display:flex; align-items:stretch; gap:0; }
+.s-card { flex:1; background:#fff; border-radius:12px; padding:28px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.s-top { display:flex; align-items:center; gap:12px; margin-bottom:12px; }
+.s-chip { display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:8px; background:#FBF5F9; color:#6C1A55; font-family:'Source Serif 4',serif; font-size:18px; flex-shrink:0; }
+.s-card h3 { font-size:20px; font-weight:700; }
+.s-card p { font-size:15px; color:#8A857A; line-height:1.7; }
+.s-conn { display:flex; align-items:center; padding:0 2px; flex-shrink:0; }
+.s-ln { width:24px; height:1px; background:#D8D0E0; }
+
+/* TESTIMONIALS */
+.test-wrap { background:#FAF7F2; padding:80px 48px; }
+.test-in { max-width:1100px; margin:0 auto; }
+.test-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; margin-top:40px; }
+.test-card { background:#fff; border-radius:12px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.test-card blockquote { font-size:16px; color:#4A4540; line-height:1.7; font-style:italic; margin-bottom:16px; }
+.test-card cite { font-style:normal; font-size:14px; font-weight:700; color:#2C2A26; }
+.test-card .role { font-size:12px; color:#B0AB9E; }
+
+/* FAQ */
+.faq-list { max-width:100%; }
+.faq-smooth { border-bottom:1px solid #E8E2DC; overflow:hidden; }
+.faq-smooth:last-child { border-bottom:none; }
+.faq-smooth .faq-q { padding:20px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-size:16px; font-weight:700; color:#2C2A26; user-select:none; }
+.faq-smooth .faq-q .icon { width:24px; height:24px; position:relative; flex-shrink:0; margin-left:16px; }
+.faq-smooth .faq-q .icon::before,
+.faq-smooth .faq-q .icon::after { content:''; position:absolute; background:#C06AA5; border-radius:1px; transition:transform 0.3s ease; }
+.faq-smooth .faq-q .icon::before { width:14px; height:2px; top:11px; left:5px; }
+.faq-smooth .faq-q .icon::after { width:2px; height:14px; top:5px; left:11px; }
+.faq-smooth.open .faq-q .icon::after { transform:rotate(90deg); }
+.faq-smooth .faq-a { max-height:0; overflow:hidden; transition:max-height 0.35s ease, opacity 0.3s ease; opacity:0; }
+.faq-smooth.open .faq-a { opacity:1; }
+.faq-smooth .faq-a-inner { padding:0 0 20px; font-size:15px; color:#8A857A; line-height:1.7; max-width:720px; }
+.faq-more { margin-top:28px; }
+.faq-more a { font-size:15px; font-weight:700; color:#6C1A55; text-decoration:none; }
+.faq-more a:hover { text-decoration:underline; }
+
+/* CTA */
+.cta-banner { margin:80px 48px; border-radius:16px; background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:80px 64px; text-align:center; position:relative; overflow:hidden; }
+.cta-banner::before { content:''; position:absolute; width:500px; height:500px; border-radius:50%; background:rgba(192,106,165,0.08); top:-200px; right:-100px; }
+.cta-banner h2 { font-family:'Playfair Display',serif; font-size:36px; color:#fff; margin-bottom:12px; position:relative; }
+.cta-banner h2 em { font-style:italic; color:#E8A0D0; }
+.cta-banner p { font-size:16px; color:rgba(255,255,255,0.5); margin-bottom:32px; position:relative; }
+.cta-banner .btns { display:flex; gap:12px; justify-content:center; position:relative; }
+.btn-w { background:#fff; color:#6C1A55; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; border:none; cursor:pointer; font-family:'Lato',sans-serif; transition:all 0.25s; }
+.btn-w:hover { background:rgba(255,255,255,0.85); }
+.btn-gd { background:transparent; color:#fff; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; border:1px solid rgba(255,255,255,0.25); cursor:pointer; font-family:'Lato',sans-serif; transition:all 0.25s; }
+.btn-gd:hover { background:rgba(255,255,255,0.20); border-color:rgba(255,255,255,0.35); }
+
+/* ANIMATIONS */
+.anim { opacity:0; transform:translateY(28px); transition:opacity 0.7s ease, transform 0.7s ease; }
+.anim.vis { opacity:1; transform:translateY(0); }
+.fade-in { opacity:0; animation:fadeIn 0.6s ease forwards; }
+.fd1 { animation-delay:0.1s; }
+.fd2 { animation-delay:0.2s; }
+.fd3 { animation-delay:0.3s; }
+@keyframes fadeIn { to { opacity:1; } }
+
+/* RESPONSIVE */
+@media (max-width:900px) {
+  .hero h1 { font-size:40px; }
+  .section, .section-full { padding:64px 24px; }
+  .trust-bar { padding:24px 24px; }
+  .trust-bar-inner { flex-wrap:wrap; gap:20px; }
+  .trust-sep { display:none; }
+  .trust-item { padding:0 16px; }
+  .uv-grid { grid-template-columns:1fr; }
+  .steps-row { flex-direction:column; gap:12px; }
+  .s-conn { justify-content:center; padding:4px 0; transform:rotate(90deg); }
+  .test-wrap { padding:64px 24px; }
+  .test-grid { grid-template-columns:1fr; }
+  .cta-banner { margin:48px 20px; padding:48px 24px; }
+}
+@media (max-width:600px) {
+  .hero h1 { font-size:32px; }
+  .hero .btns, .cta-banner .btns { flex-direction:column; align-items:center; }
+}
+</style>
+
+<script>
+  // Scroll animations
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('vis'), 150);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.anim').forEach((el) => obs.observe(el));
+
+  // FAQ toggle
+  function toggleFaq(el) {
+    const wasOpen = el.classList.contains('open');
+    document.querySelectorAll('.faq-smooth').forEach((f) => {
+      f.classList.remove('open');
+      f.querySelector('.faq-a').style.maxHeight = '0';
+    });
+    if (!wasOpen) {
+      el.classList.add('open');
+      const a = el.querySelector('.faq-a');
+      const inner = el.querySelector('.faq-a-inner');
+      a.style.maxHeight = inner.scrollHeight + 'px';
+    }
+  }
+  document.querySelectorAll('.faq-smooth').forEach((el) => {
+    el.addEventListener('click', () => toggleFaq(el));
+  });
+</script>
