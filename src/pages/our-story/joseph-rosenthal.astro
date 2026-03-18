@@ -64,17 +64,18 @@ const schema = {
 <section class="section"><div class="inner">
   <div class="sec-label">Career</div>
   <h2 class="sec-h2">Professional journey</h2>
-  <div class="timeline">
+  <div class="timeline" id="career-tl">
     <div class="tl-track"></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-active"></div><div class="tl-year">Education</div><div class="tl-title">Hebrew University, Tel Aviv University &amp; Harvard</div><div class="tl-desc">Earned his bachelor's degree from Hebrew University in Jerusalem, medical degree from the Sackler School of Medicine at Tel Aviv University, a master's degree in Health Care Management from Harvard School of Public Health, and a JD from Purdue University.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-active"></div><div class="tl-year">Israel</div><div class="tl-title">Pediatric Oncology Faculty</div><div class="tl-desc">Began his medical career in Israel, serving on the Pediatric Hematology/Oncology faculties at Soroka Medical Center in Beer Sheba, Sambur Center at Beilinson Hospital in Petach Tikva, and Rambam Medical Center in Haifa.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-active"></div><div class="tl-year">Colorado &amp; CHOC</div><div class="tl-title">Fellowship Training</div><div class="tl-desc">Completed fellowship in Pediatric Hematology/Oncology at the University of Colorado School of Medicine in Denver, followed by Pediatric Cancer Research and Bone Marrow Transplantation at Children's Hospital of Orange County.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">1996</div><div class="tl-title">Joins City of Hope</div><div class="tl-desc">Joined City of Hope as Assistant Professor and Director of the Pediatric Hematopoietic Cell Transplantation Program, beginning what would become over 25 years of transformative leadership at one of America's premier cancer centers.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-active"></div><div class="tl-year">2002</div><div class="tl-title">Interim Chair, Department of Pediatrics</div><div class="tl-desc">Promoted to Associate Professor and took on the Interim Chair role for the Department of Pediatrics, guiding the department through a critical growth phase.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">2011</div><div class="tl-title">Chair of Pediatrics &amp; Director, Pediatric Hematology/Oncology</div><div class="tl-desc">Named Chair of the Department of Pediatrics and Director of Pediatric Hematology/Oncology. Appointed the Barron Hilton Professor and Chair in Pediatrics—an endowed chair reflecting the highest institutional recognition.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">2018</div><div class="tl-title">$5.7M CIRM Grant for Sickle Cell Research</div><div class="tl-desc">Awarded a $5.74 million grant from the California Institute for Regenerative Medicine (CIRM) to advance a novel stem cell transplant approach for sickle cell disease using mixed chimerism and CD4+ T-cell depleted donor cells.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">2018</div><div class="tl-title">Certified for CAR T-Cell Therapy</div><div class="tl-desc">Led City of Hope's certification to provide the first FDA-approved CAR T-cell therapy (tisagenlecleucel) for pediatric and young adult patients with relapsed or refractory B-cell ALL.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">Today</div><div class="tl-title">Chief Medical Officer, StemCyte</div><div class="tl-desc">Serves as CMO of StemCyte, bringing decades of clinical transplantation expertise to guide the company's cord blood product quality, clinical trial design, and medical strategy. Professor Emeritus at City of Hope.</div></div>
+    <div class="tl-fill"></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">Education</div><div class="tl-title">Hebrew University, Tel Aviv University &amp; Harvard</div><div class="tl-desc">Earned his bachelor's degree from Hebrew University in Jerusalem, medical degree from the Sackler School of Medicine at Tel Aviv University, a master's degree in Health Care Management from Harvard School of Public Health, and a JD from Purdue University.</div></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">Israel</div><div class="tl-title">Pediatric Oncology Faculty</div><div class="tl-desc">Began his medical career in Israel, serving on the Pediatric Hematology/Oncology faculties at Soroka Medical Center in Beer Sheba, Sambur Center at Beilinson Hospital in Petach Tikva, and Rambam Medical Center in Haifa.</div></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">Colorado &amp; CHOC</div><div class="tl-title">Fellowship Training</div><div class="tl-desc">Completed fellowship in Pediatric Hematology/Oncology at the University of Colorado School of Medicine in Denver, followed by Pediatric Cancer Research and Bone Marrow Transplantation at Children's Hospital of Orange County.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">1996</div><div class="tl-title">Joins City of Hope</div><div class="tl-desc">Joined City of Hope as Assistant Professor and Director of the Pediatric Hematopoietic Cell Transplantation Program, beginning what would become over 25 years of transformative leadership at one of America's premier cancer centers.</div></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">2002</div><div class="tl-title">Interim Chair, Department of Pediatrics</div><div class="tl-desc">Promoted to Associate Professor and took on the Interim Chair role for the Department of Pediatrics, guiding the department through a critical growth phase.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">2011</div><div class="tl-title">Chair of Pediatrics &amp; Director, Pediatric Hematology/Oncology</div><div class="tl-desc">Named Chair of the Department of Pediatrics and Director of Pediatric Hematology/Oncology. Appointed the Barron Hilton Professor and Chair in Pediatrics—an endowed chair reflecting the highest institutional recognition.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">2018</div><div class="tl-title">$5.7M CIRM Grant for Sickle Cell Research</div><div class="tl-desc">Awarded a $5.74 million grant from the California Institute for Regenerative Medicine (CIRM) to advance a novel stem cell transplant approach for sickle cell disease using mixed chimerism and CD4+ T-cell depleted donor cells.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">2018</div><div class="tl-title">Certified for CAR T-Cell Therapy</div><div class="tl-desc">Led City of Hope's certification to provide the first FDA-approved CAR T-cell therapy (tisagenlecleucel) for pediatric and young adult patients with relapsed or refractory B-cell ALL.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">Today</div><div class="tl-title">Chief Medical Officer, StemCyte</div><div class="tl-desc">Serves as CMO of StemCyte, bringing decades of clinical transplantation expertise to guide the company's cord blood product quality, clinical trial design, and medical strategy. Professor Emeritus at City of Hope.</div></div>
   </div>
 </div></section>
 
@@ -157,11 +158,15 @@ const schema = {
 .tag { font-size:13px; font-weight:600; color:#6C1A55; background:#FBF5F9; border:1px solid #F0E0EB; padding:8px 16px; border-radius:100px; }
 .timeline { position:relative; padding-left:40px; margin:32px 0; }
 .tl-track { position:absolute; left:14px; top:0; bottom:0; width:2px; background:#E8E2DC; border-radius:1px; }
-.tl-item { position:relative; margin-bottom:36px; }
+.tl-fill { position:absolute; left:14px; top:0; width:2px; background:linear-gradient(180deg,#C06AA5,#6C1A55); border-radius:1px; z-index:1; height:0; transition:height 0.1s linear; }
+.tl-item { position:relative; margin-bottom:36px; opacity:0; transform:translateY(16px); transition:opacity 0.5s ease, transform 0.5s ease; }
 .tl-item:last-child { margin-bottom:0; }
-.tl-dot { position:absolute; left:-32px; top:4px; width:12px; height:12px; border-radius:50%; background:#E8E2DC; border:3px solid #FAF7F2; z-index:2; }
+.tl-dot { position:absolute; left:-26px; top:4px; width:12px; height:12px; border-radius:50%; background:#E8E2DC; border:3px solid #FAF7F2; z-index:2; transform:translateX(-50%); transition:background 0.4s ease, box-shadow 0.4s ease; }
 .tl-dot-active { background:#6C1A55; }
 .tl-dot-highlight { background:#C06AA5; box-shadow:0 0 0 4px rgba(192,106,165,0.2); }
+.tl-item-visible { opacity:1; transform:translateY(0); }
+.tl-dot-reached { background:#6C1A55; }
+.tl-dot-highlight-reached { background:#C06AA5; box-shadow:0 0 0 4px rgba(192,106,165,0.2); }
 .tl-year { font-family:'Source Serif 4',serif; font-size:14px; font-weight:600; color:#6C1A55; margin-bottom:4px; }
 .tl-title { font-size:16px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
 .tl-desc { font-size:14px; color:#6B665D; line-height:1.7; }
@@ -191,15 +196,6 @@ const schema = {
 .highlight-card:nth-child(1) { transition-delay:0s; }
 .highlight-card:nth-child(2) { transition-delay:0.1s; }
 .highlight-card:nth-child(3) { transition-delay:0.2s; }
-.tl-item:nth-child(1) { transition-delay:0s; }
-.tl-item:nth-child(2) { transition-delay:0.08s; }
-.tl-item:nth-child(3) { transition-delay:0.16s; }
-.tl-item:nth-child(4) { transition-delay:0.24s; }
-.tl-item:nth-child(5) { transition-delay:0.32s; }
-.tl-item:nth-child(6) { transition-delay:0.4s; }
-.tl-item:nth-child(7) { transition-delay:0.48s; }
-.tl-item:nth-child(8) { transition-delay:0.56s; }
-.tl-item:nth-child(9) { transition-delay:0.64s; }
 .stat-card:nth-child(1) { transition-delay:0s; }
 .stat-card:nth-child(2) { transition-delay:0.1s; }
 .stat-card:nth-child(3) { transition-delay:0.2s; }
@@ -231,7 +227,37 @@ const schema = {
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('anim-visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.anim,[data-anim]').forEach(function(el) { obs.observe(el); });
+  document.querySelectorAll('.anim,[data-anim]').forEach(function(el) { if (!el.classList.contains('tl-item')) obs.observe(el); });
+
+  // Scroll-linked career timeline
+  (function() {
+    var tl = document.getElementById('career-tl');
+    if (!tl) return;
+    var fill = tl.querySelector('.tl-fill');
+    var items = Array.prototype.slice.call(tl.querySelectorAll('.tl-item'));
+    if (!fill || !items.length) return;
+    function update() {
+      var rect = tl.getBoundingClientRect();
+      var viewMid = window.innerHeight * 0.65;
+      var scrollInto = viewMid - rect.top;
+      var pct = Math.max(0, Math.min(1, scrollInto / rect.height));
+      fill.style.height = (pct * 100) + '%';
+      items.forEach(function(item) {
+        var itemRect = item.getBoundingClientRect();
+        var itemMid = itemRect.top + itemRect.height * 0.3;
+        if (itemMid < viewMid) {
+          item.classList.add('tl-item-visible');
+          var dot = item.querySelector('[data-dot]');
+          if (dot) {
+            var isHighlight = item.getAttribute('data-highlight') === 'true';
+            dot.className = 'tl-dot ' + (isHighlight ? 'tl-dot-highlight-reached' : 'tl-dot-reached');
+          }
+        }
+      });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
 
   (function() {
     var c = document.getElementById('hero-canvas');

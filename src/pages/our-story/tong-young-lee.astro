@@ -64,17 +64,18 @@ const schema = {
 <section class="section"><div class="inner">
   <div class="sec-label">Career</div>
   <h2 class="sec-h2">Professional journey</h2>
-  <div class="timeline">
+  <div class="timeline" id="career-tl">
     <div class="tl-track"></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-active"></div><div class="tl-year">Education</div><div class="tl-title">National Taiwan University &amp; Harvard Medical School</div><div class="tl-desc">Earned a PhD in pathology from National Taiwan University—Taiwan's most prestigious university—then applied to 100 post-doctoral programs in the United States, ultimately joining Harvard Medical School.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">2004–2010</div><div class="tl-title">Research Fellow, Harvard Medical School</div><div class="tl-desc">Worked in the legendary cancer angiogenesis research laboratory of Dr. Judah Folkman—known as the father of angiogenesis research—at Harvard Medical School and Children's Hospital Boston. Contributed to the research behind the first three FDA-approved angiogenesis inhibitors: Avastin, Lucentis, and Eylea, which collectively generate over $15 billion in annual sales.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">Harvard</div><div class="tl-title">Inventor of Fc-endostatin</div><div class="tl-desc">Credited as the inventor of Fc-endostatin, a next-generation long-acting angiogenesis inhibitor designed to improve on the efficacy profile of first-generation angiogenesis-targeted therapies.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-active"></div><div class="tl-year">2010</div><div class="tl-title">Returns to Taiwan — Chintek / MicroBio Group</div><div class="tl-desc">Returned to Taiwan to become Deputy Director at MicroBio, the largest biotech company in Taiwan and StemCyte's biggest shareholder. Joined the Chintek Group, where he contributed to the development of several antibody-based drugs.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-active"></div><div class="tl-year">Fountain Biopharma</div><div class="tl-title">Director — Antibody Drug Discovery</div><div class="tl-desc">Served as Director at Fountain Biopharma, where he generated the largest fully-human antibody library in the Asia-Pacific region and developed the first anti-IL6 monoclonal antibody in that market, securing NT$40 million in government funding.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">FB825</div><div class="tl-title">Contributed to historic $530M licensing deal</div><div class="tl-desc">Participated in the development of the monoclonal antibody drug FB825 at Chintek Group. FB825 was licensed to LEO Pharma (Denmark) in a worldwide exclusive deal valued at up to $530 million—one of the largest out-licensing deals in Taiwanese biotech history.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-active"></div><div class="tl-year">2016–2021</div><div class="tl-title">Founder &amp; CEO, Celtec Inc.</div><div class="tl-desc">Founded Celtec Inc., a cellular immunotherapy startup developing next-generation universal linker platform technologies for cancer treatment. Also served as VP at Synovel Biosciences and VP at Diamond Biofund. Across 15 years, led product development and corporate governance across four biotech startups through spin-offs, IPOs, and M&amp;A.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">2021</div><div class="tl-title">CEO, StemCyte Inc.</div><div class="tl-desc">Appointed CEO of StemCyte, leveraging deep expertise in drug development, biotech operations, and the Asia-Pacific healthcare market. Began transforming StemCyte from a premier cord blood bank into a regenerative cell therapy company.</div></div>
-    <div class="tl-item anim" data-anim><div class="tl-dot tl-dot-highlight"></div><div class="tl-year">Today</div><div class="tl-title">Leading StemCyte's next chapter</div><div class="tl-desc">Driving StemCyte's clinical pipeline forward—including REGENECYTE® for Long COVID, acute stroke, cerebral palsy, and spinal cord injury. Secured FDA Expanded Access clearance for REGENECYTE® in Long COVID. Vision: to make StemCyte a leading biotech company in the Asia-Pacific region and globally.</div></div>
+    <div class="tl-fill"></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">Education</div><div class="tl-title">National Taiwan University &amp; Harvard Medical School</div><div class="tl-desc">Earned a PhD in pathology from National Taiwan University—Taiwan's most prestigious university—then applied to 100 post-doctoral programs in the United States, ultimately joining Harvard Medical School.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">2004–2010</div><div class="tl-title">Research Fellow, Harvard Medical School</div><div class="tl-desc">Worked in the legendary cancer angiogenesis research laboratory of Dr. Judah Folkman—known as the father of angiogenesis research—at Harvard Medical School and Children's Hospital Boston. Contributed to the research behind the first three FDA-approved angiogenesis inhibitors: Avastin, Lucentis, and Eylea, which collectively generate over $15 billion in annual sales.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">Harvard</div><div class="tl-title">Inventor of Fc-endostatin</div><div class="tl-desc">Credited as the inventor of Fc-endostatin, a next-generation long-acting angiogenesis inhibitor designed to improve on the efficacy profile of first-generation angiogenesis-targeted therapies.</div></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">2010</div><div class="tl-title">Returns to Taiwan — Chintek / MicroBio Group</div><div class="tl-desc">Returned to Taiwan to become Deputy Director at MicroBio, the largest biotech company in Taiwan and StemCyte's biggest shareholder. Joined the Chintek Group, where he contributed to the development of several antibody-based drugs.</div></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">Fountain Biopharma</div><div class="tl-title">Director — Antibody Drug Discovery</div><div class="tl-desc">Served as Director at Fountain Biopharma, where he generated the largest fully-human antibody library in the Asia-Pacific region and developed the first anti-IL6 monoclonal antibody in that market, securing NT$40 million in government funding.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">FB825</div><div class="tl-title">Contributed to historic $530M licensing deal</div><div class="tl-desc">Participated in the development of the monoclonal antibody drug FB825 at Chintek Group. FB825 was licensed to LEO Pharma (Denmark) in a worldwide exclusive deal valued at up to $530 million—one of the largest out-licensing deals in Taiwanese biotech history.</div></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">2016–2021</div><div class="tl-title">Founder &amp; CEO, Celtec Inc.</div><div class="tl-desc">Founded Celtec Inc., a cellular immunotherapy startup developing next-generation universal linker platform technologies for cancer treatment. Also served as VP at Synovel Biosciences and VP at Diamond Biofund. Across 15 years, led product development and corporate governance across four biotech startups through spin-offs, IPOs, and M&amp;A.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">2021</div><div class="tl-title">CEO, StemCyte Inc.</div><div class="tl-desc">Appointed CEO of StemCyte, leveraging deep expertise in drug development, biotech operations, and the Asia-Pacific healthcare market. Began transforming StemCyte from a premier cord blood bank into a regenerative cell therapy company.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">Today</div><div class="tl-title">Leading StemCyte's next chapter</div><div class="tl-desc">Driving StemCyte's clinical pipeline forward—including REGENECYTE® for Long COVID, acute stroke, cerebral palsy, and spinal cord injury. Secured FDA Expanded Access clearance for REGENECYTE® in Long COVID. Vision: to make StemCyte a leading biotech company in the Asia-Pacific region and globally.</div></div>
   </div>
 </div></section>
 
@@ -145,11 +146,15 @@ const schema = {
 .tag { font-size:13px; font-weight:600; color:#6C1A55; background:#FBF5F9; border:1px solid #F0E0EB; padding:8px 16px; border-radius:100px; }
 .timeline { position:relative; padding-left:40px; margin:32px 0; }
 .tl-track { position:absolute; left:14px; top:0; bottom:0; width:2px; background:#E8E2DC; border-radius:1px; }
-.tl-item { position:relative; margin-bottom:36px; }
+.tl-fill { position:absolute; left:14px; top:0; width:2px; background:linear-gradient(180deg,#C06AA5,#6C1A55); border-radius:1px; z-index:1; height:0; transition:height 0.1s linear; }
+.tl-item { position:relative; margin-bottom:36px; opacity:0; transform:translateY(16px); transition:opacity 0.5s ease, transform 0.5s ease; }
 .tl-item:last-child { margin-bottom:0; }
-.tl-dot { position:absolute; left:-32px; top:4px; width:12px; height:12px; border-radius:50%; background:#E8E2DC; border:3px solid #FAF7F2; z-index:2; }
+.tl-dot { position:absolute; left:-26px; top:4px; width:12px; height:12px; border-radius:50%; background:#E8E2DC; border:3px solid #FAF7F2; z-index:2; transform:translateX(-50%); transition:background 0.4s ease, box-shadow 0.4s ease; }
 .tl-dot-active { background:#6C1A55; }
 .tl-dot-highlight { background:#C06AA5; box-shadow:0 0 0 4px rgba(192,106,165,0.2); }
+.tl-item-visible { opacity:1; transform:translateY(0); }
+.tl-dot-reached { background:#6C1A55; }
+.tl-dot-highlight-reached { background:#C06AA5; box-shadow:0 0 0 4px rgba(192,106,165,0.2); }
 .tl-year { font-family:'Source Serif 4',serif; font-size:14px; font-weight:600; color:#6C1A55; margin-bottom:4px; }
 .tl-title { font-size:16px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
 .tl-desc { font-size:14px; color:#6B665D; line-height:1.7; }
@@ -174,15 +179,6 @@ const schema = {
 .highlight-card:nth-child(1) { transition-delay:0s; }
 .highlight-card:nth-child(2) { transition-delay:0.1s; }
 .highlight-card:nth-child(3) { transition-delay:0.2s; }
-.tl-item:nth-child(1) { transition-delay:0s; }
-.tl-item:nth-child(2) { transition-delay:0.08s; }
-.tl-item:nth-child(3) { transition-delay:0.16s; }
-.tl-item:nth-child(4) { transition-delay:0.24s; }
-.tl-item:nth-child(5) { transition-delay:0.32s; }
-.tl-item:nth-child(6) { transition-delay:0.4s; }
-.tl-item:nth-child(7) { transition-delay:0.48s; }
-.tl-item:nth-child(8) { transition-delay:0.56s; }
-.tl-item:nth-child(9) { transition-delay:0.64s; }
 .stat-card:nth-child(1) { transition-delay:0s; }
 .stat-card:nth-child(2) { transition-delay:0.1s; }
 .stat-card:nth-child(3) { transition-delay:0.2s; }
@@ -209,7 +205,37 @@ const schema = {
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('anim-visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.anim,[data-anim]').forEach(function(el) { obs.observe(el); });
+  document.querySelectorAll('.anim,[data-anim]').forEach(function(el) { if (!el.classList.contains('tl-item')) obs.observe(el); });
+
+  // Scroll-linked career timeline
+  (function() {
+    var tl = document.getElementById('career-tl');
+    if (!tl) return;
+    var fill = tl.querySelector('.tl-fill');
+    var items = Array.prototype.slice.call(tl.querySelectorAll('.tl-item'));
+    if (!fill || !items.length) return;
+    function update() {
+      var rect = tl.getBoundingClientRect();
+      var viewMid = window.innerHeight * 0.65;
+      var scrollInto = viewMid - rect.top;
+      var pct = Math.max(0, Math.min(1, scrollInto / rect.height));
+      fill.style.height = (pct * 100) + '%';
+      items.forEach(function(item) {
+        var itemRect = item.getBoundingClientRect();
+        var itemMid = itemRect.top + itemRect.height * 0.3;
+        if (itemMid < viewMid) {
+          item.classList.add('tl-item-visible');
+          var dot = item.querySelector('[data-dot]');
+          if (dot) {
+            var isHighlight = item.getAttribute('data-highlight') === 'true';
+            dot.className = 'tl-dot ' + (isHighlight ? 'tl-dot-highlight-reached' : 'tl-dot-reached');
+          }
+        }
+      });
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
 
   (function() {
     var c = document.getElementById('hero-canvas');
