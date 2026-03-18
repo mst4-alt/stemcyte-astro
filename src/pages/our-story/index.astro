@@ -662,20 +662,20 @@ const schema = {
         <!-- ARC LINES FROM BALDWIN PARK, CA -->
         <g fill="none" stroke="#C06AA5" stroke-width="0.5" opacity="0.08">
           <!-- To Europe -->
-          <path id="ca-paris" class="arc-line" d="M127,393 Q280,270 418,380"/>
-          <path id="ca-london" class="arc-line" d="M127,393 Q270,260 400,368"/>
-          <path id="ca-berlin" class="arc-line" d="M127,393 Q290,260 435,355"/>
+          <path id="ca-paris" class="arc-line" d="M134,425 Q280,270 418,380"/>
+          <path id="ca-london" class="arc-line" d="M134,425 Q270,260 400,368"/>
+          <path id="ca-berlin" class="arc-line" d="M134,425 Q290,260 435,355"/>
           <!-- To Asia -->
-          <path id="ca-india" class="arc-line" d="M127,393 Q400,210 620,460"/>
-          <path id="ca-dubai" class="arc-line" d="M127,393 Q360,230 530,440"/>
+          <path id="ca-india" class="arc-line" d="M134,425 Q400,210 620,460"/>
+          <path id="ca-dubai" class="arc-line" d="M134,425 Q360,230 530,440"/>
           <!-- To South America -->
-          <path id="ca-brazil" class="arc-line" d="M127,393 Q200,440 280,570"/>
+          <path id="ca-brazil" class="arc-line" d="M134,425 Q200,440 280,570"/>
           <!-- To US domestic -->
-          <path id="ca-nyc" class="arc-line" d="M127,393 Q160,350 195,370"/>
-          <path id="ca-mn" class="arc-line" d="M127,393 Q140,360 155,360"/>
-          <path id="ca-tx" class="arc-line" d="M127,393 Q136,395 148,400"/>
+          <path id="ca-nyc" class="arc-line" d="M134,425 Q160,350 195,370"/>
+          <path id="ca-mn" class="arc-line" d="M134,425 Q140,360 155,360"/>
+          <path id="ca-tx" class="arc-line" d="M134,425 Q136,395 148,400"/>
           <!-- To Canada -->
-          <path id="ca-calgary" class="arc-line" d="M127,393 Q128,355 133,330"/>
+          <path id="ca-calgary" class="arc-line" d="M134,425 Q128,355 133,330"/>
         </g>
 
         <!-- ARC LINES FROM TAIWAN -->
@@ -700,12 +700,12 @@ const schema = {
 
         <!-- TRAVELING DOTS — tiny rose dots sliding along arcs -->
         <!-- From CA -->
-        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M127,393 Q280,270 418,380');animation:travel 7s linear 1.5s infinite;opacity:0"/>
-        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M127,393 Q270,260 400,368');animation:travel 7s linear 3s infinite;opacity:0"/>
-        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M127,393 Q400,210 620,460');animation:travel 8s linear 2s infinite;opacity:0"/>
-        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M127,393 Q200,440 280,570');animation:travel 6s linear 4s infinite;opacity:0"/>
-        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M127,393 Q360,230 530,440');animation:travel 7.5s linear 5s infinite;opacity:0"/>
-        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M127,393 Q160,350 195,370');animation:travel 5s linear 2.5s infinite;opacity:0"/>
+        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M134,425 Q280,270 418,380');animation:travel 7s linear 1.5s infinite;opacity:0"/>
+        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M134,425 Q270,260 400,368');animation:travel 7s linear 3s infinite;opacity:0"/>
+        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M134,425 Q400,210 620,460');animation:travel 8s linear 2s infinite;opacity:0"/>
+        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M134,425 Q200,440 280,570');animation:travel 6s linear 4s infinite;opacity:0"/>
+        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M134,425 Q360,230 530,440');animation:travel 7.5s linear 5s infinite;opacity:0"/>
+        <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M134,425 Q160,350 195,370');animation:travel 5s linear 2.5s infinite;opacity:0"/>
         <!-- From TW -->
         <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M694,458 Q710,425 720,390');animation:travel 5s linear 2s infinite;opacity:0"/>
         <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M694,458 Q680,490 658,528');animation:travel 6s linear 3.5s infinite;opacity:0"/>
@@ -714,16 +714,16 @@ const schema = {
         <circle r="1.5" fill="#E8A0D0" style="offset-path:path('M694,458 Q620,420 530,440');animation:travel 6.5s linear 5.5s infinite;opacity:0"/>
 
         <!-- BALDWIN PARK HQ — double-layer gentle pulse -->
-        <circle cx="127" cy="393" r="12" fill="url(#glow-hq)">
+        <circle cx="134" cy="425" r="12" fill="url(#glow-hq)">
           <animate attributeName="r" values="12;18;12" dur="6s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.25;0.08;0.25" dur="6s" repeatCount="indefinite"/>
         </circle>
-        <circle cx="127" cy="393" r="6" fill="url(#glow-hq)">
+        <circle cx="134" cy="425" r="6" fill="url(#glow-hq)">
           <animate attributeName="r" values="6;10;6" dur="5s" begin="0.5s" repeatCount="indefinite"/>
           <animate attributeName="opacity" values="0.2;0.06;0.2" dur="5s" begin="0.5s" repeatCount="indefinite"/>
         </circle>
-        <circle fill="#E8A0D0" cx="127" cy="393" r="2.5"/>
-        <text class="hq-label" x="127" y="384" text-anchor="middle">STEMCYTE</text>
+        <circle fill="#E8A0D0" cx="134" cy="425" r="2.5"/>
+        <text class="hq-label" x="134" y="416" text-anchor="middle">STEMCYTE</text>
 
         <!-- TAIWAN HQ — double-layer gentle pulse -->
         <circle cx="694" cy="458" r="10" fill="url(#glow-hq)">
