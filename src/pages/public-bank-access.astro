@@ -78,28 +78,21 @@ const faqItems = [
   </div>
 </section>
 
-<!-- HOW IT WORKS -->
+<!-- ONLY AT STEMCYTE -->
 <div class="section">
   <div class="sh anim">
-    <div class="sh-lbl">HOW IT WORKS</div>
-    <h2 class="sh-title">Three steps. That&#x2019;s it.</h2>
+    <div class="sh-lbl">ONLY AT STEMCYTE</div>
+    <h2 class="sh-title">Why no other bank can offer this</h2>
   </div>
-  <div class="steps-wrap anim">
-    <div class="steps-line"></div>
-    <div class="step">
-      <div class="step-dot"><span class="step-num">1</span></div>
-      <h4>Add PBA to your plan</h4>
-      <p>Select PBA when you enroll in private cord blood banking.</p>
+  <div class="only-block anim">
+    <div class="only-visual">
+      <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="#6C1A55" stroke-width="1.5"><circle cx="20" cy="24" r="14"/><circle cx="32" cy="24" r="14"/></svg>
     </div>
-    <div class="step">
-      <div class="step-dot"><span class="step-num">2</span></div>
-      <h4>Bank your baby&#x2019;s cord blood</h4>
-      <p>Your collection and storage happen as normal.</p>
-    </div>
-    <div class="step">
-      <div class="step-dot"><span class="step-num">3</span></div>
-      <h4>When you need it, StemCyte acts</h4>
-      <p>Your physician contacts us. We find a match and coordinate delivery.</p>
+    <div class="only-text">
+      <h3>The only private bank with a public bank</h3>
+      <p>Most cord blood banks are either private (storing your family&#x2019;s cells) or public (collecting donated units for anyone who needs them). <strong>StemCyte is both.</strong></p>
+      <p>That dual model is what makes PBA possible. When your child needs donor cells, we don&#x2019;t send you to an outside registry and hope for the best. We search our own inventory first &#x2014; a bank we built, maintain, and control &#x2014; then expand globally if needed.</p>
+      <p>No other private bank in the United States can make this guarantee, because no other private bank operates a public bank.</p>
     </div>
   </div>
 </div>
@@ -145,25 +138,6 @@ const faqItems = [
   </div>
 </div>
 </section>
-
-<!-- ONLY AT STEMCYTE -->
-<div class="section">
-  <div class="sh anim">
-    <div class="sh-lbl">ONLY AT STEMCYTE</div>
-    <h2 class="sh-title">Why no other bank can offer this</h2>
-  </div>
-  <div class="only-block anim">
-    <div class="only-visual">
-      <svg viewBox="0 0 48 48" width="48" height="48" fill="none" stroke="#6C1A55" stroke-width="1.5"><circle cx="20" cy="24" r="14"/><circle cx="32" cy="24" r="14"/></svg>
-    </div>
-    <div class="only-text">
-      <h3>The only private bank with a public bank</h3>
-      <p>Most cord blood banks are either private (storing your family&#x2019;s cells) or public (collecting donated units for anyone who needs them). <strong>StemCyte is both.</strong></p>
-      <p>That dual model is what makes PBA possible. When your child needs donor cells, we don&#x2019;t send you to an outside registry and hope for the best. We search our own inventory first &#x2014; a bank we built, maintain, and control &#x2014; then expand globally if needed.</p>
-      <p>No other private bank in the United States can make this guarantee, because no other private bank operates a public bank.</p>
-    </div>
-  </div>
-</div>
 
 
 <!-- FAQ -->
@@ -224,18 +198,8 @@ const faqItems = [
 .sc-card.visible:hover { transform:translateY(-4px); box-shadow:0 8px 24px rgba(0,0,0,0.07),0 1px 3px rgba(0,0,0,0.04); }
 .sc-icon { width:52px; height:52px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin-bottom:18px; }
 .sc-label { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; margin-bottom:8px; }
-.sc-card h3 { font-size:17px; font-weight:700; margin-bottom:10px; color:#2C2A26; line-height:1.35; }
+.sc-card h3 { font-size:16px; font-weight:700; margin-bottom:10px; color:#2C2A26; line-height:1.35; white-space:nowrap; }
 .sc-card p { font-size:15px; color:#6B6760; line-height:1.7; }
-
-/* HOW IT WORKS */
-.steps-wrap { max-width:900px; margin:56px auto 0; position:relative; display:flex; align-items:flex-start; }
-.steps-line { position:absolute; top:32px; left:calc(16.66% + 32px); right:calc(16.66% + 32px); height:1.5px; background:#D4CCE0; opacity:0.5; z-index:1; }
-.step { flex:1; text-align:center; padding:0 20px; position:relative; }
-.step-dot { width:64px; height:64px; border-radius:50%; margin:0 auto 20px; display:flex; align-items:center; justify-content:center; position:relative; z-index:2; background:#F3F0F8; border:1.5px solid #D4CCE0; cursor:default; transition:box-shadow 0.25s ease; }
-.step-dot:hover { box-shadow:0 4px 16px rgba(123,107,138,0.15); }
-.step-num { font-family:'Source Serif 4',serif; font-size:22px; font-weight:600; color:#7B6B8A; }
-.step h4 { font-size:15px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
-.step p { font-size:13px; color:#6B6760; line-height:1.6; max-width:220px; margin:0 auto; }
 
 /* COMPARE */
 .compare-wrap { display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:840px; margin:0 auto; }
@@ -287,8 +251,6 @@ const faqItems = [
   .def-split { grid-template-columns:1fr; text-align:center; }
   .def-stat { margin:24px auto 0; }
   .sc-grid { grid-template-columns:1fr; }
-  .steps-wrap { flex-direction:column; align-items:center; gap:28px; }
-  .steps-line { display:none; }
   .compare-wrap { grid-template-columns:1fr; max-width:440px; }
   .only-block { grid-template-columns:1fr; text-align:center; justify-items:center; }
   .cta-btns { flex-direction:column; align-items:center; }
