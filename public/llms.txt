@@ -1,0 +1,49 @@
+# StemCyte
+
+## About
+StemCyte is a global regenerative therapeutics company founded in 1997 in Baldwin Park, California. We operate both a private and public cord blood bank — one of the only banks in the world to offer both.
+
+## What We Do
+- Private cord blood and cord tissue banking for families
+- Public cord blood donation for patients in need of transplants
+- FDA-licensed cord blood therapy (REGENECYTE®, BLA 125764/0, approved 2024)
+- Clinical trials in Long COVID, acute ischemic stroke, and spinal cord injury
+
+## Clinical Track Record
+- 2,300+ transplant units shipped worldwide
+- 350+ transplant hospitals across 35 countries
+- Triple accredited: FACT, AABB, and FDA registered
+- Contributed to the first potential HIV cure via cord blood transplantation (the New York Patient, published in Cell, 2023)
+
+## Key Products & Services
+- Cord blood banking (annual, 18-year prepaid, and lifetime plans)
+- Cord tissue banking
+- Public Bank Access (paid add-on providing access to matching donor units)
+- StemCyte Access (tiered HLA matching and transplant coordination service)
+- LifeSaver Guarantee (full refund + $50,000 + replacement unit if engraftment fails)
+- REGENECYTE® (FDA-licensed HPC cord blood product)
+
+## Leadership
+- Jonas Wang, PhD — Chairman, StemCyte International
+- Tong-Young Lee, PhD — CEO, StemCyte Inc.
+- Joseph Rosenthal, MD — Chief Medical Officer (Professor Emeritus, City of Hope)
+
+## Site Structure
+- /the-science — How cord blood and cord tissue stem cells work, 80+ treatable diseases
+- /why-stemcyte — What makes StemCyte different, clinical track record, accreditations
+- /pricing — Plan comparison and enrollment
+- /patient-stories — Real families who banked with StemCyte
+- /faq — Frequently asked questions about cord blood banking
+- /our-story — Company history, milestones, leadership profiles
+- /our-story/lawrence-petz — Founding Medical Director, pioneer of cord blood HIV cure research
+- /our-story/hiv-remission — The New York Patient: first HIV cure via cord blood transplant
+- /regenecyte — FDA-licensed cord blood therapy product
+- /public-bank-access — How families can access donor cord blood units
+- /clinical-trials — Active StemCyte-sponsored research
+- /expanded-access-policy — Compassionate use policy for REGENECYTE®
+- /contact — How to reach StemCyte
+
+## Contact
+- Location: Baldwin Park, California, USA
+- Email: customerservice@stemcyte.com
+- Website: https://stemcyte.com

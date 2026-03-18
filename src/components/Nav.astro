@@ -1,0 +1,106 @@
+---
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { label: 'The Science', href: '/the-science' },
+  { label: 'Why StemCyte', href: '/why-stemcyte' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Patient Stories', href: '/patient-stories' },
+  { label: 'Our Story', href: '/our-story' },
+];
+---
+
+<nav class="nav at-top" id="nav">
+  <a href="/" class="logo">
+    <img src="/images/logos/white_stemcyte.png" alt="StemCyte" class="logo-white" width="150" height="28" />
+    <img src="/images/logos/fullcolor_stemcyte.png" alt="StemCyte" class="logo-color" width="150" height="28" />
+  </a>
+  <div class="links">
+    {navLinks.map(({ label, href }) => (
+      <a href={href} class={pathname === href || pathname.startsWith(href + '/') ? 'active' : ''}>
+        {label}
+      </a>
+    ))}
+  </div>
+  <div class="rg">
+    <a href="/pricing" class="cta">Enroll now</a>
+  </div>
+  <button class="hamburger" aria-label="Open menu">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</nav>
+
+<div class="sheet-scrim" id="sheet-scrim"></div>
+<div class="sheet" id="sheet">
+  <div class="sheet-handle"></div>
+  <div class="sheet-links">
+    {navLinks.map(({ label, href }) => (
+      <a href={href} class={pathname === href || pathname.startsWith(href + '/') ? 'active' : ''}>
+        {label}
+      </a>
+    ))}
+  </div>
+  <div class="sheet-cta">
+    <a href="/pricing">Enroll now</a>
+  </div>
+</div>
+
+<script>
+  const nav = document.getElementById('nav');
+  const hero = document.getElementById('hero');
+  const hamburger = nav?.querySelector('.hamburger');
+  const scrim = document.getElementById('sheet-scrim');
+  const sheet = document.getElementById('sheet');
+
+  // Scroll detection
+  if (nav && hero) {
+    function ckNav() {
+      if (hero.getBoundingClientRect().bottom < 80) {
+        nav.classList.remove('at-top');
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.add('at-top');
+        nav.classList.remove('scrolled');
+      }
+    }
+    window.addEventListener('scroll', ckNav);
+    ckNav();
+  } else if (nav && !hero) {
+    nav.classList.remove('at-top');
+    nav.classList.add('scrolled');
+  }
+
+  // Mobile menu
+  function openMenu() {
+    sheet?.classList.add('open');
+    scrim?.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    hamburger?.setAttribute('aria-label', 'Close menu');
+    const spans = hamburger?.querySelectorAll('span');
+    if (spans) {
+      spans[0].style.transform = 'rotate(45deg) translate(2.5px, 2.5px)';
+      spans[1].style.opacity = '0';
+      spans[2].style.transform = 'rotate(-45deg) translate(2.5px, -2.5px)';
+    }
+  }
+
+  function closeMenu() {
+    sheet?.classList.remove('open');
+    scrim?.classList.remove('open');
+    document.body.style.overflow = '';
+    hamburger?.setAttribute('aria-label', 'Open menu');
+    const spans = hamburger?.querySelectorAll('span');
+    if (spans) {
+      spans[0].style.transform = '';
+      spans[1].style.opacity = '';
+      spans[2].style.transform = '';
+    }
+  }
+
+  hamburger?.addEventListener('click', () => {
+    sheet?.classList.contains('open') ? closeMenu() : openMenu();
+  });
+  scrim?.addEventListener('click', closeMenu);
+</script>

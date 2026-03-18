@@ -1,0 +1,69 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import '@fontsource/playfair-display/400.css';
+import '@fontsource/playfair-display/400-italic.css';
+import '@fontsource/playfair-display/500.css';
+import '@fontsource/playfair-display/600.css';
+import '@fontsource/playfair-display/700.css';
+import '@fontsource/lato/300.css';
+import '@fontsource/lato/400.css';
+import '@fontsource/lato/700.css';
+import '@fontsource/lato/900.css';
+import '@fontsource-variable/source-serif-4';
+
+interface Props {
+  title: string;
+  description?: string;
+  schema?: object;
+}
+
+const { title, description = 'StemCyte is a global regenerative therapeutics company offering cord blood banking, clinical stem cell therapy, and regenerative medicine since 1997.', schema } = Astro.props;
+
+// Base organization schema — included on every page
+const orgSchema = {
+  "@context": "https://schema.org",
+  "@type": ["Organization", "MedicalOrganization"],
+  "name": "StemCyte",
+  "url": "https://stemcyte.com",
+  "logo": "https://stemcyte.com/images/logos/fullcolor_stemcyte.png",
+  "description": "Global regenerative therapeutics company specializing in cord blood banking and stem cell therapy since 1997.",
+  "foundingDate": "1997",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Baldwin Park",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "sameAs": [],
+  "medicalSpecialty": "Hematology",
+  "hasCredential": [
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "accreditation", "name": "FACT Accredited" },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "accreditation", "name": "AABB Accredited" },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "registration", "name": "FDA Registered" }
+  ]
+};
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title} | StemCyte</title>
+  <meta name="description" content={description} />
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+  <!-- Organization schema on every page -->
+  <script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+
+  <!-- Page-specific schema if provided -->
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+</head>
+<body>
+  <Nav />
+  <slot />
+  <Footer />
+</body>
+</html>
