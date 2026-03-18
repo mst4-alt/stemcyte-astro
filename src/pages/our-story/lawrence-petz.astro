@@ -141,7 +141,7 @@ const schema = {
 
 </BaseLayout>
 
-<style>
+<style is:global>
 .hero { position:relative; min-height:540px; display:flex; align-items:center; background:#0A0508; overflow:hidden; }
 .orb { position:absolute; border-radius:50%; filter:blur(80px); opacity:0.15; pointer-events:none; }
 .orb-a { width:400px; height:400px; background:#6C1A55; top:-100px; left:-100px; }
@@ -222,7 +222,7 @@ const schema = {
   document.querySelectorAll('.anim,[data-anim]').forEach(el => obs.observe(el));
 </script>
 
-<style>
+<style is:global>
 /* AWARDS */
 .awards-list { display:flex; flex-direction:column; gap:16px; }
 .award-item { display:grid; grid-template-columns:80px 1fr; gap:12px; padding:16px 0; border-bottom:1px solid #E8E2DC; }
