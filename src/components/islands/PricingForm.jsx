@@ -24,7 +24,7 @@ const PRICING = {
 
 const ADDONS = {
   pba: { name: 'Public Bank Access', price: 299, prepaidPrice: 299, desc: 'If your child needs more stem cells, StemCyte searches our public bank and all global public banks for a match.' },
-  pbaPlus: { name: 'Public Bank Access+', price: 699, prepaidPrice: 699, desc: 'Everything in PBA, plus up to $80,000 toward uncovered medical expenses if a match is not found.' },
+  pbaPlus: { name: 'Public Bank Access+', price: 699, prepaidPrice: 699, desc: 'Extends public bank access to both parents — access donor cord blood units for eligible conditions, even without their own banked cord blood.' },
   hla: { name: 'HLA Matching', price: 295, prepaidPrice: 195, desc: 'Determines compatibility for transplantation between family members. Important for sibling banking.' },
   nga: { name: 'NGA', price: 399, prepaidPrice: 399, desc: 'Next-generation analysis providing detailed cell quality and viability metrics for your stored sample.' },
 };
@@ -376,7 +376,7 @@ export default function PricingForm() {
         <div style={styles.pageHeader}>
           <div style={styles.lbl}>Pricing</div>
           <h1 style={styles.h1}>Build your plan</h1>
-          <p style={styles.headerP}>Choose your product, plan, and add-ons. See your total update in real time.</p>
+          <p style={styles.headerP}>Choose your product, plan, and protection options. See your total update in real time.</p>
         </div>
 
         {/* PROGRESS BAR */}
@@ -467,7 +467,7 @@ export default function PricingForm() {
               <div style={{ ...styles.checkBox, ...(addons.pba ? styles.checkBoxSelected : {}) }} />
               <h4 style={styles.addonH4}>Public Bank Access</h4>
               <div style={{ ...styles.addonPrice, ...(product === 'cbt' ? styles.addonPriceFree : {}) }}>
-                {product === 'cbt' ? 'FREE' : '$299'}
+                {product === 'cbt' ? <><span style={{textDecoration:'line-through',color:'#B0AB9E',fontSize:16,marginRight:6}}>$299</span> FREE</> : '$299'}
               </div>
               {product === 'cbt' && <div style={styles.freeBadge}>Free with CB&T</div>}
               <div style={styles.addonDet}>{ADDONS.pba.desc}</div>
@@ -671,7 +671,7 @@ export default function PricingForm() {
             )}
           </div>
           <div style={styles.summaryLine}>
-            <span style={styles.slLabel}>Add-ons</span>
+            <span style={styles.slLabel}>Advanced Protection</span>
             {addonSummaryText ? (
               <span style={styles.slValue}>{addonSummaryText}</span>
             ) : (

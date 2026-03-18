@@ -6,9 +6,9 @@ const faqItems = [
   {
     category: 'Frequently asked questions',
     items: [
-      { q: 'How is PBA different from private banking?', a: "Private banking stores your baby's own cord blood exclusively for your family. PBA is an add-on that gives your child access to additional matching donor units from StemCyte's public cord blood bank when more stem cells are needed." },
-      { q: "What's the difference between PBA and PBA+?", a: "PBA covers your child. PBA+ includes everything in PBA and extends coverage to both parents — parents can access StemCyte's public bank for cord blood treatments, even without their own banked cord blood." },
-      { q: 'Is PBA included with any plan?', a: 'PBA is included free when you choose Cord Blood & Tissue banking. For Cord Blood only plans, PBA is a $299 one-time add-on. PBA+ is $699 regardless of plan.' },
+      { q: 'How is PBA different from private banking?', a: "Private banking stores your baby's own cord blood exclusively for your family. PBA gives your child access to additional matching donor units from StemCyte's public cord blood bank when more stem cells are needed." },
+      { q: "What's the difference between PBA and PBA+?", a: "PBA covers your child. PBA+ is for parents — both parents can access StemCyte's public bank for cord blood treatments, even without their own banked cord blood — parents can access StemCyte's public bank for cord blood treatments, even without their own banked cord blood." },
+      { q: 'Is PBA included with any plan?', a: 'PBA is included free when you choose Cord Blood & Tissue banking. For Cord Blood only plans, PBA is a $299 one-time Advanced Protection option. PBA+ is $699 regardless of plan.' },
       { q: 'Why can only StemCyte offer this?', a: 'StemCyte is the only private cord blood bank that also operates a public cord blood bank. That dual model is what makes it possible to offer private banking customers access to publicly-donated donor units.' },
       { q: "When would donor cells be needed instead of my child's own?", a: "For certain cancers and genetic disorders, a child cannot use their own stem cells because the condition may be present in those cells too. Donor cells from a public bank are essential in these cases. PBA also helps when a larger cell volume is needed than a single unit provides." },
     ],
@@ -58,32 +58,31 @@ const faqItems = [
 <div class="section">
   <div class="section-label anim">COMPARE</div>
   <h2 class="section-title anim">Public Bank Access vs Public Bank Access+</h2>
-  <p class="section-sub anim">PBA covers your child. PBA+ extends that coverage to both parents. Both are add-ons to any private banking plan.</p>
+  <p class="section-sub anim">PBA covers your child. PBA+ extends that coverage to both parents. Both are Advanced Protection options available with any private banking plan.</p>
   <div class="compare-wrap">
     <div class="compare-card standard anim">
       <div class="compare-sublabel">FOR YOUR CHILD</div>
       <h3>Public Bank Access</h3>
       <div class="compare-price">$299</div>
-      <div class="compare-price-note">one-time add-on</div>
+      <div class="compare-price-note">one-time</div>
       <div class="compare-free">Free with Cord Blood & Tissue</div>
       <p class="compare-desc">If your child ever needs additional cord blood stem cells — whether for volume, a different condition, or because the original collection wasn't viable — StemCyte provides a matching donor unit from our public bank.</p>
       <ul class="compare-checks">
         <li><span class="check-circle"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Covers your child</li>
         <li><span class="check-circle"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Matching unit from StemCyte's public bank</li>
         <li><span class="check-circle"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Global public bank search assistance</li>
-        <li><span class="check-circle"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Add-on to any private banking plan</li>
+        <li><span class="check-circle"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Available with any private banking plan</li>
       </ul>
       <a href="/pricing" class="btn-ghost">Add PBA to your plan</a>
     </div>
     <div class="compare-card plus anim" style="transition-delay:0.15s">
       <div class="compare-badge">COVERS PARENTS TOO</div>
-      <div class="compare-sublabel">FOR YOUR CHILD + PARENTS</div>
+      <div class="compare-sublabel">FOR PARENTS</div>
       <h3>Public Bank Access+</h3>
       <div class="compare-price">$699</div>
-      <div class="compare-price-note">one-time add-on</div>
-      <p class="compare-desc">Everything in PBA, plus parents gain access to StemCyte's public bank inventory for diseases treatable with cord blood stem cells — even if they didn't bank their own cord blood at birth.</p>
+      <div class="compare-price-note">one-time</div>
+      <p class="compare-desc">Parents gain access to StemCyte's public bank inventory for diseases treatable with cord blood stem cells — even if they didn't bank their own cord blood at birth.</p>
       <ul class="compare-checks">
-        <li><span class="check-circle"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Everything in PBA</li>
         <li><span class="check-circle"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Extends coverage to both parents</li>
         <li><span class="check-circle"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Parents don't need their own banked cord blood</li>
         <li><span class="check-circle"><svg viewBox="0 0 12 12" fill="none"><path d="M2.5 6l2.5 2.5 4.5-5" stroke="#3D8B6A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Cord blood treatments for eligible conditions</li>
