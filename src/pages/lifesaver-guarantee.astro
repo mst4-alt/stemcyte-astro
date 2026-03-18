@@ -60,6 +60,29 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .matter-card h3 { font-size:17px; font-weight:700; margin-bottom:10px; }
 .matter-card p { font-size:15px; color:#6B6760; line-height:1.7; }
 
+/* COMPARISON TABLE */
+.compare-table { max-width:840px; margin:0 auto; border-radius:12px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.compare-row { display:grid; grid-template-columns:1fr 1fr; }
+.compare-header .compare-cell { padding:16px 28px; font-size:13px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; }
+.compare-header .compare-other { background:#F0EDEA; color:#6B6760; }
+.compare-header .compare-sc { background:#6C1A55; color:#fff; }
+.compare-cell { padding:28px; }
+.compare-other { background:#fff; border-bottom:1px solid #F0EDEA; }
+.compare-sc { background:#FBF5F9; border-bottom:1px solid #F3EDF0; }
+.compare-cell h4 { font-size:15px; font-weight:700; margin-bottom:6px; }
+.compare-other h4 { color:#8A857A; }
+.compare-sc h4 { color:#6C1A55; }
+.compare-cell p { font-size:14px; color:#6B6760; line-height:1.65; }
+.compare-sc p { color:#4A4540; }
+.compare-row:last-child .compare-other,
+.compare-row:last-child .compare-sc { border-bottom:none; }
+
+/* FOOTNOTES */
+.fn { font-size:10px; color:#6C1A55; vertical-align:super; line-height:0; cursor:help; font-weight:700; }
+.footnotes { padding:32px 48px 48px; max-width:1100px; margin:0 auto; border-top:1px solid #E8E2DC; }
+.footnotes p { font-size:12px; color:#8A857A; line-height:1.7; }
+.footnotes sup { font-size:10px; color:#6C1A55; font-weight:700; margin-right:4px; }
+
 /* FAQ */
 .faq-wrap { max-width:740px; margin:0 auto; }
 .faq-smooth { border-bottom:1px solid #E8E2DC; }
@@ -95,6 +118,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   .split { grid-template-columns:1fr; gap:32px; }
   .split .photo { height:260px; }
   .matter-grid { grid-template-columns:1fr; }
+  .compare-row { grid-template-columns:1fr; }
   .cta-banner { margin:48px 20px; padding:48px 24px; }
 }
 @media (max-width:600px) {
@@ -144,7 +168,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B6DC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
       </div>
       <h3>Replacement donor unit</h3>
-      <p>StemCyte will provide a matching replacement cord blood unit from our public donor bank &mdash; free of charge.</p>
+      <p>When a compatible match is available in our public donor bank, StemCyte will provide a replacement cord blood unit for transplant &mdash; free of charge.<sup class="fn" title="Subject to a minimum 4/6 HLA match and inventory availability.">1</sup></p>
     </div>
   </div>
 </section>
@@ -155,7 +179,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <div class="text">
       <div class="lbl">How it works</div>
       <h2>What happens if engraftment fails?</h2>
-      <p class="body-p">Engraftment is the process where transplanted stem cells begin producing new blood cells. In rare cases, this process doesn&rsquo;t succeed. If your child&rsquo;s cord blood unit is used in a transplant and fails to engraft, the LifeSaver Guarantee activates automatically.</p>
+      <p class="body-p">Engraftment is the process where transplanted stem cells begin producing new blood cells. In rare cases, this process doesn&rsquo;t succeed. If your child&rsquo;s cord blood unit is used in a transplant and fails to engraft, the LifeSaver Guarantee activates automatically.<sup class="fn" title="Terms and conditions apply per your plan agreement.">2</sup></p>
       <div class="steps-list">
         <div class="step-item">
           <div class="step-num">1</div>
@@ -175,13 +199,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           <div class="step-num">3</div>
           <div class="step-content">
             <h3 class="step-heading">Replacement unit provided</h3>
-            <p>A matching donor unit from StemCyte&rsquo;s public bank is provided at no cost.</p>
+            <p>When a compatible match is available, a replacement donor unit from StemCyte&rsquo;s public bank is provided for transplant at no cost.<sup class="fn">1</sup></p>
           </div>
         </div>
       </div>
       <div class="tag-row">
         <span class="tag tag-green">Included free with every plan</span>
-        <span class="tag tag-plum">No additional enrollment required</span>
+        <span class="tag tag-plum">Subject to plan terms</span>
       </div>
     </div>
     <div class="photo"><img src="/images/tanks_2.jpg" alt="StemCyte cryogenic storage tanks" width="768" height="512" loading="lazy" decoding="async" /></div>
@@ -196,12 +220,57 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
     <div class="matter-grid">
       <div class="matter-card anim">
-        <h3>Most banks don&rsquo;t offer this</h3>
-        <p>The LifeSaver Guarantee is unique to StemCyte. Most private cord blood banks offer no financial protection if a transplant doesn&rsquo;t succeed.</p>
+        <h3>No hidden clauses</h3>
+        <p><strong>Your protection can&rsquo;t be taken away.</strong> Some banks quietly void their guarantee if the collection was too small or didn&rsquo;t meet an internal threshold. With StemCyte, your guarantee holds regardless of collection size. No exceptions, no fine print.</p>
       </div>
       <div class="matter-card anim">
-        <h3>It&rsquo;s free &mdash; always</h3>
-        <p>There&rsquo;s no extra cost, no extra fee, no fine print. The LifeSaver Guarantee is included with every StemCyte plan from day one.</p>
+        <h3>More than a check</h3>
+        <p><strong>We don&rsquo;t just send money &mdash; we send medicine.</strong> Most guarantees in this industry stop at a payout. StemCyte provides $50,000 <em>plus</em> a matching donor unit from our global inventory at no cost. From day one, every plan includes this &mdash; no add-on fees, no deductions, no surprises.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE COMPARE -->
+<section class="section">
+  <div class="sh anim">
+    <div class="lbl">How we compare</div>
+    <h2>StemCyte vs. other banks</h2>
+    <p>Not all guarantees are created equal. Here&rsquo;s what makes ours different.</p>
+  </div>
+  <div class="compare-table anim">
+    <div class="compare-row compare-header">
+      <div class="compare-cell compare-other">Other banks</div>
+      <div class="compare-cell compare-sc">StemCyte</div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell compare-other">
+        <h4>Hidden disqualifiers</h4>
+        <p>Many guarantees are quietly voided if the cord blood collection was too small or didn&rsquo;t meet an internal quality threshold. You may not find out until you need it most.</p>
+      </div>
+      <div class="compare-cell compare-sc">
+        <h4>No hidden clauses</h4>
+        <p>Your guarantee holds regardless of collection size. There are no internal thresholds that can void your protection after the fact.</p>
+      </div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell compare-other">
+        <h4>Fees deducted from your refund</h4>
+        <p>Some banks deduct &ldquo;administrative&rdquo; and courier fees from your refund &mdash; so you never actually get 100% back.</p>
+      </div>
+      <div class="compare-cell compare-sc">
+        <h4>Full refund, zero deductions</h4>
+        <p>Every dollar you&rsquo;ve paid is returned. No admin fees, no courier charges, no fine print deductions.</p>
+      </div>
+    </div>
+    <div class="compare-row">
+      <div class="compare-cell compare-other">
+        <h4>A check &mdash; and nothing else</h4>
+        <p>Most bank guarantees stop at a financial payout. They send money, but no medical solution.</p>
+      </div>
+      <div class="compare-cell compare-sc">
+        <h4>Money <em>and</em> medicine</h4>
+        <p>StemCyte provides $50,000 plus a matching donor unit from our global inventory &mdash; at no cost to you.<sup class="fn">1</sup></p>
       </div>
     </div>
   </div>
@@ -215,7 +284,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   <div class="faq-wrap">
     <div class="faq-smooth anim">
       <button class="faq-q" onclick="toggleFaq(this)">Is the LifeSaver Guarantee included with all plans?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><div class="faq-a-inner">Yes! It&rsquo;s included free with every StemCyte plan &mdash; Annual, 18-year, and Lifetime. No enrollment or additional fees required.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. It&rsquo;s included with every StemCyte plan &mdash; Annual, 18-year, and Lifetime.</div></div>
     </div>
     <div class="faq-smooth anim">
       <button class="faq-q" onclick="toggleFaq(this)">What counts as an engraftment failure?<span class="faq-icon">+</span></button>
@@ -227,7 +296,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
     <div class="faq-smooth anim">
       <button class="faq-q" onclick="toggleFaq(this)">Is there a time limit on the guarantee?<span class="faq-icon">+</span></button>
-      <div class="faq-a"><div class="faq-a-inner">The guarantee is valid for as long as your cord blood unit is stored with StemCyte. There is no expiration.</div></div>
+      <div class="faq-a"><div class="faq-a-inner">The guarantee remains in effect as long as your contract with StemCyte is active. There is no expiration.</div></div>
     </div>
   </div>
 </section>
@@ -243,6 +312,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
   </div>
 </section>
 
+
+<!-- FOOTNOTES -->
+<div class="footnotes">
+  <p><sup>1</sup>Replacement unit subject to inventory availability and a compatible donor match.</p>
+  <p><sup>2</sup>The LifeSaver Guarantee is subject to the terms of your plan agreement.</p>
+</div>
 
 <script is:inline>
 // Scroll animations
