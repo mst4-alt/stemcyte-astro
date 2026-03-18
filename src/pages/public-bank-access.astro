@@ -145,7 +145,7 @@ const faqItems = [
 .wim-card h3 { font-size:16px; font-weight:700; margin-bottom:8px; color:#2C2A26; }
 .wim-card p { font-size:15px; color:#6B6760; line-height:1.7; }
 .compare-wrap { display:grid; grid-template-columns:1fr 1fr; gap:24px; max-width:840px; margin:0 auto; }
-.compare-card { background:#fff; border-radius:12px; padding:32px; position:relative; }
+.compare-card { background:#fff; border-radius:12px; padding:32px; position:relative; cursor:pointer; }
 .standard { border:1px solid #E8E2DC; }
 .plus { border:2px solid #C06AA5; box-shadow:0 8px 32px rgba(108,26,85,0.08); }
 .compare-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#6C1A55; color:#fff; font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding:6px 16px; border-radius:100px; white-space:nowrap; }
@@ -164,6 +164,7 @@ const faqItems = [
 .btn-ghost:hover { background:rgba(108,26,85,0.12); border-color:rgba(108,26,85,0.25); }
 .btn-plum { display:inline-block; padding:14px 28px; border-radius:100px; font-size:14px; font-weight:700; border:none; background:#6C1A55; color:#fff; cursor:pointer; font-family:'Lato',sans-serif; text-decoration:none; text-align:center; width:100%; transition:all 0.25s; }
 .btn-plum:hover { background:#8B3572; }
+.compare-card .btn-ghost::after, .compare-card .btn-plum::after { content:''; position:absolute; inset:0; z-index:1; }
 .test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; max-width:1100px; margin:0 auto; }
 .test-card { background:#fff; border-radius:12px; padding:32px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
 .test-card p { font-size:15px; color:#2C2A26; line-height:1.7; margin-bottom:16px; font-style:italic; }
