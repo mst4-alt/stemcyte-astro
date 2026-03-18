@@ -464,7 +464,7 @@ export default function PricingForm() {
               style={{ ...styles.addonCard, ...(addons.pba ? styles.addonCardSelected : {}) }}
               onClick={() => toggleAddon('pba')}
             >
-              <div style={{ ...styles.checkBox, ...(addons.pba ? styles.checkBoxSelected : {}) }} />
+              <div style={{ ...styles.checkBox, ...(addons.pba ? styles.checkBoxSelected : {}) }}>{addons.pba && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>}</div>
               <h4 style={styles.addonH4}>Public Bank Access</h4>
               <div style={{ ...styles.addonPrice, ...(product === 'cbt' ? styles.addonPriceFree : {}) }}>
                 {product === 'cbt' ? <><span style={{textDecoration:'line-through',color:'#B0AB9E',fontSize:16,marginRight:6}}>$299</span> FREE</> : '$299'}
@@ -478,7 +478,7 @@ export default function PricingForm() {
               style={{ ...styles.addonCard, ...(addons.pbaPlus ? styles.addonCardSelected : {}) }}
               onClick={() => toggleAddon('pbaPlus')}
             >
-              <div style={{ ...styles.checkBox, ...(addons.pbaPlus ? styles.checkBoxSelected : {}) }} />
+              <div style={{ ...styles.checkBox, ...(addons.pbaPlus ? styles.checkBoxSelected : {}) }}>{addons.pbaPlus && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>}</div>
               <h4 style={styles.addonH4}>Public Bank Access+</h4>
               <div style={styles.addonPrice}>$699</div>
               <div style={styles.addonDet}>{ADDONS.pbaPlus.desc}</div>
@@ -489,7 +489,7 @@ export default function PricingForm() {
               style={{ ...styles.addonCard, ...(addons.hla ? styles.addonCardSelected : {}) }}
               onClick={() => toggleAddon('hla')}
             >
-              <div style={{ ...styles.checkBox, ...(addons.hla ? styles.checkBoxSelected : {}) }} />
+              <div style={{ ...styles.checkBox, ...(addons.hla ? styles.checkBoxSelected : {}) }}>{addons.hla && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>}</div>
               <h4 style={styles.addonH4}>HLA Matching</h4>
               <div style={styles.addonPrice}>{isPrepaid ? '$195' : '$295'}</div>
               {isPrepaid && <div style={styles.saveBadge}>Save $100 with prepaid</div>}
@@ -501,7 +501,7 @@ export default function PricingForm() {
               style={{ ...styles.addonCard, ...(addons.nga ? styles.addonCardSelected : {}) }}
               onClick={() => toggleAddon('nga')}
             >
-              <div style={{ ...styles.checkBox, ...(addons.nga ? styles.checkBoxSelected : {}) }} />
+              <div style={{ ...styles.checkBox, ...(addons.nga ? styles.checkBoxSelected : {}) }}>{addons.nga && <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>}</div>
               <h4 style={styles.addonH4}>NGA</h4>
               <div style={styles.addonPrice}>$399</div>
               <div style={styles.addonDet}>{ADDONS.nga.desc}</div>
