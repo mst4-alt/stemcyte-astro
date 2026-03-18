@@ -1,3 +1,6 @@
+## DEFAULT REPO
+This is the canonical codebase. All edits go here. Never edit files in the stemcyte (Next.js) repo. The Next.js build is deprecated — Astro is the production site.
+
 ## PROJECT: StemCyte Website (Astro + Cloudflare)
 
 Astro-based rebuild of stemcyte.com — a cord blood banking company in Baldwin Park, CA.
