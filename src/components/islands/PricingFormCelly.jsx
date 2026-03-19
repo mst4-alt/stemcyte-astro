@@ -33,7 +33,7 @@ const LABELS = { 'siblings:first': 'First child', 'siblings:yes': 'Other childre
 const S = {
   layout: { maxWidth: 1060, margin: '0 auto', padding: '60px 32px 120px', display: 'grid', gridTemplateColumns: '1fr 300px', gap: 32, alignItems: 'start' },
   calcCol: { minWidth: 0 },
-  cellyCol: { position: 'sticky', top: 32 },
+  cellyCol: { position: 'sticky', top: 32, paddingTop: 60 },
   cellyCard: { background: '#fff', borderRadius: 20, overflow: 'hidden', boxShadow: '0 2px 16px rgba(108,26,85,0.06)' },
   cellyHead: { background: 'linear-gradient(145deg,#FBF5F9,#fff)', padding: 20, textAlign: 'center', borderBottom: '1px solid #E8E2DC', cursor: 'pointer', transition: 'background 0.2s' },
   cellyAvatar: { width: 72, height: 78, margin: '0 auto 10px' },
