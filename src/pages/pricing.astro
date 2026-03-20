@@ -165,7 +165,7 @@ function showCellyResponse(msg){
               cMsg.innerHTML+=`<div class="cc-bubble" style="margin-top:8px">${bot}</div>`;
               cCh.innerHTML=`<div class="cc-choices">${q.ch.map(c=>`<button class="cc-choice" onclick="cPick('${c.id}','${c.val}')">${c.t}</button>`).join('')}</div>`;
             } else {applyCelly();}
-          },400+Math.random()*300);
+          },900+Math.random()*300);
         },2000);
       },600);
     },250);
@@ -180,7 +180,7 @@ function advanceQ(){
     setTimeout(()=>{
       setCelly('idle');
       if(cStep<QS.length)showCQ(cStep);else applyCelly();
-    },400+Math.random()*300);
+    },900+Math.random()*300);
   },250);
 }
 
