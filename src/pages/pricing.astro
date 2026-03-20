@@ -29,7 +29,7 @@ const schema = {
 
 <!-- PRICING BUILDER + CELLY + CHECKOUT -->
 
-<div class="page">
+<div class="page" id="pricing-form">
 <div class="main">
 
 <!-- ═══ BUILDER ═══ -->
@@ -60,7 +60,7 @@ const schema = {
 
 <!-- ═══ CHECKOUT ═══ -->
 <div id="ck" style="display:none">
-  <div class="step-indicator"><div class="step-pip active" onclick="ckNext(1)" style="cursor:pointer"></div><div class="step-pip" onclick="ckNext(2)" style="cursor:pointer"></div><div class="step-pip" onclick="ckNext(3)" style="cursor:pointer"></div></div>
+  <div class="step-indicator"><div class="step-pip active" onclick="ckNext(1)"></div><div class="step-pip" onclick="ckNext(2)"></div><div class="step-pip" onclick="ckNext(3)"></div></div>
 
   <!-- Step 1: Personal + Shipping -->
   <div id="ck-1" class="checkout active">
@@ -280,7 +280,7 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);-we
 .checkout{display:none}.checkout.active{display:block;animation:fadeIn 0.3s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .step-indicator{display:flex;gap:4px;margin-bottom:32px}
-.step-pip{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background 0.3s}
+.step-pip{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background 0.3s;cursor:pointer;padding:10px 0;background-clip:content-box}
 .step-pip.done{background:var(--pink)}.step-pip.active{background:var(--plum)}
 .step-pip:hover{background:var(--pink);opacity:0.8}
 
@@ -423,9 +423,9 @@ function setPaySched(v){S.paySched=v;
 }
 recalc();
 
-function goCheckout(){document.getElementById('builder').style.display='none';document.getElementById('ck').style.display='block';ckNext(1);window.scrollTo({top:0,behavior:'smooth'});}
+function goCheckout(){document.getElementById('builder').style.display='none';document.getElementById('ck').style.display='block';ckNext(1);document.getElementById('pricing-form').scrollIntoView({behavior:'smooth'});}
 function backToBuilder(){document.getElementById('builder').style.display='block';document.getElementById('ck').style.display='none';}
-function ckNext(n){[1,2,3].forEach(i=>{const el=document.getElementById('ck-'+i);el.classList.toggle('active',i===n);el.style.display=i===n?'block':'none';});document.querySelectorAll('.step-pip').forEach((p,i)=>{p.className='step-pip';if(i<n-1)p.classList.add('done');if(i===n-1)p.classList.add('active');});if(n===3)buildReview();window.scrollTo({top:0,behavior:'smooth'});}
+function ckNext(n){[1,2,3].forEach(i=>{const el=document.getElementById('ck-'+i);el.classList.toggle('active',i===n);el.style.display=i===n?'block':'none';});document.querySelectorAll('.step-pip').forEach((p,i)=>{p.className='step-pip';if(i<n-1)p.classList.add('done');if(i===n-1)p.classList.add('active');});if(n===3)buildReview();document.getElementById('pricing-form').scrollIntoView({behavior:'smooth'});}
 
 function roleChanged(id){const v=document.getElementById('role-'+id).value;const bm=document.getElementById('bm-fields-'+id);if(bm)bm.style.display=v==='birth_mother'?'grid':'none';const ot=document.getElementById('other-fields-'+id);if(ot)ot.style.display=v==='other'?'block':'none';}
 let parentCount=0;
