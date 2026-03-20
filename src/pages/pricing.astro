@@ -182,7 +182,7 @@ function recalc(){
   window._t=t;window._s=s;}
 recalc();
 
-function scrollToForm(){const el=document.getElementById('hero');const y=el.getBoundingClientRect().top+window.pageYOffset;window.scrollTo({top:y,behavior:'smooth'});}
+function scrollToForm(){const el=document.getElementById('hero');const y=el.getBoundingClientRect().bottom+window.pageYOffset-200;window.scrollTo({top:y,behavior:'smooth'});}
 function goCheckout(){document.getElementById('builder').style.display='none';document.getElementById('ck').style.display='block';ckNext(1);scrollToForm();}
 function backToBuilder(){document.getElementById('builder').style.display='block';document.getElementById('ck').style.display='none';}
 function ckNext(n){[1,2,3].forEach(i=>{const el=document.getElementById('ck-'+i);el.classList.toggle('active',i===n);el.style.display=i===n?'block':'none';});document.querySelectorAll('.step-pip').forEach((p,i)=>{p.className='step-pip';if(i<n-1)p.classList.add('done');if(i===n-1)p.classList.add('active');});if(n===3)buildReview();scrollToForm();}
