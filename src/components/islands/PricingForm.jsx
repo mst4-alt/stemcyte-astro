@@ -164,8 +164,10 @@ html{overflow-x:hidden}
 .pf-seg-opt.sel{background:#6C1A55;color:#fff;box-shadow:0 1px 4px rgba(108,26,85,0.15)}
 .pf-checkout{animation:pf-fadeIn 0.3s ease}
 .pf-step-indicator{display:flex;gap:4px;margin-bottom:32px;padding:8px 0}
-.pf-step-pip{flex:1;height:4px;border-radius:2px;background:#E8E2DC;transition:background 0.3s;cursor:pointer;padding:8px 0;background-clip:content-box}
-.pf-step-pip.done{background-color:#E8A0D0;background-clip:content-box}.pf-step-pip.active{background-color:#6C1A55;background-clip:content-box}
+.pf-step-pip{flex:1;height:20px;border-radius:2px;cursor:pointer;position:relative}
+.pf-step-pip::after{content:'';position:absolute;left:0;right:0;top:8px;height:4px;border-radius:2px;background:#E8E2DC;transition:background 0.3s}
+.pf-step-pip.done::after{background:#E8A0D0}
+.pf-step-pip.active::after{background:#6C1A55}
 .pf-form-label{font-size:11px;font-weight:700;color:#8A857A;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;display:block}
 .pf-form-input{width:100%;padding:13px 16px;border:1px solid #E8E2DC;border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;outline:none;background:#fff;transition:border-color 0.2s;box-sizing:border-box}
 .pf-form-input:focus{border-color:#6C1A55}
@@ -366,13 +368,14 @@ export default function PricingForm() {
   const goStep = (n) => { setCkStep(n); setTimeout(scrollToForm, 50); };
 
   // ── Parents ──
-  const addParent = () => { if (parents.length >= 2) return; setParents((prev) => [...prev, { id: Date.now() }]); };
+  const addParent = () => { if (parents.length >= 2) return; setParents((prev) => [...prev, { id: Date.now(), role: '' }]); };
   const removeParent = (id) => { setParents((prev) => prev.filter((p) => p.id !== id)); };
+  const setParentRole = (id, role) => { setParents((prev) => prev.map((p) => p.id === id ? { ...p, role } : p)); };
 
   // ── Review lines ──
   const buildReviewLines = () => {
     const pl = product === 'cb' ? 'Cord Blood' : 'Cord Blood & Tissue';
-    const pn = { annual: 'Pay year by year', '18year': '18-Year Prepaid', lifetime: 'Lifetime' }[plan];
+    const pn = { annual: 'Pay year by year', '18year': '18-Year', lifetime: 'Lifetime' }[plan];
     const lines = [{ label: pl + ' \u2014 ' + pn + (twins ? ' (\u00d72)' : ''), val: f(D[product].plans[plan].total * mult), free: false }];
     const names = { pba: 'Public Bank Access', pbaPlus: 'Public Bank Access+', hla: 'HLA Matching', nga: 'NGA' };
     Object.keys(addons).forEach((k) => {
@@ -647,7 +650,7 @@ export default function PricingForm() {
               <div className="pf-list">
                 {[
                   { key: 'annual', name: 'Pay year by year', desc: 'Most flexible — renew annually', badge: null, price: priceTexts.annual },
-                  { key: '18year', name: '18-Year Prepaid', desc: 'One payment, done', badge: <span className="pf-badge pf-badge-pop">Most popular</span>, price: priceTexts['18year'] },
+                  { key: '18year', name: '18-Year', desc: 'One payment, done', badge: <span className="pf-badge pf-badge-pop">Most popular</span>, price: priceTexts['18year'] },
                   { key: 'lifetime', name: 'Lifetime', desc: 'Never pay for storage again', badge: <span className="pf-badge pf-badge-save">{priceTexts.lifetimeSave}</span>, price: priceTexts.lifetime },
                 ].map((p) => (
                   <div key={p.key} className={`pf-row${plan === p.key ? ' sel' : ''}`} data-plan={p.key} onClick={() => doSetPlan(p.key)}>
@@ -744,7 +747,27 @@ export default function PricingForm() {
                       <div><label className="pf-form-label">First name</label><input className="pf-form-input" placeholder="First" /></div>
                       <div><label className="pf-form-label">Last name</label><input className="pf-form-input" placeholder="Last" /></div>
                     </div>
+                    <div className="pf-form-full">
+                      <label className="pf-form-label">Relationship to baby</label>
+                      <select className="pf-form-select" value={p.role} onChange={(e) => setParentRole(p.id, e.target.value)}>
+                        <option value="">Select...</option>
+                        <option value="birth_mother">Birth mother</option>
+                        <option value="mother">Mother</option>
+                        <option value="father">Father</option>
+                        <option value="surrogate">Surrogate</option>
+                        <option value="other">Other guardian</option>
+                      </select>
+                    </div>
+                    {p.role === 'other' && (
+                      <div className="pf-form-full"><label className="pf-form-label">Please specify</label><input className="pf-form-input" placeholder="e.g. Grandparent, Legal guardian" /></div>
+                    )}
                     <div className="pf-form-full"><label className="pf-form-label">Phone number</label><input className="pf-form-input" type="tel" placeholder="(555) 123-4567" /></div>
+                    {p.role === 'birth_mother' && (
+                      <div className="pf-form-row">
+                        <div><label className="pf-form-label">Your birthday</label><input className="pf-form-input" type="date" /></div>
+                        <div><label className="pf-form-label">Due date</label><input className="pf-form-input" type="date" /></div>
+                      </div>
+                    )}
                   </div>
                 ))}
                 {parents.length < 2 && <button className="pf-add-parent-btn" onClick={addParent}>+ Add another parent or guardian</button>}
