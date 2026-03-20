@@ -298,19 +298,27 @@ function cPick(k,v){
 }
 
 function showCellyResponse(msg){
+  let pendingEdu = null;
   setTimeout(()=>{
     cMsg.querySelectorAll('.cc-bubble,.cc-user').forEach(b=>b.classList.add('out'));
     setTimeout(()=>{
       cMsg.innerHTML=`<div class="cc-typing"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>`;
       setTimeout(()=>{
-        // Show Celly's response and keep it visible
-        cMsg.innerHTML=`<div class="cc-bubble">${msg}</div>`;
-        // After reading time, show typing then next question (response stays until new bubble replaces it)
+        cMsg.innerHTML=`<div class="cc-bubble cc-edu-persist">${msg}</div>`;
+        // After reading time, show typing then next question below the edu message
         setTimeout(()=>{
           cMsg.innerHTML+=`<div class="cc-typing" style="margin-top:8px"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>`;
           setTimeout(()=>{
-            if(cStep<QS.length)showCQ(cStep);
-            else applyCelly();
+            // Remove typing dots but keep edu bubble
+            cMsg.querySelectorAll('.cc-typing').forEach(t=>t.remove());
+            if(cStep<QS.length){
+              const q=QS[cStep];
+              const bot=typeof q.bot==='function'?q.bot(cA):q.bot;
+              cMsg.innerHTML+=`<div class="cc-bubble" style="margin-top:8px">${bot}</div>`;
+              cCh.innerHTML=`<div class="cc-choices">${q.ch.map(c=>`<button class="cc-choice" onclick="cPick('${c.id}','${c.val}')">${c.t}</button>`).join('')}</div>`;
+            } else {
+              applyCelly();
+            }
           },400+Math.random()*300);
         },2000);
       },600);
@@ -338,8 +346,6 @@ function applyCelly(){
   const plan='18year';
   const planEl=document.querySelectorAll('#plans .row')[1];
   setPlan(plan,planEl);
-  const planReasons={'18year':'Most popular choice — one payment covers storage through age 18.'};
-  setTag('ct-'+plan,'pick',"Celly's pick",planReasons[plan]);
 
   ['pba','pbaPlus','hla','nga'].forEach(k=>{S.addons[k]=false;document.getElementById('a-'+(k==='pbaPlus'?'pp':k)).classList.remove('sel');});
 
