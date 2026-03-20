@@ -82,7 +82,7 @@ const LBL = {
    CSS (injected once)
    ═══════════════════════════════════════════ */
 const CSS = `
-.pf-page{max-width:640px;margin:0 auto;padding:48px 32px 140px}
+.pf-page{max-width:640px;margin:0 auto;padding:48px 32px 140px;overflow:hidden}
 .celly-banner{background:linear-gradient(145deg,#FBF5F9,#fff);border:1px solid rgba(232,160,208,0.2);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;transition:all 0.25s;box-shadow:0 3px 16px rgba(108,26,85,0.08);margin-bottom:28px}
 .celly-banner:hover{border-color:#E8A0D0;box-shadow:0 6px 24px rgba(108,26,85,0.1)}
 .celly-banner-av{width:72px;height:78px;flex-shrink:0;overflow:hidden}
@@ -151,7 +151,7 @@ const CSS = `
 .celly-tag:hover .ct-tip{display:block}
 @keyframes pf-popBounce{0%{transform:scale(1)}30%{transform:scale(1.03)}60%{transform:scale(0.99)}100%{transform:scale(1)}}
 .pf-pop-bounce{animation:pf-popBounce 0.4s ease}
-.pf-btn-next{width:100%;padding:18px;border-radius:100px;border:none;background:#6C1A55;color:#fff;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer;margin-top:30px}
+.pf-btn-next{flex:1;padding:18px;border-radius:100px;border:none;background:#6C1A55;color:#fff;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
 .pf-bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E8E2DC;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,0.04);min-height:80px}
 .pf-fb-label{font-size:10px;color:#8A857A;font-weight:700;text-transform:uppercase;letter-spacing:1px}
 .pf-fb-total{font-family:'Source Serif 4',serif;font-size:28px;color:#6C1A55}
@@ -200,23 +200,29 @@ const CSS = `
 .pf-pay-tab{flex:1;padding:14px;text-align:center;border:2px solid #E8E2DC;border-radius:12px;cursor:pointer;font-size:13px;font-weight:700;color:#6B6760;background:#fff;transition:all 0.2s}
 .pf-pay-tab.sel{border-color:#6C1A55;color:#6C1A55;background:rgba(108,26,85,0.05)}
 .pf-wallet-msg{text-align:center;padding:32px 20px;background:#fff;border:1px solid #E8E2DC;border-radius:14px;margin-bottom:20px}
-.pf-btn-row{display:flex;gap:12px;margin-top:24px}
-.pf-btn-back{flex:1;padding:16px 24px;border-radius:100px;border:1px solid #E8E2DC;background:transparent;color:#8A857A;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-align:center}
+.pf-btn-row{display:flex;gap:12px;margin-top:30px}
+.pf-btn-back{padding:16px 24px;border-radius:100px;border:1px solid #E8E2DC;background:transparent;color:#8A857A;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-align:center;white-space:nowrap}
 .pf-btn-back:hover{border-color:#6C1A55;color:#6C1A55}
 @media(max-width:600px){
   .pf-page{padding:32px 16px 140px}
   .pf-bottom{padding:12px 16px}.pf-fb-total{font-size:24px}
   .pf-seg{flex-wrap:wrap;gap:4px}
+  .pf-seg-opt{padding:6px 14px;font-size:11px}
   .celly-banner{flex-direction:column;text-align:center;padding:20px 16px;gap:12px}
   .celly-banner-av{width:56px;height:60px}
   .celly-banner-arrow{width:100%;text-align:center}
   .pf-product{border-radius:14px}
-  .pf-po{padding:14px 12px;font-size:14px}
-  .pf-row{padding:16px 18px}
-  .pf-tog{padding:14px 18px}
-  .pf-row-price{font-size:15px}
+  .pf-po{padding:14px 10px;font-size:13px}
+  .pf-row{padding:16px 14px}
+  .pf-tog{padding:14px}
+  .pf-row-name{font-size:14px}
+  .pf-row-price{font-size:14px}
+  .pf-row-r{gap:6px}
+  .pf-badge{font-size:9px;padding:2px 8px}
   .pf-form-row,.pf-form-row-3{grid-template-columns:1fr}
   .pf-pay-methods{flex-direction:column}
+  .pf-btn-row{flex-direction:column}
+  .pf-btn-back,.pf-btn-next{width:100%}
 }
 `;
 
