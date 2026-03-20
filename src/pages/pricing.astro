@@ -16,7 +16,7 @@ const schema = {
 ---
 <BaseLayout title="Pricing" schema={schema}>
 
-<!-- HERO -->
+<!-- HERO (compact) -->
 <section class="hero" id="hero">
   <img src="/images/Hero_1.jpeg" alt="Pricing" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center" />
   <div class="vig"></div>
@@ -29,176 +29,132 @@ const schema = {
 
 <!-- PRICING BUILDER + CELLY + CHECKOUT -->
 
+<!-- FORM -->
 <div class="page" id="pricing-form">
-<div class="main">
 
-<!-- ═══ BUILDER ═══ -->
-<div id="builder">
-  <div class="product">
-    <div class="po" onclick="setProd('cb')">Cord Blood<div class="po-p">$725</div></div>
-    <div class="po sel" onclick="setProd('cbt')">Blood & Tissue<div class="po-p">$995</div></div>
-  </div>
-  <div class="sec">
-    <div class="sec-t">Storage plan</div>
-    <div class="list" id="plans">
+  <!-- ═══ BUILDER ═══ -->
+  <div id="builder">
+    <!-- CELLY BANNER -->
+    <div class="celly-banner" id="celly-banner" onclick="startCelly()">
+      <svg class="celly-banner-av" viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="gp" cx="44%" cy="38%" r="56%"><stop offset="0%" stop-color="#FFF5FA"/><stop offset="35%" stop-color="#F6D4EC"/><stop offset="100%" stop-color="#DA90C2"/></radialGradient></defs><g><animateTransform attributeName="transform" type="translate" values="0,0;0,-2;0,0" dur="3s" repeatCount="indefinite"/><circle cx="70" cy="78" r="44" fill="url(#gp)"/><ellipse cx="52" cy="54" rx="20" ry="14" fill="rgba(255,255,255,0.5)"/><path d="M40 36 Q70 20, 100 36 L96 44 Q70 32, 44 44Z" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><rect x="62" y="26" width="16" height="12" rx="2" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><line x1="70" y1="28" x2="70" y2="36" stroke="#E8A0D0" stroke-width="2.5"/><line x1="66" y1="32" x2="74" y2="32" stroke="#E8A0D0" stroke-width="2.5"/><ellipse cx="54" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><ellipse cx="86" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><circle cx="50" cy="66" r="4" fill="#fff"/><circle cx="82" cy="66" r="4" fill="#fff"/><path d="M62 90 Q70 97, 78 90" fill="none" stroke="#1E1420" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="40" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><ellipse cx="100" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><rect x="108" y="80" width="18" height="24" rx="3" fill="#F5EDE6" stroke="#D8D0C8" stroke-width="1.5" transform="rotate(8 117 92)"/><path d="M112 78 Q118 76, 116 84" fill="none" stroke="#DA90C2" stroke-width="4" stroke-linecap="round"/></g></svg>
+      <div class="celly-banner-text">
+        <div class="celly-banner-title">Not sure where to start?</div>
+        <div class="celly-banner-sub">Let Celly build your plan in 30 seconds</div>
+      </div>
+      <div class="celly-banner-arrow">Help me choose →</div>
+    </div>
+
+    <!-- CELLY CHAT (replaces banner when open) -->
+    <div class="celly-chat" id="celly-chat">
+      <div class="cc-row">
+        <div class="cc-av" id="cc-av"></div>
+        <div style="flex:1;min-width:0"><div class="cc-name">Celly</div><div id="cc-msg"></div></div>
+      </div>
+      <div id="cc-ch"></div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="sec"><div class="sec-t">Choose your plan</div>
+    <div class="product">
+      <div class="po" onclick="setProd('cb')">Cord Blood <span class="celly-tag" id="ct-cb"></span><div class="po-p">$725</div></div>
+      <div class="po sel" onclick="setProd('cbt')">Blood & Tissue <span class="celly-tag" id="ct-cbt"></span><div class="po-p">$995</div></div>
+    </div></div>
+    <div class="sec"><div class="sec-t">Protection term</div><div class="list" id="plans">
       <div class="row" onclick="setPlan('annual',this)"><div class="row-l"><div class="dot"></div><div><div class="row-name">Pay year by year <span class="celly-tag" id="ct-annual"></span></div><div class="row-desc">Most flexible — renew annually</div></div></div><div class="row-r"><div class="row-price" id="pp-a">$995 + $400/yr</div></div></div>
       <div class="row sel" onclick="setPlan('18year',this)"><div class="row-l"><div class="dot"></div><div><div class="row-name">18-Year Prepaid <span class="celly-tag" id="ct-18year"></span></div><div class="row-desc">One payment, done</div></div></div><div class="row-r"><span class="badge badge-pop">Most popular</span><div class="row-price" id="pp-18">$6,665</div></div></div>
       <div class="row" onclick="setPlan('lifetime',this)"><div class="row-l"><div class="dot"></div><div><div class="row-name">Lifetime <span class="celly-tag" id="ct-lifetime"></span></div><div class="row-desc">Never pay for storage again</div></div></div><div class="row-r"><span class="badge badge-save" id="ps-l">Saving $4,600</span><div class="row-price" id="pp-l">$10,795</div></div></div>
-    </div>
-  </div>
-  <div class="sec">
-    <div class="sec-t">Advanced protection</div>
-    <div class="list">
+    </div></div>
+    <div class="sec"><div class="sec-t">Advanced protection</div><div class="list">
       <div class="tog" onclick="togAddon('pba',this)" id="a-pba"><div class="row-l"><div class="sw"></div><div><div class="row-name">Public Bank Access <span class="celly-tag" id="ct-pba"></span></div><div class="row-desc">Expanded cell access for your child</div></div></div><div class="row-price" id="ap-pba">FREE</div></div>
       <div class="tog" onclick="togAddon('pbaPlus',this)" id="a-pp"><div class="row-l"><div class="sw"></div><div><div class="row-name">Public Bank Access+ <span class="celly-tag" id="ct-pbaPlus"></span></div><div class="row-desc">Cord blood access for both parents</div></div></div><div class="row-price">$699</div></div>
       <div class="tog" onclick="togAddon('hla',this)" id="a-hla"><div class="row-l"><div class="sw"></div><div><div class="row-name">HLA Matching <span class="celly-tag" id="ct-hla"></span></div><div class="row-desc">Sibling compatibility testing</div></div></div><div class="row-price" id="ap-hla">$195</div></div>
       <div class="tog" onclick="togAddon('nga',this)" id="a-nga"><div class="row-l"><div class="sw"></div><div><div class="row-name">NGA <span class="celly-tag" id="ct-nga"></span></div><div class="row-desc">Newborn genetic analysis</div></div></div><div class="row-price">$399</div></div>
-    </div>
-  </div>
-  <div class="btn-row"><button class="btn-next" onclick="goCheckout()">Continue →</button></div>
-</div>
-
-<!-- ═══ CHECKOUT ═══ -->
-<div id="ck" style="display:none">
-  <div class="step-indicator"><div class="step-pip active" onclick="ckNext(1)"></div><div class="step-pip" onclick="ckNext(2)"></div><div class="step-pip" onclick="ckNext(3)"></div></div>
-
-  <!-- Step 1: Personal + Shipping -->
-  <div id="ck-1" class="checkout active">
-    <div class="sec-t">Your information</div>
-    <div class="sec-sub">Tell us about yourself so we can set up your account.</div>
-    <div class="form-row">
-      <div><label class="form-label">First name</label><input class="form-input" placeholder="Jane"></div>
-      <div><label class="form-label">Last name</label><input class="form-input" placeholder="Smith"></div>
-    </div>
-    <div class="form-full">
-      <label class="form-label">Relationship to baby</label>
-      <select class="form-select" id="role-1" onchange="roleChanged(1)"><option value="">Select...</option><option value="birth_mother">Birth mother</option><option value="mother">Mother</option><option value="father">Father</option><option value="surrogate">Surrogate</option><option value="other">Other guardian</option></select>
-    </div>
-    <div class="form-full" id="other-fields-1" style="display:none"><label class="form-label">Please specify</label><input class="form-input" placeholder="e.g. Grandparent, Legal guardian"></div>
-    <div class="form-row">
-      <div><label class="form-label">Email address</label><input class="form-input" type="email" placeholder="jane@email.com"></div>
-      <div><label class="form-label">Phone number</label><input class="form-input" type="tel" placeholder="(555) 123-4567"></div>
-    </div>
-    <div class="form-row" id="bm-fields-1" style="display:none">
-      <div><label class="form-label">Your birthday</label><input class="form-input" type="date"></div>
-      <div><label class="form-label">Due date</label><input class="form-input" type="date"></div>
-    </div>
-    <div id="parents-container"></div>
-    <button class="add-parent-btn" id="add-parent-btn" onclick="addParent()">+ Add another parent or guardian</button>
-
-    <div class="divider"></div>
-
-    <div class="sec-t">Collection kit delivery</div>
-    <div class="sec-sub">We'll ship a temperature-controlled kit to this address before your due date.</div>
-    <div class="form-full"><label class="form-label">Street address</label><input class="form-input" id="ship-address" placeholder="123 Main St, Apt 4B"></div>
-    <div class="form-row-3">
-      <div><label class="form-label">City</label><input class="form-input" id="ship-city" placeholder="Los Angeles"></div>
-      <div><label class="form-label">State</label><input class="form-input" id="ship-state" placeholder="CA"></div>
-      <div><label class="form-label">ZIP code</label><input class="form-input" id="ship-zip" placeholder="90001"></div>
-    </div>
-
-    <div class="btn-row"><button class="btn-back" onclick="backToBuilder()">← Back</button><button class="btn-next" onclick="ckNext(2)">Continue →</button></div>
+    </div></div>
+    <div class="btn-row"><button class="btn-next" onclick="goCheckout()">Continue →</button></div>
   </div>
 
-  <!-- Step 2: Birth Info -->
-  <div id="ck-2" class="checkout">
-    <div class="sec-t">Birth information</div>
-    <div class="sec-sub">So we can coordinate with your birth team and prepare your kit.</div>
-    <div class="form-full"><label class="form-label">Hospital or birth center</label><input class="form-input" placeholder="Cedars-Sinai Medical Center"></div>
-    <div class="form-full"><label class="form-label">Doctor's name</label><input class="form-input" placeholder="Dr. Sarah Johnson"></div>
-    <div class="twins-row" onclick="toggleTwins()" style="margin-top:16px">
-      <div class="twins-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="twins-svg" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></div>
-      <div><div class="row-name">We're expecting twins</div><div class="row-desc">Doubles processing and storage for both babies</div></div>
-    </div>
-    <div class="btn-row"><button class="btn-back" onclick="ckNext(1)">← Back</button><button class="btn-next" onclick="ckNext(3)">Continue →</button></div>
-  </div>
+  <!-- ═══ CHECKOUT ═══ -->
+  <div id="ck" style="display:none">
+    <div class="step-indicator"><div class="step-pip active" onclick="ckNext(1)"></div><div class="step-pip" onclick="ckNext(2)"></div><div class="step-pip" onclick="ckNext(3)"></div></div>
 
-  <!-- Step 3: Review + Payment -->
-  <div id="ck-3" class="checkout">
-    <div class="sec-t">Your order</div>
-    <div class="order-card">
-      <div class="order-head">
-        <div class="order-head-label">Total</div>
-        <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-          <div class="order-head-total" id="review-total"></div>
-          <div class="seg" id="review-seg" style="background:rgba(255,255,255,0.12)">
-            <div class="seg-opt sel" onclick="setPaySched('full')" style="color:rgba(255,255,255,0.5)">Pay in full</div>
-            <div class="seg-opt" onclick="setPaySched('6mo')" style="color:rgba(255,255,255,0.5)">6 months</div>
-            <div class="seg-opt" onclick="setPaySched('12mo')" style="color:rgba(255,255,255,0.5)">12 months</div>
+    <!-- Step 1 -->
+    <div id="ck-1" class="checkout active">
+      <div class="sec-t">Your information</div>
+      <div class="sec-sub">Tell us about yourself so we can set up your account.</div>
+      <div class="form-row"><div><label class="form-label">First name</label><input class="form-input" placeholder="Jane"></div><div><label class="form-label">Last name</label><input class="form-input" placeholder="Smith"></div></div>
+      <div class="form-full"><label class="form-label">Relationship to baby</label><select class="form-select" id="role-1" onchange="roleChanged(1)"><option value="">Select...</option><option value="birth_mother">Birth mother</option><option value="mother">Mother</option><option value="father">Father</option><option value="surrogate">Surrogate</option><option value="other">Other guardian</option></select></div>
+      <div class="form-full" id="other-fields-1" style="display:none"><label class="form-label">Please specify</label><input class="form-input" placeholder="e.g. Grandparent, Legal guardian"></div>
+      <div class="form-row"><div><label class="form-label">Email address</label><input class="form-input" type="email" placeholder="jane@email.com"></div><div><label class="form-label">Phone number</label><input class="form-input" type="tel" placeholder="(555) 123-4567"></div></div>
+      <div class="form-row" id="bm-fields-1" style="display:none"><div><label class="form-label">Your birthday</label><input class="form-input" type="date"></div><div><label class="form-label">Due date</label><input class="form-input" type="date"></div></div>
+      <div id="parents-container"></div>
+      <button class="add-parent-btn" id="add-parent-btn" onclick="addParent()">+ Add another parent or guardian</button>
+      <div class="divider"></div>
+      <div class="sec-t">Collection kit delivery</div>
+      <div class="sec-sub">We'll ship a temperature-controlled kit to this address before your due date.</div>
+      <div class="form-full"><label class="form-label">Street address</label><input class="form-input" placeholder="123 Main St, Apt 4B"></div>
+      <div class="form-row-3"><div><label class="form-label">City</label><input class="form-input" placeholder="Los Angeles"></div><div><label class="form-label">State</label><input class="form-input" placeholder="CA"></div><div><label class="form-label">ZIP code</label><input class="form-input" placeholder="90001"></div></div>
+      <div class="btn-row"><button class="btn-back" onclick="backToBuilder()">← Back</button><button class="btn-next" onclick="ckNext(2)">Continue →</button></div>
+    </div>
+
+    <!-- Step 2 -->
+    <div id="ck-2" class="checkout">
+      <div class="sec-t">Birth information</div>
+      <div class="sec-sub">So we can coordinate with your birth team and prepare your kit.</div>
+      <div class="form-full"><label class="form-label">Hospital or birth center</label><input class="form-input" placeholder="Cedars-Sinai Medical Center"></div>
+      <div class="form-full"><label class="form-label">Doctor's name</label><input class="form-input" placeholder="Dr. Sarah Johnson"></div>
+      <div class="twins-row" onclick="toggleTwins()" style="margin-top:16px"><div class="twins-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="twins-svg" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="row-name">We're expecting twins</div><div class="row-desc">Doubles processing and storage for both babies</div></div></div>
+      <div class="btn-row"><button class="btn-back" onclick="ckNext(1)">← Back</button><button class="btn-next" onclick="ckNext(3)">Continue →</button></div>
+    </div>
+
+    <!-- Step 3 -->
+    <div id="ck-3" class="checkout">
+      <div class="sec-t">Your order</div>
+      <div class="order-card">
+        <div class="order-head">
+          <div class="order-head-label">Total</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <div class="order-head-total" id="review-total"></div>
+            <div class="seg" style="background:rgba(255,255,255,0.12)">
+              <div class="seg-opt sel" onclick="setPaySched('full')" style="color:rgba(255,255,255,0.5)">Pay in full</div>
+              <div class="seg-opt" onclick="setPaySched('6mo')" style="color:rgba(255,255,255,0.5)">6 months</div>
+              <div class="seg-opt" onclick="setPaySched('12mo')" style="color:rgba(255,255,255,0.5)">12 months</div>
+            </div>
           </div>
+          <div class="order-head-save" id="review-save"></div>
         </div>
-        <div class="order-head-save" id="review-save"></div>
+        <div class="order-body" id="review-lines"></div>
       </div>
-      <div class="order-body" id="review-lines"></div>
-    </div>
-
-    <div class="sec-t">Payment method</div>
-    <div class="pay-methods">
-      <div class="pay-tab sel" id="pm-card" onclick="setPayMethod('card')">💳 Card</div>
-      <div class="pay-tab" id="pm-apple" onclick="setPayMethod('apple')"> Apple Pay</div>
-      <div class="pay-tab" id="pm-google" onclick="setPayMethod('google')"> Google Pay</div>
-    </div>
-
-    <div id="cc-fields">
-      <div class="form-full"><label class="form-label">Card number</label><input class="form-input" placeholder="4242 4242 4242 4242"></div>
-      <div class="form-row">
-        <div><label class="form-label">Expiration</label><input class="form-input" placeholder="MM / YY"></div>
-        <div><label class="form-label">CVC</label><input class="form-input" placeholder="123"></div>
+      <div class="sec-t">Payment method</div>
+      <div class="pay-methods">
+        <div class="pay-tab sel" id="pm-card" onclick="setPayMethod('card')">💳 Card</div>
+        <div class="pay-tab" id="pm-apple" onclick="setPayMethod('apple')"> Apple Pay</div>
+        <div class="pay-tab" id="pm-google" onclick="setPayMethod('google')"> Google Pay</div>
       </div>
-      <div class="form-full"><label class="form-label">Name on card</label><input class="form-input" placeholder="Jane Smith"></div>
-      <div class="checkbox-row">
-        <input type="checkbox" id="billing-same" checked onchange="toggleBilling()">
-        <label for="billing-same">Billing address same as shipping</label>
-      </div>
-      <div id="billing-fields" style="display:none">
-        <div class="form-row">
-          <div><label class="form-label">First name</label><input class="form-input" placeholder="Jane"></div>
-          <div><label class="form-label">Last name</label><input class="form-input" placeholder="Smith"></div>
-        </div>
-        <div class="form-full"><label class="form-label">Billing street address</label><input class="form-input" placeholder="456 Oak Ave"></div>
-        <div class="form-row-3">
-          <div><label class="form-label">City</label><input class="form-input" placeholder="Los Angeles"></div>
-          <div><label class="form-label">State</label><input class="form-input" placeholder="CA"></div>
-          <div><label class="form-label">ZIP code</label><input class="form-input" placeholder="90001"></div>
+      <div id="cc-fields">
+        <div class="form-full"><label class="form-label">Card number</label><input class="form-input" placeholder="4242 4242 4242 4242"></div>
+        <div class="form-row"><div><label class="form-label">Expiration</label><input class="form-input" placeholder="MM / YY"></div><div><label class="form-label">CVC</label><input class="form-input" placeholder="123"></div></div>
+        <div class="form-full"><label class="form-label">Name on card</label><input class="form-input" placeholder="Jane Smith"></div>
+        <div class="checkbox-row"><input type="checkbox" id="billing-same" checked onchange="toggleBilling()"><label for="billing-same">Billing address same as shipping</label></div>
+        <div id="billing-fields" style="display:none">
+          <div class="form-row"><div><label class="form-label">First name</label><input class="form-input" placeholder="Jane"></div><div><label class="form-label">Last name</label><input class="form-input" placeholder="Smith"></div></div>
+          <div class="form-full"><label class="form-label">Billing street address</label><input class="form-input" placeholder="456 Oak Ave"></div>
+          <div class="form-row-3"><div><label class="form-label">City</label><input class="form-input" placeholder="Los Angeles"></div><div><label class="form-label">State</label><input class="form-input" placeholder="CA"></div><div><label class="form-label">ZIP code</label><input class="form-input" placeholder="90001"></div></div>
         </div>
       </div>
+      <div class="wallet-msg" id="wallet-msg">
+        <div style="font-size:32px;margin-bottom:8px" id="wallet-icon">🍎</div>
+        <div style="font-size:15px;font-weight:700;margin-bottom:4px" id="wallet-title">Apple Pay</div>
+        <div style="font-size:13px;color:var(--muted)">You'll be prompted to confirm after clicking "Complete enrollment"</div>
+      </div>
+      <div class="btn-row"><button class="btn-back" onclick="ckNext(2)">← Back</button><button class="btn-next" onclick="alert('Demo — no payment processed')">Complete enrollment →</button></div>
     </div>
-    <div class="wallet-msg" id="wallet-msg">
-      <div style="font-size:32px;margin-bottom:8px" id="wallet-icon">🍎</div>
-      <div style="font-size:15px;font-weight:700;margin-bottom:4px" id="wallet-title">Apple Pay</div>
-      <div style="font-size:13px;color:var(--muted)">You'll be prompted to confirm after clicking "Complete enrollment"</div>
-    </div>
-
-    <div class="btn-row"><button class="btn-back" onclick="ckNext(2)">← Back</button><button class="btn-next" onclick="alert('Demo — no payment processed')">Complete enrollment →</button></div>
   </div>
 </div>
 
-</div>
-
-<!-- ═══ CELLY ═══ -->
-<div class="sidebar">
-  <div class="celly-card">
-    <div class="celly-head" id="celly-head" onclick="startCelly()">
-      <svg class="celly-avatar" viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="gp" cx="44%" cy="38%" r="56%"><stop offset="0%" stop-color="#FFF5FA"/><stop offset="35%" stop-color="#F6D4EC"/><stop offset="100%" stop-color="#DA90C2"/></radialGradient></defs><g><animateTransform attributeName="transform" type="translate" values="0,0;0,-3;0,0" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/><circle cx="70" cy="78" r="44" fill="url(#gp)"/><ellipse cx="52" cy="54" rx="20" ry="14" fill="rgba(255,255,255,0.5)"/><path d="M40 36 Q70 20, 100 36 L96 44 Q70 32, 44 44Z" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><rect x="62" y="26" width="16" height="12" rx="2" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><line x1="70" y1="28" x2="70" y2="36" stroke="#E8A0D0" stroke-width="2.5"/><line x1="66" y1="32" x2="74" y2="32" stroke="#E8A0D0" stroke-width="2.5"/><ellipse cx="54" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><ellipse cx="86" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><circle cx="50" cy="66" r="4" fill="#fff"/><circle cx="82" cy="66" r="4" fill="#fff"/><path d="M62 90 Q70 97, 78 90" fill="none" stroke="#1E1420" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="40" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><ellipse cx="100" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><rect x="108" y="80" width="18" height="24" rx="3" fill="#F5EDE6" stroke="#D8D0C8" stroke-width="1.5" transform="rotate(8 117 92)"/><path d="M112 78 Q118 76, 116 84" fill="none" stroke="#DA90C2" stroke-width="4" stroke-linecap="round"/></g></svg>
-      <div class="celly-title">Not sure where to start?</div>
-      <div class="celly-sub">Let Celly build your plan<br>in 30 seconds</div>
-      <button class="celly-btn">Help me choose →</button>
-    </div>
-    <div class="celly-chat" id="celly-chat">
-      <div class="cc-row"><div class="cc-av" id="cc-av"></div><div style="flex:1;min-width:0"><div class="cc-name">Celly</div><div id="cc-msg"></div></div></div>
-      <div id="cc-ch"></div>
-    </div>
-  </div>
-</div>
-</div>
-
-<div class="bottom" id="bottom-bar">
+<!-- BOTTOM BAR -->
+<div class="bottom">
   <div style="flex:1;display:flex;align-items:center;justify-content:space-between">
-    <div>
-      <div class="fb-label">Your plan</div>
-      <div class="fb-total" id="total">–</div>
-      <div class="fb-save" id="save" style="display:none">Saving $765</div>
-    </div>
+    <div><div class="fb-label">Your plan</div><div class="fb-total" id="total">–</div><div class="fb-save" id="save" style="display:none"></div></div>
     <div class="seg" id="bar-seg">
       <div class="seg-opt sel" onclick="setPaySched('full')">Pay in full</div>
       <div class="seg-opt" onclick="setPaySched('6mo')">6 months</div>
@@ -206,6 +162,7 @@ const schema = {
     </div>
   </div>
 </div>
+
 
 <script is:inline>
 const D={cb:{plans:{annual:{total:925,processing:725,storage:200,savings:0},'18year':{total:3560,savings:765},lifetime:{total:5625,savings:2300}}},cbt:{plans:{annual:{total:1395,processing:995,storage:400,savings:0},'18year':{total:6665,savings:1530},lifetime:{total:10795,savings:4600}}}};
@@ -222,25 +179,7 @@ function recalc(){
   const m=S.twins?2:1;let t=D[S.product].plans[S.plan].total*m;let s=D[S.product].plans[S.plan].savings*m;const ip=S.plan!=='annual';Object.keys(S.addons).forEach(k=>{if(!S.addons[k])return;if(k==='pba'&&S.product==='cbt'){s+=299*m;}else if(k==='hla'){t+=(ip?Ad.hlaP:Ad.hla)*m;if(ip)s+=100*m;}else{t+=Ad[k]*m;}});
   if(!S.interacted){document.getElementById('total').textContent='\u2013';document.getElementById('save').style.display='none';}
   else{const v=S.paySched||'full';if(v==='full')document.getElementById('total').textContent=f(t);else if(v==='6mo')document.getElementById('total').textContent=f(Math.ceil(t/6))+'/mo';else document.getElementById('total').textContent=f(Math.ceil(t/12))+'/mo';const se=document.getElementById('save');if(s>0){se.style.display='block';se.textContent='Saving '+f(s);}else{se.style.display='none';}}
-  window._t=t;window._s=s;updateSchedDescs();}
-function updateSchedDescs(){/* no-op, descs now inline in seg */}
-function setPaySched(v){S.paySched=v;
-  // Sync all segmented toggles (bottom bar + checkout)
-  document.querySelectorAll('.seg').forEach(seg=>{
-    seg.querySelectorAll('.seg-opt').forEach((o,i)=>{
-      const m=['full','6mo','12mo'][i];
-      o.classList.toggle('sel',m===v);
-    });
-  });
-  // Update bottom bar total
-  const t=window._t;
-  if(v==='full')document.getElementById('total').textContent=f(t);
-  else if(v==='6mo')document.getElementById('total').textContent=f(Math.ceil(t/6))+'/mo';
-  else document.getElementById('total').textContent=f(Math.ceil(t/12))+'/mo';
-  // Update review total if visible
-  const rt=document.getElementById('review-total');
-  if(rt){if(v==='full')rt.textContent=f(t);else if(v==='6mo')rt.textContent=f(Math.ceil(t/6))+'/mo';else rt.textContent=f(Math.ceil(t/12))+'/mo';}
-}
+  window._t=t;window._s=s;}
 recalc();
 
 function scrollToForm(){const el=document.getElementById('pricing-form');const y=el.getBoundingClientRect().top+window.pageYOffset-40;window.scrollTo({top:y,behavior:'smooth'});}
@@ -254,12 +193,10 @@ function addParent(){if(parentCount>=2)return;parentCount++;const id=parentCount
 function removeParent(id){document.getElementById('pb-'+id)?.remove();parentCount--;document.getElementById('add-parent-btn').style.display='';}
 
 function buildReview(){const m=S.twins?2:1;const pl=S.product==='cb'?'Cord Blood':'Cord Blood & Tissue';const pn={annual:'Pay year by year','18year':'18-Year Prepaid',lifetime:'Lifetime'}[S.plan];let lines=`<div class="order-line"><span class="order-line-label">${pl} — ${pn}${S.twins?' (×2)':''}</span><span class="order-line-val">${f(D[S.product].plans[S.plan].total*m)}</span></div>`;const names={pba:'Public Bank Access',pbaPlus:'Public Bank Access+',hla:'HLA Matching',nga:'NGA'};Object.keys(S.addons).forEach(k=>{if(!S.addons[k])return;const free=k==='pba'&&S.product==='cbt';const price=free?0:k==='hla'&&S.plan!=='annual'?Ad.hlaP:Ad[k];lines+=`<div class="order-line"><span class="order-line-label">${names[k]}${S.twins?' (×2)':''}</span><span class="${free?'order-line-free':'order-line-val'}">${free?'FREE':f(price*m)}</span></div>`;});document.getElementById('review-lines').innerHTML=lines;
-  // Set review total based on current payment schedule
-  const t=window._t;const v=S.paySched||'full';
-  const rt=document.getElementById('review-total');
+  const t=window._t;const v=S.paySched||'full';const rt=document.getElementById('review-total');
   if(v==='full')rt.textContent=f(t);else if(v==='6mo')rt.textContent=f(Math.ceil(t/6))+'/mo';else rt.textContent=f(Math.ceil(t/12))+'/mo';
-  document.getElementById('review-save').textContent=window._s>0?'Saving '+f(window._s):'';
-  updateSchedDescs();}
+  document.getElementById('review-save').textContent=window._s>0?'Saving '+f(window._s):'';}
+function setPaySched(v){S.paySched=v;document.querySelectorAll('.seg').forEach(seg=>{seg.querySelectorAll('.seg-opt').forEach((o,i)=>{const m=['full','6mo','12mo'][i];o.classList.toggle('sel',m===v);});});const t=window._t;if(v==='full')document.getElementById('total').textContent=f(t);else if(v==='6mo')document.getElementById('total').textContent=f(Math.ceil(t/6))+'/mo';else document.getElementById('total').textContent=f(Math.ceil(t/12))+'/mo';const rt=document.getElementById('review-total');if(rt){if(v==='full')rt.textContent=f(t);else if(v==='6mo')rt.textContent=f(Math.ceil(t/6))+'/mo';else rt.textContent=f(Math.ceil(t/12))+'/mo';}}
 function setPayMethod(m){document.querySelectorAll('.pay-tab').forEach(t=>t.classList.remove('sel'));document.getElementById('pm-'+m).classList.add('sel');document.getElementById('cc-fields').style.display=m==='card'?'block':'none';document.getElementById('wallet-msg').style.display=m!=='card'?'block':'none';if(m==='apple'){document.getElementById('wallet-icon').textContent='🍎';document.getElementById('wallet-title').textContent='Apple Pay';}if(m==='google'){document.getElementById('wallet-icon').textContent='🔵';document.getElementById('wallet-title').textContent='Google Pay';}}
 function toggleBilling(){const cb=document.getElementById('billing-same');document.getElementById('billing-fields').style.display=cb.checked?'none':'block';}
 
@@ -269,7 +206,7 @@ const CSV=`<svg viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg"><defs><
 const QS=[
   {bot:"Let's build your plan! 4 quick questions.<br><br><strong>Do you have other children?</strong>",ch:[{id:'siblings',val:'first',t:'This is our first'},{id:'siblings',val:'yes',t:'Yes, we have other children'},{id:'siblings',val:'multiples',t:'Expecting twins or multiples'}]},
   {bot:a=>`${a.siblings==='first'?'Got it!':'Noted!'}<br><br><strong>Who do you want stem cell protection for?</strong>`,ch:[{id:'who',val:'baby',t:'Just my baby'},{id:'who',val:'extra',t:'My baby, with extra coverage for more conditions'},{id:'who',val:'parents',t:'My baby and both parents'}]},
-  {bot:'<strong>What kinds of conditions do you want to be prepared for?</strong><span class="cc-edu">Cord blood treats blood and immune conditions. Cord tissue contains a different stem cell type (MSCs) being studied for neurological, orthopedic, and tissue repair therapies.</span>',ch:[{id:'conditions',val:'blood',t:'Blood and immune conditions'},{id:'conditions',val:'broad',t:'Blood, immune, and neurological or tissue-related'},{id:'conditions',val:'unsure',t:"I'm not sure \u2014 what do you recommend?"}]},
+  {bot:'<strong>What kinds of conditions do you want to be prepared for?</strong><span class="cc-edu">Cord blood treats blood and immune conditions. Cord tissue contains a different stem cell type (MSCs) being studied for neurological, orthopedic, and tissue repair therapies.</span>',ch:[{id:'conditions',val:'blood',t:'Blood and immune conditions'},{id:'conditions',val:'broad',t:'Blood, immune, and neurological or tissue-related'},{id:'conditions',val:'unsure',t:"I\u2019m not sure \u2014 what do you recommend?"}]},
   {bot:'<strong>Would you want to screen your baby for genetic health risks at birth?</strong><span class="cc-edu">Newborn genetic analysis can identify inherited conditions early \u2014 sometimes before symptoms appear.</span>',ch:[{id:'genetic',val:'yes',t:"Yes, I'd want to know early"},{id:'genetic',val:'maybe',t:"Maybe \u2014 I'd like to learn more"},{id:'genetic',val:'no',t:'No, not interested'}]}
 ];
 const LBL={'siblings:first':'First child','siblings:yes':'Other children','siblings:multiples':'Twins/multiples','who:baby':'Just my baby','who:extra':'Extra coverage','who:parents':'Baby + both parents','conditions:blood':'Blood & immune','conditions:broad':'Broad coverage','conditions:unsure':'Not sure','genetic:yes':'Screen early','genetic:maybe':'Maybe','genetic:no':'No'};
@@ -277,48 +214,43 @@ const LBL={'siblings:first':'First child','siblings:yes':'Other children','sibli
 let cA={},cStep=0;
 const cMsg=document.getElementById('cc-msg'),cCh=document.getElementById('cc-ch');
 
-function startCelly(){document.getElementById('celly-head').style.display='none';document.getElementById('celly-chat').classList.add('open');document.getElementById('cc-av').innerHTML=CSV;cStep=0;showCQ(0);}
+function startCelly(){
+  document.getElementById('celly-banner').style.display='none';
+  document.getElementById('celly-chat').classList.add('open');
+  document.getElementById('cc-av').innerHTML=CSV;
+  cStep=0;showCQ(0);
+}
+function closeCelly(){
+  document.getElementById('celly-chat').classList.remove('open');
+  document.getElementById('celly-banner').style.display='flex';
+}
 function showCQ(s){const q=QS[s];const bot=typeof q.bot==='function'?q.bot(cA):q.bot;cMsg.innerHTML=`<div class="cc-bubble">${bot}</div>`;cCh.innerHTML=`<div class="cc-choices">${q.ch.map(c=>`<button class="cc-choice" onclick="cPick('${c.id}','${c.val}')">${c.t}</button>`).join('')}</div>`;}
 
 function cPick(k,v){
   cA[k]=v;cStep++;
   cMsg.innerHTML+=`<div class="cc-user"><div class="cc-user-bub">${LBL[k+':'+v]||v}</div></div>`;
   cCh.innerHTML='';
-
-  // Inline Celly responses for "not sure" and "maybe"
-  if(k==='conditions'&&v==='unsure'){
-    showCellyResponse("I'd go with <strong>cord blood & tissue</strong> \u2014 it gives you two types of stem cells instead of one, covering blood, immune, <em>and</em> neurological/tissue conditions. Plus, Public Bank Access is included free with it. I'll set that up for you!");
-    return;
-  }
-  if(k==='genetic'&&v==='maybe'){
-    showCellyResponse("NGA screens your baby's cord blood for inherited genetic conditions at birth \u2014 things like metabolic disorders or immune deficiencies, sometimes before symptoms ever show up. It's $399 and totally optional. I'll flag it for you so you can decide!");
-    return;
-  }
+  if(k==='conditions'&&v==='unsure'){showCellyResponse("I'd go with <strong>cord blood & tissue</strong> \u2014 it gives you two types of stem cells instead of one, covering blood, immune, <em>and</em> neurological/tissue conditions. Plus, Public Bank Access is included free with it. I'll set that up for you!");return;}
+  if(k==='genetic'&&v==='maybe'){showCellyResponse("NGA screens your baby's cord blood for inherited genetic conditions at birth \u2014 things like metabolic disorders or immune deficiencies, sometimes before symptoms ever show up. It's $399 and totally optional. I'll flag it for you so you can decide!");return;}
   setTimeout(()=>advanceQ(),400);
 }
 
 function showCellyResponse(msg){
-  let pendingEdu = null;
   setTimeout(()=>{
     cMsg.querySelectorAll('.cc-bubble,.cc-user').forEach(b=>b.classList.add('out'));
     setTimeout(()=>{
       cMsg.innerHTML=`<div class="cc-typing"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>`;
       setTimeout(()=>{
         cMsg.innerHTML=`<div class="cc-bubble cc-edu-persist">${msg}</div>`;
-        // After reading time, show typing then next question below the edu message
         setTimeout(()=>{
           cMsg.innerHTML+=`<div class="cc-typing" style="margin-top:8px"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>`;
           setTimeout(()=>{
-            // Remove typing dots but keep edu bubble
             cMsg.querySelectorAll('.cc-typing').forEach(t=>t.remove());
             if(cStep<QS.length){
-              const q=QS[cStep];
-              const bot=typeof q.bot==='function'?q.bot(cA):q.bot;
+              const q=QS[cStep];const bot=typeof q.bot==='function'?q.bot(cA):q.bot;
               cMsg.innerHTML+=`<div class="cc-bubble" style="margin-top:8px">${bot}</div>`;
               cCh.innerHTML=`<div class="cc-choices">${q.ch.map(c=>`<button class="cc-choice" onclick="cPick('${c.id}','${c.val}')">${c.t}</button>`).join('')}</div>`;
-            } else {
-              applyCelly();
-            }
+            } else {applyCelly();}
           },400+Math.random()*300);
         },2000);
       },600);
@@ -330,76 +262,104 @@ function advanceQ(){
   cMsg.querySelectorAll('.cc-bubble,.cc-user').forEach(b=>b.classList.add('out'));
   setTimeout(()=>{
     cMsg.innerHTML=`<div class="cc-typing"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>`;
-    setTimeout(()=>{
-      if(cStep<QS.length)showCQ(cStep);
-      else applyCelly();
-    },400+Math.random()*300);
+    setTimeout(()=>{if(cStep<QS.length)showCQ(cStep);else applyCelly();},400+Math.random()*300);
   },250);
 }
 
 function applyCelly(){
   cMsg.innerHTML=`<div class="cc-bubble">All set! \ud83c\udf89 I've configured your plan below. Adjust anything you like!</div>`;
-  cCh.innerHTML=`<button class="cc-close" onclick="document.getElementById('celly-chat').classList.remove('open');document.getElementById('celly-head').style.display='block'">Close</button>`;
+  cCh.innerHTML=`<button class="cc-close" onclick="closeCelly()">Close</button>`;
+  S.interacted=true;
   document.querySelectorAll('.celly-tag').forEach(t=>{t.className='celly-tag';t.innerHTML='';});
-
   setProd(cA.conditions==='broad'||cA.conditions==='unsure'?'cbt':'cb');
-  const plan='18year';
-  const planEl=document.querySelectorAll('#plans .row')[1];
-  setPlan(plan,planEl);
-
+  const prodKey=cA.conditions==='broad'||cA.conditions==='unsure'?'cbt':'cb';
+  const prodReason=prodKey==='cbt'?"You wanted coverage for neurological and tissue conditions too \u2014 cord tissue adds a second type of stem cell.":"You chose to focus on blood and immune conditions \u2014 cord blood covers that.";
+  setTag('ct-'+prodKey,'pick',"Celly's pick",prodReason);
+  const plan='18year';const planEl=document.querySelectorAll('#plans .row')[1];setPlan(plan,planEl);
   ['pba','pbaPlus','hla','nga'].forEach(k=>{S.addons[k]=false;document.getElementById('a-'+(k==='pbaPlus'?'pp':k)).classList.remove('sel');});
-
-  if(cA.who==='extra'||cA.who==='parents'){S.addons.pba=true;document.getElementById('a-pba').classList.add('sel');setTag('ct-pba','pick',"Celly's pick","You wanted extra coverage for more conditions — PBA gives your child access to additional matching stem cells.");}
-  if(cA.who==='parents'){S.addons.pbaPlus=true;document.getElementById('a-pp').classList.add('sel');setTag('ct-pbaPlus','pick',"Celly's pick","You wanted coverage for both parents — PBA+ gives them access to cord blood treatments too.");}
-  if(cA.siblings==='yes'||cA.siblings==='multiples'){S.addons.hla=true;document.getElementById('a-hla').classList.add('sel');setTag('ct-hla','pick',"Celly's pick","You have other children — HLA matching checks if your baby's cord blood is compatible with siblings.");}
+  if(cA.who==='extra'||cA.who==='parents'){S.addons.pba=true;document.getElementById('a-pba').classList.add('sel');setTag('ct-pba','pick',"Celly's pick","You wanted extra coverage for more conditions \u2014 PBA gives your child access to additional matching stem cells.");}
+  if(cA.who==='parents'){S.addons.pbaPlus=true;document.getElementById('a-pp').classList.add('sel');setTag('ct-pbaPlus','pick',"Celly's pick","You wanted coverage for both parents \u2014 PBA+ gives them access to cord blood treatments too.");}
+  if(cA.siblings==='yes'||cA.siblings==='multiples'){S.addons.hla=true;document.getElementById('a-hla').classList.add('sel');setTag('ct-hla','pick',"Celly's pick","You have other children \u2014 HLA matching checks if your baby's cord blood is compatible with siblings.");}
   if(cA.genetic==='yes'){S.addons.nga=true;document.getElementById('a-nga').classList.add('sel');setTag('ct-nga','pick',"Celly's pick","You said you'd want to know about genetic health risks as early as possible.");}
-  else if(cA.genetic==='maybe'){setTag('ct-nga','suggest',"Celly suggests","You were interested in learning more — NGA screens for inherited conditions at birth. Optional but worth considering.");}
-
+  else if(cA.genetic==='maybe'){setTag('ct-nga','suggest',"Celly suggests","You were interested in learning more \u2014 NGA screens for inherited conditions at birth. Optional but worth considering.");}
   recalc();
 }
-
-function setTag(id,cls,label,reason){
-  const t=document.getElementById(id);
-  t.className='celly-tag '+cls;
-  t.innerHTML=label+'<span class="ct-q">?</span><span class="ct-tip">'+reason+'</span>';
-}
-
-document.addEventListener('click',function(e){});
+function setTag(id,cls,label,reason){const t=document.getElementById(id);t.className='celly-tag '+cls;t.innerHTML=label+'<span class="ct-q">?</span><span class="ct-tip">'+reason+'</span>';}
 </script>
 
 </BaseLayout>
 
 <style is:global>
-/* HERO */
-.hero { position:relative; min-height:540px; display:flex; align-items:flex-end; overflow:hidden; }
+/* HERO (compact) */
+.hero { position:relative; min-height:380px; display:flex; align-items:flex-end; overflow:hidden; }
 .vig { position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.5) 65%,rgba(0,0,0,0.72) 100%); z-index:1; }
-.ct { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:180px 48px 72px; width:100%; }
-.lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:12px; }
-.hero h1 { font-family:'Playfair Display',serif; font-size:48px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; max-width:600px; margin-bottom:16px; color:#fff; }
+.ct { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:120px 48px 56px; width:100%; }
+.lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:10px; }
+.hero h1 { font-family:'Playfair Display',serif; font-size:42px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; max-width:560px; margin-bottom:12px; color:#fff; }
 .hero h1 em { font-style:italic; color:#E8A0D0; }
-.sub { font-size:17px; color:rgba(255,255,255,0.55); max-width:540px; line-height:1.7; }
+.sub { font-size:16px; color:rgba(255,255,255,0.5); max-width:480px; line-height:1.65; }
+
 :root{--plum:#6C1A55;--plum-dark:#3D0F31;--plum-light:rgba(108,26,85,0.05);--cream:#FAF7F2;--lavender:#F3F0F8;--green:#3D8B6A;--green-light:rgba(61,139,106,0.08);--pink:#E8A0D0;--pink-soft:#F5E0EF;--muted:#8A857A;--border:#E8E2DC;--text:#2C2A26;--text-light:#6B6760}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);-webkit-font-smoothing:antialiased}
 
-.page{max-width:1060px;margin:0 auto;padding:60px 32px 140px;display:grid;grid-template-columns:1fr 300px;gap:32px;align-items:start}
-.main{min-width:0}
-.sidebar{position:sticky;top:32px;padding-top:60px}
+/* Compact hero */
+.hero{position:relative;min-height:380px;display:flex;align-items:flex-end;overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+.vig{position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.5) 65%,rgba(0,0,0,0.72) 100%);z-index:1}
+.ct{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:120px 48px 56px;width:100%}
+.lbl{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#E8A0D0;margin-bottom:10px}
+.hero h1{font-family:'Playfair Display',serif;font-size:42px;font-weight:400;line-height:1.1;letter-spacing:-1.5px;max-width:560px;margin-bottom:12px;color:#fff}
+.hero h1 em{font-style:italic;color:#E8A0D0}
+.sub{font-size:16px;color:rgba(255,255,255,0.5);max-width:480px;line-height:1.65}
 
+/* Centered single-column calc */
+.page{max-width:640px;margin:0 auto;padding:48px 32px 140px}
+
+/* Celly banner */
+.celly-banner{background:#fff;border:1px solid var(--border);border-radius:16px;padding:16px 20px;display:flex;align-items:center;gap:14px;cursor:pointer;transition:all 0.25s;box-shadow:0 1px 6px rgba(108,26,85,0.04);margin-bottom:28px}
+.celly-banner:hover{border-color:var(--pink);box-shadow:0 4px 16px rgba(108,26,85,0.08)}
+.celly-banner-av{width:44px;height:48px;flex-shrink:0}
+.celly-banner-text{flex:1}
+.celly-banner-title{font-size:14px;font-weight:700}
+.celly-banner-sub{font-size:12px;color:var(--muted)}
+.celly-banner-arrow{font-size:13px;font-weight:700;color:var(--plum);white-space:nowrap}
+
+/* Celly chat (expands inside banner area) */
+.celly-chat{display:none;background:#fff;border:1px solid var(--border);border-radius:16px;padding:20px;margin-bottom:28px;box-shadow:0 2px 16px rgba(108,26,85,0.06)}
+.celly-chat.open{display:block;animation:fadeIn 0.3s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.cc-row{display:flex;align-items:flex-start;gap:10px}
+.cc-av{width:44px;height:48px;flex-shrink:0}
+.cc-name{font-size:10px;font-weight:700;color:var(--plum);letter-spacing:0.5px;margin-bottom:3px}
+.cc-bubble{background:var(--lavender);padding:12px 14px;border-radius:14px 14px 14px 4px;font-size:13px;line-height:1.55}
+.cc-bubble.out{animation:fadeOut 0.25s ease forwards}
+@keyframes fadeOut{from{opacity:1}to{opacity:0;transform:translateY(-6px)}}
+.cc-edu{display:block;margin-top:6px;padding:6px 10px;background:rgba(108,26,85,0.04);border-radius:6px;font-size:11px;color:var(--text-light);line-height:1.4}
+.cc-user{display:flex;justify-content:flex-end;margin-top:8px}
+.cc-user-bub{background:var(--plum);color:#fff;padding:8px 14px;border-radius:14px 14px 4px 14px;font-size:12px;font-weight:600}
+.cc-choices{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+.cc-choice{padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;cursor:pointer;background:#fff;text-align:left;line-height:1.3;transition:all 0.2s}
+.cc-choice:hover{border-color:var(--pink);color:var(--plum);background:var(--pink-soft)}
+.cc-typing{display:inline-flex;gap:4px;background:var(--lavender);padding:10px 16px;border-radius:14px 14px 14px 4px}
+.cc-dot{width:7px;height:7px;border-radius:50%;background:#C4BDD0;animation:bounce 1.2s infinite}
+.cc-dot:nth-child(2){animation-delay:.15s}.cc-dot:nth-child(3){animation-delay:.3s}
+@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+.cc-close{display:inline-block;margin-top:10px;padding:6px 16px;font-size:11px;color:var(--muted);background:none;border:1px solid var(--border);border-radius:100px;cursor:pointer;font-family:'Lato',sans-serif}
+
+/* Calculator */
 .sec{margin-bottom:32px}
 .sec-t{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin-bottom:12px}
 .sec-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
-
-.product{display:flex;gap:0;margin-bottom:32px;background:#fff;border:1px solid var(--border);border-radius:100px;padding:4px;max-width:440px;margin-left:auto;margin-right:auto}
-.po{flex:1;padding:14px 20px;text-align:center;border-radius:100px;cursor:pointer;transition:all 0.2s;font-size:15px;font-weight:700}
+.product{display:flex;gap:0;background:#fff;border:1px solid var(--border);border-radius:16px;padding:4px}
+.po{flex:1;padding:14px 20px;text-align:center;border-radius:13px;cursor:pointer;transition:all 0.2s;font-size:15px;font-weight:700}
 .po:hover{background:var(--lavender)}
 .po.sel{background:var(--plum);color:#fff}
 .po-p{font-family:'Source Serif 4',serif;font-weight:400;font-size:13px;margin-top:1px;opacity:0.6}
 .po.sel .po-p{color:rgba(255,255,255,0.6)}
-
 .list{display:flex;flex-direction:column}
 .row{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;background:#fff;border:1px solid var(--border);cursor:pointer;transition:all 0.15s;margin-top:-1px;position:relative}
-.row:first-child{border-radius:14px 14px 0 0}.row:last-child{border-radius:0 0 14px 14px}.row:only-child{border-radius:14px}
+.row:first-child{border-radius:14px 14px 0 0}.row:last-child{border-radius:0 0 14px 14px}
 .row:hover{background:rgba(108,26,85,0.02)}
 .row.sel{background:var(--plum-light);border-color:var(--plum);z-index:1}
 .row-l{display:flex;align-items:center;gap:12px}
@@ -412,37 +372,26 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);-we
 .badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap}
 .badge-pop{background:var(--plum);color:#fff}
 .badge-save{background:var(--green-light);color:var(--green)}
-
 .tog{display:flex;align-items:center;justify-content:space-between;padding:14px 22px;background:#fff;border:1px solid var(--border);cursor:pointer;transition:all 0.15s;margin-top:-1px;position:relative}
 .tog:first-child{border-radius:14px 14px 0 0}.tog:last-child{border-radius:0 0 14px 14px}
 .tog:hover{background:rgba(108,26,85,0.02)}
 .sw{width:38px;height:20px;border-radius:10px;background:var(--border);position:relative;flex-shrink:0;transition:background 0.2s}
 .sw::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 0.2s;box-shadow:0 1px 2px rgba(0,0,0,0.1)}
 .tog.sel .sw{background:var(--plum)}.tog.sel .sw::after{transform:translateX(18px)}
-
-.twins-row{display:flex;align-items:center;gap:12px;padding:14px 22px;background:#fff;border:1px solid var(--border);border-radius:14px;cursor:pointer;transition:all 0.15s}
-.twins-row:hover{background:rgba(108,26,85,0.02)}
-.twins-check{width:20px;height:20px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0}
-.twins-row.sel .twins-check{background:var(--plum);border-color:var(--plum)}
-
 .celly-tag{display:none;font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:2px 8px;border-radius:100px;margin-left:8px;white-space:nowrap;position:relative;cursor:default}
 .celly-tag.pick{display:inline-block;background:var(--pink-soft);color:var(--plum)}
 .celly-tag.suggest{display:inline-block;background:var(--lavender);color:var(--muted)}
 .celly-tag .ct-q{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:rgba(108,26,85,0.1);color:var(--plum);font-size:9px;font-weight:700;margin-left:4px;cursor:help;vertical-align:middle;font-style:normal;letter-spacing:0;text-transform:none}
-.celly-tag .ct-tip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--plum-dark);color:#fff;font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;padding:8px 12px;border-radius:8px;white-space:normal;width:200px;line-height:1.4;z-index:60;box-shadow:0 4px 16px rgba(0,0,0,0.15);pointer-events:none}
+.celly-tag .ct-tip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:var(--plum-dark);color:#fff;font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;padding:8px 12px;border-radius:8px;white-space:normal;width:200px;line-height:1.4;z-index:60;box-shadow:0 4px 16px rgba(0,0,0,0.15)}
 .celly-tag .ct-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--plum-dark)}
 .celly-tag:hover .ct-tip{display:block}
 
-.sched-opt:hover{background:var(--lavender)}
-.sched-opt.sel{background:var(--plum-light)}
-
+/* Checkout */
 .checkout{display:none}.checkout.active{display:block;animation:fadeIn 0.3s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
 .step-indicator{display:flex;gap:4px;margin-bottom:32px;padding:8px 0}
 .step-pip{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background 0.3s;cursor:pointer}
 .step-pip.done{background:var(--pink)}.step-pip.active{background:var(--plum)}
 .step-pip:hover{background:var(--pink);opacity:0.8}
-
 .form-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;display:block}
 .form-input{width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;outline:none;background:#fff;transition:border-color 0.2s}
 .form-input:focus{border-color:var(--plum)}
@@ -450,18 +399,20 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);-we
 .form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
 .form-full{margin-bottom:12px}
 .form-select{width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;outline:none;background:#fff;cursor:pointer}
-
 .add-parent-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:100px;border:1px dashed var(--border);background:transparent;color:var(--muted);font-family:'Lato',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:4px}
 .add-parent-btn:hover{border-color:var(--plum);color:var(--plum);background:var(--pink-soft)}
-.parent-block{background:var(--lavender);border-radius:12px;padding:20px;margin-top:12px;position:relative}
+.parent-block{background:var(--lavender);border-radius:12px;padding:20px;margin-top:12px}
 .parent-block-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .parent-block-title{font-size:13px;font-weight:700;color:var(--plum)}
 .remove-parent{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:'Lato',sans-serif;text-decoration:underline}
-
+.twins-row{display:flex;align-items:center;gap:12px;padding:14px 22px;background:#fff;border:1px solid var(--border);border-radius:14px;cursor:pointer;transition:all 0.15s}
+.twins-row:hover{background:rgba(108,26,85,0.02)}
+.twins-check{width:20px;height:20px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0}
+.twins-row.sel .twins-check{background:var(--plum);border-color:var(--plum)}
 .checkbox-row{display:flex;align-items:center;gap:10px;margin:16px 0;cursor:pointer}
 .checkbox-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--plum);cursor:pointer}
 .checkbox-row label{font-size:13px;color:var(--text-light);cursor:pointer}
-
+.divider{height:1px;background:var(--border);margin:28px 0}
 .order-card{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:24px}
 .order-head{background:linear-gradient(160deg,var(--plum),var(--plum-dark));padding:20px;color:#fff}
 .order-head-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.5;margin-bottom:4px}
@@ -473,76 +424,37 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);-we
 .order-line-label{color:var(--text-light)}
 .order-line-val{font-weight:700}
 .order-line-free{color:var(--green);font-weight:700}
-
-.payment-opts{display:flex;flex-direction:column;gap:8px;margin-bottom:24px}
-.pay-opt{display:flex;align-items:center;padding:16px 22px;background:#fff;border:2px solid var(--border);border-radius:14px;cursor:pointer;transition:all 0.15s}
-.pay-opt:hover{border-color:var(--pink)}
-.pay-opt.sel{border-color:var(--plum);background:var(--plum-light)}
-.pay-dot{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;transition:all 0.15s;margin-right:12px}
-.pay-opt.sel .pay-dot{border-color:var(--plum);border-width:6px}
-
 .pay-methods{display:flex;gap:8px;margin-bottom:20px}
 .pay-tab{flex:1;padding:14px;text-align:center;border:2px solid var(--border);border-radius:12px;cursor:pointer;font-size:13px;font-weight:700;color:var(--text-light);background:#fff;transition:all 0.2s}
 .pay-tab.sel{border-color:var(--plum);color:var(--plum);background:var(--plum-light)}
 .pay-tab:hover{border-color:var(--pink)}
-
 .wallet-msg{display:none;text-align:center;padding:32px 20px;background:#fff;border:1px solid var(--border);border-radius:14px;margin-bottom:20px}
-
-.divider{height:1px;background:var(--border);margin:28px 0}
-
 .btn-row{display:flex;gap:12px;margin-top:24px}
 .btn-next{flex:1;padding:16px;border-radius:100px;border:none;background:var(--plum);color:#fff;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.25s;text-align:center}
 .btn-next:hover{background:var(--plum-dark)}
 .btn-back{padding:16px 24px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer;transition:all 0.25s}
 .btn-back:hover{border-color:var(--plum);color:var(--plum)}
-
-.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,0.04);min-height:80px}
-.fb-label{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1px}
-.fb-total{font-family:'Source Serif 4',serif;font-size:30px;color:var(--plum)}
-.fb-save{font-size:12px;color:var(--green);font-weight:700}
-
-/* Segmented toggle */
 .seg{display:flex;background:var(--lavender);border-radius:100px;padding:3px;gap:0}
-.seg-opt{padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.2s;white-space:nowrap;text-align:center}
+.seg-opt{padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.2s;white-space:nowrap}
 .seg-opt.sel{background:var(--plum);color:#fff;box-shadow:0 1px 4px rgba(108,26,85,0.15)}
 .seg-opt:hover:not(.sel){color:var(--plum)}
+.bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);padding:14px 48px;display:flex;align-items:center;justify-content:space-between;z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,0.04);min-height:80px}
+.fb-label{font-size:10px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:1px}
+.fb-total{font-family:'Source Serif 4',serif;font-size:28px;color:var(--plum)}
+.fb-save{font-size:11px;color:var(--green);font-weight:700}
 
-/* Celly */
-.celly-card{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 2px 16px rgba(108,26,85,0.06)}
-.celly-head{background:linear-gradient(145deg,#FBF5F9,#fff);padding:20px;text-align:center;border-bottom:1px solid var(--border);cursor:pointer}
-.celly-head:hover{background:#FDF8FC}
-.celly-avatar{width:72px;height:78px;margin:0 auto 10px}
-.celly-title{font-size:15px;font-weight:700;margin-bottom:2px}
-.celly-sub{font-size:12px;color:var(--muted);line-height:1.4}
-.celly-btn{display:inline-block;margin-top:12px;padding:10px 24px;border-radius:100px;background:var(--plum);color:#fff;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;border:none;cursor:pointer}
-.celly-chat{display:none;padding:20px;border-top:1px solid var(--border)}.celly-chat.open{display:block}
-.cc-row{display:flex;align-items:flex-start;gap:10px}
-.cc-av{width:44px;height:48px;flex-shrink:0}
-.cc-name{font-size:10px;font-weight:700;color:var(--plum);letter-spacing:0.5px;margin-bottom:3px}
-.cc-bubble{background:var(--lavender);padding:12px 14px;border-radius:14px 14px 14px 4px;font-size:13px;line-height:1.55}
-.cc-bubble.out{animation:ccOut 0.25s ease forwards}
-@keyframes ccOut{from{opacity:1}to{opacity:0;transform:translateY(-6px)}}
-.cc-edu{display:block;margin-top:6px;padding:6px 10px;background:rgba(108,26,85,0.04);border-radius:6px;font-size:11px;color:var(--text-light);line-height:1.4}
-.cc-user{display:flex;justify-content:flex-end;margin-top:8px}
-.cc-user-bub{background:var(--plum);color:#fff;padding:8px 14px;border-radius:14px 14px 4px 14px;font-size:12px;font-weight:600}
-.cc-choices{display:flex;flex-direction:column;gap:5px;margin-top:10px}
-.cc-choice{padding:10px 14px;border:2px solid var(--border);border-radius:10px;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;cursor:pointer;background:#fff;text-align:left;line-height:1.3;transition:all 0.2s}
-.cc-choice:hover{border-color:var(--pink);color:var(--plum);background:var(--pink-soft)}
-.cc-typing{display:inline-flex;gap:4px;background:var(--lavender);padding:10px 16px;border-radius:14px 14px 14px 4px}
-.cc-dot{width:7px;height:7px;border-radius:50%;background:#C4BDD0;animation:bounce 1.2s infinite}
-.cc-dot:nth-child(2){animation-delay:.15s}.cc-dot:nth-child(3){animation-delay:.3s}
-@keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
-.cc-close{display:block;width:100%;margin-top:10px;padding:8px;font-size:11px;color:var(--muted);background:none;border:1px solid var(--border);border-radius:100px;cursor:pointer;font-family:'Lato',sans-serif;text-align:center}
-
-@media(max-width:800px){
-  .page{grid-template-columns:1fr;padding:32px 20px 140px}
-  .sidebar{position:static;order:-1;padding-top:0}
-  .bottom{padding:12px 20px}.fb-total{font-size:26px}
+@media(max-width:640px){
+  .page{padding:32px 20px 140px}
+  .ct{padding:100px 24px 40px}
+  .hero h1{font-size:32px}
+  .bottom{padding:12px 20px}.fb-total{font-size:24px}
   .form-row,.form-row-3{grid-template-columns:1fr}
   .pay-methods{flex-direction:column}
+  .seg{flex-wrap:wrap;gap:4px}
 }
+
 @media (max-width:900px) {
-  .ct { padding:140px 24px 48px; }
+  .ct { padding:100px 24px 40px; }
   .hero h1 { font-size:34px; }
 }
 @media (max-width:600px) {
