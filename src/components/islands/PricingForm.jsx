@@ -249,6 +249,8 @@ export default function PricingForm() {
   const cellyAnswers = useRef({});
   const cellyStepRef = useRef(0);
   const timerRefs = useRef([]);
+  const lastCellyState = useRef(null);
+  const cellyMounted = useRef(false);
 
   // ── Inject CSS ──
   useEffect(() => {
@@ -261,14 +263,19 @@ export default function PricingForm() {
     }
   }, []);
 
-  // ── Update Celly avatar via innerHTML ──
+  // ── Update Celly avatar via innerHTML — only when state actually changes ──
   useEffect(() => {
     if (!cellyAvRef.current) return;
+    // First mount when chat opens: always inject SVGs
+    // After that: only update if cellyState changed
+    if (cellyMounted.current && lastCellyState.current === cellyState) return;
+    lastCellyState.current = cellyState;
+    cellyMounted.current = true;
     const svgMap = { idle: CELLY_IDLE_SVG, writing: CELLY_WRITING_SVG, happy: CELLY_HAPPY_SVG };
     cellyAvRef.current.innerHTML = Object.entries(svgMap)
       .map(([state, svg]) => svg.replace(`data-state="${state}"`, `data-state="${state}" class="${cellyState === state ? '' : 'off'}"`))
       .join('');
-  }, [cellyState, cellyOpen]);
+  });
 
   // ── Calculations ──
   const isPrepaid = plan !== 'annual';
