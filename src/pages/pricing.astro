@@ -36,22 +36,22 @@ const schema = {
 <div id="builder">
   <div class="product">
     <div class="po" onclick="setProd('cb')">Cord Blood<div class="po-p">$725</div></div>
-    <div class="po" onclick="setProd('cbt')">Blood & Tissue<div class="po-p">$995</div></div>
+    <div class="po sel" onclick="setProd('cbt')">Blood & Tissue<div class="po-p">$995</div></div>
   </div>
   <div class="sec">
     <div class="sec-t">Storage plan</div>
     <div class="list" id="plans">
-      <div class="row" onclick="setPlan('annual',this)"><div class="row-l"><div class="dot"></div><div><div class="row-name">Pay year by year <span class="celly-tag" id="ct-annual"></span></div><div class="row-desc">Most flexible — renew annually</div></div></div><div class="row-r"><div class="row-price" id="pp-a">$200/yr</div></div></div>
-      <div class="row" onclick="setPlan('18year',this)"><div class="row-l"><div class="dot"></div><div><div class="row-name">18-Year Prepaid <span class="celly-tag" id="ct-18year"></span></div><div class="row-desc">One payment, done</div></div></div><div class="row-r"><span class="badge badge-pop">Most popular</span><div class="row-price" id="pp-18">$3,560</div></div></div>
-      <div class="row" onclick="setPlan('lifetime',this)"><div class="row-l"><div class="dot"></div><div><div class="row-name">Lifetime <span class="celly-tag" id="ct-lifetime"></span></div><div class="row-desc">Never pay for storage again</div></div></div><div class="row-r"><span class="badge badge-save" id="ps-l">Saving $2,300</span><div class="row-price" id="pp-l">$5,625</div></div></div>
+      <div class="row" onclick="setPlan('annual',this)"><div class="row-l"><div class="dot"></div><div><div class="row-name">Pay year by year <span class="celly-tag" id="ct-annual"></span></div><div class="row-desc">Most flexible — renew annually</div></div></div><div class="row-r"><div class="row-price" id="pp-a">$995 + $400/yr</div></div></div>
+      <div class="row sel" onclick="setPlan('18year',this)"><div class="row-l"><div class="dot"></div><div><div class="row-name">18-Year Prepaid <span class="celly-tag" id="ct-18year"></span></div><div class="row-desc">One payment, done</div></div></div><div class="row-r"><span class="badge badge-pop">Most popular</span><div class="row-price" id="pp-18">$6,665</div></div></div>
+      <div class="row" onclick="setPlan('lifetime',this)"><div class="row-l"><div class="dot"></div><div><div class="row-name">Lifetime <span class="celly-tag" id="ct-lifetime"></span></div><div class="row-desc">Never pay for storage again</div></div></div><div class="row-r"><span class="badge badge-save" id="ps-l">Saving $4,600</span><div class="row-price" id="pp-l">$10,795</div></div></div>
     </div>
   </div>
   <div class="sec">
     <div class="sec-t">Advanced protection</div>
     <div class="list">
-      <div class="tog" onclick="togAddon('pba',this)" id="a-pba"><div class="row-l"><div class="sw"></div><div><div class="row-name">Public Bank Access <span class="celly-tag" id="ct-pba"></span></div><div class="row-desc">Expanded cell access for your child</div></div></div><div class="row-price" id="ap-pba">$299</div></div>
+      <div class="tog" onclick="togAddon('pba',this)" id="a-pba"><div class="row-l"><div class="sw"></div><div><div class="row-name">Public Bank Access <span class="celly-tag" id="ct-pba"></span></div><div class="row-desc">Expanded cell access for your child</div></div></div><div class="row-price" id="ap-pba">FREE</div></div>
       <div class="tog" onclick="togAddon('pbaPlus',this)" id="a-pp"><div class="row-l"><div class="sw"></div><div><div class="row-name">Public Bank Access+ <span class="celly-tag" id="ct-pbaPlus"></span></div><div class="row-desc">Cord blood access for both parents</div></div></div><div class="row-price">$699</div></div>
-      <div class="tog" onclick="togAddon('hla',this)" id="a-hla"><div class="row-l"><div class="sw"></div><div><div class="row-name">HLA Matching <span class="celly-tag" id="ct-hla"></span></div><div class="row-desc">Sibling compatibility testing</div></div></div><div class="row-price" id="ap-hla">$295</div></div>
+      <div class="tog" onclick="togAddon('hla',this)" id="a-hla"><div class="row-l"><div class="sw"></div><div><div class="row-name">HLA Matching <span class="celly-tag" id="ct-hla"></span></div><div class="row-desc">Sibling compatibility testing</div></div></div><div class="row-price" id="ap-hla">$195</div></div>
       <div class="tog" onclick="togAddon('nga',this)" id="a-nga"><div class="row-l"><div class="sw"></div><div><div class="row-name">NGA <span class="celly-tag" id="ct-nga"></span></div><div class="row-desc">Newborn genetic analysis</div></div></div><div class="row-price">$399</div></div>
     </div>
   </div>
@@ -395,21 +395,18 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);-we
 const D={cb:{plans:{annual:{total:925,processing:725,storage:200,savings:0},'18year':{total:3560,savings:765},lifetime:{total:5625,savings:2300}}},cbt:{plans:{annual:{total:1395,processing:995,storage:400,savings:0},'18year':{total:6665,savings:1530},lifetime:{total:10795,savings:4600}}}};
 const Ad={pba:299,pbaPlus:699,hla:295,hlaP:195,nga:399};
 const f=n=>'$'+n.toLocaleString();
-const S={product:null,plan:null,addons:{},twins:false,interacted:false};
+const S={product:'cbt',plan:'18year',addons:{},twins:false,interacted:false};
 
 function setProd(v){S.product=v;S.interacted=true;document.querySelectorAll('.po').forEach((o,i)=>o.classList.toggle('sel',i===(v==='cb'?0:1)));upPrices();recalc();}
 function setPlan(v,el){S.plan=v;S.interacted=true;if(el){el.parentElement.querySelectorAll('.row').forEach(o=>o.classList.remove('sel'));el.classList.add('sel');}upPrices();recalc();}
-function togAddon(k,el){S.addons[k]=!S.addons[k];el.classList.toggle('sel');recalc();}
-function toggleTwins(){S.twins=!S.twins;document.querySelectorAll('.twins-row').forEach(r=>r.classList.toggle('sel',S.twins));document.querySelectorAll('.twins-svg').forEach(s=>s.style.display=S.twins?'block':'none');recalc();}
-function upPrices(){if(!S.product)return;const p=D[S.product].plans;document.getElementById('pp-a').textContent=f(p.annual.processing)+' + '+f(p.annual.storage)+'/yr';document.getElementById('pp-18').textContent=f(p['18year'].total);document.getElementById('pp-l').textContent=f(p.lifetime.total);document.getElementById('ps-l').textContent='Saving '+f(p.lifetime.savings);document.getElementById('ap-pba').textContent=S.product==='cbt'?'FREE':'$299';document.getElementById('ap-hla').textContent=S.plan!=='annual'?'$195':'$295';}
+function togAddon(k,el){S.addons[k]=!S.addons[k];S.interacted=true;el.classList.toggle('sel');recalc();}
+function toggleTwins(){S.twins=!S.twins;S.interacted=true;document.querySelectorAll('.twins-row').forEach(r=>r.classList.toggle('sel',S.twins));document.querySelectorAll('.twins-svg').forEach(s=>s.style.display=S.twins?'block':'none');recalc();}
+function upPrices(){const p=D[S.product].plans;document.getElementById('pp-a').textContent=f(p.annual.processing)+' + '+f(p.annual.storage)+'/yr';document.getElementById('pp-18').textContent=f(p['18year'].total);document.getElementById('pp-l').textContent=f(p.lifetime.total);document.getElementById('ps-l').textContent='Saving '+f(p.lifetime.savings);document.getElementById('ap-pba').textContent=S.product==='cbt'?'FREE':'$299';document.getElementById('ap-hla').textContent=S.plan!=='annual'?'$195':'$295';}
 function recalc(){
-  if(!S.product||!S.plan){document.getElementById('total').textContent='\u2013';document.getElementById('save').style.display='none';window._t=0;window._s=0;return;}
   const m=S.twins?2:1;let t=D[S.product].plans[S.plan].total*m;let s=D[S.product].plans[S.plan].savings*m;const ip=S.plan!=='annual';Object.keys(S.addons).forEach(k=>{if(!S.addons[k])return;if(k==='pba'&&S.product==='cbt'){s+=299*m;}else if(k==='hla'){t+=(ip?Ad.hlaP:Ad.hla)*m;if(ip)s+=100*m;}else{t+=Ad[k]*m;}});
-  const v=S.paySched||'full';
-  if(v==='full')document.getElementById('total').textContent=f(t);
-  else if(v==='6mo')document.getElementById('total').textContent=f(Math.ceil(t/6))+'/mo';
-  else document.getElementById('total').textContent=f(Math.ceil(t/12))+'/mo';
-  const se=document.getElementById('save');if(s>0){se.style.display='block';se.textContent='Saving '+f(s);}else{se.style.display='none';}window._t=t;window._s=s;updateSchedDescs();}
+  if(!S.interacted){document.getElementById('total').textContent='\u2013';document.getElementById('save').style.display='none';}
+  else{const v=S.paySched||'full';if(v==='full')document.getElementById('total').textContent=f(t);else if(v==='6mo')document.getElementById('total').textContent=f(Math.ceil(t/6))+'/mo';else document.getElementById('total').textContent=f(Math.ceil(t/12))+'/mo';const se=document.getElementById('save');if(s>0){se.style.display='block';se.textContent='Saving '+f(s);}else{se.style.display='none';}}
+  window._t=t;window._s=s;updateSchedDescs();}
 function updateSchedDescs(){/* no-op, descs now inline in seg */}
 function setPaySched(v){S.paySched=v;
   // Sync all segmented toggles (bottom bar + checkout)
