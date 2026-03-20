@@ -279,8 +279,8 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);-we
 
 .checkout{display:none}.checkout.active{display:block;animation:fadeIn 0.3s ease}
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.step-indicator{display:flex;gap:4px;margin-bottom:32px}
-.step-pip{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background 0.3s;cursor:pointer;padding:10px 0;background-clip:content-box}
+.step-indicator{display:flex;gap:4px;margin-bottom:32px;padding:8px 0}
+.step-pip{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background 0.3s;cursor:pointer}
 .step-pip.done{background:var(--pink)}.step-pip.active{background:var(--plum)}
 .step-pip:hover{background:var(--pink);opacity:0.8}
 
@@ -423,9 +423,9 @@ function setPaySched(v){S.paySched=v;
 }
 recalc();
 
-function goCheckout(){document.getElementById('builder').style.display='none';document.getElementById('ck').style.display='block';ckNext(1);document.getElementById('pricing-form').scrollIntoView({behavior:'smooth'});}
+function scrollToForm(){const el=document.getElementById('pricing-form');const y=el.getBoundingClientRect().top+window.pageYOffset-40;window.scrollTo({top:y,behavior:'smooth'});}document.getElementById('builder').style.display='none';document.getElementById('ck').style.display='block';ckNext(1);scrollToForm();}
 function backToBuilder(){document.getElementById('builder').style.display='block';document.getElementById('ck').style.display='none';}
-function ckNext(n){[1,2,3].forEach(i=>{const el=document.getElementById('ck-'+i);el.classList.toggle('active',i===n);el.style.display=i===n?'block':'none';});document.querySelectorAll('.step-pip').forEach((p,i)=>{p.className='step-pip';if(i<n-1)p.classList.add('done');if(i===n-1)p.classList.add('active');});if(n===3)buildReview();document.getElementById('pricing-form').scrollIntoView({behavior:'smooth'});}
+function ckNext(n){[1,2,3].forEach(i=>{const el=document.getElementById('ck-'+i);el.classList.toggle('active',i===n);el.style.display=i===n?'block':'none';});document.querySelectorAll('.step-pip').forEach((p,i)=>{p.className='step-pip';if(i<n-1)p.classList.add('done');if(i===n-1)p.classList.add('active');});if(n===3)buildReview();scrollToForm();}
 
 function roleChanged(id){const v=document.getElementById('role-'+id).value;const bm=document.getElementById('bm-fields-'+id);if(bm)bm.style.display=v==='birth_mother'?'grid':'none';const ot=document.getElementById('other-fields-'+id);if(ot)ot.style.display=v==='other'?'block':'none';}
 let parentCount=0;
