@@ -252,10 +252,12 @@ export default function PricingForm() {
 
   // ── Refs ──
   const cellyAvRef = useRef(null);
+  const cellyBannerRef = useRef(null);
   const cellyAnswers = useRef({});
   const cellyStepRef = useRef(0);
   const timerRefs = useRef([]);
   const cellyAvInjected = useRef(false);
+  const cellyBannerInjected = useRef(false);
 
   // ── Inject CSS ──
   useEffect(() => {
@@ -268,7 +270,14 @@ export default function PricingForm() {
     }
   }, []);
 
-  // ── Inject Celly SVGs once, then only toggle .off class ──
+  // ── Inject Celly banner SVG once (prevents animation reset on re-render) ──
+  useEffect(() => {
+    if (!cellyBannerRef.current || cellyBannerInjected.current) return;
+    cellyBannerRef.current.innerHTML = CELLY_BANNER_SVG;
+    cellyBannerInjected.current = true;
+  });
+
+  // ── Inject Celly chat SVGs once, then only toggle .off class ──
   useEffect(() => {
     if (!cellyAvRef.current) return;
     // Inject all 3 SVGs once
@@ -583,18 +592,15 @@ export default function PricingForm() {
   return (
     <>
       <div className="pf-page" id="pricing-form">
-        {view === 'builder' && (
-          <div>
-            {bannerVisible && (
-              <div className="celly-banner" onClick={startCelly}>
-                <div className="celly-banner-av" style={{ width: 72, height: 78, overflow: 'hidden', flexShrink: 0 }} dangerouslySetInnerHTML={{ __html: CELLY_BANNER_SVG }} />
-                <div className="celly-banner-text">
-                  <div className="celly-banner-title">Not sure where to start?</div>
-                  <div className="celly-banner-sub">Answer 4 quick questions and Celly will build a personalized plan for you.</div>
-                </div>
-                <div className="celly-banner-arrow">Help me choose →</div>
+        <div style={view === 'builder' ? {} : { display: 'none' }}>
+            <div className="celly-banner" onClick={startCelly} style={bannerVisible ? {} : { display: 'none' }}>
+              <div className="celly-banner-av" ref={cellyBannerRef} style={{ width: 72, height: 78, overflow: 'hidden', flexShrink: 0 }} />
+              <div className="celly-banner-text">
+                <div className="celly-banner-title">Not sure where to start?</div>
+                <div className="celly-banner-sub">Answer 4 quick questions and Celly will build a personalized plan for you.</div>
               </div>
-            )}
+              <div className="celly-banner-arrow">Help me choose →</div>
+            </div>
 
             <div className={`celly-chat${cellyOpen ? ' open' : ''}`}>
               <div className="cc-row">
@@ -679,10 +685,8 @@ export default function PricingForm() {
               <button className="pf-btn-next" onClick={goCheckout}>Continue →</button>
             </div>
           </div>
-        )}
 
-        {view === 'checkout' && (
-          <div>
+        <div style={view === 'checkout' ? {} : { display: 'none' }}>
             <div className="pf-step-indicator">
               {[1, 2, 3].map((n) => (
                 <div key={n} className={`pf-step-pip${ckStep > n ? ' done' : ''}${ckStep === n ? ' active' : ''}`} onClick={() => goStep(n)} />
@@ -850,7 +854,6 @@ export default function PricingForm() {
               </div>
             )}
           </div>
-        )}
       </div>
 
       <div className="pf-bottom">
