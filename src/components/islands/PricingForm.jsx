@@ -82,7 +82,10 @@ const LBL = {
    CSS (injected once)
    ═══════════════════════════════════════════ */
 const CSS = `
-.pf-page{max-width:640px;margin:0 auto;padding:48px 32px 140px;overflow:hidden}
+html{overflow-x:hidden}
+.pf-page,.pf-page *,.pf-page *::before,.pf-page *::after,.pf-bottom,.pf-bottom *{box-sizing:border-box}
+.pf-page{max-width:640px;margin:0 auto;padding:48px 32px 140px;width:100%}
+.pf-list,.pf-product,.pf-sec,.celly-banner,.celly-chat{max-width:100%}
 .celly-banner{background:linear-gradient(145deg,#FBF5F9,#fff);border:1px solid rgba(232,160,208,0.2);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;transition:all 0.25s;box-shadow:0 3px 16px rgba(108,26,85,0.08);margin-bottom:28px}
 .celly-banner:hover{border-color:#E8A0D0;box-shadow:0 6px 24px rgba(108,26,85,0.1)}
 .celly-banner-av{width:72px;height:78px;flex-shrink:0;overflow:hidden}
@@ -126,13 +129,13 @@ const CSS = `
 .pf-row:first-child{border-radius:14px 14px 0 0}.pf-row:last-child{border-radius:0 0 14px 14px}
 .pf-row:hover{background:rgba(108,26,85,0.02)}
 .pf-row.sel{background:rgba(108,26,85,0.05);border-color:#6C1A55;z-index:1}
-.pf-row-l{display:flex;align-items:center;gap:14px}
+.pf-row-l{display:flex;align-items:center;gap:14px;min-width:0;flex:1}
 .pf-dot{width:20px;height:20px;border-radius:50%;border:2px solid #E8E2DC;flex-shrink:0;transition:all 0.15s}
 .pf-row.sel .pf-dot{border-color:#6C1A55;border-width:6px}
 .pf-row-name{font-size:15px;font-weight:700}
 .pf-row-desc{font-size:12px;color:#8A857A}
-.pf-row-r{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.pf-row-price{font-family:'Source Serif 4',serif;font-size:17px;color:#6C1A55}
+.pf-row-r{display:flex;align-items:center;gap:8px;flex-shrink:0;max-width:50%}
+.pf-row-price{font-family:'Source Serif 4',serif;font-size:17px;color:#6C1A55;white-space:nowrap}
 .pf-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;white-space:nowrap}
 .pf-badge-pop{background:#6C1A55;color:#fff}
 .pf-badge-save{background:rgba(61,139,106,0.08);color:#3D8B6A}
