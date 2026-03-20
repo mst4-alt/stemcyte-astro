@@ -72,7 +72,70 @@ const schema = {
       <div class="tog" onclick="togAddon('hla',this)" id="a-hla"><div class="row-l"><div class="sw"></div><div><div class="row-name">HLA Matching <span class="celly-tag" id="ct-hla"></span></div><div class="row-desc">Sibling compatibility testing</div></div></div><div class="row-price" id="ap-hla">$195</div></div>
       <div class="tog" onclick="togAddon('nga',this)" id="a-nga"><div class="row-l"><div class="sw"></div><div><div class="row-name">NGA <span class="celly-tag" id="ct-nga"></span></div><div class="row-desc">Newborn genetic analysis</div></div></div><div class="row-price">$399</div></div>
     </div></div>
-    <button class="btn-next">Continue →</button>
+    <div class="btn-row"><button class="btn-next" onclick="goCheckout()">Continue →</button></div>
+  </div>
+
+  <!-- ═══ CHECKOUT ═══ -->
+  <div id="ck" style="display:none">
+    <div class="step-indicator"><div class="step-pip active" onclick="ckNext(1)"></div><div class="step-pip" onclick="ckNext(2)"></div><div class="step-pip" onclick="ckNext(3)"></div></div>
+    <div id="ck-1" class="checkout active">
+      <div class="sec-t">Your information</div>
+      <div class="sec-sub">Tell us about yourself so we can set up your account.</div>
+      <div class="form-row"><div><label class="form-label">First name</label><input class="form-input" placeholder="Jane"></div><div><label class="form-label">Last name</label><input class="form-input" placeholder="Smith"></div></div>
+      <div class="form-full"><label class="form-label">Relationship to baby</label><select class="form-select" id="role-1" onchange="roleChanged(1)"><option value="">Select...</option><option value="birth_mother">Birth mother</option><option value="mother">Mother</option><option value="father">Father</option><option value="surrogate">Surrogate</option><option value="other">Other guardian</option></select></div>
+      <div class="form-full" id="other-fields-1" style="display:none"><label class="form-label">Please specify</label><input class="form-input" placeholder="e.g. Grandparent, Legal guardian"></div>
+      <div class="form-row"><div><label class="form-label">Email address</label><input class="form-input" type="email" placeholder="jane@email.com"></div><div><label class="form-label">Phone number</label><input class="form-input" type="tel" placeholder="(555) 123-4567"></div></div>
+      <div class="form-row" id="bm-fields-1" style="display:none"><div><label class="form-label">Your birthday</label><input class="form-input" type="date"></div><div><label class="form-label">Due date</label><input class="form-input" type="date"></div></div>
+      <div id="parents-container"></div>
+      <button class="add-parent-btn" id="add-parent-btn" onclick="addParent()">+ Add another parent or guardian</button>
+      <div class="divider"></div>
+      <div class="sec-t">Collection kit delivery</div>
+      <div class="sec-sub">We'll ship a temperature-controlled kit to this address before your due date.</div>
+      <div class="form-full"><label class="form-label">Street address</label><input class="form-input" placeholder="123 Main St, Apt 4B"></div>
+      <div class="form-row-3"><div><label class="form-label">City</label><input class="form-input" placeholder="Los Angeles"></div><div><label class="form-label">State</label><input class="form-input" placeholder="CA"></div><div><label class="form-label">ZIP code</label><input class="form-input" placeholder="90001"></div></div>
+      <div class="btn-row"><button class="btn-back" onclick="backToBuilder()">← Back</button><button class="btn-next" onclick="ckNext(2)">Continue →</button></div>
+    </div>
+    <div id="ck-2" class="checkout">
+      <div class="sec-t">Birth information</div>
+      <div class="sec-sub">So we can coordinate with your birth team and prepare your kit.</div>
+      <div class="form-full"><label class="form-label">Hospital or birth center</label><input class="form-input" placeholder="Cedars-Sinai Medical Center"></div>
+      <div class="form-full"><label class="form-label">Doctor's name</label><input class="form-input" placeholder="Dr. Sarah Johnson"></div>
+      <div class="twins-row" onclick="toggleTwins()" style="margin-top:16px"><div class="twins-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="twins-svg" style="display:none"><polyline points="20 6 9 17 4 12"/></svg></div><div><div class="row-name">We're expecting twins</div><div class="row-desc">Doubles processing and storage for both babies</div></div></div>
+      <div class="btn-row"><button class="btn-back" onclick="ckNext(1)">← Back</button><button class="btn-next" onclick="ckNext(3)">Continue →</button></div>
+    </div>
+    <div id="ck-3" class="checkout">
+      <div class="sec-t">Your order</div>
+      <div class="order-card">
+        <div class="order-head">
+          <div class="order-head-label">Total</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+            <div class="order-head-total" id="review-total"></div>
+            <div class="seg" style="background:rgba(255,255,255,0.12)"><div class="seg-opt sel" onclick="setPaySched('full')" style="color:rgba(255,255,255,0.5)">Pay in full</div><div class="seg-opt" onclick="setPaySched('6mo')" style="color:rgba(255,255,255,0.5)">6 months</div><div class="seg-opt" onclick="setPaySched('12mo')" style="color:rgba(255,255,255,0.5)">12 months</div></div>
+          </div>
+          <div class="order-head-save" id="review-save"></div>
+        </div>
+        <div class="order-body" id="review-lines"></div>
+      </div>
+      <div class="sec-t">Payment method</div>
+      <div class="pay-methods">
+        <div class="pay-tab sel" id="pm-card" onclick="setPayMethod('card')">💳 Card</div>
+        <div class="pay-tab" id="pm-apple" onclick="setPayMethod('apple')"> Apple Pay</div>
+        <div class="pay-tab" id="pm-google" onclick="setPayMethod('google')"> Google Pay</div>
+      </div>
+      <div id="cc-fields">
+        <div class="form-full"><label class="form-label">Card number</label><input class="form-input" placeholder="4242 4242 4242 4242"></div>
+        <div class="form-row"><div><label class="form-label">Expiration</label><input class="form-input" placeholder="MM / YY"></div><div><label class="form-label">CVC</label><input class="form-input" placeholder="123"></div></div>
+        <div class="form-full"><label class="form-label">Name on card</label><input class="form-input" placeholder="Jane Smith"></div>
+        <div class="checkbox-row"><input type="checkbox" id="billing-same" checked onchange="toggleBilling()"><label for="billing-same">Billing address same as shipping</label></div>
+        <div id="billing-fields" style="display:none">
+          <div class="form-row"><div><label class="form-label">First name</label><input class="form-input" placeholder="Jane"></div><div><label class="form-label">Last name</label><input class="form-input" placeholder="Smith"></div></div>
+          <div class="form-full"><label class="form-label">Billing street address</label><input class="form-input" placeholder="456 Oak Ave"></div>
+          <div class="form-row-3"><div><label class="form-label">City</label><input class="form-input" placeholder="Los Angeles"></div><div><label class="form-label">State</label><input class="form-input" placeholder="CA"></div><div><label class="form-label">ZIP code</label><input class="form-input" placeholder="90001"></div></div>
+        </div>
+      </div>
+      <div class="wallet-msg" id="wallet-msg"><div style="font-size:32px;margin-bottom:8px" id="wallet-icon">🍎</div><div style="font-size:15px;font-weight:700;margin-bottom:4px" id="wallet-title">Apple Pay</div><div style="font-size:13px;color:var(--muted)">You'll be prompted to confirm after clicking "Complete enrollment"</div></div>
+      <div class="btn-row"><button class="btn-back" onclick="ckNext(2)">← Back</button><button class="btn-next" onclick="alert('Demo — no payment processed')">Complete enrollment →</button></div>
+    </div>
   </div>
 </div>
 
@@ -101,7 +164,21 @@ function recalc(){
   else{document.getElementById('total').textContent=f(t);const se=document.getElementById('save');if(s>0){se.style.display='block';se.textContent='Saving '+f(s);}else{se.style.display='none';}}
   window._t=t;window._s=s;}
 recalc();
-function setPaySched(v){S.paySched=v;document.querySelectorAll('.seg').forEach(seg=>{seg.querySelectorAll('.seg-opt').forEach((o,i)=>{o.classList.toggle('sel',['full','6mo','12mo'][i]===v);});});const t=window._t;if(v==='full')document.getElementById('total').textContent=f(t);else if(v==='6mo')document.getElementById('total').textContent=f(Math.ceil(t/6))+'/mo';else document.getElementById('total').textContent=f(Math.ceil(t/12))+'/mo';}
+function setPaySched(v){S.paySched=v;document.querySelectorAll('.seg').forEach(seg=>{seg.querySelectorAll('.seg-opt').forEach((o,i)=>{o.classList.toggle('sel',['full','6mo','12mo'][i]===v);});});const t=window._t;if(v==='full')document.getElementById('total').textContent=f(t);else if(v==='6mo')document.getElementById('total').textContent=f(Math.ceil(t/6))+'/mo';else document.getElementById('total').textContent=f(Math.ceil(t/12))+'/mo';const rt=document.getElementById('review-total');if(rt){if(v==='full')rt.textContent=f(t);else if(v==='6mo')rt.textContent=f(Math.ceil(t/6))+'/mo';else rt.textContent=f(Math.ceil(t/12))+'/mo';}}
+
+/* ═══ CHECKOUT ═══ */
+function scrollToForm(){const el=document.getElementById('hero');const y=el.getBoundingClientRect().bottom+window.pageYOffset-200;window.scrollTo({top:y,behavior:'smooth'});}
+function goCheckout(){document.getElementById('builder').style.display='none';document.getElementById('ck').style.display='block';ckNext(1);scrollToForm();}
+function backToBuilder(){document.getElementById('builder').style.display='block';document.getElementById('ck').style.display='none';scrollToForm();}
+function ckNext(n){[1,2,3].forEach(i=>{const el=document.getElementById('ck-'+i);if(el){el.classList.toggle('active',i===n);el.style.display=i===n?'block':'none';}});document.querySelectorAll('.step-pip').forEach((p,i)=>{p.className='step-pip';if(i<n-1)p.classList.add('done');if(i===n-1)p.classList.add('active');});if(n===3)buildReview();scrollToForm();}
+function roleChanged(id){const v=document.getElementById('role-'+id).value;const bm=document.getElementById('bm-fields-'+id);if(bm)bm.style.display=v==='birth_mother'?'grid':'none';const ot=document.getElementById('other-fields-'+id);if(ot)ot.style.display=v==='other'?'block':'none';}
+let parentCount=0;
+function addParent(){if(parentCount>=2)return;parentCount++;const id=parentCount+1;const c=document.getElementById('parents-container');const d=document.createElement('div');d.className='parent-block';d.id='pb-'+id;d.innerHTML='<div class="parent-block-header"><span class="parent-block-title">Additional parent/guardian '+parentCount+'</span><button class="remove-parent" onclick="removeParent('+id+')">Remove</button></div><div class="form-row"><div><label class="form-label">First name</label><input class="form-input" placeholder="First"></div><div><label class="form-label">Last name</label><input class="form-input" placeholder="Last"></div></div><div class="form-full"><label class="form-label">Phone number</label><input class="form-input" type="tel" placeholder="(555) 123-4567"></div>';c.appendChild(d);if(parentCount>=2)document.getElementById('add-parent-btn').style.display='none';}
+function removeParent(id){document.getElementById('pb-'+id)?.remove();parentCount--;document.getElementById('add-parent-btn').style.display='';}
+function toggleTwins(){S.twins=!S.twins;S.interacted=true;document.querySelectorAll('.twins-row').forEach(r=>r.classList.toggle('sel',S.twins));document.querySelectorAll('.twins-svg').forEach(s=>s.style.display=S.twins?'block':'none');recalc();}
+function buildReview(){const m=S.twins?2:1;const pl=S.product==='cb'?'Cord Blood':'Cord Blood & Tissue';const pn={annual:'Pay year by year','18year':'18-Year Prepaid',lifetime:'Lifetime'}[S.plan];let lines='<div class="order-line"><span class="order-line-label">'+pl+' \u2014 '+pn+(S.twins?' (\u00d72)':'')+'</span><span class="order-line-val">'+f(D[S.product].plans[S.plan].total*m)+'</span></div>';const names={pba:'Public Bank Access',pbaPlus:'Public Bank Access+',hla:'HLA Matching',nga:'NGA'};Object.keys(S.addons).forEach(function(k){if(!S.addons[k])return;var free=k==='pba'&&S.product==='cbt';var price=free?0:k==='hla'&&S.plan!=='annual'?Ad.hlaP:Ad[k];lines+='<div class="order-line"><span class="order-line-label">'+names[k]+(S.twins?' (\u00d72)':'')+'</span><span class="'+(free?'order-line-free':'order-line-val')+'">'+(free?'FREE':f(price*m))+'</span></div>';});document.getElementById('review-lines').innerHTML=lines;const t=window._t;const v=S.paySched||'full';const rt=document.getElementById('review-total');if(v==='full')rt.textContent=f(t);else if(v==='6mo')rt.textContent=f(Math.ceil(t/6))+'/mo';else rt.textContent=f(Math.ceil(t/12))+'/mo';document.getElementById('review-save').textContent=window._s>0?'Saving '+f(window._s):'';}
+function setPayMethod(m){document.querySelectorAll('.pay-tab').forEach(function(t){t.classList.remove('sel')});document.getElementById('pm-'+m).classList.add('sel');document.getElementById('cc-fields').style.display=m==='card'?'block':'none';document.getElementById('wallet-msg').style.display=m!=='card'?'block':'none';if(m==='apple'){document.getElementById('wallet-icon').textContent='\ud83c\udf4e';document.getElementById('wallet-title').textContent='Apple Pay';}if(m==='google'){document.getElementById('wallet-icon').textContent='\ud83d\udd35';document.getElementById('wallet-title').textContent='Google Pay';}}
+function toggleBilling(){var cb=document.getElementById('billing-same');document.getElementById('billing-fields').style.display=cb.checked?'none':'block';}
 
 /* ═══ CELLY STATE MANAGEMENT ═══ */
 function setCelly(state){
@@ -393,6 +470,64 @@ body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--text);-we
 .seg{display:flex;background:var(--lavender);border-radius:100px;padding:3px;gap:0}
 .seg-opt{padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;color:var(--muted);transition:all 0.2s;white-space:nowrap}
 .seg-opt.sel{background:var(--plum);color:#fff;box-shadow:0 1px 4px rgba(108,26,85,0.15)}
+
+/* Checkout */
+.checkout{display:none}.checkout.active{display:block;animation:fadeIn 0.3s ease}
+.step-indicator{display:flex;gap:4px;margin-bottom:32px;padding:8px 0}
+.step-pip{flex:1;height:4px;border-radius:2px;background:var(--border);transition:background 0.3s;cursor:pointer;padding:8px 0;background-clip:content-box}
+.step-pip.done{background-color:var(--pink);background-clip:content-box}.step-pip.active{background-color:var(--plum);background-clip:content-box}
+.form-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;display:block}
+.form-input{width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;outline:none;background:#fff;transition:border-color 0.2s}
+.form-input:focus{border-color:var(--plum)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
+.form-full{margin-bottom:12px}
+.form-select{width:100%;padding:13px 16px;border:1px solid var(--border);border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;outline:none;background:#fff;cursor:pointer}
+.sec-sub{font-size:13px;color:var(--muted);margin-bottom:16px}
+.add-parent-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:100px;border:1px dashed var(--border);background:transparent;color:var(--muted);font-family:'Lato',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:4px}
+.add-parent-btn:hover{border-color:var(--plum);color:var(--plum);background:var(--pink-soft)}
+.parent-block{background:var(--lavender);border-radius:12px;padding:20px;margin-top:12px}
+.parent-block-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+.parent-block-title{font-size:13px;font-weight:700;color:var(--plum)}
+.remove-parent{font-size:12px;color:var(--muted);cursor:pointer;background:none;border:none;font-family:'Lato',sans-serif;text-decoration:underline}
+.divider{height:1px;background:var(--border);margin:28px 0}
+.twins-row{display:flex;align-items:center;gap:12px;padding:14px 22px;background:#fff;border:1px solid var(--border);border-radius:14px;cursor:pointer;transition:all 0.15s}
+.twins-row:hover{background:rgba(108,26,85,0.02)}
+.twins-check{width:20px;height:20px;border-radius:4px;border:2px solid var(--border);display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0}
+.twins-row.sel .twins-check{background:var(--plum);border-color:var(--plum)}
+.checkbox-row{display:flex;align-items:center;gap:10px;margin:16px 0;cursor:pointer}
+.checkbox-row input[type=checkbox]{width:18px;height:18px;accent-color:var(--plum);cursor:pointer}
+.checkbox-row label{font-size:13px;color:var(--text-light);cursor:pointer}
+.order-card{background:#fff;border-radius:14px;border:1px solid var(--border);overflow:hidden;margin-bottom:24px}
+.order-head{background:linear-gradient(160deg,var(--plum),var(--plum-dark));padding:20px;color:#fff}
+.order-head-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.5;margin-bottom:4px}
+.order-head-total{font-family:'Source Serif 4',serif;font-size:36px}
+.order-head-save{font-size:12px;opacity:0.6;margin-top:4px}
+.order-body{padding:20px}
+.order-line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F5EDE6;font-size:14px}
+.order-line:last-child{border:none}
+.order-line-label{color:var(--text-light)}
+.order-line-val{font-weight:700}
+.order-line-free{color:var(--green);font-weight:700}
+.pay-methods{display:flex;gap:8px;margin-bottom:20px}
+.pay-tab{flex:1;padding:14px;text-align:center;border:2px solid var(--border);border-radius:12px;cursor:pointer;font-size:13px;font-weight:700;color:var(--text-light);background:#fff;transition:all 0.2s}
+.pay-tab.sel{border-color:var(--plum);color:var(--plum);background:var(--plum-light)}
+.wallet-msg{display:none;text-align:center;padding:32px 20px;background:#fff;border:1px solid var(--border);border-radius:14px;margin-bottom:20px}
+.btn-row{display:flex;gap:12px;margin-top:24px}
+.btn-back{padding:16px 24px;border-radius:100px;border:1px solid var(--border);background:transparent;color:var(--muted);font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
+
 @media(max-width:900px){.ct{padding:100px 24px 40px}.hero h1{font-size:34px}}
-@media(max-width:600px){.hero h1{font-size:28px}.page{padding:32px 20px 140px}.bottom{padding:12px 20px}.fb-total{font-size:24px}.seg{flex-wrap:wrap;gap:4px}}
+@media(max-width:600px){
+  .hero h1{font-size:28px}
+  .page{padding:32px 20px 140px}
+  .bottom{padding:12px 20px}.fb-total{font-size:24px}
+  .seg{flex-wrap:wrap;gap:4px}
+  /* Mobile banner: stack vertically */
+  .celly-banner{flex-direction:column;text-align:center;padding:20px;gap:12px}
+  .celly-banner-av{width:56px;height:60px}
+  .celly-banner-arrow{width:100%;text-align:center}
+  /* Mobile checkout */
+  .form-row,.form-row-3{grid-template-columns:1fr}
+  .pay-methods{flex-direction:column}
+}
 </style>
