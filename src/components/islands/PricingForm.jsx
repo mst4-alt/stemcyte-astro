@@ -85,7 +85,7 @@ const CSS = `
 .pf-page{max-width:640px;margin:0 auto;padding:48px 32px 140px}
 .celly-banner{background:linear-gradient(145deg,#FBF5F9,#fff);border:1px solid rgba(232,160,208,0.2);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;transition:all 0.25s;box-shadow:0 3px 16px rgba(108,26,85,0.08);margin-bottom:28px}
 .celly-banner:hover{border-color:#E8A0D0;box-shadow:0 6px 24px rgba(108,26,85,0.1)}
-.celly-banner-av{width:72px;height:78px;flex-shrink:0}
+.celly-banner-av{width:72px;height:78px;flex-shrink:0;overflow:hidden}
 .celly-banner-text{flex:1}
 .celly-banner-title{font-size:16px;font-weight:700}
 .celly-banner-sub{font-size:13px;color:#8A857A;margin-top:3px;line-height:1.4}
@@ -201,14 +201,20 @@ const CSS = `
 .pf-pay-tab.sel{border-color:#6C1A55;color:#6C1A55;background:rgba(108,26,85,0.05)}
 .pf-wallet-msg{text-align:center;padding:32px 20px;background:#fff;border:1px solid #E8E2DC;border-radius:14px;margin-bottom:20px}
 .pf-btn-row{display:flex;gap:12px;margin-top:24px}
-.pf-btn-back{padding:16px 24px;border-radius:100px;border:1px solid #E8E2DC;background:transparent;color:#8A857A;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
+.pf-btn-back{flex:1;padding:16px 24px;border-radius:100px;border:1px solid #E8E2DC;background:transparent;color:#8A857A;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer;text-align:center}
+.pf-btn-back:hover{border-color:#6C1A55;color:#6C1A55}
 @media(max-width:600px){
-  .pf-page{padding:32px 20px 140px}
-  .pf-bottom{padding:12px 20px}.pf-fb-total{font-size:24px}
+  .pf-page{padding:32px 16px 140px}
+  .pf-bottom{padding:12px 16px}.pf-fb-total{font-size:24px}
   .pf-seg{flex-wrap:wrap;gap:4px}
-  .celly-banner{flex-direction:column;text-align:center;padding:20px;gap:12px}
+  .celly-banner{flex-direction:column;text-align:center;padding:20px 16px;gap:12px}
   .celly-banner-av{width:56px;height:60px}
   .celly-banner-arrow{width:100%;text-align:center}
+  .pf-product{border-radius:14px}
+  .pf-po{padding:14px 12px;font-size:14px}
+  .pf-row{padding:16px 18px}
+  .pf-tog{padding:14px 18px}
+  .pf-row-price{font-size:15px}
   .pf-form-row,.pf-form-row-3{grid-template-columns:1fr}
   .pf-pay-methods{flex-direction:column}
 }
@@ -249,8 +255,7 @@ export default function PricingForm() {
   const cellyAnswers = useRef({});
   const cellyStepRef = useRef(0);
   const timerRefs = useRef([]);
-  const lastCellyState = useRef(null);
-  const cellyMounted = useRef(false);
+  const cellyAvInjected = useRef(false);
 
   // ── Inject CSS ──
   useEffect(() => {
@@ -263,19 +268,22 @@ export default function PricingForm() {
     }
   }, []);
 
-  // ── Update Celly avatar via innerHTML — only when state actually changes ──
+  // ── Inject Celly SVGs once, then only toggle .off class ──
   useEffect(() => {
     if (!cellyAvRef.current) return;
-    // First mount when chat opens: always inject SVGs
-    // After that: only update if cellyState changed
-    if (cellyMounted.current && lastCellyState.current === cellyState) return;
-    lastCellyState.current = cellyState;
-    cellyMounted.current = true;
-    const svgMap = { idle: CELLY_IDLE_SVG, writing: CELLY_WRITING_SVG, happy: CELLY_HAPPY_SVG };
-    cellyAvRef.current.innerHTML = Object.entries(svgMap)
-      .map(([state, svg]) => svg.replace(`data-state="${state}"`, `data-state="${state}" class="${cellyState === state ? '' : 'off'}"`))
-      .join('');
-  });
+    // Inject all 3 SVGs once
+    if (!cellyAvInjected.current) {
+      const svgMap = { idle: CELLY_IDLE_SVG, writing: CELLY_WRITING_SVG, happy: CELLY_HAPPY_SVG };
+      cellyAvRef.current.innerHTML = Object.entries(svgMap)
+        .map(([state, svg]) => svg.replace(`data-state="${state}"`, `data-state="${state}" class="off"`))
+        .join('');
+      cellyAvInjected.current = true;
+    }
+    // Toggle visibility without replacing innerHTML
+    cellyAvRef.current.querySelectorAll('svg').forEach((el) => {
+      el.classList.toggle('off', el.dataset.state !== cellyState);
+    });
+  }, [cellyState]);
 
   // ── Calculations ──
   const isPrepaid = plan !== 'annual';
@@ -579,7 +587,7 @@ export default function PricingForm() {
           <div>
             {bannerVisible && (
               <div className="celly-banner" onClick={startCelly}>
-                <div className="celly-banner-av" dangerouslySetInnerHTML={{ __html: CELLY_BANNER_SVG }} />
+                <div className="celly-banner-av" style={{ width: 72, height: 78, overflow: 'hidden', flexShrink: 0 }} dangerouslySetInnerHTML={{ __html: CELLY_BANNER_SVG }} />
                 <div className="celly-banner-text">
                   <div className="celly-banner-title">Not sure where to start?</div>
                   <div className="celly-banner-sub">Answer 4 quick questions and Celly will build a personalized plan for you.</div>
