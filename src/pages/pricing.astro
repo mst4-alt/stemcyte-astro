@@ -191,27 +191,34 @@ function applyCelly(){
   S.interacted=true;
   document.querySelectorAll('.celly-tag').forEach(t=>{t.className='celly-tag';t.innerHTML='';});
 
+  // Smooth scroll helper: puts element near top-third of viewport
+  function glide(el){if(!el)return;const y=el.getBoundingClientRect().top+window.pageYOffset-window.innerHeight*0.35;window.scrollTo({top:y,behavior:'smooth'});}
+
   // Determine picks
   const prodKey=cA.conditions==='broad'||cA.conditions==='unsure'?'cbt':'cb';
 
   // Staggered bounce animation as Celly applies picks
-  const DELAY=350;
+  const DELAY=450;
   let step=0;
 
   // 1. Product
   setTimeout(()=>{
-    setProd(prodKey);
     const prodEl=document.querySelectorAll('.po')[prodKey==='cb'?0:1];
-    prodEl.classList.add('pop-bounce');
-    setTimeout(()=>prodEl.classList.remove('pop-bounce'),500);
-    const prodReason=prodKey==='cbt'?"You wanted coverage for neurological and tissue conditions too \u2014 cord tissue adds a second type of stem cell.":"You chose to focus on blood and immune conditions \u2014 cord blood covers that.";
-    setTag('ct-'+prodKey,'pick',"Celly's pick",prodReason);
+    glide(prodEl);
+    setTimeout(()=>{
+      setProd(prodKey);
+      prodEl.classList.add('pop-bounce');
+      setTimeout(()=>prodEl.classList.remove('pop-bounce'),500);
+      const prodReason=prodKey==='cbt'?"You wanted coverage for neurological and tissue conditions too \u2014 cord tissue adds a second type of stem cell.":"You chose to focus on blood and immune conditions \u2014 cord blood covers that.";
+      setTag('ct-'+prodKey,'pick',"Celly's pick",prodReason);
+    },150);
   },DELAY*(step++));
 
   // 2. Plan (always 18year, no tag)
   setTimeout(()=>{
     const planEl=document.querySelectorAll('#plans .row')[1];
-    setPlan('18year',planEl);
+    glide(planEl);
+    setTimeout(()=>setPlan('18year',planEl),150);
   },DELAY*(step++));
 
   // 3. Addons
@@ -219,38 +226,53 @@ function applyCelly(){
 
   if(cA.who==='extra'||cA.who==='parents'){
     setTimeout(()=>{
-      S.addons.pba=true;const el=document.getElementById('a-pba');el.classList.add('sel');
-      el.classList.add('pop-bounce');setTimeout(()=>el.classList.remove('pop-bounce'),500);
-      setTag('ct-pba','pick',"Celly's pick","You wanted extra coverage for more conditions \u2014 PBA gives your child access to additional matching stem cells.");
-      recalc();
+      const el=document.getElementById('a-pba');glide(el);
+      setTimeout(()=>{
+        S.addons.pba=true;el.classList.add('sel');
+        el.classList.add('pop-bounce');setTimeout(()=>el.classList.remove('pop-bounce'),500);
+        setTag('ct-pba','pick',"Celly's pick","You wanted extra coverage for more conditions \u2014 PBA gives your child access to additional matching stem cells.");
+        recalc();
+      },150);
     },DELAY*(step++));
   }
   if(cA.who==='parents'){
     setTimeout(()=>{
-      S.addons.pbaPlus=true;const el=document.getElementById('a-pp');el.classList.add('sel');
-      el.classList.add('pop-bounce');setTimeout(()=>el.classList.remove('pop-bounce'),500);
-      setTag('ct-pbaPlus','pick',"Celly's pick","You wanted coverage for both parents \u2014 PBA+ gives them access to cord blood treatments too.");
-      recalc();
+      const el=document.getElementById('a-pp');glide(el);
+      setTimeout(()=>{
+        S.addons.pbaPlus=true;el.classList.add('sel');
+        el.classList.add('pop-bounce');setTimeout(()=>el.classList.remove('pop-bounce'),500);
+        setTag('ct-pbaPlus','pick',"Celly's pick","You wanted coverage for both parents \u2014 PBA+ gives them access to cord blood treatments too.");
+        recalc();
+      },150);
     },DELAY*(step++));
   }
   if(cA.siblings==='yes'||cA.siblings==='multiples'){
     setTimeout(()=>{
-      S.addons.hla=true;const el=document.getElementById('a-hla');el.classList.add('sel');
-      el.classList.add('pop-bounce');setTimeout(()=>el.classList.remove('pop-bounce'),500);
-      setTag('ct-hla','pick',"Celly's pick","You have other children \u2014 HLA matching checks if your baby's cord blood is compatible with siblings.");
-      recalc();
+      const el=document.getElementById('a-hla');glide(el);
+      setTimeout(()=>{
+        S.addons.hla=true;el.classList.add('sel');
+        el.classList.add('pop-bounce');setTimeout(()=>el.classList.remove('pop-bounce'),500);
+        setTag('ct-hla','pick',"Celly's pick","You have other children \u2014 HLA matching checks if your baby's cord blood is compatible with siblings.");
+        recalc();
+      },150);
     },DELAY*(step++));
   }
   if(cA.genetic==='yes'){
     setTimeout(()=>{
-      S.addons.nga=true;const el=document.getElementById('a-nga');el.classList.add('sel');
-      el.classList.add('pop-bounce');setTimeout(()=>el.classList.remove('pop-bounce'),500);
-      setTag('ct-nga','pick',"Celly's pick","You said you'd want to know about genetic health risks as early as possible.");
-      recalc();
+      const el=document.getElementById('a-nga');glide(el);
+      setTimeout(()=>{
+        S.addons.nga=true;el.classList.add('sel');
+        el.classList.add('pop-bounce');setTimeout(()=>el.classList.remove('pop-bounce'),500);
+        setTag('ct-nga','pick',"Celly's pick","You said you'd want to know about genetic health risks as early as possible.");
+        recalc();
+      },150);
     },DELAY*(step++));
   } else if(cA.genetic==='maybe'){
     setTimeout(()=>{
-      setTag('ct-nga','suggest',"Celly suggests","You were interested in learning more \u2014 NGA screens for inherited conditions at birth. Optional but worth considering.");
+      const el=document.getElementById('a-nga');glide(el);
+      setTimeout(()=>{
+        setTag('ct-nga','suggest',"Celly suggests","You were interested in learning more \u2014 NGA screens for inherited conditions at birth. Optional but worth considering.");
+      },150);
     },DELAY*(step++));
   }
 
