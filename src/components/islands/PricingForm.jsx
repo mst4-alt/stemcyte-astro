@@ -152,8 +152,8 @@ html{overflow-x:hidden}
 .celly-tag .ct-tip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#3D0F31;color:#fff;font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;padding:8px 12px;border-radius:8px;white-space:normal;width:200px;line-height:1.4;z-index:60;box-shadow:0 4px 16px rgba(0,0,0,0.15)}
 .celly-tag .ct-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#3D0F31}
 .celly-tag:hover .ct-tip{display:block}
-@keyframes pf-popBounce{0%{transform:scale(1);box-shadow:0 0 0 rgba(108,26,85,0)}20%{transform:scale(1.06);box-shadow:0 4px 20px rgba(108,26,85,0.15)}50%{transform:scale(0.97)}70%{transform:scale(1.02)}100%{transform:scale(1);box-shadow:0 0 0 rgba(108,26,85,0)}}
-.pf-pop-bounce{animation:pf-popBounce 0.55s ease}
+@keyframes pf-popBounce{0%{transform:scale(1);box-shadow:0 0 0 rgba(108,26,85,0)}15%{transform:scale(1.06);box-shadow:0 4px 20px rgba(108,26,85,0.15)}35%{transform:scale(1.05);box-shadow:0 3px 16px rgba(108,26,85,0.12)}55%{transform:scale(0.97)}75%{transform:scale(1.02)}100%{transform:scale(1);box-shadow:0 0 0 rgba(108,26,85,0)}}
+.pf-pop-bounce{animation:pf-popBounce 0.8s ease}
 .pf-btn-next{flex:1;padding:18px;border-radius:100px;border:none;background:#6C1A55;color:#fff;font-family:'Lato',sans-serif;font-size:15px;font-weight:700;cursor:pointer}
 .pf-bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E8E2DC;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,0.04);min-height:80px}
 .pf-fb-label{font-size:10px;color:#8A857A;font-weight:700;text-transform:uppercase;letter-spacing:1px}
