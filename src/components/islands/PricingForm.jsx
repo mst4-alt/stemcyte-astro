@@ -197,12 +197,14 @@ export default function PricingForm() {
   const [planNudge, setPlanNudge] = useState(false);
   const [cellyOpen, setCellyOpen] = useState(false);
   const [bannerVisible, setBannerVisible] = useState(true);
-  const [cellyMsgHtml, setCellyMsgHtml] = useState('');
+  const [cellyMessages, setCellyMessages] = useState([]); // [{type:'bot'|'user', html:string}]
   const [cellyChoices, setCellyChoices] = useState([]); // [{id, val, t}] or [{close: true}]
+  const [cellyTyping, setCellyTyping] = useState(false);
   const cellyAnswers = useRef({});
   const cellyStepRef = useRef(0);
   const cellyTimers = useRef([]);
   const cellyBannerRef = useRef(null);
+  const cellyChatRef = useRef(null);
   const [primaryRole, setPrimaryRole] = useState('');
   const [parents, setParents] = useState([]);
   const [payMethod, setPayMethod] = useState('card');
@@ -252,11 +254,37 @@ export default function PricingForm() {
 
   // Celly
   const cellyTimer = (fn, ms) => { const t = setTimeout(fn, ms); cellyTimers.current.push(t); return t; };
-  const startCelly = () => { setBannerVisible(false); setCellyOpen(true); cellyStepRef.current = 0; cellyAnswers.current = {}; showCellyQ(0); };
-  const closeCelly = () => { setCellyOpen(false); setBannerVisible(true); cellyTimers.current.forEach(clearTimeout); cellyTimers.current = []; };
-  const showCellyQ = (s) => { const q = QS[s]; setCellyMsgHtml(`<div class="cc-bubble">${q.bot(cellyAnswers.current)}</div>`); setCellyChoices(q.ch); };
-  const handleCellyPick = (k, v) => { cellyAnswers.current[k] = v; cellyStepRef.current++; setCellyMsgHtml(prev => prev + `<div class="cc-user"><div class="cc-user-bub">${LBL[k + ':' + v] || v}</div></div>`); setCellyChoices([]); cellyTimer(() => { setCellyMsgHtml('<div class="cc-typing"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>'); cellyTimer(() => { if (cellyStepRef.current < QS.length) showCellyQ(cellyStepRef.current); else applyCellyResults(); }, 600 + Math.random() * 300); }, 300); };
-  const applyCellyResults = () => { const a = cellyAnswers.current; setProduct((a.conditions === 'broad' || a.conditions === 'unsure') ? 'cbt' : 'cb'); setPlan('18year'); const na = { pba: false, pbaPlus: false, hla: false, nga: false }; if (a.who === 'extra' || a.who === 'parents') na.pba = true; if (a.who === 'parents') na.pbaPlus = true; if (a.siblings === 'yes' || a.siblings === 'multiples') na.hla = true; if (a.genetic === 'yes') na.nga = true; setAddons(na); setCellyMsgHtml('<div class="cc-bubble">All set! 🎉 I\u2019ve configured your plan below. Adjust anything you like!</div>'); setCellyChoices([{ close: true }]); };
+  const cellyScroll = () => { setTimeout(() => { cellyChatRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' }); }, 50); };
+  const startCelly = () => { setBannerVisible(false); setCellyOpen(true); cellyStepRef.current = 0; cellyAnswers.current = {}; setCellyMessages([]); setCellyTyping(false); showCellyQ(0); };
+  const closeCelly = () => { setCellyOpen(false); setBannerVisible(true); cellyTimers.current.forEach(clearTimeout); cellyTimers.current = []; setCellyMessages([]); setCellyChoices([]); setCellyTyping(false); };
+  const showCellyQ = (s) => { const q = QS[s]; setCellyMessages(prev => [...prev, { type: 'bot', html: q.bot(cellyAnswers.current) }]); setCellyChoices(q.ch); setCellyTyping(false); cellyScroll(); };
+  const handleCellyPick = (k, v) => {
+    cellyAnswers.current[k] = v;
+    cellyStepRef.current++;
+    setCellyMessages(prev => [...prev, { type: 'user', html: LBL[k + ':' + v] || v }]);
+    setCellyChoices([]);
+    setCellyTyping(true);
+    cellyScroll();
+    cellyTimer(() => {
+      setCellyTyping(false);
+      if (cellyStepRef.current < QS.length) { showCellyQ(cellyStepRef.current); }
+      else { applyCellyResults(); }
+    }, 800 + Math.random() * 400);
+  };
+  const applyCellyResults = () => {
+    const a = cellyAnswers.current;
+    setProduct((a.conditions === 'broad' || a.conditions === 'unsure') ? 'cbt' : 'cb');
+    setPlan('18year');
+    const na = { pba: false, pbaPlus: false, hla: false, nga: false };
+    if (a.who === 'extra' || a.who === 'parents') na.pba = true;
+    if (a.who === 'parents') na.pbaPlus = true;
+    if (a.siblings === 'yes' || a.siblings === 'multiples') na.hla = true;
+    if (a.genetic === 'yes') na.nga = true;
+    setAddons(na);
+    setCellyMessages(prev => [...prev, { type: 'bot', html: 'All set! 🎉 I\u2019ve configured your plan below. Adjust anything you like!' }]);
+    setCellyChoices([{ close: true }]);
+    setTimeout(() => { document.querySelector('.pf-product')?.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 300);
+  };
 
   const primaryIsBM = primaryRole === 'birth_mother';
 
@@ -267,7 +295,25 @@ export default function PricingForm() {
 
         {step === 1 && (<div>
           {bannerVisible && (<div className="celly-banner" onClick={startCelly}><div className="celly-banner-av" ref={cellyBannerRef} /><div style={{ flex: 1 }}><div className="celly-banner-title">Not sure where to start?</div><div className="celly-banner-sub">Answer 4 quick questions and Celly will build a personalized plan for you.</div></div><div className="celly-banner-arrow">Help me choose →</div></div>)}
-          {cellyOpen && (<div className="celly-chat"><div className="cc-row"><div className="cc-av" dangerouslySetInnerHTML={{ __html: CELLY_SVG }} /><div style={{ flex: 1, minWidth: 0 }}><div className="cc-name">Celly</div><div dangerouslySetInnerHTML={{ __html: cellyMsgHtml }} /></div></div>{cellyChoices.length > 0 && <div className="cc-choices">{cellyChoices[0]?.close ? <button className="cc-close" onClick={closeCelly}>Close</button> : cellyChoices.map((c, i) => <button key={i} className="cc-choice" onClick={() => handleCellyPick(c.id, c.val)}>{c.t}</button>)}</div>}</div>)}
+          {cellyOpen && (<div className="celly-chat" ref={cellyChatRef}>
+            <div className="cc-row">
+              <div className="cc-av" dangerouslySetInnerHTML={{ __html: CELLY_SVG }} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="cc-name">Celly</div>
+                {cellyMessages.map((m, i) => m.type === 'bot'
+                  ? <div key={i} className="cc-bubble" dangerouslySetInnerHTML={{ __html: m.html }} />
+                  : <div key={i} className="cc-user"><div className="cc-user-bub">{m.html}</div></div>
+                )}
+                {cellyTyping && <div className="cc-typing"><div className="cc-dot" /><div className="cc-dot" /><div className="cc-dot" /></div>}
+              </div>
+            </div>
+            {cellyChoices.length > 0 && <div className="cc-choices">
+              {cellyChoices[0]?.close
+                ? <button className="cc-close" onClick={closeCelly}>Close</button>
+                : cellyChoices.map((c, i) => <button key={i} className="cc-choice" onClick={() => handleCellyPick(c.id, c.val)}>{c.t}</button>)
+              }
+            </div>}
+          </div>)}
 
           <div className="pf-sec"><div className="pf-sec-t">Choose your plan</div><div className="pf-product"><div className={`pf-po${product === 'cb' ? ' sel' : ''}`} onClick={() => setProduct('cb')}>Cord Blood<div className="pf-po-p">$725</div></div><div className={`pf-po${product === 'cbt' ? ' sel' : ''}`} onClick={() => setProduct('cbt')}>Blood & Tissue<div className="pf-po-p">$995</div></div></div></div>
 
