@@ -222,7 +222,7 @@ export default function PricingForm() {
   const ub = (k) => (e) => setBilling(prev => ({ ...prev, [k]: e.target.value }));
 
   useEffect(() => { const id = 'pf-styles'; if (!document.getElementById(id)) { const s = document.createElement('style'); s.id = id; s.textContent = CSS; document.head.appendChild(s); } }, []);
-  useEffect(() => { if (cellyBannerRef.current && !cellyBannerInjected.current) { cellyBannerRef.current.innerHTML = CELLY_SVG; cellyBannerInjected.current = true; } });
+  useEffect(() => { if (cellyBannerRef.current) { cellyBannerRef.current.innerHTML = CELLY_SVG; } });
 
   const mult = twins ? 2 : 1;
   const isPrepaid = plan && plan !== 'annual';
