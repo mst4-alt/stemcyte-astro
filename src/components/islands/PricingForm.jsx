@@ -242,6 +242,7 @@ export default function PricingForm() {
   const [twins, setTwins] = useState(false);
   const [interacted, setInteracted] = useState(false);
   const [paySched, setPaySchedState] = useState('full');
+  const [bouncing, setBouncing] = useState(null); // key string: 'cb','cbt','18year','pba', etc.
 
   // ── View state ──
   const [view, setView] = useState('builder'); // 'builder' | 'checkout'
@@ -361,6 +362,8 @@ export default function PricingForm() {
     const y = el.getBoundingClientRect().top + window.pageYOffset - window.innerHeight * 0.35;
     window.scrollTo({ top: y, behavior: 'smooth' });
   };
+
+  const doBounce = (key) => { setBouncing(key); setTimeout(() => setBouncing(null), 500); };
 
   // ── Checkout ──
   const goCheckout = () => { setView('checkout'); setCkStep(1); setTimeout(scrollToForm, 50); };
@@ -502,7 +505,7 @@ export default function PricingForm() {
           : "You chose to focus on blood and immune conditions \u2014 cord blood covers that.";
         newTags['ct-' + prodKey] = { cls: 'pick', label: "Celly's pick", reason };
         setCellyTags({ ...newTags });
-        if (el) { el.classList.add('pf-pop-bounce'); setTimeout(() => el.classList.remove('pf-pop-bounce'), 500); }
+        doBounce(prodKey);
       }, 150);
     }, DELAY * step++);
 
@@ -510,7 +513,7 @@ export default function PricingForm() {
     timer(() => {
       const el = document.querySelector('.pf-row[data-plan="18year"]');
       glide(el);
-      timer(() => setPlan('18year'), 150);
+      timer(() => { setPlan('18year'); doBounce('18year'); }, 150);
     }, DELAY * step++);
 
     // 3. Addons
@@ -523,7 +526,7 @@ export default function PricingForm() {
           newTags['ct-pba'] = { cls: 'pick', label: "Celly's pick", reason: "You wanted extra coverage for more conditions \u2014 PBA gives your child access to additional matching stem cells." };
           setAddons({ ...newAddons });
           setCellyTags({ ...newTags });
-          if (el) { el.classList.add('pf-pop-bounce'); setTimeout(() => el.classList.remove('pf-pop-bounce'), 500); }
+          doBounce('pba');
         }, 150);
       }, DELAY * step++);
     }
@@ -537,7 +540,7 @@ export default function PricingForm() {
           newTags['ct-pbaPlus'] = { cls: 'pick', label: "Celly's pick", reason: "You wanted coverage for both parents \u2014 PBA+ gives them access to cord blood treatments too." };
           setAddons({ ...newAddons });
           setCellyTags({ ...newTags });
-          if (el) { el.classList.add('pf-pop-bounce'); setTimeout(() => el.classList.remove('pf-pop-bounce'), 500); }
+          doBounce('pbaPlus');
         }, 150);
       }, DELAY * step++);
     }
@@ -551,7 +554,7 @@ export default function PricingForm() {
           newTags['ct-hla'] = { cls: 'pick', label: "Celly's pick", reason: "You have other children \u2014 HLA matching checks if your baby's cord blood is compatible with siblings." };
           setAddons({ ...newAddons });
           setCellyTags({ ...newTags });
-          if (el) { el.classList.add('pf-pop-bounce'); setTimeout(() => el.classList.remove('pf-pop-bounce'), 500); }
+          doBounce('hla');
         }, 150);
       }, DELAY * step++);
     }
@@ -565,7 +568,7 @@ export default function PricingForm() {
           newTags['ct-nga'] = { cls: 'pick', label: "Celly's pick", reason: "You said you'd want to know about genetic health risks as early as possible." };
           setAddons({ ...newAddons });
           setCellyTags({ ...newTags });
-          if (el) { el.classList.add('pf-pop-bounce'); setTimeout(() => el.classList.remove('pf-pop-bounce'), 500); }
+          doBounce('nga');
         }, 150);
       }, DELAY * step++);
     } else if (cA.genetic === 'maybe') {
@@ -634,11 +637,11 @@ export default function PricingForm() {
             <div className="pf-sec">
               <div className="pf-sec-t">Choose your plan</div>
               <div className="pf-product">
-                <div className={`pf-po${product === 'cb' ? ' sel' : ''}`} data-prod="cb" onClick={() => doSetProd('cb')}>
+                <div className={`pf-po${product === 'cb' ? ' sel' : ''}${bouncing === 'cb' ? ' pf-pop-bounce' : ''}`} data-prod="cb" onClick={() => doSetProd('cb')}>
                   Cord Blood {renderTag('ct-cb')}
                   <div className="pf-po-p">$725</div>
                 </div>
-                <div className={`pf-po${product === 'cbt' ? ' sel' : ''}`} data-prod="cbt" onClick={() => doSetProd('cbt')}>
+                <div className={`pf-po${product === 'cbt' ? ' sel' : ''}${bouncing === 'cbt' ? ' pf-pop-bounce' : ''}`} data-prod="cbt" onClick={() => doSetProd('cbt')}>
                   Blood & Tissue {renderTag('ct-cbt')}
                   <div className="pf-po-p">$995</div>
                 </div>
@@ -653,7 +656,7 @@ export default function PricingForm() {
                   { key: '18year', name: '18-Year', desc: 'One payment, done', badge: <span className="pf-badge pf-badge-pop">Most popular</span>, price: priceTexts['18year'] },
                   { key: 'lifetime', name: 'Lifetime', desc: 'Never pay for storage again', badge: <span className="pf-badge pf-badge-save">{priceTexts.lifetimeSave}</span>, price: priceTexts.lifetime },
                 ].map((p) => (
-                  <div key={p.key} className={`pf-row${plan === p.key ? ' sel' : ''}`} data-plan={p.key} onClick={() => doSetPlan(p.key)}>
+                  <div key={p.key} className={`pf-row${plan === p.key ? ' sel' : ''}${bouncing === p.key ? ' pf-pop-bounce' : ''}`} data-plan={p.key} onClick={() => doSetPlan(p.key)}>
                     <div className="pf-row-l">
                       <div className="pf-dot" />
                       <div>
@@ -679,7 +682,7 @@ export default function PricingForm() {
                   { key: 'hla', name: 'HLA Matching', desc: 'Sibling compatibility testing', price: priceTexts.hla },
                   { key: 'nga', name: 'NGA', desc: 'Newborn genetic analysis', price: '$399' },
                 ].map((a) => (
-                  <div key={a.key} className={`pf-tog${addons[a.key] ? ' sel' : ''}`} data-addon={a.key} onClick={() => doTogAddon(a.key)}>
+                  <div key={a.key} className={`pf-tog${addons[a.key] ? ' sel' : ''}${bouncing === a.key ? ' pf-pop-bounce' : ''}`} data-addon={a.key} onClick={() => doTogAddon(a.key)}>
                     <div className="pf-row-l">
                       <div className="pf-sw" />
                       <div>
@@ -717,7 +720,7 @@ export default function PricingForm() {
                   <label className="pf-form-label">Relationship to baby</label>
                   <select className="pf-form-select" value={role1} onChange={(e) => setRole1(e.target.value)}>
                     <option value="">Select...</option>
-                    <option value="birth_mother">Birth mother</option>
+                    <option value="birth_mother" disabled={parents.some((o) => o.role === 'birth_mother')}>Birth mother</option>
                     <option value="mother">Mother</option>
                     <option value="father">Father</option>
                     <option value="surrogate">Surrogate</option>
@@ -751,7 +754,7 @@ export default function PricingForm() {
                       <label className="pf-form-label">Relationship to baby</label>
                       <select className="pf-form-select" value={p.role} onChange={(e) => setParentRole(p.id, e.target.value)}>
                         <option value="">Select...</option>
-                        <option value="birth_mother">Birth mother</option>
+                        <option value="birth_mother" disabled={role1 === 'birth_mother' || parents.some((o) => o.id !== p.id && o.role === 'birth_mother')}>Birth mother</option>
                         <option value="mother">Mother</option>
                         <option value="father">Father</option>
                         <option value="surrogate">Surrogate</option>
