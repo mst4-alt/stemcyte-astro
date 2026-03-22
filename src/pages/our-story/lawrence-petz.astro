@@ -11,54 +11,52 @@ const schema = {
 ---
 <BaseLayout title="Lawrence D. Petz, MD — Founding Medical Director" schema={schema}>
 
-<section class="hero" id="hero">
-  <canvas id="hero-canvas" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none"></canvas>
-  <div class="orb orb-a"></div>
-  <div class="orb orb-b"></div>
-  <div class="hero-inner">
-    <img class="hero-portrait" fetchpriority="high" src="/images/our%20story/press_release_distribution_0452818_127664.jpg" alt="Lawrence D. Petz, MD" width="200" height="200" />
-    <div class="hero-text">
-      <a href="/our-story" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Our Story</a>
-      <h1 class="hero-name">Lawrence D. Petz, MD</h1>
-      <div class="hero-role">Founding Medical Director, StemCyte</div>
-      <p class="hero-sub">Over 60 years in medicine. Author of the first bone marrow transplant textbook. Founding architect of one of the world's most trusted cord blood banks.</p>
+<section class="hero" id="hero" data-nav-theme="plum">
+  <div class="hero-img">
+    <img class="hero-portrait" fetchpriority="high" src="/images/our%20story/press_release_distribution_0452818_127664.jpg" alt="Lawrence D. Petz, MD" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-text">
+    <a href="/our-story" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Our Story</a>
+    <h1 class="hero-name">Lawrence D. Petz, MD</h1>
+    <div class="hero-role">Founding Medical Director</div>
+    <p class="hero-sub">Over 60 years in medicine. Author of the first bone marrow transplant textbook. Founding architect of one of the world's most trusted cord blood banks.</p>
+    <div class="hero-creds">
+      <div class="hero-cred">City of Hope &amp; UCLA</div>
+      <div class="hero-cred">First BMT Textbook</div>
+      <div class="hero-cred">AABB Lifetime Achievement</div>
     </div>
   </div>
 </section>
 
-<!-- BACKGROUND -->
-<section class="section"><div class="inner">
-  <div class="sec-label anim" data-anim>Background</div>
-  <h2 class="sec-h2 anim" data-anim>The physician who built a field</h2>
-  <p class="body-p anim" data-anim>Dr. Lawrence Petz earned his MD from the University of Illinois College of Medicine in 1955 and completed his residency in Internal Medicine at Cook County Hospital, San Francisco General Hospital, and the SF VA Hospital. He then completed a fellowship in Hematology at the Royal Postgraduate Medical School in London, establishing the foundation for a career that would span transfusion medicine, transplantation science, and cord blood banking.</p>
-  <p class="body-p anim" data-anim>Over the following decades, Dr. Petz held leadership positions at some of the most respected medical institutions in the country. He served as Chief of Medicine at Walker Air Force Base, Section Head of Hematology and Blood Transfusion Services and Chairman of the Division of Medicine at City of Hope Medical Center, and Professor of Pathology and Director of Transfusion Medicine at UCLA Medical Center.</p>
-  <p class="body-p anim" data-anim>In 2001, Dr. Petz joined StemCyte as its founding Medical Director and Chief Medical Officer. Under his clinical leadership, StemCyte achieved AABB, FACT, and FDA accreditation and developed more than 400 proprietary standard operating procedures, establishing the quality framework that has supported over 2,300 transplants worldwide.</p>
-  <div class="insight-card anim" data-anim>
-    <div class="quote-text">"Our consistently excellent one-year patient survival data continue to point to both the increasing level of transplant physician care as well as to the high degree of efficacy of our cord blood units."</div>
-    <div class="quote-attr">Lawrence D. Petz, MD — Founding Medical Director, StemCyte</div>
+<!-- MAGAZINE LAYOUT -->
+<div class="mag-container">
+  <div>
+    <div class="sec-label">Background</div>
+    <h2 class="sec-h2" style="font-size:36px;">The physician who built a field</h2>
+    <p class="body-p mag-dropcap">Dr. Lawrence Petz earned his MD from the University of Illinois College of Medicine in 1955 and completed his residency in Internal Medicine at Cook County Hospital, San Francisco General Hospital, and the SF VA Hospital. He then completed a fellowship in Hematology at the Royal Postgraduate Medical School in London, establishing the foundation for a career that would span transfusion medicine, transplantation science, and cord blood banking.</p>
+    <p class="body-p">Over the following decades, Dr. Petz held leadership positions at some of the most respected medical institutions in the country. He served as Chief of Medicine at Walker Air Force Base, Section Head of Hematology and Blood Transfusion Services and Chairman of the Division of Medicine at City of Hope Medical Center, and Professor of Pathology and Director of Transfusion Medicine at UCLA Medical Center.</p>
+    <p class="body-p">In 2001, Dr. Petz joined StemCyte as its founding Medical Director and Chief Medical Officer. Under his clinical leadership, StemCyte achieved AABB, FACT, and FDA accreditation and developed more than 400 proprietary standard operating procedures, establishing the quality framework that has supported over 2,300 transplants worldwide.</p>
+    <p class="body-p">Dr. Petz authored the first textbook on clinical bone marrow transplantation in 1983, co-edited with Karl Blume&mdash;a work that helped define the field. He went on to author or co-edit multiple definitive texts including <em>Immune Hemolytic Anemias</em> and <em>Clinical Practice of Transfusion Medicine</em>, and published extensively across hematology, immunohematology, and transplantation science.</p>
+    <p class="body-p">From 2003 to 2014, he founded and led the International Symposium on Cord Blood Transplantation at City of Hope, convening faculty from over 20 countries and creating the premier global forum for cord blood science. His screening of more than 18,000 cord blood units for the CCR5&#916;32 mutation&mdash;identifying over 300 HIV-resistant units&mdash;directly contributed to the first case of HIV remission in a woman, published in <em>Cell</em> in 2023.</p>
   </div>
-</div></section>
-
-<div class="divider"><div class="divider-line"></div></div>
-
-<!-- AWARDS -->
-<section class="section"><div class="inner">
-  <div class="sec-label anim" data-anim>Awards</div>
-  <h2 class="sec-h2 anim" data-anim>Honors and recognition</h2>
-  <div class="aw-tl" id="awards-tl">
-    <div class="aw-track"></div>
-    <div class="aw-fill"></div>
-    <div class="aw-item"><div class="aw-left"><div class="aw-year">1991</div><div class="aw-title">Emily Cooley Memorial Award</div><div class="aw-org">AABB — Outstanding scientific and teaching contributions</div></div><div class="aw-dot-w"><div class="aw-dot" data-dot></div></div></div>
-    <div class="aw-item"><div class="aw-dot-w"><div class="aw-dot" data-dot></div></div><div class="aw-right"><div class="aw-year">1994</div><div class="aw-title">Tibor Greenwalt Scientific Award</div><div class="aw-org">AABB — With George Garratty</div></div></div>
-    <div class="aw-item"><div class="aw-left"><div class="aw-year"></div><div class="aw-title">Morten Grove-Rasmussen Award</div><div class="aw-org">AABB</div></div><div class="aw-dot-w"><div class="aw-dot" data-dot></div></div></div>
-    <div class="aw-item"><div class="aw-dot-w"><div class="aw-dot" data-dot></div></div><div class="aw-right"><div class="aw-year"></div><div class="aw-title">NHLBI Transfusion Medicine Academic Award</div><div class="aw-org">National Heart, Lung, and Blood Institute</div></div></div>
-    <div class="aw-item"><div class="aw-left"><div class="aw-year">2006</div><div class="aw-title">Landsteiner Award Lectureship</div><div class="aw-org">AABB — Research of international significance</div></div><div class="aw-dot-w"><div class="aw-dot" data-dot></div></div></div>
-    <div class="aw-item"><div class="aw-dot-w"><div class="aw-dot" data-dot></div></div><div class="aw-right"><div class="aw-year">2010</div><div class="aw-title">Lifetime Achievement Medal</div><div class="aw-org">AABB Bernard Fantus Medal — Highest honor in the field</div></div></div>
-    <div class="aw-item"><div class="aw-left"><div class="aw-year"></div><div class="aw-title">President's Award</div><div class="aw-org">AABB — Exceptional service and leadership</div></div><div class="aw-dot-w"><div class="aw-dot" data-dot></div></div></div>
-    <div class="aw-item"><div class="aw-dot-w"><div class="aw-dot" data-dot></div></div><div class="aw-right"><div class="aw-year">2014</div><div class="aw-title">Cord Blood Symposium Leadership Award</div><div class="aw-org">For founding &amp; leading the symposium (2003–2014)</div></div></div>
-    <div class="aw-item"><div class="aw-left"><div class="aw-year"></div><div class="aw-title">Owen Thomas &amp; Service Awards</div><div class="aw-org">California Blood Bank Society</div></div><div class="aw-dot-w"><div class="aw-dot" data-dot></div></div></div>
+  <div class="mag-margin">
+    <div class="mag-impact-label">Honors &amp; Recognition</div>
+    <div class="margin-awards" id="margin-awards">
+      <div class="ma-track"></div>
+      <div class="ma-fill"></div>
+      <div class="ma-card"><div class="ma-dot"></div><div class="ma-year">1991</div><div class="ma-title">Emily Cooley Memorial Award</div><div class="ma-org">AABB</div></div>
+      <div class="ma-card"><div class="ma-dot"></div><div class="ma-year">1994</div><div class="ma-title">Tibor Greenwalt Scientific Award</div><div class="ma-org">AABB</div></div>
+      <div class="ma-card"><div class="ma-dot"></div><div class="ma-title">Morten Grove-Rasmussen Award</div><div class="ma-org">AABB</div></div>
+      <div class="ma-card"><div class="ma-dot"></div><div class="ma-title">NHLBI Academic Award</div><div class="ma-org">National Heart, Lung, and Blood Institute</div></div>
+      <div class="ma-card"><div class="ma-dot"></div><div class="ma-year">2006</div><div class="ma-title">Landsteiner Award Lectureship</div><div class="ma-org">AABB</div></div>
+      <div class="ma-card ma-card-highlight"><div class="ma-dot" data-gold></div><div class="ma-year">2010</div><div class="ma-title">Lifetime Achievement Medal</div><div class="ma-org">AABB Bernard Fantus Medal &mdash; Highest honor in the field</div></div>
+      <div class="ma-card"><div class="ma-dot"></div><div class="ma-title">President&rsquo;s Award</div><div class="ma-org">AABB</div></div>
+      <div class="ma-card"><div class="ma-dot"></div><div class="ma-year">2014</div><div class="ma-title">Cord Blood Symposium Award</div><div class="ma-org">For founding the symposium (2003&ndash;2014)</div></div>
+      <div class="ma-card"><div class="ma-dot"></div><div class="ma-title">Owen Thomas &amp; Service Awards</div><div class="ma-org">California Blood Bank Society</div></div>
+    </div>
   </div>
-</div></section>
+</div>
 
 <div class="divider"><div class="divider-line"></div></div>
 
@@ -96,8 +94,38 @@ const schema = {
   </div>
 </section>
 
-<!-- TEXTBOOKS -->
+<!-- CAREER -->
+<section class="section"><div class="inner">
+  <div class="sec-label anim" data-anim>Career</div>
+  <h2 class="sec-h2 anim" data-anim>Professional journey</h2>
+  <div class="timeline" id="career-tl">
+    <div class="tl-track"></div>
+    <div class="tl-fill"></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">1955</div><div class="tl-title">University of Illinois College of Medicine</div><div class="tl-desc">Earned his MD, followed by residency at Cook County Hospital and San Francisco General Hospital.</div></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">London</div><div class="tl-title">Hematology Fellowship, Royal Postgraduate Medical School</div><div class="tl-desc">Board certified in Internal Medicine with subspecialty in Hematology.</div></div>
+    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">Military</div><div class="tl-title">Chief of Medicine, Walker Air Force Base</div><div class="tl-desc">Served as Chief of Medicine during military service.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">City of Hope</div><div class="tl-title">Section Head, Hematology &amp; Blood Transfusion</div><div class="tl-desc">Chairman of the Division of Medicine at the NCI-designated comprehensive cancer center.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">UCLA</div><div class="tl-title">Professor of Pathology &amp; Director of Transfusion Medicine</div><div class="tl-desc">Built UCLA's transfusion medicine program. President of the California Blood Bank Society.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">1983</div><div class="tl-title">Clinical Bone Marrow Transplantation published</div><div class="tl-desc">First textbook on clinical bone marrow transplantation, co-edited with Karl Blume.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">2001</div><div class="tl-title">Joins StemCyte as Chief Medical Officer</div><div class="tl-desc">Built StemCyte's quality framework: 400+ SOPs, AABB/FACT/FDA accreditation.</div></div>
+    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">Today</div><div class="tl-title">Emeritus Professor &amp; Medical Director</div><div class="tl-desc">Emeritus Professor at UCLA. Medical Director of StemCyte International Cord Blood Bank.</div></div>
+  </div>
+</div></section>
+
+<div class="divider"><div class="divider-line"></div></div>
+
+<!-- EDUCATION -->
 <section class="section section-plum"><div class="inner">
+  <div class="sec-label">Education</div>
+  <h2 class="sec-h2">Academic credentials</h2>
+  <div class="stat-row stat-row-2col">
+    <div class="stat-card anim" data-anim><div class="stat-num" style="font-size:20px;font-family:'Lato',sans-serif;font-weight:700">MD</div><div class="stat-label">University of Illinois College of Medicine, 1955</div></div>
+    <div class="stat-card anim" data-anim><div class="stat-num" style="font-size:20px;font-family:'Lato',sans-serif;font-weight:700">Fellowship</div><div class="stat-label">Hematology, Royal Postgraduate Medical School, London</div></div>
+  </div>
+</div></section>
+
+<!-- TEXTBOOKS -->
+<section class="section"><div class="inner">
   <div class="sec-label anim" data-anim>Textbooks</div>
   <h2 class="sec-h2 anim" data-anim>Landmark publications</h2>
   <div class="book-grid">
@@ -125,34 +153,7 @@ const schema = {
   </div>
 </div></section>
 
-<!-- CAREER -->
-<section class="section"><div class="inner">
-  <div class="sec-label anim" data-anim>Career</div>
-  <h2 class="sec-h2 anim" data-anim>Professional journey</h2>
-  <div class="timeline" id="career-tl">
-    <div class="tl-track"></div>
-    <div class="tl-fill"></div>
-    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">1955</div><div class="tl-title">University of Illinois College of Medicine</div><div class="tl-desc">Earned his MD, followed by residency at Cook County Hospital and San Francisco General Hospital.</div></div>
-    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">London</div><div class="tl-title">Hematology Fellowship, Royal Postgraduate Medical School</div><div class="tl-desc">Board certified in Internal Medicine with subspecialty in Hematology.</div></div>
-    <div class="tl-item" data-highlight="false"><div class="tl-dot" data-dot></div><div class="tl-year">Military</div><div class="tl-title">Chief of Medicine, Walker Air Force Base</div><div class="tl-desc">Served as Chief of Medicine during military service.</div></div>
-    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">City of Hope</div><div class="tl-title">Section Head, Hematology &amp; Blood Transfusion</div><div class="tl-desc">Chairman of the Division of Medicine at the NCI-designated comprehensive cancer center.</div></div>
-    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">UCLA</div><div class="tl-title">Professor of Pathology &amp; Director of Transfusion Medicine</div><div class="tl-desc">Built UCLA's transfusion medicine program. President of the California Blood Bank Society.</div></div>
-    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">1983</div><div class="tl-title">Clinical Bone Marrow Transplantation published</div><div class="tl-desc">First textbook on clinical bone marrow transplantation, co-edited with Karl Blume.</div></div>
-    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">2001</div><div class="tl-title">Joins StemCyte as Chief Medical Officer</div><div class="tl-desc">Built StemCyte's quality framework: 400+ SOPs, AABB/FACT/FDA accreditation.</div></div>
-    <div class="tl-item" data-highlight="true"><div class="tl-dot" data-dot></div><div class="tl-year">Today</div><div class="tl-title">Emeritus Professor &amp; Medical Director</div><div class="tl-desc">Emeritus Professor at UCLA. Medical Director of StemCyte International Cord Blood Bank.</div></div>
-  </div>
-</div></section>
-
 <div class="divider"><div class="divider-line"></div></div>
-
-<!-- EXPERTISE -->
-<section class="section section-lav"><div class="inner">
-  <div class="sec-label">Expertise</div>
-  <h2 class="sec-h2">Areas of focus</h2>
-  <div class="tag-grid">
-    <span class="tag">Transfusion Medicine</span><span class="tag">Hematology</span><span class="tag">Bone Marrow Transplantation</span><span class="tag">Cord Blood Banking</span><span class="tag">Cord Blood Transplantation</span><span class="tag">Immune Hemolytic Anemias</span><span class="tag">Immunohematology</span><span class="tag">Quality Systems &amp; SOPs</span>
-  </div>
-</div></section>
 
 <!-- OTHER LEADERS -->
 <section class="section"><div class="inner">
@@ -170,21 +171,39 @@ const schema = {
 </BaseLayout>
 
 <style is:global>
-/* HERO */
-.hero { position:relative; min-height:72vh; background:linear-gradient(175deg,#3D0F31 0%,#1A0714 50%,#0D0516 100%); overflow:hidden; display:flex; align-items:flex-end; padding:0 48px 72px; }
-.orb { position:absolute; border-radius:50%; pointer-events:none; z-index:1; }
-.orb-a { width:700px; height:700px; background:radial-gradient(circle,rgba(192,106,165,0.1) 0%,transparent 70%); top:-200px; right:-100px; }
-.orb-b { width:500px; height:500px; background:radial-gradient(circle,rgba(108,26,85,0.15) 0%,transparent 70%); bottom:-150px; left:-50px; }
-.hero-inner { max-width:860px; margin:0 auto; width:100%; position:relative; z-index:3; display:grid; grid-template-columns:200px 1fr; gap:48px; align-items:end; }
-.hero-portrait { width:200px; height:200px; border-radius:4px; object-fit:cover; object-position:center; display:block; border:4px solid rgba(255,255,255,0.12); opacity:0; animation:heroFade 0.8s 0.2s ease forwards; }
-.hero-text { opacity:0; animation:heroFade 0.8s 0.4s ease forwards; }
-.back-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#C06AA5; text-decoration:none; margin-bottom:20px; transition:color 0.2s; }
-.back-link:hover { color:#E8A0D0; }
+/* HERO — V4 Split */
+.hero { display:grid; grid-template-columns:1fr 1fr; min-height:620px; }
+.hero-img { position:relative; overflow:hidden; background:linear-gradient(175deg,#3D0F31 0%,#1A0714 100%); }
+.hero-portrait { width:100%; height:100%; object-fit:cover; opacity:0.8; mix-blend-mode:luminosity; }
+.hero-overlay { position:absolute; inset:0; background:linear-gradient(to right, transparent 50%, #FAF7F2 100%); }
+.hero-text { background:#FAF7F2; display:flex; flex-direction:column; justify-content:flex-end; padding:120px 64px 72px 48px; }
+.back-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#6C1A55; text-decoration:none; margin-bottom:24px; }
 .back-link svg { width:16px; height:16px; }
-.hero-name { font-family:'Playfair Display',serif; font-size:42px; font-weight:400; line-height:1.1; letter-spacing:-1px; color:#fff; margin-bottom:8px; }
-.hero-role { font-size:14px; font-weight:700; color:#C06AA5; letter-spacing:0.5px; margin-bottom:14px; }
-.hero-sub { font-size:16px; color:rgba(255,255,255,0.55); line-height:1.7; max-width:540px; }
-@keyframes heroFade { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.hero-name { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.05; letter-spacing:-1.5px; color:#2C2A26; margin-bottom:8px; }
+.hero-role { font-size:14px; font-weight:700; color:#6C1A55; margin-bottom:16px; }
+.hero-sub { font-size:16px; color:#6B6760; line-height:1.7; max-width:420px; }
+.hero-creds { display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; }
+.hero-cred { padding:10px 16px; background:#F3F0F8; border-radius:8px; font-size:12px; font-weight:700; color:#6C1A55; }
+
+/* MAGAZINE */
+.mag-container { max-width:1100px; margin:0 auto; padding:80px 48px; display:grid; grid-template-columns:1fr 300px; gap:64px; }
+.mag-dropcap::first-letter { font-family:'Playfair Display',serif; font-size:64px; float:left; line-height:0.8; padding-right:10px; padding-top:4px; color:#6C1A55; }
+.mag-margin { padding-top:60px; display:flex; flex-direction:column; }
+.mag-impact-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:12px; }
+
+/* MARGIN AWARDS TIMELINE */
+.margin-awards { position:relative; padding-left:24px; display:flex; flex-direction:column; gap:10px; }
+.ma-track { position:absolute; left:5px; top:8px; bottom:8px; width:2px; background:#E8E2DC; }
+.ma-fill { position:absolute; left:5px; top:8px; width:2px; background:#C4943E; height:0; transition:height 0.1s linear; z-index:1; }
+.ma-card { background:#fff; border-radius:10px; padding:14px 16px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; position:relative; opacity:0; transform:translateY(12px); transition:opacity 0.4s ease, transform 0.4s ease; }
+.ma-card-visible { opacity:1; transform:translateY(0); }
+.ma-card-highlight { border-color:rgba(196,148,62,0.3); background:#FFFDF8; }
+.ma-dot { position:absolute; left:-24px; top:14px; width:10px; height:10px; border-radius:50%; background:#E8E2DC; border:2px solid #FAF7F2; z-index:2; transform:translateX(50%); transition:background 0.4s ease, box-shadow 0.4s ease; }
+.ma-dot-reached { background:#C4943E; }
+.ma-dot-gold-reached { background:#C4943E; box-shadow:0 0 0 3px rgba(196,148,62,0.25); }
+.ma-year { font-family:'Source Serif 4',serif; font-size:11px; font-weight:600; color:#C4943E; margin-bottom:2px; }
+.ma-title { font-size:12px; font-weight:700; color:#2C2A26; line-height:1.3; margin-bottom:2px; }
+.ma-org { font-size:11px; color:#8A857A; line-height:1.3; }
 
 /* SHARED */
 .section { padding:80px 48px; position:relative; }
@@ -197,27 +216,6 @@ const schema = {
 .sec-h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; line-height:1.15; letter-spacing:-0.5px; margin-bottom:20px; }
 .body-p { font-size:15px; color:#6B665D; line-height:1.8; margin-bottom:16px; }
 .body-p:last-child { margin-bottom:0; }
-
-/* INSIGHT CARD */
-.insight-card { background:#fff; border-radius:16px; padding:40px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; margin:32px 0; position:relative; overflow:hidden; }
-.insight-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:linear-gradient(to bottom,#E8A0D0,#6C1A55); border-radius:2px 0 0 2px; }
-.quote-text { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; line-height:1.5; color:#3D0F31; margin-bottom:16px; padding-left:8px; }
-.quote-attr { font-size:13px; color:#8A857A; padding-left:8px; }
-
-/* AWARDS ALTERNATING TIMELINE */
-.aw-tl { position:relative; margin:40px 0; }
-.aw-track { position:absolute; left:50%; top:0; bottom:0; width:2px; background:#E8E2DC; transform:translateX(-1px); }
-.aw-fill { position:absolute; left:50%; top:0; width:2px; background:#C4943E; transform:translateX(-1px); z-index:1; height:0; transition:height 0.1s linear; }
-.aw-item { display:flex; align-items:flex-start; margin-bottom:32px; position:relative; opacity:0; transform:translateY(16px); transition:opacity 0.5s ease, transform 0.5s ease; }
-.aw-item-visible { opacity:1; transform:translateY(0); }
-.aw-item:last-child { margin-bottom:0; }
-.aw-left { text-align:right; width:calc(50% - 28px); }
-.aw-right { width:calc(50% - 28px); margin-left:auto; }
-.aw-dot-w { position:absolute; left:50%; transform:translateX(-50%); top:4px; z-index:3; }
-.aw-dot { width:14px; height:14px; border-radius:50%; background:#C4943E; border:3px solid #FAF7F2; box-shadow:0 0 0 3px rgba(196,148,62,0.15); }
-.aw-year { font-family:'Source Serif 4',serif; font-size:13px; font-weight:600; color:#C4943E; margin-bottom:2px; }
-.aw-title { font-size:15px; font-weight:700; color:#2C2A26; margin-bottom:4px; line-height:1.3; }
-.aw-org { font-size:12px; color:#8A857A; line-height:1.5; }
 
 /* SYMPOSIUM */
 .sy-card { background:#fff; border-radius:16px; padding:40px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; margin:32px 0; display:grid; grid-template-columns:1fr 1fr; gap:32px; align-items:center; }
@@ -278,9 +276,12 @@ const schema = {
 .tl-title { font-size:16px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
 .tl-desc { font-size:14px; color:#6B665D; line-height:1.7; }
 
-/* TAGS */
-.tag-grid { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0; }
-.tag { font-size:13px; font-weight:600; color:#6C1A55; background:#FBF5F9; border:1px solid #F0E0EB; padding:8px 16px; border-radius:100px; }
+/* STAT CARDS */
+.stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:24px 0; }
+.stat-row-2col { grid-template-columns:repeat(2,1fr); }
+.stat-card { background:#fff; border-radius:12px; padding:28px 24px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; }
+.stat-num { font-family:'Source Serif 4',serif; font-size:32px; font-weight:600; color:#6C1A55; margin-bottom:8px; }
+.stat-label { font-size:13px; color:#6B665D; line-height:1.5; }
 
 /* OTHER LEADERS */
 .other-leaders { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:32px 0; }
@@ -303,23 +304,18 @@ const schema = {
 .anim-visible { opacity:1; transform:translateY(0); }
 
 @media (max-width:768px) {
-  .hero { min-height:auto; padding:120px 24px 48px; }
-  .hero-inner { grid-template-columns:1fr; gap:24px; text-align:center; }
-  .hero-portrait { width:140px; height:140px; margin:0 auto; }
-  .hero-name { font-size:32px; }
-  .back-link { justify-content:center; }
+  .hero { grid-template-columns:1fr; min-height:auto; }
+  .hero-img { min-height:300px; }
+  .hero-overlay { background:linear-gradient(to bottom, transparent 50%, #FAF7F2 100%); }
+  .hero-text { padding:48px 24px; }
+  .hero-name { font-size:34px; }
+  .mag-container { grid-template-columns:1fr; padding:48px 24px; gap:32px; }
+  .mag-margin { padding-top:0; }
   .section { padding:56px 24px; }
   .sec-h2 { font-size:26px; }
   .divider { padding:0 24px; }
   .cta-banner { padding:48px 24px; }
   .cta-banner h2 { font-size:26px; }
-  .insight-card { padding:28px 24px; }
-  .quote-text { font-size:18px; }
-  .aw-track { left:14px; }
-  .aw-fill { left:14px; }
-  .aw-item { flex-direction:column; }
-  .aw-left, .aw-right { width:100%; text-align:left; padding:0 0 0 40px; }
-  .aw-dot-w { left:14px; transform:translateX(-50%); }
   .sy-card { grid-template-columns:1fr; }
   .sy-image-wrap { width:100%; height:160px; }
   .hiv-section { padding:64px 24px; }
@@ -328,6 +324,7 @@ const schema = {
   .cell-canvas-wrap { width:300px; height:300px; right:-50px; opacity:0.35; }
   .book-grid { grid-template-columns:1fr; }
   .other-leaders { grid-template-columns:1fr; }
+  .stat-row, .stat-row-2col { grid-template-columns:1fr; }
   .timeline { padding-left:40px; }
 }
 </style>
@@ -337,7 +334,7 @@ const schema = {
   var obs = new IntersectionObserver(function(entries) {
     entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('anim-visible'); obs.unobserve(e.target); } });
   }, { threshold: 0.1 });
-  document.querySelectorAll('.anim,[data-anim]').forEach(function(el) { if (!el.classList.contains('tl-item') && !el.classList.contains('aw-item')) obs.observe(el); });
+  document.querySelectorAll('.anim,[data-anim]').forEach(function(el) { if (!el.classList.contains('tl-item') && !el.classList.contains('ma-card')) obs.observe(el); });
 
   // Scroll-linked career timeline
   (function() {
@@ -369,75 +366,33 @@ const schema = {
     update();
   })();
 
-  // Scroll-linked awards timeline
+  // Margin awards scroll animation
   (function() {
-    var tl = document.getElementById('awards-tl');
-    if (!tl) return;
-    var fill = tl.querySelector('.aw-fill');
-    var items = Array.prototype.slice.call(tl.querySelectorAll('.aw-item'));
-    if (!fill || !items.length) return;
+    var ma = document.getElementById('margin-awards');
+    if (!ma) return;
+    var fill = ma.querySelector('.ma-fill');
+    var cards = Array.prototype.slice.call(ma.querySelectorAll('.ma-card'));
+    if (!fill || !cards.length) return;
     function update() {
-      var rect = tl.getBoundingClientRect();
-      var viewMid = window.innerHeight * 0.65;
+      var rect = ma.getBoundingClientRect();
+      var viewMid = window.innerHeight * 0.7;
       var scrollInto = viewMid - rect.top;
       var pct = Math.max(0, Math.min(1, scrollInto / rect.height));
       fill.style.height = (pct * 100) + '%';
-      items.forEach(function(item) {
-        var itemRect = item.getBoundingClientRect();
-        var itemMid = itemRect.top + itemRect.height * 0.3;
-        if (itemMid < viewMid) {
-          item.classList.add('aw-item-visible');
-          var dot = item.querySelector('[data-dot]');
+      cards.forEach(function(card) {
+        var cr = card.getBoundingClientRect();
+        var mid = cr.top + cr.height * 0.3;
+        if (mid < viewMid) {
+          card.classList.add('ma-card-visible');
+          var dot = card.querySelector('.ma-dot');
           if (dot) {
-            dot.style.background = '#C4943E';
+            dot.classList.add(dot.hasAttribute('data-gold') ? 'ma-dot-gold-reached' : 'ma-dot-reached');
           }
         }
       });
     }
     window.addEventListener('scroll', update, { passive: true });
     update();
-  })();
-
-  // Hero floating cell particles
-  (function() {
-    var c = document.getElementById('hero-canvas');
-    if (!c) return;
-    var ctx = c.getContext('2d');
-    var animId;
-    var cells = [];
-    var COUNT = 50;
-    function resize() {
-      c.width = c.offsetWidth * window.devicePixelRatio;
-      c.height = c.offsetHeight * window.devicePixelRatio;
-      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
-    }
-    function init() {
-      resize();
-      var W = c.offsetWidth, H = c.offsetHeight;
-      cells = [];
-      for (var i = 0; i < COUNT; i++) {
-        var angle = Math.random() * Math.PI * 2;
-        var speed = Math.random() * 0.3 + 0.1;
-        cells.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 4 + 2, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, opacity: Math.random() * 0.12 + 0.04, hue: Math.random() > 0.5 ? '232,160,208' : '192,106,165' });
-      }
-    }
-    function draw() {
-      var W = c.offsetWidth, H = c.offsetHeight;
-      ctx.clearRect(0, 0, W, H);
-      for (var i = 0; i < cells.length; i++) {
-        var cell = cells[i];
-        cell.x += cell.vx; cell.y += cell.vy;
-        if (cell.x < -10 || cell.x > W + 10) cell.vx *= -1;
-        if (cell.y < -10 || cell.y > H + 10) cell.vy *= -1;
-        ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.r * 2.5, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + cell.hue + ',' + (cell.opacity * 0.3) + ')'; ctx.fill();
-        ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.r, 0, Math.PI * 2);
-        ctx.fillStyle = 'rgba(' + cell.hue + ',' + cell.opacity + ')'; ctx.fill();
-      }
-      animId = requestAnimationFrame(draw);
-    }
-    init(); draw();
-    window.addEventListener('resize', resize);
   })();
 
   // ── 3D Cell Sphere Canvas (HIV section) ──
