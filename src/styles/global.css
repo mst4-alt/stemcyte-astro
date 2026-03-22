@@ -119,6 +119,16 @@ body {
   border-color: #8B3572;
 }
 
+/* Light-hero nav: mirrors white transparent header, inverted for light backgrounds */
+.nav.at-top.dark-hero .logo-white { display: none !important; }
+.nav.at-top.dark-hero .logo-color { display: block !important; }
+.nav.at-top.dark-hero .links a { color: rgba(44,42,38,0.6); }
+.nav.at-top.dark-hero .links a:hover { color: #2C2A26; }
+.nav.at-top.dark-hero .links a.active { color: #2C2A26; font-weight: 700; }
+.nav.at-top.dark-hero .cta { background: rgba(0,0,0,0.08); color: #2C2A26; border: 1px solid rgba(0,0,0,0.12); }
+.nav.at-top.dark-hero .cta:hover { background: rgba(0,0,0,0.14); border-color: rgba(0,0,0,0.20); }
+.nav.at-top.dark-hero .hamburger span { background: rgba(44,42,38,0.6); }
+
 /* === FOOTER === */
 .footer {
   background: #3D0F31;
