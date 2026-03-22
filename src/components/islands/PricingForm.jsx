@@ -810,6 +810,7 @@ export default function PricingForm() {
                 {parents.length < 2 && <button className="pf-add-parent-btn" onClick={addParent}>+ Add another parent or guardian</button>}
                 <div className="pf-divider" />
                 <div className="pf-sec-t">Collection kit delivery</div>
+                <div className="pf-sec-sub">We'll ship a temperature-controlled kit to this address before your due date.</div>
                 <div className="pf-form-full"><label className="pf-form-label">Street address</label><input className="pf-form-input" name="address" autoComplete="street-address" placeholder="Street address (kit delivery)" value={form.street} onChange={uf('street')} /></div>
                 <div className="pf-form-row-3">
                   <div><label className="pf-form-label">City</label><input className="pf-form-input" name="city" autoComplete="address-level2" placeholder="City" value={form.city} onChange={uf('city')} /></div>
