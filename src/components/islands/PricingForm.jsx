@@ -21,6 +21,7 @@ const D = {
 };
 const Ad = { pba: 299, pbaPlus: 699, hla: 295, hlaP: 195, nga: 399 };
 const f = (n) => '$' + n.toLocaleString();
+const fDec = (n) => '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 /* ═══════════════════════════════════════════
    CELLY SVGs — raw strings for animate compat
@@ -119,7 +120,7 @@ html{overflow-x:hidden}
 .pf-sec{margin-bottom:30px}
 .pf-sec-t{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin-bottom:16px}
 .pf-product{display:flex;gap:0;background:#fff;border:1px solid #E8E2DC;border-radius:16px;padding:4px}
-.pf-po{flex:1;padding:18px 20px;text-align:center;border-radius:13px;cursor:pointer;transition:all 0.2s;font-size:15px;font-weight:700}
+.pf-po{flex:1;padding:18px 20px;text-align:center;border-radius:13px;cursor:pointer;transition:all 0.2s;font-size:18px;font-weight:600}
 .pf-po:hover{background:#F3F0F8}
 .pf-po.sel{background:#6C1A55;color:#fff}
 .pf-po-p{font-family:'Source Serif 4',serif;font-weight:400;font-size:13px;margin-top:1px;opacity:0.6}
@@ -132,7 +133,7 @@ html{overflow-x:hidden}
 .pf-row-l{display:flex;align-items:center;gap:14px;min-width:0;flex:1}
 .pf-dot{width:20px;height:20px;border-radius:50%;border:2px solid #E8E2DC;flex-shrink:0;transition:all 0.15s}
 .pf-row.sel .pf-dot{border-color:#6C1A55;border-width:6px}
-.pf-row-name{font-size:15px;font-weight:700}
+.pf-row-name{font-size:15px;font-weight:600}
 .pf-row-desc{font-size:12px;color:#8A857A}
 .pf-row-r{display:flex;align-items:center;gap:8px;flex-shrink:0;max-width:50%}
 .pf-row-price{font-family:'Source Serif 4',serif;font-size:17px;color:#6C1A55;white-space:nowrap}
@@ -168,17 +169,19 @@ html{overflow-x:hidden}
 .pf-step-pip::after{content:'';position:absolute;left:0;right:0;top:8px;height:4px;border-radius:2px;background:#E8E2DC;transition:background 0.3s}
 .pf-step-pip.done::after{background:#E8A0D0}
 .pf-step-pip.active::after{background:#6C1A55}
-.pf-form-label{font-size:11px;font-weight:700;color:#8A857A;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px;display:block}
-.pf-form-input{width:100%;padding:13px 16px;border:1px solid #E8E2DC;border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;outline:none;background:#fff;transition:border-color 0.2s;box-sizing:border-box}
+.pf-form-label{display:none}
+.pf-form-input{width:100%;padding:16px;border:1px solid #E8E2DC;border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;outline:none;background:#fff;transition:border-color 0.2s;box-sizing:border-box}
+.pf-form-input::placeholder{color:#8A857A;font-weight:400;font-size:14px}
+.pf-form-input:focus::placeholder{opacity:0}
 .pf-form-input:focus{border-color:#6C1A55}
 .pf-form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
 .pf-form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:12px}
 .pf-form-full{margin-bottom:12px}
-.pf-form-select{width:100%;padding:13px 16px;border:1px solid #E8E2DC;border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;outline:none;background:#fff;cursor:pointer;box-sizing:border-box}
+.pf-form-select{width:100%;padding:16px;border:1px solid #E8E2DC;border-radius:10px;font-family:'Lato',sans-serif;font-size:14px;font-weight:400;outline:none;background:#fff;cursor:pointer;box-sizing:border-box;color:#2C2A26}
 .pf-sec-sub{font-size:13px;color:#8A857A;margin-bottom:16px}
 .pf-add-parent-btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:100px;border:1px dashed #E8E2DC;background:transparent;color:#8A857A;font-family:'Lato',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.2s;margin-top:4px}
 .pf-add-parent-btn:hover{border-color:#6C1A55;color:#6C1A55;background:#F5E0EF}
-.pf-parent-block{background:#F3F0F8;border-radius:12px;padding:20px;margin-top:12px}
+.pf-parent-block{background:#F5F2F8;border-radius:12px;padding:20px;margin-top:12px}
 .pf-parent-block-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .pf-parent-block-title{font-size:13px;font-weight:700;color:#6C1A55}
 .pf-remove-parent{font-size:12px;color:#8A857A;cursor:pointer;background:none;border:none;font-family:'Lato',sans-serif;text-decoration:underline}
@@ -187,6 +190,16 @@ html{overflow-x:hidden}
 .pf-twins-row:hover{background:rgba(108,26,85,0.02)}
 .pf-twins-check{width:20px;height:20px;border-radius:4px;border:2px solid #E8E2DC;display:flex;align-items:center;justify-content:center;transition:all 0.15s;flex-shrink:0}
 .pf-twins-row.sel .pf-twins-check{background:#6C1A55;border-color:#6C1A55}
+.pf-twins-row .pf-row-name{font-weight:400;font-size:13px;color:#2C2A26}
+.pf-ps-radios{display:flex;flex-direction:column;gap:0;margin-bottom:24px}
+.pf-ps-radio{display:flex;align-items:center;gap:12px;padding:14px 18px;border:1px solid #E8E2DC;cursor:pointer;transition:all 0.15s;margin-top:-1px;background:#fff}
+.pf-ps-radio:first-child{border-radius:10px 10px 0 0}.pf-ps-radio:last-child{border-radius:0 0 10px 10px}
+.pf-ps-radio:hover{background:rgba(108,26,85,0.02)}
+.pf-ps-radio.sel{background:rgba(108,26,85,0.04);border-color:#6C1A55;z-index:1}
+.pf-ps-radio-dot{width:18px;height:18px;border-radius:50%;border:2px solid #E8E2DC;flex-shrink:0;transition:all 0.15s}
+.pf-ps-radio.sel .pf-ps-radio-dot{border-color:#6C1A55;border-width:5px}
+.pf-ps-radio-text{font-size:13px;color:#2C2A26}
+.pf-ps-radio-sub{font-size:13px;color:#8A857A;margin-left:auto}
 .pf-checkbox-row{display:flex;align-items:center;gap:10px;margin:16px 0;cursor:pointer}
 .pf-checkbox-row input[type=checkbox]{width:18px;height:18px;accent-color:#6C1A55;cursor:pointer}
 .pf-checkbox-row label{font-size:13px;color:#6B6760;cursor:pointer}
@@ -195,6 +208,8 @@ html{overflow-x:hidden}
 .pf-order-head-label{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;opacity:0.5;margin-bottom:4px}
 .pf-order-head-total{font-family:'Source Serif 4',serif;font-size:36px}
 .pf-order-head-save{font-size:12px;opacity:0.6;margin-top:4px}
+.pf-order-head-sched{font-size:12px;opacity:0.7;margin-top:6px}
+.pf-fb-monthly{font-size:12px;color:#8A857A}
 .pf-order-body{padding:20px}
 .pf-order-line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #F5EDE6;font-size:14px}
 .pf-order-line:last-child{border:none}
@@ -333,7 +348,7 @@ export default function PricingForm() {
   };
 
   const priceTexts = {
-    annual: f(D[product].plans.annual.processing || D[product].plans.annual.total) + ' + ' + f(D[product].plans.annual.storage) + '/yr',
+    annual: '+' + f(D[product].plans.annual.storage) + '/yr',
     '18year': f(D[product].plans['18year'].total),
     lifetime: f(D[product].plans.lifetime.total),
     lifetimeSave: 'Saving ' + f(D[product].plans.lifetime.savings),
@@ -713,13 +728,13 @@ export default function PricingForm() {
                 <div className="pf-sec-t">Your information</div>
                 <div className="pf-sec-sub">Tell us about yourself so we can set up your account.</div>
                 <div className="pf-form-row">
-                  <div><label className="pf-form-label">First name</label><input className="pf-form-input" placeholder="Jane" /></div>
-                  <div><label className="pf-form-label">Last name</label><input className="pf-form-input" placeholder="Smith" /></div>
+                  <div><label className="pf-form-label">First name</label><input className="pf-form-input" name="firstname" autoComplete="given-name" placeholder="First name" /></div>
+                  <div><label className="pf-form-label">Last name</label><input className="pf-form-input" name="lastname" autoComplete="family-name" placeholder="Last name" /></div>
                 </div>
                 <div className="pf-form-full">
                   <label className="pf-form-label">Relationship to baby</label>
-                  <select className="pf-form-select" value={role1} onChange={(e) => setRole1(e.target.value)}>
-                    <option value="">Select...</option>
+                  <select className="pf-form-select" value={role1} onChange={(e) => setRole1(e.target.value)} autoComplete="off">
+                    <option value="">Relationship to baby</option>
                     <option value="birth_mother" disabled={parents.some((o) => o.role === 'birth_mother')}>Birth mother</option>
                     <option value="mother">Mother</option>
                     <option value="father">Father</option>
@@ -731,8 +746,8 @@ export default function PricingForm() {
                   <div className="pf-form-full"><label className="pf-form-label">Please specify</label><input className="pf-form-input" placeholder="e.g. Grandparent, Legal guardian" /></div>
                 )}
                 <div className="pf-form-row">
-                  <div><label className="pf-form-label">Email address</label><input className="pf-form-input" type="email" placeholder="jane@email.com" /></div>
-                  <div><label className="pf-form-label">Phone number</label><input className="pf-form-input" type="tel" placeholder="(555) 123-4567" /></div>
+                  <div><label className="pf-form-label">Email address</label><input className="pf-form-input" type="email" name="email" autoComplete="email" placeholder="Email address" /></div>
+                  <div><label className="pf-form-label">Phone number</label><input className="pf-form-input" type="tel" name="phone" autoComplete="tel" placeholder="Phone number" /></div>
                 </div>
                 {role1 === 'birth_mother' && (
                   <div className="pf-form-row">
@@ -747,13 +762,13 @@ export default function PricingForm() {
                       <button className="pf-remove-parent" onClick={() => removeParent(p.id)}>Remove</button>
                     </div>
                     <div className="pf-form-row">
-                      <div><label className="pf-form-label">First name</label><input className="pf-form-input" placeholder="First" /></div>
-                      <div><label className="pf-form-label">Last name</label><input className="pf-form-input" placeholder="Last" /></div>
+                      <div><label className="pf-form-label">First name</label><input className="pf-form-input" placeholder="First name" /></div>
+                      <div><label className="pf-form-label">Last name</label><input className="pf-form-input" placeholder="Last name" /></div>
                     </div>
                     <div className="pf-form-full">
                       <label className="pf-form-label">Relationship to baby</label>
                       <select className="pf-form-select" value={p.role} onChange={(e) => setParentRole(p.id, e.target.value)}>
-                        <option value="">Select...</option>
+                        <option value="">Relationship to baby</option>
                         <option value="birth_mother" disabled={role1 === 'birth_mother' || parents.some((o) => o.id !== p.id && o.role === 'birth_mother')}>Birth mother</option>
                         <option value="mother">Mother</option>
                         <option value="father">Father</option>
@@ -764,7 +779,7 @@ export default function PricingForm() {
                     {p.role === 'other' && (
                       <div className="pf-form-full"><label className="pf-form-label">Please specify</label><input className="pf-form-input" placeholder="e.g. Grandparent, Legal guardian" /></div>
                     )}
-                    <div className="pf-form-full"><label className="pf-form-label">Phone number</label><input className="pf-form-input" type="tel" placeholder="(555) 123-4567" /></div>
+                    <div className="pf-form-full"><label className="pf-form-label">Phone number</label><input className="pf-form-input" type="tel" placeholder="Phone number" /></div>
                     {p.role === 'birth_mother' && (
                       <div className="pf-form-row">
                         <div><label className="pf-form-label">Your birthday</label><input className="pf-form-input" type="date" /></div>
@@ -776,12 +791,11 @@ export default function PricingForm() {
                 {parents.length < 2 && <button className="pf-add-parent-btn" onClick={addParent}>+ Add another parent or guardian</button>}
                 <div className="pf-divider" />
                 <div className="pf-sec-t">Collection kit delivery</div>
-                <div className="pf-sec-sub">We'll ship a temperature-controlled kit to this address before your due date.</div>
-                <div className="pf-form-full"><label className="pf-form-label">Street address</label><input className="pf-form-input" placeholder="123 Main St, Apt 4B" /></div>
+                <div className="pf-form-full"><label className="pf-form-label">Street address</label><input className="pf-form-input" name="address" autoComplete="street-address" placeholder="Street address (kit delivery)" /></div>
                 <div className="pf-form-row-3">
-                  <div><label className="pf-form-label">City</label><input className="pf-form-input" placeholder="Los Angeles" /></div>
-                  <div><label className="pf-form-label">State</label><input className="pf-form-input" placeholder="CA" /></div>
-                  <div><label className="pf-form-label">ZIP code</label><input className="pf-form-input" placeholder="90001" /></div>
+                  <div><label className="pf-form-label">City</label><input className="pf-form-input" name="city" autoComplete="address-level2" placeholder="City" /></div>
+                  <div><label className="pf-form-label">State</label><input className="pf-form-input" name="state" autoComplete="address-level1" placeholder="State" /></div>
+                  <div><label className="pf-form-label">ZIP code</label><input className="pf-form-input" name="zip" autoComplete="postal-code" placeholder="ZIP code" /></div>
                 </div>
                 <div className="pf-btn-row">
                   <button className="pf-btn-back" onClick={backToBuilder}>← Back</button>
@@ -794,8 +808,8 @@ export default function PricingForm() {
               <div className="pf-checkout">
                 <div className="pf-sec-t">Birth information</div>
                 <div className="pf-sec-sub">So we can coordinate with your birth team and prepare your kit.</div>
-                <div className="pf-form-full"><label className="pf-form-label">Hospital or birth center</label><input className="pf-form-input" placeholder="Cedars-Sinai Medical Center" /></div>
-                <div className="pf-form-full"><label className="pf-form-label">Doctor's name</label><input className="pf-form-input" placeholder="Dr. Sarah Johnson" /></div>
+                <div className="pf-form-full"><label className="pf-form-label">Hospital or birth center</label><input className="pf-form-input" placeholder="Hospital or birth center" /></div>
+                <div className="pf-form-full"><label className="pf-form-label">Doctor's name</label><input className="pf-form-input" placeholder="Doctor's name" /></div>
                 <div className={`pf-twins-row${twins ? ' sel' : ''}`} onClick={doTogTwins} style={{ marginTop: 16 }}>
                   <div className="pf-twins-check">
                     {twins && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>}
@@ -817,17 +831,9 @@ export default function PricingForm() {
                 <div className="pf-sec-t">Your order</div>
                 <div className="pf-order-card">
                   <div className="pf-order-head">
-                    <div className="pf-order-head-label">Total</div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
-                      <div className="pf-order-head-total">{displayTotal()}</div>
-                      <div className="pf-seg" style={{ background: 'rgba(255,255,255,0.12)' }}>
-                        {['full', '6mo', '12mo'].map((v) => (
-                          <div key={v} className={`pf-seg-opt${paySched === v ? ' sel' : ''}`} onClick={() => doSetPaySched(v)} style={{ color: 'rgba(255,255,255,0.5)' }}>
-                            {v === 'full' ? 'Pay in full' : v === '6mo' ? '6 months' : '12 months'}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
+                    <div className="pf-order-head-label">{paySched === 'full' ? 'Total' : 'Due today'}</div>
+                    <div className="pf-order-head-total">{f(paySched === 'full' ? total : Math.ceil(total / (paySched === '6mo' ? 6 : 12)))}</div>
+                    {paySched !== 'full' && <div className="pf-order-head-sched">{f(Math.ceil(total / (paySched === '6mo' ? 6 : 12)))}/mo × {paySched === '6mo' ? '6' : '12'} months · {f(total)} total</div>}
                     {savings > 0 && <div className="pf-order-head-save">Saving {f(savings)}</div>}
                   </div>
                   <div className="pf-order-body">
@@ -840,43 +846,53 @@ export default function PricingForm() {
                   </div>
                 </div>
 
+                <div className="pf-sec-t">Payment terms</div>
+                <div className="pf-ps-radios">
+                  {[
+                    { key: 'full', label: 'Pay in full', sub: f(total) },
+                    { key: '6mo', label: '6 monthly payments', sub: f(Math.ceil(total / 6)) + '/mo' },
+                    { key: '12mo', label: '12 monthly payments', sub: f(Math.ceil(total / 12)) + '/mo' },
+                  ].map((o) => (
+                    <div key={o.key} className={`pf-ps-radio${paySched === o.key ? ' sel' : ''}`} onClick={() => doSetPaySched(o.key)}>
+                      <div className="pf-ps-radio-dot" />
+                      <div className="pf-ps-radio-text">{o.label}</div>
+                      <div className="pf-ps-radio-sub">{o.sub}</div>
+                    </div>
+                  ))}
+                </div>
+
                 <div className="pf-sec-t">Payment method</div>
                 <div className="pf-pay-methods">
-                  {[['card', '💳 Card'], ['apple', '\uF8FF Apple Pay'], ['google', '🔵 Google Pay']].map(([m, label]) => (
+                  {[['card', 'Card'], ['apple', 'Apple Pay'], ['google', 'Google Pay']].map(([m, label]) => (
                     <div key={m} className={`pf-pay-tab${payMethod === m ? ' sel' : ''}`} onClick={() => setPayMethod(m)}>{label}</div>
                   ))}
                 </div>
 
                 {payMethod === 'card' ? (
                   <div>
-                    <div className="pf-form-full"><label className="pf-form-label">Card number</label><input className="pf-form-input" placeholder="4242 4242 4242 4242" /></div>
+                    <div className="pf-form-full"><label className="pf-form-label">Card number</label><input className="pf-form-input" placeholder="Card number" /></div>
                     <div className="pf-form-row">
-                      <div><label className="pf-form-label">Expiration</label><input className="pf-form-input" placeholder="MM / YY" /></div>
-                      <div><label className="pf-form-label">CVC</label><input className="pf-form-input" placeholder="123" /></div>
+                      <div><label className="pf-form-label">Expiration</label><input className="pf-form-input" placeholder="Expiration" /></div>
+                      <div><label className="pf-form-label">CVC</label><input className="pf-form-input" placeholder="CVC" /></div>
                     </div>
-                    <div className="pf-form-full"><label className="pf-form-label">Name on card</label><input className="pf-form-input" placeholder="Jane Smith" /></div>
+                    <div className="pf-form-full"><label className="pf-form-label">Name on card</label><input className="pf-form-input" placeholder="Name on card" /></div>
                     <div className="pf-checkbox-row">
                       <input type="checkbox" id="pf-billing-same" checked={billingSame} onChange={() => setBillingSame(!billingSame)} />
                       <label htmlFor="pf-billing-same">Billing address same as shipping</label>
                     </div>
                     {!billingSame && (
                       <div>
-                        <div className="pf-form-row">
-                          <div><label className="pf-form-label">First name</label><input className="pf-form-input" placeholder="Jane" /></div>
-                          <div><label className="pf-form-label">Last name</label><input className="pf-form-input" placeholder="Smith" /></div>
-                        </div>
-                        <div className="pf-form-full"><label className="pf-form-label">Billing street address</label><input className="pf-form-input" placeholder="456 Oak Ave" /></div>
+                        <div className="pf-form-full"><label className="pf-form-label">Billing street address</label><input className="pf-form-input" placeholder="Billing street address" /></div>
                         <div className="pf-form-row-3">
-                          <div><label className="pf-form-label">City</label><input className="pf-form-input" placeholder="Los Angeles" /></div>
-                          <div><label className="pf-form-label">State</label><input className="pf-form-input" placeholder="CA" /></div>
-                          <div><label className="pf-form-label">ZIP code</label><input className="pf-form-input" placeholder="90001" /></div>
+                          <div><label className="pf-form-label">City</label><input className="pf-form-input" placeholder="City" /></div>
+                          <div><label className="pf-form-label">State</label><input className="pf-form-input" placeholder="State" /></div>
+                          <div><label className="pf-form-label">ZIP code</label><input className="pf-form-input" placeholder="ZIP code" /></div>
                         </div>
                       </div>
                     )}
                   </div>
                 ) : (
                   <div className="pf-wallet-msg">
-                    <div style={{ fontSize: 32, marginBottom: 8 }}>{payMethod === 'apple' ? '🍎' : '🔵'}</div>
                     <div style={{ fontSize: 15, fontWeight: 700, marginBottom: 4 }}>{payMethod === 'apple' ? 'Apple Pay' : 'Google Pay'}</div>
                     <div style={{ fontSize: 13, color: '#8A857A' }}>You'll be prompted to confirm after clicking "Complete enrollment"</div>
                   </div>
@@ -895,15 +911,11 @@ export default function PricingForm() {
         <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div>
             <div className="pf-fb-label">Your plan</div>
-            <div className="pf-fb-total">{displayTotal()}</div>
+            <div style={{ display: 'flex', alignItems: 'baseline', gap: 10 }}>
+              <div className="pf-fb-total">{paySched === 'full' ? (interacted ? f(total) : '\u2013') : f(Math.ceil(total / (paySched === '6mo' ? 6 : 12))) + '/mo'}</div>
+              {interacted && <div className="pf-fb-monthly">{paySched === 'full' ? `or ${fDec(total / 12)}/mo` : `${f(total)} total`}</div>}
+            </div>
             {interacted && savings > 0 && <div className="pf-fb-save">Saving {f(savings)}</div>}
-          </div>
-          <div className="pf-seg">
-            {['full', '6mo', '12mo'].map((v) => (
-              <div key={v} className={`pf-seg-opt${paySched === v ? ' sel' : ''}`} onClick={() => doSetPaySched(v)}>
-                {v === 'full' ? 'Pay in full' : v === '6mo' ? '6 months' : '12 months'}
-              </div>
-            ))}
           </div>
         </div>
       </div>
