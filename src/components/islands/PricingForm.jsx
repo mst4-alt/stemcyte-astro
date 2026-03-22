@@ -277,6 +277,19 @@ export default function PricingForm() {
   const [payMethod, setPayMethod] = useState('card');
   const [billingSame, setBillingSame] = useState(true);
 
+  // ── Form field persistence ──
+  const [form, setForm] = useState({ firstName: '', lastName: '', otherRole: '', email: '', phone: '', birthday: '', dueDate: '', street: '', city: '', state: '', zip: '', hospital: '', doctor: '' });
+  const uf = (k) => (e) => setForm(prev => ({ ...prev, [k]: e.target.value }));
+  const [billing, setBilling] = useState({ street: '', city: '', state: '', zip: '' });
+  const ub = (k) => (e) => setBilling(prev => ({ ...prev, [k]: e.target.value }));
+
+  // ── Card state ──
+  const [cardNum, setCardNum] = useState('');
+  const [cardExp, setCardExp] = useState('');
+  const [cardCvc, setCardCvc] = useState('');
+  const [cardName, setCardName] = useState('');
+  const [isAmex, setIsAmex] = useState(false);
+
   // ── Refs ──
   const cellyAvRef = useRef(null);
   const cellyBannerRef = useRef(null);
@@ -386,9 +399,15 @@ export default function PricingForm() {
   const goStep = (n) => { setCkStep(n); setTimeout(scrollToForm, 50); };
 
   // ── Parents ──
-  const addParent = () => { if (parents.length >= 2) return; setParents((prev) => [...prev, { id: Date.now(), role: '' }]); };
+  const addParent = () => { if (parents.length >= 2) return; setParents((prev) => [...prev, { id: Date.now(), role: '', firstName: '', lastName: '', phone: '', birthday: '', dueDate: '' }]); };
   const removeParent = (id) => { setParents((prev) => prev.filter((p) => p.id !== id)); };
   const setParentRole = (id, role) => { setParents((prev) => prev.map((p) => p.id === id ? { ...p, role } : p)); };
+  const setParentField = (id, k, v) => { setParents((prev) => prev.map((p) => p.id === id ? { ...p, [k]: v } : p)); };
+
+  // ── Card formatting ──
+  const handleCardNum = (e) => { let v = e.target.value.replace(/\D/g, ''); const amex = /^3[47]/.test(v); setIsAmex(amex); v = v.substring(0, amex ? 15 : 16); if (amex) { let p = []; if (v.length > 0) p.push(v.substring(0, 4)); if (v.length > 4) p.push(v.substring(4, 10)); if (v.length > 10) p.push(v.substring(10, 15)); setCardNum(p.join(' ')); } else { setCardNum(v.replace(/(\d{4})(?=\d)/g, '$1 ')); } };
+  const handleCardExp = (e) => { let v = e.target.value.replace(/\D/g, '').substring(0, 4); if (v.length >= 1) { if (v.length === 1 && parseInt(v[0]) > 1) v = '0' + v[0]; else if (v.length >= 2) { let m = parseInt(v.substring(0, 2)); if (m === 0) v = '01' + v.substring(2); else if (m > 12) v = '12' + v.substring(2); } } if (v.length >= 3) setCardExp(v.substring(0, 2) + ' / ' + v.substring(2)); else if (v.length === 2) setCardExp(v + ' / '); else setCardExp(v); };
+  const handleCardCvc = (e) => { setCardCvc(e.target.value.replace(/\D/g, '').substring(0, isAmex ? 4 : 3)); };
 
   // ── Review lines ──
   const buildReviewLines = () => {
@@ -728,8 +747,8 @@ export default function PricingForm() {
                 <div className="pf-sec-t">Your information</div>
                 <div className="pf-sec-sub">Tell us about yourself so we can set up your account.</div>
                 <div className="pf-form-row">
-                  <div><label className="pf-form-label">First name</label><input className="pf-form-input" name="firstname" autoComplete="given-name" placeholder="First name" /></div>
-                  <div><label className="pf-form-label">Last name</label><input className="pf-form-input" name="lastname" autoComplete="family-name" placeholder="Last name" /></div>
+                  <div><label className="pf-form-label">First name</label><input className="pf-form-input" name="firstname" autoComplete="given-name" placeholder="First name" value={form.firstName} onChange={uf('firstName')} /></div>
+                  <div><label className="pf-form-label">Last name</label><input className="pf-form-input" name="lastname" autoComplete="family-name" placeholder="Last name" value={form.lastName} onChange={uf('lastName')} /></div>
                 </div>
                 <div className="pf-form-full">
                   <label className="pf-form-label">Relationship to baby</label>
@@ -743,16 +762,16 @@ export default function PricingForm() {
                   </select>
                 </div>
                 {role1 === 'other' && (
-                  <div className="pf-form-full"><label className="pf-form-label">Please specify</label><input className="pf-form-input" placeholder="e.g. Grandparent, Legal guardian" /></div>
+                  <div className="pf-form-full"><label className="pf-form-label">Please specify</label><input className="pf-form-input" placeholder="e.g. Grandparent, Legal guardian" value={form.otherRole} onChange={uf('otherRole')} /></div>
                 )}
                 <div className="pf-form-row">
-                  <div><label className="pf-form-label">Email address</label><input className="pf-form-input" type="email" name="email" autoComplete="email" placeholder="Email address" /></div>
-                  <div><label className="pf-form-label">Phone number</label><input className="pf-form-input" type="tel" name="phone" autoComplete="tel" placeholder="Phone number" /></div>
+                  <div><label className="pf-form-label">Email address</label><input className="pf-form-input" type="email" name="email" autoComplete="email" placeholder="Email address" value={form.email} onChange={uf('email')} /></div>
+                  <div><label className="pf-form-label">Phone number</label><input className="pf-form-input" type="tel" name="phone" autoComplete="tel" placeholder="Phone number" value={form.phone} onChange={uf('phone')} /></div>
                 </div>
                 {role1 === 'birth_mother' && (
                   <div className="pf-form-row">
-                    <div><label className="pf-form-label">Your birthday</label><input className="pf-form-input" type="date" /></div>
-                    <div><label className="pf-form-label">Due date</label><input className="pf-form-input" type="date" /></div>
+                    <div><label className="pf-form-label">Your birthday</label><input className="pf-form-input" type="date" value={form.birthday} onChange={uf('birthday')} /></div>
+                    <div><label className="pf-form-label">Due date</label><input className="pf-form-input" type="date" value={form.dueDate} onChange={uf('dueDate')} /></div>
                   </div>
                 )}
                 {parents.map((p, i) => (
@@ -762,8 +781,8 @@ export default function PricingForm() {
                       <button className="pf-remove-parent" onClick={() => removeParent(p.id)}>Remove</button>
                     </div>
                     <div className="pf-form-row">
-                      <div><label className="pf-form-label">First name</label><input className="pf-form-input" placeholder="First name" /></div>
-                      <div><label className="pf-form-label">Last name</label><input className="pf-form-input" placeholder="Last name" /></div>
+                      <div><label className="pf-form-label">First name</label><input className="pf-form-input" placeholder="First name" value={p.firstName} onChange={(e) => setParentField(p.id, 'firstName', e.target.value)} /></div>
+                      <div><label className="pf-form-label">Last name</label><input className="pf-form-input" placeholder="Last name" value={p.lastName} onChange={(e) => setParentField(p.id, 'lastName', e.target.value)} /></div>
                     </div>
                     <div className="pf-form-full">
                       <label className="pf-form-label">Relationship to baby</label>
@@ -779,11 +798,11 @@ export default function PricingForm() {
                     {p.role === 'other' && (
                       <div className="pf-form-full"><label className="pf-form-label">Please specify</label><input className="pf-form-input" placeholder="e.g. Grandparent, Legal guardian" /></div>
                     )}
-                    <div className="pf-form-full"><label className="pf-form-label">Phone number</label><input className="pf-form-input" type="tel" placeholder="Phone number" /></div>
+                    <div className="pf-form-full"><label className="pf-form-label">Phone number</label><input className="pf-form-input" type="tel" placeholder="Phone number" value={p.phone} onChange={(e) => setParentField(p.id, 'phone', e.target.value)} /></div>
                     {p.role === 'birth_mother' && (
                       <div className="pf-form-row">
-                        <div><label className="pf-form-label">Your birthday</label><input className="pf-form-input" type="date" /></div>
-                        <div><label className="pf-form-label">Due date</label><input className="pf-form-input" type="date" /></div>
+                        <div><label className="pf-form-label">Your birthday</label><input className="pf-form-input" type="date" value={p.birthday} onChange={(e) => setParentField(p.id, 'birthday', e.target.value)} /></div>
+                        <div><label className="pf-form-label">Due date</label><input className="pf-form-input" type="date" value={p.dueDate} onChange={(e) => setParentField(p.id, 'dueDate', e.target.value)} /></div>
                       </div>
                     )}
                   </div>
@@ -791,11 +810,11 @@ export default function PricingForm() {
                 {parents.length < 2 && <button className="pf-add-parent-btn" onClick={addParent}>+ Add another parent or guardian</button>}
                 <div className="pf-divider" />
                 <div className="pf-sec-t">Collection kit delivery</div>
-                <div className="pf-form-full"><label className="pf-form-label">Street address</label><input className="pf-form-input" name="address" autoComplete="street-address" placeholder="Street address (kit delivery)" /></div>
+                <div className="pf-form-full"><label className="pf-form-label">Street address</label><input className="pf-form-input" name="address" autoComplete="street-address" placeholder="Street address (kit delivery)" value={form.street} onChange={uf('street')} /></div>
                 <div className="pf-form-row-3">
-                  <div><label className="pf-form-label">City</label><input className="pf-form-input" name="city" autoComplete="address-level2" placeholder="City" /></div>
-                  <div><label className="pf-form-label">State</label><input className="pf-form-input" name="state" autoComplete="address-level1" placeholder="State" /></div>
-                  <div><label className="pf-form-label">ZIP code</label><input className="pf-form-input" name="zip" autoComplete="postal-code" placeholder="ZIP code" /></div>
+                  <div><label className="pf-form-label">City</label><input className="pf-form-input" name="city" autoComplete="address-level2" placeholder="City" value={form.city} onChange={uf('city')} /></div>
+                  <div><label className="pf-form-label">State</label><input className="pf-form-input" name="state" autoComplete="address-level1" placeholder="State" value={form.state} onChange={uf('state')} /></div>
+                  <div><label className="pf-form-label">ZIP code</label><input className="pf-form-input" name="zip" autoComplete="postal-code" placeholder="ZIP code" value={form.zip} onChange={uf('zip')} /></div>
                 </div>
                 <div className="pf-btn-row">
                   <button className="pf-btn-back" onClick={backToBuilder}>← Back</button>
@@ -808,8 +827,8 @@ export default function PricingForm() {
               <div className="pf-checkout">
                 <div className="pf-sec-t">Birth information</div>
                 <div className="pf-sec-sub">So we can coordinate with your birth team and prepare your kit.</div>
-                <div className="pf-form-full"><label className="pf-form-label">Hospital or birth center</label><input className="pf-form-input" placeholder="Hospital or birth center" /></div>
-                <div className="pf-form-full"><label className="pf-form-label">Doctor's name</label><input className="pf-form-input" placeholder="Doctor's name" /></div>
+                <div className="pf-form-full"><label className="pf-form-label">Hospital or birth center</label><input className="pf-form-input" placeholder="Hospital or birth center" value={form.hospital} onChange={uf('hospital')} /></div>
+                <div className="pf-form-full"><label className="pf-form-label">Doctor's name</label><input className="pf-form-input" placeholder="Doctor's name" value={form.doctor} onChange={uf('doctor')} /></div>
                 <div className={`pf-twins-row${twins ? ' sel' : ''}`} onClick={doTogTwins} style={{ marginTop: 16 }}>
                   <div className="pf-twins-check">
                     {twins && <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>}
@@ -870,23 +889,23 @@ export default function PricingForm() {
 
                 {payMethod === 'card' ? (
                   <div>
-                    <div className="pf-form-full"><label className="pf-form-label">Card number</label><input className="pf-form-input" placeholder="Card number" /></div>
+                    <div className="pf-form-full" style={{ position: 'relative' }}><label className="pf-form-label">Card number</label><input className="pf-form-input" name="cardnumber" autoComplete="cc-number" placeholder="Card number" style={{ paddingRight: 120 }} value={cardNum} onChange={handleCardNum} /><div style={{ position: 'absolute', right: 16, top: '50%', transform: 'translateY(20%)', display: 'flex', alignItems: 'center', gap: 4, pointerEvents: 'none' }}><span style={{ display: 'inline-flex', alignItems: 'center', gap: 4, fontSize: 11, fontWeight: 600, color: '#B0AAA0', whiteSpace: 'nowrap' }}><svg viewBox="0 0 16 16" fill="none" style={{ width: 12, height: 12 }}><path d="M8 1L2 4v4c0 3.5 2.6 6.4 6 7 3.4-.6 6-3.5 6-7V4L8 1z" stroke="currentColor" strokeWidth="1.3" fill="none" /><path d="M5.5 8.5L7 10l3.5-3.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg> 256-bit SSL</span></div></div>
                     <div className="pf-form-row">
-                      <div><label className="pf-form-label">Expiration</label><input className="pf-form-input" placeholder="Expiration" /></div>
-                      <div><label className="pf-form-label">CVC</label><input className="pf-form-input" placeholder="CVC" /></div>
+                      <div><label className="pf-form-label">Expiration</label><input className="pf-form-input" name="cc-exp" autoComplete="cc-exp" placeholder="Expiration" value={cardExp} onChange={handleCardExp} /></div>
+                      <div><label className="pf-form-label">{isAmex ? 'CID (4 digits)' : 'CVC'}</label><input className="pf-form-input" name="cc-csc" autoComplete="cc-csc" placeholder={isAmex ? 'CID (4 digits)' : 'CVC'} value={cardCvc} onChange={handleCardCvc} /></div>
                     </div>
-                    <div className="pf-form-full"><label className="pf-form-label">Name on card</label><input className="pf-form-input" placeholder="Name on card" /></div>
+                    <div className="pf-form-full"><label className="pf-form-label">Name on card</label><input className="pf-form-input" name="ccname" autoComplete="cc-name" placeholder="Name on card" value={cardName} onChange={(e) => setCardName(e.target.value)} /></div>
                     <div className="pf-checkbox-row">
                       <input type="checkbox" id="pf-billing-same" checked={billingSame} onChange={() => setBillingSame(!billingSame)} />
                       <label htmlFor="pf-billing-same">Billing address same as shipping</label>
                     </div>
                     {!billingSame && (
                       <div>
-                        <div className="pf-form-full"><label className="pf-form-label">Billing street address</label><input className="pf-form-input" placeholder="Billing street address" /></div>
+                        <div className="pf-form-full"><label className="pf-form-label">Billing street address</label><input className="pf-form-input" autoComplete="billing street-address" placeholder="Billing street address" value={billing.street} onChange={ub('street')} /></div>
                         <div className="pf-form-row-3">
-                          <div><label className="pf-form-label">City</label><input className="pf-form-input" placeholder="City" /></div>
-                          <div><label className="pf-form-label">State</label><input className="pf-form-input" placeholder="State" /></div>
-                          <div><label className="pf-form-label">ZIP code</label><input className="pf-form-input" placeholder="ZIP code" /></div>
+                          <div><label className="pf-form-label">City</label><input className="pf-form-input" autoComplete="billing address-level2" placeholder="City" value={billing.city} onChange={ub('city')} /></div>
+                          <div><label className="pf-form-label">State</label><input className="pf-form-input" autoComplete="billing address-level1" placeholder="State" value={billing.state} onChange={ub('state')} /></div>
+                          <div><label className="pf-form-label">ZIP code</label><input className="pf-form-input" autoComplete="billing postal-code" placeholder="ZIP code" value={billing.zip} onChange={ub('zip')} /></div>
                         </div>
                       </div>
                     )}
