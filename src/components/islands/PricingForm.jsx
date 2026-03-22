@@ -54,7 +54,7 @@ html{overflow-x:hidden}
 .pf-page{max-width:640px;margin:0 auto;padding:48px 32px 120px;width:100%}
 .celly-banner{background:linear-gradient(145deg,#FBF5F9,#fff);border:1px solid rgba(232,160,208,0.2);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;transition:all 0.25s;box-shadow:0 3px 16px rgba(108,26,85,0.08);margin-bottom:28px}
 .celly-banner:hover{border-color:#E8A0D0;box-shadow:0 6px 24px rgba(108,26,85,0.1)}
-.celly-banner-av{width:80px;height:90px;flex-shrink:0;overflow:hidden}
+.celly-banner-av{width:96px;height:108px;flex-shrink:0;overflow:hidden}
 .celly-banner-text{flex:1}
 .celly-banner-title{font-size:16px;font-weight:700}
 .celly-banner-sub{font-size:13px;color:#8A857A;margin-top:3px;line-height:1.4}
@@ -63,7 +63,7 @@ html{overflow-x:hidden}
 .celly-chat.open{display:block;animation:pf-fadeIn 0.3s ease}
 @keyframes pf-fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .cc-row{display:flex;align-items:flex-start;gap:12px}
-.cc-av{width:80px;height:90px;flex-shrink:0;position:relative}
+.cc-av{width:96px;height:108px;flex-shrink:0;position:relative}
 .cc-av svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity 0.3s}
 .cc-av svg.off{opacity:0;pointer-events:none}
 .cc-name{font-size:10px;font-weight:700;color:#6C1A55;letter-spacing:0.5px;margin-bottom:3px}
@@ -199,7 +199,7 @@ html{overflow-x:hidden}
   .pf-form-row,.pf-form-row-3{grid-template-columns:1fr}
   .pf-pay-methods{flex-direction:column}
   .celly-banner{flex-direction:column;text-align:center;padding:20px 16px;gap:12px}
-  .celly-banner-av{width:60px;height:68px}
+  .celly-banner-av{width:72px;height:82px}
   .celly-banner-arrow{width:100%;text-align:center}
 }
 `;
