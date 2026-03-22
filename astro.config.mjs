@@ -6,5 +6,7 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://stemcyte.com',
   output: 'static',
-  integrations: [react(), sitemap()],
+  integrations: [react(), sitemap({
+    filter: (page) => !page.includes('/long-covid'),
+  })],
 });

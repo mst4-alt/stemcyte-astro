@@ -17,9 +17,10 @@ interface Props {
   title: string;
   description?: string;
   schema?: object;
+  noindex?: boolean;
 }
 
-const { title: rawTitle, description = 'StemCyte is a global regenerative therapeutics company offering cord blood banking, clinical stem cell therapy, and regenerative medicine since 1997.', schema } = Astro.props;
+const { title: rawTitle, description = 'StemCyte is a global regenerative therapeutics company offering cord blood banking, clinical stem cell therapy, and regenerative medicine since 1997.', schema, noindex = false } = Astro.props;
 
 // Prevent duplicate "| StemCyte" in title
 const title = rawTitle.replace(/\s*\|\s*StemCyte\s*$/i, '');
@@ -56,6 +57,7 @@ const orgSchema = {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{title} | StemCyte</title>
   <meta name="description" content={description} />
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
 
   <!-- Organization schema on every page -->
