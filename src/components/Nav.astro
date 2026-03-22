@@ -58,6 +58,7 @@ const navLinks = [
   // Scroll detection
   if (nav && hero) {
     if (hero.dataset.navTheme === 'dark') nav.classList.add('dark-hero');
+    if (hero.dataset.navTheme === 'plum') nav.classList.add('plum-hero');
     function ckNav() {
       if (hero.getBoundingClientRect().bottom < 80) {
         nav.classList.remove('at-top');

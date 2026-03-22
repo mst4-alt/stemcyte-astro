@@ -11,55 +11,48 @@ const schema = {
 ---
 <BaseLayout title="Tong-Young Lee, PhD — CEO" schema={schema}>
 
-<section class="hero" id="hero">
-  <canvas id="hero-canvas" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none"></canvas>
-  <div class="orb orb-a"></div>
-  <div class="orb orb-b"></div>
-  <div class="hero-inner">
-    <img class="hero-portrait" fetchpriority="high" src="/images/our%20story/lee.jpg" alt="Tong-Young Lee, PhD" width="200" height="200" />
-    <div class="hero-text">
-      <a href="/our-story" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Our Story</a>
-      <h1 class="hero-name">Tong-Young Lee, PhD</h1>
-      <div class="hero-role">CEO, StemCyte Inc.</div>
-      <p class="hero-sub">Trained at Harvard under the father of angiogenesis research. Built biotech companies across three continents. Now leading StemCyte's transformation into a regenerative medicine company.</p>
+<section class="hero" id="hero" data-nav-theme="plum">
+  <div class="hero-img">
+    <img src="/images/our%20story/lee.jpg" alt="Tong-Young Lee, PhD" class="hero-portrait" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-text">
+    <a href="/our-story" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Our Story
+    </a>
+    <h1 class="hero-name">Tong-Young Lee, PhD</h1>
+    <div class="hero-role">CEO, StemCyte Inc.</div>
+    <p class="hero-sub">Trained at Harvard under the father of angiogenesis research. Built biotech companies across three continents. Now leading StemCyte's transformation into a regenerative medicine company.</p>
+    <div class="hero-creds">
+      <span class="hero-cred">Harvard Medical School</span>
+      <span class="hero-cred">4 Biotech Startups</span>
+      <span class="hero-cred">$530M Deal</span>
     </div>
   </div>
 </section>
 
-<section class="section"><div class="inner">
-  <div class="sec-label anim" data-anim>Background</div>
-  <h2 class="sec-h2 anim" data-anim>From Harvard's angiogenesis lab to the future of cell therapy</h2>
-  <p class="body-p anim" data-anim>Dr. Tong-Young Lee earned his PhD in pathology from National Taiwan University, Taiwan's most prestigious academic institution. He applied to over 100 post-doctoral programs in the United States and was selected to join the legendary laboratory of Dr. Judah Folkman at Harvard Medical School—widely recognized as the father of angiogenesis research.</p>
-  <p class="body-p anim" data-anim>During his six years at Harvard (2004–2010), Dr. Lee contributed to the research and development of cancer treatments that would become the first three FDA-approved angiogenesis inhibitors: bevacizumab (Avastin), ranibizumab (Lucentis), and aflibercept (Eylea). Combined, these drugs generate over $15 billion in annual sales worldwide. He is also credited as the inventor of Fc-endostatin, a next-generation long-acting angiogenesis inhibitor.</p>
-  <p class="body-p anim" data-anim>In 2010, Dr. Lee returned to Taiwan and joined the Chintek Group, where he contributed to the development of several antibody-based drugs, including the monoclonal antibody FB825, which was subsequently licensed to LEO Pharma of Denmark in a deal valued at up to $530 million. Over the next decade, he founded and led multiple biotech startups across immunotherapy, antibody discovery, and cellular therapy, guiding companies through spin-offs, IPOs, and international partnerships.</p>
-  <p class="body-p anim" data-anim>Appointed CEO of StemCyte in 2021, Dr. Lee is now steering the company's evolution from a world-class cord blood bank into a regenerative medicine company with an active clinical pipeline targeting Long COVID, stroke, and cerebral palsy.</p>
-  <div class="insight-card anim" data-anim>
-    <div class="quote-text">"The vision is for StemCyte to be a leading biotech company in the Asia-Pacific region and eventually globally. We are not just a bank. We are a regenerative medicine company."</div>
-    <div class="quote-attr">Tong-Young Lee, PhD — CEO, StemCyte</div>
+<div class="mag-container">
+  <div class="mag-main">
+    <div class="sec-label">Background</div>
+    <h2 class="sec-h2">From Harvard's angiogenesis lab to the future of cell therapy</h2>
+    <p class="body-p mag-dropcap">Dr. Tong-Young Lee earned his PhD in pathology from National Taiwan University, Taiwan's most prestigious academic institution. He applied to over 100 post-doctoral programs in the United States and was selected to join the legendary laboratory of Dr. Judah Folkman at Harvard Medical School—widely recognized as the father of angiogenesis research.</p>
+    <p class="body-p">During his six years at Harvard (2004–2010), Dr. Lee contributed to the research and development of cancer treatments that would become the first three FDA-approved angiogenesis inhibitors: bevacizumab (Avastin), ranibizumab (Lucentis), and aflibercept (Eylea). Combined, these drugs generate over $15 billion in annual sales worldwide. He is also credited as the inventor of Fc-endostatin, a next-generation long-acting angiogenesis inhibitor.</p>
+    <p class="body-p">In 2010, Dr. Lee returned to Taiwan and joined the Chintek Group, where he contributed to the development of several antibody-based drugs, including the monoclonal antibody FB825, which was subsequently licensed to LEO Pharma of Denmark in a deal valued at up to $530 million. Over the next decade, he founded and led multiple biotech startups across immunotherapy, antibody discovery, and cellular therapy, guiding companies through spin-offs, IPOs, and international partnerships.</p>
+    <p class="body-p">Appointed CEO of StemCyte in 2021, Dr. Lee is now steering the company's evolution from a world-class cord blood bank into a regenerative medicine company with an active clinical pipeline targeting Long COVID, stroke, and cerebral palsy.</p>
   </div>
-</div></section>
+  <div class="mag-margin">
+    <div class="mag-pullquote">
+      "The vision is for StemCyte to be a leading biotech company in the Asia-Pacific region and eventually globally. We are not just a bank. We are a regenerative medicine company."
+      <div class="mag-pq-attr">Tong-Young Lee, PhD — CEO, StemCyte</div>
+    </div>
+    <div class="mag-impact-label">Defining achievements</div>
+    <div class="mag-impact-card"><div class="mic-num">$15B+</div><h3>Avastin, Lucentis &amp; Eylea</h3><p>Combined annual sales of drugs he contributed to at Harvard</p></div>
+    <div class="mag-impact-card"><div class="mic-num">$530M</div><h3>FB825 Licensing Deal</h3><p>Licensed to LEO Pharma—one of Taiwan's largest biotech deals in history</p></div>
+    <div class="mag-impact-card"><div class="mic-num">4</div><h3>Biotech Startups</h3><p>IPOs, listings, and acquisitions across 15 years</p></div>
+  </div>
+</div>
 
 <div class="divider"><div class="divider-line"></div></div>
-
-<section class="section"><div class="inner">
-  <div class="sec-label">Impact</div>
-  <h2 class="sec-h2">Defining achievements</h2>
-  <div class="highlight-grid">
-    <div class="highlight-card anim" data-anim><div class="highlight-icon highlight-icon-plum"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.518-3.995 2.807-5.993"/><path d="M15 2c-1.798 1.998-2.518 3.995-2.807 5.993"/><path d="M17 6l-2.5 2.5"/><path d="M14 8l-1 1"/><path d="M7 18l2.5-2.5"/><path d="M3.5 14.5l.5-.5"/><path d="M20 9l.5-.5"/><path d="M6.5 12.5l1-1"/><path d="M16.5 10.5l1-1"/></svg></div><h3 class="highlight-title">Avastin, Lucentis &amp; Eylea</h3><p>Contributed to research behind the first three FDA-approved angiogenesis inhibitors at Harvard under Dr. Judah Folkman</p></div>
-    <div class="highlight-card anim" data-anim><div class="highlight-icon highlight-icon-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4943E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div><h3 class="highlight-title">$530M Licensing Deal</h3><p>Contributed to the development of FB825, licensed to LEO Pharma in one of Taiwan's largest biotech deals</p></div>
-    <div class="highlight-card anim" data-anim><div class="highlight-icon highlight-icon-sage"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A6B4F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div><h3 class="highlight-title">4 Biotech Startups</h3><p>Led product development and governance through spin-offs, IPOs, listings, and acquisitions across 15 years</p></div>
-  </div>
-</div></section>
-
-<div class="divider"><div class="divider-line"></div></div>
-
-<section class="section section-lav"><div class="inner">
-  <div class="sec-label">Expertise</div>
-  <h2 class="sec-h2">Areas of focus</h2>
-  <div class="tag-grid">
-    <span class="tag">Angiogenesis</span><span class="tag">Cancer Immunotherapy</span><span class="tag">Antibody Drug Development</span><span class="tag">Cellular Therapy</span><span class="tag">Drug Discovery</span><span class="tag">Cord Blood Banking</span><span class="tag">Regenerative Medicine</span><span class="tag">Clinical Trials</span><span class="tag">Biotech Leadership</span>
-  </div>
-</div></section>
 
 <section class="section"><div class="inner">
   <div class="sec-label">Career</div>
@@ -84,10 +77,9 @@ const schema = {
 <section class="section section-plum"><div class="inner">
   <div class="sec-label">Education</div>
   <h2 class="sec-h2">Academic credentials</h2>
-  <div class="stat-row">
+  <div class="stat-row stat-row-2col">
     <div class="stat-card anim" data-anim><div class="stat-num" style="font-size:20px;font-family:'Lato',sans-serif;font-weight:700">PhD</div><div class="stat-label">Pathology, National Taiwan University</div></div>
     <div class="stat-card anim" data-anim><div class="stat-num" style="font-size:20px;font-family:'Lato',sans-serif;font-weight:700">Post-Doc</div><div class="stat-label">Harvard Medical School, Folkman Lab</div></div>
-    <div class="stat-card anim" data-anim><div class="stat-num" style="font-size:20px;font-family:'Lato',sans-serif;font-weight:700">15+ yrs</div><div class="stat-label">Biotech startup leadership across Asia-Pacific</div></div>
   </div>
 </div></section>
 
@@ -105,20 +97,30 @@ const schema = {
 </BaseLayout>
 
 <style is:global>
-.hero { position:relative; min-height:72vh; background:linear-gradient(175deg,#3D0F31 0%,#1A0714 50%,#0D0516 100%); overflow:hidden; display:flex; align-items:flex-end; padding:0 48px 72px; }
-.orb { position:absolute; border-radius:50%; pointer-events:none; z-index:1; }
-.orb-a { width:700px; height:700px; background:radial-gradient(circle,rgba(192,106,165,0.1) 0%,transparent 70%); top:-200px; right:-100px; }
-.orb-b { width:500px; height:500px; background:radial-gradient(circle,rgba(108,26,85,0.15) 0%,transparent 70%); bottom:-150px; left:-50px; }
-.hero-inner { max-width:860px; margin:0 auto; width:100%; position:relative; z-index:3; display:grid; grid-template-columns:200px 1fr; gap:48px; align-items:end; }
-.hero-portrait { width:200px; height:200px; border-radius:4px; object-fit:cover; object-position:center; display:block; border:4px solid rgba(255,255,255,0.12); opacity:0; animation:heroFade 0.8s 0.2s ease forwards; }
-.hero-text { opacity:0; animation:heroFade 0.8s 0.4s ease forwards; }
-.back-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#C06AA5; text-decoration:none; margin-bottom:20px; transition:color 0.2s; }
-.back-link:hover { color:#E8A0D0; }
+.hero { display:grid; grid-template-columns:1fr 1fr; min-height:620px; }
+.hero-img { position:relative; overflow:hidden; background:linear-gradient(175deg,#3D0F31 0%,#1A0714 100%); }
+.hero-portrait { width:100%; height:100%; object-fit:cover; opacity:0.8; mix-blend-mode:luminosity; }
+.hero-overlay { position:absolute; inset:0; background:linear-gradient(to right, transparent 50%, #FAF7F2 100%); }
+.hero-text { background:#FAF7F2; display:flex; flex-direction:column; justify-content:flex-end; padding:120px 64px 72px 48px; }
+.back-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#6C1A55; text-decoration:none; margin-bottom:24px; }
 .back-link svg { width:16px; height:16px; }
-.hero-name { font-family:'Playfair Display',serif; font-size:42px; font-weight:400; line-height:1.1; letter-spacing:-1px; color:#fff; margin-bottom:8px; }
-.hero-role { font-size:14px; font-weight:700; color:#C06AA5; letter-spacing:0.5px; margin-bottom:14px; }
-.hero-sub { font-size:16px; color:rgba(255,255,255,0.55); line-height:1.7; max-width:540px; }
-@keyframes heroFade { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.hero-name { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.05; letter-spacing:-1.5px; color:#2C2A26; margin-bottom:8px; }
+.hero-role { font-size:14px; font-weight:700; color:#6C1A55; margin-bottom:16px; }
+.hero-sub { font-size:16px; color:#6B6760; line-height:1.7; max-width:420px; }
+.hero-creds { display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; }
+.hero-cred { padding:10px 16px; background:#F3F0F8; border-radius:8px; font-size:12px; font-weight:700; color:#6C1A55; }
+.mag-container { max-width:1100px; margin:0 auto; padding:80px 48px; display:grid; grid-template-columns:1fr 300px; gap:64px; }
+.mag-main {}
+.mag-dropcap::first-letter { font-family:'Playfair Display',serif; font-size:64px; float:left; line-height:0.8; padding-right:10px; padding-top:4px; color:#6C1A55; }
+.mag-margin { padding-top:60px; display:flex; flex-direction:column; }
+.mag-pullquote { background:#FBF5F9; border-radius:12px; padding:20px; font-family:'Playfair Display',serif; font-size:16px; font-style:italic; color:#3D0F31; line-height:1.5; border-left:3px solid #C06AA5; margin-bottom:24px; }
+.mag-pq-attr { font-family:'Lato',sans-serif; font-size:12px; font-style:normal; color:#8A857A; margin-top:12px; }
+.mag-impact-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:12px; }
+.mag-impact-card { background:#fff; border-radius:12px; padding:20px 24px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; margin-bottom:12px; }
+.mag-impact-card:last-child { margin-bottom:0; }
+.mag-impact-card .mic-num { font-family:'Source Serif 4',serif; font-size:28px; font-weight:600; color:#6C1A55; line-height:1; margin-bottom:6px; }
+.mag-impact-card h3 { font-size:13px; font-weight:700; margin-bottom:3px; }
+.mag-impact-card p { font-size:12px; color:#6B6760; line-height:1.45; }
 .section { padding:80px 48px; position:relative; }
 .section-lav { background:#F3F0F8; }
 .section-plum { background:#FBF5F9; }
@@ -129,21 +131,6 @@ const schema = {
 .sec-h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; line-height:1.15; letter-spacing:-0.5px; margin-bottom:20px; }
 .body-p { font-size:15px; color:#6B665D; line-height:1.8; margin-bottom:16px; }
 .body-p:last-child { margin-bottom:0; }
-.insight-card { background:#fff; border-radius:16px; padding:40px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; margin:32px 0; position:relative; overflow:hidden; }
-.insight-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:linear-gradient(to bottom,#E8A0D0,#6C1A55); border-radius:2px 0 0 2px; }
-.quote-text { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; line-height:1.5; color:#3D0F31; margin-bottom:16px; padding-left:8px; }
-.quote-attr { font-size:13px; color:#8A857A; padding-left:8px; }
-.highlight-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:32px 0; }
-.highlight-card { background:#fff; border-radius:12px; padding:28px 24px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; transition:transform 0.2s, box-shadow 0.2s; }
-.highlight-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(108,26,85,0.08); }
-.highlight-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
-.highlight-icon-plum { background:#FBF5F9; }
-.highlight-icon-sage { background:#F0F7F4; }
-.highlight-icon-gold { background:#FDF5EB; }
-.highlight-card h4 { font-size:15px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
-.highlight-card p { font-size:13px; color:#6B6760; line-height:1.6; }
-.tag-grid { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0; }
-.tag { font-size:13px; font-weight:600; color:#6C1A55; background:#FBF5F9; border:1px solid #F0E0EB; padding:8px 16px; border-radius:100px; }
 .timeline { position:relative; padding-left:40px; margin:32px 0; }
 .tl-track { position:absolute; left:14px; top:0; bottom:0; width:2px; background:#E8E2DC; border-radius:1px; }
 .tl-fill { position:absolute; left:14px; top:0; width:2px; background:linear-gradient(180deg,#C06AA5,#6C1A55); border-radius:1px; z-index:1; height:0; transition:height 0.1s linear; }
@@ -159,6 +146,7 @@ const schema = {
 .tl-title { font-size:16px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
 .tl-desc { font-size:14px; color:#6B665D; line-height:1.7; }
 .stat-row { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:32px 0; }
+.stat-row-2col { grid-template-columns:repeat(2,1fr); }
 .stat-card { background:#fff; border-radius:12px; padding:28px 24px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
 .stat-num { font-family:'Source Serif 4',serif; font-size:36px; color:#6C1A55; margin-bottom:4px; }
 .stat-label { font-size:13px; color:#8A857A; line-height:1.4; }
@@ -176,28 +164,25 @@ const schema = {
 .cta-btn:hover { background:rgba(255,255,255,0.85); }
 .anim { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease, transform 0.6s ease; }
 .anim-visible { opacity:1; transform:translateY(0); }
-.highlight-card:nth-child(1) { transition-delay:0s; }
-.highlight-card:nth-child(2) { transition-delay:0.1s; }
-.highlight-card:nth-child(3) { transition-delay:0.2s; }
 .stat-card:nth-child(1) { transition-delay:0s; }
 .stat-card:nth-child(2) { transition-delay:0.1s; }
 .stat-card:nth-child(3) { transition-delay:0.2s; }
 @media (max-width:768px) {
-  .hero { min-height:auto; padding:120px 24px 48px; }
-  .hero-inner { grid-template-columns:1fr; gap:24px; text-align:center; }
-  .hero-portrait { width:140px; height:140px; margin:0 auto; }
-  .hero-name { font-size:32px; }
-  .back-link { justify-content:center; }
+  .hero { grid-template-columns:1fr; min-height:auto; }
+  .hero-img { min-height:300px; }
+  .hero-overlay { background:linear-gradient(to bottom, transparent 50%, #FAF7F2 100%); }
+  .hero-text { padding:48px 24px; }
+  .hero-name { font-size:34px; }
+  .mag-container { grid-template-columns:1fr; padding:48px 24px; gap:32px; }
+  .mag-margin { padding-top:0; }
   .section { padding:56px 24px; }
   .sec-h2 { font-size:26px; }
   .divider { padding:0 24px; }
-  .highlight-grid { grid-template-columns:1fr; }
   .stat-row { grid-template-columns:1fr; }
+  .stat-row-2col { grid-template-columns:1fr; }
   .other-leaders { grid-template-columns:1fr; }
   .cta-banner { padding:48px 24px; }
   .cta-banner h2 { font-size:26px; }
-  .insight-card { padding:28px 24px; }
-  .quote-text { font-size:18px; }
 }
 </style>
 
@@ -235,16 +220,5 @@ const schema = {
     }
     window.addEventListener('scroll', update, { passive: true });
     update();
-  })();
-
-  (function() {
-    var c = document.getElementById('hero-canvas');
-    if (!c) return;
-    var ctx = c.getContext('2d');
-    var animId, cells = [], COUNT = 50;
-    function resize() { c.width = c.offsetWidth * window.devicePixelRatio; c.height = c.offsetHeight * window.devicePixelRatio; ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0); }
-    function init() { resize(); var W = c.offsetWidth, H = c.offsetHeight; cells = []; for (var i = 0; i < COUNT; i++) { var angle = Math.random() * Math.PI * 2; var speed = Math.random() * 0.3 + 0.1; cells.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 4 + 2, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, opacity: Math.random() * 0.12 + 0.04, hue: Math.random() > 0.5 ? '232,160,208' : '192,106,165' }); } }
-    function draw() { var W = c.offsetWidth, H = c.offsetHeight; ctx.clearRect(0, 0, W, H); for (var i = 0; i < cells.length; i++) { var cell = cells[i]; cell.x += cell.vx; cell.y += cell.vy; if (cell.x < -10 || cell.x > W + 10) cell.vx *= -1; if (cell.y < -10 || cell.y > H + 10) cell.vy *= -1; ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.r * 2.5, 0, Math.PI * 2); ctx.fillStyle = 'rgba(' + cell.hue + ',' + (cell.opacity * 0.3) + ')'; ctx.fill(); ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(' + cell.hue + ',' + cell.opacity + ')'; ctx.fill(); } animId = requestAnimationFrame(draw); }
-    init(); draw(); window.addEventListener('resize', resize);
   })();
 </script>

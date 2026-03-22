@@ -11,54 +11,47 @@ const schema = {
 ---
 <BaseLayout title="Jonas Wang, PhD — Chairman" schema={schema}>
 
-<section class="hero" id="hero">
-  <canvas id="hero-canvas" style="position:absolute;inset:0;z-index:0;width:100%;height:100%;pointer-events:none"></canvas>
-  <div class="orb orb-a"></div>
-  <div class="orb orb-b"></div>
-  <div class="hero-inner">
-    <img class="hero-portrait" fetchpriority="high" src="/images/our%20story/jonas.jpg" alt="Jonas Wang, PhD" width="200" height="200" />
-    <div class="hero-text">
-      <a href="/our-story" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Our Story</a>
-      <h1 class="hero-name">Jonas Wang, PhD</h1>
-      <div class="hero-role">Chairman, StemCyte International</div>
-      <p class="hero-sub">Over 40 years in pharmaceutical research, drug delivery innovation, and life science leadership. From the Johnson Medal at J&amp;J to building a global cord blood therapeutics company.</p>
+<section class="hero" id="hero" data-nav-theme="plum">
+  <div class="hero-img">
+    <img src="/images/our%20story/jonas.jpg" alt="Jonas Wang, PhD" class="hero-portrait" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-text">
+    <a href="/our-story" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Our Story
+    </a>
+    <h1 class="hero-name">Jonas Wang, PhD</h1>
+    <div class="hero-role">Chairman, StemCyte International</div>
+    <p class="hero-sub">Over 40 years in pharmaceutical research, drug delivery innovation, and life science leadership. From the Johnson Medal at J&amp;J to building a global cord blood therapeutics company.</p>
+    <div class="hero-creds">
+      <span class="hero-cred">Johnson Medal (J&amp;J)</span>
+      <span class="hero-cred">30+ Patents</span>
+      <span class="hero-cred">2,300+ Transplants</span>
     </div>
   </div>
 </section>
 
-<section class="section"><div class="inner">
-  <div class="sec-label anim" data-anim>Background</div>
-  <h2 class="sec-h2 anim" data-anim>From pharmaceutical R&amp;D to saving lives</h2>
-  <p class="body-p anim" data-anim>Dr. Jonas Wang began his career in pharmaceutical science, earning a PhD in Physical Pharmacy from the University of Iowa after completing his pharmacy degree at the National Defense Medical Center in Taiwan. His early career took him to Bristol-Myers Squibb, where he served as Associate Director of Basic Pharmaceutics, before joining Johnson &amp; Johnson.</p>
-  <p class="body-p anim" data-anim>At J&amp;J, Dr. Wang rose to Vice President of Research and Technology for Consumer Products and Corporate Director of the Drug Delivery Technology Resource Center. He was responsible for new product technology, patent strategy, and competitive intelligence across J&amp;J's skin and hair care franchise. During his tenure, he developed more than 10 core technologies and filed over 30 patents. His invention of a breakthrough anti-wrinkle cream technology earned him the Johnson Medal—the highest technical achievement award at Johnson &amp; Johnson.</p>
-  <p class="body-p anim" data-anim>After J&amp;J, Dr. Wang joined Sycamore Management Corporation as a partner specializing in life sciences and biotechnology investments. In 2009, he brought his deep scientific expertise and business acumen to StemCyte, where he has served as Chairman and CEO, guiding the company's transformation into a global leader in cord blood banking and regenerative cell therapy.</p>
-  <div class="insight-card anim" data-anim>
-    <div class="quote-text">"At J&amp;J, I strove to invent the best anti-wrinkle technologies, which contributed to making millions of women feel more beautiful and confident. But as the holder of a PhD in pharmacy, my personal goal has always been to save lives."</div>
-    <div class="quote-attr">Jonas Wang, PhD — Chairman, StemCyte</div>
+<div class="mag-container">
+  <div class="mag-main">
+    <div class="sec-label">Background</div>
+    <h2 class="sec-h2">From pharmaceutical R&amp;D to saving lives</h2>
+    <p class="body-p mag-dropcap">Dr. Jonas Wang began his career in pharmaceutical science, earning a PhD in Physical Pharmacy from the University of Iowa after completing his pharmacy degree at the National Defense Medical Center in Taiwan. His early career took him to Bristol-Myers Squibb, where he served as Associate Director of Basic Pharmaceutics, before joining Johnson &amp; Johnson.</p>
+    <p class="body-p">At J&amp;J, Dr. Wang rose to Vice President of Research and Technology for Consumer Products and Corporate Director of the Drug Delivery Technology Resource Center. He was responsible for new product technology, patent strategy, and competitive intelligence across J&amp;J's skin and hair care franchise. During his tenure, he developed more than 10 core technologies and filed over 30 patents. His invention of a breakthrough anti-wrinkle cream technology earned him the Johnson Medal—the highest technical achievement award at Johnson &amp; Johnson.</p>
+    <p class="body-p">After J&amp;J, Dr. Wang joined Sycamore Management Corporation as a partner specializing in life sciences and biotechnology investments. In 2009, he brought his deep scientific expertise and business acumen to StemCyte, where he has served as Chairman and CEO, guiding the company's transformation into a global leader in cord blood banking and regenerative cell therapy.</p>
   </div>
-</div></section>
+  <div class="mag-margin">
+    <div class="mag-pullquote">
+      "At J&amp;J, I strove to invent the best anti-wrinkle technologies, which contributed to making millions of women feel more beautiful and confident. But as the holder of a PhD in pharmacy, my personal goal has always been to save lives."
+      <div class="mag-pq-attr">Jonas Wang, PhD — Chairman, StemCyte</div>
+    </div>
+    <div class="mag-impact-label">Defining achievements</div>
+    <div class="mag-impact-card"><div class="mic-num">30+</div><h3>Patents Filed</h3><p>Drug delivery and pharmaceutical technologies at Johnson &amp; Johnson</p></div>
+    <div class="mag-impact-card"><div class="mic-num">2,300+</div><h3>Transplants Worldwide</h3><p>Cord blood units shipped to 325+ hospitals in 40 countries</p></div>
+    <div class="mag-impact-card"><div class="mic-num">#1</div><h3>Johnson Medal</h3><p>Highest technical achievement award at Johnson &amp; Johnson</p></div>
+  </div>
+</div>
 
 <div class="divider"><div class="divider-line"></div></div>
-
-<section class="section"><div class="inner">
-  <div class="sec-label">Recognition</div>
-  <h2 class="sec-h2">Career achievements</h2>
-  <div class="highlight-grid">
-    <div class="highlight-card anim" data-anim><div class="highlight-icon highlight-icon-gold"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C4943E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"/></svg></div><h3 class="highlight-title">Johnson Medal</h3><p>Highest technical achievement award at Johnson &amp; Johnson, for breakthrough anti-wrinkle technology</p></div>
-    <div class="highlight-card anim" data-anim><div class="highlight-icon highlight-icon-plum"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg></div><h3 class="highlight-title">30+ Patents</h3><p>Filed over 30 business-related patents across drug delivery and pharmaceutical technologies</p></div>
-    <div class="highlight-card anim" data-anim><div class="highlight-icon highlight-icon-sage"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2A6B4F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div><h3 class="highlight-title">Global Impact</h3><p>2,300+ cord blood units shipped under his leadership to 325+ transplant centers in 40 countries</p></div>
-  </div>
-</div></section>
-
-<div class="divider"><div class="divider-line"></div></div>
-
-<section class="section section-lav"><div class="inner">
-  <div class="sec-label">Expertise</div>
-  <h2 class="sec-h2">Areas of focus</h2>
-  <div class="tag-grid">
-    <span class="tag">Pharmaceutical R&amp;D</span><span class="tag">Drug Delivery</span><span class="tag">Patent Strategy</span><span class="tag">Life Science Investment</span><span class="tag">Cord Blood Banking</span><span class="tag">Regenerative Medicine</span><span class="tag">Business Development</span><span class="tag">GMP Manufacturing</span>
-  </div>
-</div></section>
 
 <section class="section"><div class="inner">
   <div class="sec-label">Career</div>
@@ -103,20 +96,30 @@ const schema = {
 </BaseLayout>
 
 <style is:global>
-.hero { position:relative; min-height:72vh; background:linear-gradient(175deg,#3D0F31 0%,#1A0714 50%,#0D0516 100%); overflow:hidden; display:flex; align-items:flex-end; padding:0 48px 72px; }
-.orb { position:absolute; border-radius:50%; pointer-events:none; z-index:1; }
-.orb-a { width:700px; height:700px; background:radial-gradient(circle,rgba(192,106,165,0.1) 0%,transparent 70%); top:-200px; right:-100px; }
-.orb-b { width:500px; height:500px; background:radial-gradient(circle,rgba(108,26,85,0.15) 0%,transparent 70%); bottom:-150px; left:-50px; }
-.hero-inner { max-width:860px; margin:0 auto; width:100%; position:relative; z-index:3; display:grid; grid-template-columns:200px 1fr; gap:48px; align-items:end; }
-.hero-portrait { width:200px; height:200px; border-radius:4px; object-fit:cover; object-position:center; display:block; border:4px solid rgba(255,255,255,0.12); opacity:0; animation:heroFade 0.8s 0.2s ease forwards; }
-.hero-text { opacity:0; animation:heroFade 0.8s 0.4s ease forwards; }
-.back-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#C06AA5; text-decoration:none; margin-bottom:20px; transition:color 0.2s; }
-.back-link:hover { color:#E8A0D0; }
+.hero { display:grid; grid-template-columns:1fr 1fr; min-height:620px; }
+.hero-img { position:relative; overflow:hidden; background:linear-gradient(175deg,#3D0F31 0%,#1A0714 100%); }
+.hero-portrait { width:100%; height:100%; object-fit:cover; opacity:0.8; mix-blend-mode:luminosity; }
+.hero-overlay { position:absolute; inset:0; background:linear-gradient(to right, transparent 50%, #FAF7F2 100%); }
+.hero-text { background:#FAF7F2; display:flex; flex-direction:column; justify-content:flex-end; padding:120px 64px 72px 48px; }
+.back-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#6C1A55; text-decoration:none; margin-bottom:24px; }
 .back-link svg { width:16px; height:16px; }
-.hero-name { font-family:'Playfair Display',serif; font-size:42px; font-weight:400; line-height:1.1; letter-spacing:-1px; color:#fff; margin-bottom:8px; }
-.hero-role { font-size:14px; font-weight:700; color:#C06AA5; letter-spacing:0.5px; margin-bottom:14px; }
-.hero-sub { font-size:16px; color:rgba(255,255,255,0.55); line-height:1.7; max-width:540px; }
-@keyframes heroFade { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+.hero-name { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.05; letter-spacing:-1.5px; color:#2C2A26; margin-bottom:8px; }
+.hero-role { font-size:14px; font-weight:700; color:#6C1A55; margin-bottom:16px; }
+.hero-sub { font-size:16px; color:#6B6760; line-height:1.7; max-width:420px; }
+.hero-creds { display:flex; gap:12px; margin-top:28px; flex-wrap:wrap; }
+.hero-cred { padding:10px 16px; background:#F3F0F8; border-radius:8px; font-size:12px; font-weight:700; color:#6C1A55; }
+.mag-container { max-width:1100px; margin:0 auto; padding:80px 48px; display:grid; grid-template-columns:1fr 300px; gap:64px; }
+.mag-main {}
+.mag-dropcap::first-letter { font-family:'Playfair Display',serif; font-size:64px; float:left; line-height:0.8; padding-right:10px; padding-top:4px; color:#6C1A55; }
+.mag-margin { padding-top:60px; display:flex; flex-direction:column; }
+.mag-pullquote { background:#FBF5F9; border-radius:12px; padding:20px; font-family:'Playfair Display',serif; font-size:16px; font-style:italic; color:#3D0F31; line-height:1.5; border-left:3px solid #C06AA5; margin-bottom:24px; }
+.mag-pq-attr { font-family:'Lato',sans-serif; font-size:12px; font-style:normal; color:#8A857A; margin-top:12px; }
+.mag-impact-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:12px; }
+.mag-impact-card { background:#fff; border-radius:12px; padding:20px 24px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; margin-bottom:12px; }
+.mag-impact-card:last-child { margin-bottom:0; }
+.mag-impact-card .mic-num { font-family:'Source Serif 4',serif; font-size:28px; font-weight:600; color:#6C1A55; line-height:1; margin-bottom:6px; }
+.mag-impact-card h3 { font-size:13px; font-weight:700; margin-bottom:3px; }
+.mag-impact-card p { font-size:12px; color:#6B6760; line-height:1.45; }
 .section { padding:80px 48px; position:relative; }
 .section-lav { background:#F3F0F8; }
 .section-plum { background:#FBF5F9; }
@@ -127,27 +130,12 @@ const schema = {
 .sec-h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; line-height:1.15; letter-spacing:-0.5px; margin-bottom:20px; }
 .body-p { font-size:15px; color:#6B665D; line-height:1.8; margin-bottom:16px; }
 .body-p:last-child { margin-bottom:0; }
-.insight-card { background:#fff; border-radius:16px; padding:40px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; margin:32px 0; position:relative; overflow:hidden; }
-.insight-card::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:linear-gradient(to bottom,#E8A0D0,#6C1A55); border-radius:2px 0 0 2px; }
-.quote-text { font-family:'Playfair Display',serif; font-size:20px; font-style:italic; line-height:1.5; color:#3D0F31; margin-bottom:16px; padding-left:8px; }
-.quote-attr { font-size:13px; color:#8A857A; padding-left:8px; }
-.highlight-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin:32px 0; }
-.highlight-card { background:#fff; border-radius:12px; padding:28px 24px; box-shadow:0 1px 3px rgba(0,0,0,0.04); border:1px solid #F0ECE6; transition:transform 0.2s, box-shadow 0.2s; }
-.highlight-card:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(108,26,85,0.08); }
-.highlight-icon { width:40px; height:40px; border-radius:10px; display:flex; align-items:center; justify-content:center; margin-bottom:16px; font-size:20px; }
-.highlight-icon-plum { background:#FBF5F9; }
-.highlight-icon-sage { background:#F0F7F4; }
-.highlight-icon-gold { background:#FDF5EB; }
-.highlight-card h4 { font-size:15px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
-.highlight-card p { font-size:13px; color:#6B6760; line-height:1.6; }
-.tag-grid { display:flex; flex-wrap:wrap; gap:10px; margin:24px 0; }
-.tag { font-size:13px; font-weight:600; color:#6C1A55; background:#FBF5F9; border:1px solid #F0E0EB; padding:8px 16px; border-radius:100px; }
 .timeline { position:relative; padding-left:40px; margin:32px 0; }
 .tl-track { position:absolute; left:14px; top:0; bottom:0; width:2px; background:#E8E2DC; border-radius:1px; }
 .tl-fill { position:absolute; left:14px; top:0; width:2px; background:linear-gradient(180deg,#C06AA5,#6C1A55); border-radius:1px; z-index:1; height:0; transition:height 0.1s linear; }
 .tl-item { position:relative; margin-bottom:36px; opacity:0; transform:translateY(16px); transition:opacity 0.5s ease, transform 0.5s ease; }
 .tl-item:last-child { margin-bottom:0; }
-.tl-dot { position:absolute; left:-26px; top:4px; width:12px; height:12px; border-radius:50%; background:#E8E2DC; border:3px solid #FAF7F2; z-index:2; transform: translateX(-50%); transition: background 0.4s ease, box-shadow 0.4s ease; }
+.tl-dot { position:absolute; left:-26px; top:4px; width:12px; height:12px; border-radius:50%; background:#E8E2DC; border:3px solid #FAF7F2; z-index:2; transform:translateX(-50%); transition:background 0.4s ease, box-shadow 0.4s ease; }
 .tl-dot-active { background:#6C1A55; }
 .tl-dot-highlight { background:#C06AA5; box-shadow:0 0 0 4px rgba(192,106,165,0.2); }
 .tl-item-visible { opacity:1; transform:translateY(0); }
@@ -174,28 +162,24 @@ const schema = {
 .cta-btn:hover { background:rgba(255,255,255,0.85); }
 .anim { opacity:0; transform:translateY(24px); transition:opacity 0.6s ease, transform 0.6s ease; }
 .anim-visible { opacity:1; transform:translateY(0); }
-.highlight-card:nth-child(1) { transition-delay:0s; }
-.highlight-card:nth-child(2) { transition-delay:0.1s; }
-.highlight-card:nth-child(3) { transition-delay:0.2s; }
 .stat-card:nth-child(1) { transition-delay:0s; }
 .stat-card:nth-child(2) { transition-delay:0.1s; }
 .stat-card:nth-child(3) { transition-delay:0.2s; }
 @media (max-width:768px) {
-  .hero { min-height:auto; padding:120px 24px 48px; }
-  .hero-inner { grid-template-columns:1fr; gap:24px; text-align:center; }
-  .hero-portrait { width:140px; height:140px; margin:0 auto; }
-  .hero-name { font-size:32px; }
-  .back-link { justify-content:center; }
+  .hero { grid-template-columns:1fr; min-height:auto; }
+  .hero-img { min-height:300px; }
+  .hero-overlay { background:linear-gradient(to bottom, transparent 50%, #FAF7F2 100%); }
+  .hero-text { padding:48px 24px; }
+  .hero-name { font-size:34px; }
+  .mag-container { grid-template-columns:1fr; padding:48px 24px; gap:32px; }
+  .mag-margin { padding-top:0; }
   .section { padding:56px 24px; }
-  .highlight-grid { grid-template-columns:1fr; }
-  .stat-row { grid-template-columns:1fr; }
-  .other-leaders { grid-template-columns:1fr; }
   .sec-h2 { font-size:26px; }
   .divider { padding:0 24px; }
+  .stat-row { grid-template-columns:1fr; }
+  .other-leaders { grid-template-columns:1fr; }
   .cta-banner { padding:48px 24px; }
   .cta-banner h2 { font-size:26px; }
-  .insight-card { padding:28px 24px; }
-  .quote-text { font-size:18px; }
 }
 </style>
 
@@ -233,16 +217,5 @@ const schema = {
     }
     window.addEventListener('scroll', update, { passive: true });
     update();
-  })();
-
-  (function() {
-    var c = document.getElementById('hero-canvas');
-    if (!c) return;
-    var ctx = c.getContext('2d');
-    var animId, cells = [], COUNT = 50;
-    function resize() { c.width = c.offsetWidth * window.devicePixelRatio; c.height = c.offsetHeight * window.devicePixelRatio; ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0); }
-    function init() { resize(); var W = c.offsetWidth, H = c.offsetHeight; cells = []; for (var i = 0; i < COUNT; i++) { var angle = Math.random() * Math.PI * 2; var speed = Math.random() * 0.3 + 0.1; cells.push({ x: Math.random() * W, y: Math.random() * H, r: Math.random() * 4 + 2, vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, opacity: Math.random() * 0.12 + 0.04, hue: Math.random() > 0.5 ? '232,160,208' : '192,106,165' }); } }
-    function draw() { var W = c.offsetWidth, H = c.offsetHeight; ctx.clearRect(0, 0, W, H); for (var i = 0; i < cells.length; i++) { var cell = cells[i]; cell.x += cell.vx; cell.y += cell.vy; if (cell.x < -10 || cell.x > W + 10) cell.vx *= -1; if (cell.y < -10 || cell.y > H + 10) cell.vy *= -1; ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.r * 2.5, 0, Math.PI * 2); ctx.fillStyle = 'rgba(' + cell.hue + ',' + (cell.opacity * 0.3) + ')'; ctx.fill(); ctx.beginPath(); ctx.arc(cell.x, cell.y, cell.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(' + cell.hue + ',' + cell.opacity + ')'; ctx.fill(); } animId = requestAnimationFrame(draw); }
-    init(); draw(); window.addEventListener('resize', resize);
   })();
 </script>

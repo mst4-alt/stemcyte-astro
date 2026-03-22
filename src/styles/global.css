@@ -130,6 +130,16 @@ body {
 .nav.at-top.dark-hero .cta:hover { background: rgba(0,0,0,0.14); border-color: rgba(0,0,0,0.20); }
 .nav.at-top.dark-hero .hamburger span { background: rgba(44,42,38,0.6); }
 
+/* Plum transparent nav — for split heroes with cream right side */
+.nav.at-top.plum-hero .logo-white { display: none !important; }
+.nav.at-top.plum-hero .logo-color { display: block !important; }
+.nav.at-top.plum-hero .links a { color: rgba(108,26,85,0.55); }
+.nav.at-top.plum-hero .links a:hover { color: #6C1A55; }
+.nav.at-top.plum-hero .links a.active { color: #6C1A55; font-weight: 700; }
+.nav.at-top.plum-hero .cta { background: rgba(108,26,85,0.08); color: #6C1A55; border: 1px solid rgba(108,26,85,0.15); }
+.nav.at-top.plum-hero .cta:hover { background: rgba(108,26,85,0.14); border-color: rgba(108,26,85,0.25); }
+.nav.at-top.plum-hero .hamburger span { background: rgba(108,26,85,0.5); }
+
 /* === FOOTER === */
 .footer {
   background: #3D0F31;
