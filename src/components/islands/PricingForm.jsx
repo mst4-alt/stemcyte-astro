@@ -54,7 +54,7 @@ html{overflow-x:hidden}
 .pf-page{max-width:640px;margin:0 auto;padding:48px 32px 120px;width:100%}
 .celly-banner{background:linear-gradient(145deg,#FBF5F9,#fff);border:1px solid rgba(232,160,208,0.2);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;transition:all 0.25s;box-shadow:0 3px 16px rgba(108,26,85,0.08);margin-bottom:28px}
 .celly-banner:hover{border-color:#E8A0D0;box-shadow:0 6px 24px rgba(108,26,85,0.1)}
-.celly-banner-av{width:96px;height:108px;flex-shrink:0;overflow:hidden}
+.celly-banner-av{width:86px;height:97px;flex-shrink:0;overflow:hidden}
 .celly-banner-text{flex:1}
 .celly-banner-title{font-size:16px;font-weight:700}
 .celly-banner-sub{font-size:13px;color:#8A857A;margin-top:3px;line-height:1.4}
@@ -63,7 +63,7 @@ html{overflow-x:hidden}
 .celly-chat.open{display:block;animation:pf-fadeIn 0.3s ease}
 @keyframes pf-fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .cc-row{display:flex;align-items:flex-start;gap:12px}
-.cc-av{width:96px;height:108px;flex-shrink:0;position:relative}
+.cc-av{width:86px;height:97px;flex-shrink:0;position:relative}
 .cc-av svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity 0.3s}
 .cc-av svg.off{opacity:0;pointer-events:none}
 .cc-name{font-size:10px;font-weight:700;color:#6C1A55;letter-spacing:0.5px;margin-bottom:3px}
@@ -199,7 +199,7 @@ html{overflow-x:hidden}
   .pf-form-row,.pf-form-row-3{grid-template-columns:1fr}
   .pf-pay-methods{flex-direction:column}
   .celly-banner{flex-direction:column;text-align:center;padding:20px 16px;gap:12px}
-  .celly-banner-av{width:72px;height:82px}
+  .celly-banner-av{width:65px;height:74px}
   .celly-banner-arrow{width:100%;text-align:center}
 }
 `;
@@ -399,6 +399,7 @@ export default function PricingForm() {
     const cA = cellyAnswers.current;
     const newTags = {};
     const DELAY = 450;
+    const INITIAL_PAUSE = 500;
     let step = 0;
     const prodKey = cA.conditions === 'broad' || cA.conditions === 'unsure' ? 'cbt' : 'cb';
     const newAddons = { pba: false, pbaPlus: false, hla: false, nga: false };
@@ -416,14 +417,14 @@ export default function PricingForm() {
         setCellyTags({ ...newTags });
         doBounce(prodKey);
       }, 150);
-    }, DELAY * step++);
+    }, INITIAL_PAUSE + DELAY * step++);
 
     // 2. Plan
     timer(() => {
       const el = document.querySelector('.pf-row[data-plan="18year"]');
       glide(el);
       timer(() => { setPlan('18year'); doBounce('18year'); }, 150);
-    }, DELAY * step++);
+    }, INITIAL_PAUSE + DELAY * step++);
 
     // 3. Addons
     if (cA.who === 'extra' || cA.who === 'parents') {
@@ -437,7 +438,7 @@ export default function PricingForm() {
           setCellyTags({ ...newTags });
           doBounce('pba');
         }, 150);
-      }, DELAY * step++);
+      }, INITIAL_PAUSE + DELAY * step++);
     }
 
     if (cA.who === 'parents') {
@@ -451,7 +452,7 @@ export default function PricingForm() {
           setCellyTags({ ...newTags });
           doBounce('pbaPlus');
         }, 150);
-      }, DELAY * step++);
+      }, INITIAL_PAUSE + DELAY * step++);
     }
 
     if (cA.siblings === 'yes' || cA.siblings === 'multiples') {
@@ -465,7 +466,7 @@ export default function PricingForm() {
           setCellyTags({ ...newTags });
           doBounce('hla');
         }, 150);
-      }, DELAY * step++);
+      }, INITIAL_PAUSE + DELAY * step++);
     }
 
     if (cA.genetic === 'yes') {
@@ -479,7 +480,7 @@ export default function PricingForm() {
           setCellyTags({ ...newTags });
           doBounce('nga');
         }, 150);
-      }, DELAY * step++);
+      }, INITIAL_PAUSE + DELAY * step++);
     } else if (cA.genetic === 'maybe') {
       timer(() => {
         const el = document.querySelector('.pf-tog[data-addon="nga"]');
@@ -488,13 +489,13 @@ export default function PricingForm() {
           newTags['ct-nga'] = { cls: 'suggest', label: "Celly suggests", reason: "You were interested in learning more \u2014 NGA screens for inherited conditions at birth. Optional but worth considering." };
           setCellyTags({ ...newTags });
         }, 150);
-      }, DELAY * step++);
+      }, INITIAL_PAUSE + DELAY * step++);
     }
 
     timer(() => {
       setAddons({ ...newAddons });
       setCellyState('idle');
-    }, DELAY * (step + 1));
+    }, INITIAL_PAUSE + DELAY * (step + 1));
   };
 
   // Tag renderer
