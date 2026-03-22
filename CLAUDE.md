@@ -98,3 +98,8 @@ import PricingForm from '../components/islands/PricingForm.jsx';
 ---
 <PricingForm client:load />
 ```
+
+---
+
+## GIT RULES
+- When committing, always run `git add -A` to include all new files, including images and other binary assets in `public/images/`. Never skip binary files.
