@@ -24,9 +24,15 @@ const f = (n) => '$' + n.toLocaleString();
 const fDec = (n) => '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 /* ═══════════════════════════════════════════
-   CELLY SVG
+   CELLY SVGs — raw strings for animate compat
    ═══════════════════════════════════════════ */
-const CELLY_SVG = `<svg viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="gp" cx="44%" cy="38%" r="56%"><stop offset="0%" stop-color="#FFF5FA"/><stop offset="35%" stop-color="#F6D4EC"/><stop offset="100%" stop-color="#DA90C2"/></radialGradient></defs><g><animateTransform attributeName="transform" type="translate" values="0,0;0,-8;0,0" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/><circle cx="70" cy="78" r="44" fill="url(#gp)"/><ellipse cx="52" cy="54" rx="20" ry="14" fill="rgba(255,255,255,0.5)"/><path d="M40 36 Q70 20, 100 36 L96 44 Q70 32, 44 44Z" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><rect x="62" y="26" width="16" height="12" rx="2" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><line x1="70" y1="28" x2="70" y2="36" stroke="#E8A0D0" stroke-width="2.5"/><line x1="66" y1="32" x2="74" y2="32" stroke="#E8A0D0" stroke-width="2.5"/><ellipse cx="54" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><ellipse cx="86" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><circle cx="50" cy="66" r="4" fill="#fff"/><circle cx="82" cy="66" r="4" fill="#fff"/><path d="M62 90 Q70 97, 78 90" fill="none" stroke="#1E1420" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="40" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><ellipse cx="100" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><rect x="108" y="80" width="18" height="24" rx="3" fill="#F5EDE6" stroke="#D8D0C8" stroke-width="1.5" transform="rotate(8 117 92)"/><path d="M112 78 Q118 76, 116 84" fill="none" stroke="#DA90C2" stroke-width="4" stroke-linecap="round"/></g></svg>`;
+const CELLY_BANNER_SVG = `<svg viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="gp" cx="44%" cy="38%" r="56%"><stop offset="0%" stop-color="#FFF5FA"/><stop offset="35%" stop-color="#F6D4EC"/><stop offset="100%" stop-color="#DA90C2"/></radialGradient></defs><g><animateTransform attributeName="transform" type="translate" values="0,0;0,-8;0,0" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/><circle cx="70" cy="78" r="44" fill="url(#gp)"/><ellipse cx="52" cy="54" rx="20" ry="14" fill="rgba(255,255,255,0.5)"/><path d="M40 36 Q70 20, 100 36 L96 44 Q70 32, 44 44Z" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><rect x="62" y="26" width="16" height="12" rx="2" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><line x1="70" y1="28" x2="70" y2="36" stroke="#E8A0D0" stroke-width="2.5"/><line x1="66" y1="32" x2="74" y2="32" stroke="#E8A0D0" stroke-width="2.5"/><ellipse cx="54" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><ellipse cx="86" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><circle cx="50" cy="66" r="4" fill="#fff"/><circle cx="82" cy="66" r="4" fill="#fff"/><path d="M62 90 Q70 97, 78 90" fill="none" stroke="#1E1420" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="40" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><ellipse cx="100" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><rect x="108" y="80" width="18" height="24" rx="3" fill="#F5EDE6" stroke="#D8D0C8" stroke-width="1.5" transform="rotate(8 117 92)"/><path d="M112 78 Q118 76, 116 84" fill="none" stroke="#DA90C2" stroke-width="4" stroke-linecap="round"/></g></svg>`;
+
+const CELLY_IDLE_SVG = `<svg data-state="idle" viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="gi" cx="44%" cy="38%" r="56%"><stop offset="0%" stop-color="#FFF5FA"/><stop offset="35%" stop-color="#F6D4EC"/><stop offset="100%" stop-color="#DA90C2"/></radialGradient></defs><g><animateTransform attributeName="transform" type="translate" values="0,0;0,-8;0,0" dur="3s" repeatCount="indefinite" calcMode="spline" keySplines="0.4 0 0.6 1;0.4 0 0.6 1"/><circle cx="70" cy="78" r="44" fill="url(#gi)"/><ellipse cx="52" cy="54" rx="20" ry="14" fill="rgba(255,255,255,0.5)"/><path d="M40 36 Q70 20, 100 36 L96 44 Q70 32, 44 44Z" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><rect x="62" y="26" width="16" height="12" rx="2" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><line x1="70" y1="28" x2="70" y2="36" stroke="#E8A0D0" stroke-width="2.5"/><line x1="66" y1="32" x2="74" y2="32" stroke="#E8A0D0" stroke-width="2.5"/><ellipse cx="54" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><ellipse cx="86" cy="72" rx="9" ry="10.5" fill="#1E1420"><animate attributeName="ry" values="10.5;10.5;1;10.5;10.5" keyTimes="0;0.42;0.47;0.52;1" dur="5s" repeatCount="indefinite"/></ellipse><circle cx="50" cy="66" r="4" fill="#fff"/><circle cx="82" cy="66" r="4" fill="#fff"/><path d="M62 90 Q70 97, 78 90" fill="none" stroke="#1E1420" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="40" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><ellipse cx="100" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><rect x="108" y="80" width="18" height="24" rx="3" fill="#F5EDE6" stroke="#D8D0C8" stroke-width="1.5" transform="rotate(8 117 92)"/><path d="M112 78 Q118 76, 116 84" fill="none" stroke="#DA90C2" stroke-width="4" stroke-linecap="round"/></g></svg>`;
+
+const CELLY_WRITING_SVG = `<svg data-state="writing" viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="gw" cx="44%" cy="38%" r="56%"><stop offset="0%" stop-color="#FFF5FA"/><stop offset="35%" stop-color="#F6D4EC"/><stop offset="100%" stop-color="#DA90C2"/></radialGradient></defs><circle cx="70" cy="78" r="44" fill="url(#gw)"/><ellipse cx="52" cy="54" rx="20" ry="14" fill="rgba(255,255,255,0.5)"/><path d="M40 36 Q70 20, 100 36 L96 44 Q70 32, 44 44Z" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><rect x="62" y="26" width="16" height="12" rx="2" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><line x1="70" y1="28" x2="70" y2="36" stroke="#E8A0D0" stroke-width="2.5"/><line x1="66" y1="32" x2="74" y2="32" stroke="#E8A0D0" stroke-width="2.5"/><ellipse cx="54" cy="76" rx="8" ry="7" fill="#1E1420"/><ellipse cx="86" cy="76" rx="8" ry="7" fill="#1E1420"/><circle cx="52" cy="74" r="3" fill="#fff"/><circle cx="84" cy="74" r="3" fill="#fff"/><line x1="64" y1="92" x2="76" y2="92" stroke="#1E1420" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="40" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><ellipse cx="100" cy="86" rx="8" ry="5" fill="rgba(244,150,200,0.4)"/><g><animateTransform attributeName="transform" type="rotate" values="-2 117 92;2 117 92;-2 117 92" dur="0.4s" repeatCount="indefinite"/><rect x="108" y="80" width="18" height="24" rx="3" fill="#F5EDE6" stroke="#D8D0C8" stroke-width="1.5" transform="rotate(8 117 92)"/><line x1="112" y1="88" x2="122" y2="86" stroke="#D8D0C8" stroke-width="1"/><line x1="112" y1="92" x2="120" y2="90" stroke="#D8D0C8" stroke-width="1"/></g><path d="M112 78 Q118 76, 116 84" fill="none" stroke="#DA90C2" stroke-width="4" stroke-linecap="round"/><line x1="30" y1="82" x2="24" y2="72" stroke="#D8D0C8" stroke-width="2.5" stroke-linecap="round"><animate attributeName="y2" values="72;69;72" dur="0.3s" repeatCount="indefinite"/></line><circle cx="23" cy="70" r="2.5" fill="#FFD700"><animate attributeName="cy" values="70;67;70" dur="0.3s" repeatCount="indefinite"/></circle></svg>`;
+
+const CELLY_HAPPY_SVG = `<svg data-state="happy" viewBox="0 0 140 150" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="gh" cx="44%" cy="38%" r="56%"><stop offset="0%" stop-color="#FFF5FA"/><stop offset="35%" stop-color="#F6D4EC"/><stop offset="100%" stop-color="#DA90C2"/></radialGradient></defs><g><animateTransform attributeName="transform" type="translate" values="0,0;0,-7;0,0;0,-5;0,0;0,-2;0,0" dur="1.2s" fill="freeze"/><circle cx="70" cy="78" r="44" fill="url(#gh)"/><ellipse cx="52" cy="54" rx="20" ry="14" fill="rgba(255,255,255,0.5)"/><path d="M40 36 Q70 20, 100 36 L96 44 Q70 32, 44 44Z" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><rect x="62" y="26" width="16" height="12" rx="2" fill="#fff" stroke="#E8A0D0" stroke-width="1.5"/><line x1="70" y1="28" x2="70" y2="36" stroke="#E8A0D0" stroke-width="2.5"/><line x1="66" y1="32" x2="74" y2="32" stroke="#E8A0D0" stroke-width="2.5"/><path d="M44 70 Q54 60, 64 70" fill="none" stroke="#1E1420" stroke-width="3" stroke-linecap="round"/><path d="M76 70 Q86 60, 96 70" fill="none" stroke="#1E1420" stroke-width="3" stroke-linecap="round"/><path d="M56 88 Q70 102, 84 88" fill="#C070A0" stroke="#1E1420" stroke-width="2.5" stroke-linecap="round"/><ellipse cx="70" cy="93" rx="5" ry="3.5" fill="#D88AB8"/><ellipse cx="38" cy="84" rx="10" ry="6" fill="rgba(244,150,200,0.5)"/><ellipse cx="102" cy="84" rx="10" ry="6" fill="rgba(244,150,200,0.5)"/><rect x="108" y="80" width="18" height="24" rx="3" fill="#F5EDE6" stroke="#D8D0C8" stroke-width="1.5" transform="rotate(8 117 92)"/><path d="M112 78 Q118 76, 116 84" fill="none" stroke="#DA90C2" stroke-width="4" stroke-linecap="round"/></g><text x="22" y="48" font-size="12" fill="#E8A0D0"><animate attributeName="y" values="48;10" dur="1.8s" fill="freeze"/><animate attributeName="opacity" values="1;0" dur="1.8s" fill="freeze"/>&#x2665;</text><text x="106" y="40" font-size="9" fill="#D48EBE"><animate attributeName="y" values="40;6" dur="2s" fill="freeze"/><animate attributeName="opacity" values="0.8;0" dur="2s" fill="freeze"/>&#x2665;</text><text x="14" y="36" font-size="11" fill="#E8A0D0" opacity="0.7">\u2726</text><text x="118" y="30" font-size="8" fill="#D48EBE" opacity="0.5">\u2726</text></svg>`;
 
 /* ═══════════════════════════════════════════
    CELLY QUIZ
@@ -49,17 +55,24 @@ html{overflow-x:hidden}
 .celly-banner{background:linear-gradient(145deg,#FBF5F9,#fff);border:1px solid rgba(232,160,208,0.2);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;transition:all 0.25s;box-shadow:0 3px 16px rgba(108,26,85,0.08);margin-bottom:28px}
 .celly-banner:hover{border-color:#E8A0D0;box-shadow:0 6px 24px rgba(108,26,85,0.1)}
 .celly-banner-av{width:72px;height:78px;flex-shrink:0;overflow:hidden}
+.celly-banner-text{flex:1}
 .celly-banner-title{font-size:16px;font-weight:700}
 .celly-banner-sub{font-size:13px;color:#8A857A;margin-top:3px;line-height:1.4}
 .celly-banner-arrow{padding:10px 22px;border-radius:100px;background:#6C1A55;color:#fff;font-size:13px;font-weight:700;white-space:nowrap;flex-shrink:0}
-.celly-chat{background:#fff;border:1px solid #E8E2DC;border-radius:16px;padding:20px;margin-bottom:28px;box-shadow:0 2px 16px rgba(108,26,85,0.06);animation:pf-fadeIn 0.3s ease}
+.celly-chat{display:none;background:#fff;border:1px solid #E8E2DC;border-radius:16px;padding:20px;margin-bottom:28px;box-shadow:0 2px 16px rgba(108,26,85,0.06)}
+.celly-chat.open{display:block;animation:pf-fadeIn 0.3s ease}
 @keyframes pf-fadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .cc-row{display:flex;align-items:flex-start;gap:12px}
-.cc-av{width:72px;height:78px;flex-shrink:0}
+.cc-av{width:72px;height:78px;flex-shrink:0;position:relative}
+.cc-av svg{position:absolute;inset:0;width:100%;height:100%;transition:opacity 0.3s}
+.cc-av svg.off{opacity:0;pointer-events:none}
 .cc-name{font-size:10px;font-weight:700;color:#6C1A55;letter-spacing:0.5px;margin-bottom:3px}
 .cc-bubble{background:#F3F0F8;padding:12px 14px;border-radius:14px 14px 14px 4px;font-size:13px;line-height:1.55}
+.cc-bubble.out{animation:pf-fadeOut 0.25s ease forwards}
+@keyframes pf-fadeOut{from{opacity:1}to{opacity:0;transform:translateY(-6px)}}
 .cc-edu{display:block;margin-top:6px;padding:6px 10px;background:rgba(108,26,85,0.04);border-radius:6px;font-size:11px;color:#6B6760;line-height:1.4}
 .cc-user{display:flex;justify-content:flex-end;margin-top:8px}
+.cc-user.out{animation:pf-fadeOut 0.25s ease forwards}
 .cc-user-bub{background:#6C1A55;color:#fff;padding:8px 14px;border-radius:14px 14px 4px 14px;font-size:12px;font-weight:600}
 .cc-choices{display:flex;flex-direction:column;gap:5px;margin-top:10px}
 .cc-choice{padding:10px 14px;border:2px solid #E8E2DC;border-radius:10px;font-family:'Lato',sans-serif;font-size:12px;font-weight:600;cursor:pointer;background:#fff;text-align:left;line-height:1.3;transition:all 0.2s}
@@ -104,6 +117,15 @@ html{overflow-x:hidden}
 .pf-sw{width:38px;height:20px;border-radius:10px;background:#E8E2DC;position:relative;flex-shrink:0;transition:background 0.2s}
 .pf-sw::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform 0.2s;box-shadow:0 1px 2px rgba(0,0,0,0.1)}
 .pf-tog.sel .pf-sw{background:#6C1A55}.pf-tog.sel .pf-sw::after{transform:translateX(18px)}
+.celly-tag{display:none;font-size:9px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;padding:2px 8px;border-radius:100px;margin-left:8px;white-space:nowrap;position:relative;cursor:default}
+.celly-tag.pick{display:inline-block;background:#F5E0EF;color:#6C1A55}
+.celly-tag.suggest{display:inline-block;background:#F3F0F8;color:#8A857A}
+.celly-tag .ct-q{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:rgba(108,26,85,0.1);color:#6C1A55;font-size:9px;font-weight:700;margin-left:4px;cursor:help;vertical-align:middle}
+.celly-tag .ct-tip{display:none;position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);background:#3D0F31;color:#fff;font-size:11px;font-weight:400;letter-spacing:0;text-transform:none;padding:8px 12px;border-radius:8px;white-space:normal;width:200px;line-height:1.4;z-index:60;box-shadow:0 4px 16px rgba(0,0,0,0.15)}
+.celly-tag .ct-tip::after{content:'';position:absolute;top:100%;left:50%;transform:translateX(-50%);border:5px solid transparent;border-top-color:#3D0F31}
+.celly-tag:hover .ct-tip{display:block}
+@keyframes pf-popBounce{0%{transform:scale(1);box-shadow:0 0 0 rgba(108,26,85,0)}15%{transform:scale(1.06);box-shadow:0 4px 20px rgba(108,26,85,0.15)}35%{transform:scale(1.05);box-shadow:0 3px 16px rgba(108,26,85,0.12)}55%{transform:scale(0.97)}75%{transform:scale(1.02)}100%{transform:scale(1);box-shadow:0 0 0 rgba(108,26,85,0)}}
+.pf-pop-bounce{animation:pf-popBounce 0.8s ease}
 .pf-plan-nudge{outline:2px solid #E85D75;outline-offset:4px;border-radius:14px}
 .pf-bottom{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid #E8E2DC;padding:14px 48px;display:flex;align-items:center;justify-content:space-between;z-index:50;box-shadow:0 -4px 20px rgba(0,0,0,0.04);min-height:72px}
 .pf-fb-label{font-size:10px;color:#8A857A;font-weight:700;text-transform:uppercase;letter-spacing:1px}
@@ -197,12 +219,17 @@ export default function PricingForm() {
   const [planNudge, setPlanNudge] = useState(false);
   const [cellyOpen, setCellyOpen] = useState(false);
   const [bannerVisible, setBannerVisible] = useState(true);
+  const [cellyState, setCellyState] = useState('idle');
   const [cellyMsgHtml, setCellyMsgHtml] = useState('');
   const [cellyChoicesHtml, setCellyChoicesHtml] = useState('');
+  const [cellyTags, setCellyTags] = useState({});
+  const [bouncing, setBouncing] = useState(null);
   const cellyAnswers = useRef({});
   const cellyStepRef = useRef(0);
   const cellyTimers = useRef([]);
   const cellyBannerRef = useRef(null);
+  const cellyAvRef = useRef(null);
+  const cellyAvInjected = useRef(false);
   const [primaryRole, setPrimaryRole] = useState('');
   const [parents, setParents] = useState([]);
   const [payMethod, setPayMethod] = useState('card');
@@ -223,7 +250,28 @@ export default function PricingForm() {
   const ub = (k) => (e) => setBilling(prev => ({ ...prev, [k]: e.target.value }));
 
   useEffect(() => { const id = 'pf-styles'; if (!document.getElementById(id)) { const s = document.createElement('style'); s.id = id; s.textContent = CSS; document.head.appendChild(s); } }, []);
-  useEffect(() => { if (cellyBannerRef.current) { cellyBannerRef.current.innerHTML = CELLY_SVG; } });
+
+  // Inject Celly banner SVG once (prevents animation reset on re-render)
+  useEffect(() => {
+    if (!cellyBannerRef.current || cellyBannerInjected.current) return;
+    cellyBannerRef.current.innerHTML = CELLY_BANNER_SVG;
+    cellyBannerInjected.current = true;
+  });
+
+  // Inject Celly chat SVGs once, then only toggle .off class
+  useEffect(() => {
+    if (!cellyAvRef.current) return;
+    if (!cellyAvInjected.current) {
+      const svgMap = { idle: CELLY_IDLE_SVG, writing: CELLY_WRITING_SVG, happy: CELLY_HAPPY_SVG };
+      cellyAvRef.current.innerHTML = Object.entries(svgMap)
+        .map(([state, svg]) => svg.replace(`data-state="${state}"`, `data-state="${state}" class="off"`))
+        .join('');
+      cellyAvInjected.current = true;
+    }
+    cellyAvRef.current.querySelectorAll('svg').forEach((el) => {
+      el.classList.toggle('off', el.dataset.state !== cellyState);
+    });
+  }, [cellyState]);
 
   const mult = twins ? 2 : 1;
   const isPrepaid = plan && plan !== 'annual';
@@ -250,13 +298,217 @@ export default function PricingForm() {
 
   const buildReviewLines = () => { if (!plan) return []; const pl = product === 'cb' ? 'Cord Blood' : 'Cord Blood & Tissue'; const pn = { annual: 'Pay by year', '18year': '18-Year Plan', lifetime: 'Lifetime Plan' }[plan]; const lines = [{ label: pl + ' \u2014 ' + pn + (twins ? ' (\u00d72)' : ''), val: f(D[product].plans[plan].total * mult), free: false }]; const names = { pba: 'Public Bank Access', pbaPlus: 'Public Bank Access+', hla: 'HLA Matching', nga: 'NGA' }; Object.keys(addons).forEach(k => { if (!addons[k]) return; const isFree = k === 'pba' && product === 'cbt'; const price = isFree ? 0 : k === 'hla' && isPrepaid ? Ad.hlaP : Ad[k]; lines.push({ label: names[k] + (twins ? ' (\u00d72)' : ''), val: isFree ? 'FREE' : f(price * mult), free: isFree }); }); return lines; };
 
-  // Celly
-  const cellyTimer = (fn, ms) => { const t = setTimeout(fn, ms); cellyTimers.current.push(t); return t; };
-  const startCelly = () => { setBannerVisible(false); setCellyOpen(true); cellyStepRef.current = 0; cellyAnswers.current = {}; showCellyQ(0); };
-  const closeCelly = () => { setCellyOpen(false); setBannerVisible(true); cellyTimers.current.forEach(clearTimeout); cellyTimers.current = []; };
-  const showCellyQ = (s) => { const q = QS[s]; setCellyMsgHtml(`<div class="cc-bubble">${q.bot(cellyAnswers.current)}</div>`); setCellyChoicesHtml(q.ch.map(c => `<button class="cc-choice" data-id="${c.id}" data-val="${c.val}">${c.t}</button>`).join('')); };
-  const handleCellyChoice = (e) => { const btn = e.target.closest('.cc-choice'); if (!btn) { if (e.target.closest('.cc-close')) { closeCelly(); return; } return; } const k = btn.dataset.id, v = btn.dataset.val; cellyAnswers.current[k] = v; cellyStepRef.current++; setCellyMsgHtml(prev => prev + `<div class="cc-user"><div class="cc-user-bub">${LBL[k + ':' + v] || v}</div></div>`); setCellyChoicesHtml(''); cellyTimer(() => { setCellyMsgHtml('<div class="cc-typing"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>'); cellyTimer(() => { if (cellyStepRef.current < QS.length) showCellyQ(cellyStepRef.current); else applyCellyResults(); }, 600 + Math.random() * 300); }, 300); };
-  const applyCellyResults = () => { const a = cellyAnswers.current; setProduct((a.conditions === 'broad' || a.conditions === 'unsure') ? 'cbt' : 'cb'); setPlan('18year'); const na = { pba: false, pbaPlus: false, hla: false, nga: false }; if (a.who === 'extra' || a.who === 'parents') na.pba = true; if (a.who === 'parents') na.pbaPlus = true; if (a.siblings === 'yes' || a.siblings === 'multiples') na.hla = true; if (a.genetic === 'yes') na.nga = true; setAddons(na); setCellyMsgHtml('<div class="cc-bubble">All set! \ud83c\udf89 I\u2019ve configured your plan below. Adjust anything you like!</div>'); setCellyChoicesHtml('<button class="cc-close">Close</button>'); };
+  // ═══════════════════════════════════════
+  // CELLY CHAT ENGINE
+  // ═══════════════════════════════════════
+  const clearTimers = () => { cellyTimers.current.forEach(clearTimeout); cellyTimers.current = []; };
+  const timer = (fn, ms) => { const t = setTimeout(fn, ms); cellyTimers.current.push(t); return t; };
+  const glide = (el) => { if (!el) return; const y = el.getBoundingClientRect().top + window.pageYOffset - window.innerHeight * 0.35; window.scrollTo({ top: y, behavior: 'smooth' }); };
+  const doBounce = (key) => { setBouncing(key); setTimeout(() => setBouncing(null), 500); };
+
+  const showCQ = (s) => {
+    const q = QS[s];
+    const bot = q.bot(cellyAnswers.current);
+    setCellyMsgHtml(`<div class="cc-bubble">${bot}</div>`);
+    setCellyChoicesHtml(q.ch.map((c) => `<button class="cc-choice" data-id="${c.id}" data-val="${c.val}">${c.t}</button>`).join(''));
+  };
+
+  const startCelly = () => {
+    setBannerVisible(false);
+    setCellyOpen(true);
+    setCellyState('idle');
+    cellyStepRef.current = 0;
+    cellyAnswers.current = {};
+    showCQ(0);
+  };
+
+  const closeCelly = () => { setCellyOpen(false); setBannerVisible(true); clearTimers(); };
+
+  const handleChoiceClick = (e) => {
+    const btn = e.target.closest('.cc-choice');
+    if (!btn) return;
+    cPick(btn.dataset.id, btn.dataset.val);
+  };
+
+  const cPick = (k, v) => {
+    cellyAnswers.current[k] = v;
+    cellyStepRef.current++;
+    setCellyMsgHtml((prev) => prev + `<div class="cc-user"><div class="cc-user-bub">${LBL[k + ':' + v] || v}</div></div>`);
+    setCellyChoicesHtml('');
+    setCellyState('idle');
+
+    if (k === 'conditions' && v === 'unsure') {
+      showCellyResponse("I'd go with <strong>cord blood & tissue</strong> \u2014 it gives you two types of stem cells instead of one, covering blood, immune, <em>and</em> neurological/tissue conditions. Plus, Public Bank Access is included free with it. I'll set that up for you!");
+      return;
+    }
+    if (k === 'genetic' && v === 'maybe') {
+      showCellyResponse("NGA screens your baby's cord blood for inherited genetic conditions at birth \u2014 things like metabolic disorders or immune deficiencies, sometimes before symptoms ever show up. It's $399 and totally optional. I'll flag it for you so you can decide!");
+      return;
+    }
+    timer(() => advanceQ(), 400);
+  };
+
+  const showCellyResponse = (msg) => {
+    timer(() => {
+      setCellyMsgHtml((prev) => prev.replace(/class="cc-bubble"/g, 'class="cc-bubble out"').replace(/class="cc-user"/g, 'class="cc-user out"'));
+      timer(() => {
+        setCellyState('writing');
+        setCellyMsgHtml('<div class="cc-typing"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>');
+        timer(() => {
+          setCellyState('idle');
+          setCellyMsgHtml(`<div class="cc-bubble">${msg}</div>`);
+          timer(() => {
+            setCellyState('writing');
+            setCellyMsgHtml((prev) => prev + '<div class="cc-typing" style="margin-top:8px"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>');
+            timer(() => {
+              setCellyMsgHtml((prev) => prev.replace(/<div class="cc-typing"[^]*?<\/div><\/div>/g, ''));
+              setCellyState('idle');
+              if (cellyStepRef.current < QS.length) {
+                const q = QS[cellyStepRef.current];
+                const bot = q.bot(cellyAnswers.current);
+                setCellyMsgHtml((prev) => prev + `<div class="cc-bubble" style="margin-top:8px">${bot}</div>`);
+                setCellyChoicesHtml(q.ch.map((c) => `<button class="cc-choice" data-id="${c.id}" data-val="${c.val}">${c.t}</button>`).join(''));
+              } else {
+                applyCellyResults();
+              }
+            }, 900 + Math.random() * 300);
+          }, 2000);
+        }, 600);
+      }, 250);
+    }, 400);
+  };
+
+  const advanceQ = () => {
+    setCellyMsgHtml((prev) => prev.replace(/class="cc-bubble"/g, 'class="cc-bubble out"').replace(/class="cc-user"/g, 'class="cc-user out"'));
+    timer(() => {
+      setCellyState('writing');
+      setCellyMsgHtml('<div class="cc-typing"><div class="cc-dot"></div><div class="cc-dot"></div><div class="cc-dot"></div></div>');
+      timer(() => {
+        setCellyState('idle');
+        if (cellyStepRef.current < QS.length) showCQ(cellyStepRef.current);
+        else applyCellyResults();
+      }, 900 + Math.random() * 300);
+    }, 250);
+  };
+
+  const applyCellyResults = () => {
+    setCellyState('happy');
+    setCellyMsgHtml('<div class="cc-bubble">All set! \ud83c\udf89 I\u2019ve configured your plan below. Adjust anything you like!</div>');
+    setCellyChoicesHtml('<button class="cc-close" data-close="true">Close</button>');
+
+    const cA = cellyAnswers.current;
+    const newTags = {};
+    const DELAY = 450;
+    let step = 0;
+    const prodKey = cA.conditions === 'broad' || cA.conditions === 'unsure' ? 'cbt' : 'cb';
+    const newAddons = { pba: false, pbaPlus: false, hla: false, nga: false };
+
+    // 1. Product
+    timer(() => {
+      const el = document.querySelector(`.pf-po[data-prod="${prodKey}"]`);
+      glide(el);
+      timer(() => {
+        setProduct(prodKey);
+        const reason = prodKey === 'cbt'
+          ? "You wanted coverage for neurological and tissue conditions too \u2014 cord tissue adds a second type of stem cell."
+          : "You chose to focus on blood and immune conditions \u2014 cord blood covers that.";
+        newTags['ct-' + prodKey] = { cls: 'pick', label: "Celly's pick", reason };
+        setCellyTags({ ...newTags });
+        doBounce(prodKey);
+      }, 150);
+    }, DELAY * step++);
+
+    // 2. Plan
+    timer(() => {
+      const el = document.querySelector('.pf-row[data-plan="18year"]');
+      glide(el);
+      timer(() => { setPlan('18year'); doBounce('18year'); }, 150);
+    }, DELAY * step++);
+
+    // 3. Addons
+    if (cA.who === 'extra' || cA.who === 'parents') {
+      timer(() => {
+        const el = document.querySelector('.pf-tog[data-addon="pba"]');
+        glide(el);
+        timer(() => {
+          newAddons.pba = true;
+          newTags['ct-pba'] = { cls: 'pick', label: "Celly's pick", reason: "You wanted extra coverage for more conditions \u2014 PBA gives your child access to additional matching stem cells." };
+          setAddons({ ...newAddons });
+          setCellyTags({ ...newTags });
+          doBounce('pba');
+        }, 150);
+      }, DELAY * step++);
+    }
+
+    if (cA.who === 'parents') {
+      timer(() => {
+        const el = document.querySelector('.pf-tog[data-addon="pbaPlus"]');
+        glide(el);
+        timer(() => {
+          newAddons.pbaPlus = true;
+          newTags['ct-pbaPlus'] = { cls: 'pick', label: "Celly's pick", reason: "You wanted coverage for both parents \u2014 PBA+ gives them access to cord blood treatments too." };
+          setAddons({ ...newAddons });
+          setCellyTags({ ...newTags });
+          doBounce('pbaPlus');
+        }, 150);
+      }, DELAY * step++);
+    }
+
+    if (cA.siblings === 'yes' || cA.siblings === 'multiples') {
+      timer(() => {
+        const el = document.querySelector('.pf-tog[data-addon="hla"]');
+        glide(el);
+        timer(() => {
+          newAddons.hla = true;
+          newTags['ct-hla'] = { cls: 'pick', label: "Celly's pick", reason: "You have other children \u2014 HLA matching checks if your baby's cord blood is compatible with siblings." };
+          setAddons({ ...newAddons });
+          setCellyTags({ ...newTags });
+          doBounce('hla');
+        }, 150);
+      }, DELAY * step++);
+    }
+
+    if (cA.genetic === 'yes') {
+      timer(() => {
+        const el = document.querySelector('.pf-tog[data-addon="nga"]');
+        glide(el);
+        timer(() => {
+          newAddons.nga = true;
+          newTags['ct-nga'] = { cls: 'pick', label: "Celly's pick", reason: "You said you'd want to know about genetic health risks as early as possible." };
+          setAddons({ ...newAddons });
+          setCellyTags({ ...newTags });
+          doBounce('nga');
+        }, 150);
+      }, DELAY * step++);
+    } else if (cA.genetic === 'maybe') {
+      timer(() => {
+        const el = document.querySelector('.pf-tog[data-addon="nga"]');
+        glide(el);
+        timer(() => {
+          newTags['ct-nga'] = { cls: 'suggest', label: "Celly suggests", reason: "You were interested in learning more \u2014 NGA screens for inherited conditions at birth. Optional but worth considering." };
+          setCellyTags({ ...newTags });
+        }, 150);
+      }, DELAY * step++);
+    }
+
+    timer(() => {
+      setAddons({ ...newAddons });
+      setCellyState('idle');
+    }, DELAY * (step + 1));
+  };
+
+  // Tag renderer
+  const renderTag = (id) => {
+    const tag = cellyTags[id];
+    if (!tag) return null;
+    return (
+      <span className={`celly-tag ${tag.cls}`}>
+        {tag.label}
+        <span className="ct-q">?</span>
+        <span className="ct-tip">{tag.reason}</span>
+      </span>
+    );
+  };
 
   const primaryIsBM = primaryRole === 'birth_mother';
 
@@ -266,20 +518,43 @@ export default function PricingForm() {
         {step > 1 && (<div className="pf-step-bar">{[2, 3].map(n => <div key={n} className={`pf-step-pip${step > n ? ' done' : ''}${step === n ? ' active' : ''}`} onClick={() => goStep(n)} />)}</div>)}
 
         {step === 1 && (<div>
-          {bannerVisible && (<div className="celly-banner" onClick={startCelly}><div className="celly-banner-av" ref={cellyBannerRef} /><div style={{ flex: 1 }}><div className="celly-banner-title">Not sure where to start?</div><div className="celly-banner-sub">Answer 4 quick questions and Celly will build a personalized plan for you.</div></div><div className="celly-banner-arrow">Help me choose →</div></div>)}
-          {cellyOpen && (<div className="celly-chat"><div className="cc-row"><div className="cc-av" dangerouslySetInnerHTML={{ __html: CELLY_SVG }} /><div style={{ flex: 1, minWidth: 0 }}><div className="cc-name">Celly</div><div dangerouslySetInnerHTML={{ __html: cellyMsgHtml }} /></div></div>{cellyChoicesHtml && <div dangerouslySetInnerHTML={{ __html: `<div class="cc-choices">${cellyChoicesHtml}</div>` }} onClick={handleCellyChoice} />}</div>)}
+          <div className="celly-banner" onClick={startCelly} style={bannerVisible ? {} : { display: 'none' }}>
+            <div className="celly-banner-av" ref={cellyBannerRef} style={{ width: 72, height: 78, overflow: 'hidden', flexShrink: 0 }} />
+            <div className="celly-banner-text">
+              <div className="celly-banner-title">Not sure where to start?</div>
+              <div className="celly-banner-sub">Answer 4 quick questions and Celly will build a personalized plan for you.</div>
+            </div>
+            <div className="celly-banner-arrow">Help me choose →</div>
+          </div>
 
-          <div className="pf-sec"><div className="pf-sec-t">Choose your plan</div><div className="pf-product"><div className={`pf-po${product === 'cb' ? ' sel' : ''}`} onClick={() => setProduct('cb')}>Cord Blood<div className="pf-po-p">$725</div></div><div className={`pf-po${product === 'cbt' ? ' sel' : ''}`} onClick={() => setProduct('cbt')}>Blood & Tissue<div className="pf-po-p">$995</div></div></div></div>
+          <div className={`celly-chat${cellyOpen ? ' open' : ''}`}>
+            <div className="cc-row">
+              <div className="cc-av" ref={cellyAvRef} />
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div className="cc-name">Celly</div>
+                <div dangerouslySetInnerHTML={{ __html: cellyMsgHtml }} />
+              </div>
+            </div>
+            <div
+              dangerouslySetInnerHTML={{ __html: cellyChoicesHtml ? `<div class="cc-choices">${cellyChoicesHtml}</div>` : '' }}
+              onClick={(e) => {
+                if (e.target.closest('[data-close]')) { closeCelly(); return; }
+                handleChoiceClick(e);
+              }}
+            />
+          </div>
+
+          <div className="pf-sec"><div className="pf-sec-t">Choose your plan</div><div className="pf-product"><div className={`pf-po${product === 'cb' ? ' sel' : ''}${bouncing === 'cb' ? ' pf-pop-bounce' : ''}`} data-prod="cb" onClick={() => setProduct('cb')}>Cord Blood {renderTag('ct-cb')}<div className="pf-po-p">$725</div></div><div className={`pf-po${product === 'cbt' ? ' sel' : ''}${bouncing === 'cbt' ? ' pf-pop-bounce' : ''}`} data-prod="cbt" onClick={() => setProduct('cbt')}>Blood & Tissue {renderTag('ct-cbt')}<div className="pf-po-p">$995</div></div></div></div>
 
           <div className="pf-sec"><div className="pf-sec-t">Protection term</div><div className={`pf-list${planNudge ? ' pf-plan-nudge' : ''}`}>
             {[{ key: 'annual', name: 'Pay by year', desc: 'Most flexible \u2014 renew annually', badge: null, price: priceTexts.annual }, { key: '18year', name: '18-Year Plan', desc: 'One payment, done', badge: <span className="pf-badge pf-badge-pop">Most popular</span>, price: priceTexts['18year'] }, { key: 'lifetime', name: 'Lifetime Plan', desc: 'Never pay for storage again', badge: <span className="pf-badge pf-badge-save">{priceTexts.lifetimeSave}</span>, price: priceTexts.lifetime }].map(p => (
-              <div key={p.key} className={`pf-row${plan === p.key ? ' sel' : ''}`} onClick={() => { setPlan(p.key); setPlanNudge(false); }}><div className="pf-row-l"><div className="pf-dot" /><div><div className="pf-row-name">{p.name}</div><div className="pf-row-desc">{p.desc}</div></div></div><div className="pf-row-r">{p.badge}<div className="pf-row-price">{p.price}</div></div></div>
+              <div key={p.key} className={`pf-row${plan === p.key ? ' sel' : ''}${bouncing === p.key ? ' pf-pop-bounce' : ''}`} data-plan={p.key} onClick={() => { setPlan(p.key); setPlanNudge(false); }}><div className="pf-row-l"><div className="pf-dot" /><div><div className="pf-row-name">{p.name} {renderTag('ct-' + p.key)}</div><div className="pf-row-desc">{p.desc}</div></div></div><div className="pf-row-r">{p.badge}<div className="pf-row-price">{p.price}</div></div></div>
             ))}
           </div></div>
 
           <div className="pf-sec"><div className="pf-sec-t">Advanced protection</div><div className="pf-list">
             {[{ key: 'pba', name: 'Public Bank Access', desc: 'Expanded cell access for your child', price: priceTexts.pba }, { key: 'pbaPlus', name: 'Public Bank Access+', desc: 'Cord blood access for both parents', price: '$699' }, { key: 'hla', name: 'HLA Matching', desc: 'Sibling compatibility testing', price: priceTexts.hla }, { key: 'nga', name: 'NGA', desc: 'Newborn genetic analysis', price: '$399' }].map(a => (
-              <div key={a.key} className={`pf-tog${addons[a.key] ? ' sel' : ''}`} onClick={() => setAddons(prev => ({ ...prev, [a.key]: !prev[a.key] }))}><div className="pf-row-l"><div className="pf-sw" /><div><div className="pf-row-name">{a.name}</div><div className="pf-row-desc">{a.desc}</div></div></div><div className="pf-row-price">{a.price}</div></div>
+              <div key={a.key} className={`pf-tog${addons[a.key] ? ' sel' : ''}${bouncing === a.key ? ' pf-pop-bounce' : ''}`} data-addon={a.key} onClick={() => setAddons(prev => ({ ...prev, [a.key]: !prev[a.key] }))}><div className="pf-row-l"><div className="pf-sw" /><div><div className="pf-row-name">{a.name} {renderTag('ct-' + a.key)}</div><div className="pf-row-desc">{a.desc}</div></div></div><div className="pf-row-price">{a.price}</div></div>
             ))}
           </div></div>
         </div>)}
