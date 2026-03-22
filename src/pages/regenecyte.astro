@@ -74,8 +74,10 @@ const schema = {
 .vbar-groups { display:flex; align-items:flex-end; justify-content:space-around; flex:1; height:100%; padding-left:40px; padding-bottom:24px; position:relative; }
 .vbar-group { display:flex; flex-direction:column; align-items:center; gap:6px; }
 .vbar-pair { display:flex; align-items:flex-end; gap:3px; }
-.vbar { width:32px; border-radius:3px 3px 0 0; position:relative; transition:height 1s cubic-bezier(0.22,1,0.36,1); }
-.vbar .vbar-val { position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-family:'Source Serif 4',serif; font-size:13px; white-space:nowrap; }
+.vbar { width:32px; border-radius:3px 3px 0 0; position:relative; height:0; }
+.vbar.anim { transition:height 1.2s cubic-bezier(0.22,1,0.36,1); }
+.vbar .vbar-val { position:absolute; top:-20px; left:50%; transform:translateX(-50%); font-family:'Source Serif 4',serif; font-size:13px; white-space:nowrap; opacity:0; transition:opacity 0.4s 1s; }
+.vbar.anim .vbar-val { opacity:1; }
 .vbar.neutral { background:#D8D3CC; }
 .vbar.neutral .vbar-val { color:#A09A90; }
 .vbar.accent { background:#6C1A55; }
@@ -94,7 +96,8 @@ const schema = {
 .time-bar-row { display:flex; align-items:center; gap:8px; }
 .time-bar-row .tag { font-size:10px; color:#8A857A; width:68px; text-align:right; flex-shrink:0; }
 .time-bar-row .track { flex:1; height:20px; background:#F5F2EE; border-radius:3px; position:relative; }
-.time-bar-row .fill { height:100%; border-radius:3px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; font-size:11px; font-weight:700; }
+.time-bar-row .fill { height:100%; border-radius:3px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; font-size:11px; font-weight:700; width:0; }
+.time-bar-row .fill.anim { transition:width 1.2s cubic-bezier(0.22,1,0.36,1); }
 .time-bar-row .fill.neutral { background:#D8D3CC; color:#7A756D; }
 .time-bar-row .fill.accent { background:#6C1A55; color:#fff; }
 
@@ -104,7 +107,8 @@ const schema = {
 .ae-left { display:flex; justify-content:flex-end; align-items:center; gap:6px; }
 .ae-right { display:flex; align-items:center; gap:6px; }
 .ae-center { text-align:center; font-size:12px; color:#2C2A26; font-weight:600; }
-.ae-bar { height:16px; border-radius:2px; min-width:2px; }
+.ae-bar { height:16px; border-radius:2px; min-width:0; width:0; }
+.ae-bar.anim { transition:width 1s cubic-bezier(0.22,1,0.36,1); }
 .ae-bar.neutral { background:#D8D3CC; }
 .ae-bar.accent { background:#6C1A55; }
 .ae-val { font-size:11px; font-weight:700; }
@@ -194,22 +198,22 @@ const schema = {
           <div class="vbar-groups">
             <div class="vbar-group">
               <div class="vbar-pair">
-                <div class="vbar neutral" style="height:167px;"><div class="vbar-val">76%</div></div>
-                <div class="vbar accent" style="height:200px;"><div class="vbar-val">91%</div></div>
+                <div class="vbar neutral" data-height="167"><div class="vbar-val">76%</div></div>
+                <div class="vbar accent" data-height="200"><div class="vbar-val">91%</div></div>
               </div>
               <div class="vbar-label">Neutrophil<br>Day 42</div>
             </div>
             <div class="vbar-group">
               <div class="vbar-pair">
-                <div class="vbar neutral" style="height:125px;"><div class="vbar-val">57%</div></div>
-                <div class="vbar accent" style="height:158px;"><div class="vbar-val">72%</div></div>
+                <div class="vbar neutral" data-height="125"><div class="vbar-val">57%</div></div>
+                <div class="vbar accent" data-height="158"><div class="vbar-val">72%</div></div>
               </div>
               <div class="vbar-label">Platelet 20K<br>Day 100</div>
             </div>
             <div class="vbar-group">
               <div class="vbar-pair">
-                <div class="vbar neutral" style="height:101px;"><div class="vbar-val">46%</div></div>
-                <div class="vbar accent" style="height:160px;"><div class="vbar-val">73%</div></div>
+                <div class="vbar neutral" data-height="101"><div class="vbar-val">46%</div></div>
+                <div class="vbar accent" data-height="160"><div class="vbar-val">73%</div></div>
               </div>
               <div class="vbar-label">Platelet 50K<br>Day 100</div>
             </div>
@@ -233,22 +237,22 @@ const schema = {
           <div class="time-row">
             <div class="time-label">Neutrophil</div>
             <div class="time-bars">
-              <div class="time-bar-row"><div class="tag">COBLT</div><div class="track"><div class="fill neutral" style="width:22.5%;">27d</div></div></div>
-              <div class="time-bar-row"><div class="tag">REGENECYTE&reg;</div><div class="track"><div class="fill accent" style="width:18.3%;">22d</div></div></div>
+              <div class="time-bar-row"><div class="tag">COBLT</div><div class="track"><div class="fill neutral" data-width="22.5">27d</div></div></div>
+              <div class="time-bar-row"><div class="tag">REGENECYTE&reg;</div><div class="track"><div class="fill accent" data-width="18.3">22d</div></div></div>
             </div>
           </div>
           <div class="time-row">
             <div class="time-label">Platelet 20K</div>
             <div class="time-bars">
-              <div class="time-bar-row"><div class="tag">COBLT</div><div class="track"><div class="fill neutral" style="width:75%;">90d</div></div></div>
-              <div class="time-bar-row"><div class="tag">REGENECYTE&reg;</div><div class="track"><div class="fill accent" style="width:41.7%;">50d</div></div></div>
+              <div class="time-bar-row"><div class="tag">COBLT</div><div class="track"><div class="fill neutral" data-width="75">90d</div></div></div>
+              <div class="time-bar-row"><div class="tag">REGENECYTE&reg;</div><div class="track"><div class="fill accent" data-width="41.7">50d</div></div></div>
             </div>
           </div>
           <div class="time-row">
             <div class="time-label">Platelet 50K</div>
             <div class="time-bars">
-              <div class="time-bar-row"><div class="tag">COBLT</div><div class="track"><div class="fill neutral" style="width:94.2%;">113d</div></div></div>
-              <div class="time-bar-row"><div class="tag">REGENECYTE&reg;</div><div class="track"><div class="fill accent" style="width:53.3%;">64d</div></div></div>
+              <div class="time-bar-row"><div class="tag">COBLT</div><div class="track"><div class="fill neutral" data-width="94.2">113d</div></div></div>
+              <div class="time-bar-row"><div class="tag">REGENECYTE&reg;</div><div class="track"><div class="fill accent" data-width="53.3">64d</div></div></div>
             </div>
           </div>
         </div>
@@ -267,12 +271,12 @@ const schema = {
             <span></span>
             <span style="text-align:left;color:#6C1A55;">REGENECYTE&reg; &rarr;</span>
           </div>
-          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">65.4%</span><div class="ae-bar neutral" style="width:100%;"></div></div><div class="ae-center">Any Reaction</div><div class="ae-right"><div class="ae-bar accent" style="width:23.9%;"></div><span class="ae-val accent">15.6%</span></div></div>
-          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">48.0%</span><div class="ae-bar neutral" style="width:73.4%;"></div></div><div class="ae-center">Hypertension</div><div class="ae-right"><div class="ae-bar accent" style="width:5.7%;min-width:4px;"></div><span class="ae-val accent">3.7%</span></div></div>
-          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">14.5%</span><div class="ae-bar neutral" style="width:22.2%;"></div></div><div class="ae-center">Vomiting</div><div class="ae-right"><div class="ae-bar accent" style="width:2.9%;min-width:4px;"></div><span class="ae-val accent">1.9%</span></div></div>
-          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">12.7%</span><div class="ae-bar neutral" style="width:19.4%;"></div></div><div class="ae-center">Nausea</div><div class="ae-right"><div class="ae-bar accent" style="width:5.7%;min-width:4px;"></div><span class="ae-val accent">3.7%</span></div></div>
-          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">10.4%</span><div class="ae-bar neutral" style="width:15.9%;"></div></div><div class="ae-center">Bradycardia</div><div class="ae-right"><div class="ae-bar accent" style="width:0%;min-width:2px;"></div><span class="ae-val accent">0%</span></div></div>
-          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">5.2%</span><div class="ae-bar neutral" style="width:8%;"></div></div><div class="ae-center">Fever</div><div class="ae-right"><div class="ae-bar accent" style="width:0%;min-width:2px;"></div><span class="ae-val accent">0%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">65.4%</span><div class="ae-bar neutral" data-width="100"></div></div><div class="ae-center">Any Reaction</div><div class="ae-right"><div class="ae-bar accent" data-width="23.9"></div><span class="ae-val accent">15.6%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">48.0%</span><div class="ae-bar neutral" data-width="73.4"></div></div><div class="ae-center">Hypertension</div><div class="ae-right"><div class="ae-bar accent" data-width="5.7" data-min="4"></div><span class="ae-val accent">3.7%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">14.5%</span><div class="ae-bar neutral" data-width="22.2"></div></div><div class="ae-center">Vomiting</div><div class="ae-right"><div class="ae-bar accent" data-width="2.9" data-min="4"></div><span class="ae-val accent">1.9%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">12.7%</span><div class="ae-bar neutral" data-width="19.4"></div></div><div class="ae-center">Nausea</div><div class="ae-right"><div class="ae-bar accent" data-width="5.7" data-min="4"></div><span class="ae-val accent">3.7%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">10.4%</span><div class="ae-bar neutral" data-width="15.9"></div></div><div class="ae-center">Bradycardia</div><div class="ae-right"><div class="ae-bar accent" data-width="0" data-min="2"></div><span class="ae-val accent">0%</span></div></div>
+          <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">5.2%</span><div class="ae-bar neutral" data-width="8"></div></div><div class="ae-center">Fever</div><div class="ae-right"><div class="ae-bar accent" data-width="0" data-min="2"></div><span class="ae-val accent">0%</span></div></div>
         </div>
       </div>
 
@@ -572,6 +576,66 @@ const schema = {
 
   function loop() { update(); draw(); requestAnimationFrame(loop); }
   loop();
+})();
+</script>
+
+<script is:inline>
+// Chart animations — IntersectionObserver
+(function() {
+  var animated = new Set();
+
+  function animateChart(box) {
+    var id = box.querySelector('.chart-title') ? box.querySelector('.chart-title').textContent : '';
+    if (animated.has(id)) return;
+    animated.add(id);
+
+    // Vertical bars (engraftment chart)
+    var vbars = box.querySelectorAll('.vbar[data-height]');
+    vbars.forEach(function(bar, i) {
+      setTimeout(function() {
+        bar.classList.add('anim');
+        bar.style.height = bar.getAttribute('data-height') + 'px';
+      }, i * 120);
+    });
+
+    // Horizontal fills (time-to-recovery + Long COVID bars)
+    var fills = box.querySelectorAll('.fill[data-width]');
+    fills.forEach(function(fill, i) {
+      setTimeout(function() {
+        fill.classList.add('anim');
+        fill.style.width = fill.getAttribute('data-width') + '%';
+      }, i * 100);
+    });
+
+    // AE butterfly bars
+    var aeBars = box.querySelectorAll('.ae-bar[data-width]');
+    aeBars.forEach(function(bar, i) {
+      setTimeout(function() {
+        bar.classList.add('anim');
+        var w = parseFloat(bar.getAttribute('data-width'));
+        var minW = bar.getAttribute('data-min');
+        if (w === 0 && minW) {
+          bar.style.width = '0%';
+          bar.style.minWidth = minW + 'px';
+        } else {
+          bar.style.width = w + '%';
+          if (minW) bar.style.minWidth = minW + 'px';
+        }
+      }, i * 80);
+    });
+  }
+
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        setTimeout(function() { animateChart(entry.target); }, 150);
+      }
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('.chart-box').forEach(function(box) {
+    observer.observe(box);
+  });
 })();
 </script>
 
