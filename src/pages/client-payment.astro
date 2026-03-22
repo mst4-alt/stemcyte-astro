@@ -4,38 +4,33 @@ import PaymentForm from '../components/islands/PaymentForm.jsx';
 ---
 <BaseLayout title="Client Payment">
 
-<div id="hero" class="hero">
-  <div class="hero-deco"></div>
-  <div class="ct">
-    <div class="lbl">Account</div>
+<section id="hero" class="cp-hero">
+  <div class="cp-hero-inner">
+    <div class="overline"><span class="dot"></span> ACCOUNT</div>
     <h1>Client Payment</h1>
-    <p class="sub">Make a payment toward your StemCyte account.</p>
+    <p class="subtitle">Make a payment toward your StemCyte account.</p>
   </div>
-</div>
+</section>
 
-<div class="section">
+<div class="cp-section">
   <PaymentForm client:load />
 </div>
 
 </BaseLayout>
 
 <style is:global>
-.hero {
-  position:relative; min-height:320px; display:flex; align-items:flex-end; overflow:hidden;
-  background:linear-gradient(160deg,#6C1A55,#3D0F31);
-}
-.hero-deco {
-  position:absolute; width:500px; height:500px; border-radius:50%;
-  background:rgba(192,106,165,0.08); top:-200px; right:-100px; pointer-events:none;
-}
-.ct { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:140px 48px 52px; width:100%; }
-.lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:10px; }
-.hero h1 { font-family:'Playfair Display',serif; font-size:42px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; max-width:680px; margin-bottom:10px; color:#fff; }
-.sub { font-size:16px; color:rgba(255,255,255,0.6); max-width:440px; line-height:1.7; }
-.section { padding:80px 48px; max-width:900px; margin:0 auto; }
+.cp-hero { background:linear-gradient(180deg,#1a0820 0%,#2d1038 40%,#3D0F31 100%); padding:160px 48px 72px; position:relative; overflow:hidden; }
+.cp-hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 70% 80%, rgba(108,26,85,0.2) 0%, transparent 60%); pointer-events:none; }
+.cp-hero-inner { max-width:960px; margin:0 auto; position:relative; z-index:2; }
+.cp-hero .overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#E8A0D0; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
+.cp-hero .overline .dot { width:6px; height:6px; border-radius:50%; background:#E8A0D0; animation:cp-pulse 2s ease infinite; }
+@keyframes cp-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(232,160,208,0.4)} 50%{box-shadow:0 0 0 8px rgba(232,160,208,0)} }
+.cp-hero h1 { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; color:#fff; margin-bottom:16px; }
+.cp-hero .subtitle { font-size:17px; color:rgba(255,255,255,0.65); line-height:1.7; max-width:560px; }
+.cp-section { padding:56px 48px 80px; max-width:900px; margin:0 auto; }
 @media (max-width:900px) {
-  .ct { padding:120px 24px 40px; }
-  .hero h1 { font-size:32px; }
-  .section { padding:64px 24px; }
+  .cp-hero { padding:120px 24px 48px; }
+  .cp-hero h1 { font-size:32px; }
+  .cp-section { padding:40px 24px 64px; }
 }
 </style>
