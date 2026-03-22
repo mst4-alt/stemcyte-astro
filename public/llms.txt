@@ -40,7 +40,7 @@ StemCyte is a global regenerative therapeutics company founded in 1997 in Baldwi
 - /regenecyte — FDA-licensed cord blood therapy product
 - /public-bank-access — How families can access donor cord blood units
 - /clinical-trials — Active StemCyte-sponsored research
-- /expanded-access-policy — Compassionate use policy for REGENECYTE®
+- /expanded-access-program — Compassionate use policy for REGENECYTE®
 - /contact — How to reach StemCyte
 
 ## Contact

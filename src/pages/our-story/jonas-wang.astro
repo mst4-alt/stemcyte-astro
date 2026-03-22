@@ -14,7 +14,6 @@ const schema = {
 <section class="hero" id="hero" data-nav-theme="plum">
   <div class="hero-img">
     <img src="/images/our%20story/jonas.jpg" alt="Jonas Wang, PhD" class="hero-portrait" />
-    <div class="hero-overlay"></div>
   </div>
   <div class="hero-text">
     <a href="/our-story" class="back-link">
@@ -99,8 +98,7 @@ const schema = {
 <style is:global>
 .hero { display:grid; grid-template-columns:1fr 1fr; min-height:620px; }
 .hero-img { position:relative; overflow:hidden; background:linear-gradient(175deg,#3D0F31 0%,#1A0714 100%); }
-.hero-portrait { width:100%; height:100%; object-fit:cover; opacity:0.8; mix-blend-mode:luminosity; }
-.hero-overlay { position:absolute; inset:0; background:linear-gradient(to right, transparent 50%, #FAF7F2 100%); }
+.hero-portrait { width:100%; height:100%; object-fit:cover; }
 .hero-text { background:#FAF7F2; display:flex; flex-direction:column; justify-content:flex-end; padding:120px 64px 72px 48px; }
 .back-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#6C1A55; text-decoration:none; margin-bottom:24px; }
 .back-link svg { width:16px; height:16px; }
@@ -169,7 +167,6 @@ const schema = {
 @media (max-width:768px) {
   .hero { grid-template-columns:1fr; min-height:auto; }
   .hero-img { min-height:300px; }
-  .hero-overlay { background:linear-gradient(to bottom, transparent 50%, #FAF7F2 100%); }
   .hero-text { padding:48px 24px; }
   .hero-name { font-size:34px; }
   .mag-container { grid-template-columns:1fr; padding:48px 24px; gap:32px; }
