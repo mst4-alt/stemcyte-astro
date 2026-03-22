@@ -519,7 +519,7 @@ export default function PricingForm() {
 
         {step === 1 && (<div>
           <div className="celly-banner" onClick={startCelly} style={bannerVisible ? {} : { display: 'none' }}>
-            <div className="celly-banner-av" ref={cellyBannerRef} style={{ width: 72, height: 78, overflow: 'hidden', flexShrink: 0 }} />
+            <div className="celly-banner-av" ref={cellyBannerRef} />
             <div className="celly-banner-text">
               <div className="celly-banner-title">Not sure where to start?</div>
               <div className="celly-banner-sub">Answer 4 quick questions and Celly will build a personalized plan for you.</div>
