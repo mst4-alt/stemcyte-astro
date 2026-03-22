@@ -71,7 +71,7 @@ const schema = {
 .vbar-chart .y-axis span { font-size:10px; color:#C8C3BB; text-align:right; padding-right:8px; }
 .vbar-chart .gridlines { position:absolute; left:40px; right:0; top:0; bottom:24px; display:flex; flex-direction:column-reverse; justify-content:space-between; pointer-events:none; }
 .vbar-chart .gridlines .gl { height:1px; background:#F0ECE6; }
-.vbar-groups { display:flex; align-items:flex-end; justify-content:space-around; flex:1; height:100%; padding-left:40px; padding-bottom:24px; position:relative; }
+.vbar-groups { display:flex; align-items:flex-end; justify-content:space-around; flex:1; height:100%; padding-left:40px; padding-bottom:24px; position:relative; overflow:visible; }
 .vbar-group { display:flex; flex-direction:column; align-items:center; gap:6px; }
 .vbar-pair { display:flex; align-items:flex-end; gap:3px; }
 .vbar { width:32px; border-radius:3px 3px 0 0; position:relative; height:0; }
@@ -198,22 +198,22 @@ const schema = {
           <div class="vbar-groups">
             <div class="vbar-group">
               <div class="vbar-pair">
-                <div class="vbar neutral" data-height="167"><div class="vbar-val">76%</div></div>
-                <div class="vbar accent" data-height="200"><div class="vbar-val">91%</div></div>
+                <div class="vbar neutral" data-height="149"><div class="vbar-val">76%</div></div>
+                <div class="vbar accent" data-height="178"><div class="vbar-val">91%</div></div>
               </div>
               <div class="vbar-label">Neutrophil<br>Day 42</div>
             </div>
             <div class="vbar-group">
               <div class="vbar-pair">
-                <div class="vbar neutral" data-height="125"><div class="vbar-val">57%</div></div>
-                <div class="vbar accent" data-height="158"><div class="vbar-val">72%</div></div>
+                <div class="vbar neutral" data-height="112"><div class="vbar-val">57%</div></div>
+                <div class="vbar accent" data-height="141"><div class="vbar-val">72%</div></div>
               </div>
               <div class="vbar-label">Platelet 20K<br>Day 100</div>
             </div>
             <div class="vbar-group">
               <div class="vbar-pair">
-                <div class="vbar neutral" data-height="101"><div class="vbar-val">46%</div></div>
-                <div class="vbar accent" data-height="160"><div class="vbar-val">73%</div></div>
+                <div class="vbar neutral" data-height="90"><div class="vbar-val">46%</div></div>
+                <div class="vbar accent" data-height="143"><div class="vbar-val">73%</div></div>
               </div>
               <div class="vbar-label">Platelet 50K<br>Day 100</div>
             </div>
