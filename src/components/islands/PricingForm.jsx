@@ -52,7 +52,7 @@ const CSS = `
 html{overflow-x:hidden}
 .pf-page,.pf-page *,.pf-page *::before,.pf-page *::after,.pf-bottom,.pf-bottom *{box-sizing:border-box}
 .pf-page{max-width:640px;margin:0 auto;padding:48px 32px 120px;width:100%}
-.celly-banner{background:linear-gradient(145deg,#FBF5F9,#fff);border:1px solid rgba(232,160,208,0.2);border-radius:16px;padding:24px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;transition:all 0.25s;box-shadow:0 3px 16px rgba(108,26,85,0.08);margin-bottom:28px}
+.celly-banner{background:linear-gradient(145deg,#FBF5F9,#fff);border:1px solid rgba(232,160,208,0.2);border-radius:16px;padding:16px 28px;display:flex;align-items:center;gap:20px;cursor:pointer;transition:all 0.25s;box-shadow:0 3px 16px rgba(108,26,85,0.08);margin-bottom:28px}
 .celly-banner:hover{border-color:#E8A0D0;box-shadow:0 6px 24px rgba(108,26,85,0.1)}
 .celly-banner-av{width:86px;height:97px;flex-shrink:0;overflow:hidden}
 .celly-banner-text{flex:1}
