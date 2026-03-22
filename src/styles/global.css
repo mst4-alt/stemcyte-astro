@@ -64,6 +64,7 @@ body {
 .nav .logo img { height: 24px; width: auto; }
 .nav .logo-white { display: none; }
 .nav .logo-color { display: none; }
+.nav .logo-black { display: none; }
 .nav.at-top .logo-white { display: block; }
 .nav.at-top .logo-color { display: none; }
 .nav.scrolled .logo-white { display: none; }
@@ -121,7 +122,7 @@ body {
 
 /* Light-hero nav: mirrors white transparent header, inverted for light backgrounds */
 .nav.at-top.dark-hero .logo-white { display: none !important; }
-.nav.at-top.dark-hero .logo-color { display: block !important; }
+.nav.at-top.dark-hero .logo-black { display: block !important; }
 .nav.at-top.dark-hero .links a { color: rgba(44,42,38,0.6); }
 .nav.at-top.dark-hero .links a:hover { color: #2C2A26; }
 .nav.at-top.dark-hero .links a.active { color: #2C2A26; font-weight: 700; }
