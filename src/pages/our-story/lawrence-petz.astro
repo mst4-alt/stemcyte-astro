@@ -11,22 +11,24 @@ const schema = {
 ---
 <BaseLayout title="Lawrence D. Petz, MD — Founding Medical Director" schema={schema}>
 
-<section class="hero" id="hero" data-nav-theme="plum">
-  <div class="hero-img">
-    <img class="hero-portrait" fetchpriority="high" src="/images/our%20story/press_release_distribution_0452818_127664.jpg" alt="Lawrence D. Petz, MD" />
-  </div>
-  <div class="hero-text">
-    <a href="/our-story" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Our Story</a>
-    <h1 class="hero-name">Lawrence D. Petz, MD</h1>
-    <div class="hero-role">Founding Medical Director</div>
-    <p class="hero-sub">Over 60 years in medicine. Author of the first bone marrow transplant textbook. Founding architect of one of the world's most trusted cord blood banks.</p>
-    <div class="hero-creds">
-      <div class="hero-cred">City of Hope &amp; UCLA</div>
-      <div class="hero-cred">First BMT Textbook</div>
-      <div class="hero-cred">AABB Lifetime Achievement</div>
+<div class="hero-bg" id="hero" data-nav-theme="plum">
+  <div class="hero">
+    <div class="hero-img">
+      <img class="hero-portrait" fetchpriority="high" src="/images/our%20story/press_release_distribution_0452818_127664.jpg" alt="Lawrence D. Petz, MD" />
+    </div>
+    <div class="hero-text">
+      <a href="/our-story" class="back-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg> Our Story</a>
+      <h1 class="hero-name">Lawrence D. Petz, MD</h1>
+      <div class="hero-role">Founding Medical Director</div>
+      <p class="hero-sub">Over 60 years in medicine. Author of the first bone marrow transplant textbook. Founding architect of one of the world's most trusted cord blood banks.</p>
+      <div class="hero-creds">
+        <div class="hero-cred">City of Hope &amp; UCLA</div>
+        <div class="hero-cred">First BMT Textbook</div>
+        <div class="hero-cred">AABB Lifetime Achievement</div>
+      </div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- MAGAZINE LAYOUT -->
 <div class="mag-container">
@@ -170,12 +172,14 @@ const schema = {
 </BaseLayout>
 
 <style is:global>
-/* HERO — V4 Split */
-.hero { display:grid; grid-template-columns:1fr 1fr; min-height:620px; }
-.hero-img { position:relative; overflow:hidden; background:linear-gradient(175deg,#3D0F31 0%,#1A0714 100%); }
-.hero-portrait { width:100%; height:100%; object-fit:cover; }
-.hero-text { background:#FAF7F2; display:flex; flex-direction:column; justify-content:flex-end; padding:120px 64px 72px 48px; }
+/* HERO */
+.hero-bg { background: linear-gradient(to bottom, #E2E4E8 0%, #ECEDEF 50%, #FAF7F2 100%); }
+.hero { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; min-height:640px; padding:90px 48px 48px; gap:64px; }
+.hero-img { overflow:hidden; border-radius:12px; background:#1A0714; }
+.hero-portrait { width:100%; height:100%; object-fit:cover; object-position:center 20%; }
+.hero-text { display:flex; flex-direction:column; justify-content:flex-end; padding:0 0 24px 0; }
 .back-link { display:inline-flex; align-items:center; gap:6px; font-size:13px; font-weight:700; color:#6C1A55; text-decoration:none; margin-bottom:24px; }
+.back-link:hover { opacity:0.7; }
 .back-link svg { width:16px; height:16px; }
 .hero-name { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.05; letter-spacing:-1.5px; color:#2C2A26; margin-bottom:8px; }
 .hero-role { font-size:14px; font-weight:700; color:#6C1A55; margin-bottom:16px; }
@@ -302,9 +306,8 @@ const schema = {
 .anim-visible { opacity:1; transform:translateY(0); }
 
 @media (max-width:768px) {
-  .hero { grid-template-columns:1fr; min-height:auto; }
+  .hero { grid-template-columns:1fr; min-height:auto; padding:100px 24px 32px; gap:32px; }
   .hero-img { min-height:300px; }
-  .hero-text { padding:48px 24px; }
   .hero-name { font-size:34px; }
   .mag-container { grid-template-columns:1fr; padding:48px 24px; gap:32px; }
   .mag-margin { padding-top:0; }
