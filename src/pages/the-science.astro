@@ -160,6 +160,16 @@ const schema = {
   </div>
 </section>
 
+<!-- CTA BANNER -->
+<section class="cta-banner anim">
+  <h2>What happens if you don't <em>bank?</em></h2>
+  <p>If your baby's cord blood is not collected at birth, it's discarded as medical waste. There is no way to go back.</p>
+  <div class="btns">
+    <a href="/pricing" class="btn-w">View plans &amp; pricing</a>
+    <a href="tel:8663894659" class="btn-gd">Call (866) 389-4659</a>
+  </div>
+</section>
+
 <script is:inline>
 // ═══ SCROLL PROGRESS ═══
 window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('scrollProgress').style.width=(window.scrollY/h)*100+'%';});
@@ -619,6 +629,20 @@ document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
   .stitle{padding:60px 24px 32px;}.stitle h2{font-size:28px;}
   .m-block.left,.m-block.right{padding-right:0;padding-left:0;flex-direction:column;text-align:left;padding-left:52%;}
 }
+
+/* CTA BANNER */
+.cta-banner{margin:80px 48px;border-radius:16px;background:linear-gradient(160deg,#6C1A55,#3D0F31);padding:80px 64px;text-align:center;position:relative;overflow:hidden;}
+.cta-banner::before{content:'';position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(192,106,165,0.08);top:-200px;right:-100px;}
+.cta-banner h2{font-family:'Playfair Display',serif;font-size:36px;color:#fff;margin-bottom:12px;position:relative;}
+.cta-banner h2 em{font-style:italic;color:#E8A0D0;}
+.cta-banner p{font-size:16px;color:rgba(255,255,255,0.65);margin-bottom:32px;position:relative;}
+.cta-banner .btns{display:flex;gap:12px;justify-content:center;position:relative;}
+.btn-w{background:#fff;color:#6C1A55;padding:16px 36px;border-radius:100px;font-size:15px;font-weight:700;border:none;cursor:pointer;font-family:'Lato',sans-serif;transition:all 0.25s;display:inline-block;text-decoration:none;}
+.btn-w:hover{background:rgba(255,255,255,0.85);}
+.btn-gd{background:transparent;color:#fff;padding:16px 36px;border-radius:100px;font-size:15px;font-weight:700;border:1px solid rgba(255,255,255,0.25);cursor:pointer;font-family:'Lato',sans-serif;transition:all 0.25s;display:inline-block;text-decoration:none;}
+.btn-gd:hover{background:rgba(255,255,255,0.20);border-color:rgba(255,255,255,0.35);}
+@media(max-width:900px){.cta-banner{margin:48px 20px;padding:48px 24px;}}
+@media(max-width:600px){.cta-banner .btns{flex-direction:column;align-items:center;}}
 </style>
 
 </BaseLayout>
