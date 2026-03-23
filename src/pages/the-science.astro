@@ -182,8 +182,45 @@ document.querySelectorAll('.sr').forEach(el=>srObs.observe(el));
 const secObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');secObs.unobserve(e.target);}});},{threshold:0.08});
 document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
 
+// ═══ STRIPE-STYLE PERF: pause offscreen, respect reduced motion ═══
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function animateWhenVisible(canvasId, initFn) {
+  if (reduceMotion) return;
+  const canvas = document.getElementById(canvasId);
+  if (!canvas) return;
+  const section = canvas.closest('section') || canvas.closest('.hero') || canvas.parentElement;
+  let raf = null;
+  let playing = false;
+  const drawFn = initFn();
+
+  function play() {
+    if (playing) return;
+    playing = true;
+    function tick() {
+      drawFn();
+      if (playing) raf = requestAnimationFrame(tick);
+    }
+    tick();
+  }
+
+  function pause() {
+    playing = false;
+    if (raf) { cancelAnimationFrame(raf); raf = null; }
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) play();
+      else pause();
+    });
+  }, { rootMargin: '100px 0px' });
+
+  obs.observe(section);
+}
+
 // ═══ HERO — Osmos Variant B "Soft Focus" ═══
-(function(){
+animateWhenVisible('heroCanvas', () => {
   const palWarm=[{r:232,g:160,b:208},{r:192,g:96,b:160},{r:108,g:26,b:85},{r:160,g:80,b:140},{r:200,g:140,b:180},{r:180,g:130,b:190},{r:220,g:160,b:195},{r:170,g:100,b:150}];
 
   function heroSetup(){
@@ -251,12 +288,12 @@ document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
       if(m.x>-999){offX=(m.x-W/2)*pxVal*0.015;offY=(m.y-H/2)*pxVal*0.015;}
       layer.forEach(c=>{const p=Math.sin(time*c.ps+c.ph)*c.pa;drawCell(ctx,c.x+offX,c.y+offY,c.r+p,c.color,c.opacity,c.blur);});
     });
-    requestAnimationFrame(draw);
-  }draw();
-})();
+  }
+  return draw;
+});
 
 // ═══ CORD BLOOD SCROLLYTELLING — Cell visualization ═══
-(function(){
+animateWhenVisible('cellCanvas', () => {
   const canvas=document.getElementById('cellCanvas');const ctx=canvas.getContext('2d');let W,H,time=0;
   const stepColors=[{main:'#3B6DC4',glow:'rgba(59,109,196,0.08)',ring:'rgba(59,109,196,0.2)'},
     {main:'#6C1A55',glow:'rgba(108,26,85,0.08)',ring:'rgba(108,26,85,0.2)'},
@@ -313,16 +350,17 @@ document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
       ctx.font='600 48px "Source Serif 4",serif';ctx.fillStyle=stepColors[targetStep].main;ctx.textAlign='center';ctx.globalAlpha=0.15;
       ctx.fillText(labels[targetStep],W/2,H/2+16);
     }
-    ctx.globalAlpha=1;requestAnimationFrame(draw);
-  }draw();
+    ctx.globalAlpha=1;
+  }
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){targetStep=parseInt(e.target.dataset.step);
     document.querySelectorAll('#scrollyCB .scrolly-step-inner').forEach(el=>el.classList.remove('active'));
     e.target.querySelector('.scrolly-step-inner').classList.add('active');}});},{threshold:0.5});
   document.querySelectorAll('[data-step]').forEach(el=>obs.observe(el));
-})();
+  return draw;
+});
 
 // ═══ DISEASE STARBURST ═══
-(function(){
+animateWhenVisible('starburstCanvas', () => {
   const cats=[
     {name:'Cancers',color:'#E8A0D0',r:232,g:160,b:208,diseases:['B-cell ALL','T-cell ALL','AML','APL','CML','JMML','CLL','Prolymphocytic','LGL leukemia','Hairy cell','Hodgkin','NLPHL','DLBCL','Follicular','Burkitt','Mantle cell','ALCL','Peripheral T-cell','Myeloma','Plasma cell','Waldenström\'s','MDS']},
     {name:'Blood disorders',color:'#6B9BED',r:107,g:155,b:237,diseases:['Sickle cell','Beta-thalassemia','Alpha-thalassemia','Hb E-beta thal.','Dyserythropoietic','Pyruvate kinase','Aplastic anemia','Fanconi anemia','Diamond-Blackfan','Red cell aplasia','Kostmann','Shwachman-Diamond','Dyskeratosis','Amegakaryocytic','PNH','Myelofibrosis','Osteopetrosis']},
@@ -363,12 +401,13 @@ document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
         ctx.textAlign=Math.cos(r.angle)>0.1?'left':Math.cos(r.angle)<-0.1?'right':'center';ctx.textBaseline='middle';ctx.fillText(r.name,lx,ly);
         ctx.globalAlpha=na*0.45;ctx.font='700 9px Lato,sans-serif';ctx.fillStyle=r.color;ctx.fillText(r.cat,lx,ly+(Math.sin(r.angle)>0?16:-16));}});
     const cp=Math.sin(time*0.02)*2;ctx.globalAlpha=0.1;ctx.fillStyle='#E8A0D0';ctx.beginPath();ctx.arc(cx,cy,14+cp,0,Math.PI*2);ctx.fill();
-    ctx.globalAlpha=0.6;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(cx,cy,4,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;requestAnimationFrame(draw);
-  }draw();
-})();
+    ctx.globalAlpha=0.6;ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(cx,cy,4,0,Math.PI*2);ctx.fill();ctx.globalAlpha=1;
+  }
+  return draw;
+});
 
 // ═══ CORD TISSUE SCROLLYTELLING — Arc visualization ═══
-(function(){
+animateWhenVisible('arcCanvas', () => {
   const canvas=document.getElementById('arcCanvas');const ctx=canvas.getContext('2d');let W,H,time=0;
   const stepColors=[
     {main:'#2A6B4F',glow:'rgba(42,107,79,0.08)',ring:'rgba(42,107,79,0.2)'},
@@ -418,16 +457,17 @@ document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
         const tlx=a.orbitR*Math.cos(t);const tly=a.orbitR*Math.sin(t);const tty=tly*Math.cos(a.tilt);const ttz=tly*Math.sin(a.tilt);
         const tfx=tlx*Math.cos(a.planeRot)-ttz*Math.sin(a.planeRot);const tfy=tty;
         if(s===-steps)ctx.moveTo(cx+tfx,cy+tfy);else ctx.lineTo(cx+tfx,cy+tfy);}ctx.stroke();});
-    ctx.globalAlpha=1;requestAnimationFrame(draw);
-  }draw();
+    ctx.globalAlpha=1;
+  }
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){targetStep=parseInt(e.target.dataset.tstep);
     document.querySelectorAll('#scrollyCT .scrolly-step-inner').forEach(el=>el.classList.remove('active'));
     e.target.querySelector('.scrolly-step-inner').classList.add('active');}});},{threshold:0.5});
   document.querySelectorAll('[data-tstep]').forEach(el=>obs.observe(el));
-})();
+  return draw;
+});
 
 // ═══ MANIFESTO — Gather + Glow particles ═══
-(function(){
+animateWhenVisible('manifestoCanvas', () => {
   const caps=[
     {title:'Regenerative repair',desc:'Rebuild damaged tissue — joints, cartilage, organs. Not just treating symptoms. Fixing the source.'},
     {title:'Immune modulation',desc:'Calm overactive immune systems. Autoimmune diseases, graft-vs-host, transplant rejection.'},
@@ -486,9 +526,10 @@ document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
     if(hovIdx>=0&&hovIdx<positions.length){const target=positions[hovIdx];const nearby=pts.filter(p=>Math.sqrt((target.x-p.x)**2+(target.y-p.y)**2)<50);
       for(let i=0;i<nearby.length;i++){for(let j=i+1;j<nearby.length;j++){const dx=nearby[j].x-nearby[i].x,dy=nearby[j].y-nearby[i].y,d=Math.sqrt(dx*dx+dy*dy);
         if(d<30){ctx.strokeStyle='#5DB890';ctx.lineWidth=0.4;ctx.globalAlpha=0.06*(1-d/30);ctx.beginPath();ctx.moveTo(nearby[i].x,nearby[i].y);ctx.lineTo(nearby[j].x,nearby[j].y);ctx.stroke();}}}}
-    ctx.globalAlpha=1;requestAnimationFrame(draw);
-  }draw();
-})();
+    ctx.globalAlpha=1;
+  }
+  return draw;
+});
 
 // ═══ 500+ STAT — Proximity glow ═══
 (function(){
@@ -514,8 +555,8 @@ document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
       stat.style.transform='scale(1)';
       label.style.color='rgba(255,255,255,0.15)';
     }
-    requestAnimationFrame(checkProximity);
   }
+  window.addEventListener('scroll', checkProximity, { passive: true });
   checkProximity();
 })();
 </script>
@@ -643,6 +684,14 @@ document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
 .btn-gd:hover{background:rgba(255,255,255,0.20);border-color:rgba(255,255,255,0.35);}
 @media(max-width:900px){.cta-banner{margin:48px 20px;padding:48px 24px;}}
 @media(max-width:600px){.cta-banner .btns{flex-direction:column;align-items:center;}}
+
+@media (prefers-reduced-motion: reduce) {
+  .sr, .section-enter, .scrolly-step-inner {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
 </style>
 
 </BaseLayout>
