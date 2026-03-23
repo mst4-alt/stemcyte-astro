@@ -67,7 +67,6 @@ const schema = {
     </div>
     <div class="scrolly-visual"><canvas id="cellCanvas"></canvas></div>
   </div>
-  <div class="scrolly-spacer" style="height:50vh;"></div>
 </section>
 
 <!-- ═══ DISEASE STARBURST ═══ -->
@@ -194,7 +193,6 @@ const schema = {
     </div>
     <div class="scrolly-visual"><canvas id="arcCanvas"></canvas></div>
   </div>
-  <div class="scrolly-spacer" style="height:50vh;"></div>
 </section>
 
 <!-- ═══ MANIFESTO: Cord Tissue Future ═══ -->
@@ -671,9 +669,10 @@ animateWhenVisible('manifestoCanvas', () => {
 
 /* SCROLLYTELLING (shared) */
 .scrolly{position:relative;background:var(--cream);}
-.scrolly-inner{display:grid;grid-template-columns:1fr 1fr;max-width:1100px;margin:0 auto;min-height:400vh;}
+.scrolly-inner{display:grid;grid-template-columns:1fr 1fr;max-width:1100px;margin:0 auto;min-height:calc(400vh - 280px);}
 .scrolly-text{position:relative;z-index:2;padding:0 48px;}
 .scrolly-step{min-height:100vh;display:flex;align-items:center;padding:40px 0;}
+.scrolly-step:last-child{min-height:calc(100vh - 280px);}
 .scrolly-step-inner{max-width:420px;opacity:0.08;transform:translateY(30px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
 .scrolly-step-inner.active{opacity:1;transform:translateY(0);}
 .step-num{font-family:'Source Serif 4',serif;font-size:72px;font-weight:400;line-height:1;margin-bottom:8px;}
