@@ -27,48 +27,47 @@ const schema = {
   <div class="scroll-hint"><div class="scroll-mouse"></div><span>Scroll</span></div>
 </section>
 
-<!-- ═══ SECTION TITLE: Cord Blood ═══ -->
-<div class="stitle section-enter">
-  <div class="sr" data-d="0">
-    <div class="stitle-pill" style="border-color:rgba(59,109,196,0.15);">
-      <span style="color:#6B9BED;">Cord Blood</span>
-    </div>
-  </div>
-  <div class="sr" data-d="150">
-    <h2>What are cord blood stem cells?</h2>
-  </div>
-  <div class="sr" data-d="400">
-    <p style="font-size:15px;color:var(--muted);max-width:460px;margin:12px auto 0;line-height:1.7;">Think of stem cells as your body's starter kit. They're the original cells that every other cell in your body comes from.</p>
-  </div>
-</div>
-
 <!-- ═══ CORD BLOOD SCROLLYTELLING ═══ -->
 <section class="scrolly" id="scrollyCB">
+  <div class="stitle stitle-sticky section-enter">
+    <div class="sr" data-d="0">
+      <div class="stitle-pill" style="border-color:rgba(59,109,196,0.15);">
+        <span style="color:#6B9BED;">Cord Blood</span>
+      </div>
+    </div>
+    <div class="sr" data-d="150">
+      <h2>What are cord blood stem cells?</h2>
+    </div>
+    <div class="sr" data-d="400">
+      <p class="stitle-sub" style="font-size:15px;color:var(--muted);max-width:460px;margin:12px auto 0;line-height:1.7;">Think of stem cells as your body's starter kit. They're the original cells that every other cell in your body comes from.</p>
+    </div>
+  </div>
   <div class="scrolly-inner">
     <div class="scrolly-text">
       <div class="scrolly-step" data-step="0"><div class="scrolly-step-inner active">
-        <div class="step-num" style="color:rgba(59,109,196,0.15)">01</div>
+        <div class="step-num" style="color:rgba(59,109,196,0.35)">01</div>
         <h2 style="color:var(--blue)">Your baby is born with them</h2>
         <p>The blood left in your baby's umbilical cord after birth is rich with <strong>stem cells</strong> — the same type used in bone marrow transplants for decades. They build your baby's entire blood and immune system.</p>
       </div></div>
       <div class="scrolly-step" data-step="1"><div class="scrolly-step-inner">
-        <div class="step-num" style="color:rgba(108,26,85,0.1)">02</div>
+        <div class="step-num" style="color:rgba(108,26,85,0.3)">02</div>
         <h2 style="color:var(--plum)">They can rebuild what's broken</h2>
         <p>Every red blood cell, white blood cell, and platelet traces back to these stem cells. When someone fights leukemia, sickle cell disease, or an immune deficiency, <strong>a transplant can regenerate their entire blood and immune system</strong>.</p>
       </div></div>
       <div class="scrolly-step" data-step="2"><div class="scrolly-step-inner">
-        <div class="step-num" style="color:rgba(61,139,106,0.1)">03</div>
+        <div class="step-num" style="color:rgba(61,139,106,0.3)">03</div>
         <h2 style="color:var(--sage)">Younger, stronger, unexposed</h2>
         <p>Collected at the moment of birth, cord blood stem cells have had <strong>zero exposure to environmental toxins, illness, or aging</strong>. They're a biological snapshot of your child's health at its purest.</p>
       </div></div>
       <div class="scrolly-step" data-step="3"><div class="scrolly-step-inner">
-        <div class="step-num" style="color:rgba(196,148,62,0.1)">04</div>
+        <div class="step-num" style="color:rgba(196,148,62,0.3)">04</div>
         <h2 style="color:var(--amber)">Protection for the whole family</h2>
         <p>A guaranteed <strong>perfect match for your baby</strong>, 75% chance for siblings, and because cord blood requires less strict HLA matching than bone marrow — parents and extended family too.</p>
       </div></div>
     </div>
     <div class="scrolly-visual"><canvas id="cellCanvas"></canvas></div>
   </div>
+  <div class="scrolly-spacer" style="height:50vh;"></div>
 </section>
 
 <!-- ═══ DISEASE STARBURST ═══ -->
@@ -91,51 +90,111 @@ const schema = {
       <div class="cat-card" data-cat="2"><div class="cat-card-count" style="color:#5DB890;">30+</div><div class="cat-card-name" style="color:#5DB890;">Immune deficiencies</div></div>
       <div class="cat-card" data-cat="3"><div class="cat-card-count" style="color:#E8C06E;">16+</div><div class="cat-card-name" style="color:#E8C06E;">Metabolic disorders</div></div>
     </div>
+    <div class="disease-list-mobile">
+      <div class="dlm-category">
+        <div class="dlm-cat-header"><div class="dlm-cat-dot" style="background:#E8A0D0;"></div><div class="dlm-cat-title" style="color:#E8A0D0;">Cancers</div></div>
+        <div class="dlm-diseases">
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">B-cell ALL</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">T-cell ALL</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">AML</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">APL</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">CML</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">JMML</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">CLL</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">Hodgkin</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">DLBCL</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">Follicular</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">Burkitt</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">Mantle cell</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">Myeloma</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.7);border-color:rgba(232,160,208,0.12);">MDS</span>
+          <span class="dlm-tag" style="color:rgba(232,160,208,0.5);border-color:rgba(232,160,208,0.08);">+8 more</span>
+        </div>
+      </div>
+      <div class="dlm-category">
+        <div class="dlm-cat-header"><div class="dlm-cat-dot" style="background:#6B9BED;"></div><div class="dlm-cat-title" style="color:#6B9BED;">Blood Disorders</div></div>
+        <div class="dlm-diseases">
+          <span class="dlm-tag" style="color:rgba(107,155,237,0.7);border-color:rgba(107,155,237,0.12);">Sickle cell</span>
+          <span class="dlm-tag" style="color:rgba(107,155,237,0.7);border-color:rgba(107,155,237,0.12);">Beta-thalassemia</span>
+          <span class="dlm-tag" style="color:rgba(107,155,237,0.7);border-color:rgba(107,155,237,0.12);">Aplastic anemia</span>
+          <span class="dlm-tag" style="color:rgba(107,155,237,0.7);border-color:rgba(107,155,237,0.12);">Fanconi anemia</span>
+          <span class="dlm-tag" style="color:rgba(107,155,237,0.7);border-color:rgba(107,155,237,0.12);">Diamond-Blackfan</span>
+          <span class="dlm-tag" style="color:rgba(107,155,237,0.7);border-color:rgba(107,155,237,0.12);">PNH</span>
+          <span class="dlm-tag" style="color:rgba(107,155,237,0.7);border-color:rgba(107,155,237,0.12);">Myelofibrosis</span>
+          <span class="dlm-tag" style="color:rgba(107,155,237,0.5);border-color:rgba(107,155,237,0.08);">+10 more</span>
+        </div>
+      </div>
+      <div class="dlm-category">
+        <div class="dlm-cat-header"><div class="dlm-cat-dot" style="background:#5DB890;"></div><div class="dlm-cat-title" style="color:#5DB890;">Immune Deficiencies</div></div>
+        <div class="dlm-diseases">
+          <span class="dlm-tag" style="color:rgba(93,184,144,0.7);border-color:rgba(93,184,144,0.12);">ADA-SCID</span>
+          <span class="dlm-tag" style="color:rgba(93,184,144,0.7);border-color:rgba(93,184,144,0.12);">X-linked SCID</span>
+          <span class="dlm-tag" style="color:rgba(93,184,144,0.7);border-color:rgba(93,184,144,0.12);">Wiskott-Aldrich</span>
+          <span class="dlm-tag" style="color:rgba(93,184,144,0.7);border-color:rgba(93,184,144,0.12);">CGD</span>
+          <span class="dlm-tag" style="color:rgba(93,184,144,0.7);border-color:rgba(93,184,144,0.12);">Omenn</span>
+          <span class="dlm-tag" style="color:rgba(93,184,144,0.7);border-color:rgba(93,184,144,0.12);">IPEX</span>
+          <span class="dlm-tag" style="color:rgba(93,184,144,0.7);border-color:rgba(93,184,144,0.12);">DiGeorge</span>
+          <span class="dlm-tag" style="color:rgba(93,184,144,0.7);border-color:rgba(93,184,144,0.12);">HLH</span>
+          <span class="dlm-tag" style="color:rgba(93,184,144,0.5);border-color:rgba(93,184,144,0.08);">+22 more</span>
+        </div>
+      </div>
+      <div class="dlm-category">
+        <div class="dlm-cat-header"><div class="dlm-cat-dot" style="background:#E8C06E;"></div><div class="dlm-cat-title" style="color:#E8C06E;">Metabolic Disorders</div></div>
+        <div class="dlm-diseases">
+          <span class="dlm-tag" style="color:rgba(232,192,110,0.7);border-color:rgba(232,192,110,0.12);">Hurler</span>
+          <span class="dlm-tag" style="color:rgba(232,192,110,0.7);border-color:rgba(232,192,110,0.12);">Krabbe</span>
+          <span class="dlm-tag" style="color:rgba(232,192,110,0.7);border-color:rgba(232,192,110,0.12);">ALD</span>
+          <span class="dlm-tag" style="color:rgba(232,192,110,0.7);border-color:rgba(232,192,110,0.12);">MLD</span>
+          <span class="dlm-tag" style="color:rgba(232,192,110,0.7);border-color:rgba(232,192,110,0.12);">Gaucher</span>
+          <span class="dlm-tag" style="color:rgba(232,192,110,0.7);border-color:rgba(232,192,110,0.12);">Wolman</span>
+          <span class="dlm-tag" style="color:rgba(232,192,110,0.5);border-color:rgba(232,192,110,0.08);">+10 more</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══ SECTION TITLE: Cord Tissue ═══ -->
-<div class="stitle section-enter">
-  <div class="sr" data-d="0">
-    <div class="stitle-pill" style="border-color:rgba(42,107,79,0.2);">
-      <span style="color:#5DB890;">Cord Tissue</span>
-    </div>
-  </div>
-  <div class="sr" data-d="150">
-    <h2>What are cord tissue stem cells?</h2>
-  </div>
-  <div class="sr" data-d="400">
-    <p style="font-size:15px;color:var(--muted);max-width:460px;margin:12px auto 0;line-height:1.7;">Your umbilical cord contains a second type of stem cell — one that doesn't build blood, but repairs and rebuilds the body itself.</p>
-  </div>
-</div>
-
 <!-- ═══ CORD TISSUE SCROLLYTELLING ═══ -->
 <section class="scrolly scrolly-tissue" id="scrollyCT">
+  <div class="stitle stitle-sticky section-enter">
+    <div class="sr" data-d="0">
+      <div class="stitle-pill" style="border-color:rgba(42,107,79,0.2);">
+        <span style="color:#5DB890;">Cord Tissue</span>
+      </div>
+    </div>
+    <div class="sr" data-d="150">
+      <h2>What are cord tissue stem cells?</h2>
+    </div>
+    <div class="sr" data-d="400">
+      <p class="stitle-sub" style="font-size:15px;color:var(--muted);max-width:460px;margin:12px auto 0;line-height:1.7;">Your umbilical cord contains a second type of stem cell — one that doesn't build blood, but repairs and rebuilds the body itself.</p>
+    </div>
+  </div>
   <div class="scrolly-inner">
     <div class="scrolly-text">
       <div class="scrolly-step" data-tstep="0"><div class="scrolly-step-inner active">
-        <div class="step-num" style="color:rgba(42,107,79,0.08)">05</div>
+        <div class="step-num" style="color:rgba(42,107,79,0.3)">05</div>
         <h2 style="color:var(--sage)">There's more than blood in the cord</h2>
         <p>The umbilical cord itself — the tissue — contains a different type of stem cell called <strong>mesenchymal stem cells (MSCs)</strong>. They live inside a jelly-like substance called Wharton's jelly.</p>
       </div></div>
       <div class="scrolly-step" data-tstep="1"><div class="scrolly-step-inner">
-        <div class="step-num" style="color:rgba(42,107,79,0.08)">06</div>
+        <div class="step-num" style="color:rgba(42,107,79,0.3)">06</div>
         <h2 style="color:var(--sage)">They repair, not replace</h2>
         <p>Where cord blood rebuilds your blood and immune system, cord tissue MSCs repair <strong>structural tissue — muscle, bone, cartilage, skin, and organs</strong>. They're the body's construction crew.</p>
       </div></div>
       <div class="scrolly-step" data-tstep="2"><div class="scrolly-step-inner">
-        <div class="step-num" style="color:rgba(42,107,79,0.08)">07</div>
+        <div class="step-num" style="color:rgba(42,107,79,0.3)">07</div>
         <h2 style="color:var(--sage)">That changes everything</h2>
         <p>A cell that can repair tissue means potential treatments for <strong>Alzheimer's, Parkinson's, spinal cord injuries, diabetes, arthritis</strong> — conditions that affect millions and currently have no cure. Over 500 clinical trials are underway worldwide.</p>
       </div></div>
       <div class="scrolly-step" data-tstep="3"><div class="scrolly-step-inner">
-        <div class="step-num" style="color:rgba(42,107,79,0.08)">08</div>
+        <div class="step-num" style="color:rgba(42,107,79,0.3)">08</div>
         <h2 style="color:var(--sage)">No matching required</h2>
         <p>Unlike cord blood, MSCs <strong>don't require HLA matching</strong>. That means they could potentially be used by any family member — parents, siblings, even grandparents — without the compatibility barrier.</p>
       </div></div>
     </div>
     <div class="scrolly-visual"><canvas id="arcCanvas"></canvas></div>
   </div>
+  <div class="scrolly-spacer" style="height:50vh;"></div>
 </section>
 
 <!-- ═══ MANIFESTO: Cord Tissue Future ═══ -->
@@ -232,6 +291,8 @@ animateWhenVisible('heroCanvas', () => {
     let mx=-9999,my=-9999;
     vp.addEventListener('mousemove',e=>{const r=vp.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
     vp.addEventListener('mouseleave',()=>{mx=-9999;my=-9999;});
+    vp.addEventListener('touchmove',e=>{const touch=e.touches[0];const r=vp.getBoundingClientRect();mx=touch.clientX-r.left;my=touch.clientY-r.top;});
+    vp.addEventListener('touchend',()=>{mx=-9999;my=-9999;});
     window.addEventListener('resize',()=>{W=vp.offsetWidth;H=vp.offsetHeight;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);});
     return{ctx,gW:()=>vp.offsetWidth,gH:()=>vp.offsetHeight,gM:()=>({x:mx,y:my})};
   }
@@ -371,6 +432,8 @@ animateWhenVisible('starburstCanvas', () => {
   canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);
   let mx=-999,my=-999;wrap.addEventListener('mousemove',e=>{const r=wrap.getBoundingClientRect();mx=e.clientX-r.left;my=e.clientY-r.top;});
   wrap.addEventListener('mouseleave',()=>{mx=-999;my=-999;});
+  wrap.addEventListener('touchmove',e=>{e.preventDefault();const touch=e.touches[0];const r=wrap.getBoundingClientRect();mx=touch.clientX-r.left;my=touch.clientY-r.top;},{passive:false});
+  wrap.addEventListener('touchend',()=>{mx=-999;my=-999;});
   window.addEventListener('resize',()=>{W=wrap.offsetWidth;H=wrap.offsetHeight;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);});
   const rays=[];let idx=0;const total=cats.reduce((s,c)=>s+c.diseases.length,0);
   cats.forEach((c,ci)=>{c.diseases.forEach(d=>{const angle=(idx/total)*Math.PI*2-Math.PI/2+(Math.random()-0.5)*0.04;
@@ -379,7 +442,7 @@ animateWhenVisible('starburstCanvas', () => {
   let time=0,hovCat=-1;
   document.querySelectorAll('[data-cat]').forEach(el=>{el.addEventListener('mouseenter',()=>{hovCat=parseInt(el.dataset.cat);});el.addEventListener('mouseleave',()=>{hovCat=-1;});});
   function draw(){
-    time++;ctx.clearRect(0,0,W,H);const cx=W/2,cy=H*0.42;
+    time++;ctx.clearRect(0,0,W,H);const cx=W/2,cy=H*0.5;
     const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,90);cg.addColorStop(0,'rgba(232,160,208,0.12)');cg.addColorStop(1,'transparent');ctx.fillStyle=cg;ctx.fillRect(0,0,W,H);
     rays.forEach(r=>{
       // Breathing: slow angle sway + length pulse
@@ -613,7 +676,7 @@ animateWhenVisible('manifestoCanvas', () => {
 .scrolly-step{min-height:100vh;display:flex;align-items:center;padding:40px 0;}
 .scrolly-step-inner{max-width:420px;opacity:0.08;transform:translateY(30px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
 .scrolly-step-inner.active{opacity:1;transform:translateY(0);}
-.step-num{font-family:'Source Serif 4',serif;font-size:72px;font-weight:400;line-height:1;margin-bottom:8px;opacity:0.1;}
+.step-num{font-family:'Source Serif 4',serif;font-size:72px;font-weight:400;line-height:1;margin-bottom:8px;}
 .scrolly-step-inner h2{font-family:'Playfair Display',serif;font-size:32px;font-weight:400;line-height:1.2;margin-bottom:14px;}
 .scrolly-step-inner p{font-size:15px;color:var(--muted);line-height:1.8;}
 .scrolly-step-inner p strong{color:var(--text);}
@@ -660,15 +723,64 @@ animateWhenVisible('manifestoCanvas', () => {
 .manifesto-cta{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:rgba(93,184,144,0.5);text-decoration:none;padding:10px 24px;border:1px solid rgba(93,184,144,0.15);border-radius:100px;transition:all 0.3s;}
 .manifesto-cta:hover{color:#5DB890;border-color:rgba(93,184,144,0.35);background:rgba(93,184,144,0.05);}
 
+/* STICKY SECTION TITLES (inside scrolly) */
+.stitle-sticky{position:sticky;top:0;z-index:10;background:var(--cream);padding:80px 48px 48px;}
+
+/* MOBILE DISEASE LIST */
+.disease-list-mobile{display:none;margin-top:32px;}
+.dlm-category{margin-bottom:24px;}
+.dlm-cat-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.dlm-cat-dot{width:6px;height:6px;border-radius:50%;}
+.dlm-cat-title{font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.dlm-diseases{display:flex;flex-wrap:wrap;gap:6px;}
+.dlm-tag{font-size:10px;padding:4px 10px;border-radius:100px;border:1px solid;line-height:1.3;}
+
 /* RESPONSIVE */
 @media(max-width:900px){
   .hero-ct{padding:0 24px 60px;}.hero h1{font-size:34px;}
-  .scrolly-inner{grid-template-columns:1fr;}.scrolly-visual{display:none;}.scrolly-text{padding:0 24px;}
+  .scrolly-inner{grid-template-columns:1fr;min-height:auto !important;}
+  .scrolly-visual{display:none;}.scrolly-text{padding:0 24px;}
+  .scrolly-tissue .scrolly-inner{min-height:auto !important;}
   .scrolly-tissue .scrolly-visual{display:none;}
-  .disease-section,.manifesto-section{padding:80px 24px;}
-  .starburst-wrap{height:350px;}.cat-cards{flex-wrap:wrap;justify-content:center;}
+  .disease-section{padding:60px 0 80px;}
+  .disease-inner{padding:0 24px;}
+  .manifesto-section{padding:80px 24px;}
+  .starburst-wrap{height:70vw;max-height:400px;max-width:100vw;margin-left:-24px;width:calc(100% + 48px);}
   .stitle{padding:60px 24px 32px;}.stitle h2{font-size:28px;}
-  .m-block.left,.m-block.right{padding-right:0;padding-left:0;flex-direction:column;text-align:left;padding-left:52%;}
+  .scrolly-step-inner{opacity:1 !important;transform:none !important;transition:none !important;}
+  .step-num{font-size:56px !important;}
+  .scrolly-step{min-height:auto !important;padding:40px 0 48px;}
+  .scrolly{padding-bottom:48px;}
+  .scrolly::after{display:none !important;}
+  .scrolly-spacer{display:none;}
+  .disease-list-mobile{display:block;}
+  .cat-cards{flex-wrap:wrap;justify-content:center;gap:6px;}
+  .cat-card{width:auto;flex:1;min-width:0;padding:14px 12px;}
+  .cat-card-count{font-size:20px;}
+  .cat-card-name{font-size:9px;}
+  .manifesto-list{max-width:100%;}
+  .manifesto-line{display:none;}
+  .m-dot{display:none;}
+  .m-block.left,.m-block.right{flex-direction:row;text-align:left;padding-left:0;padding-right:0;gap:16px;}
+  .m-num{font-size:28px;min-width:40px;}
+  .m-title{font-size:20px;}
+  .m-desc{font-size:15px;color:rgba(255,255,255,0.35);}
+  .stitle-sticky{position:sticky;top:0;z-index:10;padding:20px 24px 16px;
+    background:rgba(250,247,242,0.95);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+    border-bottom:1px solid rgba(0,0,0,0.04);}
+  .stitle-sticky h2{font-size:22px;margin-bottom:2px;}
+  .stitle-sticky .stitle-sub{font-size:12px;margin-top:4px;}
+  .stitle-sticky .stitle-pill{margin-bottom:6px;}
+  #stat500{font-size:40px !important;color:rgba(93,184,144,0.4) !important;}
+  #stat500label{color:rgba(255,255,255,0.3) !important;}
+}
+
+@media(max-width:480px){
+  .cat-cards{display:grid;grid-template-columns:1fr 1fr;}
+  .cat-card{width:auto;}
+  .hero h1{font-size:28px;}
+  .stitle h2{font-size:24px;}
+  .starburst-wrap{height:240px;}
 }
 
 /* CTA BANNER */
