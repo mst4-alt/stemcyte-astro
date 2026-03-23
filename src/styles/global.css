@@ -130,7 +130,9 @@ body {
 .nav.at-top.dark-hero .cta:hover { background: rgba(0,0,0,0.14); border-color: rgba(0,0,0,0.20); }
 .nav.at-top.dark-hero .hamburger span { background: rgba(44,42,38,0.6); }
 
-/* Split-hero nav — dark text on right (cream), white logo stays on left (dark photo) */
+/* Plum-hero nav — black logo + dark text on light stone gradient */
+.nav.at-top.plum-hero .logo-white { display: none !important; }
+.nav.at-top.plum-hero .logo-black { display: block !important; }
 .nav.at-top.plum-hero .links a { color: rgba(44,42,38,0.6); }
 .nav.at-top.plum-hero .links a:hover { color: #2C2A26; }
 .nav.at-top.plum-hero .links a.active { color: #2C2A26; font-weight: 700; }
