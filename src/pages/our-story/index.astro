@@ -15,7 +15,7 @@ const schema = {
 <style is:global>
 
 /* HERO GLOBE */
-.hero-globe { position:relative; height:75vh; background:linear-gradient(170deg,#3D0F31 0%,#1A0714 100%); overflow:hidden; display:flex; flex-direction:column; justify-content:flex-start; padding:80px 0 40px; }
+.hero-globe { position:relative; min-height:75vh; background:linear-gradient(170deg,#3D0F31 0%,#1A0714 100%); overflow:hidden; display:flex; flex-direction:column; justify-content:center; padding:120px 0 80px; }
 .hero-globe .ambient-orb { position:absolute; border-radius:50%; pointer-events:none; }
 .hero-globe .ambient-orb.a { width:800px; height:800px; background:radial-gradient(circle,rgba(192,106,165,0.12) 0%,transparent 70%); top:-200px; right:-200px; }
 .hero-globe .ambient-orb.b { width:600px; height:600px; background:radial-gradient(circle,rgba(108,26,85,0.2) 0%,transparent 70%); bottom:-100px; left:-100px; }
@@ -24,8 +24,8 @@ const schema = {
 .hero-lbl { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#C06AA5; margin-bottom:16px; display:inline-block; }
 .hero-globe h1 { font-family:'Playfair Display',serif; font-size:52px; font-weight:400; line-height:1.08; letter-spacing:-1.5px; color:#fff; text-align:center; max-width:700px; margin:0 auto 12px; }
 .hero-globe h1 em { font-style:italic; color:#E8A0D0; }
-.hero-sub { font-size:17px; color:rgba(255,255,255,0.55); text-align:center; max-width:540px; margin:0 auto 24px; line-height:1.7; }
-.map-wrap { position:relative; width:100%; max-width:1056px; margin:0 auto; flex:1; min-height:0; overflow:hidden; }
+.hero-sub { font-size:17px; color:rgba(255,255,255,0.55); text-align:center; max-width:540px; margin:0 auto 48px; line-height:1.7; }
+.map-wrap { position:relative; width:100%; max-width:1056px; margin:0 auto; }
 .map-wrap svg { width:100%; height:auto; display:block; }
 
 /* Arc draw-in */
