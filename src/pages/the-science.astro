@@ -24,6 +24,7 @@ const schema = {
     <h1>Your baby is born with the power to save a life — including their own</h1>
     <p class="sub">Your newborn's umbilical cord contains stem cells that treat over 80 diseases today and are being researched for hundreds more.</p>
   </div>
+  <div class="scroll-hint"><div class="scroll-mouse"></div><span>Scroll</span></div>
 </section>
 
 <!-- ═══ CORD BLOOD SCROLLYTELLING ═══ -->
@@ -66,6 +67,7 @@ const schema = {
     </div>
     <div class="scrolly-visual"><canvas id="cellCanvas"></canvas></div>
   </div>
+  <div class="scrolly-spacer" style="height:50vh;"></div>
 </section>
 
 <!-- ═══ DISEASE STARBURST ═══ -->
@@ -192,6 +194,7 @@ const schema = {
     </div>
     <div class="scrolly-visual"><canvas id="arcCanvas"></canvas></div>
   </div>
+  <div class="scrolly-spacer" style="height:50vh;"></div>
 </section>
 
 <!-- ═══ MANIFESTO: Cord Tissue Future ═══ -->
@@ -640,7 +643,7 @@ animateWhenVisible('manifestoCanvas', () => {
 .section-enter.vis{opacity:1;transform:translateY(0);}
 
 /* HERO */
-.hero{position:relative;min-height:70vh;display:flex;align-items:flex-end;overflow:hidden;background:#1a0a14;}
+.hero{position:relative;min-height:100vh;display:flex;align-items:flex-end;overflow:hidden;background:#1a0a14;}
 .hero canvas{position:absolute;inset:0;z-index:1;width:100%;height:100%;display:block;}
 .hero-vig{position:absolute;inset:0;z-index:2;
   background:linear-gradient(to top,rgba(26,10,20,0.9) 0%,rgba(26,10,20,0.3) 40%,transparent 100%);}
@@ -652,6 +655,13 @@ animateWhenVisible('manifestoCanvas', () => {
 .hero .sub{font-size:17px;color:rgba(255,255,255,0.45);max-width:500px;line-height:1.7;
   opacity:0;transform:translateY(20px);animation:fu 0.8s 0.7s forwards;}
 @keyframes fu{to{opacity:1;transform:translateY(0);}}
+.scroll-hint{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:4;
+  display:flex;flex-direction:column;align-items:center;gap:8px;opacity:0;animation:fu 0.8s 1.2s forwards;}
+.scroll-hint span{font-size:10px;color:rgba(255,255,255,0.3);letter-spacing:2px;text-transform:uppercase;font-weight:700;}
+.scroll-mouse{width:20px;height:32px;border:2px solid rgba(255,255,255,0.2);border-radius:10px;position:relative;}
+.scroll-mouse::after{content:'';width:3px;height:6px;border-radius:2px;background:rgba(255,255,255,0.4);
+  position:absolute;top:6px;left:50%;transform:translateX(-50%);animation:sb 1.5s ease-in-out infinite;}
+@keyframes sb{0%,100%{transform:translateX(-50%) translateY(0);opacity:1;}50%{transform:translateX(-50%) translateY(8px);opacity:0.3;}}
 
 /* SECTION TITLES (Style A) */
 .stitle{text-align:center;padding:80px 48px 48px;}
@@ -661,10 +671,9 @@ animateWhenVisible('manifestoCanvas', () => {
 
 /* SCROLLYTELLING (shared) */
 .scrolly{position:relative;background:var(--cream);}
-.scrolly-inner{display:grid;grid-template-columns:1fr 1fr;max-width:1100px;margin:0 auto;min-height:calc(400vh - 280px);}
+.scrolly-inner{display:grid;grid-template-columns:1fr 1fr;max-width:1100px;margin:0 auto;min-height:400vh;}
 .scrolly-text{position:relative;z-index:2;padding:0 48px;}
 .scrolly-step{min-height:100vh;display:flex;align-items:center;padding:40px 0;}
-.scrolly-step:last-child{min-height:calc(100vh - 280px);}
 .scrolly-step-inner{max-width:420px;opacity:0.08;transform:translateY(30px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
 .scrolly-step-inner.active{opacity:1;transform:translateY(0);}
 .step-num{font-family:'Source Serif 4',serif;font-size:72px;font-weight:400;line-height:1;margin-bottom:8px;}
