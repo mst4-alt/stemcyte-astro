@@ -275,6 +275,11 @@ function animateWhenVisible(canvasId, initFn) {
   }, { rootMargin: '100px 0px' });
 
   obs.observe(section);
+
+  // If the element is already in viewport, start immediately
+  if (section.getBoundingClientRect().top < window.innerHeight) {
+    play();
+  }
 }
 
 // ═══ HERO — Osmos Variant B "Soft Focus" ═══
