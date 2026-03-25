@@ -15,11 +15,11 @@ const schema = {
 <style is:global>
 
 /* HERO GLOBE */
-.hero-globe { position:relative; height:100vh; background:linear-gradient(170deg,#3D0F31 0%,#1A0714 100%); overflow:hidden; display:flex; flex-direction:column; justify-content:center; padding:120px 0 80px; box-sizing:border-box; }
+.hero-globe { position:relative; height:100vh; background:linear-gradient(170deg,#3D0F31 0%,#1A0714 100%); overflow:hidden; display:flex; flex-direction:column; padding:120px 0 20px; box-sizing:border-box; }
 .hero-globe .ambient-orb { position:absolute; border-radius:50%; pointer-events:none; }
 .hero-globe .ambient-orb.a { width:800px; height:800px; background:radial-gradient(circle,rgba(192,106,165,0.12) 0%,transparent 70%); top:-200px; right:-200px; }
 .hero-globe .ambient-orb.b { width:600px; height:600px; background:radial-gradient(circle,rgba(108,26,85,0.2) 0%,transparent 70%); bottom:-100px; left:-100px; }
-.hero-inner { max-width:1200px; margin:0 auto; padding:0 48px; position:relative; z-index:2; }
+.hero-inner { max-width:1200px; margin:0 auto; padding:0 48px; position:relative; z-index:2; display:flex; flex-direction:column; flex:1; }
 .hero-top { text-align:center; margin-bottom:8px; }
 .hero-lbl { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#C06AA5; margin-bottom:16px; display:inline-block; }
 .hero-globe h1 { font-family:'Playfair Display',serif; font-size:52px; font-weight:400; line-height:1.08; letter-spacing:-1.5px; color:#fff; text-align:center; max-width:700px; margin:0 auto 12px; }
@@ -43,7 +43,7 @@ const schema = {
 .dest-dot:hover .dest-label { opacity:1; }
 .dest-label { opacity:0; transition:opacity 0.2s; pointer-events:none; font-family:'Lato',sans-serif; font-size:6px; font-weight:700; fill:rgba(232,160,208,0.85); letter-spacing:0.5px; }
 
-.hero-stats { display:flex; gap:12px; justify-content:center; margin-top:48px; flex-wrap:wrap; position:relative; z-index:3; }
+.hero-stats { display:flex; gap:12px; justify-content:center; margin-top:auto; margin-bottom:20px; flex-wrap:wrap; position:relative; z-index:3; }
 .hero-stat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:24px 36px; text-align:center; min-width:160px; backdrop-filter:blur(8px); }
 .hero-stat .num { font-family:'Source Serif 4',serif; font-size:36px; color:#E8A0D0; font-weight:400; line-height:1; }
 .hero-stat .desc { font-size:11px; color:rgba(255,255,255,0.35); margin-top:6px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; }
