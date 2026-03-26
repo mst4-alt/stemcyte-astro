@@ -357,10 +357,7 @@ animateWhenVisible('heroCanvas', () => {
         const spd=Math.sqrt(c.vx*c.vx+c.vy*c.vy),mx2=0.5/(c.r/25);if(spd>mx2){c.vx=(c.vx/spd)*mx2;c.vy=(c.vy/spd)*mx2;}
         c.x+=c.vx;c.y+=c.vy;const mg=c.r+30;if(c.x<-mg)c.x=W+mg;if(c.x>W+mg)c.x=-mg;if(c.y<-mg)c.y=H+mg;if(c.y>H+mg)c.y=-mg;});
       collideLayer(layer);
-      if(m.x>-999&&li>0){layer.forEach(c=>{const dx=c.x-m.x,dy=c.y-m.y,dist=Math.sqrt(dx*dx+dy*dy),inf=c.r+70;
-        if(dist<inf&&dist>1){const f=((inf-dist)/inf)*0.005*c.parallax;c.vx+=dx/dist*f;c.vy+=dy/dist*f;}});}
-      let offX=0,offY=0;const pxVal=layer.length>0?layer[0].parallax:0;
-      if(m.x>-999){offX=(m.x-W/2)*pxVal*0.015;offY=(m.y-H/2)*pxVal*0.015;}
+      let offX=0,offY=0;
       layer.forEach(c=>{const p=Math.sin(time*c.ps+c.ph)*c.pa;drawCell(ctx,c.x+offX,c.y+offY,c.r+p,c.color,c.opacity,c.blur);});
     });
   }
