@@ -240,10 +240,8 @@ document.querySelectorAll('.sr').forEach(el=>srObs.observe(el));
 const secObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');secObs.unobserve(e.target);}});},{threshold:0.08});
 document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
 
-// ═══ STRIPE-STYLE PERF: pause offscreen, respect reduced motion ═══
-const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const lowPower = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 2 : false;
-const safeDPR = lowPower ? 1 : Math.min(devicePixelRatio || 1, 2);
+// ═══ PERF: pause offscreen canvases ═══
+const safeDPR = Math.min(devicePixelRatio || 1, 2);
 
 function animateWhenVisible(canvasId, initFn) {
   const canvas = document.getElementById(canvasId);
@@ -253,14 +251,7 @@ function animateWhenVisible(canvasId, initFn) {
   let playing = false;
   const drawFn = initFn();
 
-  // Expose draw function so scroll-step observers can trigger redraws in static mode
   canvas._drawFn = drawFn;
-
-  if (reduceMotion) {
-    // Draw one static frame; step observers will call canvas._drawFn on changes
-    drawFn();
-    return;
-  }
 
   function play() {
     if (playing) return;
@@ -282,14 +273,9 @@ function animateWhenVisible(canvasId, initFn) {
       if (e.isIntersecting) play();
       else pause();
     });
-  }, { rootMargin: '100px 0px' });
+  }, { rootMargin: '200px 0px' });
 
   obs.observe(section);
-
-  // If the element is already in viewport, start immediately
-  if (section.getBoundingClientRect().top < window.innerHeight) {
-    play();
-  }
 }
 
 // ═══ HERO — Osmos Variant B "Soft Focus" ═══
@@ -427,7 +413,6 @@ animateWhenVisible('cellCanvas', () => {
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){targetStep=parseInt(e.target.dataset.step);
     document.querySelectorAll('#scrollyCB .scrolly-step-inner').forEach(el=>el.classList.remove('active'));
     e.target.querySelector('.scrolly-step-inner').classList.add('active');
-    if(reduceMotion){dispStep=targetStep;const c=document.getElementById('cellCanvas');if(c&&c._drawFn)c._drawFn();}
     }});},{threshold:0.25,rootMargin:'-35% 0px -10% 0px'});
   document.querySelectorAll('[data-step]').forEach(el=>obs.observe(el));
   return draw;
@@ -534,7 +519,6 @@ animateWhenVisible('arcCanvas', () => {
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){targetStep=parseInt(e.target.dataset.tstep);
     document.querySelectorAll('#scrollyCT .scrolly-step-inner').forEach(el=>el.classList.remove('active'));
     e.target.querySelector('.scrolly-step-inner').classList.add('active');
-    if(reduceMotion){dispStep=targetStep;const c=document.getElementById('arcCanvas');if(c&&c._drawFn)c._drawFn();}
     }});},{threshold:0.25,rootMargin:'-35% 0px -10% 0px'});
   document.querySelectorAll('[data-tstep]').forEach(el=>obs.observe(el));
   return draw;
