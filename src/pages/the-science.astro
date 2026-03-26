@@ -431,7 +431,7 @@ animateWhenVisible('cellCanvas', () => {
     document.querySelectorAll('#scrollyCB .scrolly-step-inner').forEach(el=>el.classList.remove('active'));
     e.target.querySelector('.scrolly-step-inner').classList.add('active');
     if(reduceMotion){dispStep=targetStep;const c=document.getElementById('cellCanvas');if(c&&c._drawFn)c._drawFn();}
-    }});},{threshold:0.25,rootMargin:'-20% 0px -20% 0px'});
+    }});},{threshold:0.25,rootMargin:'-35% 0px -10% 0px'});
   document.querySelectorAll('[data-step]').forEach(el=>obs.observe(el));
   return draw;
 });
@@ -538,7 +538,7 @@ animateWhenVisible('arcCanvas', () => {
     document.querySelectorAll('#scrollyCT .scrolly-step-inner').forEach(el=>el.classList.remove('active'));
     e.target.querySelector('.scrolly-step-inner').classList.add('active');
     if(reduceMotion){dispStep=targetStep;const c=document.getElementById('arcCanvas');if(c&&c._drawFn)c._drawFn();}
-    }});},{threshold:0.25,rootMargin:'-20% 0px -20% 0px'});
+    }});},{threshold:0.25,rootMargin:'-35% 0px -10% 0px'});
   document.querySelectorAll('[data-tstep]').forEach(el=>obs.observe(el));
   return draw;
 });
