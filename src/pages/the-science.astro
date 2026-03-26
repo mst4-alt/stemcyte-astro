@@ -573,7 +573,10 @@ animateWhenVisible('manifestoCanvas', () => {
   let time=0;
   function getPos(){return dotEls.map(d=>{const r=d.getBoundingClientRect();const pr=sec.getBoundingClientRect();return{x:r.left-pr.left+r.width/2,y:r.top-pr.top+r.height/2};});}
 
+  let skipFrame=false;
   function draw(){
+    skipFrame=!skipFrame;
+    if(skipFrame&&hovIdx<0) return;
     time+=0.005;ctx.clearRect(0,0,W,H);const positions=getPos();
     pts.forEach(p=>{
       p.x+=Math.sin(time+p.phase)*0.08;p.y+=Math.cos(time*0.7+p.phase)*0.08;
@@ -621,7 +624,10 @@ animateWhenVisible('manifestoCanvas', () => {
       label.style.color='rgba(255,255,255,0.15)';
     }
   }
-  window.addEventListener('scroll', checkProximity, { passive: true });
+  let statRaf=null;
+  window.addEventListener('scroll', () => {
+    if(!statRaf) statRaf=requestAnimationFrame(()=>{checkProximity();statRaf=null;});
+  }, { passive: true });
   checkProximity();
 })();
 </script>
