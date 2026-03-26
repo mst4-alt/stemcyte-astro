@@ -242,21 +242,25 @@ document.querySelectorAll('.section-enter').forEach(el=>secObs.observe(el));
 
 // ═══ STRIPE-STYLE PERF: pause offscreen, respect reduced motion ═══
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const lowPower = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 4 : false;
+const lowPower = navigator.hardwareConcurrency ? navigator.hardwareConcurrency <= 2 : false;
 const safeDPR = lowPower ? 1 : Math.min(devicePixelRatio || 1, 2);
 
 function animateWhenVisible(canvasId, initFn) {
-  if (reduceMotion) {
-    const drawFn = initFn();
-    drawFn();
-    return;
-  }
   const canvas = document.getElementById(canvasId);
   if (!canvas) return;
   const section = canvas.closest('section') || canvas.closest('.hero') || canvas.parentElement;
   let raf = null;
   let playing = false;
   const drawFn = initFn();
+
+  // Expose draw function so scroll-step observers can trigger redraws in static mode
+  canvas._drawFn = drawFn;
+
+  if (reduceMotion) {
+    // Draw one static frame; step observers will call canvas._drawFn on changes
+    drawFn();
+    return;
+  }
 
   function play() {
     if (playing) return;
@@ -425,7 +429,9 @@ animateWhenVisible('cellCanvas', () => {
   }
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){targetStep=parseInt(e.target.dataset.step);
     document.querySelectorAll('#scrollyCB .scrolly-step-inner').forEach(el=>el.classList.remove('active'));
-    e.target.querySelector('.scrolly-step-inner').classList.add('active');}});},{threshold:0.5});
+    e.target.querySelector('.scrolly-step-inner').classList.add('active');
+    if(reduceMotion){dispStep=targetStep;const c=document.getElementById('cellCanvas');if(c&&c._drawFn)c._drawFn();}
+    }});},{threshold:0.25,rootMargin:'-20% 0px -20% 0px'});
   document.querySelectorAll('[data-step]').forEach(el=>obs.observe(el));
   return draw;
 });
@@ -530,7 +536,9 @@ animateWhenVisible('arcCanvas', () => {
   }
   const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){targetStep=parseInt(e.target.dataset.tstep);
     document.querySelectorAll('#scrollyCT .scrolly-step-inner').forEach(el=>el.classList.remove('active'));
-    e.target.querySelector('.scrolly-step-inner').classList.add('active');}});},{threshold:0.5});
+    e.target.querySelector('.scrolly-step-inner').classList.add('active');
+    if(reduceMotion){dispStep=targetStep;const c=document.getElementById('arcCanvas');if(c&&c._drawFn)c._drawFn();}
+    }});},{threshold:0.25,rootMargin:'-20% 0px -20% 0px'});
   document.querySelectorAll('[data-tstep]').forEach(el=>obs.observe(el));
   return draw;
 });
