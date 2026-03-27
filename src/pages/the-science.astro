@@ -230,7 +230,9 @@ const schema = {
 
 <script is:inline>
 // ═══ SCROLL PROGRESS ═══
-window.addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-window.innerHeight;document.getElementById('scrollProgress').style.width=(window.scrollY/h)*100+'%';});
+const scrollBar=document.getElementById('scrollProgress');
+let scrollRaf=null;
+window.addEventListener('scroll',()=>{if(!scrollRaf) scrollRaf=requestAnimationFrame(()=>{const h=document.documentElement.scrollHeight-window.innerHeight;scrollBar.style.width=(window.scrollY/h)*100+'%';scrollRaf=null;});},{passive:true});
 
 // ═══ SCROLL REVEAL (section titles) ═══
 const srObs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){const d=parseInt(e.target.dataset.d||0);setTimeout(()=>e.target.classList.add('vis'),d);srObs.unobserve(e.target);}});},{threshold:0.3});
