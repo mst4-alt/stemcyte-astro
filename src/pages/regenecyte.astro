@@ -15,17 +15,17 @@ const schema = {
 <style is:global>
 
 /* HERO */
-.hero { background:linear-gradient(180deg,#1F0A0A 0%,#361215 40%,#451820 70%,#501D28 100%); min-height:70vh; display:flex; align-items:flex-end; padding:0 48px 64px; position:relative; overflow:hidden; }
+.hero { background:linear-gradient(180deg,#081518 0%,#0c1f28 40%,#122e3a 70%,#163648 100%); min-height:70vh; display:flex; align-items:flex-end; padding:0 48px 64px; position:relative; overflow:hidden; }
 .hero .grid-bg { position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px); background-size:64px 64px; pointer-events:none; z-index:0; }
 .cell-canvas { position:absolute; inset:0; pointer-events:none; z-index:1; }
 
 .hero-inner { max-width:1100px; margin:0 auto; width:100%; position:relative; z-index:3; display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:end; }
-.hero-text .overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#C06AA5; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
-.hero-text .overline .pulse { width:6px; height:6px; border-radius:50%; background:#C06AA5; animation:pulse 2s ease infinite; }
-@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(192,106,165,0.4)} 50%{box-shadow:0 0 0 8px rgba(192,106,165,0)} }
+.hero-text .overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4FA3B8; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
+.hero-text .overline .pulse { width:6px; height:6px; border-radius:50%; background:#4FA3B8; animation:pulse 2s ease infinite; }
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(79,163,184,0.4)} 50%{box-shadow:0 0 0 8px rgba(79,163,184,0)} }
 .hero h1 { font-family:'Playfair Display',serif; font-size:52px; font-weight:400; line-height:1.05; letter-spacing:-1.5px; color:#fff; margin-bottom:16px; }
 .hero .desc { font-size:16px; color:rgba(255,255,255,0.55); line-height:1.7; }
-.hero .pi-link { display:inline-flex; align-items:center; gap:6px; margin-top:20px; font-size:13px; font-weight:700; color:#E8A0D0; text-decoration:none; transition:color 0.2s; }
+.hero .pi-link { display:inline-flex; align-items:center; gap:6px; margin-top:20px; font-size:13px; font-weight:700; color:#7CBFD4; text-decoration:none; transition:color 0.2s; }
 .hero .pi-link:hover { color:#fff; }
 .hero .pi-link svg { width:14px; height:14px; }
 .hero-meta { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:16px; padding:28px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); }
@@ -38,26 +38,26 @@ const schema = {
 .body-sec { padding:80px 48px; position:relative; z-index:2; }
 .body-inner { max-width:1100px; margin:0 auto; display:grid; grid-template-columns:2fr 300px; gap:48px; }
 
-.main h2 { font-family:'Playfair Display',serif; font-size:28px; font-weight:400; color:#2C2A26; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid #6C1A55; }
+.main h2 { font-family:'Playfair Display',serif; font-size:28px; font-weight:400; color:#2C2A26; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid #2A637C; }
 .main h3 { font-size:16px; font-weight:700; color:#2C2A26; margin:24px 0 8px; }
 .main p { font-size:15px; color:#6B665D; line-height:1.8; margin-bottom:16px; }
 .main table { width:100%; border-collapse:collapse; margin:24px 0; font-size:14px; }
-.main table th { text-align:left; padding:10px 12px; background:#F3F0F8; font-size:12px; font-weight:700; color:#6C1A55; letter-spacing:0.5px; text-transform:uppercase; }
+.main table th { text-align:left; padding:10px 12px; background:#EDF5F7; font-size:12px; font-weight:700; color:#2A637C; letter-spacing:0.5px; text-transform:uppercase; }
 .main table td { padding:10px 12px; border-bottom:1px solid #E8E2DC; color:#2C2A26; }
 .main table tr:last-child td { border-bottom:none; }
 .source { font-size:11px; color:#8A857A; line-height:1.6; }
-.source a { color:#6C1A55; text-decoration:none; }
+.source a { color:#2A637C; text-decoration:none; }
 .source a:hover { text-decoration:underline; }
 
 .sidebar { position:sticky; top:32px; align-self:start; }
 .side-card { background:#fff; border-radius:12px; padding:24px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
-.side-card h4 { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#6C1A55; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #F0ECE6; }
+.side-card h4 { font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#2A637C; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #F0ECE6; }
 .side-stat { display:flex; justify-content:space-between; padding:7px 0; }
 .side-stat .sl { font-size:13px; color:#8A857A; }
-.side-stat .sv { font-family:'Source Serif 4',serif; font-size:16px; color:#6C1A55; }
+.side-stat .sv { font-family:'Source Serif 4',serif; font-size:16px; color:#2A637C; }
 .side-list { list-style:none; }
 .side-list li { font-size:13px; color:#6B665D; padding:5px 0 5px 16px; position:relative; }
-.side-list li::before { content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; border:1.5px solid #C06AA5; }
+.side-list li::before { content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; border:1.5px solid #4FA3B8; }
 .phase-pill { font-family:'Lato',sans-serif; font-size:11px; font-weight:700; padding:2px 10px; border-radius:100px; }
 
 /* CHARTS */
@@ -80,8 +80,8 @@ const schema = {
 .vbar.anim .vbar-val { opacity:1; }
 .vbar.neutral { background:#D8D3CC; }
 .vbar.neutral .vbar-val { color:#A09A90; }
-.vbar.accent { background:#6C1A55; }
-.vbar.accent .vbar-val { color:#6C1A55; font-weight:600; }
+.vbar.accent { background:#2A637C; }
+.vbar.accent .vbar-val { color:#2A637C; font-weight:600; }
 .vbar-label { font-size:11px; color:#A09A90; text-align:center; line-height:1.3; }
 .chart-legend { display:flex; gap:20px; font-size:11px; color:#A09A90; margin-top:16px; }
 .chart-legend span { display:flex; align-items:center; gap:5px; }
@@ -99,7 +99,7 @@ const schema = {
 .time-bar-row .fill { height:100%; border-radius:3px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; font-size:11px; font-weight:700; width:0; }
 .time-bar-row .fill.anim { transition:width 1.2s cubic-bezier(0.22,1,0.36,1); }
 .time-bar-row .fill.neutral { background:#D8D3CC; color:#7A756D; }
-.time-bar-row .fill.accent { background:#6C1A55; color:#fff; }
+.time-bar-row .fill.accent { background:#2A637C; color:#fff; }
 
 /* AE butterfly chart */
 .ae-chart { margin-top:8px; }
@@ -110,17 +110,17 @@ const schema = {
 .ae-bar { height:16px; border-radius:2px; min-width:0; width:0; }
 .ae-bar.anim { transition:width 1s cubic-bezier(0.22,1,0.36,1); }
 .ae-bar.neutral { background:#D8D3CC; }
-.ae-bar.accent { background:#6C1A55; }
+.ae-bar.accent { background:#2A637C; }
 .ae-val { font-size:11px; font-weight:700; }
 .ae-val.neutral { color:#A09A90; }
-.ae-val.accent { color:#6C1A55; }
+.ae-val.accent { color:#2A637C; }
 .ae-header { display:grid; grid-template-columns:1fr 96px 1fr; text-align:center; margin-bottom:10px; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#8A857A; }
 
 /* CTA */
-.cta-banner { background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:80px 48px; text-align:center; position:relative; z-index:2; }
+.cta-banner { background:linear-gradient(160deg,#2A637C,#1A3F50); padding:80px 48px; text-align:center; position:relative; z-index:2; }
 .cta-banner h2 { font-family:'Playfair Display',serif; font-size:36px; font-weight:400; color:#fff; margin-bottom:12px; }
 .cta-banner p { font-size:16px; color:rgba(255,255,255,0.65); margin-bottom:32px; }
-.cta-banner .btn { display:inline-block; background:#fff; color:#6C1A55; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; font-family:'Lato',sans-serif; transition:all 0.25s; }
+.cta-banner .btn { display:inline-block; background:#fff; color:#2A637C; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; font-family:'Lato',sans-serif; transition:all 0.25s; }
 .cta-banner .btn:hover { background:rgba(255,255,255,0.85); }
 
 @media(max-width:1024px) {
@@ -144,7 +144,7 @@ const schema = {
   <div class="hero-inner">
     <div class="hero-text">
       <div class="overline"><span class="pulse"></span> FDA-Licensed Biologics &bull; BLA 125764/0</div>
-      <h1>REGENECYTE<sup style="font-size:20px;">&reg;</sup><br><span style="font-size:28px;color:#E8A0D0;font-style:italic;">(HPC, Cord Blood)</span></h1>
+      <h1>REGENECYTE<sup style="font-size:20px;">&reg;</sup><br><span style="font-size:28px;color:#7CBFD4;font-style:italic;">(HPC, Cord Blood)</span></h1>
       <p class="desc">An allogeneic cord blood hematopoietic progenitor cell therapy indicated for hematopoietic and immunologic reconstitution in patients with disorders affecting the hematopoietic system that are inherited, acquired, or result from myeloablative treatment.</p>
       <a class="pi-link" href="https://www.fda.gov/media/183744/download?attachment" target="_blank" rel="noopener">
         <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12l8-8M4 4h8v8"/></svg>
@@ -221,7 +221,7 @@ const schema = {
         </div>
         <div class="chart-legend">
           <span><span class="ldot" style="background:#D8D3CC;"></span> COBLT (n=324)</span>
-          <span><span class="ldot" style="background:#6C1A55;"></span> REGENECYTE&reg; (n=54)</span>
+          <span><span class="ldot" style="background:#2A637C;"></span> REGENECYTE&reg; (n=54)</span>
         </div>
       </div>
 
@@ -231,7 +231,7 @@ const schema = {
         <div class="chart-sub">Median days &mdash; shorter is better. Scale 0&ndash;120 days.</div>
         <div class="chart-legend" style="margin-bottom:20px;margin-top:0;">
           <span><span class="ldot" style="background:#D8D3CC;"></span> COBLT</span>
-          <span><span class="ldot" style="background:#6C1A55;"></span> REGENECYTE&reg;</span>
+          <span><span class="ldot" style="background:#2A637C;"></span> REGENECYTE&reg;</span>
         </div>
         <div class="time-chart">
           <div class="time-row">
@@ -269,7 +269,7 @@ const schema = {
           <div class="ae-header">
             <span style="text-align:right;">&larr; COBLT</span>
             <span></span>
-            <span style="text-align:left;color:#6C1A55;">REGENECYTE&reg; &rarr;</span>
+            <span style="text-align:left;color:#2A637C;">REGENECYTE&reg; &rarr;</span>
           </div>
           <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">65.4%</span><div class="ae-bar neutral" data-width="100"></div></div><div class="ae-center">Any Reaction</div><div class="ae-right"><div class="ae-bar accent" data-width="23.9"></div><span class="ae-val accent">15.6%</span></div></div>
           <div class="ae-row"><div class="ae-left"><span class="ae-val neutral">48.0%</span><div class="ae-bar neutral" data-width="73.4"></div></div><div class="ae-center">Hypertension</div><div class="ae-right"><div class="ae-bar accent" data-width="5.7" data-min="4"></div><span class="ae-val accent">3.7%</span></div></div>
@@ -301,7 +301,7 @@ const schema = {
       <div class="side-card"><h3 class="side-card-heading">Product Specifications</h3><div class="side-stat"><span class="sl">Min. TNC/unit</span><span class="sv">9&times;10&#x2078;</span></div><div class="side-stat"><span class="sl">Min. CD34+</span><span class="sv">1.25&times;10&#x2076;</span></div><div class="side-stat"><span class="sl">Min. dose (TNC/kg)</span><span class="sv">2.5&times;10&#x2077;</span></div><div class="side-stat"><span class="sl">Cryopreservant</span><span class="sv">10% DMSO</span></div><div class="side-stat"><span class="sl">Volume</span><span class="sv">25 mL</span></div><div class="side-stat"><span class="sl">Infusion Time</span><span class="sv">15&ndash;60 min</span></div></div>
       <div class="side-card"><h3 class="side-card-heading">Disease Categories</h3><div class="side-stat"><span class="sl">Cancers</span><span class="sv">22</span></div><div class="side-stat"><span class="sl">Immune Disorders</span><span class="sv">26</span></div><div class="side-stat"><span class="sl">Blood Disorders</span><span class="sv">14</span></div><div class="side-stat"><span class="sl">Metabolic Disorders</span><span class="sv">18</span></div></div>
       <div class="side-card"><h3 class="side-card-heading">Accreditations</h3><ul class="side-list"><li>FDA BLA Licensed</li><li>FACT Certified</li><li>AABB Accredited</li><li>NMDP Member</li><li>cGMP Compliant</li></ul></div>
-      <div class="side-card"><h3 class="side-card-heading">Pipeline</h3><div class="side-stat"><span class="sl">Long COVID</span><span class="sv"><span class="phase-pill" style="background:rgba(108,26,85,0.08);color:#6C1A55;">Phase II / RMAT</span></span></div><div class="side-stat"><span class="sl">Acute Stroke</span><span class="sv"><span class="phase-pill" style="background:rgba(192,148,62,0.12);color:#9A7530;">Phase I</span></span></div></div>
+      <div class="side-card"><h3 class="side-card-heading">Pipeline</h3><div class="side-stat"><span class="sl">Long COVID</span><span class="sv"><span class="phase-pill" style="background:rgba(42,99,124,0.08);color:#2A637C;">Phase II / RMAT</span></span></div><div class="side-stat"><span class="sl">Acute Stroke</span><span class="sv"><span class="phase-pill" style="background:rgba(192,148,62,0.12);color:#9A7530;">Phase I</span></span></div></div>
       <div class="side-card"><h3 class="side-card-heading">Collaborating Centers</h3><ul class="side-list"><li>City of Hope</li><li>Mayo Clinic</li><li>UCLA Medical Center</li><li>Stanford Hospital</li><li>Duke University</li><li>Children&rsquo;s Hospital LA</li><li>Mt. Sinai Medical Center</li></ul></div>
     </div>
   </div>
