@@ -15,19 +15,19 @@ const schema = {
 <style is:global>
 
 /* HERO */
-.eap-hero { background:linear-gradient(180deg,#1a0820 0%,#2d1038 40%,#3D0F31 100%); padding:140px 48px 64px; position:relative; overflow:hidden; }
-.eap-hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 60% 80%, rgba(108,26,85,0.25) 0%, transparent 60%); pointer-events:none; }
+.eap-hero { background:linear-gradient(180deg,#081518 0%,#0c1f28 40%,#163648 100%); padding:140px 48px 64px; position:relative; overflow:hidden; }
+.eap-hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 60% 80%, rgba(42,99,124,0.25) 0%, transparent 60%); pointer-events:none; }
 .eap-hero-inner { max-width:960px; margin:0 auto; position:relative; z-index:2; display:flex; justify-content:space-between; align-items:flex-end; gap:40px; }
-.eap-hero-left .overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#E8A0D0; margin-bottom:14px; display:inline-flex; align-items:center; gap:8px; }
-.eap-hero-left .overline .dot { width:6px; height:6px; border-radius:50%; background:#E8A0D0; animation:eap-pulse 2s ease infinite; }
-@keyframes eap-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(232,160,208,0.4)} 50%{box-shadow:0 0 0 8px rgba(232,160,208,0)} }
+.eap-hero-left .overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4FA3B8; margin-bottom:14px; display:inline-flex; align-items:center; gap:8px; }
+.eap-hero-left .overline .dot { width:6px; height:6px; border-radius:50%; background:#4FA3B8; animation:eap-pulse 2s ease infinite; }
+@keyframes eap-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(79,163,184,0.4)} 50%{box-shadow:0 0 0 8px rgba(79,163,184,0)} }
 .eap-hero h1 { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; color:#fff; margin-bottom:14px; }
 .eap-hero .subtitle { font-size:17px; color:rgba(255,255,255,0.6); line-height:1.7; max-width:440px; }
 .eap-hero-cta { flex-shrink:0; text-align:center; padding:24px 32px; background:rgba(255,255,255,0.06); border-radius:14px; border:1px solid rgba(255,255,255,0.08); }
-.eap-hero-cta .fc-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:6px; }
+.eap-hero-cta .fc-label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#4FA3B8; margin-bottom:6px; }
 .eap-hero-cta h3 { font-size:16px; font-weight:700; color:#fff; margin-bottom:12px; }
-.eap-hero-cta .pill-btn { display:inline-flex; align-items:center; gap:8px; background:#6C1A55; color:#fff; padding:10px 24px; border-radius:100px; font-size:13px; font-weight:700; text-decoration:none; transition:background 0.25s; }
-.eap-hero-cta .pill-btn:hover { background:#8B3572; }
+.eap-hero-cta .pill-btn { display:inline-flex; align-items:center; gap:8px; background:#2A637C; color:#fff; padding:10px 24px; border-radius:100px; font-size:13px; font-weight:700; text-decoration:none; transition:background 0.25s; }
+.eap-hero-cta .pill-btn:hover { background:#367A94; }
 .eap-hero-cta .pill-btn svg { width:16px; height:16px; }
 
 /* BANDS */
@@ -35,19 +35,19 @@ const schema = {
 .eap-band-in { max-width:960px; margin:0 auto; }
 .eap-band.cream { background:#FAF9F7; }
 .eap-band.elig { background:#ffffff; }
-.eap-sl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:8px; }
+.eap-sl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#2A637C; margin-bottom:8px; }
 .eap-sh { font-family:'Playfair Display',serif; font-size:26px; font-weight:400; letter-spacing:-0.3px; color:#2C2A26; margin-bottom:16px; line-height:1.25; }
 .eap-sp { font-size:15px; line-height:1.8; color:#5A564E; margin-bottom:14px; }
 
 /* OVERVIEW 2-COL */
 .eap-overview { display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start; }
-.eap-ind { background:linear-gradient(135deg, #FBF5F9 0%, #F3F0F8 100%); border:1px solid #E8A0D0; border-radius:12px; padding:28px; position:relative; overflow:hidden; }
-.eap-ind::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:#6C1A55; }
-.eap-ind .il { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#6C1A55; margin-bottom:6px; }
+.eap-ind { background:linear-gradient(135deg, #F0F6F8 0%, #E8F1F4 100%); border:1px solid rgba(42,99,124,0.25); border-radius:12px; padding:28px; position:relative; overflow:hidden; }
+.eap-ind::before { content:''; position:absolute; top:0; left:0; width:4px; height:100%; background:#2A637C; }
+.eap-ind .il { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#2A637C; margin-bottom:6px; }
 .eap-ind h3 { font-size:18px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
 .eap-ind p { font-size:14px; color:#5A564E; line-height:1.6; margin:0; }
-.eap-ind a { display:inline-flex; align-items:center; gap:4px; font-size:13px; font-weight:700; color:#6C1A55; text-decoration:none; margin-top:10px; transition:color 0.2s; }
-.eap-ind a:hover { color:#8B2E72; }
+.eap-ind a { display:inline-flex; align-items:center; gap:4px; font-size:13px; font-weight:700; color:#2A637C; text-decoration:none; margin-top:10px; transition:color 0.2s; }
+.eap-ind a:hover { color:#367A94; }
 
 /* ACCORDION */
 .eap-acc { border:1px solid #E8E2DC; border-radius:12px; overflow:hidden; margin-bottom:8px; }
@@ -63,20 +63,20 @@ const schema = {
 .eap-acc-inner { padding:4px 24px 20px; }
 .eap-ni { display:flex; gap:10px; padding:7px 0; align-items:flex-start; }
 .eap-nn { width:20px; height:20px; border-radius:50%; font-size:11px; font-weight:700; display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:2px; }
-.eap-nn.plum { background:rgba(108,26,85,0.08); color:#6C1A55; }
+.eap-nn.plum { background:rgba(42,99,124,0.08); color:#2A637C; }
 .eap-nn.green { background:rgba(61,139,106,0.08); color:#3D8B6A; }
 .eap-nn.blue { background:rgba(59,109,196,0.08); color:#3B6DC4; }
 .eap-ni p { font-size:13px; color:#5A564E; line-height:1.55; margin:0; }
 
 /* PIPELINE */
 .eap-pipe { display:flex; align-items:flex-start; gap:0; margin-top:24px; position:relative; }
-.eap-pipe::before { content:''; position:absolute; top:18px; left:24px; right:24px; height:2px; background:linear-gradient(90deg,#6C1A55,#D4649A,#E8A0D0); }
+.eap-pipe::before { content:''; position:absolute; top:18px; left:24px; right:24px; height:2px; background:linear-gradient(90deg,#1E4D5E,#2A637C,#4FA3B8); }
 .eap-pipe .ps { flex:1; text-align:center; position:relative; z-index:1; }
 .eap-pipe .ps .pn { width:36px; height:36px; border-radius:50%; color:#fff; font-family:'Source Serif 4',serif; font-size:15px; font-weight:600; display:inline-flex; align-items:center; justify-content:center; margin-bottom:12px; }
-.eap-pipe .ps:nth-child(1) .pn { background:#6C1A55; box-shadow:0 2px 8px rgba(108,26,85,0.25); }
-.eap-pipe .ps:nth-child(2) .pn { background:#8B3572; box-shadow:0 2px 8px rgba(139,53,114,0.2); }
-.eap-pipe .ps:nth-child(3) .pn { background:#B74E8A; box-shadow:0 2px 8px rgba(183,78,138,0.2); }
-.eap-pipe .ps:nth-child(4) .pn { background:#D4649A; box-shadow:0 2px 8px rgba(212,100,154,0.2); }
+.eap-pipe .ps:nth-child(1) .pn { background:#2A637C; box-shadow:0 2px 8px rgba(42,99,124,0.25); }
+.eap-pipe .ps:nth-child(2) .pn { background:#367A94; box-shadow:0 2px 8px rgba(54,122,148,0.2); }
+.eap-pipe .ps:nth-child(3) .pn { background:#4FA3B8; box-shadow:0 2px 8px rgba(79,163,184,0.2); }
+.eap-pipe .ps:nth-child(4) .pn { background:#7CCADB; box-shadow:0 2px 8px rgba(124,202,219,0.2); }
 .eap-pipe .ps h4 { font-size:13px; font-weight:700; color:#2C2A26; margin-bottom:4px; }
 .eap-pipe .ps p { font-size:12px; color:#6B6760; line-height:1.4; margin:0; padding:0 8px; }
 
@@ -86,10 +86,10 @@ const schema = {
 .eap-legal-band { padding:0 48px 56px; background:#FAF9F7; }
 
 /* CTA BANNER */
-.eap-cta-banner { background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:48px; text-align:center; }
+.eap-cta-banner { background:linear-gradient(160deg,#2A637C,#1A3F50); padding:48px; text-align:center; }
 .eap-cta-banner h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; color:#fff; margin-bottom:8px; letter-spacing:-0.5px; }
 .eap-cta-banner .cta-sub { font-size:16px; color:rgba(255,255,255,0.6); margin-bottom:28px; max-width:480px; margin-left:auto; margin-right:auto; line-height:1.7; }
-.eap-cta-banner .pill-btn { display:inline-flex; align-items:center; gap:8px; background:#fff; color:#6C1A55; padding:14px 32px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; transition:all 0.25s; }
+.eap-cta-banner .pill-btn { display:inline-flex; align-items:center; gap:8px; background:#fff; color:#2A637C; padding:14px 32px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; transition:all 0.25s; }
 .eap-cta-banner .pill-btn:hover { background:rgba(255,255,255,0.85); }
 .eap-cta-banner .pill-btn svg { width:18px; height:18px; }
 .eap-cta-banner .note { font-size:13px; color:rgba(255,255,255,0.45); margin-top:14px; }
@@ -116,6 +116,10 @@ const schema = {
   .eap-cta-banner { padding:36px 20px; }
   .eap-cta-banner h2 { font-size:24px; }
 }
+
+/* Footer override — dark teal */
+.footer { background:#0F2B35 !important; }
+.footer .col a:hover { color:#7CCADB !important; }
 
 </style>
 
@@ -171,7 +175,7 @@ const schema = {
     <!-- Patient (open by default) -->
     <div class="eap-acc open" data-acc>
       <div class="eap-acc-head" onclick="eapToggle(this.parentElement)">
-        <h4><span class="ico" style="background:rgba(108,26,85,0.08)"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="#6C1A55" stroke-width="1.5"/><path d="M3 18c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="#6C1A55" stroke-width="1.5" stroke-linecap="round"/></svg></span> Patient</h4>
+        <h4><span class="ico" style="background:rgba(42,99,124,0.08)"><svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="7" r="4" stroke="#2A637C" stroke-width="1.5"/><path d="M3 18c0-3.87 3.13-7 7-7s7 3.13 7 7" stroke="#2A637C" stroke-width="1.5" stroke-linecap="round"/></svg></span> Patient</h4>
         <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
       </div>
       <div class="eap-acc-body">
