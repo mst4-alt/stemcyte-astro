@@ -365,7 +365,7 @@ animateWhenVisible('cellCanvas', () => {
   // Per-cell smooth transition weights
   let cellWeights=[];
   function resize(){const p=canvas.parentElement;W=p.offsetWidth;H=p.offsetHeight;const s=safeDPR;canvas.width=W*s;canvas.height=H*s;ctx.setTransform(s,0,0,s,0,0);if(!cells.length)initCells();}
-  function initCells(){cells=[];cellWeights=[];for(let i=0;i<40;i++){cells.push({x:W/2+(Math.random()-0.5)*300,y:H/2+(Math.random()-0.5)*300,r:Math.random()*4+2,vx:(Math.random()-0.5)*0.2,vy:(Math.random()-0.5)*0.2,phase:Math.random()*Math.PI*2,cat:Math.floor(Math.random()*4)});cellWeights.push(0);}}
+  function initCells(){cells=[];cellWeights=[];for(let i=0;i<60;i++){cells.push({x:W/2+(Math.random()-0.5)*300,y:H/2+(Math.random()-0.5)*300,r:Math.random()*4+2,vx:(Math.random()-0.5)*0.2,vy:(Math.random()-0.5)*0.2,phase:Math.random()*Math.PI*2,cat:Math.floor(Math.random()*4)});cellWeights.push(0);}}
   resize();window.addEventListener('resize',resize);
   // Smooth color interpolation
   let dispStep=0; // 0-3 float for smooth color transition
@@ -484,7 +484,7 @@ animateWhenVisible('arcCanvas', () => {
   let targetStep=0,cells=[];
   let cellWeights=[];
   function resize(){const p=canvas.parentElement;W=p.offsetWidth;H=p.offsetHeight;const s=safeDPR;canvas.width=W*s;canvas.height=H*s;ctx.setTransform(s,0,0,s,0,0);if(!cells.length)initCells();}
-  function initCells(){cells=[];cellWeights=[];for(let i=0;i<40;i++){cells.push({x:W/2+(Math.random()-0.5)*300,y:H/2+(Math.random()-0.5)*300,r:Math.random()*4+2,vx:(Math.random()-0.5)*0.2,vy:(Math.random()-0.5)*0.2,phase:Math.random()*Math.PI*2,cat:Math.floor(Math.random()*4)});cellWeights.push(0);}}
+  function initCells(){cells=[];cellWeights=[];for(let i=0;i<60;i++){cells.push({x:W/2+(Math.random()-0.5)*300,y:H/2+(Math.random()-0.5)*300,r:Math.random()*4+2,vx:(Math.random()-0.5)*0.2,vy:(Math.random()-0.5)*0.2,phase:Math.random()*Math.PI*2,cat:Math.floor(Math.random()*4)});cellWeights.push(0);}}
   resize();window.addEventListener('resize',resize);
   let dispStep=0;
   function draw(){
