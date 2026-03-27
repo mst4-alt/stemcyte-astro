@@ -445,9 +445,10 @@ animateWhenVisible('starburstCanvas', () => {
   document.querySelectorAll('[data-cat]').forEach(el=>{el.addEventListener('mouseenter',()=>{hovCat=parseInt(el.dataset.cat);});el.addEventListener('mouseleave',()=>{hovCat=-1;});});
   let skipFrame=false;
   function draw(){
+    time++;
     skipFrame=!skipFrame;
     if(skipFrame&&hovCat<0&&mx<=-999) return;
-    time++;ctx.clearRect(0,0,W,H);const cx=W/2,cy=H*0.5;
+    ctx.clearRect(0,0,W,H);const cx=W/2,cy=H*0.5;
     const cg=ctx.createRadialGradient(cx,cy,0,cx,cy,90);cg.addColorStop(0,'rgba(232,160,208,0.12)');cg.addColorStop(1,'transparent');ctx.fillStyle=cg;ctx.fillRect(0,0,W,H);
     rays.forEach(r=>{
       // Breathing: slow angle sway + length pulse
@@ -575,9 +576,10 @@ animateWhenVisible('manifestoCanvas', () => {
 
   let skipFrame=false;
   function draw(){
+    time+=0.005;
     skipFrame=!skipFrame;
     if(skipFrame&&hovIdx<0) return;
-    time+=0.005;ctx.clearRect(0,0,W,H);const positions=getPos();
+    ctx.clearRect(0,0,W,H);const positions=getPos();
     pts.forEach(p=>{
       p.x+=Math.sin(time+p.phase)*0.08;p.y+=Math.cos(time*0.7+p.phase)*0.08;
       if(hovIdx>=0&&hovIdx<positions.length){
