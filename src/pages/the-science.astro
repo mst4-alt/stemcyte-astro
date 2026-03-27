@@ -312,8 +312,6 @@ animateWhenVisible('heroCanvas', () => {
     og.addColorStop(0.5,`rgba(${col.r},${col.g},${col.b},${opacity*0.15*bm})`);
     og.addColorStop(1,`rgba(${col.r},${col.g},${col.b},0)`);
     ctx.fillStyle=og;ctx.beginPath();ctx.arc(x,y,glowR,0,Math.PI*2);ctx.fill();
-    // Skip detail for heavily blurred cells (back layer)
-    if(bm>=1.5){return;}
     // Body gradient
     const bg=ctx.createRadialGradient(x-r*0.12,y-r*0.12,0,x,y,r);
     bg.addColorStop(0,`rgba(${Math.min(255,col.r+25)},${Math.min(255,col.g+25)},${Math.min(255,col.b+25)},${opacity*0.6})`);
@@ -321,6 +319,8 @@ animateWhenVisible('heroCanvas', () => {
     bg.addColorStop(0.8,`rgba(${col.r},${col.g},${col.b},${opacity*0.45})`);
     bg.addColorStop(1,`rgba(${Math.max(0,col.r-25)},${Math.max(0,col.g-25)},${Math.max(0,col.b-25)},${opacity*0.12})`);
     ctx.fillStyle=bg;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+    // Skip fine detail for heavily blurred cells (back layer)
+    if(bm>=1.5){return;}
     // Edge stroke
     ctx.strokeStyle=`rgba(${Math.min(255,col.r+40)},${Math.min(255,col.g+40)},${Math.min(255,col.b+40)},${opacity*0.18/bm})`;ctx.lineWidth=r>30?1.2:0.7;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
     // Nucleus
