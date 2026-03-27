@@ -365,23 +365,23 @@ const schema = {
       ox.beginPath();
       ox.ellipse(0, 0, size, size * squeeze, 0, 0, Math.PI * 2);
       var g = ox.createRadialGradient(0, -size * 0.12, size * 0.1, 0, 0, size);
-      g.addColorStop(0, 'rgba(175,40,55,0.65)');
-      g.addColorStop(0.3, 'rgba(140,28,42,0.4)');
-      g.addColorStop(0.55, 'rgba(155,35,48,0.55)');
-      g.addColorStop(0.8, 'rgba(130,25,38,0.35)');
-      g.addColorStop(1, 'rgba(100,18,28,0.1)');
+      g.addColorStop(0, 'rgba(42,130,155,0.65)');
+      g.addColorStop(0.3, 'rgba(32,110,135,0.4)');
+      g.addColorStop(0.55, 'rgba(38,120,145,0.55)');
+      g.addColorStop(0.8, 'rgba(28,95,120,0.35)');
+      g.addColorStop(1, 'rgba(20,75,100,0.1)');
       ox.fillStyle = g;
       ox.fill();
       ox.beginPath();
       ox.ellipse(0, 0, size * 0.35, size * squeeze * 0.35, 0, 0, Math.PI * 2);
       var g2 = ox.createRadialGradient(0, 0, 0, 0, 0, size * 0.35);
-      g2.addColorStop(0, 'rgba(70,12,20,0.3)');
-      g2.addColorStop(1, 'rgba(100,20,30,0.05)');
+      g2.addColorStop(0, 'rgba(15,60,80,0.3)');
+      g2.addColorStop(1, 'rgba(20,75,100,0.05)');
       ox.fillStyle = g2;
       ox.fill();
       ox.beginPath();
       ox.ellipse(0, 0, size * 0.95, size * squeeze * 0.95, 0, 0, Math.PI * 2);
-      ox.strokeStyle = 'rgba(200,60,80,0.08)';
+      ox.strokeStyle = 'rgba(50,150,175,0.08)';
       ox.lineWidth = 1;
       ox.stroke();
 
@@ -389,14 +389,14 @@ const schema = {
       ox.beginPath();
       ox.ellipse(0, 0, size, size * 0.88, 0, 0, Math.PI * 2);
       var g = ox.createRadialGradient(-size * 0.1, -size * 0.1, 0, 0, 0, size);
-      g.addColorStop(0, 'rgba(230,195,210,0.25)');
-      g.addColorStop(0.4, 'rgba(200,140,170,0.12)');
-      g.addColorStop(1, 'rgba(180,100,140,0.02)');
+      g.addColorStop(0, 'rgba(140,210,220,0.25)');
+      g.addColorStop(0.4, 'rgba(100,180,195,0.12)');
+      g.addColorStop(1, 'rgba(70,150,170,0.02)');
       ox.fillStyle = g;
       ox.fill();
       ox.beginPath();
       ox.ellipse(0, 0, size, size * 0.88, 0, 0, Math.PI * 2);
-      ox.strokeStyle = 'rgba(200,130,160,0.1)';
+      ox.strokeStyle = 'rgba(100,180,195,0.1)';
       ox.lineWidth = 1;
       ox.stroke();
       var lobes = 2 + Math.floor(size / 15);
@@ -406,7 +406,7 @@ const schema = {
         var lr = size * 0.18;
         ox.beginPath();
         ox.ellipse(Math.cos(la) * ld, Math.sin(la) * ld, lr, lr * 0.8, la * 0.5, 0, Math.PI * 2);
-        ox.fillStyle = 'rgba(120,50,80,0.15)';
+        ox.fillStyle = 'rgba(30,90,110,0.15)';
         ox.fill();
       }
 
@@ -414,9 +414,9 @@ const schema = {
       ox.beginPath();
       ox.ellipse(0, 0, size, size * 0.7, 0, 0, Math.PI * 2);
       var g = ox.createRadialGradient(0, 0, 0, 0, 0, size);
-      g.addColorStop(0, 'rgba(220,150,175,0.75)');
-      g.addColorStop(0.6, 'rgba(200,120,155,0.3)');
-      g.addColorStop(1, 'rgba(180,90,130,0.05)');
+      g.addColorStop(0, 'rgba(80,180,200,0.75)');
+      g.addColorStop(0.6, 'rgba(55,150,175,0.3)');
+      g.addColorStop(1, 'rgba(35,120,145,0.05)');
       ox.fillStyle = g;
       ox.fill();
 
@@ -424,19 +424,19 @@ const schema = {
       ox.beginPath();
       ox.arc(0, 0, size, 0, Math.PI * 2);
       var g = ox.createRadialGradient(0, -size * 0.15, 0, 0, 0, size);
-      g.addColorStop(0, 'rgba(235,205,155,0.45)');
-      g.addColorStop(0.4, 'rgba(200,160,80,0.2)');
-      g.addColorStop(1, 'rgba(180,140,60,0.03)');
+      g.addColorStop(0, 'rgba(160,220,210,0.45)');
+      g.addColorStop(0.4, 'rgba(120,190,185,0.2)');
+      g.addColorStop(1, 'rgba(90,160,155,0.03)');
       ox.fillStyle = g;
       ox.fill();
       ox.beginPath();
       ox.arc(0, 0, size, 0, Math.PI * 2);
-      ox.strokeStyle = 'rgba(200,160,80,0.08)';
+      ox.strokeStyle = 'rgba(120,190,185,0.08)';
       ox.lineWidth = 1;
       ox.stroke();
       ox.beginPath();
       ox.arc(size * 0.05, -size * 0.05, size * 0.3, 0, Math.PI * 2);
-      ox.fillStyle = 'rgba(180,140,60,0.15)';
+      ox.fillStyle = 'rgba(90,160,155,0.15)';
       ox.fill();
     }
 
