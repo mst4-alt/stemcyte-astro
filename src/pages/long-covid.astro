@@ -4,8 +4,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 const schema = {
   "@context": "https://schema.org",
   "@type": "MedicalStudy",
-  "name": "REGENECYTE® cord blood cell therapy in post-COVID syndrome",
-  "description": "Phase IIa randomized, placebo-controlled trial of REGENECYTE® (HPC, Cord Blood) for Long COVID fatigue.",
+  "name": "Cord blood cell therapy in post-COVID syndrome",
+  "description": "Phase IIa randomized, placebo-controlled trial of HPC, Cord Blood for Long COVID fatigue.",
   "studySubject": { "@type": "MedicalCondition", "name": "Post-COVID Syndrome (Long COVID)" },
   "sponsor": { "@type": "Organization", "name": "StemCyte, Inc." },
   "status": "Completed",
@@ -13,25 +13,25 @@ const schema = {
 };
 ---
 
-<BaseLayout title="Long COVID Clinical Trial — REGENECYTE®" description="Phase IIa trial results: REGENECYTE® (HPC, Cord Blood) demonstrated 85% fatigue resolution in Long COVID patients. Published in EClinicalMedicine (The Lancet)." schema={schema} noindex={true}>
+<BaseLayout title="Long COVID Clinical Trial — HPC, Cord Blood" description="Phase IIa trial results: HPC, Cord Blood demonstrated 85% fatigue resolution in Long COVID patients. Published in EClinicalMedicine (The Lancet)." schema={schema} noindex={true}>
 
 <style is:global>
 
 /* HERO */
-.lc-hero { background:linear-gradient(180deg,#120818 0%,#1c0f28 40%,#281540 70%,#301850 100%); min-height:70vh; display:flex; align-items:flex-end; padding:120px 48px 56px; position:relative; overflow:hidden; }
-.lc-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 70% 70%, rgba(108,26,85,0.2) 0%, transparent 50%); pointer-events:none; }
+.lc-hero { background:linear-gradient(180deg,#081518 0%,#0c1f28 40%,#122e3a 70%,#163648 100%); min-height:70vh; display:flex; align-items:flex-end; padding:120px 48px 56px; position:relative; overflow:hidden; }
+.lc-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 70% 70%, rgba(42,99,124,0.2) 0%, transparent 50%); pointer-events:none; }
 .lc-hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px); background-size:64px 64px; pointer-events:none; }
 .lc-hero-inner { max-width:1100px; margin:0 auto; width:100%; position:relative; z-index:2; }
 .lc-hero-top { display:flex; justify-content:space-between; align-items:flex-start; gap:48px; }
 .lc-hero-text { flex:1; max-width:600px; }
-.lc-overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#C06AA5; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
-.lc-overline .pulse { width:6px; height:6px; border-radius:50%; background:#C06AA5; animation:lc-pulse 2s ease infinite; }
-@keyframes lc-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(192,106,165,0.4)} 50%{box-shadow:0 0 0 8px rgba(192,106,165,0)} }
+.lc-overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4FA3B8; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
+.lc-overline .pulse { width:6px; height:6px; border-radius:50%; background:#4FA3B8; animation:lc-pulse 2s ease infinite; }
+@keyframes lc-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(79,163,184,0.4)} 50%{box-shadow:0 0 0 8px rgba(79,163,184,0)} }
 .lc-hero h1 { font-family:'Playfair Display',serif; font-size:42px; font-weight:400; line-height:1.08; letter-spacing:-1px; color:#fff; margin-bottom:12px; }
-.lc-hero h1 .sub { display:block; font-size:22px; color:#E8A0D0; margin-top:4px; font-family:'Lato',sans-serif; font-weight:400; }
+.lc-hero h1 .sub { display:block; font-size:22px; color:#7CBFD4; margin-top:4px; font-family:'Lato',sans-serif; font-weight:400; }
 .lc-hero .desc { font-size:15px; color:rgba(255,255,255,0.45); line-height:1.7; }
 .lc-hero .links { display:flex; gap:20px; margin-top:20px; flex-wrap:wrap; }
-.lc-hero .links a { font-size:13px; font-weight:700; color:#E8A0D0; text-decoration:none; display:inline-flex; align-items:center; gap:4px; transition:color 0.2s; }
+.lc-hero .links a { font-size:13px; font-weight:700; color:#7CBFD4; text-decoration:none; display:inline-flex; align-items:center; gap:4px; transition:color 0.2s; }
 .lc-hero .links a:hover { color:#fff; }
 .lc-hero .links a svg { width:14px; height:14px; }
 
@@ -42,7 +42,7 @@ const schema = {
 .lc-hero-stat .compare { display:flex; gap:24px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08); }
 .lc-hero-stat .compare .c-item { text-align:center; flex:1; }
 .lc-hero-stat .compare .c-num { font-family:'Source Serif 4 Variable',serif; font-size:22px; font-weight:700; }
-.lc-hero-stat .compare .c-num.accent { color:#E8A0D0; }
+.lc-hero-stat .compare .c-num.accent { color:#7CBFD4; }
 .lc-hero-stat .compare .c-num.muted { color:rgba(255,255,255,0.3); }
 .lc-hero-stat .compare .c-label { font-size:10px; color:rgba(255,255,255,0.3); text-transform:uppercase; letter-spacing:0.5px; }
 
@@ -56,13 +56,13 @@ const schema = {
 
 /* BODY */
 .lc-body { max-width:1100px; margin:0 auto; padding:64px 48px 80px; display:grid; grid-template-columns:1fr 300px; gap:48px; }
-.lc-main h2 { font-family:'Playfair Display',serif; font-size:26px; font-weight:400; color:#2C2A26; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid #6C1A55; }
+.lc-main h2 { font-family:'Playfair Display',serif; font-size:26px; font-weight:400; color:#2C2A26; margin-bottom:16px; padding-bottom:12px; border-bottom:2px solid #2A637C; }
 .lc-main h3 { font-size:16px; font-weight:700; color:#2C2A26; margin:24px 0 8px; }
 .lc-main p { font-size:15px; color:#5A564E; line-height:1.8; margin-bottom:14px; }
-.lc-main a.ext { color:#6C1A55; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:4px; font-size:13px; transition:color 0.2s; }
-.lc-main a.ext:hover { color:#8B3572; }
+.lc-main a.ext { color:#2A637C; font-weight:700; text-decoration:none; display:inline-flex; align-items:center; gap:4px; font-size:13px; transition:color 0.2s; }
+.lc-main a.ext:hover { color:#367A94; }
 .lc-main .source { font-size:11px; color:#8A857A; line-height:1.6; }
-.lc-main .source a { color:#6C1A55; text-decoration:none; }
+.lc-main .source a { color:#2A637C; text-decoration:none; }
 .lc-main .source a:hover { text-decoration:underline; }
 
 /* CHARTS */
@@ -77,17 +77,17 @@ const schema = {
 .lc-bar-row .bar-track { flex:1; height:40px; background:#F5F2EE; border-radius:6px; position:relative; overflow:hidden; }
 .lc-bar-row .bar-fill { height:100%; border-radius:6px; display:flex; align-items:center; justify-content:flex-end; padding-right:14px; font-family:'Source Serif 4 Variable',serif; font-size:18px; font-weight:700; width:0; }
 .lc-bar-row .bar-fill.anim { transition:width 1.4s cubic-bezier(0.22,1,0.36,1); }
-.lc-bar-row .bar-fill.accent { background:linear-gradient(90deg,#6C1A55,#8B3572); color:#fff; }
+.lc-bar-row .bar-fill.accent { background:linear-gradient(90deg,#2A637C,#367A94); color:#fff; }
 .lc-bar-row .bar-fill.muted { background:linear-gradient(90deg,#D8D3CC,#C8C3BB); color:#7A756D; }
 .lc-bar-row .bar-fill .bar-val { opacity:0; transition:opacity 0.4s 1.2s; }
 .lc-bar-row .bar-fill.anim .bar-val { opacity:1; }
 
 /* Sig badge */
-.lc-sig { display:flex; align-items:center; gap:8px; margin-top:16px; padding:12px 16px; background:#FBF5F9; border-radius:8px; border:1px solid rgba(108,26,85,0.08); }
-.lc-sig .sig-icon { width:20px; height:20px; border-radius:50%; background:#6C1A55; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.lc-sig { display:flex; align-items:center; gap:8px; margin-top:16px; padding:12px 16px; background:#F0F6F8; border-radius:8px; border:1px solid rgba(42,99,124,0.08); }
+.lc-sig .sig-icon { width:20px; height:20px; border-radius:50%; background:#2A637C; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .lc-sig .sig-icon svg { width:12px; height:12px; }
 .lc-sig .sig-text { font-size:13px; color:#5A564E; }
-.lc-sig .sig-text strong { color:#6C1A55; }
+.lc-sig .sig-text strong { color:#2A637C; }
 
 /* P-value timeline */
 .lc-pval-chart { margin-top:20px; }
@@ -97,38 +97,38 @@ const schema = {
 .lc-pval-track { flex:1; height:24px; background:#F5F2EE; border-radius:4px; position:relative; overflow:hidden; }
 .lc-pval-fill { height:100%; border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; font-size:11px; font-weight:700; color:#fff; width:0; }
 .lc-pval-fill.anim { transition:width 1.2s cubic-bezier(0.22,1,0.36,1); }
-.lc-pval-fill.w6 { background:#8B3572; }
-.lc-pval-fill.w12 { background:#7A2D65; }
-.lc-pval-fill.w18 { background:#6C1A55; }
-.lc-pval-fill.w26 { background:#5A1548; }
+.lc-pval-fill.w6 { background:#367A94; }
+.lc-pval-fill.w12 { background:#245A6E; }
+.lc-pval-fill.w18 { background:#2A637C; }
+.lc-pval-fill.w26 { background:#1E4D5E; }
 .lc-pval-fill.anim.w6 { transition-delay:0s; }
 .lc-pval-fill.anim.w12 { transition-delay:0.15s; }
 .lc-pval-fill.anim.w18 { transition-delay:0.3s; }
 .lc-pval-fill.anim.w26 { transition-delay:0.45s; }
 
-.lc-pval-track .threshold { position:absolute; left:5%; top:0; bottom:0; width:1px; background:rgba(108,26,85,0.2); z-index:2; }
+.lc-pval-track .threshold { position:absolute; left:5%; top:0; bottom:0; width:1px; background:rgba(42,99,124,0.2); z-index:2; }
 .lc-pval-track .threshold::after { content:'p=0.05'; position:absolute; top:-16px; left:-14px; font-size:9px; color:#8A857A; white-space:nowrap; }
 
 /* SIDEBAR */
 .lc-side { position:sticky; top:32px; align-self:start; }
 .lc-scard { background:#fff; border-radius:12px; padding:24px; margin-bottom:16px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
-.lc-scard h4 { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#6C1A55; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #F0ECE6; }
+.lc-scard h4 { font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#2A637C; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid #F0ECE6; }
 .lc-scard .row { display:flex; justify-content:space-between; padding:7px 0; font-size:13px; }
 .lc-scard .row .k { color:#8A857A; }
 .lc-scard .row .v { color:#2C2A26; font-weight:700; }
 .lc-scard .pill { display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:100px; }
 .lc-scard ul { list-style:none; }
 .lc-scard ul li { font-size:13px; color:#5A564E; padding:5px 0 5px 16px; position:relative; }
-.lc-scard ul li::before { content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; border:1.5px solid #C06AA5; }
-.lc-scard ul li a { color:#6C1A55; text-decoration:none; font-weight:700; transition:color 0.2s; }
-.lc-scard ul li a:hover { color:#8B3572; }
+.lc-scard ul li::before { content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; border:1.5px solid #4FA3B8; }
+.lc-scard ul li a { color:#2A637C; text-decoration:none; font-weight:700; transition:color 0.2s; }
+.lc-scard ul li a:hover { color:#367A94; }
 
 /* CTA */
-.lc-cta { background:linear-gradient(160deg,#6C1A55,#3D0F31); padding:72px 48px; text-align:center; }
+.lc-cta { background:linear-gradient(160deg,#2A637C,#1A3F50); padding:72px 48px; text-align:center; }
 .lc-cta h2 { font-family:'Playfair Display',serif; font-size:34px; font-weight:400; color:#fff; margin-bottom:10px; }
 .lc-cta p { font-size:15px; color:rgba(255,255,255,0.55); margin-bottom:28px; max-width:500px; margin-left:auto; margin-right:auto; }
 .lc-cta .btn-row { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-.lc-cta .btn { display:inline-block; background:#fff; color:#6C1A55; padding:14px 32px; border-radius:100px; font-size:14px; font-weight:700; text-decoration:none; font-family:'Lato',sans-serif; transition:all 0.25s; }
+.lc-cta .btn { display:inline-block; background:#fff; color:#2A637C; padding:14px 32px; border-radius:100px; font-size:14px; font-weight:700; text-decoration:none; font-family:'Lato',sans-serif; transition:all 0.25s; }
 .lc-cta .btn:hover { background:rgba(255,255,255,0.85); transform:translateY(-1px); }
 .lc-cta .btn-ghost { display:inline-block; color:rgba(255,255,255,0.6); padding:14px 32px; border-radius:100px; font-size:14px; font-weight:700; text-decoration:none; font-family:'Lato',sans-serif; border:1px solid rgba(255,255,255,0.2); transition:all 0.25s; }
 .lc-cta .btn-ghost:hover { border-color:rgba(255,255,255,0.4); color:#fff; }
@@ -166,20 +166,16 @@ const schema = {
   <div class="lc-hero-inner">
     <div class="lc-hero-top">
       <div class="lc-hero-text">
-        <div class="lc-overline"><span class="pulse"></span> REGENECYTE&reg; &bull; Long COVID Program</div>
+        <div class="lc-overline"><span class="pulse"></span> HPC, Cord Blood &bull; Long COVID Program</div>
         <h1>Long COVID Clinical Trial<span class="sub">Phase IIa &bull; Peer-Reviewed Results</span></h1>
-        <p class="desc">REGENECYTE&reg; (HPC, Cord Blood) produced meaningful, durable fatigue reduction in patients with post-COVID syndrome in a randomized, placebo-controlled trial published in The Lancet&rsquo;s EClinicalMedicine.</p>
+        <p class="desc">Cord blood cell therapy (HPC, Cord Blood) produced meaningful, durable fatigue reduction in patients with post-COVID syndrome in a randomized, placebo-controlled trial published in The Lancet&rsquo;s EClinicalMedicine.</p>
         <div class="links">
           <a href="https://www.thelancet.com/journals/eclinm/article/PIIS2589-5370(25)00672-8/fulltext" target="_blank" rel="noopener">
             <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12l8-8M4 4h8v8"/></svg>
             Full Study (Lancet)
           </a>
-          <a href="https://www.fda.gov/vaccines-blood-biologics/cellular-gene-therapy-products/regenecyte" target="_blank" rel="noopener">
-            <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12l8-8M4 4h8v8"/></svg>
-            FDA Product Page
-          </a>
-          <a href="/regenecyte">
-            REGENECYTE&reg; &rarr;
+          <a href="/clinical-trials">
+            All Clinical Trials &rarr;
           </a>
         </div>
       </div>
@@ -187,14 +183,14 @@ const schema = {
         <div class="big">85%</div>
         <div class="big-label">Fatigue Resolution at Week 26</div>
         <div class="compare">
-          <div class="c-item"><div class="c-num accent">85%</div><div class="c-label">REGENECYTE&reg;</div></div>
+          <div class="c-item"><div class="c-num accent">85%</div><div class="c-label">Treatment</div></div>
           <div class="c-item"><div class="c-num muted">20%</div><div class="c-label">Placebo</div></div>
         </div>
       </div>
     </div>
     <div class="lc-data-strip">
       <div class="lc-data-strip-inner">
-        <div class="lc-ds-item"><div class="ds-v">REGENECYTE&reg; (HPC-C)</div><div class="ds-l">Therapy</div></div>
+        <div class="lc-ds-item"><div class="ds-v">HPC, Cord Blood</div><div class="ds-l">Therapy</div></div>
         <div class="lc-ds-item"><div class="ds-v">PASC / Long COVID</div><div class="ds-l">Condition</div></div>
         <div class="lc-ds-item"><div class="ds-v">Phase IIa Complete</div><div class="ds-l">Trial Phase</div></div>
         <div class="lc-ds-item"><div class="ds-v">RMAT + EAP Cleared</div><div class="ds-l">FDA Status</div></div>
@@ -209,7 +205,7 @@ const schema = {
   <div class="lc-main">
 
     <h2>Efficacy Results</h2>
-    <p>In a 30-patient, randomized, placebo-controlled study (NCT05682560), patients treated with REGENECYTE&reg; showed significant improvement in chronic fatigue&mdash;the most debilitating feature of post-COVID syndrome. The Chalder Fatigue Questionnaire (CFQ-11) measured fatigue severity at weeks 6, 12, 18, and 26.</p>
+    <p>In a 30-patient, randomized, placebo-controlled study (NCT05682560), patients treated with cord blood cell therapy showed significant improvement in chronic fatigue&mdash;the most debilitating feature of post-COVID syndrome. The Chalder Fatigue Questionnaire (CFQ-11) measured fatigue severity at weeks 6, 12, 18, and 26.</p>
 
     <!-- ANIMATED BAR CHART -->
     <div class="lc-chart" id="fatigue-chart">
@@ -217,7 +213,7 @@ const schema = {
       <div class="lc-chart-sub">Patients achieving CFQ-11 score &lt;4 (complete fatigue resolution)</div>
       <div class="lc-bars">
         <div class="lc-bar-row">
-          <div class="bar-label">REGENECYTE&reg;</div>
+          <div class="bar-label">HPC, Cord Blood</div>
           <div class="bar-track">
             <div class="bar-fill accent" data-width="85"><span class="bar-val">85%</span></div>
           </div>
@@ -262,14 +258,14 @@ const schema = {
     </div>
 
     <h2>Safety Profile</h2>
-    <p>The trial met its primary safety endpoint. In the REGENECYTE&reg; group, 2 of 20 participants (10%) experienced mild, transient adverse events. All resolved within one hour. No severe adverse events were observed. The placebo group had a 20% TEAE rate, with events unrelated to treatment.</p>
+    <p>The trial met its primary safety endpoint. In the treatment group, 2 of 20 participants (10%) experienced mild, transient adverse events. All resolved within one hour. No severe adverse events were observed. The placebo group had a 20% TEAE rate, with events unrelated to treatment.</p>
 
     <h3>Cognitive Function</h3>
     <p>Montreal Cognitive Assessment (MoCA) scores showed slight improvement from baseline (24 to 26) in the treatment group, though the difference was not statistically significant.</p>
 
     <h2>Regulatory Pathway</h2>
     <h3>RMAT Designation (October 2024)</h3>
-    <p>The FDA granted Regenerative Medicine Advanced Therapy designation for REGENECYTE&reg; in Long COVID, enabling accelerated development and priority review. REGENECYTE&reg; is the only FDA-licensed cord blood product being evaluated in U.S. clinical trials for Long COVID.</p>
+    <p>The FDA granted Regenerative Medicine Advanced Therapy designation for HPC, Cord Blood in Long COVID, enabling accelerated development and priority review. StemCyte&rsquo;s cord blood product is the only FDA-licensed cord blood product being evaluated in U.S. clinical trials for Long COVID.</p>
 
     <h3>Expanded Access Program (January 2026)</h3>
     <p>The FDA cleared a compassionate use pathway for patients with serious or life-threatening Long COVID symptoms who have exhausted standard treatment options. StemCyte works directly with treating physicians to facilitate access.</p>
@@ -311,12 +307,12 @@ const schema = {
       <div class="row"><span class="k">Dec 2024</span><span class="v">Phase IIa unblind</span></div>
       <div class="row"><span class="k">Jan 2026</span><span class="v">Lancet publication</span></div>
       <div class="row"><span class="k">Jan 2026</span><span class="v">EAP cleared</span></div>
-      <div class="row"><span class="k">Next</span><span class="v"><span class="pill" style="background:rgba(108,26,85,0.08);color:#6C1A55;">Phase III</span></span></div>
+      <div class="row"><span class="k">Next</span><span class="v"><span class="pill" style="background:rgba(42,99,124,0.08);color:#2A637C;">Phase III</span></span></div>
     </div>
     <div class="lc-scard">
       <h4>Navigate</h4>
       <ul>
-        <li><a href="/regenecyte">REGENECYTE&reg; Product Page</a></li>
+        <li><a href="/regenecyte">Product Page</a></li>
         <li><a href="/expanded-access-program">Expanded Access Program</a></li>
         <li><a href="/clinical-trials">All Clinical Trials</a></li>
         <li><a href="https://clinicaltrials.gov/study/NCT05682560" target="_blank" rel="noopener">ClinicalTrials.gov</a></li>
