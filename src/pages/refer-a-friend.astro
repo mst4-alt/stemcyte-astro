@@ -3,15 +3,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 <BaseLayout title="Refer a Friend">
 
-<section class="hero" id="hero">
-  <img src="/images/Hero_2.jpeg" alt="StemCyte refer a friend" fetchpriority="high" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center" />
-  <div class="vig"></div>
-  <div class="ct">
-    <div class="lbl">Referral Program</div>
+<div id="hero">
+<div class="ct-hero">
+  <div class="ct-hero-inner">
+    <div class="overline"><span class="dot"></span> Referral Program</div>
     <h1>Refer a Friend</h1>
-    <p class="sub">Share the gift of stem cell banking — and get rewarded for it.</p>
+    <p class="subtitle">Share the gift of stem cell banking — and get rewarded for it.</p>
   </div>
-</section>
+</div>
+</div>
 
 <div class="section">
   <div class="how-header"><h2>How it works</h2><p>Three simple steps to share and earn.</p></div>
@@ -66,12 +66,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 </BaseLayout>
 
 <style is:global>
-.hero { position:relative; min-height:420px; display:flex; align-items:flex-end; overflow:hidden; }
-.vig { position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0.08) 0%,rgba(0,0,0,0.5) 65%,rgba(0,0,0,0.72) 100%); z-index:1; }
-.ct { position:relative; z-index:2; max-width:1100px; margin:0 auto; padding:160px 48px 56px; width:100%; }
-.lbl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#E8A0D0; margin-bottom:12px; }
-.hero h1 { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; max-width:680px; margin-bottom:12px; color:#fff; }
-.sub { font-size:17px; color:rgba(255,255,255,0.55); max-width:540px; line-height:1.7; }
+.ct-hero { background:linear-gradient(180deg,#1a0820 0%,#2d1038 40%,#3D0F31 100%); padding:160px 48px 72px; position:relative; overflow:hidden; }
+.ct-hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 70% 80%, rgba(108,26,85,0.2) 0%, transparent 60%); pointer-events:none; }
+.ct-hero-inner { max-width:960px; margin:0 auto; position:relative; z-index:2; }
+.ct-hero .overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#E8A0D0; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
+.ct-hero .overline .dot { width:6px; height:6px; border-radius:50%; background:#E8A0D0; animation:pulse 2s ease infinite; }
+@keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(232,160,208,0.4)} 50%{box-shadow:0 0 0 8px rgba(232,160,208,0)} }
+.ct-hero h1 { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; color:#fff; margin-bottom:16px; }
+.ct-hero .subtitle { font-size:17px; color:rgba(255,255,255,0.65); line-height:1.7; max-width:560px; }
 .section { padding:80px 48px; max-width:900px; margin:0 auto; }
 .how-header { text-align:center; margin-bottom:40px; }
 .how-header h2 { font-family:'Playfair Display',serif; font-size:28px; font-weight:400; letter-spacing:-0.5px; margin-bottom:8px; }
@@ -107,14 +109,19 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 .btn-submit { background:#6C1A55; color:#fff; padding:16px 48px; border-radius:100px; font-size:15px; font-weight:700; border:none; cursor:pointer; font-family:'Lato',sans-serif; transition:all 0.25s; }
 .btn-submit:hover { background:#8B3572; }
 @media (max-width:900px) {
-  .ct { padding:140px 24px 40px; }
-  .hero h1 { font-size:32px; }
+  .ct-hero { padding:130px 24px 56px; }
+  .ct-hero h1 { font-size:36px; }
   .section { padding:64px 24px; }
   .steps { flex-direction:column; }
   .form-row { grid-template-columns:1fr; }
   .reward-banner { flex-direction:column; text-align:center; }
   .reward-options { flex-direction:column; }
   .form-card { padding:28px 20px; }
+}
+@media (max-width:600px) {
+  .ct-hero { padding:110px 20px 40px; }
+  .ct-hero h1 { font-size:28px; }
+  .ct-hero .subtitle { font-size:15px; }
 }
 </style>
 
