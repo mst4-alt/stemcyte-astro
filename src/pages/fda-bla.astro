@@ -6,7 +6,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <style is:global>
   .bla-hero {
-    min-height: 70vh;
+    min-height: min(70vh, 600px);
+    max-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;

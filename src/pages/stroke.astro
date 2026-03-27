@@ -18,7 +18,7 @@ const schema = {
 <style is:global>
 
 /* HERO */
-.lc-hero { background:linear-gradient(180deg,#081518 0%,#0c1f28 40%,#122e3a 70%,#163648 100%); min-height:70vh; display:flex; align-items:flex-end; padding:120px 48px 56px; position:relative; overflow:hidden; }
+.lc-hero { background:linear-gradient(180deg,#081518 0%,#0c1f28 40%,#122e3a 70%,#163648 100%); min-height:min(70vh, 600px); max-height:600px; display:flex; align-items:flex-end; padding:120px 48px 56px; position:relative; overflow:hidden; }
 .lc-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 70% 70%, rgba(42,99,124,0.2) 0%, transparent 50%); pointer-events:none; }
 .lc-hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px); background-size:64px 64px; pointer-events:none; }
 .lc-hero-inner { max-width:1100px; margin:0 auto; width:100%; position:relative; z-index:2; }
