@@ -15,24 +15,6 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
   </div>
 </section>
 
-<!-- STATS -->
-<div class="stats-wrap">
-  <div class="stats">
-    <div class="stat anim">
-      <NumberCounter client:visible target={2300} suffix="+" />
-      <div class="desc">Lives saved</div>
-    </div>
-    <div class="stat anim">
-      <NumberCounter client:visible target={350} suffix="+" />
-      <div class="desc">Transplant hospitals in 40 countries</div>
-    </div>
-    <div class="stat anim">
-      <NumberCounter client:visible target={1997} suffix="" from={1990} />
-      <div class="desc">Founded — 29+ years of experience</div>
-    </div>
-  </div>
-</div>
-
 <!-- QUADRANT — "What makes us different" -->
 <section class="quad-section anim">
   <div class="quad-header">
@@ -337,11 +319,6 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
 .body-text strong { color:#2C2A26; }
 .learn-link { display:inline-flex; align-items:center; gap:6px; font-size:14px; font-weight:700; color:#6C1A55; text-decoration:none; margin-top:8px; }
 
-/* STATS */
-.stats-wrap { padding:80px 48px 0; max-width:1100px; margin:0 auto; }
-.stats { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; }
-.stat { background:#fff; border-radius:12px; padding:28px 20px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
-.stat .desc { font-size:12px; color:#8A857A; margin-top:4px; }
 
 /* WATERMARK */
 .wm { position:absolute; top:-30px; left:-10px; font-family:'Source Serif 4',serif; font-size:160px; font-weight:600; line-height:1; pointer-events:none; z-index:0; user-select:none; }
@@ -478,8 +455,6 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
 @media (max-width:900px) {
   .ct { padding:140px 24px 48px; }
   .hero h1 { font-size:34px; }
-  .stats-wrap { padding:64px 24px 0; }
-  .stats { grid-template-columns:1fr 1fr; }
   .quad-section { padding:64px 24px; }
   .quad-grid { grid-template-columns:1fr; gap:16px; }
   .q-center { position:static; transform:none; margin:0 auto; order:-1; }
@@ -505,7 +480,6 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
 }
 @media (max-width:600px) {
   .hero h1 { font-size:28px; }
-  .stats { grid-template-columns:1fr; }
   .impact-counter, .impact-counter :global(.number-counter) { font-size:64px; }
   .pba-card-pair { flex-direction:column; }
   .cta-banner .btns { flex-direction:column; align-items:center; }
