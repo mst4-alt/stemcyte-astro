@@ -144,7 +144,7 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
     <div class="wm wm-center" style="color:rgba(61,139,106,0.09)">03</div>
     <div class="lbl-plum" style="text-align:center">Proven outcomes</div>
     <div class="impact-counter">
-      <NumberCounter client:visible target={2300} suffix="+" />
+      <NumberCounter client:visible target={2300} suffix="+" numberStyle={{fontSize:'120px',color:'#3D8B6A',fontWeight:'600',letterSpacing:'-4px',lineHeight:'1'}} />
     </div>
     <div class="impact-counter-label">transplants shipped to hospitals worldwide</div>
     <p class="impact-sub">More clinical transplants than any other private cord blood bank. Our units have been used in life-saving treatments across six continents.</p>
@@ -202,18 +202,21 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
     </div>
     <div class="programs-grid">
       <a href="/special-programs" class="prog-card anim">
+        <div class="prog-icon" style="background:#FBF5F9"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <div class="prog-tag" style="background:#FBF5F9;color:#6C1A55">Sibling Donor</div>
         <h3>Sibling Donor Program</h3>
         <p>Free cord blood processing and 3 years of storage for families where a sibling needs a transplant.</p>
         <div class="prog-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6C1A55" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
       <a href="/special-programs" class="prog-card anim">
+        <div class="prog-icon" style="background:#EDF5FF"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3B6DC4" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
         <div class="prog-tag" style="background:#EDF5FF;color:#3B6DC4">Military &amp; Public Servant</div>
         <h3>Military &amp; Public Servant</h3>
         <p>Special pricing for active and retired military, police, fire, and EMT.</p>
         <div class="prog-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3B6DC4" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
       </a>
       <a href="/special-programs" class="prog-card anim">
+        <div class="prog-icon" style="background:#F0F7F4"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#3D8B6A" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
         <div class="prog-tag" style="background:#F0F7F4;color:#3D8B6A">Medical Professional</div>
         <h3>Medical Professional</h3>
         <p>Special pricing for physicians, nurses, and allied health professionals.</p>
@@ -371,19 +374,21 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
 .pba-split { display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center; }
 .pba-visual { display:flex; justify-content:center; }
 .pba-card-pair { display:flex; gap:16px; align-items:center; }
-.pba-bank-card { border-radius:14px; padding:28px 24px; width:180px; text-align:center; }
-.pba-private { background:#FBF5F9; }
-.pba-public { background:#EDF5FF; }
-.pba-bank-icon { width:48px; height:48px; border-radius:50%; background:#fff; display:flex; align-items:center; justify-content:center; margin:0 auto 12px; }
-.pba-bank-name { font-size:15px; font-weight:700; margin-bottom:6px; }
-.pba-bank-desc { font-size:12px; color:#6B6760; line-height:1.5; }
-.pba-plus { font-family:'Source Serif 4',serif; font-size:28px; color:#6C1A55; font-weight:400; }
+.pba-bank-card { border-radius:14px; padding:28px 20px; width:180px; text-align:center; transition:transform 0.3s ease; }
+.pba-private { background:#FBF5F9; border:1px solid #F0E0EB; }
+.pba-public { background:#EDF5FF; border:1px solid #D4E4FF; }
+.pba-bank-icon { width:44px; height:44px; border-radius:50%; background:rgba(255,255,255,0.8); display:flex; align-items:center; justify-content:center; margin:0 auto 10px; }
+.pba-bank-name { font-size:15px; font-weight:700; margin-bottom:4px; }
+.pba-private .pba-bank-name { color:#6C1A55; }
+.pba-public .pba-bank-name { color:#3B6DC4; }
+.pba-bank-desc { font-size:12px; color:#8A857A; line-height:1.4; }
+.pba-plus { font-family:'Source Serif 4',serif; font-size:28px; color:#3B6DC4; }
 
 /* TRANSPLANT IMPACT */
 .impact-section { padding:100px 48px; background:linear-gradient(180deg,#F0F7F4,#E8F2EC); position:relative; overflow:hidden; text-align:center; }
 .impact-inner { max-width:1100px; margin:0 auto; position:relative; }
-.impact-counter { font-family:'Source Serif 4',serif; font-size:120px; color:#3D8B6A; font-weight:400; line-height:1; }
-.impact-counter :global(.number-counter) { font-family:'Source Serif 4',serif; font-size:120px; color:#3D8B6A; font-weight:400; }
+.impact-counter { font-family:'Source Serif 4',serif; font-size:120px; color:#3D8B6A; font-weight:600; line-height:1; letter-spacing:-4px; }
+.impact-counter :global(div) { font-family:'Source Serif 4',serif !important; font-size:120px !important; color:#3D8B6A !important; font-weight:600 !important; letter-spacing:-4px !important; }
 .impact-counter-label { font-size:16px; color:#3D8B6A; font-weight:600; text-transform:uppercase; letter-spacing:1.5px; margin-top:8px; }
 .impact-sub { font-size:16px; color:#5A7A6A; line-height:1.7; max-width:560px; margin:20px auto 32px; }
 .impact-pills { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
@@ -411,13 +416,15 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
 .prog-card p { font-size:14px; color:#6B6760; line-height:1.6; }
 .prog-arrow { position:absolute; bottom:20px; right:20px; opacity:0; transition:opacity 0.25s; }
 .prog-card:hover .prog-arrow { opacity:1; }
+.prog-icon { width:48px; height:48px; border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:14px; }
 
 /* PARTNERS */
 .partners-section { padding:80px 48px; max-width:1100px; margin:0 auto; }
 .partners-inner { max-width:1100px; margin:0 auto; }
 .partner-divider-label { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#8A857A; margin-bottom:16px; padding-bottom:8px; border-bottom:1px solid #E8E2DC; }
 .p-grid-4 { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; margin-bottom:32px; }
-.p-card { background:#fff; border-radius:10px; padding:24px 20px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.p-card { background:#fff; border-radius:10px; padding:24px 20px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); transition:transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease; border:1px solid transparent; }
+.p-card:hover { transform:translateY(-3px); box-shadow:0 6px 20px rgba(0,0,0,0.06); border-color:#EDE8F5; }
 .p-name { font-size:15px; font-weight:700; margin-bottom:2px; }
 .p-loc { font-size:12px; color:#8A857A; }
 .partner-footer { text-align:center; }
@@ -467,7 +474,7 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
   .pba-visual { order:2; }
   .pba-text { order:1; }
   .impact-section { padding:64px 24px; }
-  .impact-counter, .impact-counter :global(.number-counter) { font-size:80px; }
+  .impact-counter, .impact-counter :global(div) { font-size:80px !important; }
   .safety-section { padding:64px 24px; }
   .safety-split { grid-template-columns:1fr; gap:32px; }
   .programs-section { padding:64px 24px; }
@@ -480,7 +487,7 @@ import NumberCounter from '../components/islands/NumberCounter.jsx';
 }
 @media (max-width:600px) {
   .hero h1 { font-size:28px; }
-  .impact-counter, .impact-counter :global(.number-counter) { font-size:64px; }
+  .impact-counter, .impact-counter :global(div) { font-size:64px !important; }
   .pba-card-pair { flex-direction:column; }
   .cta-banner .btns { flex-direction:column; align-items:center; }
 }
