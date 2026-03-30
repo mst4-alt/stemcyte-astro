@@ -1,0 +1,516 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Publications & Presentations — StemCyte",
+  "description": "Peer-reviewed research, clinical data, and conference presentations from StemCyte-sponsored and collaborative studies.",
+  "about": [
+    {
+      "@type": "MedicalScholarlyArticle",
+      "name": "Phase IIa Trial of HPC, Cord Blood for Post-COVID Syndrome",
+      "publicationType": "Clinical Trial Results"
+    },
+    {
+      "@type": "MedicalScholarlyArticle",
+      "name": "HIV-1 Remission Following CCR5Δ32/Δ32 Haplo-Cord Transplant",
+      "publicationType": "Case Report"
+    }
+  ],
+  "publisher": { "@type": "Organization", "name": "StemCyte, Inc." }
+};
+---
+
+<BaseLayout title="Publications & Presentations | StemCyte" description="Peer-reviewed research, clinical data, and conference presentations from StemCyte-sponsored and collaborative studies." schema={schema}>
+
+<style is:global>
+
+/* ===== HERO ===== */
+.pub-hero {
+  background: linear-gradient(180deg, #081518 0%, #0c1f28 40%, #122e3a 70%, #163648 100%);
+  min-height: 400px;
+  display: flex;
+  align-items: flex-end;
+  padding: 120px 48px 48px;
+  position: relative;
+  overflow: hidden;
+}
+.pub-hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 64px 64px;
+  pointer-events: none;
+}
+.pub-hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+.pub-overline {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4FA3B8;
+  margin-bottom: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.pub-overline .pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4FA3B8;
+  animation: pub-pulse 2s ease infinite;
+}
+@keyframes pub-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(79,163,184,0.4); }
+  50% { box-shadow: 0 0 0 8px rgba(79,163,184,0); }
+}
+.pub-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  color: #fff;
+  margin: 0 0 14px;
+}
+.pub-hero-sub {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+  max-width: 620px;
+}
+
+/* ===== SHARED SECTION ===== */
+.pub-section {
+  padding: 80px 48px;
+}
+.pub-section.alt {
+  background: #EDF5F7;
+}
+.pub-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.pub-section-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #2A637C;
+  margin-bottom: 8px;
+}
+.pub-section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #2C2A26;
+  line-height: 1.2;
+  margin: 0 0 32px;
+}
+
+/* ===== PUBLICATION CARDS ===== */
+.pub-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px 32px 28px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  border-left: 3px solid #4FA3B8;
+}
+.pub-card-title {
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #2C2A26;
+  line-height: 1.4;
+  margin: 0 0 8px;
+}
+.pub-card-title a {
+  color: #2A637C;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.pub-card-title a:hover {
+  color: #367A94;
+}
+.pub-card-authors {
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  color: #8A857A;
+  margin-bottom: 4px;
+}
+.pub-card-journal {
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  color: #5A564E;
+  margin-bottom: 12px;
+}
+.pub-card-journal em {
+  font-style: italic;
+}
+.pub-card-desc {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: #5A564E;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.pub-card-note {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  color: #8A857A;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+.pub-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.pub-tag {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: #EDF5F7;
+  color: #2A637C;
+}
+.pub-card-link {
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #2A637C;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+  transition: color 0.2s;
+}
+.pub-card-link:hover {
+  color: #367A94;
+}
+.pub-card-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ===== CONFERENCE CARDS ===== */
+.pub-conf-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px 32px;
+  margin-bottom: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  border-left: 3px solid #4FA3B8;
+}
+.pub-conf-card h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2C2A26;
+  margin: 0 0 6px;
+}
+.pub-conf-card p {
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: #5A564E;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ===== TRIAL TABLE ===== */
+.pub-trials {
+  display: grid;
+  gap: 16px;
+}
+.pub-trial-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 28px 32px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  border-left: 3px solid #4FA3B8;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 16px;
+  align-items: start;
+}
+.pub-trial-info h3 {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #2C2A26;
+  margin: 0 0 10px;
+}
+.pub-trial-meta {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.pub-trial-meta .tm-item {
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+}
+.pub-trial-meta .tm-label {
+  color: #8A857A;
+}
+.pub-trial-meta .tm-value {
+  color: #2C2A26;
+  font-weight: 700;
+}
+.pub-trial-link {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #2A637C;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  padding: 6px 14px;
+  border: 1px solid rgba(42,99,124,0.2);
+  border-radius: 100px;
+  transition: all 0.2s;
+}
+.pub-trial-link:hover {
+  background: #2A637C;
+  color: #fff;
+  border-color: #2A637C;
+}
+.pub-trial-link svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* ===== CTA BANNER ===== */
+.pub-cta {
+  padding: 80px 48px;
+}
+.pub-cta-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: linear-gradient(135deg, #163648 0%, #0c1f28 100%);
+  border-radius: 20px;
+  padding: 56px 64px;
+  text-align: center;
+}
+.pub-cta-inner h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 400;
+  color: #fff;
+  margin: 0 0 12px;
+}
+.pub-cta-inner p {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 auto 28px;
+}
+.pub-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 36px;
+  background: #4FA3B8;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.pub-cta-btn:hover {
+  background: #3D8A9D;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .pub-hero {
+    padding: 100px 24px 36px;
+    min-height: 320px;
+  }
+  .pub-hero h1 {
+    font-size: 30px;
+  }
+  .pub-section {
+    padding: 56px 24px;
+  }
+  .pub-section h2 {
+    font-size: 26px;
+  }
+  .pub-card {
+    padding: 24px 20px 20px;
+  }
+  .pub-card-title {
+    font-size: 16px;
+  }
+  .pub-card-footer {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .pub-card-link {
+    margin-left: 0;
+  }
+  .pub-trial-card {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .pub-trial-meta {
+    gap: 12px;
+    flex-direction: column;
+  }
+  .pub-cta {
+    padding: 56px 24px;
+  }
+  .pub-cta-inner {
+    padding: 40px 28px;
+  }
+  .pub-cta-inner h2 {
+    font-size: 26px;
+  }
+}
+
+</style>
+
+<!-- HERO -->
+<section id="hero" class="pub-hero">
+  <div class="pub-hero-grid"></div>
+  <div class="pub-hero-inner">
+    <div class="pub-overline"><span class="pulse"></span> EVIDENCE &amp; DATA</div>
+    <h1>Publications &amp; Presentations</h1>
+    <p class="pub-hero-sub">Peer-reviewed research, clinical data, and conference presentations from StemCyte-sponsored and collaborative studies.</p>
+  </div>
+</section>
+
+<!-- PEER-REVIEWED PUBLICATIONS -->
+<section class="pub-section">
+  <div class="pub-inner">
+    <div class="pub-section-label">PEER-REVIEWED</div>
+    <h2>Published Research</h2>
+
+    <!-- Long COVID Publication -->
+    <div class="pub-card">
+      <h3 class="pub-card-title">Phase IIa Randomized, Placebo-Controlled Trial of HPC, Cord Blood for Post-COVID Syndrome</h3>
+      <div class="pub-card-journal"><em>EClinicalMedicine</em> (The Lancet), 2026</div>
+      <p class="pub-card-desc">Phase IIa randomized, placebo-controlled trial demonstrating 85% fatigue resolution with HPC, Cord Blood versus 0% placebo in patients with post-COVID syndrome (Long COVID). ClinicalTrials.gov identifier: NCT05682560.</p>
+      <div class="pub-card-footer">
+        <span class="pub-tag">Phase II</span>
+        <span class="pub-tag">Long COVID</span>
+        <span class="pub-tag">REGENECYTE®</span>
+        <a href="/clinical/long-covid" class="pub-card-link">
+          Trial details
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638l-3.96-3.96a.75.75 0 111.06-1.06l5.25 5.25a.75.75 0 010 1.06l-5.25 5.25a.75.75 0 11-1.06-1.06l3.96-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- HIV Remission Publication -->
+    <div class="pub-card">
+      <h3 class="pub-card-title">HIV-1 Remission Following CCR5Δ32/Δ32 Haplo-Cord Transplant</h3>
+      <div class="pub-card-authors">IMPAACT P1107 investigators</div>
+      <div class="pub-card-journal"><em>Cell</em>, 2023</div>
+      <p class="pub-card-desc">Case report describing HIV-1 remission and possible cure in a woman (the "New York Patient") following a CCR5-delta32/delta32 cord blood plus haploidentical transplant.</p>
+      <p class="pub-card-note">StemCyte is a collaborating organization on IMPAACT P1107.</p>
+      <div class="pub-card-footer">
+        <span class="pub-tag">HIV</span>
+        <span class="pub-tag">Cord Blood Transplant</span>
+        <span class="pub-tag">Collaborative</span>
+        <a href="/our-story/hiv-remission" class="pub-card-link">
+          Read more
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638l-3.96-3.96a.75.75 0 111.06-1.06l5.25 5.25a.75.75 0 010 1.06l-5.25 5.25a.75.75 0 11-1.06-1.06l3.96-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONFERENCE PRESENTATIONS -->
+<section class="pub-section alt">
+  <div class="pub-inner">
+    <div class="pub-section-label">CONFERENCES</div>
+    <h2>Selected Presentations</h2>
+
+    <div class="pub-conf-card">
+      <h3>HIV Remission Case Report — CROI 2022</h3>
+      <p>Presentation on HIV-1 remission following haplo-cord transplant from IMPAACT P1107. Conference on Retroviruses and Opportunistic Infections (CROI), 2022.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- REGISTERED CLINICAL TRIALS -->
+<section class="pub-section">
+  <div class="pub-inner">
+    <div class="pub-section-label">REGISTERED TRIALS</div>
+    <h2>ClinicalTrials.gov</h2>
+
+    <div class="pub-trials">
+
+      <div class="pub-trial-card">
+        <div class="pub-trial-info">
+          <h3>Long COVID / Post-COVID Syndrome</h3>
+          <div class="pub-trial-meta">
+            <div class="tm-item"><span class="tm-label">Identifier: </span><span class="tm-value">NCT05682560</span></div>
+            <div class="tm-item"><span class="tm-label">Phase: </span><span class="tm-value">Phase IIa</span></div>
+            <div class="tm-item"><span class="tm-label">Status: </span><span class="tm-value">Completed</span></div>
+            <div class="tm-item"><span class="tm-label">Sponsor: </span><span class="tm-value">StemCyte, Inc.</span></div>
+          </div>
+        </div>
+        <a href="https://clinicaltrials.gov/study/NCT05682560" target="_blank" rel="noopener" class="pub-trial-link">
+          ClinicalTrials.gov
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5zm7.25-.75a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0V6.31l-5.47 5.47a.75.75 0 01-1.06-1.06l5.47-5.47H12.25a.75.75 0 01-.75-.75z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+
+      <div class="pub-trial-card">
+        <div class="pub-trial-info">
+          <h3>IMPAACT P1107 (HIV)</h3>
+          <div class="pub-trial-meta">
+            <div class="tm-item"><span class="tm-label">Identifier: </span><span class="tm-value">NCT02140944</span></div>
+            <div class="tm-item"><span class="tm-label">Type: </span><span class="tm-value">Multi-center observational study</span></div>
+            <div class="tm-item"><span class="tm-label">Role: </span><span class="tm-value">Collaborating organization</span></div>
+          </div>
+        </div>
+        <a href="https://clinicaltrials.gov/study/NCT02140944" target="_blank" rel="noopener" class="pub-trial-link">
+          ClinicalTrials.gov
+          <svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4.25 5.5a.75.75 0 00-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 00.75-.75v-4a.75.75 0 011.5 0v4A2.25 2.25 0 0112.75 17h-8.5A2.25 2.25 0 012 14.75v-8.5A2.25 2.25 0 014.25 4h5a.75.75 0 010 1.5h-5zm7.25-.75a.75.75 0 01.75-.75h3.5a.75.75 0 01.75.75v3.5a.75.75 0 01-1.5 0V6.31l-5.47 5.47a.75.75 0 01-1.06-1.06l5.47-5.47H12.25a.75.75 0 01-.75-.75z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="pub-cta">
+  <div class="pub-cta-inner">
+    <h2>Data requests</h2>
+    <p>For clinical data packages, reprints, or medical information inquiries, contact our medical affairs team.</p>
+    <a href="/contact" class="pub-cta-btn">
+      Contact Us
+      <svg width="16" height="16" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638l-3.96-3.96a.75.75 0 111.06-1.06l5.25 5.25a.75.75 0 010 1.06l-5.25 5.25a.75.75 0 11-1.06-1.06l3.96-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd"/></svg>
+    </a>
+  </div>
+</section>
+
+</BaseLayout>

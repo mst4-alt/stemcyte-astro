@@ -1,0 +1,275 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalOrganization",
+  "name": "StemCyte Clinical — Regenerative Therapeutics",
+  "description": "StemCyte develops and manufactures FDA-licensed cord blood-derived cell therapies with an active clinical pipeline spanning Long COVID, stroke, and cerebral palsy.",
+  "url": "https://stemcyte.com/clinical/",
+  "parentOrganization": { "@type": "Organization", "name": "StemCyte, Inc." },
+  "medicalSpecialty": "Hematology"
+};
+---
+
+<BaseLayout title="Clinical — Regenerative Therapeutics | StemCyte" description="StemCyte develops FDA-licensed cord blood cell therapies. Explore our clinical pipeline, REGENECYTE® product information, and peer-reviewed data." schema={schema}>
+
+<style is:global>
+
+/* ── HERO ── */
+.clin-hero { background:linear-gradient(180deg,#081518 0%,#0c1f28 40%,#122e3a 70%,#163648 100%); min-height:min(65vh,700px); max-height:700px; display:flex; align-items:flex-end; padding:120px 48px 56px; position:relative; overflow:hidden; }
+.clin-hero::before { content:''; position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 70% 70%, rgba(42,99,124,0.15) 0%, transparent 50%); pointer-events:none; }
+.clin-hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px); background-size:64px 64px; pointer-events:none; }
+.clin-hero-inner { max-width:1100px; margin:0 auto; width:100%; position:relative; z-index:2; }
+.clin-hero-text { max-width:600px; }
+.clin-overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4FA3B8; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
+.clin-overline .pulse { width:6px; height:6px; border-radius:50%; background:#4FA3B8; animation:clin-pulse 2s ease infinite; }
+@keyframes clin-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(79,163,184,0.4)} 50%{box-shadow:0 0 0 8px rgba(79,163,184,0)} }
+.clin-hero h1 { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.08; letter-spacing:-1px; color:#fff; margin-bottom:16px; }
+.clin-hero .desc { font-size:15px; color:rgba(255,255,255,0.5); line-height:1.75; max-width:560px; }
+
+/* ── CREDENTIALS STRIP ── */
+.clin-cred-strip { max-width:1100px; margin:0 auto; padding:0 48px; position:relative; z-index:2; }
+.clin-cred-inner { display:grid; grid-template-columns:repeat(5,1fr); background:rgba(255,255,255,0.025); border:1px solid rgba(255,255,255,0.05); border-radius:12px; margin-top:28px; overflow:hidden; }
+.clin-cred-item { padding:16px 20px; text-align:center; border-right:1px solid rgba(255,255,255,0.05); }
+.clin-cred-item:last-child { border-right:none; }
+.clin-cred-item .cv { font-size:12px; font-weight:700; color:rgba(255,255,255,0.7); }
+.clin-cred-item .cl { font-size:10px; color:rgba(255,255,255,0.25); margin-top:2px; text-transform:uppercase; letter-spacing:0.5px; }
+
+/* ── BODY SECTIONS ── */
+.clin-sec { padding:80px 48px; }
+.clin-sec-inner { max-width:1100px; margin:0 auto; }
+.clin-sec-alt { background:#EDF5F7; }
+.clin-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2A637C; margin-bottom:10px; }
+.clin-sec h2 { font-family:'Playfair Display',serif; font-size:30px; font-weight:400; color:#2C2A26; margin-bottom:16px; }
+.clin-sec p { font-size:15px; color:#5A564E; line-height:1.8; margin-bottom:16px; }
+
+/* ── PRODUCT CARD ── */
+.clin-product { background:#fff; border-radius:16px; padding:40px; margin-top:24px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.clin-product h3 { font-family:'Playfair Display',serif; font-size:24px; font-weight:400; color:#2C2A26; margin-bottom:12px; }
+.clin-product p { font-size:14px; color:#6B665D; line-height:1.75; margin-bottom:20px; }
+.clin-product-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:24px; }
+.clin-product-fact { background:#F8F6F3; border-radius:10px; padding:16px 20px; }
+.clin-product-fact .pf-label { font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#8A857A; margin-bottom:4px; }
+.clin-product-fact .pf-val { font-size:15px; font-weight:700; color:#2C2A26; }
+.clin-link { color:#2A637C; font-weight:700; text-decoration:none; font-size:14px; display:inline-flex; align-items:center; gap:4px; transition:color 0.2s; }
+.clin-link:hover { color:#367A94; }
+
+/* ── PIPELINE ── */
+.clin-pipeline { margin-top:24px; }
+.clin-pipe-row { display:grid; grid-template-columns:1.4fr 0.8fr 1fr 120px; align-items:center; padding:20px 24px; background:#fff; border-radius:12px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.clin-pipe-row .pipe-ind { font-size:15px; font-weight:700; color:#2C2A26; }
+.clin-pipe-row .pipe-ind a { color:#2C2A26; text-decoration:none; transition:color 0.2s; }
+.clin-pipe-row .pipe-ind a:hover { color:#2A637C; }
+.clin-pipe-row .pipe-phase { font-size:13px; color:#5A564E; }
+.clin-pipe-row .pipe-status { font-size:13px; color:#5A564E; }
+.clin-pipe-pill { display:inline-block; font-size:11px; font-weight:700; padding:3px 12px; border-radius:100px; }
+.clin-pipe-pill.completed { background:#D4EDDA; color:#1B5E20; }
+.clin-pipe-pill.active { background:#D9EEF3; color:#2A637C; }
+.clin-pipe-pill.investigational { background:#F0ECE6; color:#8A857A; }
+.clin-pipe-header { display:grid; grid-template-columns:1.4fr 0.8fr 1fr 120px; padding:0 24px 12px; font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#8A857A; }
+
+/* ── STAT CARDS ── */
+.clin-stats { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:28px; }
+.clin-stat-card { background:#fff; border-radius:14px; padding:32px 28px; text-align:center; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.clin-stat-card .stat-num { font-family:'Source Serif 4 Variable','Source Serif 4',serif; font-size:42px; font-weight:700; color:#2A637C; line-height:1; }
+.clin-stat-card .stat-label { font-size:14px; color:#8A857A; margin-top:6px; }
+
+/* ── QUICK LINKS ── */
+.clin-links-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:28px; }
+.clin-link-card { background:#fff; border-radius:14px; padding:28px 32px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); text-decoration:none; transition:all 0.25s; display:block; }
+.clin-link-card:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(0,0,0,0.08); }
+.clin-link-card h3 { font-size:17px; font-weight:700; color:#2C2A26; margin-bottom:6px; }
+.clin-link-card p { font-size:14px; color:#8A857A; line-height:1.6; margin:0; }
+.clin-link-card .arrow { font-size:13px; font-weight:700; color:#2A637C; margin-top:12px; display:inline-flex; align-items:center; gap:4px; }
+
+/* ── CTA ── */
+.clin-cta { background:linear-gradient(160deg,#2A637C,#1A3F50); padding:72px 48px; text-align:center; }
+.clin-cta h2 { font-family:'Playfair Display',serif; font-size:34px; font-weight:400; color:#fff; margin-bottom:10px; }
+.clin-cta p { font-size:15px; color:rgba(255,255,255,0.55); margin-bottom:28px; max-width:500px; margin-left:auto; margin-right:auto; }
+.clin-cta .btn { display:inline-block; background:#fff; color:#2A637C; padding:14px 32px; border-radius:100px; font-size:14px; font-weight:700; text-decoration:none; font-family:'Lato',sans-serif; transition:all 0.25s; }
+.clin-cta .btn:hover { background:rgba(255,255,255,0.85); transform:translateY(-1px); }
+.clin-cta .sec-text { font-size:13px; color:rgba(255,255,255,0.35); margin-top:20px; }
+.clin-cta .sec-text a { color:rgba(255,255,255,0.5); text-decoration:none; transition:color 0.2s; }
+.clin-cta .sec-text a:hover { color:#fff; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px) {
+  .clin-cred-inner { grid-template-columns:repeat(3,1fr); }
+  .clin-cred-item:nth-child(4), .clin-cred-item:nth-child(5) { border-right:none; }
+  .clin-links-grid { grid-template-columns:1fr; }
+}
+@media(max-width:900px) {
+  .clin-hero { padding:100px 24px 48px; min-height:auto; }
+  .clin-hero h1 { font-size:34px; }
+  .clin-sec { padding:56px 24px; }
+  .clin-cred-strip { padding:0 24px; }
+  .clin-cred-inner { grid-template-columns:repeat(2,1fr); }
+  .clin-cred-item:nth-child(5) { display:none; }
+  .clin-product { padding:28px; }
+  .clin-product-grid { grid-template-columns:1fr; }
+  .clin-pipe-header { display:none; }
+  .clin-pipe-row { grid-template-columns:1fr; gap:8px; padding:20px; }
+  .clin-pipe-row .pipe-phase, .clin-pipe-row .pipe-status { font-size:12px; }
+  .clin-stats { grid-template-columns:1fr; gap:12px; }
+  .clin-stat-card { padding:24px 20px; }
+  .clin-cta { padding:56px 24px; }
+  .clin-cta h2 { font-size:28px; }
+}
+
+/* Footer override — dark teal */
+.footer { background:#0F2B35 !important; }
+.footer .col a:hover { color:#7CCADB !important; }
+
+</style>
+
+<!-- HERO -->
+<section class="clin-hero" id="hero">
+  <div class="clin-hero-grid"></div>
+  <div class="clin-hero-inner">
+    <div class="clin-hero-text">
+      <div class="clin-overline"><span class="pulse"></span> Regenerative Therapeutics</div>
+      <h1>Advancing cell therapy from bench to bedside</h1>
+      <p class="desc">StemCyte develops and manufactures FDA-licensed cord blood-derived cell therapies. With 2,300+ transplants worldwide and an active clinical pipeline, we bridge the gap between stem cell science and patient outcomes.</p>
+    </div>
+
+    <!-- Credentials Strip -->
+    <div class="clin-cred-strip">
+      <div class="clin-cred-inner">
+        <div class="clin-cred-item"><div class="cv">FDA BLA</div><div class="cl">Biologics License</div></div>
+        <div class="clin-cred-item"><div class="cv">RMAT Designation</div><div class="cl">Regenerative Medicine</div></div>
+        <div class="clin-cred-item"><div class="cv">FACT Accredited</div><div class="cl">Cell Therapy Standards</div></div>
+        <div class="clin-cred-item"><div class="cv">AABB Accredited</div><div class="cl">Blood Banking</div></div>
+        <div class="clin-cred-item"><div class="cv">2,300+</div><div class="cl">Transplants</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LICENSED PRODUCT -->
+<section class="clin-sec">
+  <div class="clin-sec-inner">
+    <div class="clin-label">FDA-Licensed Biologic</div>
+    <h2>REGENECYTE&reg; (HPC, Cord Blood)</h2>
+    <p>An allogeneic hematopoietic progenitor cell therapy derived from human cord blood. FDA biologics license BLA 125764/0, approved 2024. Indicated for hematopoietic reconstitution in patients undergoing transplantation.</p>
+
+    <div class="clin-product">
+      <div class="clin-product-grid">
+        <div class="clin-product-fact">
+          <div class="pf-label">BLA Number</div>
+          <div class="pf-val">125764/0</div>
+        </div>
+        <div class="clin-product-fact">
+          <div class="pf-label">Approval Year</div>
+          <div class="pf-val">2024</div>
+        </div>
+        <div class="clin-product-fact">
+          <div class="pf-label">Source</div>
+          <div class="pf-val">Human umbilical cord blood</div>
+        </div>
+        <div class="clin-product-fact">
+          <div class="pf-label">Designations</div>
+          <div class="pf-val">RMAT (Long COVID)</div>
+        </div>
+      </div>
+      <a href="/clinical/regenecyte" class="clin-link">View full product information &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- PIPELINE -->
+<section class="clin-sec clin-sec-alt">
+  <div class="clin-sec-inner">
+    <div class="clin-label">Clinical Pipeline</div>
+    <h2>Active development programs</h2>
+
+    <div class="clin-pipeline">
+      <div class="clin-pipe-header">
+        <span>Indication</span>
+        <span>Phase</span>
+        <span>Status</span>
+        <span></span>
+      </div>
+      <div class="clin-pipe-row">
+        <div class="pipe-ind"><a href="/clinical/long-covid">REGENECYTE&reg; for Long COVID</a></div>
+        <div class="pipe-phase">Phase II</div>
+        <div class="pipe-status">Completed &bull; Expanded Access cleared &bull; Published in EClinicalMedicine</div>
+        <div><span class="clin-pipe-pill completed">Completed</span></div>
+      </div>
+      <div class="clin-pipe-row">
+        <div class="pipe-ind"><a href="/clinical/stroke">REGENECYTE&reg; for Acute Ischemic Stroke</a></div>
+        <div class="pipe-phase">Phase II</div>
+        <div class="pipe-status">Active</div>
+        <div><span class="clin-pipe-pill active">Active</span></div>
+      </div>
+      <div class="clin-pipe-row">
+        <div class="pipe-ind">REGENECYTE&reg; for Cerebral Palsy</div>
+        <div class="pipe-phase">Investigational</div>
+        <div class="pipe-status">Early-stage research</div>
+        <div><span class="clin-pipe-pill investigational">Investigational</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INSTITUTIONAL REACH -->
+<section class="clin-sec">
+  <div class="clin-sec-inner">
+    <div class="clin-label">Global Utilization</div>
+    <h2>Trusted by leading transplant centers</h2>
+    <p>StemCyte cord blood products have been used in allogeneic transplantation at over 325 institutions worldwide. Our multi-ethnic inventory improves match likelihood across diverse genetic backgrounds.</p>
+
+    <div class="clin-stats">
+      <div class="clin-stat-card">
+        <div class="stat-num">2,300+</div>
+        <div class="stat-label">Transplants worldwide</div>
+      </div>
+      <div class="clin-stat-card">
+        <div class="stat-num">325+</div>
+        <div class="stat-label">Institutions served</div>
+      </div>
+      <div class="clin-stat-card">
+        <div class="stat-num">27+</div>
+        <div class="stat-label">Years of operation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK LINKS -->
+<section class="clin-sec clin-sec-alt">
+  <div class="clin-sec-inner">
+    <div class="clin-links-grid">
+      <a href="/clinical/clinical-trials" class="clin-link-card">
+        <h3>Clinical Trials</h3>
+        <p>View active and completed studies</p>
+        <span class="arrow">Learn more &rarr;</span>
+      </a>
+      <a href="/clinical/expanded-access-program" class="clin-link-card">
+        <h3>Expanded Access</h3>
+        <p>Access REGENECYTE&reg; for qualifying patients</p>
+        <span class="arrow">Learn more &rarr;</span>
+      </a>
+      <a href="/clinical/publications" class="clin-link-card">
+        <h3>Publications</h3>
+        <p>Peer-reviewed data and conference presentations</p>
+        <span class="arrow">Learn more &rarr;</span>
+      </a>
+      <a href="/clinical/manufacturing" class="clin-link-card">
+        <h3>Manufacturing &amp; Quality</h3>
+        <p>FDA-licensed facility, GMP operations</p>
+        <span class="arrow">Learn more &rarr;</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="clin-cta">
+  <h2>Medical information inquiries</h2>
+  <p>For product information, clinical data requests, or medical affairs inquiries, contact our team.</p>
+  <a href="/contact" class="btn">Contact Medical Affairs</a>
+  <p class="sec-text">For patient-facing cord blood banking, visit <a href="/">stemcyte.com</a></p>
+</section>
+
+</BaseLayout>

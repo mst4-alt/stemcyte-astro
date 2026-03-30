@@ -1,0 +1,207 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "MedicalOrganization",
+  "name": "StemCyte, Inc.",
+  "description": "FDA-licensed cGMP cord blood processing facility in Baldwin Park, California.",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Baldwin Park",
+    "addressRegion": "CA",
+    "addressCountry": "US"
+  },
+  "hasCredential": [
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "Accreditation", "name": "FACT Accredited", "recognizedBy": { "@type": "Organization", "name": "Foundation for the Accreditation of Cellular Therapy" } },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "Accreditation", "name": "AABB Accredited", "recognizedBy": { "@type": "Organization", "name": "Association for the Advancement of Blood & Biotherapies" } },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "Registration", "name": "FDA Registered Facility" },
+    { "@type": "EducationalOccupationalCredential", "credentialCategory": "Membership", "name": "NMDP Member" }
+  ]
+};
+---
+
+<BaseLayout title="Manufacturing & Quality | StemCyte" schema={schema}>
+
+<style is:global>
+
+/* HERO */
+.mfg-hero { background:linear-gradient(180deg,#081518 0%,#0c1f28 40%,#122e3a 70%,#163648 100%); min-height:400px; display:flex; align-items:flex-end; padding:0 48px 64px; position:relative; overflow:hidden; }
+.mfg-hero .grid-bg { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.012) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.012) 1px,transparent 1px); background-size:64px 64px; pointer-events:none; z-index:0; }
+.mfg-hero-inner { max-width:800px; margin:0 auto; width:100%; position:relative; z-index:3; }
+.mfg-hero .overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4FA3B8; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
+.mfg-hero .overline .pulse { width:6px; height:6px; border-radius:50%; background:#4FA3B8; animation:mfg-pulse 2s ease infinite; }
+@keyframes mfg-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(79,163,184,0.4)} 50%{box-shadow:0 0 0 8px rgba(79,163,184,0)} }
+.mfg-hero h1 { font-family:'Playfair Display',serif; font-size:48px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; color:#fff; margin-bottom:16px; }
+.mfg-hero .desc { font-size:16px; color:rgba(255,255,255,0.55); line-height:1.7; max-width:680px; }
+
+/* SECTIONS */
+.mfg-section { padding:80px 48px; }
+.mfg-section-inner { max-width:900px; margin:0 auto; }
+.mfg-section--alt { background:#EDF5F7; }
+.mfg-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2A637C; margin-bottom:12px; }
+.mfg-section h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; color:#2C2A26; margin-bottom:16px; }
+.mfg-section p { font-size:15px; color:#6B665D; line-height:1.8; margin-bottom:16px; }
+
+/* CREDENTIAL CARDS */
+.mfg-cred-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:32px; }
+.mfg-cred-card { background:#fff; border-radius:12px; padding:28px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.mfg-cred-top { display:flex; align-items:center; gap:16px; margin-bottom:14px; }
+.mfg-cred-badge { width:48px; height:48px; border-radius:50%; border:2px solid #2A637C; display:flex; align-items:center; justify-content:center; font-size:11px; font-weight:700; color:#2A637C; letter-spacing:0.5px; flex-shrink:0; }
+.mfg-cred-name { font-size:16px; font-weight:700; color:#2C2A26; }
+.mfg-cred-year { font-size:12px; color:#8A857A; margin-top:2px; }
+.mfg-cred-desc { font-size:14px; color:#6B665D; line-height:1.7; }
+
+/* TABLE */
+.mfg-table { width:100%; border-collapse:collapse; margin:24px 0; font-size:14px; }
+.mfg-table th { text-align:left; padding:10px 12px; background:#EDF5F7; font-size:12px; font-weight:700; color:#2A637C; letter-spacing:0.5px; text-transform:uppercase; }
+.mfg-table td { padding:10px 12px; border-bottom:1px solid #E8E2DC; color:#2C2A26; }
+.mfg-table tr:last-child td { border-bottom:none; }
+.mfg-table td:first-child { font-weight:700; }
+
+/* CTA */
+.mfg-cta { background:linear-gradient(160deg,#2A637C,#1A3F50); padding:80px 48px; text-align:center; }
+.mfg-cta h2 { font-family:'Playfair Display',serif; font-size:36px; font-weight:400; color:#fff; margin-bottom:12px; }
+.mfg-cta p { font-size:16px; color:rgba(255,255,255,0.65); margin-bottom:32px; max-width:560px; margin-left:auto; margin-right:auto; }
+.mfg-cta .mfg-btn { display:inline-block; background:#fff; color:#2A637C; padding:16px 36px; border-radius:100px; font-size:15px; font-weight:700; text-decoration:none; font-family:'Lato',sans-serif; transition:all 0.25s; }
+.mfg-cta .mfg-btn:hover { background:rgba(255,255,255,0.85); }
+.mfg-cta .mfg-link { display:block; margin-top:16px; font-size:14px; color:rgba(255,255,255,0.55); text-decoration:none; transition:color 0.2s; }
+.mfg-cta .mfg-link:hover { color:#fff; }
+
+/* FOOTER OVERRIDE */
+.footer { background:#0F2B35 !important; }
+.footer .col a:hover { color:#7CCADB !important; }
+
+/* RESPONSIVE */
+@media(max-width:768px) {
+  .mfg-hero { padding:100px 24px 48px; min-height:auto; }
+  .mfg-hero h1 { font-size:34px; }
+  .mfg-section { padding:48px 24px; }
+  .mfg-cred-grid { grid-template-columns:1fr; }
+  .mfg-table { font-size:13px; }
+  .mfg-table th, .mfg-table td { padding:8px 10px; }
+  /* Table to card layout on mobile */
+  .mfg-table-mobile thead { display:none; }
+  .mfg-table-mobile tr { display:block; background:#fff; border-radius:8px; padding:16px; margin-bottom:12px; box-shadow:0 1px 3px rgba(0,0,0,0.04); }
+  .mfg-table-mobile td { display:block; border-bottom:none; padding:4px 0; }
+  .mfg-table-mobile td:first-child { font-size:15px; color:#2A637C; margin-bottom:4px; }
+  .mfg-table-mobile td:last-child { color:#6B665D; font-weight:400; }
+  .mfg-cta { padding:48px 24px; }
+  .mfg-cta h2 { font-size:28px; }
+}
+@media(min-width:769px) and (max-width:1024px) {
+  .mfg-cred-grid { grid-template-columns:1fr 1fr; }
+}
+
+</style>
+
+<!-- HERO -->
+<section class="mfg-hero" id="hero">
+  <div class="grid-bg"></div>
+  <div class="mfg-hero-inner">
+    <div class="overline"><span class="pulse"></span> QUALITY &amp; OPERATIONS</div>
+    <h1>Manufacturing &amp; Quality Systems</h1>
+    <p class="desc">FDA-licensed cGMP facility in Baldwin Park, California. Processing, testing, cryopreservation, and global distribution of cord blood-derived cell therapy products.</p>
+  </div>
+</section>
+
+<!-- FACILITY OVERVIEW -->
+<section class="mfg-section">
+  <div class="mfg-section-inner">
+    <div class="mfg-label">GMP Facility</div>
+    <h2>Baldwin Park, California</h2>
+    <p>StemCyte operates an FDA-licensed current Good Manufacturing Practice (cGMP) facility in Baldwin Park, California. Established in 2015, the facility supports both private cord blood banking operations and the manufacture of REGENECYTE&reg; (HPC, Cord Blood), our FDA-licensed allogeneic cell therapy product.</p>
+    <p>The facility is designed for end-to-end processing: from cord blood unit receipt through cell processing, cryopreservation, storage, and release for clinical use.</p>
+  </div>
+</section>
+
+<!-- ACCREDITATIONS -->
+<section class="mfg-section mfg-section--alt">
+  <div class="mfg-section-inner">
+    <div class="mfg-label">Credentials</div>
+    <h2>Accreditations &amp; Regulatory Status</h2>
+    <div class="mfg-cred-grid">
+      <div class="mfg-cred-card">
+        <div class="mfg-cred-top">
+          <div class="mfg-cred-badge">FACT</div>
+          <div>
+            <div class="mfg-cred-name">FACT Accredited</div>
+            <div class="mfg-cred-year">Accredited since 2006</div>
+          </div>
+        </div>
+        <div class="mfg-cred-desc">Foundation for the Accreditation of Cellular Therapy. Standards for cell therapy product collection, processing, and administration.</div>
+      </div>
+      <div class="mfg-cred-card">
+        <div class="mfg-cred-top">
+          <div class="mfg-cred-badge">AABB</div>
+          <div>
+            <div class="mfg-cred-name">AABB Accredited</div>
+            <div class="mfg-cred-year">Accredited since 2002</div>
+          </div>
+        </div>
+        <div class="mfg-cred-desc">Association for the Advancement of Blood &amp; Biotherapies. Standards for blood banking, transfusion medicine, and cellular therapies.</div>
+      </div>
+      <div class="mfg-cred-card">
+        <div class="mfg-cred-top">
+          <div class="mfg-cred-badge">FDA</div>
+          <div>
+            <div class="mfg-cred-name">FDA Registered</div>
+            <div class="mfg-cred-year">Registered facility</div>
+          </div>
+        </div>
+        <div class="mfg-cred-desc">U.S. Food and Drug Administration registered facility. Manufacturer of REGENECYTE&reg; (HPC, Cord Blood), BLA 125764/0.</div>
+      </div>
+      <div class="mfg-cred-card">
+        <div class="mfg-cred-top">
+          <div class="mfg-cred-badge">NMDP</div>
+          <div>
+            <div class="mfg-cred-name">NMDP Member</div>
+            <div class="mfg-cred-year">National registry participant</div>
+          </div>
+        </div>
+        <div class="mfg-cred-desc">National Marrow Donor Program member. Participation in the national registry system for unrelated donor transplantation.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUALITY & RELEASE TESTING -->
+<section class="mfg-section">
+  <div class="mfg-section-inner">
+    <div class="mfg-label">Quality Systems</div>
+    <h2>Release Testing &amp; Product Characterization</h2>
+    <p>Every cord blood unit processed at StemCyte undergoes comprehensive release testing before clinical use. Our quality systems ensure product consistency, safety, and regulatory compliance across all operations.</p>
+    <table class="mfg-table mfg-table-mobile">
+      <thead>
+        <tr><th>Test Category</th><th>Description</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Identity</td><td>Confirmation of cell type and donor identity</td></tr>
+        <tr><td>Potency</td><td>Assessment of viable cell content and functional capacity</td></tr>
+        <tr><td>Viability</td><td>Cell viability determination post-processing and post-thaw</td></tr>
+        <tr><td>Sterility</td><td>Microbiological testing to confirm absence of contamination</td></tr>
+        <tr><td>HLA Typing</td><td>High-resolution human leukocyte antigen characterization</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- STORAGE & DISTRIBUTION -->
+<section class="mfg-section mfg-section--alt">
+  <div class="mfg-section-inner">
+    <div class="mfg-label">Cryopreservation</div>
+    <h2>Storage &amp; Logistics</h2>
+    <p>Cord blood units are cryopreserved and maintained in controlled-rate freezing systems with continuous temperature monitoring. StemCyte maintains validated shipping and logistics protocols for domestic and international distribution to transplant centers.</p>
+    <p>All storage systems employ continuous temperature monitoring with automated alerts. Units undergo controlled-rate cryopreservation according to validated protocols and are shipped in validated containers that maintain required temperature ranges throughout transit. StemCyte has distributed units to transplant centers across the United States and internationally.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="mfg-cta">
+  <h2>Facility inquiries</h2>
+  <p>For questions about our manufacturing capabilities, quality systems, or product specifications, contact our team.</p>
+  <a class="mfg-btn" href="/contact">Contact Us</a>
+  <a class="mfg-link" href="/clinical/regenecyte">View REGENECYTE&reg; product information &rarr;</a>
+</section>
+
+</BaseLayout>
