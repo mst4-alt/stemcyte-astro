@@ -30,13 +30,13 @@ const ctaHref = isClinical ? '/biologics/contact' : '/pricing';
   </a>
   <div class="links">
     {isClinical && <a href="/" class="back-link">&larr; stemcyte.com</a>}
+    {isClinical && <span class="lane-badge">Biologics</span>}
     {isClinical && <span class="links-sep"></span>}
     {navLinks.map(({ label, href }) => (
       <a href={href} class={pathname.replace(/\/$/, '') === href || (href !== '/biologics' && pathname.startsWith(href + '/')) ? 'active' : ''}>
         {label}
       </a>
     ))}
-    {isClinical && <span class="lane-badge">Biologics</span>}
   </div>
   <div class="rg">
     <a href={ctaHref} class="cta">{ctaText}</a>
