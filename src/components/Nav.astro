@@ -33,7 +33,7 @@ const ctaHref = isClinical ? '/biologics/contact' : '/pricing';
     {isClinical && <a href="/" class="back-link">&larr; stemcyte.com</a>}
     {isClinical && <span class="links-sep"></span>}
     {navLinks.map(({ label, href }) => (
-      <a href={href} class={pathname === href || (href !== '/biologics' && pathname.startsWith(href + '/')) ? 'active' : ''}>
+      <a href={href} class={pathname.replace(/\/$/, '') === href || (href !== '/biologics' && pathname.startsWith(href + '/')) ? 'active' : ''}>
         {label}
       </a>
     ))}
@@ -59,7 +59,7 @@ const ctaHref = isClinical ? '/biologics/contact' : '/pricing';
   )}
   <div class="sheet-links">
     {navLinks.map(({ label, href }) => (
-      <a href={href} class={pathname === href || (href !== '/biologics' && pathname.startsWith(href + '/')) ? 'active' : ''}>
+      <a href={href} class={pathname.replace(/\/$/, '') === href || (href !== '/biologics' && pathname.startsWith(href + '/')) ? 'active' : ''}>
         {label}
       </a>
     ))}
