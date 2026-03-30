@@ -218,6 +218,14 @@ body {
 }
 .back-link:hover { color: rgba(255,255,255,0.6); }
 
+/* Separator between back-link and nav links */
+.links-sep {
+  width: 1px; height: 16px;
+  background: rgba(255,255,255,0.1);
+  display: inline-block; vertical-align: middle;
+  margin: 0 4px;
+}
+
 /* Clinical mobile sheet */
 .sheet-clinical { background: #0c1f28; }
 .sheet-clinical .sheet-handle { background: rgba(255,255,255,0.15); }

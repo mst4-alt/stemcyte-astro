@@ -30,6 +30,8 @@ const ctaHref = isClinical ? '/clinical/contact' : '/pricing';
     <img src="/images/logos/black_stemcyte.webp" alt="StemCyte" class="logo-black" width="150" height="28" fetchpriority="low" />
   </a>
   <div class="links">
+    {isClinical && <a href="/" class="back-link">&larr; stemcyte.com</a>}
+    {isClinical && <span class="links-sep"></span>}
     {navLinks.map(({ label, href }) => (
       <a href={href} class={pathname === href || pathname.startsWith(href + '/') ? 'active' : ''}>
         {label}
@@ -38,7 +40,6 @@ const ctaHref = isClinical ? '/clinical/contact' : '/pricing';
     {isClinical && <span class="lane-badge">Clinical</span>}
   </div>
   <div class="rg">
-    {isClinical && <a href="/" class="back-link">&larr; stemcyte.com</a>}
     <a href={ctaHref} class="cta">{ctaText}</a>
   </div>
   <button class="hamburger" aria-label="Open menu">
