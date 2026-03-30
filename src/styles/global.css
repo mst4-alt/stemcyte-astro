@@ -140,6 +140,80 @@ body {
 .nav.at-top.plum-hero .cta:hover { background: rgba(0,0,0,0.14); border-color: rgba(0,0,0,0.20); }
 .nav.at-top.plum-hero .hamburger span { background: rgba(44,42,38,0.6); }
 
+/* === CLINICAL NAV LANE === */
+.nav.clinical.at-top .logo-white { display: block !important; }
+.nav.clinical.at-top .logo-color { display: none !important; }
+.nav.clinical.at-top .logo-black { display: none !important; }
+.nav.clinical.at-top .links a { color: rgba(255,255,255,0.55); }
+.nav.clinical.at-top .links a:hover { color: rgba(255,255,255,0.9); }
+.nav.clinical.at-top .links a.active { color: #7CBFD4; font-weight: 700; }
+.nav.clinical.at-top .cta {
+  background: transparent; color: #7CBFD4;
+  border: 1px solid rgba(124,191,212,0.3);
+}
+.nav.clinical.at-top .cta:hover {
+  background: rgba(79,163,184,0.1);
+  border-color: rgba(124,191,212,0.5);
+}
+.nav.clinical.at-top .hamburger span { background: rgba(255,255,255,0.6); }
+
+.nav.clinical.scrolled {
+  background: rgba(10,28,36,0.97);
+  border-bottom: 1px solid rgba(79,163,184,0.1);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.nav.clinical.scrolled .logo-white { display: block !important; }
+.nav.clinical.scrolled .logo-color { display: none !important; }
+.nav.clinical.scrolled .logo-black { display: none !important; }
+.nav.clinical.scrolled .links a { color: rgba(255,255,255,0.5); }
+.nav.clinical.scrolled .links a:hover { color: rgba(255,255,255,0.85); }
+.nav.clinical.scrolled .links a.active { color: #7CBFD4; font-weight: 700; }
+.nav.clinical.scrolled .cta {
+  background: transparent; color: #7CBFD4;
+  border: 1px solid rgba(124,191,212,0.3);
+}
+.nav.clinical.scrolled .cta:hover {
+  background: rgba(79,163,184,0.1);
+  border-color: rgba(124,191,212,0.5);
+}
+.nav.clinical.scrolled .hamburger span { background: rgba(255,255,255,0.6); }
+
+/* Lane badge */
+.lane-badge {
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 100px; margin-left: 4px;
+  background: rgba(79,163,184,0.15); color: #4FA3B8;
+  border: 1px solid rgba(79,163,184,0.2);
+  pointer-events: none;
+}
+
+/* HCP link (consumer nav) */
+.hcp-link {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+  text-decoration: none; color: #8A857A; transition: color 0.25s;
+}
+.hcp-link:hover { color: #2A637C; }
+.nav.at-top .hcp-link { color: rgba(255,255,255,0.4); }
+.nav.at-top .hcp-link:hover { color: rgba(255,255,255,0.7); }
+
+/* Back link (clinical nav) */
+.back-link {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.3px;
+  text-decoration: none; color: rgba(255,255,255,0.3); transition: color 0.25s;
+}
+.back-link:hover { color: rgba(255,255,255,0.6); }
+
+/* Clinical mobile sheet */
+.sheet-clinical { background: #0c1f28; }
+.sheet-clinical .sheet-handle { background: rgba(255,255,255,0.15); }
+.sheet-clinical .sheet-links a { color: rgba(255,255,255,0.7); border-bottom-color: rgba(255,255,255,0.06); }
+.sheet-clinical .sheet-links a.active { color: #7CBFD4; font-weight: 700; }
+.sheet-clinical .sheet-cta a { background: transparent; color: #7CBFD4; border: 1px solid rgba(124,191,212,0.3); }
+.sheet-back { padding: 12px 28px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+.sheet-back a { font-size: 13px; color: rgba(255,255,255,0.35); text-decoration: none; }
+.sheet-hcp { padding: 8px 28px 24px; text-align: center; }
+.sheet-hcp a { font-size: 12px; font-weight: 700; color: #8A857A; text-decoration: none; letter-spacing: 0.3px; }
+
 /* === FOOTER === */
 .footer {
   background: #3D0F31;

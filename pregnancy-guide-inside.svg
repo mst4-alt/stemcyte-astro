@@ -1,494 +1,418 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-     viewBox="0 0 1904 704" width="1904" height="704">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1904 704" width="1904" height="704">
 <defs>
-<clipPath id="clip0"><rect x="0.0" y="0.0" width="272.0" height="704.0" rx="0.0"/></clipPath>
-<clipPath id="clip1"><rect x="272.0" y="0.0" width="272.0" height="704.0" rx="0.0"/></clipPath>
-<linearGradient id="grad2" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0%" stop-color="rgba(108, 26, 85, 0.05)"/><stop offset="100%" stop-color="rgba(108, 26, 85, 0.01)"/></linearGradient>
-<clipPath id="clip3"><rect x="290.0" y="84.8" width="235.0" height="3.0" rx="3.0"/></clipPath>
-<clipPath id="clip4"><rect x="544.0" y="0.0" width="272.0" height="704.0" rx="0.0"/></clipPath>
-<linearGradient id="grad5" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0%" stop-color="rgba(108, 26, 85, 0.05)"/><stop offset="100%" stop-color="rgba(108, 26, 85, 0.01)"/></linearGradient>
-<clipPath id="clip6"><rect x="816.0" y="0.0" width="272.0" height="704.0" rx="0.0"/></clipPath>
-<linearGradient id="grad7" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0%" stop-color="rgba(61, 139, 106, 0.07)"/><stop offset="100%" stop-color="rgba(61, 139, 106, 0.01)"/></linearGradient>
-<clipPath id="clip8"><rect x="834.0" y="84.8" width="235.0" height="3.0" rx="3.0"/></clipPath>
-<clipPath id="clip9"><rect x="1088.0" y="0.0" width="272.0" height="704.0" rx="0.0"/></clipPath>
-<linearGradient id="grad10" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0%" stop-color="rgba(61, 139, 106, 0.07)"/><stop offset="100%" stop-color="rgba(61, 139, 106, 0.01)"/></linearGradient>
-<clipPath id="clip11"><rect x="1360.0" y="0.0" width="272.0" height="704.0" rx="0.0"/></clipPath>
-<linearGradient id="grad12" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0%" stop-color="rgba(184, 134, 43, 0.07)"/><stop offset="100%" stop-color="rgba(184, 134, 43, 0.01)"/></linearGradient>
-<clipPath id="clip13"><rect x="1378.0" y="84.8" width="235.0" height="3.0" rx="3.0"/></clipPath>
-<clipPath id="clip14"><rect x="1632.0" y="0.0" width="272.0" height="704.0" rx="0.0"/></clipPath>
-<linearGradient id="grad15" x1="0" y1="0" x2="0.6" y2="1"><stop offset="0%" stop-color="rgba(184, 134, 43, 0.07)"/><stop offset="100%" stop-color="rgba(184, 134, 43, 0.01)"/></linearGradient>
-
+<linearGradient id="grad0" x1="0.1464" y1="0.1464" x2="0.8536" y2="0.8536"><stop offset="0.0%" stop-color="#6c1a55" stop-opacity="0.05"/><stop offset="100.0%" stop-color="#6c1a55" stop-opacity="0.01"/></linearGradient>
+<linearGradient id="grad1" x1="0.1464" y1="0.1464" x2="0.8536" y2="0.8536"><stop offset="0.0%" stop-color="#6c1a55" stop-opacity="0.05"/><stop offset="100.0%" stop-color="#6c1a55" stop-opacity="0.01"/></linearGradient>
+<linearGradient id="grad2" x1="0.1464" y1="0.1464" x2="0.8536" y2="0.8536"><stop offset="0.0%" stop-color="#b3508a" stop-opacity="0.07"/><stop offset="100.0%" stop-color="#b3508a" stop-opacity="0.01"/></linearGradient>
+<linearGradient id="grad3" x1="0.1464" y1="0.1464" x2="0.8536" y2="0.8536"><stop offset="0.0%" stop-color="#b3508a" stop-opacity="0.07"/><stop offset="100.0%" stop-color="#b3508a" stop-opacity="0.01"/></linearGradient>
+<linearGradient id="grad4" x1="0.1464" y1="0.1464" x2="0.8536" y2="0.8536"><stop offset="0.0%" stop-color="#d98d9a" stop-opacity="0.07"/><stop offset="100.0%" stop-color="#d98d9a" stop-opacity="0.01"/></linearGradient>
+<linearGradient id="grad5" x1="0.1464" y1="0.1464" x2="0.8536" y2="0.8536"><stop offset="0.0%" stop-color="#d98d9a" stop-opacity="0.07"/><stop offset="100.0%" stop-color="#d98d9a" stop-opacity="0.01"/></linearGradient>
 </defs>
-<g clip-path="url(#clip0)"><rect x="0.0" y="0.0" width="272.0" height="704.0" rx="0.0" fill="rgb(255, 255, 255)"/>
-<rect x="271.0" y="0.0" width="1.0" height="704.0" fill="rgba(0, 0, 0, 0.04)"/>
-<text x="254.6" y="12.2" font-family="Lato, sans-serif" font-size="7px" font-weight="700" fill="rgba(0, 0, 0, 0.06)">P2</text>
-<text x="18.0" y="29.8" font-family="Lato, sans-serif" font-size="8px" font-weight="700" fill="rgb(108, 26, 85)" letter-spacing="2px">WELCOME</text>
-<text x="18.0" y="61.4" font-family="&quot;Playfair Display&quot;, serif" font-size="22px" font-weight="600" fill="rgb(44, 42, 38)">Congratulations.</text>
-<text x="18.0" y="90.0" font-family="Lato, sans-serif" font-size="9px" font-weight="400" fill="rgb(74, 71, 64)">You&apos;re pregnant. From this point forward, your body will do</text>
-<text x="18.0" y="103.9" font-family="Lato, sans-serif" font-size="9px" font-weight="400" fill="rgb(74, 71, 64)">something extraordinary — growing a new life from a single</text>
-<text x="18.0" y="117.8" font-family="Lato, sans-serif" font-size="9px" font-weight="400" fill="rgb(74, 71, 64)">cell. Some days you&apos;ll feel amazing. Others, you&apos;ll wonder</text>
-<text x="18.0" y="131.8" font-family="Lato, sans-serif" font-size="9px" font-weight="400" fill="rgb(74, 71, 64)">what happened to your energy, your appetite, or your ability</text>
-<text x="18.0" y="145.7" font-family="Lato, sans-serif" font-size="9px" font-weight="400" fill="rgb(74, 71, 64)">to stay awake past 8 PM.</text>
-<text x="18.0" y="167.7" font-family="Lato, sans-serif" font-size="9px" font-weight="400" fill="rgb(74, 71, 64)">All of it is normal. This guide walks you through what to</text>
-<text x="18.0" y="181.6" font-family="Lato, sans-serif" font-size="9px" font-weight="400" fill="rgb(74, 71, 64)">expect, what to do about it, and what decisions are ahead —</text>
-<text x="18.0" y="195.5" font-family="Lato, sans-serif" font-size="9px" font-weight="400" fill="rgb(74, 71, 64)">trimester by trimester.</text>
-<rect x="18.0" y="213.9" width="74.3" height="57.0" rx="6.0" fill="rgba(108, 26, 85, 0.08)"/>
-<text x="44.9" y="239.4" font-family="&quot;Source Serif 4&quot;, serif" font-size="18px" font-weight="700" fill="rgb(108, 26, 85)">40</text>
-<text x="42.5" y="261.1" font-family="Lato, sans-serif" font-size="7px" font-weight="400" fill="rgb(108, 26, 85)" letter-spacing="0.3px">WEEKS</text>
-<rect x="98.3" y="213.9" width="74.3" height="57.0" rx="6.0" fill="rgba(61, 139, 106, 0.07)"/>
-<text x="130.4" y="239.4" font-family="&quot;Source Serif 4&quot;, serif" font-size="18px" font-weight="700" fill="rgb(61, 139, 106)">3</text>
-<text x="113.3" y="261.1" font-family="Lato, sans-serif" font-size="7px" font-weight="400" fill="rgb(61, 139, 106)" letter-spacing="0.3px">TRIMESTERS</text>
-<rect x="178.7" y="213.9" width="74.3" height="57.0" rx="6.0" fill="rgba(184, 134, 43, 0.07)"/>
-<text x="200.5" y="239.4" font-family="&quot;Source Serif 4&quot;, serif" font-size="18px" font-weight="700" fill="rgb(184, 134, 43)">25+</text>
-<text x="202.8" y="261.1" font-family="Lato, sans-serif" font-size="7px" font-weight="400" fill="rgb(184, 134, 43)" letter-spacing="0.3px">TOPICS</text>
-<rect x="18.0" y="284.9" width="235.0" height="1.0" rx="0.0" fill="rgb(232, 226, 220)"/>
-<text x="18.0" y="308.5" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(108, 26, 85)" letter-spacing="0.2px">Your Pregnancy at a Glance</text>
-<text x="18.0" y="328.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">1st Trimester</text>
-<text x="205.5" y="328.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Weeks 1–12</text>
-<text x="18.0" y="351.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">2nd Trimester</text>
-<text x="200.6" y="351.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Weeks 12–28</text>
-<text x="18.0" y="374.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">3rd Trimester</text>
-<text x="200.6" y="374.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Weeks 28–40</text>
-<text x="18.0" y="397.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">First prenatal visit</text>
-<text x="219.0" y="397.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">~Week 6</text>
-<text x="18.0" y="420.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">Baby&apos;s first kicks</text>
-<text x="214.1" y="420.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">~Week 23</text>
-<text x="18.0" y="443.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">Glucose screening</text>
-<text x="200.6" y="443.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Weeks 24–28</text>
-<text x="18.0" y="466.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">Full term</text>
-<text x="214.1" y="466.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Week 37+</text>
-<rect x="18.0" y="487.9" width="235.0" height="1.0" rx="0.0" fill="rgb(232, 226, 220)"/>
-<rect x="18.0" y="500.9" width="235.0" height="72.3" rx="6.0" fill="rgb(250, 247, 242)"/>
-<rect x="18.0" y="500.9" width="235.0" height="1.0" fill="rgb(232, 226, 220)"/>
-<rect x="18.0" y="572.1" width="235.0" height="1.0" fill="rgb(232, 226, 220)"/>
-<rect x="252.0" y="500.9" width="1.0" height="72.3" fill="rgb(232, 226, 220)"/>
-<text x="31.0" y="518.9" font-family="Lato, sans-serif" font-size="7.5px" font-weight="700" fill="rgb(108, 26, 85)" letter-spacing="0.5px">A NOTE ABOUT THIS GUIDE</text>
-<text x="31.0" y="532.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">Every pregnancy is different. This is not a substitute for</text>
-<text x="31.0" y="545.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">your provider&apos;s care — it&apos;s a companion to help you know</text>
-<text x="31.0" y="558.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(122, 117, 110)">what to ask and what to expect.</text>
-</g><g clip-path="url(#clip1)"><rect x="272.0" y="0.0" width="272.0" height="704.0" rx="0.0" fill="rgb(255, 255, 255)"/>
-<rect x="543.0" y="0.0" width="1.0" height="704.0" fill="rgba(0, 0, 0, 0.04)"/>
-<text x="526.6" y="12.2" font-family="Lato, sans-serif" font-size="7px" font-weight="700" fill="rgba(0, 0, 0, 0.06)">P8</text>
-<rect x="272.0" y="0.0" width="271.0" height="68.8" rx="0.0" fill="url(#grad2)"/>
-<g opacity="0.04"><text x="488.0" y="37.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="36px" font-weight="700" fill="rgb(44, 42, 38)">01</text>
-</g><text x="290.0" y="21.8" font-family="Lato, sans-serif" font-size="8px" font-weight="700" fill="rgb(108, 26, 85)" letter-spacing="2px">1ST TRIMESTER</text>
-<text x="290.0" y="44.8" font-family="&quot;Playfair Display&quot;, serif" font-size="14px" font-weight="600" fill="rgb(44, 42, 38)">Your Body &amp; Baby</text>
-<text x="290.0" y="58.6" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(122, 117, 110)">Weeks 1–12</text>
-<g clip-path="url(#clip3)"><rect x="290.0" y="84.8" width="235.0" height="3.0" rx="3.0" fill="rgb(200, 194, 187)"/>
-<rect x="290.0" y="84.8" width="70.5" height="3.0" rx="3.0" fill="rgb(108, 26, 85)"/>
-</g><text x="290.0" y="118.4" font-family="Lato, sans-serif" font-size="9.5px" font-weight="700" fill="rgb(108, 26, 85)" letter-spacing="0.2px">What You May Experience</text>
-<rect x="290.0" y="129.8" width="10.0" height="10.0" rx="50.0" fill="rgb(108, 26, 85)"/>
-<rect x="290.0" y="129.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="290.0" y="137.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="298.0" y="129.8" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="295.0" cy="134.8" r="5.0" fill="rgb(108, 26, 85)"/><circle cx="295.0" cy="134.8" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="308.0" y="133.4" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Fatigue</text>
-<text x="308.0" y="146.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Your body is building a placenta, increasing blood volume,</text>
-<text x="308.0" y="159.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">and supporting rapid cell division. That takes enormous</text>
-<text x="308.0" y="172.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">energy.</text>
-<rect x="308.0" y="179.0" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="318.0" y="187.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Rest when you can — don&apos;t fight it. Naps aren&apos;t laziness,</text>
-<text x="318.0" y="200.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">they&apos;re biology.</text>
-<rect x="290.0" y="218.7" width="10.0" height="10.0" rx="50.0" fill="rgb(108, 26, 85)"/>
-<rect x="290.0" y="218.7" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="290.0" y="226.7" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="298.0" y="218.7" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="295.0" cy="223.7" r="5.0" fill="rgb(108, 26, 85)"/><circle cx="295.0" cy="223.7" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="308.0" y="222.3" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Nausea</text>
-<text x="308.0" y="235.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Rising hormone levels affect your digestive system. It can</text>
-<text x="308.0" y="248.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">hit any time of day, not just mornings.</text>
-<rect x="308.0" y="255.2" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="318.0" y="264.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Dry crackers before getting up. Small bites every 30</text>
-<text x="318.0" y="276.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">min. Ginger tea or chews. Prenatal vitamin at bedtime.</text>
-<rect x="290.0" y="294.8" width="10.0" height="10.0" rx="50.0" fill="rgb(108, 26, 85)"/>
-<rect x="290.0" y="294.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="290.0" y="302.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="298.0" y="294.8" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="295.0" cy="299.8" r="5.0" fill="rgb(108, 26, 85)"/><circle cx="295.0" cy="299.8" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="308.0" y="298.4" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Tender Breasts</text>
-<text x="308.0" y="311.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Hormonal changes can make your breasts swollen and</text>
-<text x="308.0" y="324.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">sensitive — sometimes seemingly overnight.</text>
-<rect x="308.0" y="331.3" width="2.0" height="12.3" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="318.0" y="340.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">A well-fitted, supportive bra makes a real difference.</text>
-<rect x="290.0" y="358.6" width="10.0" height="10.0" rx="50.0" fill="rgb(108, 26, 85)"/>
-<rect x="290.0" y="358.6" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="290.0" y="366.6" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="298.0" y="358.6" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="295.0" cy="363.6" r="5.0" fill="rgb(108, 26, 85)"/><circle cx="295.0" cy="363.6" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="308.0" y="362.2" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Bloating &amp; Constipation</text>
-<text x="308.0" y="375.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Your digestive system slows down to absorb more</text>
-<text x="308.0" y="388.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">nutrients for the baby.</text>
-<rect x="308.0" y="395.1" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="318.0" y="403.9" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Increase fluids, fresh fruits, and vegetables. Chewable</text>
-<text x="318.0" y="416.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">papaya enzyme tablets after meals can ease gas.</text>
-<rect x="290.0" y="434.7" width="10.0" height="10.0" rx="50.0" fill="rgb(108, 26, 85)"/>
-<rect x="290.0" y="434.7" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="290.0" y="442.7" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="298.0" y="434.7" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="295.0" cy="439.7" r="5.0" fill="rgb(108, 26, 85)"/><circle cx="295.0" cy="439.7" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="308.0" y="438.3" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Cramping</text>
-<text x="308.0" y="451.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Mild, menstrual-like cramps are normal as your uterus</text>
-<text x="308.0" y="464.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">expands.</text>
-<rect x="308.0" y="471.2" width="2.0" height="12.3" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="318.0" y="480.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Sharp or severe pain is not normal — call your provider.</text>
-<text x="290.0" y="514.1" font-family="Lato, sans-serif" font-size="9.5px" font-weight="700" fill="rgb(108, 26, 85)" letter-spacing="0.2px">Your Baby</text>
-<text x="290.0" y="539.9" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(108, 26, 85)">6</text>
-<text x="319.0" y="535.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Beating heart</text>
-<text x="370.6" y="535.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">, early eye structures, and limb buds</text>
-<text x="319.0" y="548.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">forming. About ½ inch long.</text>
-<text x="290.0" y="574.3" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(108, 26, 85)">8</text>
-<text x="319.0" y="569.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Webbed fingers and toes.</text>
-<text x="414.8" y="569.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">All major organ systems</text>
-<text x="319.0" y="582.9" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">developing.</text>
-<text x="290.0" y="608.6" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(108, 26, 85)">12</text>
-<text x="319.0" y="604.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">3½ inches.</text>
-<text x="357.8" y="604.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Muscles, bones growing. Fingers separated.</text>
-<text x="319.0" y="617.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Genitals forming.</text>
-</g><g clip-path="url(#clip4)"><rect x="544.0" y="0.0" width="272.0" height="704.0" rx="0.0" fill="rgb(250, 249, 247)"/>
-<rect x="815.0" y="0.0" width="1.0" height="704.0" fill="rgba(0, 0, 0, 0.04)"/>
-<text x="798.6" y="12.2" font-family="Lato, sans-serif" font-size="7px" font-weight="700" fill="rgba(0, 0, 0, 0.06)">P9</text>
-<rect x="544.0" y="0.0" width="271.0" height="68.8" rx="0.0" fill="url(#grad5)"/>
-<g opacity="0.04"><text x="760.0" y="37.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="36px" font-weight="700" fill="rgb(44, 42, 38)">01</text>
-</g><text x="562.0" y="21.8" font-family="Lato, sans-serif" font-size="8px" font-weight="700" fill="rgb(108, 26, 85)" letter-spacing="2px">1ST TRIMESTER</text>
-<text x="562.0" y="44.8" font-family="&quot;Playfair Display&quot;, serif" font-size="14px" font-weight="600" fill="rgb(44, 42, 38)">Your To-Do List</text>
-<text x="562.0" y="58.6" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(122, 117, 110)">Weeks 1–12</text>
-<rect x="562.0" y="82.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="92.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="572.0" y="82.8" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="82.8" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="579.0" y="88.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Complete your prenatal lab work</text>
-<text x="703.7" y="88.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Blood type, Rh status, infection screening, and baseline health markers.</text>
-<rect x="562.0" y="124.6" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="134.6" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="572.0" y="124.6" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="124.6" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="579.0" y="130.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Discuss genetic testing with your provider</text>
-<text x="737.6" y="130.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Several options exist at different stages. Understand what&apos;s available, what insurance covers, and what the results can and can&apos;t tell you.</text>
-<rect x="562.0" y="190.1" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="200.1" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="572.0" y="190.1" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="190.1" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="579.0" y="195.9" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Ask about preterm birth risk</text>
-<text x="686.5" y="195.9" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— About 1 in 10 babies are born early. Know your risk factors, the warning signs, and the plan if it happens.</text>
-<rect x="562.0" y="243.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="253.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="572.0" y="243.8" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="243.8" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="579.0" y="249.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Discuss blood pressure monitoring</text>
-<text x="709.6" y="249.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— High blood pressure in pregnancy can lead to pre-eclampsia. Early monitoring makes a difference.</text>
-<rect x="562.0" y="297.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="307.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="572.0" y="297.5" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="297.5" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="579.0" y="303.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Call your insurance company</text>
-<text x="687.6" y="303.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Review what&apos;s covered for prenatal care, delivery, and newborn care before you need it.</text>
-<rect x="562.0" y="351.2" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="361.2" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="572.0" y="351.2" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="351.2" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="579.0" y="357.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Prioritize rest</text>
-<text x="631.5" y="357.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Your body is working harder than it feels. Sleep when you&apos;re tired. It&apos;s not laziness — it&apos;s biology.</text>
-<rect x="562.0" y="392.9" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="402.9" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="572.0" y="392.9" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="392.9" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="579.0" y="398.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Start or continue exercising</text>
-<text x="683.1" y="398.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Even 10 minutes of walking a day helps with fatigue, mood, and sleep quality.</text>
-<rect x="562.0" y="434.7" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="444.7" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="572.0" y="434.7" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="562.0" y="434.7" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="579.0" y="440.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Learn about cord blood preservation</text>
-<text x="717.0" y="440.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Your baby&apos;s umbilical cord contains stem cells used in transplant medicine for over 30 years. You&apos;ll need to decide before delivery. See Panel 14.</text>
-<rect x="562.0" y="508.3" width="235.0" height="70.0" rx="0.0" fill="rgba(108, 26, 85, 0.08)"/>
-<rect x="562.0" y="508.3" width="3.0" height="70.0" fill="rgb(108, 26, 85)"/>
-<text x="575.0" y="523.3" font-family="Lato, sans-serif" font-size="7.5px" font-weight="700" fill="rgb(108, 26, 85)" letter-spacing="0.5px">CALL YOUR PROVIDER</text>
-<text x="586.0" y="537.1" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Bleeding or severe abdominal pain</text>
-<text x="586.0" y="551.1" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Severe headache or fever over 100°F</text>
-<text x="586.0" y="565.1" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Vomiting or diarrhea lasting 12+ hours</text>
-</g><g clip-path="url(#clip6)"><rect x="816.0" y="0.0" width="272.0" height="704.0" rx="0.0" fill="rgb(255, 255, 255)"/>
-<rect x="1087.0" y="0.0" width="1.0" height="704.0" fill="rgba(0, 0, 0, 0.04)"/>
-<text x="1066.5" y="12.2" font-family="Lato, sans-serif" font-size="7px" font-weight="700" fill="rgba(0, 0, 0, 0.06)">P10</text>
-<rect x="816.0" y="0.0" width="271.0" height="68.8" rx="0.0" fill="url(#grad7)"/>
-<g opacity="0.04"><text x="1032.0" y="37.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="36px" font-weight="700" fill="rgb(44, 42, 38)">02</text>
-</g><text x="834.0" y="21.8" font-family="Lato, sans-serif" font-size="8px" font-weight="700" fill="rgb(61, 139, 106)" letter-spacing="2px">2ND TRIMESTER</text>
-<text x="834.0" y="44.8" font-family="&quot;Playfair Display&quot;, serif" font-size="14px" font-weight="600" fill="rgb(44, 42, 38)">Your Body &amp; Baby</text>
-<text x="834.0" y="58.6" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(122, 117, 110)">Weeks 12–28</text>
-<g clip-path="url(#clip8)"><rect x="834.0" y="84.8" width="235.0" height="3.0" rx="3.0" fill="rgb(200, 194, 187)"/>
-<rect x="834.0" y="84.8" width="152.8" height="3.0" rx="3.0" fill="rgb(61, 139, 106)"/>
-</g><text x="834.0" y="118.4" font-family="Lato, sans-serif" font-size="9.5px" font-weight="700" fill="rgb(61, 139, 106)" letter-spacing="0.2px">What You May Experience</text>
-<rect x="834.0" y="129.8" width="10.0" height="10.0" rx="50.0" fill="rgb(61, 139, 106)"/>
-<rect x="834.0" y="129.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="834.0" y="137.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="842.0" y="129.8" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="839.0" cy="134.8" r="5.0" fill="rgb(61, 139, 106)"/><circle cx="839.0" cy="134.8" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="852.0" y="133.4" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">More Energy</text>
-<text x="852.0" y="146.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Better sleep, returning appetite, and a noticeable lift in</text>
-<text x="852.0" y="159.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">how you feel. This is often the most comfortable stretch of</text>
-<text x="852.0" y="172.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">pregnancy.</text>
-<rect x="852.0" y="179.0" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="862.0" y="187.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Take advantage of this window — sign up for classes,</text>
-<text x="862.0" y="200.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">prepare the nursery, enjoy how you feel.</text>
-<rect x="834.0" y="218.7" width="10.0" height="10.0" rx="50.0" fill="rgb(61, 139, 106)"/>
-<rect x="834.0" y="218.7" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="834.0" y="226.7" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="842.0" y="218.7" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="839.0" cy="223.7" r="5.0" fill="rgb(61, 139, 106)"/><circle cx="839.0" cy="223.7" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="852.0" y="222.3" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Baby&apos;s Movement</text>
-<text x="852.0" y="235.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Most women start feeling movement around week 23 —</text>
-<text x="852.0" y="248.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">beginning as flutters and building to distinct kicks and rolls.</text>
-<rect x="852.0" y="255.2" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="862.0" y="264.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">One of the most exciting milestones. By week 28, you&apos;ll</text>
-<text x="862.0" y="276.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">begin tracking kick counts.</text>
-<rect x="834.0" y="294.8" width="10.0" height="10.0" rx="50.0" fill="rgb(61, 139, 106)"/>
-<rect x="834.0" y="294.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="834.0" y="302.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="842.0" y="294.8" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="839.0" cy="299.8" r="5.0" fill="rgb(61, 139, 106)"/><circle cx="839.0" cy="299.8" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="852.0" y="298.4" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Varicose Veins</text>
-<text x="852.0" y="311.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Increased blood volume and uterine pressure can cause</text>
-<text x="852.0" y="324.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">veins in your legs to swell.</text>
-<rect x="852.0" y="331.3" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="862.0" y="340.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Wear support stockings. Elevate your legs when</text>
-<text x="862.0" y="352.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">possible. Avoid crossing them.</text>
-<rect x="834.0" y="370.9" width="10.0" height="10.0" rx="50.0" fill="rgb(61, 139, 106)"/>
-<rect x="834.0" y="370.9" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="834.0" y="378.9" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="842.0" y="370.9" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="839.0" cy="375.9" r="5.0" fill="rgb(61, 139, 106)"/><circle cx="839.0" cy="375.9" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="852.0" y="374.5" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Braxton Hicks Contractions</text>
-<text x="852.0" y="387.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Mild uterine tightening 2–4 times a day is your body</text>
-<text x="852.0" y="400.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">practicing for labor. Normal and not dangerous.</text>
-<rect x="852.0" y="407.4" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="862.0" y="416.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">If contractions come 3–4 times in one hour, call your</text>
-<text x="862.0" y="428.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">provider.</text>
-<rect x="834.0" y="447.0" width="10.0" height="10.0" rx="50.0" fill="rgb(61, 139, 106)"/>
-<rect x="834.0" y="447.0" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="834.0" y="455.0" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="842.0" y="447.0" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="839.0" cy="452.0" r="5.0" fill="rgb(61, 139, 106)"/><circle cx="839.0" cy="452.0" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="852.0" y="450.6" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Anemia</text>
-<text x="852.0" y="463.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">If diagnosed, your iron levels need support. This is common</text>
-<text x="852.0" y="476.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">and treatable.</text>
-<rect x="852.0" y="483.5" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="862.0" y="492.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Eat more meat, leafy greens, and beans. Take iron with</text>
-<text x="862.0" y="504.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">juice, not milk. Increase fiber to offset constipation.</text>
-<text x="834.0" y="538.8" font-family="Lato, sans-serif" font-size="9.5px" font-weight="700" fill="rgb(61, 139, 106)" letter-spacing="0.2px">Your Baby</text>
-<text x="834.0" y="564.6" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(61, 139, 106)">16</text>
-<text x="863.0" y="560.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Ears, eyelashes, and fingernails</text>
-<text x="979.2" y="560.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">are developing. Legs</text>
-<text x="863.0" y="573.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">are getting longer. Fingers open and close.</text>
-<text x="834.0" y="598.9" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(61, 139, 106)">20</text>
-<text x="863.0" y="594.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">About 7 inches long.</text>
-<text x="939.3" y="594.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Covered in fine hair called lanugo.</text>
-<text x="863.0" y="607.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Practicing sucking movements.</text>
-<text x="834.0" y="633.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(61, 139, 106)">24</text>
-<text x="863.0" y="628.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Eye movements begin.</text>
-<text x="947.3" y="628.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Lungs are producing surfactant</text>
-<text x="863.0" y="641.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— a substance essential for breathing air.</text>
-<text x="834.0" y="667.6" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(61, 139, 106)">28</text>
-<text x="863.0" y="663.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">About 10 inches.</text>
-<text x="926.2" y="663.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Practicing breathing movements. Eyes</text>
-<text x="863.0" y="676.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">open and close.</text>
-</g><g clip-path="url(#clip9)"><rect x="1088.0" y="0.0" width="272.0" height="704.0" rx="0.0" fill="rgb(250, 249, 247)"/>
-<rect x="1359.0" y="0.0" width="1.0" height="704.0" fill="rgba(0, 0, 0, 0.04)"/>
-<text x="1338.5" y="12.2" font-family="Lato, sans-serif" font-size="7px" font-weight="700" fill="rgba(0, 0, 0, 0.06)">P11</text>
-<rect x="1088.0" y="0.0" width="271.0" height="68.8" rx="0.0" fill="url(#grad10)"/>
-<g opacity="0.04"><text x="1304.0" y="37.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="36px" font-weight="700" fill="rgb(44, 42, 38)">02</text>
-</g><text x="1106.0" y="21.8" font-family="Lato, sans-serif" font-size="8px" font-weight="700" fill="rgb(61, 139, 106)" letter-spacing="2px">2ND TRIMESTER</text>
-<text x="1106.0" y="44.8" font-family="&quot;Playfair Display&quot;, serif" font-size="14px" font-weight="600" fill="rgb(44, 42, 38)">Your To-Do List</text>
-<text x="1106.0" y="58.6" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(122, 117, 110)">Weeks 12–28</text>
-<rect x="1106.0" y="82.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="92.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1116.0" y="82.8" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="82.8" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1123.0" y="88.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">AFP/Quad screen</text>
-<text x="1189.3" y="88.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— A blood test between weeks 15–20 that screens for genetic disorders and neural tube defects. Most accurate at 16–18 weeks.</text>
-<rect x="1106.0" y="136.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="146.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1116.0" y="136.5" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="136.5" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1123.0" y="142.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Level 2 ultrasound</text>
-<text x="1192.4" y="142.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Between weeks 18–22. A detailed evaluation of your baby&apos;s anatomy — brain, heart, limbs, and kidneys.</text>
-<rect x="1106.0" y="190.1" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="200.1" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1116.0" y="190.1" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="190.1" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1123.0" y="195.9" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Start sleeping on your side</text>
-<text x="1222.7" y="195.9" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Beginning at week 20. Right or left side is fine — the goal is staying off your back. A body pillow can help.</text>
-<rect x="1106.0" y="243.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="253.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1116.0" y="243.8" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="243.8" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1123.0" y="249.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Glucose screening</text>
-<text x="1191.8" y="249.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Between weeks 24–28. A one-hour blood test that screens for gestational diabetes.</text>
-<rect x="1106.0" y="285.6" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="295.6" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1116.0" y="285.6" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="285.6" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1123.0" y="291.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">RhoGAM injection</text>
-<text x="1193.3" y="291.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— At week 28 if you are Rh-negative. This protects your current and future pregnancies.</text>
-<rect x="1106.0" y="327.4" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="337.4" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1116.0" y="327.4" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="327.4" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1123.0" y="333.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Begin kick counts</text>
-<text x="1189.2" y="333.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Starting at week 28. When resting, you should feel at least 4 movements in one hour. Talk to your provider about their specific guidelines.</text>
-<rect x="1106.0" y="381.0" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="391.0" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1116.0" y="381.0" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="381.0" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1123.0" y="386.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Decide on your labor support</text>
-<text x="1233.1" y="386.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Partner, family member, friend, or doula. Think about who you want in the room.</text>
-<rect x="1106.0" y="422.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="432.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1116.0" y="422.8" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="422.8" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1123.0" y="428.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Sign up for childbirth and newborn care classes</text>
-<text x="1299.8" y="428.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Prepared childbirth, breastfeeding, and infant CPR. These fill up — register early.</text>
-<rect x="1106.0" y="476.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="486.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1116.0" y="476.5" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1106.0" y="476.5" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1123.0" y="482.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Research cord blood preservation</text>
-<text x="1250.8" y="482.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Your baby&apos;s umbilical cord blood contains stem cells that have been used to treat over 80 serious conditions. It&apos;s worth understanding your options before delivery. See Panel 14.</text>
-<rect x="1106.0" y="550.1" width="235.0" height="70.0" rx="0.0" fill="rgba(61, 139, 106, 0.07)"/>
-<rect x="1106.0" y="550.1" width="3.0" height="70.0" fill="rgb(61, 139, 106)"/>
-<text x="1119.0" y="565.1" font-family="Lato, sans-serif" font-size="7.5px" font-weight="700" fill="rgb(61, 139, 106)" letter-spacing="0.5px">CALL YOUR PROVIDER</text>
-<text x="1130.0" y="578.9" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Bleeding, leaking fluid, or changes in vision</text>
-<text x="1130.0" y="592.9" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Noticeable decrease in fetal movement</text>
-<text x="1130.0" y="606.9" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Pressure or pain 3–4 times per hour</text>
-</g><g clip-path="url(#clip11)"><rect x="1360.0" y="0.0" width="272.0" height="704.0" rx="0.0" fill="rgb(255, 255, 255)"/>
-<rect x="1631.0" y="0.0" width="1.0" height="704.0" fill="rgba(0, 0, 0, 0.04)"/>
-<text x="1610.5" y="12.2" font-family="Lato, sans-serif" font-size="7px" font-weight="700" fill="rgba(0, 0, 0, 0.06)">P12</text>
-<rect x="1360.0" y="0.0" width="271.0" height="68.8" rx="0.0" fill="url(#grad12)"/>
-<g opacity="0.04"><text x="1576.0" y="37.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="36px" font-weight="700" fill="rgb(44, 42, 38)">03</text>
-</g><text x="1378.0" y="21.8" font-family="Lato, sans-serif" font-size="8px" font-weight="700" fill="rgb(184, 134, 43)" letter-spacing="2px">3RD TRIMESTER</text>
-<text x="1378.0" y="44.8" font-family="&quot;Playfair Display&quot;, serif" font-size="14px" font-weight="600" fill="rgb(44, 42, 38)">Your Body &amp; Baby</text>
-<text x="1378.0" y="58.6" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(122, 117, 110)">Weeks 28–Delivery</text>
-<g clip-path="url(#clip13)"><rect x="1378.0" y="84.8" width="235.0" height="3.0" rx="3.0" fill="rgb(200, 194, 187)"/>
-<rect x="1378.0" y="84.8" width="235.0" height="3.0" rx="3.0" fill="rgb(184, 134, 43)"/>
-</g><text x="1378.0" y="118.4" font-family="Lato, sans-serif" font-size="9.5px" font-weight="700" fill="rgb(184, 134, 43)" letter-spacing="0.2px">What You May Experience</text>
-<rect x="1378.0" y="129.8" width="10.0" height="10.0" rx="50.0" fill="rgb(184, 134, 43)"/>
-<rect x="1378.0" y="129.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1378.0" y="137.8" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1386.0" y="129.8" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="1383.0" cy="134.8" r="5.0" fill="rgb(184, 134, 43)"/><circle cx="1383.0" cy="134.8" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="1396.0" y="133.4" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Heartburn</text>
-<text x="1396.0" y="146.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Your baby pushes your stomach upward, causing acid</text>
-<text x="1396.0" y="159.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">reflux after meals or when lying flat.</text>
-<rect x="1396.0" y="166.3" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="1406.0" y="175.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Smaller meals, more often. Stay upright 30 min after</text>
-<text x="1406.0" y="187.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">eating. Lie on your right side. Antacids are safe.</text>
-<rect x="1378.0" y="205.9" width="10.0" height="10.0" rx="50.0" fill="rgb(184, 134, 43)"/>
-<rect x="1378.0" y="205.9" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1378.0" y="213.9" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1386.0" y="205.9" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="1383.0" cy="210.9" r="5.0" fill="rgb(184, 134, 43)"/><circle cx="1383.0" cy="210.9" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="1396.0" y="209.5" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Constipation &amp; Hemorrhoids</text>
-<text x="1396.0" y="222.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Digestive slowdown and pelvic pressure make both</text>
-<text x="1396.0" y="235.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">common.</text>
-<rect x="1396.0" y="242.4" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="1406.0" y="251.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">More fruits, vegetables, and water. Ask about a stool</text>
-<text x="1406.0" y="263.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">softener. OTC hemorrhoid remedies are available.</text>
-<rect x="1378.0" y="282.0" width="10.0" height="10.0" rx="50.0" fill="rgb(184, 134, 43)"/>
-<rect x="1378.0" y="282.0" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1378.0" y="290.0" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1386.0" y="282.0" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="1383.0" cy="287.0" r="5.0" fill="rgb(184, 134, 43)"/><circle cx="1383.0" cy="287.0" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="1396.0" y="285.6" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Back Pain &amp; Leg Cramps</text>
-<text x="1396.0" y="298.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Extra weight shifts your center of gravity. Cramps tend to</text>
-<text x="1396.0" y="311.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">strike at night.</text>
-<rect x="1396.0" y="318.5" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="1406.0" y="327.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Bend at knees, not waist. For cramps, point toes toward</text>
-<text x="1406.0" y="339.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">belly and try ice. Prenatal massage and PT can help.</text>
-<rect x="1378.0" y="358.2" width="10.0" height="10.0" rx="50.0" fill="rgb(184, 134, 43)"/>
-<rect x="1378.0" y="358.2" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1378.0" y="366.2" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1386.0" y="358.2" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="1383.0" cy="363.2" r="5.0" fill="rgb(184, 134, 43)"/><circle cx="1383.0" cy="363.2" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="1396.0" y="361.8" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Swelling &amp; Leaking</text>
-<text x="1396.0" y="375.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Fluid retention causes swollen feet/ankles. Bladder</text>
-<text x="1396.0" y="387.7" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">pressure can cause leaking when you laugh or cough.</text>
-<rect x="1396.0" y="394.7" width="2.0" height="36.9" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="1406.0" y="403.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">Elevate legs. Increase water and protein. Kegels (50–</text>
-<text x="1406.0" y="415.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">100/day) help with leaking. Sudden severe swelling —</text>
-<text x="1406.0" y="428.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">call your provider.</text>
-<rect x="1378.0" y="446.6" width="10.0" height="10.0" rx="50.0" fill="rgb(184, 134, 43)"/>
-<rect x="1378.0" y="446.6" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1378.0" y="454.6" width="10.0" height="2.0" fill="rgb(255, 255, 255)"/>
-<rect x="1386.0" y="446.6" width="2.0" height="10.0" fill="rgb(255, 255, 255)"/>
-<circle cx="1383.0" cy="451.6" r="5.0" fill="rgb(184, 134, 43)"/><circle cx="1383.0" cy="451.6" r="6.0" fill="none" stroke="rgb(255, 255, 255)" stroke-width="2"/><text x="1396.0" y="450.2" font-family="Lato, sans-serif" font-size="9px" font-weight="700" fill="rgb(44, 42, 38)" letter-spacing="0.2px">Fatigue &amp; Mood Changes</text>
-<text x="1396.0" y="463.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Interrupted sleep takes a toll on energy and emotions.</text>
-<rect x="1396.0" y="470.4" width="2.0" height="24.6" fill="rgba(61, 139, 106, 0.15)"/>
-<text x="1406.0" y="479.2" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">If you feel overwhelmed, anxious, or persistently sad,</text>
-<text x="1406.0" y="491.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(61, 139, 106)">talk to your provider. Common and treatable.</text>
-<text x="1378.0" y="525.6" font-family="Lato, sans-serif" font-size="9.5px" font-weight="700" fill="rgb(184, 134, 43)" letter-spacing="0.2px">Your Baby</text>
-<text x="1378.0" y="551.4" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(184, 134, 43)">28</text>
-<text x="1407.0" y="546.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">About 14 inches and 2 pounds.</text>
-<text x="1522.0" y="546.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Lungs are maturing.</text>
-<text x="1407.0" y="560.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Sleep and wake cycles are developing. Hiccups are a</text>
-<text x="1407.0" y="573.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">normal sign of development.</text>
-<text x="1378.0" y="598.9" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(184, 134, 43)">34</text>
-<text x="1407.0" y="594.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">Most babies have settled head-down</text>
-<text x="1545.6" y="594.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— the position</text>
-<text x="1407.0" y="607.5" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">they&apos;ll likely stay in until delivery.</text>
-<text x="1378.0" y="633.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="15px" font-weight="700" fill="rgb(184, 134, 43)">40</text>
-<text x="1407.0" y="628.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(44, 42, 38)">18–22 inches long, 6–9 pounds.</text>
-<text x="1525.2" y="628.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">Fully developed and</text>
-<text x="1407.0" y="641.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">ready to be born.</text>
-</g><g clip-path="url(#clip14)"><rect x="1632.0" y="0.0" width="272.0" height="704.0" rx="0.0" fill="rgb(250, 249, 247)"/>
-<text x="1883.5" y="12.2" font-family="Lato, sans-serif" font-size="7px" font-weight="700" fill="rgba(0, 0, 0, 0.06)">P13</text>
-<rect x="1632.0" y="0.0" width="272.0" height="68.8" rx="0.0" fill="url(#grad15)"/>
-<g opacity="0.04"><text x="1849.0" y="37.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="36px" font-weight="700" fill="rgb(44, 42, 38)">03</text>
-</g><text x="1650.0" y="21.8" font-family="Lato, sans-serif" font-size="8px" font-weight="700" fill="rgb(184, 134, 43)" letter-spacing="2px">3RD TRIMESTER</text>
-<text x="1650.0" y="44.8" font-family="&quot;Playfair Display&quot;, serif" font-size="14px" font-weight="600" fill="rgb(44, 42, 38)">Your To-Do List</text>
-<text x="1650.0" y="58.6" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(122, 117, 110)">Weeks 28–Delivery</text>
-<rect x="1650.0" y="82.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="92.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1660.0" y="82.8" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="82.8" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1667.0" y="88.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Group B Strep screening</text>
-<text x="1758.9" y="88.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— A vaginal and rectal swab between weeks 35–37. If positive, you&apos;ll receive antibiotics during labor to protect your baby.</text>
-<rect x="1650.0" y="136.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="146.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1660.0" y="136.5" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="136.5" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1667.0" y="142.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Choose a pediatrician</text>
-<text x="1748.8" y="142.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Interview candidates and confirm they accept your insurance. Do this before your due date.</text>
-<rect x="1650.0" y="178.3" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="188.3" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1660.0" y="178.3" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="178.3" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1667.0" y="184.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Take a hospital tour</text>
-<text x="1740.8" y="184.1" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Know the facility, where to park, and the fastest route from home.</text>
-<rect x="1650.0" y="220.0" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="230.0" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1660.0" y="220.0" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="220.0" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1667.0" y="225.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Install the car seat</text>
-<text x="1736.1" y="225.8" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— You will not be allowed to leave the hospital without one properly installed.</text>
-<rect x="1650.0" y="261.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="271.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1660.0" y="261.8" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="261.8" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1667.0" y="267.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Pack your hospital bag</text>
-<text x="1752.0" y="267.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— For you and for baby. Include your insurance card, ID, phone charger, and going-home outfits.</text>
-<rect x="1650.0" y="315.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="325.5" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1660.0" y="315.5" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="315.5" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1667.0" y="321.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Discuss expanded newborn screening</text>
-<text x="1808.6" y="321.3" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— A panel of tests performed at birth that screens your baby for a range of serious but treatable conditions.</text>
-<rect x="1650.0" y="369.2" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="379.2" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1660.0" y="369.2" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="369.2" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1667.0" y="375.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Finalize your birth preferences</text>
-<text x="1783.2" y="375.0" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— Discuss pain management, labor positions, and who will be in the room with your provider and support team.</text>
-<rect x="1650.0" y="422.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="432.8" width="11.0" height="1.0" fill="rgb(208, 203, 197)"/>
-<rect x="1660.0" y="422.8" width="1.0" height="11.0" fill="rgb(208, 203, 197)"/>
-<rect x="1650.0" y="422.8" width="11.0" height="11.0" rx="3.0" fill="none" stroke="rgb(208, 203, 197)" stroke-width="1"/>
-<text x="1667.0" y="428.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">Confirm your cord blood decision</text>
-<text x="1792.5" y="428.6" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">— If you haven&apos;t enrolled yet, it&apos;s not too late — even days before delivery. Visit</text>
-<text x="1667.0" y="452.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">stemcyte.com</text>
-<text x="1720.1" y="452.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">or call</text>
-<text x="1745.8" y="452.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="700" fill="rgb(74, 71, 64)">1-888-CORD-BLOOD</text>
-<text x="1828.7" y="452.4" font-family="Lato, sans-serif" font-size="8.5px" font-weight="400" fill="rgb(74, 71, 64)">.</text>
-<rect x="1650.0" y="484.5" width="236.0" height="84.0" rx="0.0" fill="rgba(184, 134, 43, 0.07)"/>
-<rect x="1650.0" y="484.5" width="3.0" height="84.0" fill="rgb(184, 134, 43)"/>
-<text x="1663.0" y="499.5" font-family="Lato, sans-serif" font-size="7.5px" font-weight="700" fill="rgb(184, 134, 43)" letter-spacing="0.5px">GO TO THE HOSPITAL</text>
-<text x="1674.0" y="513.3" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Contractions every 5 minutes</text>
-<text x="1674.0" y="527.3" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Your water has broken</text>
-<text x="1674.0" y="541.3" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Vaginal bleeding</text>
-<text x="1674.0" y="555.3" font-family="Lato, sans-serif" font-size="8px" font-weight="400" fill="rgb(74, 71, 64)">Significant decrease in baby&apos;s movement</text>
-</g>
+<rect x="0.0" y="0.0" width="1904.0" height="704.0" fill="#ffffff" rx="3"/>
+<rect x="0.0" y="0.0" width="272.0" height="704.0" fill="#ffffff" rx="0"/>
+<line x1="272.0" y1="0.0" x2="272.0" y2="704.0" stroke="#000000" stroke-width="1" stroke-opacity="0.040"/>
+<rect x="18.0" y="213.9" width="74.3" height="57.0" fill="#6c1a55" rx="6" fill-opacity="0.080"/>
+<rect x="98.3" y="213.9" width="74.3" height="57.0" fill="#b3508a" rx="6" fill-opacity="0.070"/>
+<rect x="178.7" y="213.9" width="74.3" height="57.0" fill="#d98d9a" rx="6" fill-opacity="0.070"/>
+<rect x="18.0" y="284.9" width="235.0" height="1.0" fill="#e8e2dc" rx="0"/>
+<line x1="18.0" y1="337.9" x2="253.0" y2="337.9" stroke="#e8e2dc" stroke-width="1"/>
+<line x1="18.0" y1="360.9" x2="253.0" y2="360.9" stroke="#e8e2dc" stroke-width="1"/>
+<line x1="18.0" y1="383.9" x2="253.0" y2="383.9" stroke="#e8e2dc" stroke-width="1"/>
+<line x1="18.0" y1="406.9" x2="253.0" y2="406.9" stroke="#e8e2dc" stroke-width="1"/>
+<line x1="18.0" y1="429.9" x2="253.0" y2="429.9" stroke="#e8e2dc" stroke-width="1"/>
+<line x1="18.0" y1="452.9" x2="253.0" y2="452.9" stroke="#e8e2dc" stroke-width="1"/>
+<line x1="18.0" y1="475.9" x2="253.0" y2="475.9" stroke="#e8e2dc" stroke-width="1"/>
+<rect x="18.0" y="487.9" width="235.0" height="1.0" fill="#e8e2dc" rx="0"/>
+<rect x="18.0" y="500.9" width="235.0" height="72.3" fill="#faf7f2" rx="6"/>
+<rect x="18.0" y="500.9" width="235.0" height="72.3" fill="none" stroke="#e8e2dc" stroke-width="1" rx="6"/>
+<rect x="272.0" y="0.0" width="272.0" height="704.0" fill="#ffffff" rx="0"/>
+<line x1="544.0" y1="0.0" x2="544.0" y2="704.0" stroke="#000000" stroke-width="1" stroke-opacity="0.040"/>
+<rect x="272.0" y="0.0" width="271.0" height="68.8" fill="url(#grad0)" rx="0"/>
+<rect x="290.0" y="84.8" width="235.0" height="3.0" fill="#c8c2bb" rx="3"/>
+<rect x="290.0" y="84.8" width="70.5" height="3.0" fill="#6b1a54" rx="3"/>
+<rect x="290.0" y="129.8" width="10.0" height="10.0" fill="#6b1a54" rx="50"/>
+<rect x="290.0" y="129.8" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="308.0" y1="179.0" x2="308.0" y2="203.7" stroke="#521440" stroke-width="2"/>
+<rect x="290.0" y="218.7" width="10.0" height="10.0" fill="#6b1a54" rx="50"/>
+<rect x="290.0" y="218.7" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="308.0" y1="255.2" x2="308.0" y2="279.8" stroke="#521440" stroke-width="2"/>
+<rect x="290.0" y="294.8" width="10.0" height="10.0" fill="#6b1a54" rx="50"/>
+<rect x="290.0" y="294.8" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="308.0" y1="331.3" x2="308.0" y2="343.6" stroke="#521440" stroke-width="2"/>
+<rect x="290.0" y="358.6" width="10.0" height="10.0" fill="#6b1a54" rx="50"/>
+<rect x="290.0" y="358.6" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="308.0" y1="395.1" x2="308.0" y2="419.7" stroke="#521440" stroke-width="2"/>
+<rect x="290.0" y="434.7" width="10.0" height="10.0" fill="#6b1a54" rx="50"/>
+<rect x="290.0" y="434.7" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="308.0" y1="471.2" x2="308.0" y2="483.5" stroke="#521440" stroke-width="2"/>
+<rect x="544.0" y="0.0" width="272.0" height="704.0" fill="#faf9f7" rx="0"/>
+<line x1="816.0" y1="0.0" x2="816.0" y2="704.0" stroke="#000000" stroke-width="1" stroke-opacity="0.040"/>
+<rect x="544.0" y="0.0" width="271.0" height="68.8" fill="url(#grad1)" rx="0"/>
+<rect x="562.0" y="82.8" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="562.0" y="124.6" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="562.0" y="190.1" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="562.0" y="243.8" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="562.0" y="297.5" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="562.0" y="351.2" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="562.0" y="392.9" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="562.0" y="434.7" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="562.0" y="508.3" width="235.0" height="70.0" fill="#6b1a54" rx="0" fill-opacity="0.080"/>
+<line x1="562.0" y1="508.3" x2="562.0" y2="578.3" stroke="#6b1a54" stroke-width="3"/>
+<rect x="816.0" y="0.0" width="272.0" height="704.0" fill="#ffffff" rx="0"/>
+<line x1="1088.0" y1="0.0" x2="1088.0" y2="704.0" stroke="#000000" stroke-width="1" stroke-opacity="0.040"/>
+<rect x="816.0" y="0.0" width="271.0" height="68.8" fill="url(#grad2)" rx="0"/>
+<rect x="834.0" y="84.8" width="235.0" height="3.0" fill="#c8c2bb" rx="3"/>
+<rect x="834.0" y="84.8" width="152.8" height="3.0" fill="#b3508a" rx="3"/>
+<rect x="834.0" y="129.8" width="10.0" height="10.0" fill="#b3508a" rx="50"/>
+<rect x="834.0" y="129.8" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="852.0" y1="179.0" x2="852.0" y2="203.7" stroke="#994576" stroke-width="2"/>
+<rect x="834.0" y="218.7" width="10.0" height="10.0" fill="#b3508a" rx="50"/>
+<rect x="834.0" y="218.7" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="852.0" y1="255.2" x2="852.0" y2="279.8" stroke="#994576" stroke-width="2"/>
+<rect x="834.0" y="294.8" width="10.0" height="10.0" fill="#b3508a" rx="50"/>
+<rect x="834.0" y="294.8" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="852.0" y1="331.3" x2="852.0" y2="355.9" stroke="#994576" stroke-width="2"/>
+<rect x="834.0" y="370.9" width="10.0" height="10.0" fill="#b3508a" rx="50"/>
+<rect x="834.0" y="370.9" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="852.0" y1="407.4" x2="852.0" y2="432.0" stroke="#994576" stroke-width="2"/>
+<rect x="834.0" y="447.0" width="10.0" height="10.0" fill="#b3508a" rx="50"/>
+<rect x="834.0" y="447.0" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="852.0" y1="483.5" x2="852.0" y2="508.2" stroke="#994576" stroke-width="2"/>
+<rect x="1088.0" y="0.0" width="272.0" height="704.0" fill="#faf9f7" rx="0"/>
+<line x1="1360.0" y1="0.0" x2="1360.0" y2="704.0" stroke="#000000" stroke-width="1" stroke-opacity="0.040"/>
+<rect x="1088.0" y="0.0" width="271.0" height="68.8" fill="url(#grad3)" rx="0"/>
+<rect x="1106.0" y="82.8" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1106.0" y="136.5" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1106.0" y="190.1" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1106.0" y="243.8" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1106.0" y="285.6" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1106.0" y="327.4" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1106.0" y="381.0" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1106.0" y="422.8" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1106.0" y="476.5" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1106.0" y="550.1" width="235.0" height="70.0" fill="#b3508a" rx="0" fill-opacity="0.070"/>
+<line x1="1106.0" y1="550.1" x2="1106.0" y2="620.1" stroke="#b3508a" stroke-width="3"/>
+<rect x="1360.0" y="0.0" width="272.0" height="704.0" fill="#ffffff" rx="0"/>
+<line x1="1632.0" y1="0.0" x2="1632.0" y2="704.0" stroke="#000000" stroke-width="1" stroke-opacity="0.040"/>
+<rect x="1360.0" y="0.0" width="271.0" height="68.8" fill="url(#grad4)" rx="0"/>
+<rect x="1378.0" y="84.8" width="235.0" height="3.0" fill="#c8c2bb" rx="3"/>
+<rect x="1378.0" y="84.8" width="235.0" height="3.0" fill="#d98d9a" rx="3"/>
+<rect x="1378.0" y="129.8" width="10.0" height="10.0" fill="#d98d9a" rx="50"/>
+<rect x="1378.0" y="129.8" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="1396.0" y1="166.3" x2="1396.0" y2="190.9" stroke="#bf7c87" stroke-width="2"/>
+<rect x="1378.0" y="205.9" width="10.0" height="10.0" fill="#d98d9a" rx="50"/>
+<rect x="1378.0" y="205.9" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="1396.0" y1="242.4" x2="1396.0" y2="267.0" stroke="#bf7c87" stroke-width="2"/>
+<rect x="1378.0" y="282.0" width="10.0" height="10.0" fill="#d98d9a" rx="50"/>
+<rect x="1378.0" y="282.0" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="1396.0" y1="318.5" x2="1396.0" y2="343.2" stroke="#bf7c87" stroke-width="2"/>
+<rect x="1378.0" y="358.2" width="10.0" height="10.0" fill="#d98d9a" rx="50"/>
+<rect x="1378.0" y="358.2" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="1396.0" y1="394.7" x2="1396.0" y2="431.6" stroke="#bf7c87" stroke-width="2"/>
+<rect x="1378.0" y="446.6" width="10.0" height="10.0" fill="#d98d9a" rx="50"/>
+<rect x="1378.0" y="446.6" width="10.0" height="10.0" fill="none" stroke="#ffffff" stroke-width="2" rx="50"/>
+<line x1="1396.0" y1="470.4" x2="1396.0" y2="495.0" stroke="#bf7c87" stroke-width="2"/>
+<rect x="1632.0" y="0.0" width="272.0" height="704.0" fill="#faf9f7" rx="0"/>
+<rect x="1632.0" y="0.0" width="272.0" height="68.8" fill="url(#grad5)" rx="0"/>
+<rect x="1650.0" y="82.8" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1650.0" y="136.5" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1650.0" y="178.3" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1650.0" y="220.0" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1650.0" y="261.8" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1650.0" y="315.5" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1650.0" y="369.2" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1650.0" y="422.8" width="11.0" height="11.0" fill="none" stroke="#d0cbc5" stroke-width="1" rx="3"/>
+<rect x="1650.0" y="484.5" width="236.0" height="84.0" fill="#d98d9a" rx="0" fill-opacity="0.070"/>
+<line x1="1650.0" y1="484.5" x2="1650.0" y2="568.5" stroke="#d98d9a" stroke-width="3"/>
+<text x="18.0" y="28.6" font-family="Lato, sans-serif" font-size="8" font-weight="700" fill="#6b1a54" letter-spacing="2px">WELCOME</text>
+<text x="18.0" y="56.0" font-family="&quot;Playfair Display&quot;, serif" font-size="22" font-weight="600" fill="#2c2a26">Congratulations,</text>
+<text x="18.0" y="88.8" font-family="Lato, sans-serif" font-size="9" font-weight="400" fill="#4a4740">You're pregnant! From this point forward, your body will do</text>
+<text x="18.0" y="102.7" font-family="Lato, sans-serif" font-size="9" font-weight="400" fill="#4a4740">something extraordinary — growing a new life from a single</text>
+<text x="18.0" y="116.6" font-family="Lato, sans-serif" font-size="9" font-weight="400" fill="#4a4740">cell. Some days you'll feel amazing. Others, you'll wonder</text>
+<text x="18.0" y="130.6" font-family="Lato, sans-serif" font-size="9" font-weight="400" fill="#4a4740">what happened to your energy, your appetite, or your ability</text>
+<text x="18.0" y="144.5" font-family="Lato, sans-serif" font-size="9" font-weight="400" fill="#4a4740">to stay awake past 8 PM.</text>
+<text x="18.0" y="166.5" font-family="Lato, sans-serif" font-size="9" font-weight="400" fill="#4a4740">All of it is normal. This guide walks you through what to</text>
+<text x="18.0" y="180.4" font-family="Lato, sans-serif" font-size="9" font-weight="400" fill="#4a4740">expect, what to do about it, and what decisions are ahead —</text>
+<text x="18.0" y="194.3" font-family="Lato, sans-serif" font-size="9" font-weight="400" fill="#4a4740">trimester by trimester.</text>
+<text x="44.9" y="234.7" font-family="&quot;Source Serif 4&quot;, serif" font-size="18" font-weight="700" fill="#6c1a55">40</text>
+<text x="42.5" y="260.6" font-family="Lato, sans-serif" font-size="7" font-weight="400" fill="#6c1a55" letter-spacing="0.3px">WEEKS</text>
+<text x="130.4" y="234.7" font-family="&quot;Source Serif 4&quot;, serif" font-size="18" font-weight="700" fill="#b3508a">3</text>
+<text x="113.3" y="260.6" font-family="Lato, sans-serif" font-size="7" font-weight="400" fill="#b3508a" letter-spacing="0.3px">TRIMESTERS</text>
+<text x="200.5" y="234.7" font-family="&quot;Source Serif 4&quot;, serif" font-size="18" font-weight="700" fill="#d98d9a">25+</text>
+<text x="202.8" y="260.6" font-family="Lato, sans-serif" font-size="7" font-weight="400" fill="#d98d9a" letter-spacing="0.3px">TOPICS</text>
+<text x="18.0" y="307.3" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#6c1a55" letter-spacing="0.2px">Your Pregnancy at a Glance</text>
+<text x="18.0" y="327.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">1st Trimester</text>
+<text x="205.5" y="327.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Weeks 1–12</text>
+<text x="18.0" y="350.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">2nd Trimester</text>
+<text x="200.6" y="350.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Weeks 12–28</text>
+<text x="18.0" y="373.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">3rd Trimester</text>
+<text x="200.6" y="373.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Weeks 28–40</text>
+<text x="18.0" y="396.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">First prenatal visit</text>
+<text x="219.0" y="396.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">~Week 6</text>
+<text x="18.0" y="419.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">Baby's first kicks</text>
+<text x="214.1" y="419.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">~Week 23</text>
+<text x="18.0" y="442.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">Glucose screening</text>
+<text x="200.6" y="442.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Weeks 24–28</text>
+<text x="18.0" y="465.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">Full term</text>
+<text x="214.1" y="465.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Week 37+</text>
+<text x="31.0" y="518.0" font-family="Lato, sans-serif" font-size="7.5" font-weight="700" fill="#6c1a55" letter-spacing="0.5px">A NOTE ABOUT THIS GUIDE</text>
+<text x="31.0" y="531.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">Every pregnancy is different. This is not a substitute for</text>
+<text x="31.0" y="544.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">your provider's care — it's a companion to help you know</text>
+<text x="31.0" y="557.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#7a756e">what to ask and what to expect.</text>
+<text x="488.0" y="28.5" font-family="&quot;Source Serif 4&quot;, serif" font-size="36" font-weight="700" fill="#2c2a26">01</text>
+<text x="290.0" y="20.6" font-family="Lato, sans-serif" font-size="8" font-weight="700" fill="#6b1a54" letter-spacing="2px">1ST TRIMESTER</text>
+<text x="290.0" y="41.5" font-family="&quot;Playfair Display&quot;, serif" font-size="14" font-weight="600" fill="#2c2a26">Your Body &amp; Baby</text>
+<text x="290.0" y="57.4" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#7a756e">Weeks 1–12</text>
+<text x="290.0" y="117.6" font-family="Lato, sans-serif" font-size="9.5" font-weight="700" fill="#6b1a54" letter-spacing="0.2px">What You May Experience</text>
+<text x="308.0" y="132.2" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Fatigue</text>
+<text x="308.0" y="145.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Your body is building a placenta, increasing blood volume,</text>
+<text x="308.0" y="158.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">and supporting rapid cell division. That takes enormous</text>
+<text x="308.0" y="171.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">energy.</text>
+<text x="318.0" y="187.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#521440" font-style="italic">Rest when you can — don't fight it. Naps aren't laziness,</text>
+<text x="318.0" y="199.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#521440" font-style="italic">they're biology.</text>
+<text x="308.0" y="221.1" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Nausea</text>
+<text x="308.0" y="234.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Rising hormone levels affect your digestive system. It can</text>
+<text x="308.0" y="247.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">hit any time of day, not just mornings.</text>
+<text x="318.0" y="263.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#521440" font-style="italic">Dry crackers before getting up. Small bites every 30</text>
+<text x="318.0" y="275.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#521440" font-style="italic">min. Ginger tea or chews. Prenatal vitamin at bedtime.</text>
+<text x="308.0" y="297.2" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Tender Breasts</text>
+<text x="308.0" y="310.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Hormonal changes can make your breasts swollen and</text>
+<text x="308.0" y="323.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">sensitive — sometimes seemingly overnight.</text>
+<text x="318.0" y="339.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#521440" font-style="italic">A well-fitted, supportive bra makes a real difference.</text>
+<text x="308.0" y="361.0" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Bloating &amp; Constipation</text>
+<text x="308.0" y="374.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Your digestive system slows down to absorb more</text>
+<text x="308.0" y="387.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">nutrients for the baby.</text>
+<text x="318.0" y="403.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#521440" font-style="italic">Increase fluids, fresh fruits, and vegetables. Chewable</text>
+<text x="318.0" y="415.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#521440" font-style="italic">papaya enzyme tablets after meals can ease gas.</text>
+<text x="308.0" y="437.1" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Cramping</text>
+<text x="308.0" y="450.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Mild, menstrual-like cramps are normal as your uterus</text>
+<text x="308.0" y="463.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">expands.</text>
+<text x="318.0" y="479.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#521440" font-style="italic">Sharp or severe pain is not normal — call your provider.</text>
+<text x="290.0" y="513.3" font-family="Lato, sans-serif" font-size="9.5" font-weight="700" fill="#6b1a54" letter-spacing="0.2px">Your Baby</text>
+<text x="290.0" y="535.8" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#6b1a54">6</text>
+<text x="319.0" y="534.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Beating heart</text>
+<text x="370.6" y="534.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">, early eye structures, and limb buds</text>
+<text x="319.0" y="547.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">forming. About ½ inch long.</text>
+<text x="290.0" y="570.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#6b1a54">8</text>
+<text x="319.0" y="568.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Webbed fingers and toes.</text>
+<text x="414.8" y="568.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">All major organ systems</text>
+<text x="319.0" y="582.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">developing.</text>
+<text x="290.0" y="604.5" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#6b1a54">12</text>
+<text x="319.0" y="603.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">3½ inches.</text>
+<text x="357.8" y="603.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Muscles, bones growing. Fingers separated.</text>
+<text x="319.0" y="616.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Genitals forming.</text>
+<text x="760.0" y="28.5" font-family="&quot;Source Serif 4&quot;, serif" font-size="36" font-weight="700" fill="#2c2a26">01</text>
+<text x="562.0" y="20.6" font-family="Lato, sans-serif" font-size="8" font-weight="700" fill="#6b1a54" letter-spacing="2px">1ST TRIMESTER</text>
+<text x="562.0" y="41.5" font-family="&quot;Playfair Display&quot;, serif" font-size="14" font-weight="600" fill="#2c2a26">Your To-Do List</text>
+<text x="562.0" y="57.4" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#7a756e">Weeks 1–12</text>
+<text x="579.0" y="87.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Complete your prenatal lab work</text>
+<text x="703.7" y="87.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Blood type, Rh status,</text>
+<text x="579.0" y="99.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">infection screening, and baseline health markers.</text>
+<text x="579.0" y="129.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Discuss genetic testing with your provider</text>
+<text x="737.6" y="129.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Several</text>
+<text x="579.0" y="141.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">options exist at different stages. Understand what's</text>
+<text x="579.0" y="153.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">available, what insurance covers, and what the results can</text>
+<text x="579.0" y="165.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">and can't tell you.</text>
+<text x="579.0" y="195.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Ask about preterm birth risk</text>
+<text x="686.5" y="195.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— About 1 in 10 babies are</text>
+<text x="579.0" y="207.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">born early. Know your risk factors, the warning signs, and</text>
+<text x="579.0" y="218.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">the plan if it happens.</text>
+<text x="579.0" y="248.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Discuss blood pressure monitoring</text>
+<text x="709.6" y="248.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— High blood pressure</text>
+<text x="579.0" y="260.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">in pregnancy can lead to pre-eclampsia. Early monitoring</text>
+<text x="579.0" y="272.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">makes a difference.</text>
+<text x="579.0" y="302.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Call your insurance company</text>
+<text x="687.6" y="302.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Review what's covered for</text>
+<text x="579.0" y="314.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">prenatal care, delivery, and newborn care before you need</text>
+<text x="579.0" y="326.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">it.</text>
+<text x="579.0" y="356.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Prioritize rest</text>
+<text x="631.5" y="356.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Your body is working harder than it feels.</text>
+<text x="579.0" y="368.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Sleep when you're tired. It's not laziness — it's biology.</text>
+<text x="579.0" y="397.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Start or continue exercising</text>
+<text x="683.1" y="397.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Even 10 minutes of walking</text>
+<text x="579.0" y="409.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">a day helps with fatigue, mood, and sleep quality.</text>
+<text x="579.0" y="439.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Learn about cord blood preservation</text>
+<text x="717.0" y="439.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Your baby's</text>
+<text x="579.0" y="451.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">umbilical cord contains stem cells used in transplant</text>
+<text x="579.0" y="463.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">medicine for over 30 years. You'll need to decide before</text>
+<text x="579.0" y="475.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">delivery. See Panel 14.</text>
+<text x="575.0" y="522.4" font-family="Lato, sans-serif" font-size="7.5" font-weight="700" fill="#6b1a54" letter-spacing="0.5px">CALL YOUR PROVIDER</text>
+<text x="586.0" y="535.8" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Bleeding or severe abdominal pain</text>
+<text x="586.0" y="549.8" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Severe headache or fever over 100°F</text>
+<text x="586.0" y="563.8" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Vomiting or diarrhea lasting 12+ hours</text>
+<text x="1032.0" y="28.5" font-family="&quot;Source Serif 4&quot;, serif" font-size="36" font-weight="700" fill="#2c2a26">02</text>
+<text x="834.0" y="20.6" font-family="Lato, sans-serif" font-size="8" font-weight="700" fill="#b3508a" letter-spacing="2px">2ND TRIMESTER</text>
+<text x="834.0" y="41.5" font-family="&quot;Playfair Display&quot;, serif" font-size="14" font-weight="600" fill="#2c2a26">Your Body &amp; Baby</text>
+<text x="834.0" y="57.4" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#7a756e">Weeks 12–28</text>
+<text x="834.0" y="117.6" font-family="Lato, sans-serif" font-size="9.5" font-weight="700" fill="#b3508a" letter-spacing="0.2px">What You May Experience</text>
+<text x="852.0" y="132.2" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">More Energy</text>
+<text x="852.0" y="145.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Better sleep, returning appetite, and a noticeable lift in</text>
+<text x="852.0" y="158.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">how you feel. This is often the most comfortable stretch of</text>
+<text x="852.0" y="171.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">pregnancy.</text>
+<text x="862.0" y="187.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">Take advantage of this window — sign up for classes,</text>
+<text x="862.0" y="199.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">prepare the nursery, enjoy how you feel.</text>
+<text x="852.0" y="221.1" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Baby's Movement</text>
+<text x="852.0" y="234.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Most women start feeling movement around week 23 —</text>
+<text x="852.0" y="247.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">beginning as flutters and building to distinct kicks and rolls.</text>
+<text x="862.0" y="263.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">One of the most exciting milestones. By week 28, you'll</text>
+<text x="862.0" y="275.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">begin tracking kick counts.</text>
+<text x="852.0" y="297.2" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Varicose Veins</text>
+<text x="852.0" y="310.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Increased blood volume and uterine pressure can cause</text>
+<text x="852.0" y="323.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">veins in your legs to swell.</text>
+<text x="862.0" y="339.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">Wear support stockings. Elevate your legs when</text>
+<text x="862.0" y="351.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">possible. Avoid crossing them.</text>
+<text x="852.0" y="373.3" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Braxton Hicks Contractions</text>
+<text x="852.0" y="386.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Mild uterine tightening 2–4 times a day is your body</text>
+<text x="852.0" y="399.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">practicing for labor. Normal and not dangerous.</text>
+<text x="862.0" y="415.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">If contractions come 3–4 times in one hour, call your</text>
+<text x="862.0" y="427.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">provider.</text>
+<text x="852.0" y="449.4" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Anemia</text>
+<text x="852.0" y="463.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">If diagnosed, your iron levels need support. This is common</text>
+<text x="852.0" y="475.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">and treatable.</text>
+<text x="862.0" y="491.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">Eat more meat, leafy greens, and beans. Take iron with</text>
+<text x="862.0" y="503.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#994576" font-style="italic">juice, not milk. Increase fiber to offset constipation.</text>
+<text x="834.0" y="538.0" font-family="Lato, sans-serif" font-size="9.5" font-weight="700" fill="#b3508a" letter-spacing="0.2px">Your Baby</text>
+<text x="834.0" y="560.5" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#b3508a">16</text>
+<text x="863.0" y="559.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Ears, eyelashes, and fingernails</text>
+<text x="979.2" y="559.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">are developing. Legs</text>
+<text x="863.0" y="572.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">are getting longer. Fingers open and close.</text>
+<text x="834.0" y="594.8" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#b3508a">20</text>
+<text x="863.0" y="593.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">About 7 inches long.</text>
+<text x="939.3" y="593.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Covered in fine hair called lanugo.</text>
+<text x="863.0" y="606.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Practicing sucking movements.</text>
+<text x="834.0" y="629.2" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#b3508a">24</text>
+<text x="863.0" y="627.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Eye movements begin.</text>
+<text x="947.3" y="627.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Lungs are producing surfactant</text>
+<text x="863.0" y="641.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— a substance essential for breathing air.</text>
+<text x="834.0" y="663.5" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#b3508a">28</text>
+<text x="863.0" y="662.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">About 10 inches.</text>
+<text x="926.2" y="662.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Practicing breathing movements. Eyes</text>
+<text x="863.0" y="675.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">open and close.</text>
+<text x="1304.0" y="28.5" font-family="&quot;Source Serif 4&quot;, serif" font-size="36" font-weight="700" fill="#2c2a26">02</text>
+<text x="1106.0" y="20.6" font-family="Lato, sans-serif" font-size="8" font-weight="700" fill="#b3508a" letter-spacing="2px">2ND TRIMESTER</text>
+<text x="1106.0" y="41.5" font-family="&quot;Playfair Display&quot;, serif" font-size="14" font-weight="600" fill="#2c2a26">Your To-Do List</text>
+<text x="1106.0" y="57.4" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#7a756e">Weeks 12–28</text>
+<text x="1123.0" y="87.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">AFP/Quad screen</text>
+<text x="1189.3" y="87.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— A blood test between weeks 15–20</text>
+<text x="1123.0" y="99.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">that screens for genetic disorders and neural tube defects.</text>
+<text x="1123.0" y="111.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Most accurate at 16–18 weeks.</text>
+<text x="1123.0" y="141.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Level 2 ultrasound</text>
+<text x="1192.4" y="141.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Between weeks 18–22. A detailed</text>
+<text x="1123.0" y="153.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">evaluation of your baby's anatomy — brain, heart, limbs,</text>
+<text x="1123.0" y="165.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">and kidneys.</text>
+<text x="1123.0" y="195.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Start sleeping on your side</text>
+<text x="1222.7" y="195.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Beginning at week 20. Right</text>
+<text x="1123.0" y="207.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">or left side is fine — the goal is staying off your back. A body</text>
+<text x="1123.0" y="218.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">pillow can help.</text>
+<text x="1123.0" y="248.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Glucose screening</text>
+<text x="1191.8" y="248.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Between weeks 24–28. A one-hour</text>
+<text x="1123.0" y="260.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">blood test that screens for gestational diabetes.</text>
+<text x="1123.0" y="290.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">RhoGAM injection</text>
+<text x="1193.3" y="290.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— At week 28 if you are Rh-negative.</text>
+<text x="1123.0" y="302.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">This protects your current and future pregnancies.</text>
+<text x="1123.0" y="332.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Begin kick counts</text>
+<text x="1189.2" y="332.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Starting at week 28. When resting,</text>
+<text x="1123.0" y="344.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">you should feel at least 4 movements in one hour. Talk to</text>
+<text x="1123.0" y="356.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">your provider about their specific guidelines.</text>
+<text x="1123.0" y="386.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Decide on your labor support</text>
+<text x="1233.1" y="386.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Partner, family member,</text>
+<text x="1123.0" y="397.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">friend, or doula. Think about who you want in the room.</text>
+<text x="1123.0" y="427.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Sign up for childbirth and newborn care classes</text>
+<text x="1299.8" y="427.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">—</text>
+<text x="1123.0" y="439.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Prepared childbirth, breastfeeding, and infant CPR. These</text>
+<text x="1123.0" y="451.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">fill up — register early.</text>
+<text x="1123.0" y="481.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Research cord blood preservation</text>
+<text x="1250.8" y="481.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Your baby's umbilical</text>
+<text x="1123.0" y="493.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">cord blood contains stem cells that have been used to treat</text>
+<text x="1123.0" y="505.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">over 80 serious conditions. It's worth understanding your</text>
+<text x="1123.0" y="517.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">options before delivery. See Panel 14.</text>
+<text x="1119.0" y="564.2" font-family="Lato, sans-serif" font-size="7.5" font-weight="700" fill="#b3508a" letter-spacing="0.5px">CALL YOUR PROVIDER</text>
+<text x="1130.0" y="577.6" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Bleeding, leaking fluid, or changes in vision</text>
+<text x="1130.0" y="591.6" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Noticeable decrease in fetal movement</text>
+<text x="1130.0" y="605.6" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Pressure or pain 3–4 times per hour</text>
+<text x="1576.0" y="28.5" font-family="&quot;Source Serif 4&quot;, serif" font-size="36" font-weight="700" fill="#2c2a26">03</text>
+<text x="1378.0" y="20.6" font-family="Lato, sans-serif" font-size="8" font-weight="700" fill="#d98d9a" letter-spacing="2px">3RD TRIMESTER</text>
+<text x="1378.0" y="41.5" font-family="&quot;Playfair Display&quot;, serif" font-size="14" font-weight="600" fill="#2c2a26">Your Body &amp; Baby</text>
+<text x="1378.0" y="57.4" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#7a756e">Weeks 28–Delivery</text>
+<text x="1378.0" y="117.6" font-family="Lato, sans-serif" font-size="9.5" font-weight="700" fill="#d98d9a" letter-spacing="0.2px">What You May Experience</text>
+<text x="1396.0" y="132.2" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Heartburn</text>
+<text x="1396.0" y="145.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Your baby pushes your stomach upward, causing acid</text>
+<text x="1396.0" y="158.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">reflux after meals or when lying flat.</text>
+<text x="1406.0" y="174.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">Smaller meals, more often. Stay upright 30 min after</text>
+<text x="1406.0" y="186.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">eating. Lie on your right side. Antacids are safe.</text>
+<text x="1396.0" y="208.3" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Constipation &amp; Hemorrhoids</text>
+<text x="1396.0" y="221.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Digestive slowdown and pelvic pressure make both</text>
+<text x="1396.0" y="234.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">common.</text>
+<text x="1406.0" y="250.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">More fruits, vegetables, and water. Ask about a stool</text>
+<text x="1406.0" y="262.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">softener. OTC hemorrhoid remedies are available.</text>
+<text x="1396.0" y="284.4" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Back Pain &amp; Leg Cramps</text>
+<text x="1396.0" y="298.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Extra weight shifts your center of gravity. Cramps tend to</text>
+<text x="1396.0" y="310.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">strike at night.</text>
+<text x="1406.0" y="326.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">Bend at knees, not waist. For cramps, point toes toward</text>
+<text x="1406.0" y="338.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">belly and try ice. Prenatal massage and PT can help.</text>
+<text x="1396.0" y="360.6" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Swelling &amp; Leaking</text>
+<text x="1396.0" y="374.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Fluid retention causes swollen feet/ankles. Bladder</text>
+<text x="1396.0" y="386.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">pressure can cause leaking when you laugh or cough.</text>
+<text x="1406.0" y="402.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">Elevate legs. Increase water and protein. Kegels (50–</text>
+<text x="1406.0" y="415.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">100/day) help with leaking. Sudden severe swelling —</text>
+<text x="1406.0" y="427.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">call your provider.</text>
+<text x="1396.0" y="449.0" font-family="Lato, sans-serif" font-size="9" font-weight="700" fill="#2c2a26" letter-spacing="0.2px">Fatigue &amp; Mood Changes</text>
+<text x="1396.0" y="462.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Interrupted sleep takes a toll on energy and emotions.</text>
+<text x="1406.0" y="478.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">If you feel overwhelmed, anxious, or persistently sad,</text>
+<text x="1406.0" y="490.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#bf7c87" font-style="italic">talk to your provider. Common and treatable.</text>
+<text x="1378.0" y="524.8" font-family="Lato, sans-serif" font-size="9.5" font-weight="700" fill="#d98d9a" letter-spacing="0.2px">Your Baby</text>
+<text x="1378.0" y="547.3" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#d98d9a">28</text>
+<text x="1407.0" y="546.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">About 14 inches and 2 pounds.</text>
+<text x="1522.0" y="546.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Lungs are maturing.</text>
+<text x="1407.0" y="559.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Sleep and wake cycles are developing. Hiccups are a</text>
+<text x="1407.0" y="572.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">normal sign of development.</text>
+<text x="1378.0" y="594.8" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#d98d9a">34</text>
+<text x="1407.0" y="593.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">Most babies have settled head-down</text>
+<text x="1545.6" y="593.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— the position</text>
+<text x="1407.0" y="606.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">they'll likely stay in until delivery.</text>
+<text x="1378.0" y="629.1" font-family="&quot;Source Serif 4&quot;, serif" font-size="15" font-weight="700" fill="#d98d9a">40</text>
+<text x="1407.0" y="627.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#2c2a26">18–22 inches long, 6–9 pounds.</text>
+<text x="1525.2" y="627.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">Fully developed and</text>
+<text x="1407.0" y="641.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">ready to be born.</text>
+<text x="1849.0" y="28.5" font-family="&quot;Source Serif 4&quot;, serif" font-size="36" font-weight="700" fill="#2c2a26">03</text>
+<text x="1650.0" y="20.6" font-family="Lato, sans-serif" font-size="8" font-weight="700" fill="#d98d9a" letter-spacing="2px">3RD TRIMESTER</text>
+<text x="1650.0" y="41.5" font-family="&quot;Playfair Display&quot;, serif" font-size="14" font-weight="600" fill="#2c2a26">Your To-Do List</text>
+<text x="1650.0" y="57.4" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#7a756e">Weeks 28–Delivery</text>
+<text x="1667.0" y="87.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Group B Strep screening</text>
+<text x="1758.9" y="87.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— A vaginal and rectal swab</text>
+<text x="1667.0" y="99.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">between weeks 35–37. If positive, you'll receive antibiotics</text>
+<text x="1667.0" y="111.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">during labor to protect your baby.</text>
+<text x="1667.0" y="141.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Choose a pediatrician</text>
+<text x="1748.8" y="141.4" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Interview candidates and confirm</text>
+<text x="1667.0" y="153.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">they accept your insurance. Do this before your due date.</text>
+<text x="1667.0" y="183.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Take a hospital tour</text>
+<text x="1740.8" y="183.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Know the facility, where to park, and</text>
+<text x="1667.0" y="195.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">the fastest route from home.</text>
+<text x="1667.0" y="225.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Install the car seat</text>
+<text x="1736.1" y="225.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— You will not be allowed to leave the</text>
+<text x="1667.0" y="236.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">hospital without one properly installed.</text>
+<text x="1667.0" y="266.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Pack your hospital bag</text>
+<text x="1752.0" y="266.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— For you and for baby. Include</text>
+<text x="1667.0" y="278.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">your insurance card, ID, phone charger, and going-home</text>
+<text x="1667.0" y="290.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">outfits.</text>
+<text x="1667.0" y="320.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Discuss expanded newborn screening</text>
+<text x="1808.6" y="320.5" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— A panel of tests</text>
+<text x="1667.0" y="332.3" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">performed at birth that screens your baby for a range of</text>
+<text x="1667.0" y="344.2" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">serious but treatable conditions.</text>
+<text x="1667.0" y="374.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Finalize your birth preferences</text>
+<text x="1783.2" y="374.1" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— Discuss pain</text>
+<text x="1667.0" y="386.0" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">management, labor positions, and who will be in the room</text>
+<text x="1667.0" y="397.9" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">with your provider and support team.</text>
+<text x="1667.0" y="427.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">Confirm your cord blood decision</text>
+<text x="1792.5" y="427.8" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">— If you haven't enrolled</text>
+<text x="1667.0" y="439.7" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">yet, it's not too late — even days before delivery. Visit</text>
+<text x="1667.0" y="451.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">stemcyte.com</text>
+<text x="1720.1" y="451.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">or call</text>
+<text x="1745.8" y="451.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="700" fill="#4a4740">1-888-CORD-BLOOD</text>
+<text x="1828.7" y="451.6" font-family="Lato, sans-serif" font-size="8.5" font-weight="400" fill="#4a4740">.</text>
+<text x="1663.0" y="498.6" font-family="Lato, sans-serif" font-size="7.5" font-weight="700" fill="#d98d9a" letter-spacing="0.5px">GO TO THE HOSPITAL</text>
+<text x="1674.0" y="512.1" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Contractions every 5 minutes</text>
+<text x="1674.0" y="526.1" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Your water has broken</text>
+<text x="1674.0" y="540.1" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Vaginal bleeding</text>
+<text x="1674.0" y="554.1" font-family="Lato, sans-serif" font-size="8" font-weight="400" fill="#4a4740">Significant decrease in baby's movement</text>
 </svg>

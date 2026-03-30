@@ -1,17 +1,30 @@
 ---
 const pathname = Astro.url.pathname;
+const isClinical = pathname.startsWith('/clinical');
 
-const navLinks = [
+const consumerLinks = [
   { label: 'The Science', href: '/the-science' },
   { label: 'Why StemCyte', href: '/why-stemcyte' },
   { label: 'Pricing', href: '/pricing' },
   { label: 'Patient Stories', href: '/patient-stories' },
   { label: 'Our Story', href: '/our-story' },
 ];
+
+const clinicalLinks = [
+  { label: 'REGENECYTE\u00AE', href: '/clinical/regenecyte' },
+  { label: 'Clinical Trials', href: '/clinical/clinical-trials' },
+  { label: 'Long COVID', href: '/clinical/long-covid' },
+  { label: 'Expanded Access', href: '/clinical/expanded-access-program' },
+  { label: 'Our Story', href: '/our-story' },
+];
+
+const navLinks = isClinical ? clinicalLinks : consumerLinks;
+const ctaText = isClinical ? 'Request Information' : 'Enroll now';
+const ctaHref = isClinical ? '/contact' : '/pricing';
 ---
 
-<nav class="nav at-top" id="nav">
-  <a href="/" class="logo">
+<nav class:list={['nav', 'at-top', { clinical: isClinical }]} id="nav">
+  <a href={isClinical ? '/clinical/regenecyte' : '/'} class="logo">
     <img src="/images/logos/white_stemcyte.webp" alt="StemCyte" class="logo-white" width="150" height="28" fetchpriority="low" />
     <img src="/images/logos/fullcolor_stemcyte.webp" alt="StemCyte" class="logo-color" width="150" height="28" fetchpriority="low" />
     <img src="/images/logos/black_stemcyte.webp" alt="StemCyte" class="logo-black" width="150" height="28" fetchpriority="low" />
@@ -22,9 +35,12 @@ const navLinks = [
         {label}
       </a>
     ))}
+    {isClinical && <span class="lane-badge">Clinical</span>}
   </div>
   <div class="rg">
-    <a href="/pricing" class="cta">Enroll now</a>
+    {!isClinical && <a href="/clinical/regenecyte" class="hcp-link">For Healthcare Professionals</a>}
+    {isClinical && <a href="/" class="back-link">&larr; stemcyte.com</a>}
+    <a href={ctaHref} class="cta">{ctaText}</a>
   </div>
   <button class="hamburger" aria-label="Open menu">
     <span></span>
@@ -34,8 +50,13 @@ const navLinks = [
 </nav>
 
 <div class="sheet-scrim" id="sheet-scrim"></div>
-<div class="sheet" id="sheet">
+<div class="sheet" id="sheet" class:list={[{ 'sheet-clinical': isClinical }]}>
   <div class="sheet-handle"></div>
+  {isClinical && (
+    <div class="sheet-back">
+      <a href="/">&larr; Back to stemcyte.com</a>
+    </div>
+  )}
   <div class="sheet-links">
     {navLinks.map(({ label, href }) => (
       <a href={href} class={pathname === href || pathname.startsWith(href + '/') ? 'active' : ''}>
@@ -44,8 +65,13 @@ const navLinks = [
     ))}
   </div>
   <div class="sheet-cta">
-    <a href="/pricing">Enroll now</a>
+    <a href={ctaHref}>{ctaText}</a>
   </div>
+  {!isClinical && (
+    <div class="sheet-hcp">
+      <a href="/clinical/regenecyte">For Healthcare Professionals &rarr;</a>
+    </div>
+  )}
 </div>
 
 <script>
