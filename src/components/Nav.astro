@@ -1,6 +1,6 @@
 ---
 const pathname = Astro.url.pathname;
-const isClinical = pathname.startsWith('/clinical');
+const isClinical = pathname.startsWith('/biologics');
 
 const consumerLinks = [
   { label: 'The Science', href: '/the-science' },
@@ -11,20 +11,20 @@ const consumerLinks = [
 ];
 
 const clinicalLinks = [
-  { label: 'Overview', href: '/clinical' },
-  { label: 'REGENECYTE\u00AE', href: '/clinical/regenecyte' },
-  { label: 'Clinical Trials', href: '/clinical/clinical-trials' },
-  { label: 'Publications', href: '/clinical/publications' },
-  { label: 'Manufacturing', href: '/clinical/manufacturing' },
+  { label: 'Overview', href: '/biologics' },
+  { label: 'REGENECYTE\u00AE', href: '/biologics/regenecyte' },
+  { label: 'Clinical Trials', href: '/biologics/clinical-trials' },
+  { label: 'Publications', href: '/biologics/publications' },
+  { label: 'Manufacturing', href: '/biologics/manufacturing' },
 ];
 
 const navLinks = isClinical ? clinicalLinks : consumerLinks;
 const ctaText = isClinical ? 'Request Information' : 'Enroll now';
-const ctaHref = isClinical ? '/clinical/contact' : '/pricing';
+const ctaHref = isClinical ? '/biologics/contact' : '/pricing';
 ---
 
 <nav class:list={['nav', 'at-top', { clinical: isClinical }]} id="nav">
-  <a href={isClinical ? '/clinical/' : '/'} class="logo">
+  <a href={isClinical ? '/biologics/' : '/'} class="logo">
     <img src="/images/logos/white_stemcyte.webp" alt="StemCyte" class="logo-white" width="150" height="28" fetchpriority="low" />
     <img src="/images/logos/fullcolor_stemcyte.webp" alt="StemCyte" class="logo-color" width="150" height="28" fetchpriority="low" />
     <img src="/images/logos/black_stemcyte.webp" alt="StemCyte" class="logo-black" width="150" height="28" fetchpriority="low" />
@@ -37,7 +37,7 @@ const ctaHref = isClinical ? '/clinical/contact' : '/pricing';
         {label}
       </a>
     ))}
-    {isClinical && <span class="lane-badge">Clinical</span>}
+    {isClinical && <span class="lane-badge">Biologics</span>}
   </div>
   <div class="rg">
     <a href={ctaHref} class="cta">{ctaText}</a>
@@ -69,7 +69,7 @@ const ctaHref = isClinical ? '/clinical/contact' : '/pricing';
   </div>
   {!isClinical && (
     <div class="sheet-hcp">
-      <a href="/clinical/">For Healthcare Professionals &rarr;</a>
+      <a href="/biologics/">For Healthcare Professionals &rarr;</a>
     </div>
   )}
 </div>
