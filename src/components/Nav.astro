@@ -11,10 +11,10 @@ const consumerLinks = [
 ];
 
 const clinicalLinks = [
+  { label: 'Overview', href: '/clinical' },
   { label: 'REGENECYTE\u00AE', href: '/clinical/regenecyte' },
   { label: 'Clinical Trials', href: '/clinical/clinical-trials' },
-  { label: 'Long COVID', href: '/clinical/long-covid' },
-  { label: 'Expanded Access', href: '/clinical/expanded-access-program' },
+  { label: 'Publications', href: '/clinical/publications' },
   { label: 'Our Story', href: '/our-story' },
 ];
 
@@ -24,7 +24,7 @@ const ctaHref = isClinical ? '/contact' : '/pricing';
 ---
 
 <nav class:list={['nav', 'at-top', { clinical: isClinical }]} id="nav">
-  <a href={isClinical ? '/clinical/regenecyte' : '/'} class="logo">
+  <a href={isClinical ? '/clinical/' : '/'} class="logo">
     <img src="/images/logos/white_stemcyte.webp" alt="StemCyte" class="logo-white" width="150" height="28" fetchpriority="low" />
     <img src="/images/logos/fullcolor_stemcyte.webp" alt="StemCyte" class="logo-color" width="150" height="28" fetchpriority="low" />
     <img src="/images/logos/black_stemcyte.webp" alt="StemCyte" class="logo-black" width="150" height="28" fetchpriority="low" />
@@ -38,7 +38,6 @@ const ctaHref = isClinical ? '/contact' : '/pricing';
     {isClinical && <span class="lane-badge">Clinical</span>}
   </div>
   <div class="rg">
-    {!isClinical && <a href="/clinical/regenecyte" class="hcp-link">For Healthcare Professionals</a>}
     {isClinical && <a href="/" class="back-link">&larr; stemcyte.com</a>}
     <a href={ctaHref} class="cta">{ctaText}</a>
   </div>
@@ -69,7 +68,7 @@ const ctaHref = isClinical ? '/contact' : '/pricing';
   </div>
   {!isClinical && (
     <div class="sheet-hcp">
-      <a href="/clinical/regenecyte">For Healthcare Professionals &rarr;</a>
+      <a href="/clinical/">For Healthcare Professionals &rarr;</a>
     </div>
   )}
 </div>
