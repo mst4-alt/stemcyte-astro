@@ -21,6 +21,9 @@ const schema = {
   background: linear-gradient(180deg, #061114 0%, #0a1c24 30%, #0e2830 60%, #133540 100%);
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 .ci-grid-canvas {
   position: absolute; inset: 0;
@@ -52,7 +55,7 @@ const schema = {
 .ci-hero {
   padding: 120px 48px 48px;
   position: relative; z-index: 2;
-  min-height: 100vh;
+  flex: 1;
   display: flex;
   align-items: center;
 }
