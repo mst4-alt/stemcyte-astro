@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "StemCyte International",
+  "tickerSymbol": "4178",
+  "url": "https://stemcyte.com",
+  "description": "Regenerative therapeutics company advancing FDA-licensed cord blood-derived cell therapies. Publicly listed on TPEX (4178).",
+  "foundingDate": "1997",
+  "foundingLocation": { "@type": "Place", "name": "California, USA" }
+};
+---
+
+<BaseLayout title="Investor Relations | StemCyte" description="StemCyte International investor relations — publicly listed on TPEX (4178). Corporate overview, milestones, executive leadership, and contact information." schema={schema}>
+
+<style is:global>
+
+/* HERO */
+.ir-hero { background:linear-gradient(180deg,#081518 0%,#0c1f28 40%,#122e3a 70%,#163648 100%); min-height:400px; max-height:450px; display:flex; align-items:flex-end; padding:0 48px 56px; position:relative; overflow:hidden; }
+.ir-hero .ir-grid-bg { position:absolute; inset:0; background-image: linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px); background-size:64px 64px; pointer-events:none; z-index:0; }
+.ir-hero-inner { max-width:900px; margin:0 auto; width:100%; position:relative; z-index:3; }
+.ir-overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4FA3B8; margin-bottom:16px; display:inline-flex; align-items:center; gap:8px; }
+.ir-overline .ir-pulse { width:6px; height:6px; border-radius:50%; background:#4FA3B8; animation:ir-pulse 2s ease infinite; }
+@keyframes ir-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(79,163,184,0.4)} 50%{box-shadow:0 0 0 8px rgba(79,163,184,0)} }
+.ir-hero h1 { font-family:'Playfair Display',serif; font-size:48px; font-weight:400; line-height:1.08; letter-spacing:-1.5px; color:#fff; margin-bottom:16px; }
+.ir-hero .ir-subtitle { font-size:16px; color:rgba(255,255,255,0.5); line-height:1.7; max-width:680px; }
+
+/* SECTIONS */
+.ir-section { padding:80px 48px; }
+.ir-section-alt { background:#EDF5F7; }
+.ir-inner { max-width:1100px; margin:0 auto; }
+.ir-section-label { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#2A637C; margin-bottom:8px; }
+.ir-h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; color:#2C2A26; margin-bottom:40px; letter-spacing:-0.5px; }
+
+/* SNAPSHOT */
+.ir-snapshot { display:grid; grid-template-columns:1fr 360px; gap:48px; align-items:start; }
+.ir-snapshot-text { font-size:15px; color:#6B665D; line-height:1.8; }
+.ir-fact-card { background:rgba(255,255,255,0.8); border:1px solid rgba(42,99,124,0.08); border-radius:16px; padding:28px; backdrop-filter:blur(12px); -webkit-backdrop-filter:blur(12px); box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); }
+.ir-fact-row { display:flex; justify-content:space-between; padding:10px 0; border-bottom:1px solid #F0ECE6; }
+.ir-fact-row:last-child { border-bottom:none; }
+.ir-fact-label { font-size:12px; color:#8A857A; }
+.ir-fact-value { font-size:13px; color:#2C2A26; font-weight:700; }
+
+/* TIMELINE */
+.ir-timeline { position:relative; padding-left:32px; }
+.ir-timeline::before { content:''; position:absolute; left:7px; top:8px; bottom:8px; width:2px; background:#C8DFE6; border-radius:1px; }
+.ir-tl-item { position:relative; margin-bottom:28px; }
+.ir-tl-item:last-child { margin-bottom:0; }
+.ir-tl-dot { position:absolute; left:-32px; top:4px; width:16px; height:16px; border-radius:50%; background:#EDF5F7; border:2px solid #4FA3B8; }
+.ir-tl-year { font-family:'Source Serif 4',serif; font-size:18px; color:#2A637C; font-weight:600; margin-bottom:4px; }
+.ir-tl-text { font-size:14px; color:#6B665D; line-height:1.6; }
+
+/* LEADERSHIP */
+.ir-leaders { display:grid; grid-template-columns:repeat(3,1fr); gap:28px; }
+.ir-leader-card { background:#fff; border-radius:12px; padding:28px; box-shadow:0 1px 3px rgba(0,0,0,0.04),0 1px 2px rgba(0,0,0,0.03); border-top:3px solid #2A637C; }
+.ir-leader-name { font-family:'Playfair Display',serif; font-size:20px; font-weight:400; color:#2C2A26; margin-bottom:4px; }
+.ir-leader-title { font-size:12px; font-weight:700; letter-spacing:0.5px; text-transform:uppercase; color:#2A637C; margin-bottom:14px; }
+.ir-leader-bio { font-size:14px; color:#6B665D; line-height:1.7; margin-bottom:14px; }
+.ir-leader-link { font-size:13px; font-weight:700; color:#2A637C; text-decoration:none; display:inline-flex; align-items:center; gap:4px; }
+.ir-leader-link:hover { color:#163648; }
+.ir-leader-link svg { width:14px; height:14px; }
+
+/* RECOGNITION */
+.ir-awards { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; }
+.ir-award-card { background:rgba(255,255,255,0.7); border-radius:12px; padding:24px; border:1px solid rgba(42,99,124,0.06); }
+.ir-award-card p { font-size:15px; color:#2C2A26; line-height:1.6; margin:0; }
+
+/* CTA */
+.ir-cta { padding:80px 48px; background:linear-gradient(160deg,#163648,#0c1f28); text-align:center; }
+.ir-cta-inner { max-width:600px; margin:0 auto; }
+.ir-cta h2 { font-family:'Playfair Display',serif; font-size:32px; font-weight:400; color:#fff; margin-bottom:12px; }
+.ir-cta p { font-size:15px; color:rgba(255,255,255,0.5); line-height:1.7; margin-bottom:28px; }
+.ir-cta-btn { display:inline-block; padding:14px 36px; background:#4FA3B8; color:#fff; font-size:14px; font-weight:700; border-radius:100px; text-decoration:none; transition:background 0.2s; }
+.ir-cta-btn:hover { background:#3d8a9d; }
+.ir-cta-secondary { display:block; margin-top:16px; font-size:13px; color:rgba(255,255,255,0.35); text-decoration:none; }
+.ir-cta-secondary:hover { color:rgba(255,255,255,0.6); }
+
+/* MOBILE */
+@media(max-width:768px) {
+  .ir-hero { padding:0 24px 40px; min-height:320px; }
+  .ir-hero h1 { font-size:32px; }
+  .ir-section { padding:56px 24px; }
+  .ir-snapshot { grid-template-columns:1fr; }
+  .ir-leaders { grid-template-columns:1fr; }
+  .ir-awards { grid-template-columns:1fr; }
+  .ir-h2 { font-size:26px; }
+}
+</style>
+
+<!-- HERO -->
+<section id="hero" class="ir-hero">
+  <div class="ir-grid-bg"></div>
+  <div class="ir-hero-inner">
+    <div class="ir-overline"><span class="ir-pulse"></span> INVESTOR RELATIONS</div>
+    <h1>StemCyte International</h1>
+    <p class="ir-subtitle">Publicly listed on the Taipei Exchange (TPEX: 4178). A regenerative therapeutics company advancing FDA-licensed cord blood-derived cell therapies.</p>
+  </div>
+</section>
+
+<!-- COMPANY SNAPSHOT -->
+<section class="ir-section">
+  <div class="ir-inner">
+    <div class="ir-section-label">AT A GLANCE</div>
+    <h2 class="ir-h2">Corporate Overview</h2>
+    <div class="ir-snapshot">
+      <div class="ir-snapshot-text">
+        <p>StemCyte operates across cord blood banking and regenerative cell therapy development, with primary operations in the United States and Taiwan. Founded in 1997 in California, the company holds both FACT and AABB accreditation and operates an FDA-licensed cGMP manufacturing facility in Baldwin Park, California. In 2024, StemCyte received FDA biologics license approval for REGENECYTE&reg; (HPC, Cord Blood), BLA 125764/0, and received Regenerative Medicine Advanced Therapy (RMAT) designation for the Long COVID indication.</p>
+      </div>
+      <div class="ir-fact-card">
+        <div class="ir-fact-row"><span class="ir-fact-label">Exchange</span><span class="ir-fact-value">TPEX</span></div>
+        <div class="ir-fact-row"><span class="ir-fact-label">Ticker</span><span class="ir-fact-value">4178</span></div>
+        <div class="ir-fact-row"><span class="ir-fact-label">Entity</span><span class="ir-fact-value">StemCyte International</span></div>
+        <div class="ir-fact-row"><span class="ir-fact-label">Founded</span><span class="ir-fact-value">1997</span></div>
+        <div class="ir-fact-row"><span class="ir-fact-label">U.S. Operations</span><span class="ir-fact-value">Baldwin Park, CA</span></div>
+        <div class="ir-fact-row"><span class="ir-fact-label">Taiwan Operations</span><span class="ir-fact-value">StemCyte Taiwan</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- KEY MILESTONES -->
+<section class="ir-section ir-section-alt">
+  <div class="ir-inner">
+    <div class="ir-section-label">MILESTONES</div>
+    <h2 class="ir-h2">Regulatory &amp; Corporate Milestones</h2>
+    <div class="ir-timeline">
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">2026</div>
+        <div class="ir-tl-text">Expanded Access Program clearance for REGENECYTE&reg; in Long COVID</div>
+      </div>
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">2026</div>
+        <div class="ir-tl-text">PubMed-indexed publication of Long COVID Phase IIa trial results</div>
+      </div>
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">2025</div>
+        <div class="ir-tl-text">Taiwan BIO Award for Innovation of the Year</div>
+      </div>
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">2025</div>
+        <div class="ir-tl-text">Honored at the Presidential Office (Taiwan)</div>
+      </div>
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">2024</div>
+        <div class="ir-tl-text">FDA biologics license approval: REGENECYTE&reg; (HPC, Cord Blood), BLA 125764/0</div>
+      </div>
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">2024</div>
+        <div class="ir-tl-text">FDA RMAT designation for REGENECYTE&reg; in Long COVID</div>
+      </div>
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">2015</div>
+        <div class="ir-tl-text">Expanded production capacity, established Baldwin Park GMP facility</div>
+      </div>
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">2006</div>
+        <div class="ir-tl-text">FACT accreditation achieved</div>
+      </div>
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">2002</div>
+        <div class="ir-tl-text">AABB accreditation achieved</div>
+      </div>
+      <div class="ir-tl-item">
+        <div class="ir-tl-dot"></div>
+        <div class="ir-tl-year">1997</div>
+        <div class="ir-tl-text">Founded in California</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP -->
+<section class="ir-section">
+  <div class="ir-inner">
+    <div class="ir-section-label">LEADERSHIP</div>
+    <h2 class="ir-h2">Executive Team</h2>
+    <div class="ir-leaders">
+      <div class="ir-leader-card">
+        <div class="ir-leader-name">Jonas Wang, PhD</div>
+        <div class="ir-leader-title">Chairman, StemCyte International</div>
+        <p class="ir-leader-bio">30+ years in pharmaceutical research and business development. Previously VP Consumer Products Research at Johnson &amp; Johnson and Director of Drug Delivery Technology at Bristol-Myers Squibb. Joined StemCyte in 2009.</p>
+        <a href="/our-story/jonas-wang" class="ir-leader-link">View profile <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg></a>
+      </div>
+      <div class="ir-leader-card">
+        <div class="ir-leader-name">Tong-Young Lee, PhD</div>
+        <div class="ir-leader-title">CEO, StemCyte Inc.</div>
+        <p class="ir-leader-bio">Career began at Harvard Medical School under Judah Folkman. Led antibody drug development programs in Taiwan, including advancing R&amp;D, governance, and IPO initiatives across multiple biotech startups.</p>
+        <a href="/our-story/tong-young-lee" class="ir-leader-link">View profile <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg></a>
+      </div>
+      <div class="ir-leader-card">
+        <div class="ir-leader-name">Joseph Rosenthal, MD</div>
+        <div class="ir-leader-title">Chief Medical Officer, StemCyte Inc.</div>
+        <p class="ir-leader-bio">Professor Emeritus at City of Hope. Over 25 years at the NCI-designated comprehensive cancer center, including more than a decade as Director of Pediatric Hematology-Oncology. Expert in bone marrow transplantation and umbilical cord blood therapy.</p>
+        <a href="/our-story/joseph-rosenthal" class="ir-leader-link">View profile <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECOGNITION -->
+<section class="ir-section ir-section-alt">
+  <div class="ir-inner">
+    <div class="ir-section-label">RECOGNITION</div>
+    <h2 class="ir-h2">Awards &amp; Industry Standing</h2>
+    <div class="ir-awards">
+      <div class="ir-award-card">
+        <p>2025 Taiwan BIO Award for Innovation of the Year</p>
+      </div>
+      <div class="ir-award-card">
+        <p>Honored at the Presidential Office (Taiwan), 2025</p>
+      </div>
+      <div class="ir-award-card">
+        <p>Ranked 6th among Deloitte's top 50 fastest-growing technology companies in the Los Angeles area</p>
+      </div>
+      <div class="ir-award-card">
+        <p>Commissioned by U.S. HRSA to support the National Cord Blood Inventory (NCBI)</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="ir-cta">
+  <div class="ir-cta-inner">
+    <h2>Investor &amp; partner inquiries</h2>
+    <p>For investor relations, partnership opportunities, or corporate inquiries, contact our team.</p>
+    <a href="/contact" class="ir-cta-btn">Contact Us</a>
+    <a href="/clinical/" class="ir-cta-secondary">View clinical pipeline &rarr;</a>
+  </div>
+</section>
+
+</BaseLayout>
