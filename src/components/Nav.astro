@@ -20,7 +20,7 @@ const clinicalLinks = [
 
 const navLinks = isClinical ? clinicalLinks : consumerLinks;
 const ctaText = isClinical ? 'Request Information' : 'Enroll now';
-const ctaHref = isClinical ? '/contact' : '/pricing';
+const ctaHref = isClinical ? '/clinical/contact' : '/pricing';
 ---
 
 <nav class:list={['nav', 'at-top', { clinical: isClinical }]} id="nav">

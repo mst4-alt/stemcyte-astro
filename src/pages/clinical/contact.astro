@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Clinical Contact — StemCyte",
+  "description": "Contact StemCyte's clinical and medical affairs team for medical information, Expanded Access, research collaboration, and transplant inquiries.",
+  "publisher": { "@type": "Organization", "name": "StemCyte, Inc." }
+};
+---
+
+<BaseLayout title="Contact Clinical Team | StemCyte" description="Contact StemCyte's medical affairs team for clinical inquiries, Expanded Access, research collaboration, and transplant center support." schema={schema}>
+
+<style is:global>
+
+/* HERO */
+.cc-hero { background:linear-gradient(180deg,#081518 0%,#0c1f28 40%,#163648 100%); padding:140px 48px 56px; position:relative; overflow:hidden; min-height:380px; display:flex; align-items:center; }
+.cc-hero::after { content:''; position:absolute; inset:0; background:radial-gradient(ellipse at 60% 80%, rgba(42,99,124,0.25) 0%, transparent 60%); pointer-events:none; }
+.cc-hero-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size:60px 60px; pointer-events:none; }
+.cc-hero-inner { max-width:960px; margin:0 auto; position:relative; z-index:2; text-align:center; }
+.cc-overline { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#4FA3B8; margin-bottom:14px; display:inline-flex; align-items:center; gap:8px; }
+.cc-overline .dot { width:6px; height:6px; border-radius:50%; background:#4FA3B8; animation:cc-pulse 2s ease infinite; }
+@keyframes cc-pulse { 0%,100%{box-shadow:0 0 0 0 rgba(79,163,184,0.4)} 50%{box-shadow:0 0 0 8px rgba(79,163,184,0)} }
+.cc-hero h1 { font-family:'Playfair Display',serif; font-size:44px; font-weight:400; line-height:1.1; letter-spacing:-1.5px; color:#fff; margin-bottom:14px; }
+.cc-hero .desc { font-size:17px; color:rgba(255,255,255,0.6); line-height:1.7; max-width:560px; margin:0 auto; }
+
+/* SHARED */
+.cc-band { padding:64px 48px; }
+.cc-band-in { max-width:1060px; margin:0 auto; }
+.cc-band.cream { background:#FAF9F7; }
+.cc-band.alt { background:#EDF5F7; }
+.cc-band.muted { background:#FAF9F7; }
+.cc-sl { font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:#2A637C; margin-bottom:8px; }
+.cc-sh { font-family:'Playfair Display',serif; font-size:28px; font-weight:400; letter-spacing:-0.3px; color:#2C2A26; margin-bottom:28px; line-height:1.25; }
+
+/* CHANNEL CARDS */
+.cc-channels { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.cc-card { background:#fff; border-radius:12px; padding:28px; box-shadow:0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03); border-top:3px solid #2A637C; position:relative; }
+.cc-card-icon { width:44px; height:44px; border-radius:50%; background:rgba(42,99,124,0.08); display:flex; align-items:center; justify-content:center; margin-bottom:16px; }
+.cc-card-icon svg { width:20px; height:20px; color:#2A637C; }
+.cc-card h3 { font-family:'Playfair Display',serif; font-size:19px; font-weight:400; color:#2C2A26; margin-bottom:8px; line-height:1.3; }
+.cc-card p { font-size:14px; color:#5A564E; line-height:1.65; margin-bottom:14px; }
+.cc-card .cc-contact { font-size:13px; color:#2C2A26; line-height:1.7; }
+.cc-card .cc-contact a { color:#2A637C; font-weight:600; text-decoration:none; transition:color 0.2s; }
+.cc-card .cc-contact a:hover { color:#367A94; }
+.cc-card .cc-link { display:inline-flex; align-items:center; gap:5px; font-size:13px; font-weight:700; color:#2A637C; text-decoration:none; transition:color 0.2s; }
+.cc-card .cc-link:hover { color:#367A94; }
+.cc-card .cc-link svg { width:14px; height:14px; }
+
+/* FORM */
+.cc-form { max-width:680px; margin:0 auto; }
+.cc-form-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+.cc-form-group { display:flex; flex-direction:column; gap:6px; }
+.cc-form-group.full { grid-column:1 / -1; }
+.cc-form-group label { font-size:13px; font-weight:600; color:#2C2A26; }
+.cc-form-group label .opt { font-weight:400; color:#8A857A; }
+.cc-form-group input,
+.cc-form-group select,
+.cc-form-group textarea { font-family:'Lato',sans-serif; font-size:14px; color:#2C2A26; padding:14px 16px; border:1px solid #E8E2DC; border-radius:8px; background:#fff; transition:border-color 0.2s; outline:none; }
+.cc-form-group input::placeholder,
+.cc-form-group textarea::placeholder { color:#B0ACA4; }
+.cc-form-group input:focus,
+.cc-form-group select:focus,
+.cc-form-group textarea:focus { border-color:#2A637C; }
+.cc-form-group select { appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%238A857A' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; padding-right:36px; }
+.cc-form-group textarea { min-height:120px; resize:vertical; }
+.cc-form-submit { margin-top:24px; text-align:center; }
+.cc-form-submit button { font-family:'Lato',sans-serif; font-size:14px; font-weight:700; color:#fff; background:#2A637C; border:none; padding:14px 40px; border-radius:100px; cursor:pointer; transition:background 0.25s; }
+.cc-form-submit button:hover { background:#367A94; }
+.cc-form-note { text-align:center; margin-top:20px; font-size:13px; color:#8A857A; line-height:1.6; max-width:500px; margin-left:auto; margin-right:auto; }
+
+/* LOCATION */
+.cc-loc { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+.cc-loc-block h3 { font-size:15px; font-weight:700; color:#2C2A26; margin-bottom:10px; }
+.cc-loc-block p { font-size:14px; color:#5A564E; line-height:1.7; margin:0; }
+.cc-loc-block .cc-badge { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:600; color:#2A637C; background:rgba(42,99,124,0.06); padding:6px 12px; border-radius:6px; margin-bottom:8px; }
+.cc-loc-block .cc-badge svg { width:14px; height:14px; }
+
+/* ROUTING */
+.cc-routing { text-align:center; padding:40px 48px; background:#FAF9F7; border-top:1px solid #E8E2DC; }
+.cc-routing p { font-size:14px; color:#8A857A; line-height:1.8; margin:0 0 4px; }
+.cc-routing a { color:#2A637C; font-weight:600; text-decoration:none; transition:color 0.2s; }
+.cc-routing a:hover { color:#367A94; }
+
+/* FOOTER OVERRIDE */
+footer { background:#0F2B35 !important; }
+footer .foot-top { border-color:rgba(255,255,255,0.08) !important; }
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .cc-hero { padding:120px 24px 48px; min-height:320px; }
+  .cc-hero h1 { font-size:32px; }
+  .cc-band { padding:48px 24px; }
+  .cc-channels { grid-template-columns:1fr; }
+  .cc-form-grid { grid-template-columns:1fr; }
+  .cc-form-group.full { grid-column:1; }
+  .cc-loc { grid-template-columns:1fr; gap:24px; }
+  .cc-routing { padding:32px 24px; }
+}
+
+</style>
+
+<!-- HERO -->
+<section class="cc-hero" id="hero">
+  <div class="cc-hero-grid"></div>
+  <div class="cc-hero-inner">
+    <div class="cc-overline"><span class="dot"></span> MEDICAL AFFAIRS</div>
+    <h1>Contact Our Clinical Team</h1>
+    <p class="desc">For medical information, clinical data requests, Expanded Access inquiries, and research collaboration.</p>
+  </div>
+</section>
+
+<!-- CONTACT CHANNELS -->
+<section class="cc-band cream">
+  <div class="cc-band-in">
+    <div class="cc-sl">HOW TO REACH US</div>
+    <h2 class="cc-sh">Select your inquiry type</h2>
+
+    <div class="cc-channels">
+
+      <!-- Medical Information -->
+      <div class="cc-card">
+        <div class="cc-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>Medical Information</h3>
+        <p>Product information, clinical data, prescribing questions, or adverse event reporting for REGENECYTE&reg; (HPC, Cord Blood).</p>
+        <div class="cc-contact">
+          Email: <a href="mailto:medinfo@stemcyte.com">medinfo@stemcyte.com</a><br>
+          Or call: <a href="tel:+16268219860">(626) 821-9860</a>
+        </div>
+      </div>
+
+      <!-- Expanded Access -->
+      <div class="cc-card">
+        <div class="cc-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3>Expanded Access Program</h3>
+        <p>Physician-initiated requests for REGENECYTE&reg; under FDA Expanded Access for qualifying Long COVID patients.</p>
+        <a href="/clinical/expanded-access-program" class="cc-link">
+          View program details
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <div class="cc-contact" style="margin-top:12px;">Contact our clinical team to initiate a request</div>
+      </div>
+
+      <!-- Research -->
+      <div class="cc-card">
+        <div class="cc-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Research Collaboration</h3>
+        <p>Clinical trial collaboration, investigator-sponsored studies, or research partnership inquiries.</p>
+        <div class="cc-contact">
+          Email: <a href="mailto:research@stemcyte.com">research@stemcyte.com</a>
+        </div>
+      </div>
+
+      <!-- Transplant -->
+      <div class="cc-card">
+        <div class="cc-card-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <h3>Transplant Center Inquiries</h3>
+        <p>HLA search requests, unit availability, or cord blood procurement for transplant centers and physicians.</p>
+        <div class="cc-contact">
+          Contact our search coordination team<br>
+          Phone: <a href="tel:+16268219860">(626) 821-9860</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- INQUIRY FORM -->
+<section class="cc-band alt">
+  <div class="cc-band-in">
+    <div class="cc-sl">GENERAL INQUIRY</div>
+    <h2 class="cc-sh">Send us a message</h2>
+
+    <form class="cc-form">
+      <div class="cc-form-grid">
+        <div class="cc-form-group">
+          <label for="cc-name">Full Name</label>
+          <input type="text" id="cc-name" name="name" placeholder="Dr. Jane Smith" required>
+        </div>
+        <div class="cc-form-group">
+          <label for="cc-org">Institution / Organization</label>
+          <input type="text" id="cc-org" name="organization" placeholder="City of Hope Medical Center">
+        </div>
+        <div class="cc-form-group">
+          <label for="cc-role">Role</label>
+          <select id="cc-role" name="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="physician">Physician</option>
+            <option value="researcher">Researcher</option>
+            <option value="pharmacist">Pharmacist</option>
+            <option value="nurse">Nurse / NP / PA</option>
+            <option value="admin">Hospital Administrator</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="cc-form-group">
+          <label for="cc-email">Email</label>
+          <input type="email" id="cc-email" name="email" placeholder="jane.smith@hospital.org" required>
+        </div>
+        <div class="cc-form-group">
+          <label for="cc-phone">Phone <span class="opt">(optional)</span></label>
+          <input type="tel" id="cc-phone" name="phone" placeholder="(555) 123-4567">
+        </div>
+        <div class="cc-form-group">
+          <label for="cc-type">Inquiry Type</label>
+          <select id="cc-type" name="inquiry_type" required>
+            <option value="" disabled selected>Select inquiry type</option>
+            <option value="medical-info">Medical Information</option>
+            <option value="expanded-access">Expanded Access</option>
+            <option value="research">Research Collaboration</option>
+            <option value="transplant">Transplant / Unit Request</option>
+            <option value="investor">Investor Relations</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        <div class="cc-form-group full">
+          <label for="cc-message">Message</label>
+          <textarea id="cc-message" name="message" placeholder="Please describe your inquiry..." required></textarea>
+        </div>
+      </div>
+      <div class="cc-form-submit">
+        <button type="submit">Submit Inquiry</button>
+      </div>
+      <p class="cc-form-note">For urgent medical inquiries or adverse event reporting, please call <a href="tel:+16268219860" style="color:#2A637C;font-weight:600;text-decoration:none;">(626) 821-9860</a> directly.</p>
+    </form>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="cc-band cream">
+  <div class="cc-band-in">
+    <div class="cc-sl">FACILITY</div>
+    <h2 class="cc-sh">StemCyte, Inc.</h2>
+
+    <div class="cc-loc">
+      <div class="cc-loc-block">
+        <h3>Address</h3>
+        <p>
+          1232 Puente Ave<br>
+          Baldwin Park, CA 91706<br>
+          United States
+        </p>
+        <p style="margin-top:12px;">Phone: <a href="tel:+16268219860" style="color:#2A637C;font-weight:600;text-decoration:none;">(626) 821-9860</a></p>
+      </div>
+      <div class="cc-loc-block">
+        <div class="cc-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          FDA-licensed cGMP manufacturing facility
+        </div>
+        <br>
+        <div class="cc-badge">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          FACT and AABB accredited
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ROUTING -->
+<section class="cc-routing">
+  <p>Looking for cord blood banking for your family? <a href="/">Visit stemcyte.com</a></p>
+  <p>For patient billing or account inquiries, visit <a href="/client-payment">Client Payment</a></p>
+</section>
+
+</BaseLayout>
