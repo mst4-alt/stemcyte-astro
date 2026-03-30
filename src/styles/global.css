@@ -178,6 +178,29 @@ body {
 }
 .nav.clinical.scrolled .hamburger span { background: rgba(255,255,255,0.6); }
 
+/* Clinical nav on light-hero pages (e.g. clinical-trials) */
+.nav.clinical.at-top.dark-hero .logo-white { display: none !important; }
+.nav.clinical.at-top.dark-hero .logo-black { display: block !important; }
+.nav.clinical.at-top.dark-hero .logo-color { display: none !important; }
+.nav.clinical.at-top.dark-hero .links a { color: rgba(44,42,38,0.6); }
+.nav.clinical.at-top.dark-hero .links a:hover { color: #2C2A26; }
+.nav.clinical.at-top.dark-hero .links a.active { color: #2A637C; font-weight: 700; }
+.nav.clinical.at-top.dark-hero .cta {
+  background: rgba(42,99,124,0.08); color: #2A637C;
+  border: 1px solid rgba(42,99,124,0.15);
+}
+.nav.clinical.at-top.dark-hero .cta:hover {
+  background: rgba(42,99,124,0.14);
+  border-color: rgba(42,99,124,0.25);
+}
+.nav.clinical.at-top.dark-hero .hamburger span { background: rgba(44,42,38,0.5); }
+.nav.clinical.at-top.dark-hero .lane-badge {
+  background: rgba(42,99,124,0.1); color: #2A637C;
+  border-color: rgba(42,99,124,0.15);
+}
+.nav.clinical.at-top.dark-hero .back-link { color: rgba(44,42,38,0.35); }
+.nav.clinical.at-top.dark-hero .back-link:hover { color: rgba(44,42,38,0.6); }
+
 /* Lane badge */
 .lane-badge {
   font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
