@@ -115,6 +115,13 @@ const schema = {
   font-weight: 700;
   color: #fff;
   line-height: 1;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pub-stat-num.animated {
+  opacity: 1;
+  transform: translateY(0);
 }
 .pub-stat-label {
   font-family: 'Lato', sans-serif;
@@ -204,6 +211,13 @@ const schema = {
   font-weight: 700;
   color: #2A637C;
   line-height: 1;
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.pub-feat-result .big-num.animated {
+  opacity: 1;
+  transform: translateY(0);
 }
 .pub-feat-result-label {
   font-family: 'Lato', sans-serif;
@@ -294,8 +308,8 @@ const schema = {
   height: 100%;
   border-radius: 6px;
 }
-.pub-bar-fill.accent { background: linear-gradient(90deg, #2A637C, #4FA3B8); }
-.pub-bar-fill.muted  { background: #D8D3CC; width: 0%; }
+.pub-bar-fill.accent { background: linear-gradient(90deg, #2A637C, #4FA3B8); width: 0%; transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1); }
+.pub-bar-fill.muted  { background: #D8D3CC; width: 0%; transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1); }
 .pub-bar-sig {
   font-family: 'Lato', sans-serif;
   font-size: 11px;
@@ -771,7 +785,7 @@ const schema = {
               <span class="pub-bar-pct accent">85%</span>
             </div>
             <div class="pub-bar-track">
-              <div class="pub-bar-fill accent" style="width:85%"></div>
+              <div class="pub-bar-fill accent" data-target-width="85%"></div>
             </div>
           </div>
           <div class="pub-bar-row">
@@ -780,7 +794,7 @@ const schema = {
               <span class="pub-bar-pct muted">0%</span>
             </div>
             <div class="pub-bar-track">
-              <div class="pub-bar-fill muted" style="width:0%"></div>
+              <div class="pub-bar-fill muted" data-target-width="0%"></div>
             </div>
           </div>
         </div>
@@ -1080,5 +1094,82 @@ const schema = {
     </div>
   </div>
 </section>
+
+<script>
+  function setupAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+
+          // Bar fills: animate width
+          if (el.classList.contains('pub-bar-group')) {
+            const fills = el.querySelectorAll('.pub-bar-fill');
+            fills.forEach((fill, i) => {
+              setTimeout(() => {
+                const target = fill.dataset.targetWidth || '0%';
+                fill.style.width = target;
+              }, i * 200);
+            });
+          }
+
+          // Big number: fade in
+          if (el.classList.contains('big-num')) {
+            el.classList.add('animated');
+          }
+
+          // Stat strip numbers: staggered fade in with count-up
+          if (el.classList.contains('pub-stat-strip')) {
+            const nums = el.querySelectorAll('.pub-stat-num');
+            nums.forEach((num, i) => {
+              setTimeout(() => {
+                num.classList.add('animated');
+                const target = parseInt(num.textContent);
+                if (!isNaN(target) && target > 0) {
+                  let current = 0;
+                  const duration = 800;
+                  const steps = 30;
+                  const increment = target / steps;
+                  const stepTime = duration / steps;
+                  const counter = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                      num.textContent = target;
+                      clearInterval(counter);
+                    } else {
+                      num.textContent = Math.floor(current);
+                    }
+                  }, stepTime);
+                }
+              }, i * 150);
+            });
+          }
+
+          observer.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    const barGroup = document.querySelector('.pub-bar-group');
+    if (barGroup) observer.observe(barGroup);
+
+    const bigNum = document.querySelector('.big-num');
+    if (bigNum) observer.observe(bigNum);
+
+    const statStrip = document.querySelector('.pub-stat-strip');
+    if (statStrip) observer.observe(statStrip);
+  }
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    setupAnimations();
+  } else {
+    document.querySelectorAll('.pub-bar-fill').forEach(fill => {
+      fill.style.width = fill.dataset.targetWidth || '0%';
+    });
+    document.querySelectorAll('.big-num, .pub-stat-num').forEach(el => {
+      el.classList.add('animated');
+    });
+  }
+</script>
 
 </BaseLayout>
