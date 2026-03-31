@@ -476,19 +476,20 @@ const schema = {
     const horizontal = Math.random() > 0.45;
     const speed = SPEED_MIN + Math.random() * (SPEED_MAX - SPEED_MIN);
     const len = LEN_MIN + Math.random() * (LEN_MAX - LEN_MIN);
+    const purple = Math.random() < 0.3;
 
     if (horizontal) {
       const row = Math.floor(Math.random() * Math.ceil(H / GRID)) * GRID;
       pulses.push({
         x: scatter ? Math.random() * W : -len - 10,
-        y: row, dx: speed, dy: 0, len: len, horiz: true
+        y: row, dx: speed, dy: 0, len: len, horiz: true, purple: purple
       });
     } else {
       const col = Math.floor(Math.random() * Math.ceil(W / GRID)) * GRID;
       pulses.push({
         x: col,
         y: scatter ? Math.random() * H : -len - 10,
-        dx: 0, dy: speed * 0.8, len: len, horiz: false
+        dx: 0, dy: speed * 0.8, len: len, horiz: false, purple: purple
       });
     }
   }
@@ -525,10 +526,12 @@ const schema = {
         grad = ctx.createLinearGradient(p.x, p.y - p.len, p.x, p.y);
       }
 
-      grad.addColorStop(0, 'rgba(79,163,184,0)');
-      grad.addColorStop(0.4, 'rgba(79,163,184,' + (PULSE_ALPHA * 0.4) + ')');
-      grad.addColorStop(0.85, 'rgba(79,163,184,' + PULSE_ALPHA + ')');
-      grad.addColorStop(1, 'rgba(120,195,210,' + (PULSE_ALPHA * 0.5) + ')');
+      var rgb = p.purple ? '140,60,120' : '79,163,184';
+      var rgbHead = p.purple ? '180,100,160' : '120,195,210';
+      grad.addColorStop(0, 'rgba(' + rgb + ',0)');
+      grad.addColorStop(0.4, 'rgba(' + rgb + ',' + (PULSE_ALPHA * 0.4) + ')');
+      grad.addColorStop(0.85, 'rgba(' + rgb + ',' + PULSE_ALPHA + ')');
+      grad.addColorStop(1, 'rgba(' + rgbHead + ',' + (PULSE_ALPHA * 0.5) + ')');
 
       ctx.strokeStyle = grad;
       ctx.lineWidth = 1;
