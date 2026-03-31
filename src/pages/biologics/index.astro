@@ -131,15 +131,16 @@ const schema = {
   font-family: 'Source Serif 4 Variable', 'Source Serif 4', serif;
   font-size: 28px; font-weight: 700; color: #7CBFD4;
 }
-.ci-pipe-result.faded { color: rgba(255,255,255,0.25); }
+.ci-pipe-result.teal { color: #7CBFD4; }
+.ci-pipe-result.teal-muted { color: rgba(124,191,212,0.6); }
 .ci-pipe-result-label { font-size: 11px; color: rgba(255,255,255,0.25); margin-top: 2px; }
 .ci-pipe-pill {
   display: inline-block; font-size: 10px; font-weight: 700;
   padding: 3px 10px; border-radius: 100px; margin-top: 12px;
 }
 .ci-pipe-pill.completed { background: rgba(79,163,184,0.15); color: #7CBFD4; }
-.ci-pipe-pill.active { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.5); }
-.ci-pipe-pill.investigational { background: rgba(255,255,255,0.04); color: rgba(255,255,255,0.3); }
+.ci-pipe-pill.active { background: rgba(79,163,184,0.10); color: rgba(124,191,212,0.7); }
+.ci-pipe-pill.investigational { background: rgba(79,163,184,0.07); color: rgba(124,191,212,0.5); }
 
 /* ── Credentials Bar ── */
 .ci-creds { padding: 0 48px 48px; position: relative; z-index: 2; }
@@ -312,14 +313,14 @@ const schema = {
         <div class="ci-pipe-card">
           <div class="ci-pipe-name"><a href="/biologics/stroke">Acute Ischemic Stroke</a></div>
           <div class="ci-pipe-meta">REGENECYTE&reg; &middot; Phase II</div>
-          <div class="ci-pipe-result faded">Phase II</div>
+          <div class="ci-pipe-result teal">Phase II</div>
           <div class="ci-pipe-result-label">Enrolling</div>
           <span class="ci-pipe-pill active">Active</span>
         </div>
         <div class="ci-pipe-card">
           <div class="ci-pipe-name">Cerebral Palsy</div>
           <div class="ci-pipe-meta">REGENECYTE&reg; &middot; Investigational</div>
-          <div class="ci-pipe-result faded">IND</div>
+          <div class="ci-pipe-result teal-muted">IND</div>
           <div class="ci-pipe-result-label">Early-stage</div>
           <span class="ci-pipe-pill investigational">Investigational</span>
         </div>
