@@ -77,17 +77,17 @@ const schema = {
 .lc-bar-row .bar-track { flex:1; height:40px; background:#F5F2EE; border-radius:6px; position:relative; overflow:hidden; }
 .lc-bar-row .bar-fill { height:100%; border-radius:6px; display:flex; align-items:center; justify-content:flex-end; padding-right:14px; font-family:'Source Serif 4 Variable',serif; font-size:18px; font-weight:700; width:0; }
 .lc-bar-row .bar-fill.anim { transition:width 1.4s cubic-bezier(0.22,1,0.36,1); }
-.lc-bar-row .bar-fill.accent { background:linear-gradient(90deg,#2A637C,#367A94); color:#fff; }
-.lc-bar-row .bar-fill.muted { background:linear-gradient(90deg,#D8D3CC,#C8C3BB); color:#7A756D; }
+.lc-bar-row .bar-fill.accent { background:#8B3572; color:#fff; }
+.lc-bar-row .bar-fill.muted { background:#dee2e6; color:#7d848b; }
 .lc-bar-row .bar-fill .bar-val { opacity:0; transition:opacity 0.4s 1.2s; }
 .lc-bar-row .bar-fill.anim .bar-val { opacity:1; }
 
 /* Sig badge */
 .lc-sig { display:flex; align-items:center; gap:8px; margin-top:16px; padding:12px 16px; background:#F0F6F8; border-radius:8px; border:1px solid rgba(42,99,124,0.08); }
-.lc-sig .sig-icon { width:20px; height:20px; border-radius:50%; background:#2A637C; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.lc-sig .sig-icon { width:20px; height:20px; border-radius:50%; background:#8B3572; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
 .lc-sig .sig-icon svg { width:12px; height:12px; }
 .lc-sig .sig-text { font-size:13px; color:#5A564E; }
-.lc-sig .sig-text strong { color:#2A637C; }
+.lc-sig .sig-text strong { color:#8B3572; }
 
 /* P-value timeline */
 .lc-pval-chart { margin-top:20px; }
@@ -97,10 +97,10 @@ const schema = {
 .lc-pval-track { flex:1; height:24px; background:#F5F2EE; border-radius:4px; position:relative; overflow:hidden; }
 .lc-pval-fill { height:100%; border-radius:4px; display:flex; align-items:center; justify-content:flex-end; padding-right:8px; font-size:11px; font-weight:700; color:#fff; width:0; }
 .lc-pval-fill.anim { transition:width 1.2s cubic-bezier(0.22,1,0.36,1); }
-.lc-pval-fill.w6 { background:#367A94; }
-.lc-pval-fill.w12 { background:#245A6E; }
-.lc-pval-fill.w18 { background:#2A637C; }
-.lc-pval-fill.w26 { background:#1E4D5E; }
+.lc-pval-fill.w6 { background:#B06A98; }
+.lc-pval-fill.w12 { background:#9E4D85; }
+.lc-pval-fill.w18 { background:#8B3572; }
+.lc-pval-fill.w26 { background:#6C1A55; }
 .lc-pval-fill.anim.w6 { transition-delay:0s; }
 .lc-pval-fill.anim.w12 { transition-delay:0.15s; }
 .lc-pval-fill.anim.w18 { transition-delay:0.3s; }
@@ -119,7 +119,7 @@ const schema = {
 .lc-scard .pill { display:inline-block; font-size:11px; font-weight:700; padding:3px 10px; border-radius:100px; }
 .lc-scard ul { list-style:none; }
 .lc-scard ul li { font-size:13px; color:#5A564E; padding:5px 0 5px 16px; position:relative; }
-.lc-scard ul li::before { content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; border:1.5px solid #4FA3B8; }
+.lc-scard ul li::before { content:''; position:absolute; left:0; top:12px; width:6px; height:6px; border-radius:50%; border:1.5px solid #8B3572; }
 .lc-scard ul li a { color:#2A637C; text-decoration:none; font-weight:700; transition:color 0.2s; }
 .lc-scard ul li a:hover { color:#367A94; }
 
@@ -311,7 +311,7 @@ const schema = {
       <div class="row"><span class="k">Dec 2024</span><span class="v">Phase IIa unblind</span></div>
       <div class="row"><span class="k">Jan 2026</span><span class="v">Lancet publication</span></div>
       <div class="row"><span class="k">Jan 2026</span><span class="v">EAP cleared</span></div>
-      <div class="row"><span class="k">Next</span><span class="v"><span class="pill" style="background:rgba(42,99,124,0.08);color:#2A637C;">Phase III</span></span></div>
+      <div class="row"><span class="k">Next</span><span class="v"><span class="pill" style="background:rgba(139,53,114,0.08);color:#8B3572;">Phase III</span></span></div>
     </div>
     <div class="lc-scard">
       <h4>Navigate</h4>
