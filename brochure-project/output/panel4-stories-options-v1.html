@@ -52,481 +52,10 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 .spread{display:flex;width:544px;height:704px;overflow:hidden;border-radius:2px}
 .page{width:272px;height:704px;position:relative;overflow:hidden;flex-shrink:0;font-family:'Lato',sans-serif}
 
-/* Shared typography for spread pages */
-.page .lbl{font-size:8px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:8px}
-.page h2{font-family:'Playfair Display',serif;font-weight:600;line-height:1.2}
-.page h3{font-family:'Playfair Display',serif;font-weight:600;line-height:1.2}
-.page h4{font-size:9.5px;font-weight:700;letter-spacing:0.2px}
-.page p,.page li{font-size:9px;line-height:1.55;color:var(--body)}
-.page .stat-num{font-family:'Source Serif 4',serif;font-weight:700;color:var(--plum)}
-.page .quote{font-family:'Playfair Display',serif;font-style:italic;line-height:1.45}
-.page .pathway-badge{display:inline-block;font-size:7px;font-weight:700;padding:2px 8px;border-radius:100px;letter-spacing:0.5px;text-transform:uppercase}
-.page .story-card{border-radius:6px;padding:12px 14px;border:1px solid var(--border)}
-.page .story-card h4{margin-bottom:4px}
-.page .story-card p{font-size:8.5px;line-height:1.5;color:var(--muted)}
-.page .alert-card{border-left:3px solid var(--plum);padding:10px 12px;border-radius:0 6px 6px 0}
-.page .divider{height:1px;background:var(--border);margin:12px 0}
-.page .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-
-/* ================================================================
-   20 DISTINCT SPREAD DESIGNS
-   ================================================================ */
-
-/* ---- OPTION 1: Three Equal Cards ---- */
-.opt1L{background:var(--cream);padding:24px 18px;display:flex;flex-direction:column}
-.opt1L .sec-lbl{color:var(--plum);margin-bottom:4px}
-.opt1L .headline{font-size:18px;color:#2C2A26;margin-bottom:6px}
-.opt1L .intro{font-size:9px;color:var(--muted);line-height:1.6;margin-bottom:16px}
-.opt1L .story-block{background:#fff;border-radius:8px;padding:14px 14px;margin-bottom:10px;border:1px solid var(--border)}
-.opt1L .story-block .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
-.opt1L .story-block .name{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;margin-bottom:2px;color:#2C2A26}
-.opt1L .story-block .condition{font-size:7.5px;color:var(--muted);margin-bottom:6px}
-.opt1L .story-block .desc{font-size:8.5px;line-height:1.55;color:var(--body)}
-
-.opt1R{background:var(--cream);padding:24px 18px;display:flex;flex-direction:column}
-.opt1R .story-block{background:#fff;border-radius:8px;padding:14px 14px;margin-bottom:12px;border:1px solid var(--border)}
-.opt1R .story-block .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
-.opt1R .story-block .name{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;margin-bottom:2px;color:#2C2A26}
-.opt1R .story-block .condition{font-size:7.5px;color:var(--muted);margin-bottom:6px}
-.opt1R .story-block .desc{font-size:8.5px;line-height:1.55;color:var(--body)}
-.opt1R .quote-block{margin-top:auto;padding:16px;background:var(--lav);border-radius:8px}
-.opt1R .quote-block .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum)}
-.opt1R .quote-block .attr{font-size:8px;color:var(--muted);margin-top:6px}
-
-/* ---- OPTION 2: Featured Story + Two Sidebars ---- */
-.opt2L{background:var(--sand);padding:24px 18px;display:flex;flex-direction:column}
-.opt2L .featured{flex:1;display:flex;flex-direction:column}
-.opt2L .featured .pathway{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--plum);margin-bottom:8px}
-.opt2L .featured .name{font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#2C2A26;margin-bottom:4px}
-.opt2L .featured .condition{font-size:8px;color:var(--muted);margin-bottom:12px}
-.opt2L .featured .story{font-size:10px;line-height:1.65;color:var(--body)}
-.opt2L .featured .big-quote{margin-top:auto;font-family:'Playfair Display',serif;font-style:italic;font-size:13px;line-height:1.4;color:var(--plum);padding-top:20px;border-top:1px solid var(--border)}
-.opt2L .featured .big-quote .attr{font-family:'Lato',sans-serif;font-style:normal;font-size:8px;color:var(--muted);margin-top:6px;display:block}
-
-.opt2R{background:var(--sand);padding:24px 18px;display:flex;flex-direction:column;gap:12px}
-.opt2R .side-story{flex:1;padding:16px;background:rgba(107,26,84,0.04);border-radius:8px;display:flex;flex-direction:column}
-.opt2R .side-story .pathway{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);margin-bottom:6px}
-.opt2R .side-story:last-of-type .pathway{color:var(--amber)}
-.opt2R .side-story .name{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt2R .side-story .condition{font-size:7.5px;color:var(--muted);margin-bottom:8px}
-.opt2R .side-story .desc{font-size:8.5px;line-height:1.55;color:var(--body)}
-
-/* ---- OPTION 3: Vertical Stack + Quote Column ---- */
-.opt3L{background:var(--cream);padding:22px 18px;display:flex;flex-direction:column;gap:0}
-.opt3L .sec-head{margin-bottom:12px}
-.opt3L .sec-head .lbl{color:var(--plum)}
-.opt3L .sec-head h2{font-size:16px;color:#2C2A26}
-.opt3L .v-story{padding:12px 0;border-bottom:1px solid var(--border)}
-.opt3L .v-story:last-of-type{border-bottom:none}
-.opt3L .v-story .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
-.opt3L .v-story .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt3L .v-story .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-
-.opt3R{background:var(--lav);padding:32px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
-.opt3R .big-mark{font-family:'Playfair Display',serif;font-size:80px;color:rgba(107,26,84,0.08);line-height:1;margin-bottom:16px}
-.opt3R .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:14px;line-height:1.5;color:var(--plum);max-width:200px}
-.opt3R .attr{font-size:9px;color:var(--muted);margin-top:12px}
-.opt3R .three-paths{margin-top:auto;display:flex;gap:8px;width:100%}
-.opt3R .path-pill{flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.7);border-radius:6px}
-.opt3R .path-pill .ic{font-size:14px;margin-bottom:2px}
-.opt3R .path-pill .pl{font-size:7px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--plum)}
-
-/* ---- OPTION 4: Color-Coded Left Borders ---- */
-.opt4L{background:var(--cream);padding:22px 16px;display:flex;flex-direction:column}
-.opt4L .head{margin-bottom:14px}
-.opt4L .head .lbl{color:var(--plum)}
-.opt4L .head h2{font-size:15px;color:#2C2A26;margin-bottom:4px}
-.opt4L .head p{font-size:8.5px;color:var(--muted);line-height:1.5}
-.opt4L .alert-story{border-left:3px solid;padding:10px 12px;border-radius:0 6px 6px 0;margin-bottom:10px;background:rgba(255,255,255,0.6)}
-.opt4L .alert-story.clr1{border-color:var(--plum);background:rgba(107,26,84,0.03)}
-.opt4L .alert-story.clr2{border-color:var(--sage);background:rgba(179,80,138,0.03)}
-.opt4L .alert-story .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
-.opt4L .alert-story .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt4L .alert-story .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-
-.opt4R{background:var(--cream);padding:22px 16px;display:flex;flex-direction:column}
-.opt4R .alert-story{border-left:3px solid var(--amber);padding:10px 12px;border-radius:0 6px 6px 0;margin-bottom:14px;background:rgba(217,141,154,0.03)}
-.opt4R .alert-story .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;color:var(--amber)}
-.opt4R .alert-story .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt4R .alert-story .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-.opt4R .quote-bottom{margin-top:auto;padding:14px 16px;background:var(--lav);border-radius:8px}
-.opt4R .quote-bottom .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;line-height:1.5;color:var(--plum)}
-.opt4R .quote-bottom .attr{font-size:8px;color:var(--muted);margin-top:6px}
-.opt4R .cta-line{margin-top:12px;text-align:center;font-size:8px;color:var(--muted)}
-
-/* ---- OPTION 5: Timeline/Progression ---- */
-.opt5L{background:var(--cream);padding:22px 18px;display:flex;flex-direction:column}
-.opt5L .head{margin-bottom:16px}
-.opt5L .head .lbl{color:var(--plum)}
-.opt5L .head h2{font-size:15px;color:#2C2A26}
-.opt5L .tl-entry{position:relative;padding-left:20px;margin-bottom:16px}
-.opt5L .tl-entry::before{content:'';position:absolute;left:5px;top:12px;bottom:-16px;width:1.5px;background:var(--border)}
-.opt5L .tl-entry:last-child::before{display:none}
-.opt5L .tl-dot{position:absolute;left:0;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid var(--cream)}
-.opt5L .tl-dot.c1{background:var(--plum);box-shadow:0 0 0 1px var(--plum)}
-.opt5L .tl-dot.c2{background:var(--sage);box-shadow:0 0 0 1px var(--sage)}
-.opt5L .tl-entry .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
-.opt5L .tl-entry .name{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt5L .tl-entry .cond{font-size:7.5px;color:var(--muted);margin-bottom:4px}
-.opt5L .tl-entry .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-
-.opt5R{background:var(--cream);padding:22px 18px;display:flex;flex-direction:column}
-.opt5R .tl-entry{position:relative;padding-left:20px;margin-bottom:16px}
-.opt5R .tl-entry::before{content:'';position:absolute;left:5px;top:12px;bottom:-16px;width:1.5px;background:var(--border)}
-.opt5R .tl-entry:last-child::before{display:none}
-.opt5R .tl-dot{position:absolute;left:0;top:4px;width:12px;height:12px;border-radius:50%;border:2px solid var(--cream)}
-.opt5R .tl-dot.c3{background:var(--amber);box-shadow:0 0 0 1px var(--amber)}
-.opt5R .tl-entry .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;color:var(--amber)}
-.opt5R .tl-entry .name{font-family:'Playfair Display',serif;font-size:11.5px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt5R .tl-entry .cond{font-size:7.5px;color:var(--muted);margin-bottom:4px}
-.opt5R .tl-entry .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-.opt5R .qt-block{margin-top:auto;padding:14px;border-top:1px solid var(--border)}
-.opt5R .qt-block .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;line-height:1.45;color:var(--plum)}
-.opt5R .qt-block .attr{font-size:8px;color:var(--muted);margin-top:6px}
-
-/* ---- OPTION 6: Magazine Editorial ---- */
-.opt6L{background:var(--warm-white);padding:0;display:flex;flex-direction:column}
-.opt6L .img-band{width:100%;height:200px;position:relative;overflow:hidden}
-.opt6L .img-band img{width:100%;height:100%;object-fit:cover}
-.opt6L .img-band .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(61,15,49,0.7))}
-.opt6L .img-band .over-text{position:absolute;bottom:14px;left:18px;right:18px}
-.opt6L .img-band .over-text .lbl{color:rgba(255,255,255,0.5);font-size:7px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:4px}
-.opt6L .img-band .over-text h2{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#fff;line-height:1.2}
-.opt6L .body-area{padding:18px 18px;flex:1;display:flex;flex-direction:column}
-.opt6L .pull-quote{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;line-height:1.45;color:var(--plum);padding:12px 0;border-top:2px solid var(--plum);border-bottom:1px solid var(--border);margin-bottom:14px}
-.opt6L .pull-quote .attr{font-family:'Lato',sans-serif;font-style:normal;font-size:8px;color:var(--muted);margin-top:6px;display:block}
-.opt6L .story-entry{margin-bottom:12px}
-.opt6L .story-entry .name-line{display:flex;align-items:baseline;gap:6px;margin-bottom:3px}
-.opt6L .story-entry .name-line .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26}
-.opt6L .story-entry .name-line .badge{font-size:6.5px;font-weight:700;padding:2px 6px;border-radius:100px;letter-spacing:0.4px;text-transform:uppercase}
-.opt6L .story-entry .desc{font-size:8.5px;line-height:1.55;color:var(--body)}
-
-.opt6R{background:var(--warm-white);padding:22px 18px;display:flex;flex-direction:column}
-.opt6R .story-entry{margin-bottom:16px;padding-bottom:14px;border-bottom:1px solid var(--border)}
-.opt6R .story-entry:last-of-type{border-bottom:none}
-.opt6R .story-entry .name-line{display:flex;align-items:baseline;gap:6px;margin-bottom:3px}
-.opt6R .story-entry .name-line .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26}
-.opt6R .story-entry .name-line .badge{font-size:6.5px;font-weight:700;padding:2px 6px;border-radius:100px;letter-spacing:0.4px;text-transform:uppercase}
-.opt6R .story-entry .cond{font-size:7.5px;color:var(--muted);margin-bottom:6px}
-.opt6R .story-entry .desc{font-size:9px;line-height:1.6;color:var(--body)}
-.opt6R .pathways-summary{margin-top:auto;padding:14px;background:var(--lav);border-radius:8px}
-.opt6R .pathways-summary h4{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plum);margin-bottom:8px}
-.opt6R .pathways-summary .row{display:flex;align-items:center;gap:6px;margin-bottom:4px}
-.opt6R .pathways-summary .dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.opt6R .pathways-summary .ptxt{font-size:8px;color:var(--body)}
-
-/* ---- OPTION 7: Dark Plum Spread ---- */
-.opt7L{background:linear-gradient(160deg,var(--plum),var(--plum-dark));color:#fff;padding:24px 18px;display:flex;flex-direction:column}
-.opt7L .lbl{color:rgba(255,255,255,0.25)}
-.opt7L h2{font-size:18px;color:#fff;margin-bottom:4px}
-.opt7L .sub{font-size:9px;color:rgba(255,255,255,0.45);margin-bottom:20px}
-.opt7L .dark-story{padding:14px;background:rgba(255,255,255,0.06);border-radius:8px;margin-bottom:10px}
-.opt7L .dark-story .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:4px}
-.opt7L .dark-story .name{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;color:#fff;margin-bottom:2px}
-.opt7L .dark-story .cond{font-size:7.5px;color:rgba(255,255,255,0.35);margin-bottom:6px}
-.opt7L .dark-story .desc{font-size:8.5px;line-height:1.55;color:rgba(255,255,255,0.55)}
-
-.opt7R{background:linear-gradient(160deg,var(--plum-dark),#2a0a20);color:#fff;padding:24px 18px;display:flex;flex-direction:column}
-.opt7R .dark-story{padding:14px;background:rgba(255,255,255,0.06);border-radius:8px;margin-bottom:12px}
-.opt7R .dark-story .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:4px}
-.opt7R .dark-story .name{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;color:#fff;margin-bottom:2px}
-.opt7R .dark-story .cond{font-size:7.5px;color:rgba(255,255,255,0.35);margin-bottom:6px}
-.opt7R .dark-story .desc{font-size:8.5px;line-height:1.55;color:rgba(255,255,255,0.55)}
-.opt7R .dark-quote{margin-top:auto;padding:14px 16px;background:rgba(255,255,255,0.04);border-radius:8px;border:1px solid rgba(255,255,255,0.08)}
-.opt7R .dark-quote .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;line-height:1.5;color:rgba(255,255,255,0.7)}
-.opt7R .dark-quote .attr{font-size:8px;color:rgba(255,255,255,0.3);margin-top:6px}
-
-/* ---- OPTION 8: Photo Top + Stories Below ---- */
-.opt8L{background:var(--cream);padding:0;display:flex;flex-direction:column}
-.opt8L .photo-top{height:240px;position:relative;overflow:hidden}
-.opt8L .photo-top img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
-.opt8L .photo-top .grad{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,var(--cream))}
-.opt8L .stories-area{padding:8px 18px 22px;flex:1;display:flex;flex-direction:column;gap:12px}
-.opt8L .mini-story .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
-.opt8L .mini-story .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt8L .mini-story .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-
-.opt8R{background:var(--cream);padding:0;display:flex;flex-direction:column}
-.opt8R .photo-top{height:200px;position:relative;overflow:hidden}
-.opt8R .photo-top img{width:100%;height:100%;object-fit:cover;object-position:center 40%}
-.opt8R .photo-top .grad{position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(transparent,var(--cream))}
-.opt8R .stories-area{padding:8px 18px 22px;flex:1;display:flex;flex-direction:column}
-.opt8R .mini-story{margin-bottom:12px}
-.opt8R .mini-story .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
-.opt8R .mini-story .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt8R .mini-story .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-.opt8R .quote-bar{margin-top:auto;padding:14px 18px;background:var(--plum);border-radius:0}
-.opt8R .quote-bar .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:rgba(255,255,255,0.85)}
-.opt8R .quote-bar .attr{font-size:8px;color:rgba(255,255,255,0.4);margin-top:4px}
-
-/* ---- OPTION 9: Names as Giant Headlines ---- */
-.opt9L{background:var(--sand);padding:24px 18px;display:flex;flex-direction:column}
-.opt9L .sec-tag{font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:16px}
-.opt9L .name-hero{margin-bottom:20px}
-.opt9L .name-hero h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#2C2A26;line-height:1.1;margin-bottom:4px}
-.opt9L .name-hero .cond{font-size:8px;color:var(--muted);margin-bottom:6px}
-.opt9L .name-hero .pathway-pill{display:inline-block;font-size:7px;font-weight:700;padding:3px 8px;border-radius:100px;letter-spacing:0.5px;text-transform:uppercase;background:rgba(107,26,84,0.08);color:var(--plum);margin-bottom:8px}
-.opt9L .name-hero .desc{font-size:9px;line-height:1.6;color:var(--body)}
-.opt9L .divider{height:1px;background:var(--border);margin:0 0 20px}
-
-.opt9R{background:var(--sand);padding:24px 18px;display:flex;flex-direction:column}
-.opt9R .name-hero{margin-bottom:20px}
-.opt9R .name-hero h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#2C2A26;line-height:1.1;margin-bottom:4px}
-.opt9R .name-hero .cond{font-size:8px;color:var(--muted);margin-bottom:6px}
-.opt9R .name-hero .pathway-pill{display:inline-block;font-size:7px;font-weight:700;padding:3px 8px;border-radius:100px;letter-spacing:0.5px;text-transform:uppercase;margin-bottom:8px}
-.opt9R .name-hero .desc{font-size:9px;line-height:1.6;color:var(--body)}
-.opt9R .bottom-quote{margin-top:auto;padding-top:16px;border-top:2px solid var(--plum)}
-.opt9R .bottom-quote .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;line-height:1.45;color:var(--plum)}
-.opt9R .bottom-quote .attr{font-size:8px;color:var(--muted);margin-top:8px}
-
-/* ---- OPTION 10: Grid of Cards ---- */
-.opt10L{background:var(--lav);padding:22px 16px;display:flex;flex-direction:column}
-.opt10L .head{margin-bottom:14px}
-.opt10L .head .lbl{color:var(--plum)}
-.opt10L .head h2{font-size:15px;color:#2C2A26}
-.opt10L .grid-card{background:#fff;border-radius:8px;padding:14px;margin-bottom:10px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
-.opt10L .grid-card .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.opt10L .grid-card .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26}
-.opt10L .grid-card .badge{font-size:6.5px;font-weight:700;padding:2px 7px;border-radius:100px;letter-spacing:0.4px;text-transform:uppercase}
-.opt10L .grid-card .cond{font-size:7.5px;color:var(--muted);margin-bottom:6px}
-.opt10L .grid-card .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-
-.opt10R{background:var(--lav);padding:22px 16px;display:flex;flex-direction:column}
-.opt10R .grid-card{background:#fff;border-radius:8px;padding:14px;margin-bottom:12px;box-shadow:0 1px 3px rgba(0,0,0,0.04)}
-.opt10R .grid-card .top-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
-.opt10R .grid-card .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26}
-.opt10R .grid-card .badge{font-size:6.5px;font-weight:700;padding:2px 7px;border-radius:100px;letter-spacing:0.4px;text-transform:uppercase}
-.opt10R .grid-card .cond{font-size:7.5px;color:var(--muted);margin-bottom:6px}
-.opt10R .grid-card .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-.opt10R .quote-card{margin-top:auto;background:var(--plum);border-radius:8px;padding:16px;color:#fff}
-.opt10R .quote-card .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;line-height:1.45;color:rgba(255,255,255,0.85)}
-.opt10R .quote-card .attr{font-size:8px;color:rgba(255,255,255,0.4);margin-top:6px}
-
-/* ---- OPTION 11: Full-Width Bands ---- */
-.opt11L{background:var(--cream);padding:0;display:flex;flex-direction:column}
-.opt11L .band{padding:18px 18px;flex:1;display:flex;flex-direction:column;justify-content:center}
-.opt11L .band:nth-child(1){background:var(--cream)}
-.opt11L .band:nth-child(2){background:var(--lav)}
-.opt11L .band .pathway{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
-.opt11L .band .name{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:#2C2A26;margin-bottom:3px}
-.opt11L .band .desc{font-size:8.5px;line-height:1.55;color:var(--body)}
-.opt11L .title-band{padding:20px 18px;background:var(--plum);color:#fff;text-align:center}
-.opt11L .title-band .lbl{color:rgba(255,255,255,0.3);font-size:7px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:4px}
-.opt11L .title-band h2{font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#fff}
-
-.opt11R{background:var(--cream);padding:0;display:flex;flex-direction:column}
-.opt11R .band{padding:18px 18px;flex:1;display:flex;flex-direction:column;justify-content:center}
-.opt11R .band:nth-child(1){background:var(--blush)}
-.opt11R .band .pathway{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px}
-.opt11R .band .name{font-family:'Playfair Display',serif;font-size:13px;font-weight:600;color:#2C2A26;margin-bottom:3px}
-.opt11R .band .desc{font-size:8.5px;line-height:1.55;color:var(--body)}
-.opt11R .quote-band{padding:20px 18px;background:var(--lav-deep);text-align:center;display:flex;flex-direction:column;justify-content:center;flex:1}
-.opt11R .quote-band .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;line-height:1.5;color:var(--plum)}
-.opt11R .quote-band .attr{font-size:8px;color:var(--muted);margin-top:6px}
-
-/* ---- OPTION 12: Asymmetric Editorial ---- */
-.opt12L{background:var(--sand);padding:28px 18px;display:flex;flex-direction:column}
-.opt12L .big-name{font-family:'Playfair Display',serif;font-size:36px;font-weight:600;color:rgba(107,26,84,0.08);line-height:1;margin-bottom:4px}
-.opt12L .subtitle{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:16px}
-.opt12L .story-text{font-size:10px;line-height:1.7;color:var(--body);margin-bottom:16px}
-.opt12L .small-card{padding:12px 14px;background:rgba(107,26,84,0.04);border-radius:6px;margin-bottom:10px}
-.opt12L .small-card .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
-.opt12L .small-card .name{font-family:'Playfair Display',serif;font-size:10px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt12L .small-card .desc{font-size:8px;line-height:1.5;color:var(--muted)}
-
-.opt12R{background:var(--sand);padding:28px 18px;display:flex;flex-direction:column}
-.opt12R .small-card{padding:12px 14px;background:rgba(217,141,154,0.06);border-radius:6px;margin-bottom:16px}
-.opt12R .small-card .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;color:var(--amber)}
-.opt12R .small-card .name{font-family:'Playfair Display',serif;font-size:10px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt12R .small-card .desc{font-size:8px;line-height:1.5;color:var(--muted)}
-.opt12R .quote-area{margin-top:auto;padding-top:16px;border-top:1px solid var(--border)}
-.opt12R .quote-area .mark{font-family:'Playfair Display',serif;font-size:48px;color:rgba(107,26,84,0.1);line-height:0.5;margin-bottom:8px}
-.opt12R .quote-area .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;line-height:1.45;color:var(--plum)}
-.opt12R .quote-area .attr{font-size:8px;color:var(--muted);margin-top:8px}
-
-/* ---- OPTION 13: Numbered Stories ---- */
-.opt13L{background:var(--cream);padding:22px 18px;display:flex;flex-direction:column}
-.opt13L .head{margin-bottom:16px}
-.opt13L .head .lbl{color:var(--plum)}
-.opt13L .head h2{font-size:16px;color:#2C2A26}
-.opt13L .head p{font-size:8.5px;color:var(--muted);line-height:1.5;margin-top:4px}
-.opt13L .num-story{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
-.opt13L .num-story .num{font-family:'Source Serif 4',serif;font-size:28px;font-weight:700;color:rgba(107,26,84,0.12);line-height:1;min-width:24px}
-.opt13L .num-story .content .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
-.opt13L .num-story .content .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt13L .num-story .content .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-
-.opt13R{background:var(--cream);padding:22px 18px;display:flex;flex-direction:column}
-.opt13R .num-story{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
-.opt13R .num-story .num{font-family:'Source Serif 4',serif;font-size:28px;font-weight:700;color:rgba(107,26,84,0.12);line-height:1;min-width:24px}
-.opt13R .num-story .content .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
-.opt13R .num-story .content .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt13R .num-story .content .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-.opt13R .insight{margin-top:auto;padding:14px;background:var(--lav);border-radius:8px}
-.opt13R .insight h4{font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plum);margin-bottom:6px}
-.opt13R .insight p{font-size:8.5px;line-height:1.55;color:var(--body)}
-.opt13R .insight .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum);margin-top:8px}
-.opt13R .insight .attr{font-size:8px;color:var(--muted);margin-top:4px}
-
-/* ---- OPTION 14: Minimal/Aesop-style ---- */
-.opt14L{background:var(--warm-white);padding:40px 22px;display:flex;flex-direction:column;justify-content:center}
-.opt14L .sec-lbl{font-size:7px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:20px}
-.opt14L .story-min{margin-bottom:28px}
-.opt14L .story-min .name{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#2C2A26;margin-bottom:4px}
-.opt14L .story-min .meta{font-size:8px;color:var(--muted);margin-bottom:8px}
-.opt14L .story-min .desc{font-size:9px;line-height:1.7;color:var(--body)}
-
-.opt14R{background:var(--warm-white);padding:40px 22px;display:flex;flex-direction:column;justify-content:center}
-.opt14R .story-min{margin-bottom:28px}
-.opt14R .story-min .name{font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#2C2A26;margin-bottom:4px}
-.opt14R .story-min .meta{font-size:8px;color:var(--muted);margin-bottom:8px}
-.opt14R .story-min .desc{font-size:9px;line-height:1.7;color:var(--body)}
-.opt14R .qt-minimal{margin-top:auto;font-family:'Playfair Display',serif;font-style:italic;font-size:12px;line-height:1.5;color:var(--plum)}
-.opt14R .qt-minimal .attr{font-family:'Lato',sans-serif;font-style:normal;font-size:8px;color:var(--muted);margin-top:8px;display:block}
-
-/* ---- OPTION 15: Split Plum + Cream ---- */
-.opt15L{background:var(--plum);color:#fff;padding:28px 18px;display:flex;flex-direction:column;justify-content:center}
-.opt15L .lbl{color:rgba(255,255,255,0.3);font-size:7px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:12px}
-.opt15L h2{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:12px;line-height:1.2}
-.opt15L .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:13px;line-height:1.5;color:rgba(255,255,255,0.75);margin-bottom:8px}
-.opt15L .attr{font-size:8px;color:rgba(255,255,255,0.35)}
-.opt15L .stat-row{display:flex;gap:8px;margin-top:auto}
-.opt15L .stat-item{flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,0.06);border-radius:6px}
-.opt15L .stat-item .v{font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.65);display:block;margin-bottom:2px}
-.opt15L .stat-item .l{font-size:6.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px}
-
-.opt15R{background:var(--cream);padding:22px 18px;display:flex;flex-direction:column;gap:10px}
-.opt15R .story-card-15{padding:14px;border:1px solid var(--border);border-radius:8px;flex:1;display:flex;flex-direction:column}
-.opt15R .story-card-15 .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
-.opt15R .story-card-15 .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt15R .story-card-15 .cond{font-size:7.5px;color:var(--muted);margin-bottom:6px}
-.opt15R .story-card-15 .desc{font-size:8.5px;line-height:1.55;color:var(--body)}
-
-/* ---- OPTION 16: Photo Mosaic Style ---- */
-.opt16L{background:var(--cream);padding:0;display:flex;flex-direction:column}
-.opt16L .img-slice{height:160px;position:relative;overflow:hidden}
-.opt16L .img-slice img{width:100%;height:100%;object-fit:cover}
-.opt16L .img-slice .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent,rgba(250,249,247,0.9))}
-.opt16L .content-area{padding:4px 18px 22px;flex:1;display:flex;flex-direction:column}
-.opt16L .content-area .lbl{color:var(--plum);margin-bottom:4px}
-.opt16L .content-area h2{font-size:15px;color:#2C2A26;margin-bottom:12px}
-.opt16L .st-entry{display:flex;gap:10px;margin-bottom:12px;align-items:flex-start}
-.opt16L .st-entry .icon-circle{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px}
-.opt16L .st-entry .text .name{font-family:'Playfair Display',serif;font-size:10px;font-weight:600;color:#2C2A26;margin-bottom:1px}
-.opt16L .st-entry .text .cond{font-size:7.5px;color:var(--muted);margin-bottom:3px}
-.opt16L .st-entry .text .desc{font-size:8px;line-height:1.5;color:var(--body)}
-
-.opt16R{background:var(--cream);padding:0;display:flex;flex-direction:column}
-.opt16R .img-slice{height:120px;position:relative;overflow:hidden}
-.opt16R .img-slice img{width:100%;height:100%;object-fit:cover;object-position:center 60%}
-.opt16R .img-slice .overlay{position:absolute;inset:0;background:linear-gradient(to bottom,transparent,rgba(250,249,247,0.9))}
-.opt16R .content-area{padding:4px 18px 22px;flex:1;display:flex;flex-direction:column}
-.opt16R .st-entry{display:flex;gap:10px;margin-bottom:14px;align-items:flex-start}
-.opt16R .st-entry .icon-circle{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:10px}
-.opt16R .st-entry .text .name{font-family:'Playfair Display',serif;font-size:10px;font-weight:600;color:#2C2A26;margin-bottom:1px}
-.opt16R .st-entry .text .cond{font-size:7.5px;color:var(--muted);margin-bottom:3px}
-.opt16R .st-entry .text .desc{font-size:8px;line-height:1.5;color:var(--body)}
-.opt16R .qt-bottom{margin-top:auto;padding:12px 14px;background:var(--lav);border-radius:8px}
-.opt16R .qt-bottom .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum)}
-.opt16R .qt-bottom .attr{font-size:7px;color:var(--muted);margin-top:4px}
-
-/* ---- OPTION 17: Stacked Layers ---- */
-.opt17L{background:var(--lav-deep);padding:22px 18px;display:flex;flex-direction:column}
-.opt17L .head{text-align:center;margin-bottom:16px}
-.opt17L .head .lbl{color:var(--plum)}
-.opt17L .head h2{font-size:16px;color:#2C2A26}
-.opt17L .layer{background:#fff;border-radius:8px;padding:14px;margin-bottom:8px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-.opt17L .layer .top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.opt17L .layer .top .num{font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(107,26,84,0.15)}
-.opt17L .layer .top .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-.opt17L .layer .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt17L .layer .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-
-.opt17R{background:var(--lav-deep);padding:22px 18px;display:flex;flex-direction:column}
-.opt17R .layer{background:#fff;border-radius:8px;padding:14px;margin-bottom:10px;box-shadow:0 2px 8px rgba(0,0,0,0.04)}
-.opt17R .layer .top{display:flex;align-items:center;gap:8px;margin-bottom:6px}
-.opt17R .layer .top .num{font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(107,26,84,0.15)}
-.opt17R .layer .top .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
-.opt17R .layer .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt17R .layer .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-.opt17R .qt-center{margin-top:auto;text-align:center;padding:16px 12px;background:rgba(107,26,84,0.06);border-radius:8px}
-.opt17R .qt-center .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;line-height:1.45;color:var(--plum)}
-.opt17R .qt-center .attr{font-size:8px;color:var(--muted);margin-top:6px}
-
-/* ---- OPTION 18: Horizontal Divider Lines ---- */
-.opt18L{background:var(--cream);padding:28px 20px;display:flex;flex-direction:column}
-.opt18L .head{text-align:center;padding-bottom:16px;border-bottom:2px solid var(--plum);margin-bottom:16px}
-.opt18L .head .lbl{color:var(--plum)}
-.opt18L .head h2{font-size:16px;color:#2C2A26}
-.opt18L .line-story{padding:14px 0;border-bottom:1px solid var(--border)}
-.opt18L .line-story:last-child{border-bottom:none}
-.opt18L .line-story .row1{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
-.opt18L .line-story .name{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;color:#2C2A26}
-.opt18L .line-story .pathway{font-size:7px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase}
-.opt18L .line-story .cond{font-size:7.5px;color:var(--muted);margin-bottom:4px}
-.opt18L .line-story .desc{font-size:8.5px;line-height:1.55;color:var(--body)}
-
-.opt18R{background:var(--cream);padding:28px 20px;display:flex;flex-direction:column}
-.opt18R .line-story{padding:14px 0;border-bottom:1px solid var(--border);margin-bottom:0}
-.opt18R .line-story .row1{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px}
-.opt18R .line-story .name{font-family:'Playfair Display',serif;font-size:12px;font-weight:600;color:#2C2A26}
-.opt18R .line-story .pathway{font-size:7px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase}
-.opt18R .line-story .cond{font-size:7.5px;color:var(--muted);margin-bottom:4px}
-.opt18R .line-story .desc{font-size:8.5px;line-height:1.55;color:var(--body)}
-.opt18R .final-qt{margin-top:auto;padding:16px 0;border-top:2px solid var(--plum)}
-.opt18R .final-qt .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;line-height:1.45;color:var(--plum)}
-.opt18R .final-qt .attr{font-size:8px;color:var(--muted);margin-top:8px}
-
-/* ---- OPTION 19: Gradient Accent Blocks ---- */
-.opt19L{background:var(--cream);padding:22px 16px;display:flex;flex-direction:column}
-.opt19L .head{margin-bottom:14px}
-.opt19L .head .lbl{color:var(--plum)}
-.opt19L .head h2{font-size:15px;color:#2C2A26}
-.opt19L .grad-block{border-radius:8px;padding:14px;margin-bottom:10px;position:relative;overflow:hidden}
-.opt19L .grad-block::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px}
-.opt19L .grad-block.gb1{background:linear-gradient(135deg,rgba(107,26,84,0.06),rgba(107,26,84,0.02))}
-.opt19L .grad-block.gb1::before{background:var(--plum)}
-.opt19L .grad-block.gb2{background:linear-gradient(135deg,rgba(179,80,138,0.06),rgba(179,80,138,0.02))}
-.opt19L .grad-block.gb2::before{background:var(--sage)}
-.opt19L .grad-block .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px}
-.opt19L .grad-block .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt19L .grad-block .cond{font-size:7.5px;color:var(--muted);margin-bottom:5px}
-.opt19L .grad-block .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-
-.opt19R{background:var(--cream);padding:22px 16px;display:flex;flex-direction:column}
-.opt19R .grad-block{border-radius:8px;padding:14px;margin-bottom:14px;position:relative;overflow:hidden}
-.opt19R .grad-block::before{content:'';position:absolute;top:0;left:0;bottom:0;width:4px;background:var(--amber)}
-.opt19R .grad-block{background:linear-gradient(135deg,rgba(217,141,154,0.06),rgba(217,141,154,0.02))}
-.opt19R .grad-block .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;color:var(--amber)}
-.opt19R .grad-block .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#2C2A26;margin-bottom:2px}
-.opt19R .grad-block .cond{font-size:7.5px;color:var(--muted);margin-bottom:5px}
-.opt19R .grad-block .desc{font-size:8.5px;line-height:1.5;color:var(--body)}
-.opt19R .qt-accent{margin-top:auto;padding:14px 16px;background:linear-gradient(135deg,rgba(107,26,84,0.08),rgba(107,26,84,0.03));border-radius:8px}
-.opt19R .qt-accent .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;line-height:1.45;color:var(--plum)}
-.opt19R .qt-accent .attr{font-size:8px;color:var(--muted);margin-top:6px}
-
-/* ---- OPTION 20: Full Immersive Photo Spread ---- */
-.opt20L{background:var(--plum-dark);padding:0;display:flex;flex-direction:column;position:relative}
-.opt20L .bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.25}
-.opt20L .content{position:relative;z-index:1;padding:28px 18px;display:flex;flex-direction:column;height:100%}
-.opt20L .content .lbl{color:rgba(255,255,255,0.3);font-size:7px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:8px}
-.opt20L .content h2{font-family:'Playfair Display',serif;font-size:20px;color:#fff;margin-bottom:6px;line-height:1.2}
-.opt20L .content .sub{font-size:9px;color:rgba(255,255,255,0.45);margin-bottom:24px;line-height:1.6}
-.opt20L .content .story-glass{padding:12px 14px;background:rgba(255,255,255,0.08);border-radius:8px;backdrop-filter:blur(4px);margin-bottom:10px;border:1px solid rgba(255,255,255,0.06)}
-.opt20L .content .story-glass .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:3px}
-.opt20L .content .story-glass .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#fff;margin-bottom:2px}
-.opt20L .content .story-glass .desc{font-size:8.5px;line-height:1.5;color:rgba(255,255,255,0.55)}
-
-.opt20R{background:#2a0a20;padding:0;display:flex;flex-direction:column;position:relative}
-.opt20R .bg-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.15}
-.opt20R .content{position:relative;z-index:1;padding:28px 18px;display:flex;flex-direction:column;height:100%}
-.opt20R .content .story-glass{padding:12px 14px;background:rgba(255,255,255,0.08);border-radius:8px;backdrop-filter:blur(4px);margin-bottom:10px;border:1px solid rgba(255,255,255,0.06)}
-.opt20R .content .story-glass .pathway{font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:3px}
-.opt20R .content .story-glass .name{font-family:'Playfair Display',serif;font-size:11px;font-weight:600;color:#fff;margin-bottom:2px}
-.opt20R .content .story-glass .desc{font-size:8.5px;line-height:1.5;color:rgba(255,255,255,0.55)}
-.opt20R .content .qt-glass{margin-top:auto;padding:16px;background:rgba(255,255,255,0.06);border-radius:8px;border:1px solid rgba(255,255,255,0.08)}
-.opt20R .content .qt-glass .qt{font-family:'Playfair Display',serif;font-style:italic;font-size:11px;line-height:1.5;color:rgba(255,255,255,0.75)}
-.opt20R .content .qt-glass .attr{font-size:8px;color:rgba(255,255,255,0.3);margin-top:6px}
+/* Shared photo placeholder */
+.photo{background:#D8D0C8;position:relative;overflow:hidden}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo .ph-label{position:absolute;bottom:8px;left:8px;font-size:7px;color:rgba(255,255,255,0.5);font-weight:700;letter-spacing:0.5px;background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:3px}
 
 </style>
 </head>
@@ -534,7 +63,7 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 
 <div class="gallery-header">
   <h1>Panel 4: Family Stories</h1>
-  <p>20 distinct layout options for the Family Stories spread — real families, three pathways, emotional proof</p>
+  <p>20 layout options — each family gets a placeholder photo, most spreads feature one story per page</p>
 </div>
 
 <div class="gallery" id="gallery"></div>
@@ -551,879 +80,601 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 </div>
 
 <script>
-// ============================================================
-// IMAGE DATA
-// ============================================================
-const IMGS = {};
-</script>
+const IMG = {
+  bailey: '../source-files/Hero_1_sm.jpg',
+  ryden: '../source-files/Hero_5_sm.jpg',
+  itzel: '../source-files/Hero_6_sm.jpg',
+  atmos1: '../source-files/Hero_2_sm.jpg',
+  atmos2: '../source-files/Hero_4_sm.jpg',
+};
 
-<script>
-// ============================================================
-// SPREAD DEFINITIONS
-// ============================================================
+// Shorthand helpers
+const photoBlock = (who, h, extra='') =>
+  `<div class="photo" style="height:${h}px;flex-shrink:0${extra}"><img src="${IMG[who]}" alt="${who} placeholder"><div class="ph-label">Placeholder</div></div>`;
+
+const BAILEY_TEXT = `Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood with StemCyte. She received her own stem cells and today is healthy and thriving.`;
+const RYDEN_TEXT = `After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.`;
+const ITZEL_TEXT = `Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.`;
+const QUOTE = `"It's better to save it and not need it than not have it when you need it."`;
+const ATTR = `— Rebecca, Bailey's mom`;
+
 const OPTIONS = [
 
-// ---- OPTION 1: Three Equal Cards ----
+// ===== 1: Photo Top, Story Bottom — One per page =====
 {
-  label: "Equal Cards",
-  left: `
-    <div class="page opt1L">
-      <div class="lbl sec-lbl">FAMILY STORIES</div>
-      <h2 class="headline" style="font-size:18px;color:#2C2A26;margin-bottom:6px">Real families. Real outcomes.</h2>
-      <p class="intro">Three families. Three different pathways. All changed by the power of cord blood stem cells.</p>
-      <div class="story-block">
-        <div class="pathway" style="color:var(--plum)">OWN CELLS</div>
-        <div class="name">Bailey Coates</div>
-        <div class="condition">Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood with StemCyte. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="story-block">
-        <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-        <div class="name">Ryden</div>
-        <div class="condition">Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
+  label: "Photo Top",
+  left: `<div class="page" style="background:var(--cream);display:flex;flex-direction:column">
+    ${photoBlock('bailey', 320)}
+    <div style="padding:16px 18px;flex:1;display:flex;flex-direction:column">
+      <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:6px">OWN CELLS</div>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+      <div style="font-size:8px;color:var(--muted);margin-bottom:10px">Perinatal Stroke</div>
+      <p style="font-size:9px;line-height:1.65;color:var(--body)">${BAILEY_TEXT}</p>
+      <div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--border)">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+        <div style="font-size:7.5px;color:var(--muted);margin-top:4px">${ATTR}</div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt1R">
-      <div class="story-block">
-        <div class="pathway" style="color:var(--amber)">DONATED CELLS</div>
-        <div class="name">Itzel Cervantes</div>
-        <div class="condition">Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="quote-block">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
+  </div>`,
+  right: `<div class="page" style="background:var(--cream);display:flex;flex-direction:column">
+    ${photoBlock('ryden', 320)}
+    <div style="padding:16px 18px;flex:1;display:flex;flex-direction:column">
+      <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:6px">SIBLING'S CELLS</div>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Ryden</div>
+      <div style="font-size:8px;color:var(--muted);margin-bottom:10px">Cerebral Palsy</div>
+      <p style="font-size:9px;line-height:1.65;color:var(--body)">${RYDEN_TEXT}</p>
     </div>
-  `
+  </div>`
 },
 
-// ---- OPTION 2: Featured Story + Two Sidebars ----
+// ===== 2: Full-bleed photo with text overlay =====
 {
-  label: "Featured Hero",
-  left: `
-    <div class="page opt2L">
-      <div class="featured">
-        <div class="pathway">OWN CELLS</div>
-        <div class="name">Bailey Coates</div>
-        <div class="condition">Perinatal Stroke</div>
-        <div class="story">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood with StemCyte. She received her own stem cells and today is healthy and thriving.</div>
-        <div class="big-quote">
-          "It's better to save it and not need it than not have it when you need it."
-          <span class="attr">— Rebecca, Bailey's mom</span>
-        </div>
+  label: "Photo Overlay",
+  left: `<div class="page" style="position:relative">
+    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(61,15,49,0.85) 45%,transparent 80%)"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:24px 18px;color:#fff">
+      <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px">OWN CELLS</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:4px;line-height:1.15">Bailey Coates</div>
+      <div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:10px">Perinatal Stroke</div>
+      <p style="font-size:9px;line-height:1.65;color:rgba(255,255,255,0.65)">${BAILEY_TEXT}</p>
+      <div style="margin-top:14px;padding-top:10px;border-top:1px solid rgba(255,255,255,0.1)">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9.5px;line-height:1.5;color:rgba(255,255,255,0.6)">${QUOTE}</div>
+        <div style="font-size:7px;color:rgba(255,255,255,0.3);margin-top:4px">${ATTR}</div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt2R">
-      <div class="side-story">
-        <div class="pathway">SIBLING'S CELLS</div>
-        <div class="name">Ryden</div>
-        <div class="condition">Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
-      <div class="side-story">
-        <div class="pathway">DONATED CELLS</div>
-        <div class="name">Itzel Cervantes</div>
-        <div class="condition">Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
+    <div style="position:absolute;top:8px;right:8px;font-size:7px;color:rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:3px">Placeholder</div>
+  </div>`,
+  right: `<div class="page" style="position:relative">
+    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
+    <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(61,15,49,0.85) 45%,transparent 80%)"></div>
+    <div style="position:absolute;bottom:0;left:0;right:0;padding:24px 18px;color:#fff">
+      <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:6px">SIBLING'S CELLS</div>
+      <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#fff;margin-bottom:4px;line-height:1.15">Ryden</div>
+      <div style="font-size:8px;color:rgba(255,255,255,0.4);margin-bottom:10px">Cerebral Palsy</div>
+      <p style="font-size:9px;line-height:1.65;color:rgba(255,255,255,0.65)">${RYDEN_TEXT}</p>
     </div>
-  `
+    <div style="position:absolute;top:8px;right:8px;font-size:7px;color:rgba(255,255,255,0.3);background:rgba(0,0,0,0.3);padding:2px 6px;border-radius:3px">Placeholder</div>
+  </div>`
 },
 
-// ---- OPTION 3: Vertical Stack + Quote Column ----
+// ===== 3: Side-by-side photo + text (photo left half) =====
 {
-  label: "Stack + Quote",
-  left: `
-    <div class="page opt3L">
-      <div class="sec-head">
-        <div class="lbl">FAMILY STORIES</div>
-        <h2>Lives changed by cord blood</h2>
-      </div>
-      <div class="v-story">
-        <div class="pathway" style="color:var(--plum)">OWN CELLS</div>
-        <div class="name">Bailey Coates — Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="v-story">
-        <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-        <div class="name">Ryden — Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
-      <div class="v-story">
-        <div class="pathway" style="color:var(--amber)">DONATED CELLS</div>
-        <div class="name">Itzel Cervantes — Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
+  label: "Half Photo",
+  left: `<div class="page" style="background:var(--cream);display:flex;flex-direction:column">
+    <div style="display:flex;flex:1">
+      <div style="width:120px;flex-shrink:0;overflow:hidden"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+      <div style="flex:1;padding:20px 14px;display:flex;flex-direction:column">
+        <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:6px">OWN CELLS</div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+        <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Perinatal Stroke</div>
+        <p style="font-size:8.5px;line-height:1.6;color:var(--body)">${BAILEY_TEXT}</p>
+        <div style="margin-top:auto;padding-top:10px">
+          <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+          <div style="font-size:7px;color:var(--muted);margin-top:4px">${ATTR}</div>
+        </div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt3R">
-      <div class="big-mark">&ldquo;</div>
-      <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-      <div class="attr">— Rebecca, Bailey's mom</div>
-      <div class="three-paths">
-        <div class="path-pill"><div class="pl">Own</div></div>
-        <div class="path-pill"><div class="pl">Sibling</div></div>
-        <div class="path-pill"><div class="pl">Donated</div></div>
+  </div>`,
+  right: `<div class="page" style="background:var(--cream);display:flex;flex-direction:column">
+    <div style="display:flex;flex:1">
+      <div style="flex:1;padding:20px 14px;display:flex;flex-direction:column">
+        <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:6px">SIBLING'S CELLS</div>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Ryden</div>
+        <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Cerebral Palsy</div>
+        <p style="font-size:8.5px;line-height:1.6;color:var(--body)">${RYDEN_TEXT}</p>
       </div>
+      <div style="width:120px;flex-shrink:0;overflow:hidden"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
     </div>
-  `
+  </div>`
 },
 
-// ---- OPTION 4: Color-Coded Left Borders ----
+// ===== 4: Circular portrait, centered text =====
 {
-  label: "Color Borders",
-  left: `
-    <div class="page opt4L">
-      <div class="head">
-        <div class="lbl">FAMILY STORIES</div>
-        <h2>Three families, three pathways</h2>
-        <p>Each story demonstrates a different way cord blood stem cells can be used.</p>
-      </div>
-      <div class="alert-story clr1">
-        <div class="pathway" style="color:var(--plum)">OWN CELLS</div>
-        <div class="name">Bailey Coates</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="alert-story clr2">
-        <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-        <div class="name">Ryden</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
+  label: "Circle Portrait",
+  left: `<div class="page" style="background:var(--cream);padding:32px 24px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:20px">FAMILY STORIES</div>
+    <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--plum);flex-shrink:0"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#2C2A26;margin-top:14px;line-height:1.2">Bailey Coates</div>
+    <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plum);margin-top:4px;margin-bottom:2px">OWN CELLS</div>
+    <div style="font-size:8px;color:var(--muted);margin-bottom:12px">Perinatal Stroke</div>
+    <p style="font-size:9px;line-height:1.65;color:var(--body);max-width:220px">${BAILEY_TEXT}</p>
+    <div style="margin-top:auto;padding-top:14px;border-top:1px solid var(--border);width:100%">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+      <div style="font-size:7.5px;color:var(--muted);margin-top:4px">${ATTR}</div>
     </div>
-  `,
-  right: `
-    <div class="page opt4R">
-      <div class="alert-story">
-        <div class="pathway">DONATED CELLS</div>
-        <div class="name">Itzel Cervantes</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="quote-bottom">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
-      <div class="cta-line">stemcyte.com &nbsp;|&nbsp; (866) 389-4659</div>
-    </div>
-  `
+  </div>`,
+  right: `<div class="page" style="background:var(--cream);padding:32px 24px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="width:120px;height:120px;border-radius:50%;overflow:hidden;border:3px solid var(--sage);flex-shrink:0;margin-top:28px"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#2C2A26;margin-top:14px;line-height:1.2">Ryden</div>
+    <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-top:4px;margin-bottom:2px">SIBLING'S CELLS</div>
+    <div style="font-size:8px;color:var(--muted);margin-bottom:12px">Cerebral Palsy</div>
+    <p style="font-size:9px;line-height:1.65;color:var(--body);max-width:220px">${RYDEN_TEXT}</p>
+  </div>`
 },
 
-// ---- OPTION 5: Timeline/Progression ----
+// ===== 5: Photo bottom, text top =====
 {
-  label: "Timeline",
-  left: `
-    <div class="page opt5L">
-      <div class="head">
-        <div class="lbl" style="color:var(--plum)">FAMILY STORIES</div>
-        <h2>Three pathways to healing</h2>
-      </div>
-      <div class="tl-entry">
-        <div class="tl-dot c1"></div>
-        <div class="pathway" style="color:var(--plum)">OWN CELLS (AUTOLOGOUS)</div>
-        <div class="name">Bailey Coates</div>
-        <div class="cond">Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="tl-entry">
-        <div class="tl-dot c2"></div>
-        <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS (ALLOGENEIC)</div>
-        <div class="name">Ryden</div>
-        <div class="cond">Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
+  label: "Text Over Photo",
+  left: `<div class="page" style="background:var(--sand);display:flex;flex-direction:column">
+    <div style="padding:24px 18px;flex:1">
+      <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:8px">FAMILY STORIES</div>
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plum);margin-top:4px;margin-bottom:8px">OWN CELLS &middot; PERINATAL STROKE</div>
+      <p style="font-size:9.5px;line-height:1.7;color:var(--body)">${BAILEY_TEXT}</p>
+      <div style="margin-top:16px;padding:12px 14px;background:var(--lav);border-radius:8px">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+        <div style="font-size:7.5px;color:var(--muted);margin-top:4px">${ATTR}</div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt5R">
-      <div class="tl-entry">
-        <div class="tl-dot c3"></div>
-        <div class="pathway">DONATED CELLS (PUBLIC BANK)</div>
-        <div class="name">Itzel Cervantes</div>
-        <div class="cond">Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="qt-block">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
+    ${photoBlock('bailey', 280)}
+  </div>`,
+  right: `<div class="page" style="background:var(--sand);display:flex;flex-direction:column">
+    <div style="padding:24px 18px;flex:1">
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Ryden</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-top:4px;margin-bottom:8px">SIBLING'S CELLS &middot; CEREBRAL PALSY</div>
+      <p style="font-size:9.5px;line-height:1.7;color:var(--body)">${RYDEN_TEXT}</p>
     </div>
-  `
+    ${photoBlock('ryden', 280)}
+  </div>`
 },
 
-// ---- OPTION 6: Magazine Editorial ----
+// ===== 6: Dark plum with inset photo =====
 {
-  label: "Magazine Edit",
-  left: `
-    <div class="page opt6L">
-      <div class="img-band">
-        <img src="" class="hero-img" data-img="Hero_2" alt="">
-        <div class="overlay"></div>
-        <div class="over-text">
-          <div class="lbl">FAMILY STORIES</div>
-          <h2>Real families, real outcomes</h2>
-        </div>
-      </div>
-      <div class="body-area">
-        <div class="pull-quote">
-          "It's better to save it and not need it than not have it when you need it."
-          <span class="attr">— Rebecca, Bailey's mom</span>
-        </div>
-        <div class="story-entry">
-          <div class="name-line">
-            <span class="name">Bailey Coates</span>
-            <span class="badge" style="background:rgba(107,26,84,0.08);color:var(--plum)">Own Cells</span>
-          </div>
-          <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-        </div>
-      </div>
+  label: "Dark Inset",
+  left: `<div class="page" style="background:linear-gradient(160deg,var(--plum),var(--plum-dark));color:#fff;padding:24px 18px;display:flex;flex-direction:column">
+    <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-bottom:12px">FAMILY STORIES</div>
+    <div style="border-radius:8px;overflow:hidden;height:200px;flex-shrink:0;margin-bottom:14px"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:4px">OWN CELLS</div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+    <div style="font-size:8px;color:rgba(255,255,255,0.35);margin-bottom:10px">Perinatal Stroke</div>
+    <p style="font-size:9px;line-height:1.65;color:rgba(255,255,255,0.55)">${BAILEY_TEXT}</p>
+    <div style="margin-top:auto;padding-top:12px;border-top:1px solid rgba(255,255,255,0.08)">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:rgba(255,255,255,0.6)">${QUOTE}</div>
+      <div style="font-size:7px;color:rgba(255,255,255,0.3);margin-top:4px">${ATTR}</div>
     </div>
-  `,
-  right: `
-    <div class="page opt6R">
-      <div class="story-entry">
-        <div class="name-line">
-          <span class="name">Ryden</span>
-          <span class="badge" style="background:rgba(179,80,138,0.08);color:var(--sage)">Sibling's Cells</span>
-        </div>
-        <div class="cond">Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
-      <div class="story-entry">
-        <div class="name-line">
-          <span class="name">Itzel Cervantes</span>
-          <span class="badge" style="background:rgba(217,141,154,0.08);color:var(--amber)">Donated Cells</span>
-        </div>
-        <div class="cond">Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="pathways-summary">
-        <h4>Three pathways to treatment</h4>
-        <div class="row"><div class="dot" style="background:var(--plum)"></div><div class="ptxt">Own stem cells (autologous)</div></div>
-        <div class="row"><div class="dot" style="background:var(--sage)"></div><div class="ptxt">Sibling stem cells (allogeneic)</div></div>
-        <div class="row"><div class="dot" style="background:var(--amber)"></div><div class="ptxt">Public bank donation</div></div>
-      </div>
-    </div>
-  `
+  </div>`,
+  right: `<div class="page" style="background:linear-gradient(160deg,var(--plum-dark),#2a0a20);color:#fff;padding:24px 18px;display:flex;flex-direction:column">
+    <div style="border-radius:8px;overflow:hidden;height:200px;flex-shrink:0;margin-bottom:14px"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:4px">SIBLING'S CELLS</div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:2px;line-height:1.2">Ryden</div>
+    <div style="font-size:8px;color:rgba(255,255,255,0.35);margin-bottom:10px">Cerebral Palsy</div>
+    <p style="font-size:9px;line-height:1.65;color:rgba(255,255,255,0.55)">${RYDEN_TEXT}</p>
+  </div>`
 },
 
-// ---- OPTION 7: Dark Plum Spread ----
+// ===== 7: Magazine spread — big name, photo offset =====
 {
-  label: "Dark Plum",
-  left: `
-    <div class="page opt7L">
-      <div class="lbl">FAMILY STORIES</div>
-      <h2>These stories are real.</h2>
-      <div class="sub">Three families. Three pathways. All changed by cord blood stem cells.</div>
-      <div class="dark-story">
-        <div class="pathway">OWN CELLS</div>
-        <div class="name">Bailey Coates</div>
-        <div class="cond">Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="dark-story">
-        <div class="pathway">SIBLING'S CELLS</div>
-        <div class="name">Ryden</div>
-        <div class="cond">Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
+  label: "Magazine",
+  left: `<div class="page" style="background:var(--cream);padding:28px 18px;display:flex;flex-direction:column">
+    <div style="font-size:7px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:12px">FAMILY STORIES</div>
+    <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:#2C2A26;line-height:1.05;margin-bottom:4px">Bailey</div>
+    <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:rgba(107,26,84,0.2);line-height:1.05;margin-bottom:12px">Coates</div>
+    <div style="display:inline-block;font-size:7px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:0.5px;text-transform:uppercase;background:rgba(107,26,84,0.08);color:var(--plum);margin-bottom:10px;align-self:flex-start">Own Cells</div>
+    <div style="font-size:8px;color:var(--muted);margin-bottom:10px">Perinatal Stroke</div>
+    <p style="font-size:9.5px;line-height:1.7;color:var(--body)">${BAILEY_TEXT}</p>
+    <div style="border-radius:8px;overflow:hidden;height:180px;margin-top:auto;flex-shrink:0"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+  </div>`,
+  right: `<div class="page" style="background:var(--cream);padding:28px 18px;display:flex;flex-direction:column">
+    <div style="border-radius:8px;overflow:hidden;height:180px;flex-shrink:0;margin-bottom:14px"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:600;color:#2C2A26;line-height:1.05;margin-bottom:4px">Ryden</div>
+    <div style="display:inline-block;font-size:7px;font-weight:700;padding:3px 10px;border-radius:100px;letter-spacing:0.5px;text-transform:uppercase;background:rgba(179,80,138,0.08);color:var(--sage);margin-bottom:10px;align-self:flex-start">Sibling's Cells</div>
+    <div style="font-size:8px;color:var(--muted);margin-bottom:10px">Cerebral Palsy</div>
+    <p style="font-size:9.5px;line-height:1.7;color:var(--body)">${RYDEN_TEXT}</p>
+    <div style="margin-top:auto;padding-top:12px;border-top:1px solid var(--border)">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+      <div style="font-size:7.5px;color:var(--muted);margin-top:4px">${ATTR}</div>
     </div>
-  `,
-  right: `
-    <div class="page opt7R">
-      <div class="dark-story">
-        <div class="pathway">DONATED CELLS</div>
-        <div class="name">Itzel Cervantes</div>
-        <div class="cond">Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="dark-quote">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
-    </div>
-  `
+  </div>`
 },
 
-// ---- OPTION 8: Photo Top + Stories Below ----
+// ===== 8: Asymmetric — big photo left, text card overlaps =====
 {
-  label: "Photo Header",
-  left: `
-    <div class="page opt8L">
-      <div class="photo-top">
-        <img src="" data-img="Hero_5" alt="">
-        <div class="grad"></div>
-      </div>
-      <div class="stories-area">
-        <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:8px">FAMILY STORIES</div>
-        <div class="mini-story">
-          <div class="pathway" style="color:var(--plum)">OWN CELLS</div>
-          <div class="name">Bailey Coates</div>
-          <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-        </div>
-        <div class="mini-story">
-          <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-          <div class="name">Ryden</div>
-          <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-        </div>
-      </div>
+  label: "Photo Card",
+  left: `<div class="page" style="background:var(--lav);position:relative;display:flex;flex-direction:column">
+    <div style="height:400px;overflow:hidden;flex-shrink:0"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="margin:-60px 14px 0;position:relative;z-index:1;background:#fff;border-radius:10px;padding:16px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);flex:1;display:flex;flex-direction:column">
+      <div style="font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--plum);margin-bottom:4px">OWN CELLS</div>
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+      <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Perinatal Stroke</div>
+      <p style="font-size:8.5px;line-height:1.6;color:var(--body)">${BAILEY_TEXT}</p>
+      <div style="margin-top:auto;font-family:'Playfair Display',serif;font-style:italic;font-size:9px;line-height:1.5;color:var(--plum);padding-top:8px;border-top:1px solid var(--border)">${QUOTE}<span style="font-family:Lato;font-style:normal;font-size:7px;color:var(--muted);display:block;margin-top:3px">${ATTR}</span></div>
     </div>
-  `,
-  right: `
-    <div class="page opt8R">
-      <div class="photo-top">
-        <img src="" data-img="Hero_6" alt="">
-        <div class="grad"></div>
-      </div>
-      <div class="stories-area">
-        <div class="mini-story">
-          <div class="pathway" style="color:var(--amber)">DONATED CELLS</div>
-          <div class="name">Itzel Cervantes</div>
-          <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-        </div>
-      </div>
-      <div class="quote-bar">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
+  </div>`,
+  right: `<div class="page" style="background:var(--lav);position:relative;display:flex;flex-direction:column">
+    <div style="height:400px;overflow:hidden;flex-shrink:0"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="margin:-60px 14px 0;position:relative;z-index:1;background:#fff;border-radius:10px;padding:16px 16px;box-shadow:0 4px 16px rgba(0,0,0,0.08);flex:1;display:flex;flex-direction:column">
+      <div style="font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);margin-bottom:4px">SIBLING'S CELLS</div>
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Ryden</div>
+      <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Cerebral Palsy</div>
+      <p style="font-size:8.5px;line-height:1.6;color:var(--body)">${RYDEN_TEXT}</p>
     </div>
-  `
+  </div>`
 },
 
-// ---- OPTION 9: Names as Giant Headlines ----
+// ===== 9: Lavender bg, rounded photo, left-border accent =====
 {
-  label: "Giant Names",
-  left: `
-    <div class="page opt9L">
-      <div class="sec-tag">FAMILY STORIES</div>
-      <div class="name-hero">
-        <h2>Bailey</h2>
-        <div class="cond">Perinatal Stroke</div>
-        <div class="pathway-pill">Own Cells</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood with StemCyte. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="divider" style="height:1px;background:var(--border);margin:0 0 20px"></div>
-      <div class="name-hero">
-        <h2>Ryden</h2>
-        <div class="cond">Cerebral Palsy</div>
-        <div class="pathway-pill" style="background:rgba(179,80,138,0.08);color:var(--sage)">Sibling's Cells</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
+  label: "Accent Border",
+  left: `<div class="page" style="background:var(--lav);padding:24px 18px;display:flex;flex-direction:column">
+    <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:14px">FAMILY STORIES</div>
+    <div style="border-radius:10px;overflow:hidden;height:200px;flex-shrink:0;margin-bottom:14px"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="border-left:3px solid var(--plum);padding:10px 12px;background:rgba(255,255,255,0.6);border-radius:0 8px 8px 0">
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#2C2A26;margin-bottom:2px">Bailey Coates</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plum);margin-bottom:6px">Own Cells &middot; Perinatal Stroke</div>
+      <p style="font-size:8.5px;line-height:1.55;color:var(--body)">${BAILEY_TEXT}</p>
     </div>
-  `,
-  right: `
-    <div class="page opt9R">
-      <div class="name-hero">
-        <h2>Itzel</h2>
-        <div class="cond">Acute Lymphoblastic Leukemia</div>
-        <div class="pathway-pill" style="background:rgba(217,141,154,0.08);color:#b8727e">Donated Cells</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="bottom-quote">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
+    <div style="margin-top:auto;padding:12px 14px;background:rgba(255,255,255,0.5);border-radius:8px;margin-top:12px">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+      <div style="font-size:7px;color:var(--muted);margin-top:4px">${ATTR}</div>
     </div>
-  `
+  </div>`,
+  right: `<div class="page" style="background:var(--lav);padding:24px 18px;display:flex;flex-direction:column">
+    <div style="border-radius:10px;overflow:hidden;height:200px;flex-shrink:0;margin-bottom:14px"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="border-left:3px solid var(--sage);padding:10px 12px;background:rgba(255,255,255,0.6);border-radius:0 8px 8px 0">
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#2C2A26;margin-bottom:2px">Ryden</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:6px">Sibling's Cells &middot; Cerebral Palsy</div>
+      <p style="font-size:8.5px;line-height:1.55;color:var(--body)">${RYDEN_TEXT}</p>
+    </div>
+  </div>`
 },
 
-// ---- OPTION 10: Grid of Cards on Lavender ----
+// ===== 10: Split — plum header/photo, cream text =====
 {
-  label: "Grid Cards",
-  left: `
-    <div class="page opt10L">
-      <div class="head">
-        <div class="lbl" style="color:var(--plum)">FAMILY STORIES</div>
-        <h2 style="font-size:15px;color:#2C2A26">Real families, real results</h2>
-      </div>
-      <div class="grid-card">
-        <div class="top-row">
-          <div class="name">Bailey Coates</div>
-          <div class="badge" style="background:rgba(107,26,84,0.1);color:var(--plum)">Own</div>
-        </div>
-        <div class="cond">Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="grid-card">
-        <div class="top-row">
-          <div class="name">Ryden</div>
-          <div class="badge" style="background:rgba(179,80,138,0.1);color:var(--sage)">Sibling</div>
-        </div>
-        <div class="cond">Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
+  label: "Split Plum",
+  left: `<div class="page" style="display:flex;flex-direction:column">
+    <div style="background:var(--plum);padding:18px 18px 0;position:relative">
+      <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:6px">FAMILY STORIES</div>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#fff;margin-bottom:12px;line-height:1.2">Bailey Coates</div>
+    </div>
+    <div style="height:240px;flex-shrink:0;overflow:hidden"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="background:var(--cream);padding:16px 18px;flex:1;display:flex;flex-direction:column">
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plum);margin-bottom:6px">OWN CELLS &middot; PERINATAL STROKE</div>
+      <p style="font-size:9px;line-height:1.65;color:var(--body)">${BAILEY_TEXT}</p>
+      <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--border)">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9.5px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+        <div style="font-size:7px;color:var(--muted);margin-top:4px">${ATTR}</div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt10R">
-      <div class="grid-card">
-        <div class="top-row">
-          <div class="name">Itzel Cervantes</div>
-          <div class="badge" style="background:rgba(217,141,154,0.1);color:#b8727e">Donated</div>
-        </div>
-        <div class="cond">Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="quote-card">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
+  </div>`,
+  right: `<div class="page" style="display:flex;flex-direction:column">
+    <div style="background:var(--plum);padding:18px 18px 12px">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#fff;line-height:1.2">Ryden</div>
     </div>
-  `
+    <div style="height:240px;flex-shrink:0;overflow:hidden"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="background:var(--cream);padding:16px 18px;flex:1;display:flex;flex-direction:column">
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:6px">SIBLING'S CELLS &middot; CEREBRAL PALSY</div>
+      <p style="font-size:9px;line-height:1.65;color:var(--body)">${RYDEN_TEXT}</p>
+    </div>
+  </div>`
 },
 
-// ---- OPTION 11: Full-Width Bands ----
+// ===== 11: Minimal — small photo, big whitespace =====
 {
-  label: "Color Bands",
-  left: `
-    <div class="page opt11L">
-      <div class="title-band">
-        <div class="lbl">FAMILY STORIES</div>
-        <h2>Lives changed by cord blood</h2>
-      </div>
-      <div class="band">
-        <div class="pathway" style="color:var(--plum)">OWN CELLS</div>
-        <div class="name">Bailey Coates — Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="band">
-        <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-        <div class="name">Ryden — Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
+  label: "Minimal",
+  left: `<div class="page" style="background:var(--warm-white);padding:48px 22px;display:flex;flex-direction:column">
+    <div style="font-size:7px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--muted);margin-bottom:24px">Family stories</div>
+    <div style="width:80px;height:80px;border-radius:6px;overflow:hidden;margin-bottom:16px;flex-shrink:0"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:3px">Bailey Coates</div>
+    <div style="font-size:8px;color:var(--muted);margin-bottom:12px">Own cells &middot; Perinatal Stroke</div>
+    <p style="font-size:9.5px;line-height:1.75;color:var(--body)">${BAILEY_TEXT}</p>
+    <div style="margin-top:auto">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:11px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+      <div style="font-size:8px;color:var(--muted);margin-top:6px">${ATTR}</div>
     </div>
-  `,
-  right: `
-    <div class="page opt11R">
-      <div class="band">
-        <div class="pathway" style="color:var(--amber)">DONATED CELLS</div>
-        <div class="name">Itzel Cervantes — Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="quote-band">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
-    </div>
-  `
+  </div>`,
+  right: `<div class="page" style="background:var(--warm-white);padding:48px 22px;display:flex;flex-direction:column">
+    <div style="width:80px;height:80px;border-radius:6px;overflow:hidden;margin-bottom:16px;flex-shrink:0;margin-top:24px"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:3px">Ryden</div>
+    <div style="font-size:8px;color:var(--muted);margin-bottom:12px">Sibling's cells &middot; Cerebral Palsy</div>
+    <p style="font-size:9.5px;line-height:1.75;color:var(--body)">${RYDEN_TEXT}</p>
+  </div>`
 },
 
-// ---- OPTION 12: Asymmetric Editorial ----
+// ===== 12: Full-bleed photo with glassmorphism card =====
 {
-  label: "Asymmetric",
-  left: `
-    <div class="page opt12L">
-      <div class="big-name">Bailey</div>
-      <div class="subtitle">OWN CELLS — PERINATAL STROKE</div>
-      <div class="story-text">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood with StemCyte. She received her own stem cells and today is healthy and thriving.</div>
-      <div class="small-card">
-        <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-        <div class="name">Ryden — Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood and used it in a clinical trial six months later.</div>
+  label: "Glass Card",
+  left: `<div class="page" style="position:relative">
+    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
+    <div style="position:absolute;inset:0;background:rgba(61,15,49,0.35)"></div>
+    <div style="position:absolute;bottom:20px;left:14px;right:14px;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-radius:10px;padding:16px 16px">
+      <div style="font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--plum);margin-bottom:4px">OWN CELLS</div>
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+      <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Perinatal Stroke</div>
+      <p style="font-size:8.5px;line-height:1.55;color:var(--body)">${BAILEY_TEXT}</p>
+      <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--border)">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+        <div style="font-size:7px;color:var(--muted);margin-top:3px">${ATTR}</div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt12R">
-      <div class="small-card">
-        <div class="pathway">DONATED CELLS</div>
-        <div class="name">Itzel Cervantes — Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="quote-area">
-        <div class="mark">&ldquo;</div>
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
+    <div style="position:absolute;top:16px;left:14px;font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.6)">FAMILY STORIES</div>
+  </div>`,
+  right: `<div class="page" style="position:relative">
+    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
+    <div style="position:absolute;inset:0;background:rgba(61,15,49,0.35)"></div>
+    <div style="position:absolute;bottom:20px;left:14px;right:14px;background:rgba(255,255,255,0.92);backdrop-filter:blur(12px);border-radius:10px;padding:16px 16px">
+      <div style="font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--sage);margin-bottom:4px">SIBLING'S CELLS</div>
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Ryden</div>
+      <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Cerebral Palsy</div>
+      <p style="font-size:8.5px;line-height:1.55;color:var(--body)">${RYDEN_TEXT}</p>
     </div>
-  `
+  </div>`
 },
 
-// ---- OPTION 13: Numbered Stories ----
+// ===== 13: Stacked — photo, name stripe, text =====
 {
-  label: "Numbered",
-  left: `
-    <div class="page opt13L">
-      <div class="head">
-        <div class="lbl" style="color:var(--plum)">FAMILY STORIES</div>
-        <h2>Three pathways. Three families.</h2>
-        <p>These are real families whose lives were changed by the decision to bank cord blood.</p>
-      </div>
-      <div class="num-story">
-        <div class="num">1</div>
-        <div class="content">
-          <div class="pathway" style="color:var(--plum)">OWN CELLS</div>
-          <div class="name">Bailey Coates</div>
-          <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-        </div>
-      </div>
-      <div class="num-story">
-        <div class="num">2</div>
-        <div class="content">
-          <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-          <div class="name">Ryden</div>
-          <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-        </div>
+  label: "Name Stripe",
+  left: `<div class="page" style="background:var(--cream);display:flex;flex-direction:column">
+    ${photoBlock('bailey', 260)}
+    <div style="background:var(--plum);padding:10px 18px">
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#fff;display:flex;justify-content:space-between;align-items:center">
+        <span>Bailey Coates</span>
+        <span style="font-family:Lato;font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4)">Own Cells</span>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt13R">
-      <div class="num-story">
-        <div class="num">3</div>
-        <div class="content">
-          <div class="pathway" style="color:var(--amber)">DONATED CELLS</div>
-          <div class="name">Itzel Cervantes</div>
-          <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-        </div>
-      </div>
-      <div class="insight">
-        <h4>A MOTHER'S PERSPECTIVE</h4>
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
+    <div style="padding:14px 18px;flex:1;display:flex;flex-direction:column">
+      <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Perinatal Stroke</div>
+      <p style="font-size:9px;line-height:1.65;color:var(--body)">${BAILEY_TEXT}</p>
+      <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--border)">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9.5px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+        <div style="font-size:7px;color:var(--muted);margin-top:4px">${ATTR}</div>
       </div>
     </div>
-  `
+  </div>`,
+  right: `<div class="page" style="background:var(--cream);display:flex;flex-direction:column">
+    ${photoBlock('ryden', 260)}
+    <div style="background:var(--sage);padding:10px 18px">
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#fff;display:flex;justify-content:space-between;align-items:center">
+        <span>Ryden</span>
+        <span style="font-family:Lato;font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.4)">Sibling's Cells</span>
+      </div>
+    </div>
+    <div style="padding:14px 18px;flex:1;display:flex;flex-direction:column">
+      <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Cerebral Palsy</div>
+      <p style="font-size:9px;line-height:1.65;color:var(--body)">${RYDEN_TEXT}</p>
+    </div>
+  </div>`
 },
 
-// ---- OPTION 14: Minimal/Aesop-style ----
+// ===== 14: Blush + Lavender alternating backgrounds =====
 {
-  label: "Minimal Aesop",
-  left: `
-    <div class="page opt14L">
-      <div class="sec-lbl">Family stories</div>
-      <div class="story-min">
-        <div class="name">Bailey Coates</div>
-        <div class="meta">Own cells &middot; Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood with StemCyte. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="story-min">
-        <div class="name">Ryden</div>
-        <div class="meta">Sibling's cells &middot; Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
+  label: "Soft Color",
+  left: `<div class="page" style="background:var(--blush);padding:24px 18px;display:flex;flex-direction:column">
+    <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:12px">FAMILY STORIES</div>
+    <div style="border-radius:8px;overflow:hidden;height:180px;flex-shrink:0;margin-bottom:14px"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:10px">
+      <span style="font-size:7px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--plum)">Own Cells</span>
+      <span style="width:3px;height:3px;border-radius:50%;background:var(--border)"></span>
+      <span style="font-size:7.5px;color:var(--muted)">Perinatal Stroke</span>
     </div>
-  `,
-  right: `
-    <div class="page opt14R">
-      <div class="story-min">
-        <div class="name">Itzel Cervantes</div>
-        <div class="meta">Donated cells &middot; Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="qt-minimal">
-        "It's better to save it and not need it than not have it when you need it."
-        <span class="attr">— Rebecca, Bailey's mom</span>
-      </div>
+    <p style="font-size:9px;line-height:1.65;color:var(--body)">${BAILEY_TEXT}</p>
+    <div style="margin-top:auto;padding:12px 14px;background:rgba(255,255,255,0.5);border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+      <div style="font-size:7px;color:var(--muted);margin-top:4px">${ATTR}</div>
     </div>
-  `
+  </div>`,
+  right: `<div class="page" style="background:var(--lav);padding:24px 18px;display:flex;flex-direction:column">
+    <div style="border-radius:8px;overflow:hidden;height:180px;flex-shrink:0;margin-bottom:14px"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Ryden</div>
+    <div style="display:flex;gap:6px;align-items:center;margin-bottom:10px">
+      <span style="font-size:7px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:var(--sage)">Sibling's Cells</span>
+      <span style="width:3px;height:3px;border-radius:50%;background:var(--border)"></span>
+      <span style="font-size:7.5px;color:var(--muted)">Cerebral Palsy</span>
+    </div>
+    <p style="font-size:9px;line-height:1.65;color:var(--body)">${RYDEN_TEXT}</p>
+  </div>`
 },
 
-// ---- OPTION 15: Split Plum + Cream ----
+// ===== 15: Tall photo strip left, text right within page =====
 {
-  label: "Split Contrast",
-  left: `
-    <div class="page opt15L">
-      <div class="lbl">FAMILY STORIES</div>
-      <h2>Real families. Real outcomes.</h2>
-      <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-      <div class="attr">— Rebecca, Bailey's mom</div>
-      <div class="stat-row">
-        <div class="stat-item"><span class="v">3</span><span class="l">Families</span></div>
-        <div class="stat-item"><span class="v">3</span><span class="l">Pathways</span></div>
-        <div class="stat-item"><span class="v">3</span><span class="l">Success stories</span></div>
+  label: "Tall Strip",
+  left: `<div class="page" style="background:var(--cream);display:flex">
+    <div style="width:100px;flex-shrink:0;overflow:hidden"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="flex:1;padding:24px 14px;display:flex;flex-direction:column">
+      <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:8px">FAMILY STORIES</div>
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plum);margin-bottom:2px;margin-top:4px">OWN CELLS</div>
+      <div style="font-size:7.5px;color:var(--muted);margin-bottom:10px">Perinatal Stroke</div>
+      <p style="font-size:8.5px;line-height:1.6;color:var(--body)">${BAILEY_TEXT}</p>
+      <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--border)">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9px;line-height:1.45;color:var(--plum)">${QUOTE}</div>
+        <div style="font-size:7px;color:var(--muted);margin-top:4px">${ATTR}</div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt15R">
-      <div class="story-card-15">
-        <div class="pathway" style="color:var(--plum);font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">OWN CELLS</div>
-        <div class="name">Bailey Coates</div>
-        <div class="cond" style="font-size:7.5px;color:var(--muted);margin-bottom:6px">Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="story-card-15">
-        <div class="pathway" style="color:var(--sage);font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">SIBLING'S CELLS</div>
-        <div class="name">Ryden</div>
-        <div class="cond" style="font-size:7.5px;color:var(--muted);margin-bottom:6px">Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood and used it in a clinical trial six months later.</div>
-      </div>
-      <div class="story-card-15">
-        <div class="pathway" style="color:var(--amber);font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px">DONATED CELLS</div>
-        <div class="name">Itzel Cervantes</div>
-        <div class="cond" style="font-size:7.5px;color:var(--muted);margin-bottom:6px">Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 when her leukemia kept relapsing. A cord blood transplant was her only option. In full remission, 11 years later.</div>
-      </div>
+  </div>`,
+  right: `<div class="page" style="background:var(--cream);display:flex">
+    <div style="flex:1;padding:24px 14px;display:flex;flex-direction:column">
+      <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Ryden</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:2px;margin-top:4px">SIBLING'S CELLS</div>
+      <div style="font-size:7.5px;color:var(--muted);margin-bottom:10px">Cerebral Palsy</div>
+      <p style="font-size:8.5px;line-height:1.6;color:var(--body)">${RYDEN_TEXT}</p>
     </div>
-  `
+    <div style="width:100px;flex-shrink:0;overflow:hidden"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+  </div>`
 },
 
-// ---- OPTION 16: Photo Mosaic Style ----
+// ===== 16: Gradient overlay top half, clean bottom =====
 {
-  label: "Photo Mosaic",
-  left: `
-    <div class="page opt16L">
-      <div class="img-slice"><img src="" data-img="Hero_4" alt=""><div class="overlay"></div></div>
-      <div class="content-area">
-        <div class="lbl" style="color:var(--plum)">FAMILY STORIES</div>
-        <h2 style="font-size:15px;color:#2C2A26;margin-bottom:12px">Lives changed by cord blood</h2>
-        <div class="st-entry">
-          <div class="icon-circle" style="background:rgba(107,26,84,0.1)"><span style="font-size:8px;color:var(--plum);font-weight:700">B</span></div>
-          <div class="text">
-            <div class="name">Bailey Coates</div>
-            <div class="cond">Own cells &middot; Perinatal Stroke</div>
-            <div class="desc">Bailey was 3 days old when she had a stroke. She received her own banked stem cells and today is healthy and thriving.</div>
-          </div>
-        </div>
-        <div class="st-entry">
-          <div class="icon-circle" style="background:rgba(179,80,138,0.1)"><span style="font-size:8px;color:var(--sage);font-weight:700">R</span></div>
-          <div class="text">
-            <div class="name">Ryden</div>
-            <div class="cond">Sibling's cells &middot; Cerebral Palsy</div>
-            <div class="desc">His family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-          </div>
-        </div>
+  label: "Gradient Half",
+  left: `<div class="page" style="display:flex;flex-direction:column">
+    <div style="height:340px;position:relative;flex-shrink:0">
+      <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,var(--cream))"></div>
+      <div style="position:absolute;top:16px;left:16px;font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.7)">FAMILY STORIES</div>
+    </div>
+    <div style="background:var(--cream);padding:8px 18px 20px;flex:1;display:flex;flex-direction:column">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.15">Bailey Coates</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plum);margin-bottom:8px">Own Cells &middot; Perinatal Stroke</div>
+      <p style="font-size:9px;line-height:1.65;color:var(--body)">${BAILEY_TEXT}</p>
+      <div style="margin-top:auto;padding-top:10px;border-top:1px solid var(--border)">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9.5px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+        <div style="font-size:7px;color:var(--muted);margin-top:3px">${ATTR}</div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt16R">
-      <div class="img-slice"><img src="" data-img="Hero_1" alt=""><div class="overlay"></div></div>
-      <div class="content-area">
-        <div class="st-entry">
-          <div class="icon-circle" style="background:rgba(217,141,154,0.1)"><span style="font-size:8px;color:var(--amber);font-weight:700">I</span></div>
-          <div class="text">
-            <div class="name">Itzel Cervantes</div>
-            <div class="cond">Donated cells &middot; Leukemia</div>
-            <div class="desc">Itzel was 6 when her leukemia kept relapsing. A cord blood transplant was her only option. In full remission, 11 years later.</div>
-          </div>
-        </div>
-        <div class="qt-bottom">
-          <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-          <div class="attr">— Rebecca, Bailey's mom</div>
-        </div>
-      </div>
+  </div>`,
+  right: `<div class="page" style="display:flex;flex-direction:column">
+    <div style="height:340px;position:relative;flex-shrink:0">
+      <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
+      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 50%,var(--cream))"></div>
     </div>
-  `
+    <div style="background:var(--cream);padding:8px 18px 20px;flex:1;display:flex;flex-direction:column">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.15">Ryden</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:8px">Sibling's Cells &middot; Cerebral Palsy</div>
+      <p style="font-size:9px;line-height:1.65;color:var(--body)">${RYDEN_TEXT}</p>
+    </div>
+  </div>`
 },
 
-// ---- OPTION 17: Stacked Layers ----
+// ===== 17: White card on photo background =====
 {
-  label: "Stacked Layers",
-  left: `
-    <div class="page opt17L">
-      <div class="head">
-        <div class="lbl" style="color:var(--plum)">FAMILY STORIES</div>
-        <h2 style="font-size:16px;color:#2C2A26">Three pathways to healing</h2>
-      </div>
-      <div class="layer">
-        <div class="top">
-          <div class="num">01</div>
-          <div class="pathway" style="color:var(--plum)">OWN CELLS</div>
-        </div>
-        <div class="name">Bailey Coates</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="layer">
-        <div class="top">
-          <div class="num">02</div>
-          <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-        </div>
-        <div class="name">Ryden</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
+  label: "Float Card",
+  left: `<div class="page" style="position:relative">
+    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="">
+    <div style="position:absolute;top:20px;left:16px;right:16px;background:#fff;border-radius:10px;padding:18px 16px;box-shadow:0 8px 24px rgba(0,0,0,0.15)">
+      <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:6px">FAMILY STORIES</div>
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--plum);margin-bottom:6px;margin-top:3px">Own Cells &middot; Perinatal Stroke</div>
+      <p style="font-size:8.5px;line-height:1.55;color:var(--body)">${BAILEY_TEXT}</p>
     </div>
-  `,
-  right: `
-    <div class="page opt17R">
-      <div class="layer">
-        <div class="top">
-          <div class="num">03</div>
-          <div class="pathway" style="color:var(--amber)">DONATED CELLS</div>
-        </div>
-        <div class="name">Itzel Cervantes</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="qt-center">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
+    <div style="position:absolute;bottom:20px;left:16px;right:16px;background:rgba(255,255,255,0.95);border-radius:8px;padding:12px 14px">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+      <div style="font-size:7px;color:var(--muted);margin-top:3px">${ATTR}</div>
     </div>
-  `
+  </div>`,
+  right: `<div class="page" style="position:relative">
+    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.7)" alt="">
+    <div style="position:absolute;top:20px;left:16px;right:16px;background:#fff;border-radius:10px;padding:18px 16px;box-shadow:0 8px 24px rgba(0,0,0,0.15)">
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Ryden</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sage);margin-bottom:6px;margin-top:3px">Sibling's Cells &middot; Cerebral Palsy</div>
+      <p style="font-size:8.5px;line-height:1.55;color:var(--body)">${RYDEN_TEXT}</p>
+    </div>
+  </div>`
 },
 
-// ---- OPTION 18: Horizontal Divider Lines ----
+// ===== 18: Centered editorial — photo between text =====
 {
-  label: "Divider Lines",
-  left: `
-    <div class="page opt18L">
-      <div class="head">
-        <div class="lbl" style="color:var(--plum)">FAMILY STORIES</div>
-        <h2 style="font-size:16px;color:#2C2A26">Real families, real outcomes</h2>
-      </div>
-      <div class="line-story">
-        <div class="row1">
-          <div class="name">Bailey Coates</div>
-          <div class="pathway" style="color:var(--plum)">OWN CELLS</div>
-        </div>
-        <div class="cond">Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="line-story">
-        <div class="row1">
-          <div class="name">Ryden</div>
-          <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-        </div>
-        <div class="cond">Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
-      </div>
+  label: "Centered Edit",
+  left: `<div class="page" style="background:var(--sand);padding:28px 20px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="font-size:7px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--plum);margin-bottom:16px">FAMILY STORIES</div>
+    <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#2C2A26;line-height:1.15;margin-bottom:4px">Bailey Coates</div>
+    <div style="font-size:7.5px;color:var(--muted);margin-bottom:14px">Own Cells &middot; Perinatal Stroke</div>
+    <div style="border-radius:8px;overflow:hidden;height:200px;width:100%;flex-shrink:0;margin-bottom:14px"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <p style="font-size:9px;line-height:1.7;color:var(--body)">${BAILEY_TEXT}</p>
+    <div style="margin-top:auto;padding-top:14px;border-top:1px solid var(--border);width:100%">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:10px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+      <div style="font-size:7.5px;color:var(--muted);margin-top:4px">${ATTR}</div>
     </div>
-  `,
-  right: `
-    <div class="page opt18R">
-      <div class="line-story">
-        <div class="row1">
-          <div class="name">Itzel Cervantes</div>
-          <div class="pathway" style="color:var(--amber)">DONATED CELLS</div>
-        </div>
-        <div class="cond">Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="final-qt">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
-      </div>
-    </div>
-  `
+  </div>`,
+  right: `<div class="page" style="background:var(--sand);padding:28px 20px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:600;color:#2C2A26;line-height:1.15;margin-bottom:4px;margin-top:24px">Ryden</div>
+    <div style="font-size:7.5px;color:var(--muted);margin-bottom:14px">Sibling's Cells &middot; Cerebral Palsy</div>
+    <div style="border-radius:8px;overflow:hidden;height:200px;width:100%;flex-shrink:0;margin-bottom:14px"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <p style="font-size:9px;line-height:1.7;color:var(--body)">${RYDEN_TEXT}</p>
+  </div>`
 },
 
-// ---- OPTION 19: Gradient Accent Blocks ----
+// ===== 19: Rounded photo, numbered, modern =====
 {
-  label: "Gradient Accents",
-  left: `
-    <div class="page opt19L">
-      <div class="head">
-        <div class="lbl" style="color:var(--plum)">FAMILY STORIES</div>
-        <h2 style="font-size:15px;color:#2C2A26">Three pathways to treatment</h2>
-      </div>
-      <div class="grad-block gb1">
-        <div class="pathway" style="color:var(--plum)">OWN CELLS</div>
-        <div class="name">Bailey Coates</div>
-        <div class="cond">Perinatal Stroke</div>
-        <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-      </div>
-      <div class="grad-block gb2">
-        <div class="pathway" style="color:var(--sage)">SIBLING'S CELLS</div>
-        <div class="name">Ryden</div>
-        <div class="cond">Cerebral Palsy</div>
-        <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.</div>
+  label: "Modern Num",
+  left: `<div class="page" style="background:var(--cream);padding:22px 18px;display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <span style="font-family:'Source Serif 4',serif;font-size:32px;font-weight:700;color:rgba(107,26,84,0.12);line-height:1">1</span>
+      <div>
+        <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum)">FAMILY STORIES</div>
+        <div style="font-size:7px;color:var(--muted);margin-top:1px">Own Cells</div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt19R">
-      <div class="grad-block">
-        <div class="pathway">DONATED CELLS</div>
-        <div class="name">Itzel Cervantes</div>
-        <div class="cond">Acute Lymphoblastic Leukemia</div>
-        <div class="desc">Itzel was 6 years old when her leukemia kept relapsing after chemotherapy. A cord blood transplant was her only option. She remains in full remission, 11 years later.</div>
-      </div>
-      <div class="qt-accent">
-        <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-        <div class="attr">— Rebecca, Bailey's mom</div>
+    <div style="border-radius:10px;overflow:hidden;height:200px;flex-shrink:0;margin-bottom:14px"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+    <div style="font-size:7.5px;color:var(--muted);margin-bottom:10px">Perinatal Stroke</div>
+    <p style="font-size:9px;line-height:1.6;color:var(--body)">${BAILEY_TEXT}</p>
+    <div style="margin-top:auto;padding:12px;background:var(--lav);border-radius:8px">
+      <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9.5px;line-height:1.5;color:var(--plum)">${QUOTE}</div>
+      <div style="font-size:7px;color:var(--muted);margin-top:4px">${ATTR}</div>
+    </div>
+  </div>`,
+  right: `<div class="page" style="background:var(--cream);padding:22px 18px;display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <span style="font-family:'Source Serif 4',serif;font-size:32px;font-weight:700;color:rgba(179,80,138,0.12);line-height:1">2</span>
+      <div>
+        <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--sage)">Sibling's Cells</div>
       </div>
     </div>
-  `
+    <div style="border-radius:10px;overflow:hidden;height:200px;flex-shrink:0;margin-bottom:14px"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#2C2A26;margin-bottom:2px;line-height:1.2">Ryden</div>
+    <div style="font-size:7.5px;color:var(--muted);margin-bottom:10px">Cerebral Palsy</div>
+    <p style="font-size:9px;line-height:1.6;color:var(--body)">${RYDEN_TEXT}</p>
+  </div>`
 },
 
-// ---- OPTION 20: Full Immersive Photo Spread ----
+// ===== 20: Horizontal band — photo band top, dark band bottom =====
 {
-  label: "Immersive Photo",
-  left: `
-    <div class="page opt20L">
-      <img src="" data-img="Hero_2" alt="" class="bg-img">
-      <div class="content">
-        <div class="lbl">FAMILY STORIES</div>
-        <h2>These stories are real.</h2>
-        <div class="sub">Three families. Three pathways. All changed by cord blood stem cells.</div>
-        <div class="story-glass">
-          <div class="pathway">OWN CELLS</div>
-          <div class="name">Bailey Coates</div>
-          <div class="desc">Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood. She received her own stem cells and today is healthy and thriving.</div>
-        </div>
-        <div class="story-glass">
-          <div class="pathway">SIBLING'S CELLS</div>
-          <div class="name">Ryden</div>
-          <div class="desc">After oxygen deprivation caused brain damage, his family banked their next child's cord blood and used it in a clinical trial six months later.</div>
-        </div>
+  label: "Dual Band",
+  left: `<div class="page" style="display:flex;flex-direction:column">
+    <div style="height:280px;flex-shrink:0;overflow:hidden;position:relative">
+      <img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt="">
+      <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 16px;background:linear-gradient(transparent,rgba(0,0,0,0.5))">
+        <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5)">FAMILY STORIES</div>
       </div>
     </div>
-  `,
-  right: `
-    <div class="page opt20R">
-      <img src="" data-img="Hero_4" alt="" class="bg-img">
-      <div class="content">
-        <div class="story-glass">
-          <div class="pathway">DONATED CELLS</div>
-          <div class="name">Itzel Cervantes</div>
-          <div class="desc">Itzel was 6 when her leukemia kept relapsing. A cord blood transplant was her only option. In full remission, 11 years later.</div>
-        </div>
-        <div class="qt-glass">
-          <div class="qt">"It's better to save it and not need it than not have it when you need it."</div>
-          <div class="attr">— Rebecca, Bailey's mom</div>
-        </div>
+    <div style="background:var(--plum-dark);color:#fff;padding:18px 18px;flex:1;display:flex;flex-direction:column">
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#fff;margin-bottom:2px;line-height:1.2">Bailey Coates</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px">Own Cells &middot; Perinatal Stroke</div>
+      <p style="font-size:9px;line-height:1.6;color:rgba(255,255,255,0.55)">${BAILEY_TEXT}</p>
+      <div style="margin-top:auto;padding-top:10px;border-top:1px solid rgba(255,255,255,0.08)">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9.5px;line-height:1.5;color:rgba(255,255,255,0.6)">${QUOTE}</div>
+        <div style="font-size:7px;color:rgba(255,255,255,0.3);margin-top:3px">${ATTR}</div>
       </div>
     </div>
-  `
+  </div>`,
+  right: `<div class="page" style="display:flex;flex-direction:column">
+    <div style="height:280px;flex-shrink:0;overflow:hidden"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
+    <div style="background:var(--plum-dark);color:#fff;padding:18px 18px;flex:1;display:flex;flex-direction:column">
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:600;color:#fff;margin-bottom:2px;line-height:1.2">Ryden</div>
+      <div style="font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:8px">Sibling's Cells &middot; Cerebral Palsy</div>
+      <p style="font-size:9px;line-height:1.6;color:rgba(255,255,255,0.55)">${RYDEN_TEXT}</p>
+    </div>
+  </div>`
 }
 
 ];
 
 // ============================================================
-// LOAD IMAGES (use relative paths to source-files)
-// ============================================================
-const IMG_MAP = {
-  'Hero_1': '../source-files/Hero_1_sm.jpg',
-  'Hero_2': '../source-files/Hero_2_sm.jpg',
-  'Hero_4': '../source-files/Hero_4_sm.jpg',
-  'Hero_5': '../source-files/Hero_5_sm.jpg',
-  'Hero_6': '../source-files/Hero_6_sm.jpg',
-};
-
-function loadImages(container) {
-  container.querySelectorAll('[data-img]').forEach(el => {
-    const key = el.getAttribute('data-img');
-    if (IMG_MAP[key]) el.src = IMG_MAP[key];
-  });
-}
-
-// ============================================================
 // BUILD GALLERY
 // ============================================================
 const gallery = document.getElementById('gallery');
-
 OPTIONS.forEach((opt, i) => {
   const wrapper = document.createElement('div');
   wrapper.className = 'spread-option';
   wrapper.onclick = () => openModal(i);
-
   wrapper.innerHTML = `
     <div class="spread-thumb">
       <div class="spread" style="width:544px;height:704px;">
-        ${opt.left}
-        ${opt.right}
+        ${opt.left}${opt.right}
       </div>
     </div>
-    <div class="spread-label">${(i + 1)}. ${opt.label}</div>
+    <div class="spread-label">${i + 1}. ${opt.label}</div>
   `;
-
-  loadImages(wrapper);
   gallery.appendChild(wrapper);
 });
 
@@ -1442,49 +693,33 @@ function openModal(idx) {
   modal.classList.add('active');
   document.body.style.overflow = 'hidden';
 }
-
 function closeModal() {
   modal.classList.remove('active');
   document.body.style.overflow = '';
 }
-
 function navModal(dir) {
   currentIdx = (currentIdx + dir + OPTIONS.length) % OPTIONS.length;
   renderModal();
 }
-
 function renderModal() {
   const opt = OPTIONS[currentIdx];
-  // Keep nav buttons, replace spread
   const existing = modalContent.querySelector('.spread');
   if (existing) existing.remove();
-
   const spread = document.createElement('div');
   spread.className = 'spread';
   spread.style.cssText = 'width:544px;height:704px;';
   spread.innerHTML = opt.left + opt.right;
-  loadImages(spread);
-
-  // Insert before nav buttons
   modalContent.insertBefore(spread, modalContent.querySelector('.modal-nav'));
-
   modalLabel.textContent = `${currentIdx + 1}. ${opt.label}`;
   modalCounter.textContent = `${currentIdx + 1} of ${OPTIONS.length}`;
 }
-
-// Keyboard navigation
 document.addEventListener('keydown', e => {
   if (!modal.classList.contains('active')) return;
   if (e.key === 'Escape') closeModal();
   if (e.key === 'ArrowLeft') navModal(-1);
   if (e.key === 'ArrowRight') navModal(1);
 });
-
-// Click backdrop to close
-modal.addEventListener('click', e => {
-  if (e.target === modal) closeModal();
-});
+modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
 </script>
-
 </body>
 </html>
