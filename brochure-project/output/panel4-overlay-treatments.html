@@ -42,11 +42,15 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 <body>
 
 <div class="gallery-header">
-  <h1>Plum Wash — Gradient Extent</h1>
-  <p>Same layout, same plum wash. Each option varies how far the gradient extends from the text — from tight/minimal to wide/cinematic.</p>
+  <h1>Plum Wash — All Variations</h1>
+  <p>Top section: gradient extent (tight to wide). Bottom section: gradient angle (steep to shallow).</p>
 </div>
 
+<div style="text-align:center;padding:8px 24px 16px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)">Gradient Extent (tight → wide)</div>
 <div class="gallery" id="gallery"></div>
+
+<div style="text-align:center;padding:24px 24px 16px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)">Gradient Angle (steep → shallow)</div>
+<div class="gallery" id="gallery2"></div>
 
 <div class="modal-overlay" id="modal">
   <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -189,21 +193,123 @@ const VARIATIONS = [
     "linear-gradient(330deg, rgba(61,15,49,0.72) 65%, transparent 95%)"],
 ];
 
-const OPTIONS = VARIATIONS.map(([label, gL, gR]) => ({
+const OPTIONS_EXTENT = VARIATIONS.map(([label, gL, gR]) => ({
   label,
   left: makePage(IMG.bailey, baileyText, 'tl', gL, gR),
   right: makePage(IMG.ryden, rydenText, 'br', gL, gR),
 }));
 
-// Build gallery
-const gallery = document.getElementById('gallery');
-OPTIONS.forEach((opt, i) => {
-  const w = document.createElement('div');
-  w.className = 'spread-option';
-  w.onclick = () => openModal(i);
-  w.innerHTML = `<div class="spread-thumb"><div class="spread" style="width:544px;height:704px;">${opt.left}${opt.right}</div></div><div class="spread-label">${i+1}. ${opt.label}</div>`;
-  gallery.appendChild(w);
-});
+// ANGLE VARIATIONS — same medium extent, different angles
+// Bailey: angle goes from top-left corner. Lower deg = more horizontal, higher = more vertical/diagonal
+// Using a consistent extent (~25% solid, ~50% fade) and varying the angle
+const ANGLES = [
+  // Very shallow / nearly horizontal
+  ["Nearly Horizontal",
+    "linear-gradient(95deg, rgba(61,15,49,0.88) 25%, transparent 50%)",
+    "linear-gradient(275deg, rgba(61,15,49,0.88) 25%, transparent 50%)"],
+
+  ["Slight Dip",
+    "linear-gradient(100deg, rgba(61,15,49,0.88) 25%, transparent 50%)",
+    "linear-gradient(280deg, rgba(61,15,49,0.88) 25%, transparent 50%)"],
+
+  ["Gentle Slope",
+    "linear-gradient(105deg, rgba(61,15,49,0.87) 25%, transparent 50%)",
+    "linear-gradient(285deg, rgba(61,15,49,0.87) 25%, transparent 50%)"],
+
+  ["Low Angle",
+    "linear-gradient(110deg, rgba(61,15,49,0.87) 25%, transparent 50%)",
+    "linear-gradient(290deg, rgba(61,15,49,0.87) 25%, transparent 50%)"],
+
+  ["Easy Lean",
+    "linear-gradient(115deg, rgba(61,15,49,0.86) 25%, transparent 50%)",
+    "linear-gradient(295deg, rgba(61,15,49,0.86) 25%, transparent 50%)"],
+
+  // Mild diagonal
+  ["Mild Diagonal",
+    "linear-gradient(120deg, rgba(61,15,49,0.86) 25%, transparent 50%)",
+    "linear-gradient(300deg, rgba(61,15,49,0.86) 25%, transparent 50%)"],
+
+  ["Soft Tilt",
+    "linear-gradient(125deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(305deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["Moderate",
+    "linear-gradient(130deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(310deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["Classic Lean",
+    "linear-gradient(135deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(315deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["Mid Angle",
+    "linear-gradient(140deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(320deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  // Steeper
+  ["Tilted",
+    "linear-gradient(145deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(325deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["Standard Steep",
+    "linear-gradient(150deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["Sharp Lean",
+    "linear-gradient(155deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(335deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["Steep Drop",
+    "linear-gradient(160deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(340deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["High Angle",
+    "linear-gradient(165deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(345deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  // Very steep / nearly vertical
+  ["Near Vertical",
+    "linear-gradient(170deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(350deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["Vertical Lean",
+    "linear-gradient(175deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(355deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["Straight Down",
+    "linear-gradient(180deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(0deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  // Angled the other way (text side biased)
+  ["Reverse Lean",
+    "linear-gradient(185deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(5deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+
+  ["Wide Reverse",
+    "linear-gradient(190deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
+    "linear-gradient(10deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
+];
+
+const OPTIONS_ANGLE = ANGLES.map(([label, gL, gR]) => ({
+  label,
+  left: makePage(IMG.bailey, baileyText, 'tl', gL, gR),
+  right: makePage(IMG.ryden, rydenText, 'br', gL, gR),
+}));
+
+const ALL = [...OPTIONS_EXTENT, ...OPTIONS_ANGLE];
+
+// Build galleries
+function buildGallery(el, opts, offset) {
+  opts.forEach((opt, i) => {
+    const idx = offset + i;
+    const w = document.createElement('div');
+    w.className = 'spread-option';
+    w.onclick = () => openModal(idx);
+    w.innerHTML = `<div class="spread-thumb"><div class="spread" style="width:544px;height:704px;">${opt.left}${opt.right}</div></div><div class="spread-label">${i+1}. ${opt.label}</div>`;
+    el.appendChild(w);
+  });
+}
+buildGallery(document.getElementById('gallery'), OPTIONS_EXTENT, 0);
+buildGallery(document.getElementById('gallery2'), OPTIONS_ANGLE, OPTIONS_EXTENT.length);
 
 // Modal
 let ci = 0;
@@ -213,12 +319,12 @@ const ml = document.getElementById('modalLabel');
 const mn = document.getElementById('modalCounter');
 function openModal(i){ci=i;render();modal.classList.add('active');document.body.style.overflow='hidden'}
 function closeModal(){modal.classList.remove('active');document.body.style.overflow=''}
-function navModal(d){ci=(ci+d+OPTIONS.length)%OPTIONS.length;render()}
+function navModal(d){ci=(ci+d+ALL.length)%ALL.length;render()}
 function render(){
-  const o=OPTIONS[ci],e=mc.querySelector('.spread');if(e)e.remove();
+  const o=ALL[ci],e=mc.querySelector('.spread');if(e)e.remove();
   const s=document.createElement('div');s.className='spread';s.style.cssText='width:544px;height:704px;';
   s.innerHTML=o.left+o.right;mc.insertBefore(s,mc.querySelector('.modal-nav'));
-  ml.textContent=`${ci+1}. ${o.label}`;mn.textContent=`${ci+1} of ${OPTIONS.length}`;
+  ml.textContent=`${ci+1}. ${o.label}`;mn.textContent=`${ci+1} of ${ALL.length}`;
 }
 document.addEventListener('keydown',e=>{if(!modal.classList.contains('active'))return;if(e.key==='Escape')closeModal();if(e.key==='ArrowLeft')navModal(-1);if(e.key==='ArrowRight')navModal(1)});
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
