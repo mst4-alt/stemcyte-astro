@@ -10,7 +10,7 @@
     {
       "name": "panel2-v2",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "-p", "5500", "-s", "brochure-project/output"],
+      "runtimeArgs": ["serve", "-p", "5500", "brochure-project/output"],
       "port": 5500
     }
   ]
