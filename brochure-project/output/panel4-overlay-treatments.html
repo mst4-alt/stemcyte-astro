@@ -42,15 +42,11 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 <body>
 
 <div class="gallery-header">
-  <h1>Plum Wash — All Variations</h1>
-  <p>Top section: gradient extent (tight to wide). Bottom section: gradient angle (steep to shallow).</p>
+  <h1>Plum Wash — 10&deg; Angle</h1>
+  <p>All at 10&deg; angle (nearly horizontal). Varying how far the gradient extends — tight to wide.</p>
 </div>
 
-<div style="text-align:center;padding:8px 24px 16px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)">Gradient Extent (tight → wide)</div>
 <div class="gallery" id="gallery"></div>
-
-<div style="text-align:center;padding:24px 24px 16px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25)">Gradient Angle (steep → shallow)</div>
-<div class="gallery" id="gallery2"></div>
 
 <div class="modal-overlay" id="modal">
   <button class="modal-close" onclick="closeModal()">&times;</button>
@@ -102,214 +98,49 @@ function makePage(img, text, pos, gradL, gradR) {
   </div>`;
 }
 
-// All 20 variations — just different gradient extends
-// Format: [label, baileyGradient, rydenGradient]
+// All 20 at 10deg angle — only extent varies
+// 10deg for Bailey (top-left: gradient goes right), 190deg for Ryden (bottom-right: gradient goes left)
 const VARIATIONS = [
-  // Very tight — just behind text
-  ["Tight Hug",
-    "linear-gradient(155deg, rgba(61,15,49,0.92) 12%, transparent 30%)",
-    "linear-gradient(335deg, rgba(61,15,49,0.92) 12%, transparent 30%)"],
-
-  ["Minimal Pad",
-    "linear-gradient(150deg, rgba(61,15,49,0.9) 15%, transparent 34%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.9) 15%, transparent 34%)"],
-
-  ["Close Crop",
-    "linear-gradient(155deg, rgba(61,15,49,0.9) 18%, transparent 38%)",
-    "linear-gradient(335deg, rgba(61,15,49,0.9) 18%, transparent 38%)"],
-
-  ["Snug Fit",
-    "linear-gradient(150deg, rgba(61,15,49,0.88) 20%, transparent 40%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.88) 20%, transparent 40%)"],
-
-  // Medium-tight
-  ["Compact",
-    "linear-gradient(152deg, rgba(61,15,49,0.88) 22%, transparent 44%)",
-    "linear-gradient(332deg, rgba(61,15,49,0.88) 22%, transparent 44%)"],
-
-  ["Medium Tight",
-    "linear-gradient(150deg, rgba(61,15,49,0.87) 24%, transparent 46%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.87) 24%, transparent 46%)"],
-
-  ["Balanced Short",
-    "linear-gradient(148deg, rgba(61,15,49,0.86) 25%, transparent 48%)",
-    "linear-gradient(328deg, rgba(61,15,49,0.86) 25%, transparent 48%)"],
-
-  // Medium
-  ["Medium",
-    "linear-gradient(150deg, rgba(61,15,49,0.85) 28%, transparent 52%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.85) 28%, transparent 52%)"],
-
-  ["Medium Wide",
-    "linear-gradient(148deg, rgba(61,15,49,0.85) 30%, transparent 55%)",
-    "linear-gradient(328deg, rgba(61,15,49,0.85) 30%, transparent 55%)"],
-
-  ["Half Page",
-    "linear-gradient(150deg, rgba(61,15,49,0.84) 32%, transparent 58%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.84) 32%, transparent 58%)"],
-
-  // Medium-wide
-  ["Generous",
-    "linear-gradient(148deg, rgba(61,15,49,0.83) 35%, transparent 60%)",
-    "linear-gradient(328deg, rgba(61,15,49,0.83) 35%, transparent 60%)"],
-
-  ["Extended",
-    "linear-gradient(150deg, rgba(61,15,49,0.82) 38%, transparent 64%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.82) 38%, transparent 64%)"],
-
-  // Wide
-  ["Wide Wash",
-    "linear-gradient(148deg, rgba(61,15,49,0.82) 40%, transparent 68%)",
-    "linear-gradient(328deg, rgba(61,15,49,0.82) 40%, transparent 68%)"],
-
-  ["Broad Sweep",
-    "linear-gradient(150deg, rgba(61,15,49,0.8) 42%, transparent 72%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.8) 42%, transparent 72%)"],
-
-  ["Deep Reach",
-    "linear-gradient(148deg, rgba(61,15,49,0.8) 45%, transparent 75%)",
-    "linear-gradient(328deg, rgba(61,15,49,0.8) 45%, transparent 75%)"],
-
-  // Very wide
-  ["Expansive",
-    "linear-gradient(150deg, rgba(61,15,49,0.78) 48%, transparent 78%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.78) 48%, transparent 78%)"],
-
-  ["Cinematic",
-    "linear-gradient(148deg, rgba(61,15,49,0.78) 50%, transparent 82%)",
-    "linear-gradient(328deg, rgba(61,15,49,0.78) 50%, transparent 82%)"],
-
-  ["Near Full",
-    "linear-gradient(150deg, rgba(61,15,49,0.75) 55%, transparent 85%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.75) 55%, transparent 85%)"],
-
-  // Almost full coverage
-  ["Heavy Wash",
-    "linear-gradient(148deg, rgba(61,15,49,0.75) 60%, transparent 90%)",
-    "linear-gradient(328deg, rgba(61,15,49,0.75) 60%, transparent 90%)"],
-
-  ["Full Wash",
-    "linear-gradient(150deg, rgba(61,15,49,0.72) 65%, transparent 95%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.72) 65%, transparent 95%)"],
+  ["Tight Hug",       0.92, 12, 30],
+  ["Minimal Pad",     0.90, 15, 34],
+  ["Close Crop",      0.90, 18, 38],
+  ["Snug Fit",        0.88, 20, 40],
+  ["Compact",         0.88, 22, 44],
+  ["Medium Tight",    0.87, 24, 46],
+  ["Balanced Short",  0.86, 25, 48],
+  ["Medium",          0.85, 28, 52],
+  ["Medium Wide",     0.85, 30, 55],
+  ["Half Page",       0.84, 32, 58],
+  ["Generous",        0.83, 35, 60],
+  ["Extended",        0.82, 38, 64],
+  ["Wide Wash",       0.82, 40, 68],
+  ["Broad Sweep",     0.80, 42, 72],
+  ["Deep Reach",      0.80, 45, 75],
+  ["Expansive",       0.78, 48, 78],
+  ["Cinematic",       0.78, 50, 82],
+  ["Near Full",       0.75, 55, 85],
+  ["Heavy Wash",      0.75, 60, 90],
+  ["Full Wash",       0.72, 65, 95],
 ];
 
-const OPTIONS_EXTENT = VARIATIONS.map(([label, gL, gR]) => ({
+const ALL = VARIATIONS.map(([label, opacity, solidStop, fadeStop]) => ({
   label,
-  left: makePage(IMG.bailey, baileyText, 'tl', gL, gR),
-  right: makePage(IMG.ryden, rydenText, 'br', gL, gR),
+  left: makePage(IMG.bailey, baileyText, 'tl',
+    `linear-gradient(100deg, rgba(61,15,49,${opacity}) ${solidStop}%, transparent ${fadeStop}%)`,
+    ``),
+  right: makePage(IMG.ryden, rydenText, 'br', ``,
+    `linear-gradient(280deg, rgba(61,15,49,${opacity}) ${solidStop}%, transparent ${fadeStop}%)`),
 }));
 
-// ANGLE VARIATIONS — same medium extent, different angles
-// Bailey: angle goes from top-left corner. Lower deg = more horizontal, higher = more vertical/diagonal
-// Using a consistent extent (~25% solid, ~50% fade) and varying the angle
-const ANGLES = [
-  // Very shallow / nearly horizontal
-  ["Nearly Horizontal",
-    "linear-gradient(95deg, rgba(61,15,49,0.88) 25%, transparent 50%)",
-    "linear-gradient(275deg, rgba(61,15,49,0.88) 25%, transparent 50%)"],
-
-  ["Slight Dip",
-    "linear-gradient(100deg, rgba(61,15,49,0.88) 25%, transparent 50%)",
-    "linear-gradient(280deg, rgba(61,15,49,0.88) 25%, transparent 50%)"],
-
-  ["Gentle Slope",
-    "linear-gradient(105deg, rgba(61,15,49,0.87) 25%, transparent 50%)",
-    "linear-gradient(285deg, rgba(61,15,49,0.87) 25%, transparent 50%)"],
-
-  ["Low Angle",
-    "linear-gradient(110deg, rgba(61,15,49,0.87) 25%, transparent 50%)",
-    "linear-gradient(290deg, rgba(61,15,49,0.87) 25%, transparent 50%)"],
-
-  ["Easy Lean",
-    "linear-gradient(115deg, rgba(61,15,49,0.86) 25%, transparent 50%)",
-    "linear-gradient(295deg, rgba(61,15,49,0.86) 25%, transparent 50%)"],
-
-  // Mild diagonal
-  ["Mild Diagonal",
-    "linear-gradient(120deg, rgba(61,15,49,0.86) 25%, transparent 50%)",
-    "linear-gradient(300deg, rgba(61,15,49,0.86) 25%, transparent 50%)"],
-
-  ["Soft Tilt",
-    "linear-gradient(125deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(305deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["Moderate",
-    "linear-gradient(130deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(310deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["Classic Lean",
-    "linear-gradient(135deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(315deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["Mid Angle",
-    "linear-gradient(140deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(320deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  // Steeper
-  ["Tilted",
-    "linear-gradient(145deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(325deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["Standard Steep",
-    "linear-gradient(150deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(330deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["Sharp Lean",
-    "linear-gradient(155deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(335deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["Steep Drop",
-    "linear-gradient(160deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(340deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["High Angle",
-    "linear-gradient(165deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(345deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  // Very steep / nearly vertical
-  ["Near Vertical",
-    "linear-gradient(170deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(350deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["Vertical Lean",
-    "linear-gradient(175deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(355deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["Straight Down",
-    "linear-gradient(180deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(0deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  // Angled the other way (text side biased)
-  ["Reverse Lean",
-    "linear-gradient(185deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(5deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-
-  ["Wide Reverse",
-    "linear-gradient(190deg, rgba(61,15,49,0.85) 25%, transparent 50%)",
-    "linear-gradient(10deg, rgba(61,15,49,0.85) 25%, transparent 50%)"],
-];
-
-const OPTIONS_ANGLE = ANGLES.map(([label, gL, gR]) => ({
-  label,
-  left: makePage(IMG.bailey, baileyText, 'tl', gL, gR),
-  right: makePage(IMG.ryden, rydenText, 'br', gL, gR),
-}));
-
-const ALL = [...OPTIONS_EXTENT, ...OPTIONS_ANGLE];
-
-// Build galleries
-function buildGallery(el, opts, offset) {
-  opts.forEach((opt, i) => {
-    const idx = offset + i;
-    const w = document.createElement('div');
-    w.className = 'spread-option';
-    w.onclick = () => openModal(idx);
-    w.innerHTML = `<div class="spread-thumb"><div class="spread" style="width:544px;height:704px;">${opt.left}${opt.right}</div></div><div class="spread-label">${i+1}. ${opt.label}</div>`;
-    el.appendChild(w);
-  });
-}
-buildGallery(document.getElementById('gallery'), OPTIONS_EXTENT, 0);
-buildGallery(document.getElementById('gallery2'), OPTIONS_ANGLE, OPTIONS_EXTENT.length);
+// Build gallery
+const gallery = document.getElementById('gallery');
+ALL.forEach((opt, i) => {
+  const w = document.createElement('div');
+  w.className = 'spread-option';
+  w.onclick = () => openModal(i);
+  w.innerHTML = `<div class="spread-thumb"><div class="spread" style="width:544px;height:704px;">${opt.left}${opt.right}</div></div><div class="spread-label">${i+1}. ${opt.label}</div>`;
+  gallery.appendChild(w);
+});
 
 // Modal
 let ci = 0;

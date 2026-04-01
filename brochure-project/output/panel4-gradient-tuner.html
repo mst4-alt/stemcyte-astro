@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel 4: Gradient Tuner</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Lato',sans-serif;background:#111;color:#fff;-webkit-font-smoothing:antialiased}
+
+.app{display:flex;height:100vh}
+
+/* Controls panel */
+.controls{width:320px;background:#1a1a1a;padding:24px 20px;overflow-y:auto;flex-shrink:0;border-right:1px solid #333}
+.controls h1{font-family:'Playfair Display',serif;font-size:18px;margin-bottom:4px}
+.controls .sub{font-size:11px;color:#666;margin-bottom:20px}
+
+.group{margin-bottom:20px}
+.group-title{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#555;margin-bottom:10px}
+
+.slider-row{margin-bottom:14px}
+.slider-row label{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#aaa;margin-bottom:4px}
+.slider-row label span{font-weight:700;color:#fff;font-family:'Source Serif 4',monospace}
+.slider-row input[type=range]{width:100%;accent-color:#6b1a54;height:4px}
+
+.color-row{margin-bottom:14px}
+.color-row label{font-size:11px;color:#aaa;margin-bottom:4px;display:block}
+.color-row input[type=color]{width:48px;height:28px;border:1px solid #444;border-radius:4px;background:transparent;cursor:pointer}
+
+.toggle-row{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.toggle-row input{accent-color:#6b1a54}
+.toggle-row label{font-size:11px;color:#aaa}
+
+.divider{height:1px;background:#333;margin:16px 0}
+
+/* Output */
+.output-box{margin-top:16px}
+.output-box label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#555;margin-bottom:6px;display:block}
+.output-box textarea{width:100%;height:120px;background:#0d0d0d;border:1px solid #333;border-radius:6px;color:#ccc;font-family:'SF Mono','Fira Code',monospace;font-size:10px;padding:10px;resize:vertical;line-height:1.5}
+.copy-btn{margin-top:6px;padding:8px 16px;background:#6b1a54;color:#fff;border:none;border-radius:6px;font-size:11px;font-weight:700;cursor:pointer;letter-spacing:0.5px}
+.copy-btn:hover{background:#8a2268}
+.copy-btn:active{background:#4a1038}
+.copied{color:#2A9D8F;font-size:10px;margin-left:8px;opacity:0;transition:opacity 0.2s}
+.copied.show{opacity:1}
+
+/* Preview area */
+.preview-area{flex:1;display:flex;align-items:center;justify-content:center;background:#0a0a0a;overflow:auto;padding:20px}
+
+.spread{display:flex;width:544px;height:704px;overflow:hidden;border-radius:2px;box-shadow:0 16px 64px rgba(0,0,0,0.5);flex-shrink:0}
+.page{width:272px;height:704px;position:relative;overflow:hidden;flex-shrink:0;font-family:'Lato',sans-serif}
+</style>
+</head>
+<body>
+
+<div class="app">
+  <div class="controls">
+    <h1>Gradient Tuner</h1>
+    <div class="sub">Adjust the plum wash, then copy the output to paste back.</div>
+
+    <div class="group">
+      <div class="group-title">Bailey (Top-Left)</div>
+      <div class="slider-row">
+        <label>Angle <span id="v_bAngle">150</span>&deg;</label>
+        <input type="range" id="bAngle" min="0" max="360" value="150" step="1">
+      </div>
+      <div class="slider-row">
+        <label>Solid stop <span id="v_bSolid">25</span>%</label>
+        <input type="range" id="bSolid" min="0" max="80" value="25" step="1">
+      </div>
+      <div class="slider-row">
+        <label>Fade stop <span id="v_bFade">55</span>%</label>
+        <input type="range" id="bFade" min="10" max="100" value="55" step="1">
+      </div>
+      <div class="slider-row">
+        <label>Opacity <span id="v_bOpacity">0.85</span></label>
+        <input type="range" id="bOpacity" min="0" max="100" value="85" step="1">
+      </div>
+    </div>
+
+    <div class="group">
+      <div class="group-title">Ryden (Bottom-Right)</div>
+      <div class="slider-row">
+        <label>Angle <span id="v_rAngle">330</span>&deg;</label>
+        <input type="range" id="rAngle" min="0" max="360" value="330" step="1">
+      </div>
+      <div class="slider-row">
+        <label>Solid stop <span id="v_rSolid">25</span>%</label>
+        <input type="range" id="rSolid" min="0" max="80" value="25" step="1">
+      </div>
+      <div class="slider-row">
+        <label>Fade stop <span id="v_rFade">55</span>%</label>
+        <input type="range" id="rFade" min="10" max="100" value="55" step="1">
+      </div>
+      <div class="slider-row">
+        <label>Opacity <span id="v_rOpacity">0.85</span></label>
+        <input type="range" id="rOpacity" min="0" max="100" value="85" step="1">
+      </div>
+    </div>
+
+    <div class="toggle-row">
+      <input type="checkbox" id="linkSliders" checked>
+      <label for="linkSliders">Mirror Bailey → Ryden (auto-flip)</label>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="group">
+      <div class="group-title">Color</div>
+      <div class="color-row">
+        <label>Wash color</label>
+        <input type="color" id="washColor" value="#3D0F31">
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="output-box">
+      <label>Output — paste this back to Claude</label>
+      <textarea id="output" readonly></textarea>
+      <button class="copy-btn" onclick="copyOutput()">Copy to clipboard</button>
+      <span class="copied" id="copiedMsg">Copied!</span>
+    </div>
+  </div>
+
+  <div class="preview-area">
+    <div class="spread" id="spread">
+      <div class="page" id="pageL"></div>
+      <div class="page" id="pageR"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const IMG = {
+  bailey: '../source-files/bailey_placeholder.jpg',
+  ryden: '../source-files/ryden_placeholder.jpg',
+};
+
+const B = `Bailey was 3 days old when she had a stroke. Her mom had banked her cord blood with StemCyte. She received her own stem cells and today is healthy and thriving.`;
+const R = `After oxygen deprivation caused brain damage, his family banked their next child's cord blood with StemCyte and used it in a clinical trial six months later.`;
+const Q = `"It's better to save it and not need it than not have it when you need it."`;
+const QA = `— Rebecca, Bailey's mom`;
+
+const baileyHTML = `
+  <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:5px">OWN CELLS</div>
+  <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:3px;line-height:1.15">Bailey Coates</div>
+  <div style="font-size:7.5px;color:rgba(255,255,255,0.4);margin-bottom:8px">Perinatal Stroke</div>
+  <p style="font-size:8.5px;line-height:1.6;color:rgba(255,255,255,0.6)">${B}</p>
+  <div style="margin-top:12px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.1)">
+    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9px;line-height:1.5;color:rgba(255,255,255,0.55)">${Q}</div>
+    <div style="font-size:7px;color:rgba(255,255,255,0.28);margin-top:3px">${QA}</div>
+  </div>`;
+
+const rydenHTML = `
+  <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:5px">SIBLING'S CELLS</div>
+  <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:3px;line-height:1.15">Ryden</div>
+  <div style="font-size:7.5px;color:rgba(255,255,255,0.4);margin-bottom:8px">Cerebral Palsy</div>
+  <p style="font-size:8.5px;line-height:1.6;color:rgba(255,255,255,0.6)">${R}</p>`;
+
+// Elements
+const els = {};
+['bAngle','bSolid','bFade','bOpacity','rAngle','rSolid','rFade','rOpacity'].forEach(id => {
+  els[id] = document.getElementById(id);
+});
+const linkBox = document.getElementById('linkSliders');
+const colorInput = document.getElementById('washColor');
+const outputEl = document.getElementById('output');
+const pageL = document.getElementById('pageL');
+const pageR = document.getElementById('pageR');
+
+function hexToRgb(hex) {
+  const r = parseInt(hex.slice(1,3), 16);
+  const g = parseInt(hex.slice(3,5), 16);
+  const b = parseInt(hex.slice(5,7), 16);
+  return `${r},${g},${b}`;
+}
+
+function mirrorAngle(a) {
+  return (a + 180) % 360;
+}
+
+function update() {
+  const bA = +els.bAngle.value;
+  const bS = +els.bSolid.value;
+  const bF = +els.bFade.value;
+  const bO = +els.bOpacity.value / 100;
+  const rA = +els.rAngle.value;
+  const rS = +els.rSolid.value;
+  const rF = +els.rFade.value;
+  const rO = +els.rOpacity.value / 100;
+  const rgb = hexToRgb(colorInput.value);
+
+  // Update value displays
+  document.getElementById('v_bAngle').textContent = bA;
+  document.getElementById('v_bSolid').textContent = bS;
+  document.getElementById('v_bFade').textContent = bF;
+  document.getElementById('v_bOpacity').textContent = bO.toFixed(2);
+  document.getElementById('v_rAngle').textContent = rA;
+  document.getElementById('v_rSolid').textContent = rS;
+  document.getElementById('v_rFade').textContent = rF;
+  document.getElementById('v_rOpacity').textContent = rO.toFixed(2);
+
+  const gradL = `linear-gradient(${bA}deg, rgba(${rgb},${bO}) ${bS}%, transparent ${bF}%)`;
+  const gradR = `linear-gradient(${rA}deg, rgba(${rgb},${rO}) ${rS}%, transparent ${rF}%)`;
+
+  // Render pages
+  pageL.innerHTML = `
+    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
+    <div style="position:absolute;inset:0;background:${gradL}"></div>
+    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyHTML}</div>`;
+
+  pageR.innerHTML = `
+    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
+    <div style="position:absolute;inset:0;background:${gradR}"></div>
+    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenHTML}</div>`;
+
+  // Output
+  outputEl.value = [
+    `GRADIENT SETTINGS:`,
+    `Bailey: angle=${bA}deg, solid=${bS}%, fade=${bF}%, opacity=${bO.toFixed(2)}, color=${colorInput.value}`,
+    `Ryden:  angle=${rA}deg, solid=${rS}%, fade=${rF}%, opacity=${rO.toFixed(2)}, color=${colorInput.value}`,
+    ``,
+    `CSS (Bailey): ${gradL}`,
+    `CSS (Ryden):  ${gradR}`,
+  ].join('\n');
+}
+
+// Link Bailey sliders to Ryden (mirrored)
+function onBaileyChange(which) {
+  if (!linkBox.checked) return;
+  if (which === 'bAngle') els.rAngle.value = mirrorAngle(+els.bAngle.value);
+  if (which === 'bSolid') els.rSolid.value = els.bSolid.value;
+  if (which === 'bFade') els.rFade.value = els.bFade.value;
+  if (which === 'bOpacity') els.rOpacity.value = els.bOpacity.value;
+}
+
+// Attach listeners
+['bAngle','bSolid','bFade','bOpacity'].forEach(id => {
+  els[id].addEventListener('input', () => { onBaileyChange(id); update(); });
+});
+['rAngle','rSolid','rFade','rOpacity'].forEach(id => {
+  els[id].addEventListener('input', update);
+});
+colorInput.addEventListener('input', update);
+linkBox.addEventListener('change', update);
+
+function copyOutput() {
+  outputEl.select();
+  navigator.clipboard.writeText(outputEl.value);
+  const msg = document.getElementById('copiedMsg');
+  msg.classList.add('show');
+  setTimeout(() => msg.classList.remove('show'), 1500);
+}
+
+// Initial render
+update();
+</script>
+</body>
+</html>
