@@ -24,7 +24,6 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 
 .spread-label{text-align:center;margin-top:12px;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.45)}
 
-/* Modal */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:1000;align-items:center;justify-content:center;flex-direction:column}
 .modal-overlay.active{display:flex}
 .modal-spread{position:relative}
@@ -36,7 +35,7 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 .modal-next{right:-80px}
 .modal-close{position:absolute;top:24px;right:24px;width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,0.15);background:transparent;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:1001}
 
-/* Spread shared styles */
+/* Spread shared */
 .sp{width:272px;height:704px;position:relative;overflow:hidden;display:flex;flex-direction:column;font-family:'Lato',sans-serif;padding:22px 18px;flex-shrink:0}
 .sp *{box-sizing:border-box}
 .sp .lbl{font-size:8px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:8px}
@@ -46,8 +45,6 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 .sp ul{padding-left:11px;margin-top:3px}
 .sp li{margin-bottom:3px;font-size:8.5px;line-height:1.5}
 .sp .ghost{position:absolute;right:14px;top:6px;font-family:'Source Serif 4',serif;font-size:36px;font-weight:700;opacity:0.04;line-height:1}
-.sp .stat-v{font-family:'Source Serif 4',serif;font-weight:700;display:block}
-.sp .stat-l{font-size:6.5px;color:#7A756E;text-transform:uppercase;letter-spacing:0.3px;line-height:1.3}
 .sp .card{border-radius:7px;padding:10px 12px;margin-top:7px;border:1px solid #E8E2DC;background:rgba(255,255,255,0.6)}
 .sp .card h5{font-size:7.5px;font-weight:700;margin-bottom:2px;text-transform:uppercase;letter-spacing:0.5px;color:#6b1a54}
 .sp .card p{font-size:8.5px;line-height:1.5;color:#7A756E}
@@ -63,7 +60,6 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 .sp .pullquote p{font-family:'Playfair Display',serif;font-size:10px;font-style:italic;line-height:1.5;color:#2C2A26}
 .sp .hero-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .sp .overlay{position:absolute;inset:0}
-.sp .content{position:relative;z-index:2;display:flex;flex-direction:column;height:100%}
 .sp .stats-row{display:flex;gap:6px;margin:8px 0}
 .sp .stats-row .stat{flex:1;text-align:center;padding:9px 4px;background:rgba(107,26,84,0.04);border-radius:7px}
 .sp .stats-row .stat .v{font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:#6b1a54;display:block;margin-bottom:2px}
@@ -72,11 +68,6 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 .sp .section-hdr .lbl{color:#7A756E}
 .sp .section-hdr h2{font-family:'Playfair Display',serif;font-size:15px;font-weight:600;line-height:1.2;color:#2C2A26;margin-bottom:4px}
 .sp .section-hdr .sub-hdr{font-size:8.5px;color:#7A756E;line-height:1.5}
-.sp .pathway{display:flex;align-items:center;gap:6px;margin:6px 0;padding:8px 10px;border-radius:6px}
-.sp .pathway .step{text-align:center;flex:1}
-.sp .pathway .step .icon{font-size:14px;margin-bottom:2px}
-.sp .pathway .step .txt{font-size:7px;color:#4A4740;font-weight:700;line-height:1.3}
-.sp .pathway .arrow{font-size:10px;color:#7A756E;opacity:0.4}
 </style>
 </head>
 <body>
@@ -111,1233 +102,751 @@ const IMG = {
   logoColor: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAGCAYAAACrZDylAAAAAXNSR0IArs4c6QAAAHhlWElmTU0AKgAAAAgABAEaAAUAAAABAAAAPgEbAAUAAAABAAAARgEoAAMAAAABAAIAAIdpAAQAAAABAAAATgAAAAAAAAEsAAAAAQAAASwAAAABAAOgAQADAAAAAQABAACgAgAEAAAAAQAAACSgAwAEAAAAAQAAAAYAAAAAxGPbhAAAAAlwSFlzAAAuIwAALiMBeKU/dgAAAslJREFUKBWFUUtolGcUvY//McmkyTjJOCYlCpVIotXSlAotaLPKql24GCiIO7FQqGvRTfYupBtFF7orwqAbVy3NyyqtjCmGRgpVYppMM5P8Sf4k88jM/z1uvywEd97NgXvPvZxzLl7Ij6fzqfxB02yxDuFDozmX7lTz1xcfvLo08E1np00f1GIwSWDrnzhqjAHABMxoB++t73OFQyH5nZaVPrBaLE8A2LdLBSgEJ6Co3+3tz/CH/m/PCGsGgRwZQfH9Clrzeax3bmdtz6fi4zgixWLN44CtUuiFqyt2vjevM54JPdzY2WwPeB+E6KfAcBvYhLC3t7vn+R0dXljwCSkx0kqUeZRO8XZcjiSTyaSk2//YOpPVKrzO5SAbONMvNrYivNxfOCftoARZ2MVWKy+WbnlApwXtWWWxm9F+guCtK9axp+EzQfaJ8Gcr9mtCaTj+3wZk2O0sWbSnSOSlEegCIY8Ikiz0/LRp4zT4PAzK5IXQpasjQi44zgKyXhHjfyGiNQI+p5TiZ+CrYWwkQ2hgjBCPW5AGtiASkl0R3iKEA2hhDBEXXYY1MWYAAY65AymwkiGAQcvyHEAGGbVDOE7uBojtrvPOR8B0NBGquv0vUeSMe/+ie96y49WtoSGHg26WtghZftpcqJ3uGxUQdV6QrqJzZgmu/bhWnDnbNRwqwD4SbKLA77UavAg7qMeG+k/WuO5EbQYapoGk8uS/xZdHurLRSH/vX5u1Rr3VxtkgZKcXD4PRXnN1fT7IpL5CT0o3Kw+fjaZH1lxaGWP5CZFpIkHZQ5h05gAW/l1ZAcV3ydIVS+Yi15Pifn+5wuWAYdaxH2cr0fy9ejHientq/Q2XlYKpdt2fXIogisON0hzMKWIpfTd3RxNz6U5c3NkuV/9gwZlWm5725QedOraNbfp1/3Z+7eRS0Ex+O1S9vwx7wS9UV9M3ysX4f7pVbQEK7bSJAAAAAElFTkSuQmCC',
 };
 
-const C = {
-  plum: '#6b1a54',
-  plumDark: '#3D0F31',
-  cream: '#FAF9F7',
-  sand: '#FAF7F2',
-  lav: '#F3F0F8',
-  lavDeep: '#EDE8F5',
-  sage: '#b3508a',
-  amber: '#d98d9a',
-  muted: '#7A756E',
-  body: '#4A4740',
-  border: '#E8E2DC',
-  blush: '#F5E6EF',
-  warmWhite: '#FDFCFA',
-  gold: '#C4A265',
-  teal: '#2A9D8F'
-};
+const C={plum:'#6b1a54',plumDark:'#3D0F31',cream:'#FAF9F7',sand:'#FAF7F2',lav:'#F3F0F8',lavDeep:'#EDE8F5',sage:'#b3508a',amber:'#d98d9a',muted:'#7A756E',body:'#4A4740',border:'#E8E2DC',blush:'#F5E6EF',warmWhite:'#FDFCFA',gold:'#C4A265',teal:'#2A9D8F',green:'#3D8B6A',blue:'#3B6DC4'};
+
+// ── LEFT PAGE: WHY STEMCYTE ──────────────────
+// Content from /why-stemcyte:
+// Hero: "The Global Standard in Cord Blood Banking"
+// 4 pillars: FDA Licensed & Accredited, Dual Bank Model, 2,300+ Transplants, Three Safety Nets
+// Credentials: FDA BLA for REGENECYTE® (licensed not registered), FACT since 2006, AABB since 2002, cGMP
+// Impact: 2,300+ transplants, 325+ Hospitals, 40 Countries, 29 Years
+// Safety Nets: LifeSaver Guarantee, PBA, Expanded Access Program
+// Partners: Cedars-Sinai, City of Hope, Duke, Johns Hopkins, Mayo, Stanford, etc.
+
+// ── RIGHT PAGE: PUBLIC BANK ACCESS ──────────────────
+// Content from /public-bank-access:
+// Hero: "When your baby's own cells aren't enough, ours are"
+// $50K global search guarantee
+// Three scenarios: condition requires donor cells, child outgrows unit, collection doesn't go as planned
+// Why only StemCyte: private + public under one roof (dual bank model)
+// PBA $299 (free w/ CB&T) vs PBA+ $699 (covers parents)
+// FAQ: PBA covers child, PBA+ extends to parents
+
+function leftWhy(variant) {
+  // Reusable content blocks
+  const pillars = `
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0">
+      <div style="padding:8px;background:rgba(107,26,84,0.04);border-radius:6px"><div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px;color:${C.plum};margin-bottom:2px">Credentials</div><div style="font-size:8px;font-weight:700;color:#2C2A26">FDA Licensed</div><div style="font-size:7px;color:${C.muted};line-height:1.4;margin-top:1px">BLA — not merely registered</div></div>
+      <div style="padding:8px;background:rgba(59,109,196,0.04);border-radius:6px"><div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px;color:${C.blue};margin-bottom:2px">Only at StemCyte</div><div style="font-size:8px;font-weight:700;color:#2C2A26">Dual Bank Model</div><div style="font-size:7px;color:${C.muted};line-height:1.4;margin-top:1px">Private + public under one roof</div></div>
+      <div style="padding:8px;background:rgba(61,139,106,0.04);border-radius:6px"><div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px;color:${C.green};margin-bottom:2px">Proven outcomes</div><div style="font-size:8px;font-weight:700;color:#2C2A26">2,300+ Transplants</div><div style="font-size:7px;color:${C.muted};line-height:1.4;margin-top:1px">More than any other private bank</div></div>
+      <div style="padding:8px;background:rgba(196,148,62,0.04);border-radius:6px"><div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.3px;color:${C.gold};margin-bottom:2px">Triple protection</div><div style="font-size:8px;font-weight:700;color:#2C2A26">Three Safety Nets</div><div style="font-size:7px;color:${C.muted};line-height:1.4;margin-top:1px">LifeSaver, PBA, Expanded Access</div></div>
+    </div>`;
+  const impactPills = `
+    <div style="display:flex;gap:4px;flex-wrap:wrap;margin:6px 0">
+      <span class="badge" style="background:rgba(61,139,106,0.08);color:${C.green}">325+ Hospitals</span>
+      <span class="badge" style="background:rgba(61,139,106,0.08);color:${C.green}">40 Countries</span>
+      <span class="badge" style="background:rgba(61,139,106,0.08);color:${C.green}">29 Years</span>
+    </div>`;
+  const credBadges = `
+    <div style="display:flex;gap:4px;margin:6px 0">
+      <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">FDA BLA</span>
+      <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">FACT</span>
+      <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">AABB</span>
+      <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">cGMP</span>
+    </div>`;
+  const partners = `
+    <div style="margin-top:8px;padding:8px;background:rgba(107,26,84,0.03);border-radius:6px">
+      <div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted};margin-bottom:4px">Trusted by</div>
+      <div style="font-size:7.5px;color:${C.body};line-height:1.6">Johns Hopkins · Mayo Clinic · Stanford · Duke · City of Hope · Memorial Sloan Kettering · UCLA · St. Jude Children's</div>
+    </div>`;
+  const safetyNets = `
+    <div style="margin-top:8px">
+      <div class="chk"><div class="dot" style="background:${C.plum}"></div><p><strong>LifeSaver Guarantee:</strong> Full refund + $50K + replacement unit if engraftment fails</p></div>
+      <div class="chk"><div class="dot" style="background:${C.blue}"></div><p><strong>Public Bank Access:</strong> Donor units when your child needs more cells</p></div>
+      <div class="chk"><div class="dot" style="background:${C.gold}"></div><p><strong>Expanded Access:</strong> Investigational therapies for serious conditions</p></div>
+    </div>`;
+  return {pillars, impactPills, credBadges, partners, safetyNets};
+}
+
+function rightPBA(variant) {
+  const scenarios = `
+    <div style="margin-top:8px">
+      <div style="padding:7px 10px;background:rgba(107,26,84,0.03);border-radius:5px;margin-bottom:5px">
+        <div style="font-size:8px;font-weight:700;color:#2C2A26">Condition requires donor cells</div>
+        <div style="font-size:7.5px;color:${C.muted};line-height:1.4;margin-top:1px">For certain cancers and genetic disorders, a child cannot use their own stem cells.</div>
+      </div>
+      <div style="padding:7px 10px;background:rgba(61,139,106,0.03);border-radius:5px;margin-bottom:5px">
+        <div style="font-size:8px;font-weight:700;color:#2C2A26">Child outgrows a single unit</div>
+        <div style="font-size:7.5px;color:${C.muted};line-height:1.4;margin-top:1px">As children grow, a single cord blood unit may not be enough. PBA ensures access to more.</div>
+      </div>
+      <div style="padding:7px 10px;background:rgba(59,109,196,0.03);border-radius:5px">
+        <div style="font-size:8px;font-weight:700;color:#2C2A26">Collection doesn't go as planned</div>
+        <div style="font-size:7.5px;color:${C.muted};line-height:1.4;margin-top:1px">Birth is unpredictable. PBA provides a backup donor unit if the sample isn't viable.</div>
+      </div>
+    </div>`;
+  const pricingCards = `
+    <div style="display:flex;gap:6px;margin-top:10px">
+      <div style="flex:1;padding:10px 8px;text-align:center;border:1px solid ${C.border};border-radius:8px">
+        <div style="font-size:6.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted}">PBA · For Child</div>
+        <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum};margin-top:3px">$299</div>
+        <div style="font-size:7px;color:${C.green};font-weight:700;margin-top:2px">Free w/ CB&T</div>
+      </div>
+      <div style="flex:1;padding:10px 8px;text-align:center;border:2px solid rgba(107,26,84,0.15);border-radius:8px;background:rgba(107,26,84,0.02)">
+        <div style="font-size:6.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.plum}">PBA+ · Parents too</div>
+        <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum};margin-top:3px">$699</div>
+        <div style="font-size:7px;color:${C.muted};margin-top:2px">one-time</div>
+      </div>
+    </div>`;
+  const dualModel = `
+    <div style="display:flex;gap:6px;align-items:center;margin:10px 0;padding:10px;background:rgba(59,109,196,0.04);border-radius:8px">
+      <div style="flex:1;text-align:center;padding:8px 4px;background:#fff;border-radius:6px;border:1px solid ${C.border}">
+        <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.plum}">Private Bank</div>
+        <div style="font-size:7px;color:${C.muted};margin-top:2px">Your baby's cells</div>
+      </div>
+      <div style="font-size:12px;color:${C.muted};font-weight:700">+</div>
+      <div style="flex:1;text-align:center;padding:8px 4px;background:#fff;border-radius:6px;border:1px solid ${C.border}">
+        <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.blue}">Public Bank</div>
+        <div style="font-size:7px;color:${C.muted};margin-top:2px">Donor backup</div>
+      </div>
+    </div>`;
+  const fiftyKStat = `
+    <div style="display:flex;align-items:center;gap:10px;margin:10px 0;padding:12px;background:${C.lav};border-radius:8px">
+      <div style="font-family:'Source Serif 4',serif;font-size:24px;font-weight:700;color:${C.plum};line-height:1">$50K</div>
+      <div style="font-size:8px;color:${C.muted};line-height:1.4">global search<br>guarantee included</div>
+    </div>`;
+  return {scenarios, pricingCards, dualModel, fiftyKStat};
+}
+
+const L = leftWhy();
+const R = rightPBA();
 
 const spreads = [
 
-// ===== OPTION 1: Classic Grid =====
-{
-  label: 'Classic Grid',
-  render: () => `
-    <div class="sp" style="background:${C.lavDeep}">
-      <span class="ghost">05</span>
-      <div class="section-hdr">
-        <div class="lbl">The StemCyte Difference</div>
-        <h2>Born from a mission to heal.</h2>
-        <p class="sub-hdr">The only private bank born from a public bank</p>
-      </div>
-      <p style="font-size:8.5px;line-height:1.55;color:${C.body}">StemCyte began as a public cord blood bank — providing donated units to patients who had no family match. That mission of helping others is still at our core.</p>
-      <div class="stats-row" style="margin-top:12px">
-        <div class="stat"><span class="v">2,300+</span><span class="l">Units Shipped<br>for Transplant</span></div>
-        <div class="stat"><span class="v">350+</span><span class="l">Transplant<br>Centers</span></div>
-      </div>
-      <div class="stats-row">
-        <div class="stat"><span class="v">38</span><span class="l">Countries<br>Served</span></div>
-        <div class="stat"><span class="v">1997</span><span class="l">Year<br>Founded</span></div>
-      </div>
-      <div class="div"></div>
-      <div class="chk"><div class="dot"></div><p><strong>Most ethnically diverse</strong> cord blood inventory in the world</p></div>
-      <div class="chk"><div class="dot"></div><p><strong>FDA-licensed,</strong> FACT & AABB accredited</p></div>
-      <div class="chk"><div class="dot"></div><p><strong>3 clinical trials</strong> exploring new uses for cord blood</p></div>
-      <div class="chk"><div class="dot"></div><p><strong>REGENECYTE®</strong> exclusive regenerative cell isolation</p></div>
-      <div style="margin-top:auto"></div>
-      <div class="pullquote"><p>"Every number is a child whose story had a second chance."</p></div>
-    </div>
-    <div class="sp" style="background:${C.cream}">
-      <h3 style="font-size:15px;color:#2C2A26">Public Bank Access</h3>
-      <p style="font-size:8.5px;line-height:1.55;margin-top:4px">Private storage plus public bank backup — a safety net only StemCyte can offer.</p>
-      <div class="card" style="margin-top:12px">
-        <h5>How It Works</h5>
-        <p>If your privately banked unit isn't sufficient, Public Bank Access provides priority search of StemCyte's public inventory for a matching unit.</p>
-      </div>
-      <div style="margin-top:16px;padding:12px;background:rgba(107,26,84,0.04);border-radius:8px">
-        <div class="pathway" style="background:rgba(107,26,84,0.04);border-radius:6px">
-          <div class="step"><div class="icon">🧬</div><div class="txt">Own<br>Cells</div></div>
-          <div class="arrow">→</div>
-          <div class="step"><div class="icon">👶</div><div class="txt">Sibling<br>Match</div></div>
-          <div class="arrow">→</div>
-          <div class="step"><div class="icon">🏦</div><div class="txt">Public<br>Bank</div></div>
-        </div>
-      </div>
-      <div style="margin-top:12px;font-size:8.5px;line-height:1.55;color:${C.body};font-style:italic;padding:8px 10px;border-left:2px solid ${C.sage}">
-        "Bailey used her own cells. Ryden used his brother's. Itzel needed a match from our public bank. Only StemCyte gives your family access to all three paths."
-      </div>
-      <div class="div"></div>
-      <div class="alert">
-        <h5>Pricing</h5>
-        <p><strong>Cord Blood & Tissue plan:</strong> Included free<br><strong>All other plans:</strong> $299 add-on</p>
-      </div>
-      <div style="margin-top:auto;text-align:center;padding:12px;background:linear-gradient(160deg,${C.plum},${C.plumDark});border-radius:8px;color:#fff">
-        <div style="font-size:9px;font-weight:700;letter-spacing:0.5px">Ready to protect your family?</div>
-        <div style="font-size:10px;font-weight:700;margin-top:4px;letter-spacing:0.3px">(866) 389-4659</div>
-        <div style="font-size:7.5px;color:rgba(255,255,255,0.4);margin-top:2px">stemcyte.com</div>
-      </div>
-    </div>`
-},
+// ===== 1: Classic Grid =====
+{label:'Classic Grid',render:()=>`
+<div class="sp" style="background:${C.lavDeep}">
+  <span class="ghost">05</span>
+  <div class="section-hdr"><div class="lbl" style="color:${C.muted}">Why StemCyte</div><h2>The Global Standard in Cord Blood Banking</h2><p class="sub-hdr" style="font-size:8.5px;color:${C.muted}">While others store, we deliver results.</p></div>
+  ${L.pillars}
+  <div class="div"></div>
+  <div style="text-align:center;padding:12px 0">
+    <div style="font-family:'Source Serif 4',serif;font-size:28px;font-weight:700;color:${C.green};line-height:1">2,300+</div>
+    <div style="font-size:7.5px;color:${C.muted};margin-top:3px">transplants shipped to hospitals worldwide</div>
+  </div>
+  ${L.impactPills}
+  ${L.credBadges}
+  <div style="margin-top:auto"></div>
+  ${L.partners}
+</div>
+<div class="sp" style="background:${C.cream}">
+  <div class="lbl" style="color:${C.plum}">Only at StemCyte</div>
+  <h3 style="font-size:14px;color:#2C2A26">When your baby's own cells aren't enough, ours are.</h3>
+  <p style="font-size:8.5px;line-height:1.55;margin-top:6px">A backup guarantee built into your private banking plan.</p>
+  ${R.dualModel}
+  ${R.fiftyKStat}
+  <div class="div"></div>
+  <h4 style="font-size:8px;color:#2C2A26;margin-top:4px">Three scenarios. Three answers.</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 2: Hero Stat =====
-{
-  label: 'Hero Stat',
-  render: () => `
-    <div class="sp" style="background:${C.sand}">
-      <span class="ghost">05</span>
-      <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-      <div style="text-align:center;padding:24px 0 16px">
-        <div style="font-family:'Source Serif 4',serif;font-size:48px;font-weight:700;color:${C.plum};line-height:1">2,300+</div>
-        <div style="font-size:9px;color:${C.muted};margin-top:4px;letter-spacing:0.5px">units shipped for transplant</div>
-      </div>
-      <div class="div"></div>
-      <div style="display:flex;gap:8px;margin:8px 0">
-        <div style="flex:1;text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.plum}">350+</div><div style="font-size:6.5px;color:${C.muted};text-transform:uppercase;letter-spacing:0.3px">Centers</div></div>
-        <div style="flex:1;text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.plum}">38</div><div style="font-size:6.5px;color:${C.muted};text-transform:uppercase;letter-spacing:0.3px">Countries</div></div>
-        <div style="flex:1;text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.plum}">1997</div><div style="font-size:6.5px;color:${C.muted};text-transform:uppercase;letter-spacing:0.3px">Founded</div></div>
-      </div>
-      <div class="div"></div>
-      <h4 style="font-size:9px;color:#2C2A26">What sets us apart</h4>
-      <div class="chk"><div class="dot"></div><p>Most ethnically diverse cord blood inventory in the world</p></div>
-      <div class="chk"><div class="dot"></div><p>FDA-licensed, FACT & AABB accredited laboratory</p></div>
-      <div class="chk"><div class="dot"></div><p>3 clinical trials exploring new therapeutic uses</p></div>
-      <div class="chk"><div class="dot"></div><p>REGENECYTE® exclusive cell isolation technology</p></div>
-      <div class="chk"><div class="dot"></div><p>The only private bank born from a public bank</p></div>
-      <div style="margin-top:auto"></div>
-      <div style="display:flex;gap:4px;justify-content:center">
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">FDA Licensed</span>
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">FACT</span>
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">AABB</span>
-      </div>
-    </div>
-    <div class="sp" style="background:${C.lav}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:14px;color:#2C2A26">Three paths.<br>One bank.</h3>
-      <p style="font-size:8.5px;line-height:1.55;margin-top:8px">When your child needs stem cells, the match might come from their own stored cord blood, a sibling's, or from our public bank. StemCyte is the only bank that offers all three.</p>
-      <div style="margin-top:16px">
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-          <div style="width:32px;height:32px;border-radius:50%;background:rgba(107,26,84,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">1</div>
-          <div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">Own cord blood</div><div style="font-size:8px;color:${C.muted}">Bailey's story — used her own cells</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-          <div style="width:32px;height:32px;border-radius:50%;background:rgba(179,80,138,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">2</div>
-          <div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">Sibling match</div><div style="font-size:8px;color:${C.muted}">Ryden's story — used his brother's cells</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-          <div style="width:32px;height:32px;border-radius:50%;background:rgba(217,141,154,0.08);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0">3</div>
-          <div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">Public bank match</div><div style="font-size:8px;color:${C.muted}">Itzel's story — found a match in our public bank</div></div>
-        </div>
-      </div>
-      <div class="div"></div>
-      <div class="alert" style="background:rgba(107,26,84,0.04)">
-        <h5>Pricing</h5>
-        <p><strong style="color:#2C2A26">Included free</strong> with Cord Blood & Tissue plan<br><strong style="color:#2C2A26">$299 add-on</strong> for all other plans</p>
-      </div>
-      <div style="margin-top:auto"></div>
-      <p style="font-size:7.5px;color:${C.muted};text-align:center">Only StemCyte gives your family access to all three paths.</p>
-    </div>`
-},
+// ===== 2: Hero Stat =====
+{label:'Hero Stat',render:()=>`
+<div class="sp" style="background:${C.sand}">
+  <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+  <div style="text-align:center;padding:16px 0 12px">
+    <div style="font-family:'Source Serif 4',serif;font-size:48px;font-weight:700;color:${C.green};line-height:1">2,300+</div>
+    <div style="font-size:9px;color:${C.muted};margin-top:4px">transplants shipped to hospitals worldwide</div>
+  </div>
+  <div style="display:flex;gap:6px;margin:4px 0">
+    <div style="flex:1;text-align:center;padding:6px;background:rgba(61,139,106,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:${C.green}">325+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Hospitals</div></div>
+    <div style="flex:1;text-align:center;padding:6px;background:rgba(61,139,106,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:${C.green}">40</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Countries</div></div>
+    <div style="flex:1;text-align:center;padding:6px;background:rgba(61,139,106,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:${C.green}">29</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Years</div></div>
+  </div>
+  <div class="div"></div>
+  <h4 style="font-size:9px;color:#2C2A26">No other bank can match all four</h4>
+  ${L.pillars}
+  ${L.credBadges}
+  <div style="margin-top:auto"></div>
+  ${L.partners}
+</div>
+<div class="sp" style="background:${C.lav}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.fiftyKStat}
+  <h4 style="font-size:8px;color:#2C2A26">Three scenarios. Three answers.</h4>
+  ${R.scenarios}
+  <div class="div"></div>
+  <div style="padding:8px 10px;background:rgba(59,109,196,0.04);border-radius:6px">
+    <div style="font-size:7.5px;font-weight:700;color:${C.blue};margin-bottom:2px">Why only StemCyte?</div>
+    <p style="font-size:8px;color:${C.muted};line-height:1.5">The only private bank that also operates a public bank. That dual model makes PBA possible.</p>
+  </div>
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 3: Dark Plum Left =====
-{
-  label: 'Dark Plum',
-  render: () => `
-    <div class="sp" style="background:linear-gradient(160deg,${C.plum},${C.plumDark});color:#fff;padding:24px 20px">
-      <span class="ghost" style="color:rgba(255,255,255,0.04)">05</span>
-      <div class="lbl" style="color:rgba(255,255,255,0.25)">Why StemCyte</div>
-      <h3 style="font-size:18px;color:#fff;margin-bottom:12px">Born from a mission to heal.</h3>
-      <p style="color:rgba(255,255,255,0.5);font-size:8.5px;line-height:1.6">The only cord blood bank that began as a public bank — providing units to patients without a family match. That mission is still our core.</p>
-      <div style="display:flex;gap:8px;margin-top:20px">
-        <div style="flex:1;text-align:center;padding:12px 4px;background:rgba(255,255,255,0.05);border-radius:6px">
-          <div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:rgba(255,255,255,0.75)">2,300+</div>
-          <div style="font-size:6.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px">Transplants</div>
-        </div>
-        <div style="flex:1;text-align:center;padding:12px 4px;background:rgba(255,255,255,0.05);border-radius:6px">
-          <div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:rgba(255,255,255,0.75)">350+</div>
-          <div style="font-size:6.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px">Centers</div>
-        </div>
-      </div>
-      <div style="display:flex;gap:8px;margin-top:8px">
-        <div style="flex:1;text-align:center;padding:12px 4px;background:rgba(255,255,255,0.05);border-radius:6px">
-          <div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:rgba(255,255,255,0.75)">38</div>
-          <div style="font-size:6.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px">Countries</div>
-        </div>
-        <div style="flex:1;text-align:center;padding:12px 4px;background:rgba(255,255,255,0.05);border-radius:6px">
-          <div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:rgba(255,255,255,0.75)">1997</div>
-          <div style="font-size:6.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px">Founded</div>
-        </div>
-      </div>
-      <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,0.06)">
-        <div style="display:flex;gap:4px;justify-content:center">
-          <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">FDA</span>
-          <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">FACT</span>
-          <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">AABB</span>
-        </div>
-        <p style="font-size:7.5px;color:rgba(255,255,255,0.3);text-align:center;margin-top:6px">Most ethnically diverse cord blood inventory in the world</p>
-      </div>
-    </div>
-    <div class="sp" style="background:${C.cream}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:14px;color:#2C2A26;margin-bottom:8px">Your private bank.<br>Our public bank.<br>One safety net.</h3>
-      <p style="font-size:8.5px;line-height:1.55">If additional cells are needed beyond what you've stored, StemCyte provides matching from our public cord blood bank — a resource available only to StemCyte families.</p>
-      <div class="card" style="margin-top:16px;background:${C.blush};border:none">
-        <h5 style="color:${C.plum}">Three Real Stories</h5>
-        <p style="font-size:8px;line-height:1.55"><strong>Bailey</strong> used her own cells. <strong>Ryden</strong> used his brother's. <strong>Itzel</strong> needed a match from our public bank. Only StemCyte gives your family all three paths.</p>
-      </div>
-      <div style="margin-top:16px">
-        <div style="display:flex;gap:8px">
-          <div style="flex:1;padding:12px 8px;text-align:center;border-radius:8px;background:rgba(107,26,84,0.04)">
-            <div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted};margin-bottom:4px">CB&T Plan</div>
-            <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">Free</div>
-            <div style="font-size:7px;color:${C.muted};margin-top:2px">Included</div>
-          </div>
-          <div style="flex:1;padding:12px 8px;text-align:center;border-radius:8px;border:1px solid ${C.border}">
-            <div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted};margin-bottom:4px">Other Plans</div>
-            <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">$299</div>
-            <div style="font-size:7px;color:${C.muted};margin-top:2px">Add-on</div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:auto"></div>
-      <div style="text-align:center;padding:10px;background:rgba(107,26,84,0.04);border-radius:8px">
-        <div style="font-size:8px;font-weight:700;color:${C.plum}">Questions?</div>
-        <div style="font-size:9px;font-weight:700;color:#2C2A26;margin-top:2px">(866) 389-4659</div>
-      </div>
-    </div>`
-},
+// ===== 3: Dark Plum =====
+{label:'Dark Plum',render:()=>`
+<div class="sp" style="background:linear-gradient(160deg,${C.plum},${C.plumDark});color:#fff;padding:24px 20px">
+  <div class="lbl" style="color:rgba(255,255,255,0.25)">Why StemCyte</div>
+  <h3 style="font-size:18px;color:#fff;margin-bottom:12px">The Global Standard in Cord Blood Banking</h3>
+  <p style="color:rgba(255,255,255,0.5);font-size:8.5px;line-height:1.6">While others store, we deliver results. The only private bank with an FDA Biologics License, a dual bank model, and 2,300+ transplants.</p>
+  <div style="display:flex;gap:6px;margin-top:16px">
+    <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,0.05);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(255,255,255,0.8)">2,300+</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Transplants</div></div>
+    <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,0.05);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(255,255,255,0.8)">325+</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Hospitals</div></div>
+  </div>
+  <div style="display:flex;gap:6px;margin-top:6px">
+    <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,0.05);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(255,255,255,0.8)">40</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Countries</div></div>
+    <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,0.05);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(255,255,255,0.8)">29</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Years</div></div>
+  </div>
+  <div style="margin-top:16px;padding:10px 12px;background:rgba(255,255,255,0.05);border-radius:6px">
+    <div style="font-size:7.5px;color:rgba(255,255,255,0.45)">Three safety nets: <strong style="color:rgba(255,255,255,0.7)">LifeSaver Guarantee</strong> · <strong style="color:rgba(255,255,255,0.7)">Public Bank Access</strong> · <strong style="color:rgba(255,255,255,0.7)">Expanded Access Program</strong></div>
+  </div>
+  <div style="margin-top:auto;display:flex;gap:4px;justify-content:center">
+    <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">FDA BLA</span>
+    <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">FACT</span>
+    <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">AABB</span>
+    <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">cGMP</span>
+  </div>
+</div>
+<div class="sp" style="background:${C.cream}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:15px;color:#2C2A26">When your baby's own cells aren't enough, ours are.</h3>
+  <p style="font-size:8.5px;line-height:1.55;margin-top:6px">Private banking stores your baby's cells exclusively. But sometimes a child needs donor cells instead, or needs more volume. PBA guarantees StemCyte will find a match.</p>
+  ${R.dualModel}
+  ${R.fiftyKStat}
+  <div class="div"></div>
+  ${R.pricingCards}
+  <div style="margin-top:auto;text-align:center;font-size:8px;color:${C.muted}">(866) 389-4659 · stemcyte.com</div>
+</div>`},
 
-// ===== OPTION 4: Photo Led =====
-{
-  label: 'Photo Led',
-  render: () => `
-    <div class="sp" style="background:${C.cream};padding:0">
-      <div style="height:200px;position:relative;overflow:hidden">
-        <img src="${IMG.hero_1}" style="width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,${C.cream})"></div>
-      </div>
-      <div style="padding:0 18px 22px;flex:1;display:flex;flex-direction:column">
-        <div class="lbl" style="color:${C.muted}">The StemCyte Difference</div>
-        <h3 style="font-size:14px;color:#2C2A26">More than a bank.<br>A mission.</h3>
-        <p style="font-size:8.5px;line-height:1.55;margin-top:6px">Founded in 1997 as a public bank, StemCyte maintains the most ethnically diverse cord blood inventory in the world.</p>
-        <div class="stats-row" style="margin-top:12px">
-          <div class="stat"><span class="v">2,300+</span><span class="l">Transplants<br>Shipped</span></div>
-          <div class="stat"><span class="v">350+</span><span class="l">Centers<br>Worldwide</span></div>
-          <div class="stat"><span class="v">38</span><span class="l">Countries<br>Served</span></div>
-        </div>
-        <div class="div"></div>
-        <div class="chk"><div class="dot"></div><p>FDA-licensed, FACT & AABB accredited</p></div>
-        <div class="chk"><div class="dot"></div><p>3 clinical trials for new therapeutic uses</p></div>
-        <div class="chk"><div class="dot"></div><p>REGENECYTE® exclusive technology</p></div>
-        <div style="margin-top:auto"></div>
-      </div>
+// ===== 4: Photo Led =====
+{label:'Photo Led',render:()=>`
+<div class="sp" style="background:${C.cream};padding:0">
+  <div style="height:180px;position:relative;overflow:hidden">
+    <img src="${IMG.hero_1}" style="width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;bottom:0;left:0;right:0;height:60px;background:linear-gradient(transparent,${C.cream})"></div>
+  </div>
+  <div style="padding:4px 18px 22px;flex:1;display:flex;flex-direction:column">
+    <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+    <h3 style="font-size:14px;color:#2C2A26">The Global Standard in Cord Blood Banking</h3>
+    <p style="font-size:8.5px;line-height:1.55;margin-top:4px">While others store, we deliver results. The confidence of the most clinically-proven bank in the world.</p>
+    ${L.pillars}
+    <div class="div"></div>
+    <div style="display:flex;gap:6px">
+      <div style="flex:1;text-align:center;padding:6px;background:rgba(61,139,106,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.green}">2,300+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Transplants</div></div>
+      <div style="flex:1;text-align:center;padding:6px;background:rgba(61,139,106,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.green}">325+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Hospitals</div></div>
+      <div style="flex:1;text-align:center;padding:6px;background:rgba(61,139,106,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.green}">40</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Countries</div></div>
     </div>
-    <div class="sp" style="background:${C.lav}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:15px;color:#2C2A26">A safety net beyond your stored cells.</h3>
-      <div style="margin-top:12px;padding:14px;background:#fff;border-radius:8px;border:1px solid ${C.border}">
-        <div style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.plum};margin-bottom:6px">How It Works</div>
-        <p style="font-size:8.5px;line-height:1.55;color:${C.body}">If your privately banked unit isn't a match or more cells are needed, StemCyte searches our public bank inventory for a matching unit — giving your family an additional source of hope.</p>
-      </div>
-      <div style="margin-top:16px;padding:12px;background:${C.blush};border-radius:8px">
-        <p style="font-size:8.5px;line-height:1.55;color:${C.body};font-style:italic">"Bailey used her own cells. Ryden used his brother's. Itzel needed a match from our public bank."</p>
-        <p style="font-size:8px;font-weight:700;color:${C.plum};margin-top:6px">Only StemCyte offers all three paths.</p>
-      </div>
-      <div class="div"></div>
-      <h4 style="font-size:9px;color:#2C2A26">Pricing</h4>
-      <div style="display:flex;gap:8px;margin-top:6px">
-        <div class="card" style="flex:1;margin:0;text-align:center;background:rgba(107,26,84,0.04);border-color:rgba(107,26,84,0.08)">
-          <h5>CB&T Plan</h5>
-          <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">Included</div>
-        </div>
-        <div class="card" style="flex:1;margin:0;text-align:center">
-          <h5>Other Plans</h5>
-          <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">$299</div>
-        </div>
-      </div>
-      <div style="margin-top:auto;text-align:center">
-        <div style="font-size:8px;color:${C.muted}">(866) 389-4659 · stemcyte.com</div>
-      </div>
-    </div>`
-},
+    <div style="margin-top:auto"></div>
+    ${L.credBadges}
+  </div>
+</div>
+<div class="sp" style="background:${C.lav}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26">A backup guarantee built into your plan.</h3>
+  ${R.fiftyKStat}
+  <p style="font-size:8.5px;line-height:1.55">Private banking stores your baby's cells exclusively. But sometimes a child needs donor cells or more volume. PBA guarantees StemCyte will find a match — and fund up to $50,000 to secure it.</p>
+  <div class="div"></div>
+  <h4 style="font-size:8px;color:#2C2A26">When would you need it?</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 5: Sidebar Stats =====
-{
-  label: 'Sidebar Stats',
-  render: () => `
-    <div class="sp" style="background:${C.cream};padding:0;flex-direction:row">
-      <div style="width:64px;background:linear-gradient(160deg,${C.plum},${C.plumDark});padding:16px 8px;display:flex;flex-direction:column;align-items:center;gap:24px;justify-content:center">
-        <div style="text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.75)">2,300+</div><div style="font-size:5.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px;margin-top:2px">Transplants</div></div>
-        <div style="text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.75)">350+</div><div style="font-size:5.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px;margin-top:2px">Centers</div></div>
-        <div style="text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.75)">38</div><div style="font-size:5.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px;margin-top:2px">Countries</div></div>
-        <div style="text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.75)">1997</div><div style="font-size:5.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px;margin-top:2px">Founded</div></div>
-      </div>
-      <div style="flex:1;padding:22px 16px;display:flex;flex-direction:column">
-        <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-        <h3 style="font-size:14px;color:#2C2A26;margin-bottom:8px">Born from a mission to heal.</h3>
-        <p style="font-size:8.5px;line-height:1.55">The only private bank born from a public bank — StemCyte began by providing donated units to patients without a family match.</p>
-        <div class="div"></div>
-        <p style="font-size:8.5px;font-weight:700;color:#2C2A26;margin-bottom:4px">Most ethnically diverse</p>
-        <p style="font-size:8px;color:${C.muted};line-height:1.5">cord blood inventory in the world, serving families of every background.</p>
-        <div style="margin-top:12px">
-          <div class="chk"><div class="dot"></div><p>FDA-licensed laboratory</p></div>
-          <div class="chk"><div class="dot"></div><p>FACT & AABB accredited</p></div>
-          <div class="chk"><div class="dot"></div><p>3 sponsored clinical trials</p></div>
-          <div class="chk"><div class="dot"></div><p>REGENECYTE® technology</p></div>
-        </div>
-        <div style="margin-top:auto"></div>
-        <div class="pullquote"><p>"Every number is a child whose story continues."</p></div>
-      </div>
+// ===== 5: Sidebar Stats =====
+{label:'Sidebar Stats',render:()=>`
+<div class="sp" style="background:${C.cream};padding:0;flex-direction:row">
+  <div style="width:64px;background:linear-gradient(160deg,${C.plum},${C.plumDark});padding:16px 6px;display:flex;flex-direction:column;align-items:center;gap:20px;justify-content:center">
+    <div style="text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.8)">2,300+</div><div style="font-size:5px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-top:1px">Transplants</div></div>
+    <div style="text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.8)">325+</div><div style="font-size:5px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-top:1px">Hospitals</div></div>
+    <div style="text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.8)">40</div><div style="font-size:5px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-top:1px">Countries</div></div>
+    <div style="text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.8)">29</div><div style="font-size:5px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-top:1px">Years</div></div>
+  </div>
+  <div style="flex:1;padding:22px 14px;display:flex;flex-direction:column">
+    <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+    <h3 style="font-size:13px;color:#2C2A26;margin-bottom:8px">The Global Standard in Cord Blood Banking</h3>
+    <p style="font-size:8px;line-height:1.55;color:${C.body}">The only private bank with an FDA Biologics License, a dual bank model, and more clinical transplants than any other private bank.</p>
+    <div class="div"></div>
+    <div style="font-size:8px;font-weight:700;color:#2C2A26;margin-bottom:3px">REGENECYTE® — FDA BLA</div>
+    <p style="font-size:7.5px;color:${C.muted};line-height:1.5">Licensed, not merely registered. The same approval pathway required for vaccines and gene therapies.</p>
+    ${L.safetyNets}
+    <div style="margin-top:auto"></div>
+    <div style="display:flex;gap:3px;flex-wrap:wrap">
+      <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum};font-size:6px">FDA BLA</span>
+      <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum};font-size:6px">FACT</span>
+      <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum};font-size:6px">AABB</span>
+      <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum};font-size:6px">cGMP</span>
     </div>
-    <div class="sp" style="background:${C.sand}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:15px;color:#2C2A26">Private + public.<br>Complete coverage.</h3>
-      <p style="font-size:8.5px;line-height:1.55;margin-top:8px">When additional cells are needed, StemCyte provides matching from our public cord blood bank — a resource only StemCyte families can access.</p>
-      <div style="margin-top:16px">
-        <div style="padding:10px 12px;background:rgba(107,26,84,0.04);border-radius:6px;margin-bottom:8px">
-          <div style="font-size:8px;font-weight:700;color:#2C2A26;margin-bottom:2px">Step 1: Your stored cells</div>
-          <div style="font-size:7.5px;color:${C.muted}">First option — your baby's own cord blood</div>
-        </div>
-        <div style="padding:10px 12px;background:rgba(179,80,138,0.04);border-radius:6px;margin-bottom:8px">
-          <div style="font-size:8px;font-weight:700;color:#2C2A26;margin-bottom:2px">Step 2: Sibling match</div>
-          <div style="font-size:7.5px;color:${C.muted}">Like Ryden, who used his brother's cells</div>
-        </div>
-        <div style="padding:10px 12px;background:rgba(217,141,154,0.04);border-radius:6px;margin-bottom:8px">
-          <div style="font-size:8px;font-weight:700;color:#2C2A26;margin-bottom:2px">Step 3: Public bank match</div>
-          <div style="font-size:7.5px;color:${C.muted}">Like Itzel, who found hope in our public bank</div>
-        </div>
-      </div>
-      <div class="div"></div>
-      <div style="display:flex;gap:8px">
-        <div style="flex:1;padding:10px;text-align:center;background:${C.blush};border-radius:8px">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted}">CB&T</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:${C.plum};margin-top:2px">Free</div>
-        </div>
-        <div style="flex:1;padding:10px;text-align:center;border:1px solid ${C.border};border-radius:8px">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted}">Add-on</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:${C.plum};margin-top:2px">$299</div>
-        </div>
-      </div>
-      <div style="margin-top:auto;text-align:center;font-size:8px;color:${C.muted}">(866) 389-4659</div>
-    </div>`
-},
+  </div>
+</div>
+<div class="sp" style="background:${C.sand}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.dualModel}
+  ${R.fiftyKStat}
+  <h4 style="font-size:8px;color:#2C2A26;margin-top:4px">Three scenarios. Three answers.</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 6: Horizontal Bar =====
-{
-  label: 'Stat Bar',
-  render: () => `
-    <div class="sp" style="background:${C.cream};padding:0">
-      <div style="background:linear-gradient(135deg,rgba(107,26,84,0.08),rgba(107,26,84,0.02));padding:14px 18px 10px">
-        <div class="lbl" style="color:${C.muted};font-size:8px">The StemCyte Difference</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:15px;color:#2C2A26;margin-bottom:2px">Born from a mission to heal.</h3>
-      </div>
-      <div style="display:flex;background:${C.plumDark};padding:10px 0">
-        <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.06)"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)">2,300+</div><div style="font-size:6px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.3px">Transplants</div></div>
-        <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.06)"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)">350+</div><div style="font-size:6px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.3px">Centers</div></div>
-        <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.06)"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)">38</div><div style="font-size:6px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.3px">Countries</div></div>
-        <div style="flex:1;text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:rgba(255,255,255,0.7)">1997</div><div style="font-size:6px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:0.3px">Founded</div></div>
-      </div>
-      <div style="padding:16px 18px;flex:1;display:flex;flex-direction:column">
-        <p style="font-size:8.5px;line-height:1.55;color:${C.body}">The only private bank born from a public bank. StemCyte maintains the most ethnically diverse cord blood inventory in the world.</p>
-        <div class="div"></div>
-        <h4 style="font-size:9px;color:#2C2A26">Our differentiators</h4>
-        <div class="chk"><div class="dot"></div><p><strong>Clinical experience:</strong> Real transplant outcomes, not just storage</p></div>
-        <div class="chk"><div class="dot"></div><p><strong>FDA-licensed,</strong> FACT & AABB accredited</p></div>
-        <div class="chk"><div class="dot"></div><p><strong>3 clinical trials</strong> for new therapeutic applications</p></div>
-        <div class="chk"><div class="dot"></div><p><strong>REGENECYTE®</strong> exclusive cell technology</p></div>
-        <div style="margin-top:auto"></div>
-        <div class="pullquote"><p>"Every number is a child whose story continues."</p></div>
-      </div>
-    </div>
-    <div class="sp" style="background:${C.sand}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:14px;color:#2C2A26;margin-bottom:8px">Protection beyond<br>what you store.</h3>
-      <p style="font-size:8.5px;line-height:1.55">Most banks only store your baby's cells. StemCyte also gives you access to our public inventory — thousands of additional units available if needed.</p>
-      <div class="card" style="margin-top:14px">
-        <h5>How It Works</h5>
-        <p>If your unit isn't a match or more cells are needed, StemCyte searches our public bank for a compatible unit — available only to StemCyte families.</p>
-      </div>
-      <div style="margin-top:16px;padding:12px;background:${C.blush};border-radius:8px">
-        <div style="font-size:8.5px;font-style:italic;line-height:1.55;color:${C.body}">Bailey. Ryden. Itzel. Three families, three different needs — all served by StemCyte's unique position as both private and public bank.</div>
-      </div>
-      <div class="div"></div>
-      <div class="alert" style="background:rgba(107,26,84,0.03)">
-        <h5>Pricing</h5>
-        <p><strong style="color:#2C2A26">CB&T plan:</strong> Included free<br><strong style="color:#2C2A26">All other plans:</strong> $299 add-on</p>
-      </div>
-      <div style="margin-top:auto;text-align:center;padding:10px;background:linear-gradient(160deg,${C.plum},${C.plumDark});border-radius:8px;color:#fff">
-        <div style="font-size:8.5px;font-weight:700">(866) 389-4659</div>
-        <div style="font-size:7px;color:rgba(255,255,255,0.4);margin-top:2px">stemcyte.com</div>
-      </div>
-    </div>`
-},
+// ===== 6: Stat Bar =====
+{label:'Stat Bar',render:()=>`
+<div class="sp" style="background:${C.cream};padding:0">
+  <div style="padding:14px 18px 8px;background:linear-gradient(135deg,rgba(107,26,84,0.08),rgba(107,26,84,0.02))">
+    <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:14px;color:#2C2A26;margin-bottom:2px">The Global Standard in Cord Blood Banking</h3>
+  </div>
+  <div style="display:flex;background:${C.plumDark};padding:8px 0">
+    <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.06)"><div style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:rgba(255,255,255,0.75)">2,300+</div><div style="font-size:5.5px;color:rgba(255,255,255,0.25);text-transform:uppercase">Transplants</div></div>
+    <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.06)"><div style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:rgba(255,255,255,0.75)">325+</div><div style="font-size:5.5px;color:rgba(255,255,255,0.25);text-transform:uppercase">Hospitals</div></div>
+    <div style="flex:1;text-align:center;border-right:1px solid rgba(255,255,255,0.06)"><div style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:rgba(255,255,255,0.75)">40</div><div style="font-size:5.5px;color:rgba(255,255,255,0.25);text-transform:uppercase">Countries</div></div>
+    <div style="flex:1;text-align:center"><div style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:rgba(255,255,255,0.75)">29</div><div style="font-size:5.5px;color:rgba(255,255,255,0.25);text-transform:uppercase">Years</div></div>
+  </div>
+  <div style="padding:12px 18px;flex:1;display:flex;flex-direction:column">
+    <p style="font-size:8.5px;line-height:1.55;color:${C.body}">More clinical transplants than any other private cord blood bank. Our units have been used in life-saving treatments across six continents.</p>
+    ${L.pillars}
+    ${L.credBadges}
+    <div style="margin-top:auto"></div>
+    ${L.partners}
+  </div>
+</div>
+<div class="sp" style="background:${C.sand}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26;margin-bottom:6px">A backup guarantee built into your plan.</h3>
+  <p style="font-size:8.5px;line-height:1.55">PBA guarantees that if your banked unit isn't enough, StemCyte will find a matching donor unit from our public bank and deliver it — at no additional cost.</p>
+  ${R.fiftyKStat}
+  <div class="div"></div>
+  <h4 style="font-size:8px;color:#2C2A26">When would you need it?</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 7: Cards Layout =====
-{
-  label: 'Card Stack',
-  render: () => `
-    <div class="sp" style="background:${C.lav}">
-      <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-      <h3 style="font-size:15px;color:#2C2A26;margin-bottom:12px">The proof is in<br>the numbers.</h3>
-      <div class="card" style="background:#fff">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:${C.plum}">2,300+</div>
-          <div style="font-size:8px;color:${C.muted};line-height:1.4">units shipped for<br>transplant worldwide</div>
-        </div>
-      </div>
-      <div class="card" style="background:#fff">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:${C.plum}">350+</div>
-          <div style="font-size:8px;color:${C.muted};line-height:1.4">transplant centers<br>choose StemCyte</div>
-        </div>
-      </div>
-      <div class="card" style="background:#fff">
-        <div style="display:flex;align-items:center;gap:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:${C.sage}">38</div>
-          <div style="font-size:8px;color:${C.muted};line-height:1.4">countries served<br>since 1997</div>
-        </div>
-      </div>
-      <div class="div"></div>
-      <p style="font-size:8.5px;font-weight:700;color:#2C2A26;margin-bottom:4px">Most ethnically diverse</p>
-      <p style="font-size:8px;color:${C.muted};line-height:1.5">cord blood inventory in the world — serving families of every background.</p>
-      <div style="margin-top:8px;display:flex;gap:4px;flex-wrap:wrap">
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">FDA Licensed</span>
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">FACT</span>
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">AABB</span>
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">3 Trials</span>
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">REGENECYTE®</span>
-      </div>
-      <div style="margin-top:auto"></div>
-    </div>
-    <div class="sp" style="background:${C.cream}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:14px;color:#2C2A26;margin-bottom:8px">Three paths to hope.</h3>
-      <div class="card" style="background:rgba(107,26,84,0.03);border-color:rgba(107,26,84,0.06)">
-        <div style="display:flex;gap:8px;align-items:flex-start">
-          <div style="width:24px;height:24px;border-radius:50%;background:rgba(107,26,84,0.08);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:${C.plum};flex-shrink:0">1</div>
-          <div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">Own cord blood</div><p style="font-size:7.5px">Like Bailey, who used her own stored cells</p></div>
-        </div>
-      </div>
-      <div class="card" style="background:rgba(179,80,138,0.03);border-color:rgba(179,80,138,0.06)">
-        <div style="display:flex;gap:8px;align-items:flex-start">
-          <div style="width:24px;height:24px;border-radius:50%;background:rgba(179,80,138,0.08);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:${C.sage};flex-shrink:0">2</div>
-          <div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">Sibling match</div><p style="font-size:7.5px">Like Ryden, who used his brother's cells</p></div>
-        </div>
-      </div>
-      <div class="card" style="background:rgba(217,141,154,0.03);border-color:rgba(217,141,154,0.06)">
-        <div style="display:flex;gap:8px;align-items:flex-start">
-          <div style="width:24px;height:24px;border-radius:50%;background:rgba(217,141,154,0.08);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:${C.amber};flex-shrink:0">3</div>
-          <div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">Public bank match</div><p style="font-size:7.5px">Like Itzel, who found a match in our public bank</p></div>
-        </div>
-      </div>
-      <div class="div"></div>
-      <h4 style="font-size:9px;color:#2C2A26">Pricing</h4>
-      <p style="font-size:8.5px;line-height:1.55;color:${C.body}"><strong>Cord Blood & Tissue plan:</strong> Public Bank Access included free.<br><strong>All other plans:</strong> Available as $299 add-on.</p>
-      <div style="margin-top:auto;text-align:center">
-        <p style="font-size:8px;color:${C.plum};font-weight:700">Only StemCyte gives your family all three paths.</p>
-      </div>
-    </div>`
-},
+// ===== 7: Card Stack =====
+{label:'Card Stack',render:()=>`
+<div class="sp" style="background:${C.lav}">
+  <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+  <h3 style="font-size:14px;color:#2C2A26;margin-bottom:8px">No other bank can match all four.</h3>
+  <div class="card" style="background:#fff"><div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:24px;border-radius:3px;background:${C.plum};flex-shrink:0"></div><div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">FDA Licensed & Accredited</div><p style="font-size:7.5px">FDA BLA for REGENECYTE® — licensed, not merely registered</p></div></div></div>
+  <div class="card" style="background:#fff"><div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:24px;border-radius:3px;background:${C.blue};flex-shrink:0"></div><div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">Dual Bank Model</div><p style="font-size:7.5px">The only private bank that also operates a public bank</p></div></div></div>
+  <div class="card" style="background:#fff"><div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:24px;border-radius:3px;background:${C.green};flex-shrink:0"></div><div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">2,300+ Transplants</div><p style="font-size:7.5px">More than any other private bank — 325+ hospitals, 40 countries</p></div></div></div>
+  <div class="card" style="background:#fff"><div style="display:flex;align-items:center;gap:8px"><div style="width:6px;height:24px;border-radius:3px;background:${C.gold};flex-shrink:0"></div><div><div style="font-size:8.5px;font-weight:700;color:#2C2A26">Three Safety Nets</div><p style="font-size:7.5px">LifeSaver Guarantee, Public Bank Access, Expanded Access</p></div></div></div>
+  <div style="margin-top:auto"></div>
+  ${L.credBadges}
+</div>
+<div class="sp" style="background:${C.cream}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26;margin-bottom:6px">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.dualModel}
+  <h4 style="font-size:8px;color:#2C2A26;margin-top:4px">Three scenarios. Three answers.</h4>
+  ${R.scenarios}
+  <div class="div"></div>
+  ${R.fiftyKStat}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 8: Minimal Type =====
-{
-  label: 'Minimal Type',
-  render: () => `
-    <div class="sp" style="background:${C.warmWhite};padding:32px 24px">
-      <div style="margin-bottom:auto"></div>
-      <div class="lbl" style="color:${C.muted};font-size:7px">Why Choose StemCyte</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:20px;color:#2C2A26;line-height:1.25;margin-bottom:24px">Born from a<br>mission to heal.</h3>
-      <p style="font-size:9px;line-height:1.65;color:${C.body};margin-bottom:24px">The only private cord blood bank born from a public bank. Founded in 1997, StemCyte maintains the most ethnically diverse cord blood inventory in the world.</p>
-      <div style="border-top:1px solid ${C.border};padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
-        <div><div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:${C.plum}">2,300+</div><div style="font-size:7px;color:${C.muted};margin-top:2px">transplants shipped</div></div>
-        <div><div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:${C.plum}">350+</div><div style="font-size:7px;color:${C.muted};margin-top:2px">centers worldwide</div></div>
-        <div><div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:${C.plum}">38</div><div style="font-size:7px;color:${C.muted};margin-top:2px">countries served</div></div>
-        <div><div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:${C.plum}">3</div><div style="font-size:7px;color:${C.muted};margin-top:2px">clinical trials</div></div>
-      </div>
-      <div style="margin-top:24px;display:flex;gap:4px">
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FDA</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FACT</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">AABB</span>
-      </div>
-    </div>
-    <div class="sp" style="background:${C.cream};padding:32px 24px">
-      <div style="margin-bottom:auto"></div>
-      <div class="lbl" style="color:${C.muted};font-size:7px">Public Bank Access</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#2C2A26;line-height:1.25;margin-bottom:24px">Private storage.<br>Public backup.</h3>
-      <p style="font-size:9px;line-height:1.65;color:${C.body}">If additional cells are needed, StemCyte provides matching from our public cord blood bank — an option only available to StemCyte families.</p>
-      <div style="margin-top:24px;border-top:1px solid ${C.border};padding-top:16px">
-        <p style="font-size:8.5px;line-height:1.65;color:${C.body};font-style:italic">Bailey used her own cells. Ryden used his brother's. Itzel needed a match from our public bank.</p>
-        <p style="font-size:8.5px;font-weight:700;color:${C.plum};margin-top:8px">Three stories. Three paths. One bank.</p>
-      </div>
-      <div style="margin-top:24px;border-top:1px solid ${C.border};padding-top:16px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
-          <span style="font-size:8.5px;font-weight:700;color:#2C2A26">CB&T plan</span>
-          <span style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">Included</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline">
-          <span style="font-size:8.5px;font-weight:700;color:#2C2A26">Other plans</span>
-          <span style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">$299</span>
-        </div>
-      </div>
-    </div>`
-},
+// ===== 8: Minimal Type =====
+{label:'Minimal Type',render:()=>`
+<div class="sp" style="background:${C.warmWhite};padding:32px 24px">
+  <div class="lbl" style="color:${C.muted};font-size:7px">Why StemCyte</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#2C2A26;line-height:1.25;margin-bottom:20px">The Global Standard in Cord Blood Banking</h3>
+  <p style="font-size:9px;line-height:1.65;color:${C.body}">While others store, we deliver results. The only private bank with an FDA Biologics License, a dual bank model, and more transplants than any other private bank.</p>
+  <div style="margin-top:20px;border-top:1px solid ${C.border};padding-top:16px;display:grid;grid-template-columns:1fr 1fr;gap:16px">
+    <div><div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:${C.green}">2,300+</div><div style="font-size:7px;color:${C.muted}">transplants shipped</div></div>
+    <div><div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:${C.green}">325+</div><div style="font-size:7px;color:${C.muted}">hospitals worldwide</div></div>
+    <div><div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:${C.green}">40</div><div style="font-size:7px;color:${C.muted}">countries served</div></div>
+    <div><div style="font-family:'Source Serif 4',serif;font-size:20px;font-weight:700;color:${C.green}">29</div><div style="font-size:7px;color:${C.muted}">years of outcomes</div></div>
+  </div>
+  <div style="margin-top:auto">${L.credBadges}</div>
+</div>
+<div class="sp" style="background:${C.cream};padding:32px 24px">
+  <div class="lbl" style="color:${C.plum};font-size:7px">Public Bank Access</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#2C2A26;line-height:1.25;margin-bottom:20px">When your baby's own cells aren't enough, ours are.</h3>
+  <p style="font-size:9px;line-height:1.65;color:${C.body}">PBA guarantees that if your banked unit isn't enough, StemCyte will find a matching donor unit and deliver it — funding up to $50,000 for a global search.</p>
+  <div style="margin-top:20px;border-top:1px solid ${C.border};padding-top:16px">
+    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px"><span style="font-size:8.5px;font-weight:700;color:#2C2A26">PBA — for your child</span><span style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">$299</span></div>
+    <div style="font-size:7.5px;color:${C.green};font-weight:700;margin-bottom:12px">Free with Cord Blood & Tissue</div>
+    <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font-size:8.5px;font-weight:700;color:#2C2A26">PBA+ — covers parents too</span><span style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">$699</span></div>
+  </div>
+  <div style="margin-top:auto;font-size:7.5px;color:${C.muted}">(866) 389-4659 · stemcyte.com</div>
+</div>`},
 
-// ===== OPTION 9: Photo + Dark PBA =====
-{
-  label: 'Photo + Dark',
-  render: () => `
-    <div class="sp" style="background:${C.sand}">
-      <div class="section-hdr" style="margin:-22px -18px 12px;padding:14px 18px 8px;background:linear-gradient(135deg,rgba(107,26,84,0.08),rgba(107,26,84,0.02))">
-        <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-        <h2 style="font-family:'Playfair Display',serif;font-size:15px;color:#2C2A26;margin-bottom:2px">The proof is in our patients.</h2>
-      </div>
-      <div style="display:flex;gap:6px;margin-bottom:12px">
-        <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(107,26,84,0.04);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.plum}">2,300+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase;letter-spacing:0.3px">Transplants</div></div>
-        <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(107,26,84,0.04);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.plum}">350+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase;letter-spacing:0.3px">Centers</div></div>
-      </div>
-      <p style="font-size:8.5px;line-height:1.55;color:${C.body}">Founded in 1997, StemCyte is the only private bank born from a public bank — maintaining the most ethnically diverse inventory in the world across 38 countries.</p>
-      <div class="div"></div>
-      <div class="chk"><div class="dot"></div><p>FDA-licensed, FACT & AABB accredited</p></div>
-      <div class="chk"><div class="dot"></div><p>3 clinical trials for new therapeutic uses</p></div>
-      <div class="chk"><div class="dot"></div><p>REGENECYTE® exclusive technology</p></div>
-      <div style="margin-top:auto"></div>
-      <div style="height:120px;margin:0 -18px -22px;position:relative;overflow:hidden">
-        <img src="${IMG.hero_5}" style="width:100%;height:100%;object-fit:cover;object-position:center 40%">
-        <div style="position:absolute;inset:0;background:linear-gradient(${C.sand},transparent)"></div>
-      </div>
+// ===== 9: Photo + Dark PBA =====
+{label:'Photo + Dark',render:()=>`
+<div class="sp" style="background:${C.sand}">
+  <div class="section-hdr"><div class="lbl" style="color:${C.muted}">Why StemCyte</div><h2>The Global Standard in Cord Blood Banking</h2></div>
+  <div style="display:flex;gap:6px;margin-bottom:8px">
+    <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(61,139,106,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;color:${C.green}">2,300+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Transplants</div></div>
+    <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(61,139,106,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;color:${C.green}">325+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Hospitals</div></div>
+  </div>
+  <p style="font-size:8.5px;line-height:1.55;color:${C.body}">More clinical transplants than any other private bank. Our units treat patients in 40 countries across 325+ institutions including Johns Hopkins, Mayo, Stanford, and Duke.</p>
+  <div class="div"></div>
+  ${L.pillars}
+  ${L.credBadges}
+  <div style="margin-top:auto"></div>
+  <div style="height:100px;margin:0 -18px -22px;position:relative;overflow:hidden">
+    <img src="${IMG.hero_5}" style="width:100%;height:100%;object-fit:cover;object-position:center 40%">
+    <div style="position:absolute;inset:0;background:linear-gradient(${C.sand},transparent)"></div>
+  </div>
+</div>
+<div class="sp" style="background:linear-gradient(160deg,${C.plum},${C.plumDark});color:#fff;padding:24px 20px">
+  <div class="lbl" style="color:rgba(255,255,255,0.25)">Public Bank Access</div>
+  <h3 style="font-size:15px;color:#fff;margin-bottom:10px">When your baby's own cells aren't enough, ours are.</h3>
+  <p style="color:rgba(255,255,255,0.5);font-size:8.5px;line-height:1.6">PBA guarantees that if your banked unit isn't enough, StemCyte finds a matching donor unit and delivers it — funding up to $50,000 for a global search.</p>
+  <div style="margin-top:12px;padding:10px;background:rgba(255,255,255,0.05);border-radius:8px">
+    <div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:rgba(255,255,255,0.75);text-align:center">$50K</div>
+    <div style="font-size:7.5px;color:rgba(255,255,255,0.35);text-align:center;margin-top:2px">global search guarantee</div>
+  </div>
+  <div style="margin-top:auto;display:flex;gap:6px">
+    <div style="flex:1;padding:10px;text-align:center;background:rgba(255,255,255,0.06);border-radius:8px">
+      <div style="font-size:6.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.5px">PBA · Child</div>
+      <div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.8);margin-top:3px">$299</div>
+      <div style="font-size:6.5px;color:rgba(61,139,106,0.9);font-weight:700;margin-top:2px">Free w/ CB&T</div>
     </div>
-    <div class="sp" style="background:linear-gradient(160deg,${C.plum},${C.plumDark});color:#fff;padding:24px 20px">
-      <div class="lbl" style="color:rgba(255,255,255,0.25)">Public Bank Access</div>
-      <h3 style="font-size:16px;color:#fff;margin-bottom:12px">Your private bank. Our public bank. One safety net.</h3>
-      <p style="color:rgba(255,255,255,0.5);font-size:8.5px;line-height:1.6">If additional cells are needed, StemCyte provides matching from our public inventory — thousands of units available only to StemCyte families.</p>
-      <div style="margin-top:16px;padding:12px;background:rgba(255,255,255,0.05);border-radius:8px">
-        <p style="color:rgba(255,255,255,0.55);font-size:8.5px;line-height:1.6;font-style:italic">"Bailey used her own cells. Ryden used his brother's. Itzel needed a match from our public bank."</p>
-        <p style="color:rgba(255,255,255,0.75);font-size:8px;font-weight:700;margin-top:6px">Only StemCyte offers all three paths.</p>
-      </div>
-      <div style="margin-top:auto;display:flex;gap:8px">
-        <div style="flex:1;padding:12px;text-align:center;background:rgba(255,255,255,0.06);border-radius:8px">
-          <div style="font-size:7px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">CB&T Plan</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.75)">Free</div>
-        </div>
-        <div style="flex:1;padding:12px;text-align:center;background:rgba(255,255,255,0.06);border-radius:8px">
-          <div style="font-size:7px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Add-on</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.75)">$299</div>
-        </div>
-      </div>
-      <div style="text-align:center;margin-top:12px">
-        <div style="font-size:9px;font-weight:700;color:rgba(255,255,255,0.75)">(866) 389-4659</div>
-        <div style="font-size:7px;color:rgba(255,255,255,0.3);margin-top:2px">stemcyte.com</div>
-      </div>
-    </div>`
-},
+    <div style="flex:1;padding:10px;text-align:center;background:rgba(255,255,255,0.06);border-radius:8px">
+      <div style="font-size:6.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.5px">PBA+ · Parents</div>
+      <div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.8);margin-top:3px">$699</div>
+      <div style="font-size:6.5px;color:rgba(255,255,255,0.3);margin-top:2px">one-time</div>
+    </div>
+  </div>
+  <div style="text-align:center;margin-top:10px;font-size:8px;color:rgba(255,255,255,0.4)">(866) 389-4659 · stemcyte.com</div>
+</div>`},
 
-// ===== OPTION 10: Infographic =====
-{
-  label: 'Infographic',
-  render: () => `
-    <div class="sp" style="background:${C.cream}">
-      <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-      <h3 style="font-size:14px;color:#2C2A26;margin-bottom:16px">By the numbers.</h3>
-      <div style="margin-bottom:12px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px"><span style="font-size:8px;font-weight:700;color:#2C2A26">Transplant units shipped</span><span style="font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;color:${C.plum}">2,300+</span></div>
-        <div style="height:4px;background:${C.border};border-radius:4px;overflow:hidden"><div style="width:92%;height:100%;background:${C.plum};border-radius:4px"></div></div>
-      </div>
-      <div style="margin-bottom:12px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px"><span style="font-size:8px;font-weight:700;color:#2C2A26">Transplant centers</span><span style="font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;color:${C.sage}">350+</span></div>
-        <div style="height:4px;background:${C.border};border-radius:4px;overflow:hidden"><div style="width:70%;height:100%;background:${C.sage};border-radius:4px"></div></div>
-      </div>
-      <div style="margin-bottom:12px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:2px"><span style="font-size:8px;font-weight:700;color:#2C2A26">Countries served</span><span style="font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;color:${C.amber}">38</span></div>
-        <div style="height:4px;background:${C.border};border-radius:4px;overflow:hidden"><div style="width:38%;height:100%;background:${C.amber};border-radius:4px"></div></div>
-      </div>
-      <div class="div"></div>
-      <p style="font-size:8.5px;line-height:1.55;color:${C.body}">Founded in 1997, StemCyte is the only private bank born from a public bank — with the most ethnically diverse cord blood inventory in the world.</p>
-      <div style="margin-top:12px">
-        <div class="chk"><div class="dot"></div><p>FDA-licensed, FACT & AABB accredited</p></div>
-        <div class="chk"><div class="dot"></div><p>3 sponsored clinical trials</p></div>
-        <div class="chk"><div class="dot"></div><p>REGENECYTE® exclusive cell technology</p></div>
-      </div>
-      <div style="margin-top:auto"></div>
-      <div class="pullquote"><p>"Every number is a child whose story continues."</p></div>
-    </div>
-    <div class="sp" style="background:${C.lavDeep}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:14px;color:#2C2A26;margin-bottom:8px">A visual guide to<br>your options.</h3>
-      <div style="margin-top:8px;padding:16px 12px;background:#fff;border-radius:8px;border:1px solid ${C.border}">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-          <div style="width:48px;height:48px;border-radius:50%;background:rgba(107,26,84,0.08);display:flex;align-items:center;justify-content:center">
-            <div style="font-size:7px;font-weight:700;color:${C.plum};text-align:center">OWN<br>CELLS</div>
-          </div>
-          <div style="flex:1;height:2px;background:${C.border};margin:0 6px"></div>
-          <div style="width:48px;height:48px;border-radius:50%;background:rgba(179,80,138,0.08);display:flex;align-items:center;justify-content:center">
-            <div style="font-size:7px;font-weight:700;color:${C.sage};text-align:center">SIBLING<br>MATCH</div>
-          </div>
-          <div style="flex:1;height:2px;background:${C.border};margin:0 6px"></div>
-          <div style="width:48px;height:48px;border-radius:50%;background:rgba(217,141,154,0.08);display:flex;align-items:center;justify-content:center">
-            <div style="font-size:7px;font-weight:700;color:${C.amber};text-align:center">PUBLIC<br>BANK</div>
-          </div>
-        </div>
-        <p style="font-size:8px;color:${C.muted};text-align:center">Your family has access to all three paths.</p>
-      </div>
-      <div style="margin-top:12px;padding:10px 12px;background:${C.blush};border-radius:8px">
-        <p style="font-size:8px;line-height:1.55;color:${C.body};font-style:italic">Bailey used her own cells. Ryden used his brother's. Itzel found a match in our public bank.</p>
-      </div>
-      <div class="div"></div>
-      <div style="display:flex;gap:8px">
-        <div style="flex:1;padding:10px;text-align:center;background:#fff;border-radius:8px;border:1px solid ${C.border}">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted}">CB&T</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum};margin-top:2px">Free</div>
-        </div>
-        <div style="flex:1;padding:10px;text-align:center;background:#fff;border-radius:8px;border:1px solid ${C.border}">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted}">Add-on</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum};margin-top:2px">$299</div>
-        </div>
-      </div>
-      <div style="margin-top:auto;text-align:center;font-size:8px;color:${C.muted}">(866) 389-4659 · stemcyte.com</div>
-    </div>`
-},
+// ===== 10: Infographic =====
+{label:'Infographic',render:()=>`
+<div class="sp" style="background:${C.cream}">
+  <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+  <h3 style="font-size:13px;color:#2C2A26;margin-bottom:12px">Proven outcomes, by the numbers.</h3>
+  <div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;margin-bottom:2px"><span style="font-size:8px;font-weight:700;color:#2C2A26">Transplants shipped</span><span style="font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;color:${C.green}">2,300+</span></div><div style="height:4px;background:${C.border};border-radius:4px;overflow:hidden"><div style="width:95%;height:100%;background:${C.green};border-radius:4px"></div></div></div>
+  <div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;margin-bottom:2px"><span style="font-size:8px;font-weight:700;color:#2C2A26">Hospital partners</span><span style="font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;color:${C.sage}">325+</span></div><div style="height:4px;background:${C.border};border-radius:4px;overflow:hidden"><div style="width:65%;height:100%;background:${C.sage};border-radius:4px"></div></div></div>
+  <div style="margin-bottom:8px"><div style="display:flex;justify-content:space-between;margin-bottom:2px"><span style="font-size:8px;font-weight:700;color:#2C2A26">Countries served</span><span style="font-family:'Source Serif 4',serif;font-size:11px;font-weight:700;color:${C.amber}">40</span></div><div style="height:4px;background:${C.border};border-radius:4px;overflow:hidden"><div style="width:40%;height:100%;background:${C.amber};border-radius:4px"></div></div></div>
+  <div class="div"></div>
+  ${L.pillars}
+  ${L.credBadges}
+  <div style="margin-top:auto"></div>
+  ${L.partners}
+</div>
+<div class="sp" style="background:${C.lavDeep}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26;margin-bottom:6px">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.dualModel}
+  ${R.fiftyKStat}
+  <div class="div"></div>
+  <h4 style="font-size:8px;color:#2C2A26">When would you need it?</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 11: Bold Numbers =====
-{
-  label: 'Bold Numbers',
-  render: () => `
-    <div class="sp" style="background:${C.cream};padding:0">
-      <div style="padding:24px 20px 0">
-        <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-        <h3 style="font-size:13px;color:#2C2A26;margin-bottom:16px">Results that speak for themselves.</h3>
-      </div>
-      <div style="padding:0 20px">
-        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px">
-          <div style="font-family:'Source Serif 4',serif;font-size:36px;font-weight:700;color:${C.plum};line-height:1">2,300+</div>
-          <div style="font-size:8px;color:${C.muted};line-height:1.3">transplant units<br>shipped worldwide</div>
-        </div>
-        <div style="height:1px;background:${C.border};margin:8px 0"></div>
-        <div style="display:flex;gap:16px;margin:8px 0">
-          <div><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum}">350+</div><div style="font-size:7px;color:${C.muted}">centers</div></div>
-          <div><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum}">38</div><div style="font-size:7px;color:${C.muted}">countries</div></div>
-          <div><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum}">1997</div><div style="font-size:7px;color:${C.muted}">founded</div></div>
-        </div>
-      </div>
-      <div style="padding:0 20px;margin-top:16px">
-        <h4 style="font-size:9px;color:#2C2A26">Unmatched credentials</h4>
-        <div class="chk"><div class="dot"></div><p>Most ethnically diverse inventory in the world</p></div>
-        <div class="chk"><div class="dot"></div><p>FDA-licensed, FACT & AABB accredited</p></div>
-        <div class="chk"><div class="dot"></div><p>3 clinical trials for new applications</p></div>
-        <div class="chk"><div class="dot"></div><p>REGENECYTE® exclusive technology</p></div>
-        <div class="chk"><div class="dot"></div><p>The only private bank from a public bank</p></div>
-      </div>
-      <div style="margin-top:auto;padding:0 20px 22px"></div>
-    </div>
-    <div class="sp" style="background:${C.lav}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:15px;color:#2C2A26;margin-bottom:8px">Beyond storage. A network.</h3>
-      <p style="font-size:8.5px;line-height:1.55;color:${C.body}">Most banks only store your cells. StemCyte also gives you access to thousands of additional public bank units if your family ever needs a match.</p>
-      <div style="margin-top:16px;padding:12px;background:#fff;border-radius:8px;border:1px solid ${C.border}">
-        <div style="font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.plum};margin-bottom:8px">Three Paths to Treatment</div>
-        <div style="display:flex;gap:4px;margin-bottom:8px">
-          <div style="flex:1;padding:8px 4px;text-align:center;background:rgba(107,26,84,0.04);border-radius:4px"><div style="font-size:7.5px;font-weight:700;color:${C.plum}">Own</div><div style="font-size:6.5px;color:${C.muted};margin-top:1px">Bailey</div></div>
-          <div style="flex:1;padding:8px 4px;text-align:center;background:rgba(179,80,138,0.04);border-radius:4px"><div style="font-size:7.5px;font-weight:700;color:${C.sage}">Sibling</div><div style="font-size:6.5px;color:${C.muted};margin-top:1px">Ryden</div></div>
-          <div style="flex:1;padding:8px 4px;text-align:center;background:rgba(217,141,154,0.04);border-radius:4px"><div style="font-size:7.5px;font-weight:700;color:${C.amber}">Public</div><div style="font-size:6.5px;color:${C.muted};margin-top:1px">Itzel</div></div>
-        </div>
-        <p style="font-size:7.5px;color:${C.muted};text-align:center">Only StemCyte offers all three paths.</p>
-      </div>
-      <div class="div"></div>
-      <div class="alert" style="background:rgba(107,26,84,0.03)">
-        <h5>Pricing</h5>
-        <p><strong style="color:#2C2A26">CB&T plan:</strong> Included free<br><strong style="color:#2C2A26">All other plans:</strong> $299 add-on</p>
-      </div>
-      <div style="margin-top:auto;text-align:center;font-size:8px;color:${C.muted}">(866) 389-4659 · stemcyte.com</div>
-    </div>`
-},
+// ===== 11: Bold Numbers =====
+{label:'Bold Numbers',render:()=>`
+<div class="sp" style="background:${C.cream};padding:24px 20px">
+  <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+  <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:4px">
+    <div style="font-family:'Source Serif 4',serif;font-size:36px;font-weight:700;color:${C.green};line-height:1">2,300+</div>
+    <div style="font-size:8px;color:${C.muted};line-height:1.3">transplants shipped<br>to hospitals worldwide</div>
+  </div>
+  <div style="height:1px;background:${C.border};margin:6px 0"></div>
+  <div style="display:flex;gap:16px;margin:6px 0">
+    <div><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.green}">325+</div><div style="font-size:6.5px;color:${C.muted}">hospitals</div></div>
+    <div><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.green}">40</div><div style="font-size:6.5px;color:${C.muted}">countries</div></div>
+    <div><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.green}">29</div><div style="font-size:6.5px;color:${C.muted}">years</div></div>
+  </div>
+  <div class="div"></div>
+  <h4 style="font-size:9px;color:#2C2A26">No other bank can match all four</h4>
+  ${L.pillars}
+  ${L.credBadges}
+  <div style="margin-top:auto"></div>
+</div>
+<div class="sp" style="background:${C.lav}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26;margin-bottom:6px">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.fiftyKStat}
+  <h4 style="font-size:8px;color:#2C2A26">Three scenarios. Three answers.</h4>
+  ${R.scenarios}
+  <div class="div"></div>
+  ${R.pricingCards}
+  <div style="margin-top:auto;text-align:center;font-size:8px;color:${C.muted}">(866) 389-4659</div>
+</div>`},
 
-// ===== OPTION 12: Split Photo Spread =====
-{
-  label: 'Split Photo',
-  render: () => `
-    <div class="sp" style="background:${C.cream};padding:0">
-      <div style="height:240px;position:relative;overflow:hidden">
-        <img src="${IMG.hero_6}" style="width:100%;height:100%;object-fit:cover">
-        <div style="position:absolute;inset:0;background:linear-gradient(transparent 50%,${C.cream})"></div>
-        <div style="position:absolute;bottom:12px;left:18px;right:18px;display:flex;gap:6px">
-          <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.9);border-radius:6px;backdrop-filter:blur(4px)"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">2,300+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Transplants</div></div>
-          <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.9);border-radius:6px;backdrop-filter:blur(4px)"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">350+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Centers</div></div>
-          <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.9);border-radius:6px;backdrop-filter:blur(4px)"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">38</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Countries</div></div>
-        </div>
-      </div>
-      <div style="padding:8px 18px 22px;flex:1;display:flex;flex-direction:column">
-        <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-        <h3 style="font-size:14px;color:#2C2A26;margin-bottom:8px">Born from a mission to heal.</h3>
-        <p style="font-size:8.5px;line-height:1.55;color:${C.body}">Founded in 1997, the only private bank from a public bank — with the most ethnically diverse inventory worldwide.</p>
-        <div style="margin-top:8px">
-          <div class="chk"><div class="dot"></div><p>FDA-licensed, FACT & AABB accredited</p></div>
-          <div class="chk"><div class="dot"></div><p>3 clinical trials · REGENECYTE® technology</p></div>
-        </div>
-        <div style="margin-top:auto"></div>
-      </div>
+// ===== 12: Split Photo =====
+{label:'Split Photo',render:()=>`
+<div class="sp" style="background:${C.cream};padding:0">
+  <div style="height:200px;position:relative;overflow:hidden">
+    <img src="${IMG.hero_6}" style="width:100%;height:100%;object-fit:cover">
+    <div style="position:absolute;inset:0;background:linear-gradient(transparent 40%,${C.cream})"></div>
+    <div style="position:absolute;bottom:8px;left:12px;right:12px;display:flex;gap:4px">
+      <div style="flex:1;text-align:center;padding:6px 2px;background:rgba(255,255,255,0.92);border-radius:5px;backdrop-filter:blur(4px)"><div style="font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;color:${C.green}">2,300+</div><div style="font-size:5.5px;color:${C.muted};text-transform:uppercase">Transplants</div></div>
+      <div style="flex:1;text-align:center;padding:6px 2px;background:rgba(255,255,255,0.92);border-radius:5px;backdrop-filter:blur(4px)"><div style="font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;color:${C.green}">325+</div><div style="font-size:5.5px;color:${C.muted};text-transform:uppercase">Hospitals</div></div>
+      <div style="flex:1;text-align:center;padding:6px 2px;background:rgba(255,255,255,0.92);border-radius:5px;backdrop-filter:blur(4px)"><div style="font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;color:${C.green}">40</div><div style="font-size:5.5px;color:${C.muted};text-transform:uppercase">Countries</div></div>
     </div>
-    <div class="sp" style="background:${C.lavDeep}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:15px;color:#2C2A26;margin-bottom:8px">Every path covered.</h3>
-      <p style="font-size:8.5px;line-height:1.55;color:${C.body};margin-bottom:16px">When your child needs stem cells, the source might be their own, a sibling's, or our public bank. Only StemCyte covers all three.</p>
-      <div style="background:#fff;border-radius:8px;padding:12px;border:1px solid ${C.border}">
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid ${C.border}">
-          <div style="width:8px;height:8px;border-radius:50%;background:${C.plum}"></div>
-          <div style="flex:1"><div style="font-size:8px;font-weight:700;color:#2C2A26">Own cord blood</div><div style="font-size:7px;color:${C.muted}">Bailey's path</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid ${C.border}">
-          <div style="width:8px;height:8px;border-radius:50%;background:${C.sage}"></div>
-          <div style="flex:1"><div style="font-size:8px;font-weight:700;color:#2C2A26">Sibling match</div><div style="font-size:7px;color:${C.muted}">Ryden's path</div></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:6px">
-          <div style="width:8px;height:8px;border-radius:50%;background:${C.amber}"></div>
-          <div style="flex:1"><div style="font-size:8px;font-weight:700;color:#2C2A26">Public bank</div><div style="font-size:7px;color:${C.muted}">Itzel's path</div></div>
-        </div>
-      </div>
-      <div class="div"></div>
-      <div style="display:flex;gap:8px">
-        <div style="flex:1;padding:10px;text-align:center;background:${C.blush};border-radius:8px">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.muted}">CB&T</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">Free</div>
-        </div>
-        <div style="flex:1;padding:10px;text-align:center;background:#fff;border-radius:8px;border:1px solid ${C.border}">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.muted}">Add-on</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">$299</div>
-        </div>
-      </div>
-      <div style="margin-top:auto;text-align:center;font-size:8px;color:${C.muted}">(866) 389-4659</div>
-    </div>`
-},
+  </div>
+  <div style="padding:4px 18px 18px;flex:1;display:flex;flex-direction:column">
+    <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+    <h3 style="font-size:13px;color:#2C2A26">No other bank can match all four.</h3>
+    ${L.pillars}
+    <div style="margin-top:auto"></div>
+    ${L.credBadges}
+  </div>
+</div>
+<div class="sp" style="background:${C.lavDeep}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26;margin-bottom:6px">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.dualModel}
+  ${R.fiftyKStat}
+  <div class="div"></div>
+  <h4 style="font-size:8px;color:#2C2A26">Three scenarios. Three answers.</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 13: Asymmetric =====
-{
-  label: 'Asymmetric',
-  render: () => `
-    <div class="sp" style="background:${C.lavDeep};padding:32px 20px">
-      <div style="font-family:'Source Serif 4',serif;font-size:56px;font-weight:700;color:rgba(107,26,84,0.06);line-height:1;margin-bottom:-8px">27</div>
-      <div class="lbl" style="color:${C.muted};margin-top:0">Years of Real-World Experience</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#2C2A26;margin-top:16px;margin-bottom:16px">The only private bank born from a public bank.</h3>
-      <div style="border-left:3px solid ${C.plum};padding-left:12px;margin-bottom:16px">
-        <div style="font-family:'Source Serif 4',serif;font-size:28px;font-weight:700;color:${C.plum};line-height:1">2,300+</div>
-        <div style="font-size:8px;color:${C.muted};margin-top:2px">transplant units shipped to 350+ centers in 38 countries</div>
-      </div>
-      <p style="font-size:8.5px;line-height:1.6;color:${C.body}">StemCyte maintains the most ethnically diverse cord blood inventory in the world — serving families of every background since 1997.</p>
-      <div class="div"></div>
-      <div style="display:flex;gap:4px;flex-wrap:wrap">
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">FDA Licensed</span>
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">FACT</span>
-        <span class="badge" style="background:rgba(107,26,84,0.08);color:${C.plum}">AABB</span>
-      </div>
-      <div style="margin-top:8px">
-        <div class="chk"><div class="dot"></div><p>3 clinical trials for new uses</p></div>
-        <div class="chk"><div class="dot"></div><p>REGENECYTE® exclusive cell technology</p></div>
-      </div>
-      <div style="margin-top:auto"></div>
-    </div>
-    <div class="sp" style="background:${C.sand};padding:32px 20px">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#2C2A26;line-height:1.2;margin-bottom:16px">Protection that goes beyond your stored cells.</h3>
-      <div style="background:${C.blush};padding:14px;border-radius:8px;margin-bottom:16px">
-        <p style="font-family:'Playfair Display',serif;font-size:10px;font-style:italic;line-height:1.55;color:#2C2A26">"Bailey used her own cells. Ryden used his brother's. Itzel needed a match from our public bank."</p>
-        <p style="font-size:8px;font-weight:700;color:${C.plum};margin-top:8px">Three families. Three paths. One bank.</p>
-      </div>
-      <div style="padding:12px;background:#fff;border-radius:8px;border:1px solid ${C.border}">
-        <p style="font-size:8.5px;line-height:1.55;color:${C.body}">If your privately banked unit isn't sufficient, StemCyte searches our public inventory for a match — a resource only available to StemCyte families.</p>
-      </div>
-      <div style="margin-top:auto"></div>
-      <div style="border-top:1px solid ${C.border};padding-top:16px">
-        <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
-          <span style="font-size:8.5px;color:#2C2A26;font-weight:700">CB&T plan</span>
-          <span style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:${C.plum}">Included free</span>
-        </div>
-        <div style="display:flex;justify-content:space-between;align-items:baseline">
-          <span style="font-size:8.5px;color:#2C2A26;font-weight:700">Other plans</span>
-          <span style="font-family:'Source Serif 4',serif;font-size:13px;font-weight:700;color:${C.plum}">$299 add-on</span>
-        </div>
-      </div>
-    </div>`
-},
+// ===== 13: Asymmetric =====
+{label:'Asymmetric',render:()=>`
+<div class="sp" style="background:${C.lavDeep};padding:28px 20px">
+  <div style="font-family:'Source Serif 4',serif;font-size:52px;font-weight:700;color:rgba(61,139,106,0.06);line-height:1;margin-bottom:-8px">29</div>
+  <div class="lbl" style="color:${C.muted};margin-top:0">Years of Proven Outcomes</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:15px;color:#2C2A26;margin-top:12px;margin-bottom:12px">The Global Standard in Cord Blood Banking</h3>
+  <div style="border-left:3px solid ${C.green};padding-left:12px;margin-bottom:12px">
+    <div style="font-family:'Source Serif 4',serif;font-size:28px;font-weight:700;color:${C.green};line-height:1">2,300+</div>
+    <div style="font-size:8px;color:${C.muted};margin-top:2px">transplants to 325+ hospitals in 40 countries</div>
+  </div>
+  <p style="font-size:8.5px;line-height:1.6;color:${C.body}">The only private bank with an FDA Biologics License for REGENECYTE®, a dual private-public bank model, and three safety nets for every family.</p>
+  <div class="div"></div>
+  ${L.safetyNets}
+  <div style="margin-top:auto"></div>
+  ${L.credBadges}
+</div>
+<div class="sp" style="background:${C.sand};padding:28px 20px">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:15px;color:#2C2A26;line-height:1.2;margin-bottom:12px">When your baby's own cells aren't enough, ours are.</h3>
+  <p style="font-size:8.5px;line-height:1.6;color:${C.body}">Private + public under one roof. If your unit isn't enough, we find a donor match and fund up to $50,000 for a global search.</p>
+  ${R.dualModel}
+  <div class="div"></div>
+  <h4 style="font-size:8px;color:#2C2A26">Three scenarios. Three answers.</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 14: Narrative Flow =====
-{
-  label: 'Narrative',
-  render: () => `
-    <div class="sp" style="background:${C.cream};padding:28px 20px">
-      <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#2C2A26;line-height:1.25;margin-bottom:16px">In 1997, we started with a simple belief.</h3>
-      <p style="font-size:9px;line-height:1.65;color:${C.body}">Every family deserves access to the healing potential of cord blood — regardless of ethnicity, background, or income. That's why we built a public bank first.</p>
-      <p style="font-size:9px;line-height:1.65;color:${C.body};margin-top:10px">Today, StemCyte maintains the <strong style="color:#2C2A26">most ethnically diverse cord blood inventory in the world</strong> — serving 350+ transplant centers across 38 countries.</p>
-      <div style="margin-top:20px;padding:16px;background:${C.lav};border-radius:8px">
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
-          <div><div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:${C.plum}">2,300+</div><div style="font-size:7px;color:${C.muted}">transplants shipped</div></div>
-          <div><div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:${C.plum}">350+</div><div style="font-size:7px;color:${C.muted}">centers worldwide</div></div>
-        </div>
-      </div>
-      <div style="margin-top:auto;padding-top:16px">
-        <div style="display:flex;gap:4px">
-          <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FDA</span>
-          <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FACT</span>
-          <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">AABB</span>
-          <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">3 Trials</span>
-          <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">REGENECYTE®</span>
-        </div>
-      </div>
+// ===== 14: Narrative =====
+{label:'Narrative',render:()=>`
+<div class="sp" style="background:${C.cream};padding:28px 20px">
+  <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#2C2A26;line-height:1.25;margin-bottom:14px">While others store, we deliver results.</h3>
+  <p style="font-size:9px;line-height:1.65;color:${C.body}">StemCyte is the only private cord blood bank with an FDA Biologics License — the same rigorous approval required for vaccines and gene therapies. Most banks are merely <em>registered.</em> REGENECYTE® is <em>licensed.</em></p>
+  <p style="font-size:9px;line-height:1.65;color:${C.body};margin-top:8px">We also operate a public cord blood bank — making StemCyte the only bank that can offer private storage with public bank backup. And with 2,300+ transplants across 40 countries, our outcomes speak for themselves.</p>
+  <div style="margin-top:16px;padding:12px;background:${C.lav};border-radius:8px">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.green}">2,300+</div><div style="font-size:7px;color:${C.muted}">transplants</div></div>
+      <div><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.green}">325+</div><div style="font-size:7px;color:${C.muted}">hospitals</div></div>
     </div>
-    <div class="sp" style="background:${C.sand};padding:28px 20px">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#2C2A26;line-height:1.25;margin-bottom:16px">Because sometimes one path isn't enough.</h3>
-      <p style="font-size:9px;line-height:1.65;color:${C.body}">Bailey used her own cells. Ryden used his brother's. Itzel needed a match from our public bank.</p>
-      <p style="font-size:9px;line-height:1.65;color:${C.body};margin-top:10px">Only StemCyte gives your family access to all three paths — because as both a private and public bank, we can search our own inventory when additional cells are needed.</p>
-      <div style="margin-top:24px;background:#fff;border-radius:8px;padding:16px;border:1px solid ${C.border}">
-        <div style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.plum};margin-bottom:10px">Pricing</div>
-        <div style="margin-bottom:8px;padding-bottom:8px;border-bottom:1px solid ${C.border}">
-          <div style="font-size:9px;font-weight:700;color:#2C2A26">Cord Blood & Tissue plan</div>
-          <div style="font-size:8.5px;color:${C.muted};margin-top:2px">Public Bank Access included free</div>
-        </div>
-        <div>
-          <div style="font-size:9px;font-weight:700;color:#2C2A26">All other plans</div>
-          <div style="font-size:8.5px;color:${C.muted};margin-top:2px">Available as $299 add-on</div>
-        </div>
-      </div>
-      <div style="margin-top:auto;text-align:center">
-        <div style="font-size:9px;font-weight:700;color:${C.plum}">(866) 389-4659</div>
-        <div style="font-size:7.5px;color:${C.muted};margin-top:2px">stemcyte.com</div>
-      </div>
-    </div>`
-},
+  </div>
+  <div style="margin-top:auto">${L.credBadges}</div>
+</div>
+<div class="sp" style="background:${C.sand};padding:28px 20px">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:15px;color:#2C2A26;line-height:1.25;margin-bottom:14px">When your baby's own cells aren't enough, ours are.</h3>
+  <p style="font-size:9px;line-height:1.65;color:${C.body}">Sometimes a child needs donor cells — for certain cancers, when they outgrow a single unit, or when the collection doesn't go as planned. PBA guarantees StemCyte will find a match and fund up to $50,000 for a global search.</p>
+  <p style="font-size:9px;line-height:1.65;color:${C.body};margin-top:8px">We handle everything: matching, funding, and delivery.</p>
+  <div style="margin-top:20px;background:#fff;border-radius:8px;padding:14px;border:1px solid ${C.border}">
+    <div style="font-size:8px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.plum};margin-bottom:8px">Compare</div>
+    <div style="margin-bottom:6px;padding-bottom:6px;border-bottom:1px solid ${C.border}"><div style="display:flex;justify-content:space-between"><span style="font-size:8.5px;font-weight:700;color:#2C2A26">PBA — for child</span><span style="font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;color:${C.plum}">$299</span></div><div style="font-size:7px;color:${C.green};font-weight:700;margin-top:1px">Free with CB&T</div></div>
+    <div><div style="display:flex;justify-content:space-between"><span style="font-size:8.5px;font-weight:700;color:#2C2A26">PBA+ — parents too</span><span style="font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;color:${C.plum}">$699</span></div></div>
+  </div>
+  <div style="margin-top:auto;text-align:center;font-size:8px;color:${C.muted}">(866) 389-4659 · stemcyte.com</div>
+</div>`},
 
-// ===== OPTION 15: Badge Heavy =====
-{
-  label: 'Badge Heavy',
-  render: () => `
-    <div class="sp" style="background:${C.cream}">
-      <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-      <h3 style="font-size:14px;color:#2C2A26;margin-bottom:12px">Trusted by physicians. Proven by results.</h3>
-      <div style="display:flex;gap:6px;margin-bottom:12px">
-        <div style="flex:1;padding:10px 6px;text-align:center;background:${C.plumDark};border-radius:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.8)">2,300+</div>
-          <div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px;margin-top:2px">Transplants</div>
-        </div>
-        <div style="flex:1;padding:10px 6px;text-align:center;background:${C.plumDark};border-radius:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.8)">350+</div>
-          <div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.3px;margin-top:2px">Centers</div>
-        </div>
-      </div>
-      <div style="display:flex;gap:6px;margin-bottom:12px">
-        <div style="flex:1;text-align:center;padding:8px;border:1px solid ${C.border};border-radius:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum}">38</div>
-          <div style="font-size:6.5px;color:${C.muted};text-transform:uppercase;letter-spacing:0.3px">Countries</div>
-        </div>
-        <div style="flex:1;text-align:center;padding:8px;border:1px solid ${C.border};border-radius:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum}">1997</div>
-          <div style="font-size:6.5px;color:${C.muted};text-transform:uppercase;letter-spacing:0.3px">Founded</div>
-        </div>
-        <div style="flex:1;text-align:center;padding:8px;border:1px solid ${C.border};border-radius:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum}">3</div>
-          <div style="font-size:6.5px;color:${C.muted};text-transform:uppercase;letter-spacing:0.3px">Trials</div>
-        </div>
-      </div>
-      <div class="div"></div>
-      <p style="font-size:8.5px;font-weight:700;color:#2C2A26">Most ethnically diverse</p>
-      <p style="font-size:8px;color:${C.muted};line-height:1.5;margin-bottom:8px">cord blood inventory in the world</p>
-      <div style="display:flex;gap:8px;margin-top:4px">
-        <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(107,26,84,0.04);border-radius:6px"><div style="font-size:10px;font-weight:900;color:${C.plum}">FDA</div><div style="font-size:6px;color:${C.muted}">Licensed</div></div>
-        <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(107,26,84,0.04);border-radius:6px"><div style="font-size:10px;font-weight:900;color:${C.plum}">FACT</div><div style="font-size:6px;color:${C.muted}">Accredited</div></div>
-        <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(107,26,84,0.04);border-radius:6px"><div style="font-size:10px;font-weight:900;color:${C.plum}">AABB</div><div style="font-size:6px;color:${C.muted}">Accredited</div></div>
-      </div>
-      <div style="margin-top:auto"></div>
-      <p style="font-size:7.5px;color:${C.muted};text-align:center">REGENECYTE® exclusive cell isolation</p>
-    </div>
-    <div class="sp" style="background:${C.lav}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:14px;color:#2C2A26;margin-bottom:12px">Coverage no other bank can match.</h3>
-      <div class="card" style="background:#fff">
-        <h5>What Is Public Bank Access?</h5>
-        <p>If your unit isn't a match, StemCyte searches our public inventory — thousands of units from donors worldwide.</p>
-      </div>
-      <div style="margin-top:16px;padding:12px;background:${C.blush};border-radius:8px">
-        <p style="font-size:8.5px;line-height:1.55;color:${C.body};font-style:italic">Bailey used her own cells. Ryden used his brother's. Itzel needed a match from our public bank. Only StemCyte offers all three paths.</p>
-      </div>
-      <div class="div"></div>
-      <div style="display:flex;gap:8px">
-        <div style="flex:1;text-align:center;padding:12px 8px;background:#fff;border-radius:8px;border:2px solid rgba(107,26,84,0.12)">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted}">CB&T Plan</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.plum};margin-top:4px">Free</div>
-          <div style="font-size:7px;color:${C.muted};margin-top:2px">Included</div>
-        </div>
-        <div style="flex:1;text-align:center;padding:12px 8px;background:#fff;border-radius:8px;border:1px solid ${C.border}">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.muted}">Other Plans</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.plum};margin-top:4px">$299</div>
-          <div style="font-size:7px;color:${C.muted};margin-top:2px">Add-on</div>
-        </div>
-      </div>
-      <div style="margin-top:auto;text-align:center;font-size:8px;color:${C.muted}">(866) 389-4659</div>
-    </div>`
-},
+// ===== 15: Badge Heavy =====
+{label:'Badge Heavy',render:()=>`
+<div class="sp" style="background:${C.cream}">
+  <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+  <h3 style="font-size:13px;color:#2C2A26;margin-bottom:8px">No other bank can match all four.</h3>
+  <div style="display:flex;gap:6px;margin-bottom:8px">
+    <div style="flex:1;padding:10px 6px;text-align:center;background:${C.plumDark};border-radius:8px"><div style="font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.8)">2,300+</div><div style="font-size:5.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-top:2px">Transplants</div></div>
+    <div style="flex:1;padding:10px 6px;text-align:center;background:${C.plumDark};border-radius:8px"><div style="font-family:'Source Serif 4',serif;font-size:15px;font-weight:700;color:rgba(255,255,255,0.8)">325+</div><div style="font-size:5.5px;color:rgba(255,255,255,0.3);text-transform:uppercase;margin-top:2px">Hospitals</div></div>
+  </div>
+  <div style="display:flex;gap:6px;margin-bottom:8px">
+    <div style="flex:1;text-align:center;padding:6px;border:1px solid ${C.border};border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.green}">40</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Countries</div></div>
+    <div style="flex:1;text-align:center;padding:6px;border:1px solid ${C.border};border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.green}">29</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Years</div></div>
+  </div>
+  ${L.pillars}
+  <div style="display:flex;gap:6px;margin-top:4px">
+    <div style="flex:1;text-align:center;padding:6px;background:rgba(107,26,84,0.04);border-radius:5px"><div style="font-size:9px;font-weight:900;color:${C.plum}">FDA BLA</div><div style="font-size:5.5px;color:${C.muted}">Licensed</div></div>
+    <div style="flex:1;text-align:center;padding:6px;background:rgba(107,26,84,0.04);border-radius:5px"><div style="font-size:9px;font-weight:900;color:${C.plum}">FACT</div><div style="font-size:5.5px;color:${C.muted}">Since 2006</div></div>
+    <div style="flex:1;text-align:center;padding:6px;background:rgba(107,26,84,0.04);border-radius:5px"><div style="font-size:9px;font-weight:900;color:${C.plum}">AABB</div><div style="font-size:5.5px;color:${C.muted}">Since 2002</div></div>
+  </div>
+  <div style="margin-top:auto"></div>
+</div>
+<div class="sp" style="background:${C.lav}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26;margin-bottom:6px">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.dualModel}
+  ${R.fiftyKStat}
+  <h4 style="font-size:8px;color:#2C2A26">Three scenarios. Three answers.</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 16: Full Bleed Photo =====
-{
-  label: 'Full Bleed',
-  render: () => `
-    <div class="sp" style="padding:0;color:#fff">
-      <img src="${IMG.hero_2}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
-      <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(61,15,49,0.75) 0%,rgba(61,15,49,0.92) 100%)"></div>
-      <div style="position:relative;z-index:2;padding:24px 20px;flex:1;display:flex;flex-direction:column">
-        <div class="lbl" style="color:rgba(255,255,255,0.25)">Why StemCyte</div>
-        <h3 style="font-size:17px;color:#fff;margin-bottom:12px">Born from a mission to heal.</h3>
-        <p style="color:rgba(255,255,255,0.5);font-size:8.5px;line-height:1.6">The only private bank born from a public bank. Most ethnically diverse cord blood inventory in the world.</p>
-        <div style="display:flex;gap:6px;margin-top:20px">
-          <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(255,255,255,0.8)">2,300+</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Transplants</div></div>
-          <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(255,255,255,0.8)">350+</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Centers</div></div>
-        </div>
-        <div style="display:flex;gap:6px;margin-top:6px">
-          <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(255,255,255,0.8)">38</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Countries</div></div>
-          <div style="flex:1;text-align:center;padding:10px 4px;background:rgba(255,255,255,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:rgba(255,255,255,0.8)">1997</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Founded</div></div>
-        </div>
-        <div style="margin-top:auto;display:flex;gap:4px;justify-content:center">
-          <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">FDA</span>
-          <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">FACT</span>
-          <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">AABB</span>
-          <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">REGENECYTE®</span>
-        </div>
-      </div>
+// ===== 16: Full Bleed Photo =====
+{label:'Full Bleed',render:()=>`
+<div class="sp" style="padding:0;color:#fff">
+  <img src="${IMG.hero_2}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+  <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(61,15,49,0.7),rgba(61,15,49,0.92))"></div>
+  <div style="position:relative;z-index:2;padding:24px 20px;flex:1;display:flex;flex-direction:column">
+    <div class="lbl" style="color:rgba(255,255,255,0.25)">Why StemCyte</div>
+    <h3 style="font-size:16px;color:#fff;margin-bottom:10px">The Global Standard in Cord Blood Banking</h3>
+    <p style="color:rgba(255,255,255,0.5);font-size:8.5px;line-height:1.6">The only private bank with an FDA Biologics License, a dual bank model, and more transplants than any other private bank.</p>
+    <div style="display:flex;gap:6px;margin-top:16px">
+      <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.8)">2,300+</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Transplants</div></div>
+      <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.8)">325+</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Hospitals</div></div>
     </div>
-    <div class="sp" style="background:${C.cream}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:15px;color:#2C2A26;margin-bottom:8px">Your safety net has a safety net.</h3>
-      <p style="font-size:8.5px;line-height:1.55;color:${C.body}">Store your baby's cord blood privately, with access to StemCyte's public inventory if additional cells are ever needed.</p>
-      <div style="margin-top:16px">
-        <div style="position:relative;padding-left:16px;margin-bottom:10px">
-          <div style="position:absolute;left:4px;top:8px;bottom:-6px;width:1.5px;background:${C.border}"></div>
-          <div style="position:absolute;left:0;top:4px;width:9px;height:9px;border-radius:50%;background:${C.plum};border:2px solid ${C.cream}"></div>
-          <div style="font-size:8.5px;font-weight:700;color:#2C2A26">Bailey — used her own cells</div>
-        </div>
-        <div style="position:relative;padding-left:16px;margin-bottom:10px">
-          <div style="position:absolute;left:4px;top:8px;bottom:-6px;width:1.5px;background:${C.border}"></div>
-          <div style="position:absolute;left:0;top:4px;width:9px;height:9px;border-radius:50%;background:${C.sage};border:2px solid ${C.cream}"></div>
-          <div style="font-size:8.5px;font-weight:700;color:#2C2A26">Ryden — used his brother's cells</div>
-        </div>
-        <div style="position:relative;padding-left:16px">
-          <div style="position:absolute;left:0;top:4px;width:9px;height:9px;border-radius:50%;background:${C.amber};border:2px solid ${C.cream}"></div>
-          <div style="font-size:8.5px;font-weight:700;color:#2C2A26">Itzel — found a public bank match</div>
-        </div>
-      </div>
-      <div class="div"></div>
-      <div class="alert" style="background:rgba(107,26,84,0.03)">
-        <h5>Pricing</h5>
-        <p><strong style="color:#2C2A26">CB&T plan:</strong> Included free<br><strong style="color:#2C2A26">All other plans:</strong> $299 add-on</p>
-      </div>
-      <div style="margin-top:auto;text-align:center;padding:10px;background:linear-gradient(160deg,${C.plum},${C.plumDark});border-radius:8px;color:#fff">
-        <div style="font-size:8.5px;font-weight:700">(866) 389-4659</div>
-        <div style="font-size:7px;color:rgba(255,255,255,0.4);margin-top:2px">stemcyte.com</div>
-      </div>
-    </div>`
-},
+    <div style="display:flex;gap:6px;margin-top:6px">
+      <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.8)">40</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Countries</div></div>
+      <div style="flex:1;text-align:center;padding:8px 4px;background:rgba(255,255,255,0.06);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:rgba(255,255,255,0.8)">29</div><div style="font-size:6px;color:rgba(255,255,255,0.3);text-transform:uppercase">Years</div></div>
+    </div>
+    <div style="margin-top:auto;display:flex;gap:4px;justify-content:center">
+      <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">FDA BLA</span>
+      <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">FACT</span>
+      <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">AABB</span>
+      <span class="badge" style="background:rgba(255,255,255,0.08);color:rgba(255,255,255,0.6)">cGMP</span>
+    </div>
+  </div>
+</div>
+<div class="sp" style="background:${C.cream}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26;margin-bottom:6px">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.dualModel}
+  ${R.fiftyKStat}
+  <div class="div"></div>
+  <h4 style="font-size:8px;color:#2C2A26">Three scenarios. Three answers.</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 17: White Clean =====
-{
-  label: 'White Clean',
-  render: () => `
-    <div class="sp" style="background:#fff;padding:28px 20px">
-      <div style="text-align:center;margin-bottom:20px">
-        <div class="lbl" style="color:${C.muted};text-align:center">Why StemCyte</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:15px;color:#2C2A26;text-align:center">The numbers speak.</h3>
-      </div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px">
-        <div style="text-align:center;padding:16px 8px;background:${C.lav};border-radius:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:24px;font-weight:700;color:${C.plum}">2,300+</div>
-          <div style="font-size:7px;color:${C.muted};margin-top:4px;text-transform:uppercase;letter-spacing:0.3px">Transplants</div>
-        </div>
-        <div style="text-align:center;padding:16px 8px;background:${C.lav};border-radius:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:24px;font-weight:700;color:${C.plum}">350+</div>
-          <div style="font-size:7px;color:${C.muted};margin-top:4px;text-transform:uppercase;letter-spacing:0.3px">Centers</div>
-        </div>
-        <div style="text-align:center;padding:16px 8px;background:${C.lav};border-radius:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:24px;font-weight:700;color:${C.plum}">38</div>
-          <div style="font-size:7px;color:${C.muted};margin-top:4px;text-transform:uppercase;letter-spacing:0.3px">Countries</div>
-        </div>
-        <div style="text-align:center;padding:16px 8px;background:${C.lav};border-radius:8px">
-          <div style="font-family:'Source Serif 4',serif;font-size:24px;font-weight:700;color:${C.plum}">1997</div>
-          <div style="font-size:7px;color:${C.muted};margin-top:4px;text-transform:uppercase;letter-spacing:0.3px">Founded</div>
-        </div>
-      </div>
-      <p style="font-size:8.5px;line-height:1.55;color:${C.body};text-align:center">Most ethnically diverse cord blood inventory in the world. The only private bank born from a public bank.</p>
-      <div style="margin-top:12px;display:flex;gap:4px;justify-content:center;flex-wrap:wrap">
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FDA Licensed</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FACT</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">AABB</span>
-      </div>
-      <div style="margin-top:4px;display:flex;gap:4px;justify-content:center">
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">3 Trials</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">REGENECYTE®</span>
-      </div>
-      <div style="margin-top:auto"></div>
-    </div>
-    <div class="sp" style="background:${C.sand};padding:28px 20px">
-      <div style="text-align:center;margin-bottom:16px">
-        <div class="lbl" style="color:${C.muted};text-align:center">Public Bank Access</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:15px;color:#2C2A26;text-align:center">Three paths. One bank.</h3>
-      </div>
-      <div style="text-align:center;margin-bottom:16px">
-        <p style="font-size:8.5px;line-height:1.55;color:${C.body}">If additional cells are needed, StemCyte searches our public inventory — a safety net only we can offer.</p>
-      </div>
-      <div style="background:#fff;border-radius:8px;padding:14px;border:1px solid ${C.border};margin-bottom:16px">
-        <p style="font-size:8.5px;line-height:1.6;color:${C.body};text-align:center;font-style:italic">Bailey used her own cells. Ryden used his brother's. Itzel found a match in our public bank.</p>
-      </div>
-      <div style="display:flex;gap:8px">
-        <div style="flex:1;text-align:center;padding:14px 8px;background:#fff;border-radius:8px;border:2px solid rgba(107,26,84,0.1)">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.muted}">CB&T</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum};margin-top:4px">Free</div>
-        </div>
-        <div style="flex:1;text-align:center;padding:14px 8px;background:#fff;border-radius:8px;border:1px solid ${C.border}">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.muted}">Add-on</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum};margin-top:4px">$299</div>
-        </div>
-      </div>
-      <div style="margin-top:auto;text-align:center">
-        <div style="font-size:9px;font-weight:700;color:${C.plum}">(866) 389-4659</div>
-        <div style="font-size:7px;color:${C.muted};margin-top:2px">stemcyte.com</div>
-      </div>
-    </div>`
-},
+// ===== 17: White Clean =====
+{label:'White Clean',render:()=>`
+<div class="sp" style="background:#fff;padding:28px 20px;text-align:center">
+  <div class="lbl" style="color:${C.muted};text-align:center">Why StemCyte</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:14px;color:#2C2A26;text-align:center;margin-bottom:12px">The Global Standard in Cord Blood Banking</h3>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px">
+    <div style="text-align:center;padding:14px 6px;background:${C.lav};border-radius:8px"><div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:${C.green}">2,300+</div><div style="font-size:6.5px;color:${C.muted};margin-top:3px;text-transform:uppercase">Transplants</div></div>
+    <div style="text-align:center;padding:14px 6px;background:${C.lav};border-radius:8px"><div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:${C.green}">325+</div><div style="font-size:6.5px;color:${C.muted};margin-top:3px;text-transform:uppercase">Hospitals</div></div>
+    <div style="text-align:center;padding:14px 6px;background:${C.lav};border-radius:8px"><div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:${C.green}">40</div><div style="font-size:6.5px;color:${C.muted};margin-top:3px;text-transform:uppercase">Countries</div></div>
+    <div style="text-align:center;padding:14px 6px;background:${C.lav};border-radius:8px"><div style="font-family:'Source Serif 4',serif;font-size:22px;font-weight:700;color:${C.green}">29</div><div style="font-size:6.5px;color:${C.muted};margin-top:3px;text-transform:uppercase">Years</div></div>
+  </div>
+  ${L.pillars}
+  <div style="margin-top:auto">${L.credBadges}</div>
+</div>
+<div class="sp" style="background:${C.sand};padding:28px 20px;text-align:center">
+  <div class="lbl" style="color:${C.plum};text-align:center">Public Bank Access</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:14px;color:#2C2A26;text-align:center;margin-bottom:12px">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.fiftyKStat}
+  <div style="text-align:left">${R.scenarios}</div>
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 18: Timeline =====
-{
-  label: 'Timeline',
-  render: () => `
-    <div class="sp" style="background:${C.cream}">
-      <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
-      <h3 style="font-size:14px;color:#2C2A26;margin-bottom:12px">A legacy of healing.</h3>
-      <div style="position:relative;padding-left:16px;margin-bottom:10px">
-        <div style="position:absolute;left:4px;top:10px;bottom:-6px;width:1.5px;background:${C.border}"></div>
-        <div style="position:absolute;left:0;top:5px;width:10px;height:10px;border-radius:50%;background:${C.plum};border:2px solid ${C.cream}"></div>
-        <div style="font-size:8px;font-weight:700;color:#2C2A26">1997 — Founded</div>
-        <div style="font-size:7.5px;color:${C.muted};margin-top:1px">Started as a public cord blood bank</div>
-      </div>
-      <div style="position:relative;padding-left:16px;margin-bottom:10px">
-        <div style="position:absolute;left:4px;top:10px;bottom:-6px;width:1.5px;background:${C.border}"></div>
-        <div style="position:absolute;left:0;top:5px;width:10px;height:10px;border-radius:50%;background:${C.sage};border:2px solid ${C.cream}"></div>
-        <div style="font-size:8px;font-weight:700;color:#2C2A26">Global reach</div>
-        <div style="font-size:7.5px;color:${C.muted};margin-top:1px">350+ transplant centers, 38 countries</div>
-      </div>
-      <div style="position:relative;padding-left:16px;margin-bottom:10px">
-        <div style="position:absolute;left:4px;top:10px;bottom:-6px;width:1.5px;background:${C.border}"></div>
-        <div style="position:absolute;left:0;top:5px;width:10px;height:10px;border-radius:50%;background:${C.amber};border:2px solid ${C.cream}"></div>
-        <div style="font-size:8px;font-weight:700;color:#2C2A26">2,300+ transplants</div>
-        <div style="font-size:7.5px;color:${C.muted};margin-top:1px">More real-world use than most private banks combined</div>
-      </div>
-      <div style="position:relative;padding-left:16px">
-        <div style="position:absolute;left:0;top:5px;width:10px;height:10px;border-radius:50%;background:${C.plum};border:2px solid ${C.cream}"></div>
-        <div style="font-size:8px;font-weight:700;color:#2C2A26">Today</div>
-        <div style="font-size:7.5px;color:${C.muted};margin-top:1px">Most ethnically diverse inventory in the world</div>
-      </div>
-      <div class="div"></div>
-      <div style="display:flex;gap:4px;flex-wrap:wrap">
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FDA</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FACT</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">AABB</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">3 Trials</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">REGENECYTE®</span>
-      </div>
-      <div style="margin-top:auto"></div>
-      <div class="pullquote"><p>"Every number is a child whose story continues."</p></div>
-    </div>
-    <div class="sp" style="background:${C.lavDeep}">
-      <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-      <h3 style="font-size:15px;color:#2C2A26;margin-bottom:12px">Private and public. Together.</h3>
-      <p style="font-size:8.5px;line-height:1.55;color:${C.body}">Most banks are either private or public. StemCyte is both — uniquely positioned to serve your family with multiple options.</p>
-      <div style="margin-top:12px;background:#fff;border-radius:8px;padding:12px;border:1px solid ${C.border}">
-        <h5 style="font-size:7.5px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:${C.plum};margin-bottom:6px">How It Works</h5>
-        <p style="font-size:8px;line-height:1.5;color:${C.muted}">If your stored unit isn't a match or more cells are needed, we search our public bank for a compatible unit.</p>
-      </div>
-      <div style="margin-top:12px;padding:10px 12px;background:${C.blush};border-radius:8px">
-        <p style="font-size:8px;line-height:1.5;color:${C.body};font-style:italic">Bailey, Ryden, and Itzel — three families with three different needs, all served by StemCyte's unique dual position.</p>
-      </div>
-      <div class="div"></div>
-      <div class="alert" style="background:rgba(107,26,84,0.03)">
-        <h5>Pricing</h5>
-        <p><strong style="color:#2C2A26">CB&T plan:</strong> Included free<br><strong style="color:#2C2A26">Other plans:</strong> $299 add-on</p>
-      </div>
-      <div style="margin-top:auto;text-align:center;font-size:8px;color:${C.muted}">(866) 389-4659 · stemcyte.com</div>
-    </div>`
-},
+// ===== 18: Timeline =====
+{label:'Timeline',render:()=>`
+<div class="sp" style="background:${C.cream}">
+  <div class="lbl" style="color:${C.muted}">Why StemCyte</div>
+  <h3 style="font-size:13px;color:#2C2A26;margin-bottom:10px">29 years of proven outcomes.</h3>
+  <div style="position:relative;padding-left:16px;margin-bottom:10px"><div style="position:absolute;left:4px;top:10px;bottom:-6px;width:1.5px;background:${C.border}"></div><div style="position:absolute;left:0;top:5px;width:10px;height:10px;border-radius:50%;background:${C.plum};border:2px solid ${C.cream}"></div><div style="font-size:8px;font-weight:700;color:#2C2A26">FDA Biologics License</div><div style="font-size:7.5px;color:${C.muted};margin-top:1px">REGENECYTE® BLA — licensed, not just registered</div></div>
+  <div style="position:relative;padding-left:16px;margin-bottom:10px"><div style="position:absolute;left:4px;top:10px;bottom:-6px;width:1.5px;background:${C.border}"></div><div style="position:absolute;left:0;top:5px;width:10px;height:10px;border-radius:50%;background:${C.blue};border:2px solid ${C.cream}"></div><div style="font-size:8px;font-weight:700;color:#2C2A26">Dual Bank Model</div><div style="font-size:7.5px;color:${C.muted};margin-top:1px">Only private bank also operating a public bank</div></div>
+  <div style="position:relative;padding-left:16px;margin-bottom:10px"><div style="position:absolute;left:4px;top:10px;bottom:-6px;width:1.5px;background:${C.border}"></div><div style="position:absolute;left:0;top:5px;width:10px;height:10px;border-radius:50%;background:${C.green};border:2px solid ${C.cream}"></div><div style="font-size:8px;font-weight:700;color:#2C2A26">2,300+ Transplants</div><div style="font-size:7.5px;color:${C.muted};margin-top:1px">325+ hospitals across 40 countries</div></div>
+  <div style="position:relative;padding-left:16px"><div style="position:absolute;left:0;top:5px;width:10px;height:10px;border-radius:50%;background:${C.gold};border:2px solid ${C.cream}"></div><div style="font-size:8px;font-weight:700;color:#2C2A26">Three Safety Nets</div><div style="font-size:7.5px;color:${C.muted};margin-top:1px">LifeSaver, PBA, Expanded Access</div></div>
+  <div class="div"></div>
+  ${L.credBadges}
+  <div style="margin-top:auto"></div>
+  ${L.partners}
+</div>
+<div class="sp" style="background:${C.lavDeep}">
+  <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+  <h3 style="font-size:14px;color:#2C2A26;margin-bottom:6px">When your baby's own cells aren't enough, ours are.</h3>
+  ${R.dualModel}
+  ${R.fiftyKStat}
+  <div class="div"></div>
+  <h4 style="font-size:8px;color:#2C2A26">When would you need it?</h4>
+  ${R.scenarios}
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`},
 
-// ===== OPTION 19: Stacked Sections =====
-{
-  label: 'Stacked',
-  render: () => `
-    <div class="sp" style="background:${C.sand};padding:0">
-      <div style="background:linear-gradient(160deg,${C.plum},${C.plumDark});padding:18px;color:#fff">
-        <div class="lbl" style="color:rgba(255,255,255,0.25)">Why StemCyte</div>
-        <h3 style="font-size:15px;color:#fff;margin-bottom:4px">Born from a mission to heal.</h3>
-        <p style="font-size:8px;color:rgba(255,255,255,0.45)">The only private bank born from a public bank</p>
-      </div>
-      <div style="padding:12px 18px 0;display:flex;gap:6px">
-        <div style="flex:1;text-align:center;padding:8px 2px;background:rgba(107,26,84,0.04);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">2,300+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Transplants</div></div>
-        <div style="flex:1;text-align:center;padding:8px 2px;background:rgba(107,26,84,0.04);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">350+</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Centers</div></div>
-        <div style="flex:1;text-align:center;padding:8px 2px;background:rgba(107,26,84,0.04);border-radius:6px"><div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">38</div><div style="font-size:6px;color:${C.muted};text-transform:uppercase">Countries</div></div>
-      </div>
-      <div style="padding:12px 18px">
-        <p style="font-size:8.5px;line-height:1.55;color:${C.body}">Founded 1997. Most ethnically diverse cord blood inventory worldwide.</p>
-        <div style="margin-top:8px">
-          <div class="chk"><div class="dot"></div><p>FDA-licensed, FACT & AABB accredited</p></div>
-          <div class="chk"><div class="dot"></div><p>3 clinical trials for new therapeutic uses</p></div>
-          <div class="chk"><div class="dot"></div><p>REGENECYTE® exclusive cell technology</p></div>
-        </div>
-      </div>
-      <div style="margin-top:auto;padding:0 18px 18px">
-        <div class="pullquote"><p>"Every number is a child whose story continues."</p></div>
-      </div>
-    </div>
-    <div class="sp" style="background:${C.cream};padding:0">
-      <div style="background:${C.blush};padding:18px">
-        <div class="lbl" style="color:${C.muted}">Public Bank Access</div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:15px;color:#2C2A26;margin-bottom:4px">Three paths to hope.</h3>
-        <p style="font-size:8px;color:${C.muted}">Coverage no other bank can offer</p>
-      </div>
-      <div style="padding:14px 18px">
-        <p style="font-size:8.5px;line-height:1.55;color:${C.body}">If your privately banked unit isn't sufficient, StemCyte provides matching from our public cord blood bank — available only to StemCyte families.</p>
-        <div style="margin-top:12px;padding:10px;background:rgba(107,26,84,0.03);border-radius:8px;border-left:3px solid ${C.plum}">
-          <p style="font-size:8px;line-height:1.55;color:${C.body};font-style:italic">Bailey used her own cells. Ryden used his brother's. Itzel needed a match from our public bank.</p>
-          <p style="font-size:7.5px;font-weight:700;color:${C.plum};margin-top:4px">Only StemCyte offers all three paths.</p>
-        </div>
-      </div>
-      <div style="padding:0 18px">
-        <div style="height:1px;background:${C.border};margin:4px 0 12px"></div>
-        <div style="display:flex;gap:8px">
-          <div style="flex:1;text-align:center;padding:12px 8px;background:rgba(107,26,84,0.04);border-radius:8px">
-            <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.muted}">CB&T</div>
-            <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">Free</div>
-          </div>
-          <div style="flex:1;text-align:center;padding:12px 8px;border:1px solid ${C.border};border-radius:8px">
-            <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.muted}">Add-on</div>
-            <div style="font-family:'Source Serif 4',serif;font-size:14px;font-weight:700;color:${C.plum}">$299</div>
-          </div>
-        </div>
-      </div>
-      <div style="margin-top:auto;padding:12px 18px 18px;text-align:center">
-        <div style="font-size:9px;font-weight:700;color:${C.plum}">(866) 389-4659</div>
-        <div style="font-size:7px;color:${C.muted};margin-top:2px">stemcyte.com</div>
-      </div>
-    </div>`
-},
+// ===== 19: Stacked Sections =====
+{label:'Stacked',render:()=>`
+<div class="sp" style="background:${C.sand};padding:0">
+  <div style="background:linear-gradient(160deg,${C.plum},${C.plumDark});padding:16px 18px;color:#fff">
+    <div class="lbl" style="color:rgba(255,255,255,0.25)">Why StemCyte</div>
+    <h3 style="font-size:14px;color:#fff;margin-bottom:4px">The Global Standard in Cord Blood Banking</h3>
+    <p style="font-size:7.5px;color:rgba(255,255,255,0.45)">While others store, we deliver results.</p>
+  </div>
+  <div style="padding:10px 18px 0;display:flex;gap:4px">
+    <div style="flex:1;text-align:center;padding:6px 2px;background:rgba(61,139,106,0.06);border-radius:5px"><div style="font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;color:${C.green}">2,300+</div><div style="font-size:5.5px;color:${C.muted};text-transform:uppercase">Transplants</div></div>
+    <div style="flex:1;text-align:center;padding:6px 2px;background:rgba(61,139,106,0.06);border-radius:5px"><div style="font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;color:${C.green}">325+</div><div style="font-size:5.5px;color:${C.muted};text-transform:uppercase">Hospitals</div></div>
+    <div style="flex:1;text-align:center;padding:6px 2px;background:rgba(61,139,106,0.06);border-radius:5px"><div style="font-family:'Source Serif 4',serif;font-size:12px;font-weight:700;color:${C.green}">40</div><div style="font-size:5.5px;color:${C.muted};text-transform:uppercase">Countries</div></div>
+  </div>
+  <div style="padding:10px 18px">
+    ${L.pillars}
+    ${L.credBadges}
+  </div>
+  <div style="margin-top:auto;padding:0 18px 16px">${L.partners}</div>
+</div>
+<div class="sp" style="background:${C.cream};padding:0">
+  <div style="background:${C.blush};padding:16px 18px">
+    <div class="lbl" style="color:${C.plum}">Public Bank Access</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:14px;color:#2C2A26;margin-bottom:3px">When your baby's own cells aren't enough, ours are.</h3>
+    <p style="font-size:7.5px;color:${C.muted}">A backup guarantee built into your plan</p>
+  </div>
+  <div style="padding:12px 18px">
+    ${R.dualModel}
+    ${R.fiftyKStat}
+    <div class="div"></div>
+    <h4 style="font-size:8px;color:#2C2A26;margin-top:4px">Three scenarios. Three answers.</h4>
+    ${R.scenarios}
+  </div>
+  <div style="margin-top:auto;padding:0 18px 16px">${R.pricingCards}</div>
+</div>`},
 
-// ===== OPTION 20: Centred Elegant =====
-{
-  label: 'Centred',
-  render: () => `
-    <div class="sp" style="background:${C.lav};padding:28px 20px;text-align:center">
-      <div class="lbl" style="color:${C.muted};text-align:center">Why StemCyte</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:17px;color:#2C2A26;text-align:center;margin-bottom:12px">Born from a mission to heal.</h3>
-      <p style="font-size:8.5px;line-height:1.6;color:${C.body};text-align:center">The only private bank born from a public bank. Most ethnically diverse cord blood inventory in the world.</p>
-      <div style="width:40px;height:1px;background:${C.border};margin:16px auto"></div>
-      <div style="font-family:'Source Serif 4',serif;font-size:40px;font-weight:700;color:${C.plum};line-height:1">2,300+</div>
-      <div style="font-size:8px;color:${C.muted};margin-top:4px;letter-spacing:0.5px">transplant units shipped</div>
-      <div style="width:40px;height:1px;background:${C.border};margin:16px auto"></div>
-      <div style="display:flex;gap:16px;justify-content:center;margin-bottom:16px">
-        <div><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum}">350+</div><div style="font-size:7px;color:${C.muted}">centers</div></div>
-        <div><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum}">38</div><div style="font-size:7px;color:${C.muted}">countries</div></div>
-        <div><div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum}">1997</div><div style="font-size:7px;color:${C.muted}">founded</div></div>
-      </div>
-      <div style="display:flex;gap:4px;justify-content:center;flex-wrap:wrap">
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FDA</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">FACT</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">AABB</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">3 Trials</span>
-        <span class="badge" style="background:rgba(107,26,84,0.06);color:${C.plum}">REGENECYTE®</span>
-      </div>
-      <div style="margin-top:auto"></div>
-    </div>
-    <div class="sp" style="background:${C.cream};padding:28px 20px;text-align:center">
-      <div class="lbl" style="color:${C.muted};text-align:center">Public Bank Access</div>
-      <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#2C2A26;text-align:center;margin-bottom:12px">Three paths.<br>One bank.</h3>
-      <p style="font-size:8.5px;line-height:1.6;color:${C.body};text-align:center;margin-bottom:16px">If additional cells are needed, StemCyte provides matching from our public cord blood bank — available only to StemCyte families.</p>
-      <div style="background:${C.blush};border-radius:8px;padding:14px;margin-bottom:16px">
-        <p style="font-family:'Playfair Display',serif;font-size:10px;font-style:italic;line-height:1.5;color:#2C2A26">Bailey used her own cells.<br>Ryden used his brother's.<br>Itzel found a match in our public bank.</p>
-      </div>
-      <div style="display:flex;gap:8px">
-        <div style="flex:1;padding:14px 8px;background:rgba(107,26,84,0.04);border-radius:8px">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.muted}">CB&T</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum};margin-top:4px">Free</div>
-        </div>
-        <div style="flex:1;padding:14px 8px;border:1px solid ${C.border};border-radius:8px">
-          <div style="font-size:7px;font-weight:700;text-transform:uppercase;color:${C.muted}">Add-on</div>
-          <div style="font-family:'Source Serif 4',serif;font-size:18px;font-weight:700;color:${C.plum};margin-top:4px">$299</div>
-        </div>
-      </div>
-      <div style="margin-top:auto;text-align:center">
-        <div style="font-size:9px;font-weight:700;color:${C.plum}">(866) 389-4659</div>
-        <div style="font-size:7px;color:${C.muted};margin-top:2px">stemcyte.com</div>
-      </div>
-    </div>`
-}
+// ===== 20: Centred =====
+{label:'Centred',render:()=>`
+<div class="sp" style="background:${C.lav};padding:28px 20px;text-align:center">
+  <div class="lbl" style="color:${C.muted};text-align:center">Why StemCyte</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#2C2A26;text-align:center;margin-bottom:10px">The Global Standard in Cord Blood Banking</h3>
+  <p style="font-size:8.5px;line-height:1.6;color:${C.body};text-align:center">While others store, we deliver results. The only private bank with an FDA Biologics License and a dual bank model.</p>
+  <div style="width:40px;height:1px;background:${C.border};margin:14px auto"></div>
+  <div style="font-family:'Source Serif 4',serif;font-size:38px;font-weight:700;color:${C.green};line-height:1">2,300+</div>
+  <div style="font-size:8px;color:${C.muted};margin-top:4px">transplants shipped worldwide</div>
+  <div style="width:40px;height:1px;background:${C.border};margin:14px auto"></div>
+  <div style="display:flex;gap:14px;justify-content:center;margin-bottom:12px">
+    <div><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.green}">325+</div><div style="font-size:6.5px;color:${C.muted}">hospitals</div></div>
+    <div><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.green}">40</div><div style="font-size:6.5px;color:${C.muted}">countries</div></div>
+    <div><div style="font-family:'Source Serif 4',serif;font-size:16px;font-weight:700;color:${C.green}">29</div><div style="font-size:6.5px;color:${C.muted}">years</div></div>
+  </div>
+  ${L.credBadges}
+  <div style="margin-top:auto"></div>
+</div>
+<div class="sp" style="background:${C.cream};padding:28px 20px;text-align:center">
+  <div class="lbl" style="color:${C.plum};text-align:center">Public Bank Access</div>
+  <h3 style="font-family:'Playfair Display',serif;font-size:15px;color:#2C2A26;text-align:center;margin-bottom:10px">When your baby's own cells aren't enough, ours are.</h3>
+  <p style="font-size:8.5px;line-height:1.6;color:${C.body};text-align:center;margin-bottom:12px">Private + public under one roof. PBA guarantees StemCyte will find a donor match — funding up to $50,000 for a global search.</p>
+  <div style="text-align:left">${R.scenarios}</div>
+  <div style="margin-top:auto"></div>
+  ${R.pricingCards}
+</div>`}
 
 ];
 
-// Gallery renderer
-const gallery = document.getElementById('gallery');
-spreads.forEach((spread, i) => {
-  const el = document.createElement('div');
-  el.className = 'spread-option';
-  el.innerHTML = '<div class="spread-thumb"><div class="spread-full">' + spread.render() + '</div></div><div class="spread-label">' + spread.label + '</div>';
-  el.addEventListener('click', () => openModal(i));
-  gallery.appendChild(el);
-});
+// Gallery
+const gallery=document.getElementById('gallery');
+spreads.forEach((s,i)=>{const el=document.createElement('div');el.className='spread-option';el.innerHTML='<div class="spread-thumb"><div class="spread-full">'+s.render()+'</div></div><div class="spread-label">'+s.label+'</div>';el.addEventListener('click',()=>openModal(i));gallery.appendChild(el);});
 
-// Modal
-let currentIndex = 0;
-const modal = document.getElementById('modal');
-const modalContent = document.getElementById('modalContent');
-const modalLabel = document.getElementById('modalLabel');
-const modalCounter = document.getElementById('modalCounter');
-
-function openModal(index) {
-  currentIndex = index;
-  renderModal();
-  modal.classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  modal.classList.remove('active');
-  document.body.style.overflow = '';
-}
-
-function renderModal() {
-  const spread = spreads[currentIndex];
-  modalContent.innerHTML = '<div style="display:flex;width:544px;height:704px;border-radius:4px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.5)">' + spread.render() + '</div>';
-  modalLabel.textContent = spread.label;
-  modalCounter.textContent = (currentIndex + 1) + ' of ' + spreads.length;
-}
-
-document.getElementById('modalClose').addEventListener('click', closeModal);
-document.getElementById('modalPrev').addEventListener('click', () => {
-  currentIndex = (currentIndex - 1 + spreads.length) % spreads.length;
-  renderModal();
-});
-document.getElementById('modalNext').addEventListener('click', () => {
-  currentIndex = (currentIndex + 1) % spreads.length;
-  renderModal();
-});
-modal.addEventListener('click', (e) => {
-  if (e.target === modal) closeModal();
-});
-document.addEventListener('keydown', (e) => {
-  if (!modal.classList.contains('active')) return;
-  if (e.key === 'Escape') closeModal();
-  if (e.key === 'ArrowLeft') { currentIndex = (currentIndex - 1 + spreads.length) % spreads.length; renderModal(); }
-  if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % spreads.length; renderModal(); }
-});
+let currentIndex=0;
+const modal=document.getElementById('modal'),modalContent=document.getElementById('modalContent'),modalLabel=document.getElementById('modalLabel'),modalCounter=document.getElementById('modalCounter');
+function openModal(i){currentIndex=i;renderModal();modal.classList.add('active');document.body.style.overflow='hidden';}
+function closeModal(){modal.classList.remove('active');document.body.style.overflow='';}
+function renderModal(){const s=spreads[currentIndex];modalContent.innerHTML='<div style="display:flex;width:544px;height:704px;border-radius:4px;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,0.5)">'+s.render()+'</div>';modalLabel.textContent=s.label;modalCounter.textContent=(currentIndex+1)+' of '+spreads.length;}
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.getElementById('modalPrev').addEventListener('click',()=>{currentIndex=(currentIndex-1+spreads.length)%spreads.length;renderModal();});
+document.getElementById('modalNext').addEventListener('click',()=>{currentIndex=(currentIndex+1)%spreads.length;renderModal();});
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal();});
+document.addEventListener('keydown',e=>{if(!modal.classList.contains('active'))return;if(e.key==='Escape')closeModal();if(e.key==='ArrowLeft'){currentIndex=(currentIndex-1+spreads.length)%spreads.length;renderModal();}if(e.key==='ArrowRight'){currentIndex=(currentIndex+1)%spreads.length;renderModal();}});
 </script>
 </body>
 </html>
