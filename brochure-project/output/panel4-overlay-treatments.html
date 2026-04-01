@@ -3,16 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Panel 4: Overlay Treatments — Top-Left / Bottom-Right</title>
+<title>Panel 4: Plum Wash Gradient Variations</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-smoothing:antialiased}
-:root{
-  --plum:#6b1a54;--plum-dark:#3D0F31;--cream:#FAF9F7;--sand:#FAF7F2;
-  --lav:#F3F0F8;--sage:#b3508a;--amber:#d98d9a;
-  --muted:#7A756E;--body:#4A4740;--border:#E8E2DC;
-}
+:root{--plum:#6b1a54;--plum-dark:#3D0F31;--cream:#FAF9F7;--muted:#7A756E;--body:#4A4740;--border:#E8E2DC}
 
 .gallery-header{text-align:center;padding:48px 24px 32px}
 .gallery-header h1{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#fff;margin-bottom:8px}
@@ -46,8 +42,8 @@ body{font-family:'Lato',sans-serif;background:#0a0a0a;color:#fff;-webkit-font-sm
 <body>
 
 <div class="gallery-header">
-  <h1>Overlay Treatments</h1>
-  <p>Same layout (Bailey top-left, Ryden bottom-right) — exploring plum wash, glass, gradients, vignettes, and more</p>
+  <h1>Plum Wash — Gradient Extent</h1>
+  <p>Same layout, same plum wash. Each option varies how far the gradient extends from the text — from tight/minimal to wide/cinematic.</p>
 </div>
 
 <div class="gallery" id="gallery"></div>
@@ -73,8 +69,7 @@ const R = `After oxygen deprivation caused brain damage, his family banked their
 const Q = `"It's better to save it and not need it than not have it when you need it."`;
 const QA = `— Rebecca, Bailey's mom`;
 
-// Text blocks — Bailey top-left with quote, Ryden bottom-right
-const baileyText = (extra='') => `
+const baileyText = `
   <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:5px">OWN CELLS</div>
   <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:3px;line-height:1.15">Bailey Coates</div>
   <div style="font-size:7.5px;color:rgba(255,255,255,0.4);margin-bottom:8px">Perinatal Stroke</div>
@@ -82,326 +77,125 @@ const baileyText = (extra='') => `
   <div style="margin-top:12px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.1)">
     <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9px;line-height:1.5;color:rgba(255,255,255,0.55)">${Q}</div>
     <div style="font-size:7px;color:rgba(255,255,255,0.28);margin-top:3px">${QA}</div>
-  </div>
-  ${extra}
-`;
+  </div>`;
 
 const rydenText = `
   <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:5px">SIBLING'S CELLS</div>
   <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#fff;margin-bottom:3px;line-height:1.15">Ryden</div>
   <div style="font-size:7.5px;color:rgba(255,255,255,0.4);margin-bottom:8px">Cerebral Palsy</div>
-  <p style="font-size:8.5px;line-height:1.6;color:rgba(255,255,255,0.6)">${R}</p>
-`;
+  <p style="font-size:8.5px;line-height:1.6;color:rgba(255,255,255,0.6)">${R}</p>`;
 
-// Dark text variants for light overlays
-const baileyTextDark = (extra='') => `
-  <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--plum);margin-bottom:5px">OWN CELLS</div>
-  <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#2C2A26;margin-bottom:3px;line-height:1.15">Bailey Coates</div>
-  <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Perinatal Stroke</div>
-  <p style="font-size:8.5px;line-height:1.6;color:var(--body)">${B}</p>
-  <div style="margin-top:12px;padding-top:8px;border-top:1px solid var(--border)">
-    <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:9px;line-height:1.5;color:var(--plum)">${Q}</div>
-    <div style="font-size:7px;color:var(--muted);margin-top:3px">${QA}</div>
-  </div>
-  ${extra}
-`;
+function makePage(img, text, pos, gradL, gradR) {
+  // pos: 'tl' = top-left, 'br' = bottom-right
+  const anchor = pos === 'tl'
+    ? 'top:0;left:0;padding:22px 18px;max-width:220px'
+    : 'bottom:0;right:0;padding:22px 18px;max-width:220px;text-align:right';
+  const grad = pos === 'tl' ? gradL : gradR;
+  return `<div class="page" style="position:relative">
+    <img src="${img}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
+    <div style="position:absolute;inset:0;background:${grad}"></div>
+    <div style="position:absolute;${anchor};color:#fff">${text}</div>
+  </div>`;
+}
 
-const rydenTextDark = `
-  <div style="font-size:7px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--sage);margin-bottom:5px">SIBLING'S CELLS</div>
-  <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#2C2A26;margin-bottom:3px;line-height:1.15">Ryden</div>
-  <div style="font-size:7.5px;color:var(--muted);margin-bottom:8px">Cerebral Palsy</div>
-  <p style="font-size:8.5px;line-height:1.6;color:var(--body)">${R}</p>
-`;
+// All 20 variations — just different gradient extends
+// Format: [label, baileyGradient, rydenGradient]
+const VARIATIONS = [
+  // Very tight — just behind text
+  ["Tight Hug",
+    "linear-gradient(155deg, rgba(61,15,49,0.92) 12%, transparent 30%)",
+    "linear-gradient(335deg, rgba(61,15,49,0.92) 12%, transparent 30%)"],
 
-const OPTIONS = [
+  ["Minimal Pad",
+    "linear-gradient(150deg, rgba(61,15,49,0.9) 15%, transparent 34%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.9) 15%, transparent 34%)"],
 
-// ===== 1: Heavy plum gradient corner wash =====
-{
-  label: "Plum Corner Wash",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(107,26,84,0.88) 30%, transparent 65%)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top left, rgba(107,26,84,0.88) 30%, transparent 65%)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  ["Close Crop",
+    "linear-gradient(155deg, rgba(61,15,49,0.9) 18%, transparent 38%)",
+    "linear-gradient(335deg, rgba(61,15,49,0.9) 18%, transparent 38%)"],
 
-// ===== 2: Dark plum wash (original from v1) =====
-{
-  label: "Dark Plum Wash",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(61,15,49,0.88) 20%, transparent 48%)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top left, rgba(61,15,49,0.88) 20%, transparent 48%)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  ["Snug Fit",
+    "linear-gradient(150deg, rgba(61,15,49,0.88) 20%, transparent 40%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.88) 20%, transparent 40%)"],
 
-// ===== 3: Soft black gradient (neutral, not plum) =====
-{
-  label: "Neutral Black",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(0,0,0,0.78) 28%, transparent 62%)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top left, rgba(0,0,0,0.78) 28%, transparent 62%)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  // Medium-tight
+  ["Compact",
+    "linear-gradient(152deg, rgba(61,15,49,0.88) 22%, transparent 44%)",
+    "linear-gradient(332deg, rgba(61,15,49,0.88) 22%, transparent 44%)"],
 
-// ===== 4: Frosted glass panel =====
-{
-  label: "Frosted Glass",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;top:16px;left:14px;max-width:216px;background:rgba(255,255,255,0.15);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:12px;padding:18px 16px;color:#fff;border:1px solid rgba(255,255,255,0.1)">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;bottom:16px;right:14px;max-width:216px;background:rgba(255,255,255,0.15);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:12px;padding:18px 16px;color:#fff;text-align:right;border:1px solid rgba(255,255,255,0.1)">${rydenText}</div>
-  </div>`
-},
+  ["Medium Tight",
+    "linear-gradient(150deg, rgba(61,15,49,0.87) 24%, transparent 46%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.87) 24%, transparent 46%)"],
 
-// ===== 5: Plum frosted glass =====
-{
-  label: "Plum Glass",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;top:16px;left:14px;max-width:216px;background:rgba(107,26,84,0.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:12px;padding:18px 16px;color:#fff;border:1px solid rgba(255,255,255,0.08)">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;bottom:16px;right:14px;max-width:216px;background:rgba(107,26,84,0.55);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:12px;padding:18px 16px;color:#fff;text-align:right;border:1px solid rgba(255,255,255,0.08)">${rydenText}</div>
-  </div>`
-},
+  ["Balanced Short",
+    "linear-gradient(148deg, rgba(61,15,49,0.86) 25%, transparent 48%)",
+    "linear-gradient(328deg, rgba(61,15,49,0.86) 25%, transparent 48%)"],
 
-// ===== 6: White frosted glass (dark text) =====
-{
-  label: "White Glass",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;top:16px;left:14px;max-width:216px;background:rgba(255,255,255,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:12px;padding:18px 16px;border:1px solid rgba(255,255,255,0.4)">${baileyTextDark()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;bottom:16px;right:14px;max-width:216px;background:rgba(255,255,255,0.82);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-radius:12px;padding:18px 16px;text-align:right;border:1px solid rgba(255,255,255,0.4)">${rydenTextDark}</div>
-  </div>`
-},
+  // Medium
+  ["Medium",
+    "linear-gradient(150deg, rgba(61,15,49,0.85) 28%, transparent 52%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.85) 28%, transparent 52%)"],
 
-// ===== 7: Cream frosted glass (warm) =====
-{
-  label: "Cream Glass",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;top:16px;left:14px;max-width:216px;background:rgba(250,249,247,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:12px;padding:18px 16px;border:1px solid rgba(232,226,220,0.5)">${baileyTextDark()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;bottom:16px;right:14px;max-width:216px;background:rgba(250,249,247,0.88);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:12px;padding:18px 16px;text-align:right;border:1px solid rgba(232,226,220,0.5)">${rydenTextDark}</div>
-  </div>`
-},
+  ["Medium Wide",
+    "linear-gradient(148deg, rgba(61,15,49,0.85) 30%, transparent 55%)",
+    "linear-gradient(328deg, rgba(61,15,49,0.85) 30%, transparent 55%)"],
 
-// ===== 8: Radial vignette from corner =====
-{
-  label: "Radial Vignette",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 15% 20%, rgba(61,15,49,0.88) 0%, rgba(61,15,49,0.4) 35%, transparent 65%)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 85% 80%, rgba(61,15,49,0.88) 0%, rgba(61,15,49,0.4) 35%, transparent 65%)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  ["Half Page",
+    "linear-gradient(150deg, rgba(61,15,49,0.84) 32%, transparent 58%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.84) 32%, transparent 58%)"],
 
-// ===== 9: Soft plum wash — lighter, more photo showing =====
-{
-  label: "Light Plum Wash",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(107,26,84,0.7) 22%, rgba(107,26,84,0.15) 50%, transparent 65%)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top left, rgba(107,26,84,0.7) 22%, rgba(107,26,84,0.15) 50%, transparent 65%)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  // Medium-wide
+  ["Generous",
+    "linear-gradient(148deg, rgba(61,15,49,0.83) 35%, transparent 60%)",
+    "linear-gradient(328deg, rgba(61,15,49,0.83) 35%, transparent 60%)"],
 
-// ===== 10: Full tint — entire photo has plum color cast =====
-{
-  label: "Full Plum Tint",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:luminosity" alt="">
-    <div style="position:absolute;inset:0;background:rgba(107,26,84,0.45)"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(61,15,49,0.6) 25%, transparent 55%)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;mix-blend-mode:luminosity" alt="">
-    <div style="position:absolute;inset:0;background:rgba(107,26,84,0.45)"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(to top left, rgba(61,15,49,0.6) 25%, transparent 55%)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  ["Extended",
+    "linear-gradient(150deg, rgba(61,15,49,0.82) 38%, transparent 64%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.82) 38%, transparent 64%)"],
 
-// ===== 11: Warm sepia tint + gradient =====
-{
-  label: "Warm Sepia",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(0.3) saturate(0.8)" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(74,40,30,0.82) 28%, transparent 62%)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(0.3) saturate(0.8)" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top left, rgba(74,40,30,0.82) 28%, transparent 62%)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  // Wide
+  ["Wide Wash",
+    "linear-gradient(148deg, rgba(61,15,49,0.82) 40%, transparent 68%)",
+    "linear-gradient(328deg, rgba(61,15,49,0.82) 40%, transparent 68%)"],
 
-// ===== 12: Hard-edge solid panel (no gradient, solid block) =====
-{
-  label: "Solid Panel",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;top:0;left:0;width:200px;height:100%;background:rgba(61,15,49,0.92)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 16px;max-width:192px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;bottom:0;right:0;width:200px;height:100%;background:rgba(61,15,49,0.92)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 16px;max-width:192px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  ["Broad Sweep",
+    "linear-gradient(150deg, rgba(61,15,49,0.8) 42%, transparent 72%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.8) 42%, transparent 72%)"],
 
-// ===== 13: Soft solid with rounded edges =====
-{
-  label: "Rounded Solid",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;top:14px;left:14px;max-width:218px;background:rgba(61,15,49,0.9);border-radius:14px;padding:18px 16px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;bottom:14px;right:14px;max-width:218px;background:rgba(61,15,49,0.9);border-radius:14px;padding:18px 16px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  ["Deep Reach",
+    "linear-gradient(148deg, rgba(61,15,49,0.8) 45%, transparent 75%)",
+    "linear-gradient(328deg, rgba(61,15,49,0.8) 45%, transparent 75%)"],
 
-// ===== 14: Lavender glass (light, airy) =====
-{
-  label: "Lavender Glass",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;top:16px;left:14px;max-width:216px;background:rgba(243,240,248,0.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:12px;padding:18px 16px;border:1px solid rgba(107,26,84,0.08)">${baileyTextDark()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;bottom:16px;right:14px;max-width:216px;background:rgba(243,240,248,0.85);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:12px;padding:18px 16px;text-align:right;border:1px solid rgba(107,26,84,0.08)">${rydenTextDark}</div>
-  </div>`
-},
+  // Very wide
+  ["Expansive",
+    "linear-gradient(150deg, rgba(61,15,49,0.78) 48%, transparent 78%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.78) 48%, transparent 78%)"],
 
-// ===== 15: Desaturated photo + plum gradient =====
-{
-  label: "Desaturated",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.25) brightness(0.9)" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(107,26,84,0.75) 25%, rgba(107,26,84,0.1) 55%, transparent 70%)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(0.25) brightness(0.9)" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top left, rgba(107,26,84,0.75) 25%, rgba(107,26,84,0.1) 55%, transparent 70%)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  ["Cinematic",
+    "linear-gradient(148deg, rgba(61,15,49,0.78) 50%, transparent 82%)",
+    "linear-gradient(328deg, rgba(61,15,49,0.78) 50%, transparent 82%)"],
 
-// ===== 16: Double gradient — plum corner + bottom edge =====
-{
-  label: "Double Gradient",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to bottom right, rgba(61,15,49,0.82) 25%, transparent 55%),linear-gradient(to top, rgba(61,15,49,0.3) 0%, transparent 20%)"></div>
-    <div style="position:absolute;top:0;left:0;padding:22px 18px;max-width:220px;color:#fff">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:linear-gradient(to top left, rgba(61,15,49,0.82) 25%, transparent 55%),linear-gradient(to bottom, rgba(61,15,49,0.3) 0%, transparent 20%)"></div>
-    <div style="position:absolute;bottom:0;right:0;padding:22px 18px;max-width:220px;color:#fff;text-align:right">${rydenText}</div>
-  </div>`
-},
+  ["Near Full",
+    "linear-gradient(150deg, rgba(61,15,49,0.75) 55%, transparent 85%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.75) 55%, transparent 85%)"],
 
-// ===== 17: Sharp glass with border accent =====
-{
-  label: "Accent Glass",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.1)"></div>
-    <div style="position:absolute;top:16px;left:14px;max-width:216px;background:rgba(255,255,255,0.12);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:10px;padding:18px 16px;color:#fff;border-left:3px solid rgba(107,26,84,0.7)">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;inset:0;background:rgba(0,0,0,0.1)"></div>
-    <div style="position:absolute;bottom:16px;right:14px;max-width:216px;background:rgba(255,255,255,0.12);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-radius:10px;padding:18px 16px;color:#fff;text-align:right;border-right:3px solid rgba(179,80,138,0.7)">${rydenText}</div>
-  </div>`
-},
+  // Almost full coverage
+  ["Heavy Wash",
+    "linear-gradient(148deg, rgba(61,15,49,0.75) 60%, transparent 90%)",
+    "linear-gradient(328deg, rgba(61,15,49,0.75) 60%, transparent 90%)"],
 
-// ===== 18: Blush pink tinted glass =====
-{
-  label: "Blush Glass",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;top:16px;left:14px;max-width:216px;background:rgba(245,230,238,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:12px;padding:18px 16px;border:1px solid rgba(107,26,84,0.06)">${baileyTextDark()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;bottom:16px;right:14px;max-width:216px;background:rgba(245,230,238,0.88);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-radius:12px;padding:18px 16px;text-align:right;border:1px solid rgba(107,26,84,0.06)">${rydenTextDark}</div>
-  </div>`
-},
-
-// ===== 19: Minimal — thin shadow, no glass, subtle dark =====
-{
-  label: "Minimal Shadow",
-  left: `<div class="page" style="position:relative">
-    <img src="${IMG.bailey}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;top:16px;left:14px;max-width:218px;padding:18px 16px;color:#fff;text-shadow:0 1px 8px rgba(0,0,0,0.5),0 0 30px rgba(0,0,0,0.3)">${baileyText()}</div>
-  </div>`,
-  right: `<div class="page" style="position:relative">
-    <img src="${IMG.ryden}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" alt="">
-    <div style="position:absolute;bottom:16px;right:14px;max-width:218px;padding:18px 16px;color:#fff;text-align:right;text-shadow:0 1px 8px rgba(0,0,0,0.5),0 0 30px rgba(0,0,0,0.3)">${rydenText}</div>
-  </div>`
-},
-
-// ===== 20: Split — solid plum half =====
-{
-  label: "Split Solid",
-  left: `<div class="page" style="position:relative;display:flex">
-    <div style="width:170px;flex-shrink:0;background:var(--plum-dark);padding:22px 14px;color:#fff;display:flex;flex-direction:column">${baileyText()}</div>
-    <div style="flex:1;overflow:hidden"><img src="${IMG.bailey}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
-  </div>`,
-  right: `<div class="page" style="position:relative;display:flex">
-    <div style="flex:1;overflow:hidden"><img src="${IMG.ryden}" style="width:100%;height:100%;object-fit:cover" alt=""></div>
-    <div style="width:170px;flex-shrink:0;background:var(--plum-dark);padding:22px 14px;color:#fff;display:flex;flex-direction:column;text-align:right">${rydenText}</div>
-  </div>`
-},
-
+  ["Full Wash",
+    "linear-gradient(150deg, rgba(61,15,49,0.72) 65%, transparent 95%)",
+    "linear-gradient(330deg, rgba(61,15,49,0.72) 65%, transparent 95%)"],
 ];
 
-// Build
+const OPTIONS = VARIATIONS.map(([label, gL, gR]) => ({
+  label,
+  left: makePage(IMG.bailey, baileyText, 'tl', gL, gR),
+  right: makePage(IMG.ryden, rydenText, 'br', gL, gR),
+}));
+
+// Build gallery
 const gallery = document.getElementById('gallery');
 OPTIONS.forEach((opt, i) => {
   const w = document.createElement('div');
@@ -412,21 +206,19 @@ OPTIONS.forEach((opt, i) => {
 });
 
 // Modal
-let currentIdx = 0;
+let ci = 0;
 const modal = document.getElementById('modal');
 const mc = document.getElementById('modalContent');
 const ml = document.getElementById('modalLabel');
 const mn = document.getElementById('modalCounter');
-
-function openModal(i){currentIdx=i;renderModal();modal.classList.add('active');document.body.style.overflow='hidden'}
+function openModal(i){ci=i;render();modal.classList.add('active');document.body.style.overflow='hidden'}
 function closeModal(){modal.classList.remove('active');document.body.style.overflow=''}
-function navModal(d){currentIdx=(currentIdx+d+OPTIONS.length)%OPTIONS.length;renderModal()}
-function renderModal(){
-  const o=OPTIONS[currentIdx],e=mc.querySelector('.spread');
-  if(e)e.remove();
+function navModal(d){ci=(ci+d+OPTIONS.length)%OPTIONS.length;render()}
+function render(){
+  const o=OPTIONS[ci],e=mc.querySelector('.spread');if(e)e.remove();
   const s=document.createElement('div');s.className='spread';s.style.cssText='width:544px;height:704px;';
   s.innerHTML=o.left+o.right;mc.insertBefore(s,mc.querySelector('.modal-nav'));
-  ml.textContent=`${currentIdx+1}. ${o.label}`;mn.textContent=`${currentIdx+1} of ${OPTIONS.length}`;
+  ml.textContent=`${ci+1}. ${o.label}`;mn.textContent=`${ci+1} of ${OPTIONS.length}`;
 }
 document.addEventListener('keydown',e=>{if(!modal.classList.contains('active'))return;if(e.key==='Escape')closeModal();if(e.key==='ArrowLeft')navModal(-1);if(e.key==='ArrowRight')navModal(1)});
 modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
