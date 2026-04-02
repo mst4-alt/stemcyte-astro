@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Growth Network - StemCyte Animation System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FAF7F2;
+    font-family: 'Lato', sans-serif;
+    color: #3D0F31;
+    overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  .back-link {
+    position: fixed;
+    top: 24px;
+    left: 24px;
+    z-index: 100;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6C1A55;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+    letter-spacing: 0.01em;
+  }
+  .back-link:hover { opacity: 1; }
+  .back-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .canvas-wrap {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay {
+    position: absolute;
+    bottom: 48px;
+    left: 48px;
+    pointer-events: none;
+    z-index: 10;
+    max-width: 420px;
+  }
+
+  .overlay h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 600;
+    color: #3D0F31;
+    line-height: 1.15;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .overlay p {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(13px, 1.6vw, 15px);
+    font-weight: 300;
+    color: #6C1A55;
+    line-height: 1.65;
+    opacity: 0.7;
+  }
+
+  .node-count {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    z-index: 10;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: #6C1A55;
+    opacity: 0.4;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 640px) {
+    .overlay {
+      bottom: 32px;
+      left: 24px;
+      right: 24px;
+      max-width: none;
+    }
+    .back-link { top: 16px; left: 16px; }
+    .node-count { top: 16px; right: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="back-link">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="8" x2="4" y2="8"/>
+    <polyline points="8,4 4,8 8,12"/>
+  </svg>
+  Back to Gallery
+</a>
+
+<div class="canvas-wrap">
+  <canvas id="canvas"></canvas>
+  <div class="overlay">
+    <h1>Growth Network</h1>
+    <p>An organic network grows outward from seed nodes, forming connections like a developing biological system. Move your cursor to encourage local growth.</p>
+  </div>
+  <div class="node-count" id="nodeCount">0 nodes</div>
+</div>
+
+<script>
+(() => {
+  // --- Config ---
+  const MAX_NODES = 120;
+  const SPAWN_INTERVAL_MIN = 500;
+  const SPAWN_INTERVAL_MAX = 1000;
+  const SPAWN_RADIUS_MIN = 80;
+  const SPAWN_RADIUS_MAX = 200;
+  const CONNECTION_MAX_DIST = 180;
+  const CONNECTION_DRAW_DURATION = 500;
+  const MAX_CONNECTIONS_PER_SPAWN = 3;
+  const CURSOR_RADIUS = 150;
+  const CURSOR_SPAWN_CHANCE = 0.5;
+  const NODE_FADE_DURATION = 1500;
+  const SEED_COUNT = 4;
+
+  const COLORS = {
+    plum:    { r: 108, g: 26,  b: 85  },
+    deep:   { r: 61,  g: 15,  b: 49  },
+    teal:   { r: 79,  g: 163, b: 184 },
+    lav:    { r: 195, g: 180, b: 215 },
+    lavDeep:{ r: 160, g: 140, b: 200 },
+  };
+
+  const COLOR_POOL = [COLORS.plum, COLORS.teal, COLORS.lav, COLORS.lavDeep, COLORS.deep];
+
+  // --- State ---
+  const canvas = document.getElementById('canvas');
+  const ctx = canvas.getContext('2d');
+  const nodeCountEl = document.getElementById('nodeCount');
+
+  let W, H, dpr;
+  let nodes = [];
+  let connections = [];
+  let mouse = { x: -9999, y: -9999, active: false };
+  let lastSpawnTime = 0;
+  let nextSpawnDelay = 800;
+  let running = true;
+  let animId = null;
+  let globalTime = 0;
+
+  // --- Utility ---
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function randInt(a, b) { return Math.floor(rand(a, b + 1)); }
+  function pick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+  function dist(a, b) { return Math.hypot(a.x - b.x, a.y - b.y); }
+  function lerp(a, b, t) { return a + (b - a) * t; }
+  function lerpColor(c1, c2, t) {
+    return { r: lerp(c1.r, c2.r, t), g: lerp(c1.g, c2.g, t), b: lerp(c1.b, c2.b, t) };
+  }
+  function rgba(c, a) { return `rgba(${Math.round(c.r)},${Math.round(c.g)},${Math.round(c.b)},${a})`; }
+
+  // --- Resize ---
+  function resize() {
+    const rect = canvas.parentElement.getBoundingClientRect();
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = rect.width;
+    H = rect.height;
+    canvas.width = W * dpr;
+    canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  // --- Node class ---
+  function createNode(x, y, color, isSeed) {
+    return {
+      x, y,
+      color: color || pick(COLOR_POOL),
+      radius: rand(4, 8),
+      phase: rand(0, Math.PI * 2),
+      pulseSpeed: rand(0.8, 1.6),
+      born: globalTime,
+      opacity: 0,
+      fadeIn: true,
+      fadeOut: false,
+      fadeOutStart: 0,
+      alive: true,
+      isSeed: !!isSeed,
+    };
+  }
+
+  // --- Connection class ---
+  function createConnection(a, b) {
+    const midX = (a.x + b.x) / 2;
+    const midY = (a.y + b.y) / 2;
+    const perpX = -(b.y - a.y);
+    const perpY = (b.x - a.x);
+    const len = Math.hypot(perpX, perpY) || 1;
+    const offset = rand(-0.08, 0.08);
+
+    return {
+      a, b,
+      cpx: midX + perpX / len * dist(a, b) * offset,
+      cpy: midY + perpY / len * dist(a, b) * offset,
+      progress: 0,
+      born: globalTime,
+      duration: CONNECTION_DRAW_DURATION,
+      phase: rand(0, Math.PI * 2),
+      pulseSpeed: rand(0.5, 1.2),
+      alive: true,
+    };
+  }
+
+  // --- Seed nodes ---
+  function seedNetwork() {
+    const cx = W / 2;
+    const cy = H / 2;
+    for (let i = 0; i < SEED_COUNT; i++) {
+      const angle = (Math.PI * 2 / SEED_COUNT) * i + rand(-0.3, 0.3);
+      const r = rand(30, 70);
+      const node = createNode(cx + Math.cos(angle) * r, cy + Math.sin(angle) * r, pick(COLOR_POOL), true);
+      node.opacity = 1;
+      node.fadeIn = false;
+      nodes.push(node);
+    }
+    // Connect seed nodes to each other
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        if (dist(nodes[i], nodes[j]) < CONNECTION_MAX_DIST) {
+          const conn = createConnection(nodes[i], nodes[j]);
+          conn.progress = 1;
+          connections.push(conn);
+        }
+      }
+    }
+  }
+
+  // --- Spawn logic ---
+  function spawnNode() {
+    const aliveNodes = nodes.filter(n => n.alive && !n.fadeOut);
+    if (aliveNodes.length === 0) return;
+
+    let parentNode;
+    let x, y;
+
+    // 50% chance to spawn near cursor if active
+    if (mouse.active && Math.random() < CURSOR_SPAWN_CHANCE) {
+      // Find closest alive node to cursor
+      let closest = null;
+      let closestDist = Infinity;
+      for (const n of aliveNodes) {
+        const d = dist(n, mouse);
+        if (d < closestDist) { closestDist = d; closest = n; }
+      }
+      if (closest && closestDist < 400) {
+        parentNode = closest;
+        const angle = Math.atan2(mouse.y - closest.y, mouse.x - closest.x) + rand(-0.8, 0.8);
+        const r = rand(SPAWN_RADIUS_MIN, SPAWN_RADIUS_MAX);
+        x = closest.x + Math.cos(angle) * r;
+        y = closest.y + Math.sin(angle) * r;
+      }
+    }
+
+    if (!parentNode) {
+      parentNode = pick(aliveNodes);
+      const angle = rand(0, Math.PI * 2);
+      const r = rand(SPAWN_RADIUS_MIN, SPAWN_RADIUS_MAX);
+      x = parentNode.x + Math.cos(angle) * r;
+      y = parentNode.y + Math.sin(angle) * r;
+    }
+
+    // Keep in bounds with padding
+    const pad = 60;
+    x = Math.max(pad, Math.min(W - pad, x));
+    y = Math.max(pad, Math.min(H - pad, y));
+
+    const node = createNode(x, y);
+    nodes.push(node);
+
+    // Connect to nearest neighbors
+    const neighbors = aliveNodes
+      .filter(n => n !== node)
+      .map(n => ({ node: n, d: dist(n, node) }))
+      .filter(e => e.d < CONNECTION_MAX_DIST)
+      .sort((a, b) => a.d - b.d)
+      .slice(0, randInt(1, MAX_CONNECTIONS_PER_SPAWN));
+
+    for (const nb of neighbors) {
+      connections.push(createConnection(node, nb.node));
+    }
+
+    // If we have too many, start fading the oldest
+    const alive = nodes.filter(n => n.alive && !n.fadeOut);
+    if (alive.length > MAX_NODES) {
+      const excess = alive.length - MAX_NODES;
+      // Find oldest non-seed nodes that aren't already fading
+      const candidates = alive.filter(n => !n.isSeed).sort((a, b) => a.born - b.born);
+      for (let i = 0; i < Math.min(excess, candidates.length); i++) {
+        candidates[i].fadeOut = true;
+        candidates[i].fadeOutStart = globalTime;
+      }
+    }
+
+    nextSpawnDelay = rand(SPAWN_INTERVAL_MIN, SPAWN_INTERVAL_MAX);
+  }
+
+  // --- Draw ---
+  function drawConnection(conn, now) {
+    if (!conn.a.alive || !conn.b.alive) { conn.alive = false; return; }
+
+    const elapsed = now - conn.born;
+    const drawT = Math.min(1, elapsed / conn.duration);
+    conn.progress = drawT;
+
+    // Eased draw-in
+    const eased = drawT < 1 ? 1 - Math.pow(1 - drawT, 3) : 1;
+
+    // Both nodes' opacity affects connection
+    const nodeAlpha = Math.min(conn.a.opacity, conn.b.opacity);
+    if (nodeAlpha <= 0) return;
+
+    // Pulse
+    const pulse = 0.15 + 0.15 * Math.sin(now * 0.001 * conn.pulseSpeed + conn.phase);
+    const alpha = pulse * nodeAlpha;
+
+    // Average color
+    const avgColor = lerpColor(conn.a.color, conn.b.color, 0.5);
+
+    // Draw bezier up to eased progress
+    ctx.beginPath();
+    if (eased >= 1) {
+      ctx.moveTo(conn.a.x, conn.a.y);
+      ctx.quadraticCurveTo(conn.cpx, conn.cpy, conn.b.x, conn.b.y);
+    } else {
+      // Partial bezier
+      const steps = 30;
+      const maxStep = Math.floor(steps * eased);
+      for (let i = 0; i <= maxStep; i++) {
+        const t = i / steps;
+        const mt = 1 - t;
+        const px = mt * mt * conn.a.x + 2 * mt * t * conn.cpx + t * t * conn.b.x;
+        const py = mt * mt * conn.a.y + 2 * mt * t * conn.cpy + t * t * conn.b.y;
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+    }
+
+    ctx.strokeStyle = rgba(avgColor, alpha);
+    ctx.lineWidth = rand(1, 1.5);
+    ctx.stroke();
+  }
+
+  function drawNode(node, now) {
+    // Fade in
+    if (node.fadeIn) {
+      node.opacity = Math.min(1, (now - node.born) / 600);
+      if (node.opacity >= 1) node.fadeIn = false;
+    }
+
+    // Fade out
+    if (node.fadeOut) {
+      const fadeElapsed = now - node.fadeOutStart;
+      node.opacity = Math.max(0, 1 - fadeElapsed / NODE_FADE_DURATION);
+      if (node.opacity <= 0) {
+        node.alive = false;
+        return;
+      }
+    }
+
+    // Pulse
+    const pulse = Math.sin(now * 0.001 * node.pulseSpeed + node.phase);
+    let r = node.radius + pulse * 1;
+
+    // Cursor proximity
+    let cursorInfluence = 0;
+    if (mouse.active) {
+      const d = dist(node, mouse);
+      if (d < CURSOR_RADIUS) {
+        cursorInfluence = 1 - d / CURSOR_RADIUS;
+        r += cursorInfluence * 3;
+      }
+    }
+
+    const alpha = node.opacity;
+    if (alpha <= 0) return;
+
+    // Soft shadow
+    ctx.save();
+    ctx.globalAlpha = alpha * 0.12;
+    ctx.beginPath();
+    ctx.arc(node.x, node.y + 2, r + 4, 0, Math.PI * 2);
+    ctx.fillStyle = rgba(node.color, 0.3);
+    ctx.fill();
+    ctx.restore();
+
+    // Outer glow ring
+    ctx.save();
+    ctx.globalAlpha = alpha * (0.06 + cursorInfluence * 0.08);
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, r + 10 + pulse * 2, 0, Math.PI * 2);
+    const glowGrad = ctx.createRadialGradient(node.x, node.y, r, node.x, node.y, r + 12 + pulse * 2);
+    glowGrad.addColorStop(0, rgba(node.color, 0.15));
+    glowGrad.addColorStop(1, rgba(node.color, 0));
+    ctx.fillStyle = glowGrad;
+    ctx.fill();
+    ctx.restore();
+
+    // Main node with radial gradient
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    const grad = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, r);
+    const brightColor = lerpColor(node.color, { r: 255, g: 255, b: 255 }, 0.3 + cursorInfluence * 0.2);
+    grad.addColorStop(0, rgba(brightColor, 0.95));
+    grad.addColorStop(0.5, rgba(node.color, 0.7));
+    grad.addColorStop(1, rgba(node.color, 0));
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, r, 0, Math.PI * 2);
+    ctx.fillStyle = grad;
+    ctx.fill();
+    ctx.restore();
+  }
+
+  // --- Main loop ---
+  function frame(timestamp) {
+    if (!running) return;
+    globalTime = timestamp;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Spawn check
+    if (timestamp - lastSpawnTime > nextSpawnDelay) {
+      spawnNode();
+      lastSpawnTime = timestamp;
+    }
+
+    // Draw connections (behind nodes)
+    for (let i = connections.length - 1; i >= 0; i--) {
+      if (!connections[i].alive) { connections.splice(i, 1); continue; }
+      drawConnection(connections[i], timestamp);
+    }
+
+    // Draw nodes
+    for (let i = nodes.length - 1; i >= 0; i--) {
+      if (!nodes[i].alive) { nodes.splice(i, 1); continue; }
+      drawNode(nodes[i], timestamp);
+    }
+
+    // Clean up connections referencing dead nodes
+    for (let i = connections.length - 1; i >= 0; i--) {
+      if (!connections[i].a.alive || !connections[i].b.alive) {
+        connections.splice(i, 1);
+      }
+    }
+
+    // Update count
+    nodeCountEl.textContent = nodes.filter(n => n.alive).length + ' nodes';
+
+    animId = requestAnimationFrame(frame);
+  }
+
+  // --- Mouse / Touch ---
+  function updateMouse(e) {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = (e.clientX || e.touches[0].clientX) - rect.left;
+    mouse.y = (e.clientY || e.touches[0].clientY) - rect.top;
+    mouse.active = true;
+  }
+
+  canvas.addEventListener('mousemove', updateMouse);
+  canvas.addEventListener('touchmove', e => { e.preventDefault(); updateMouse(e); }, { passive: false });
+  canvas.addEventListener('touchstart', e => { updateMouse(e); }, { passive: true });
+  canvas.addEventListener('mouseleave', () => { mouse.active = false; });
+  canvas.addEventListener('touchend', () => { mouse.active = false; });
+
+  // --- Intersection Observer ---
+  const observer = new IntersectionObserver(entries => {
+    for (const entry of entries) {
+      if (entry.isIntersecting) {
+        if (!running) {
+          running = true;
+          animId = requestAnimationFrame(frame);
+        }
+      } else {
+        running = false;
+        if (animId) { cancelAnimationFrame(animId); animId = null; }
+      }
+    }
+  }, { threshold: 0.05 });
+  observer.observe(canvas);
+
+  // --- Resize handler ---
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(resize, 100);
+  });
+
+  // --- Init ---
+  resize();
+  seedNetwork();
+  lastSpawnTime = performance.now();
+  animId = requestAnimationFrame(frame);
+})();
+</script>
+
+</body>
+</html>

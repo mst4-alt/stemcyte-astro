@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DNA Ribbon — StemCyte Animation System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #3D0F31;
+    color: #FAF7F2;
+    font-family: 'Lato', sans-serif;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  canvas {
+    display: block;
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .back-link {
+    position: fixed;
+    top: 28px;
+    left: 32px;
+    z-index: 20;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.03em;
+    color: rgba(250, 247, 242, 0.5);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    pointer-events: auto;
+  }
+  .back-link:hover { color: rgba(250, 247, 242, 0.85); }
+  .back-link span { margin-right: 6px; }
+
+  .title-block {
+    position: fixed;
+    bottom: 56px;
+    left: 40px;
+    z-index: 20;
+    pointer-events: none;
+  }
+
+  .title-block h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(32px, 5vw, 56px);
+    line-height: 1.1;
+    color: rgba(250, 247, 242, 0.88);
+    margin-bottom: 12px;
+  }
+
+  .title-block p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-size: clamp(13px, 1.5vw, 16px);
+    line-height: 1.6;
+    color: rgba(250, 247, 242, 0.45);
+    max-width: 380px;
+  }
+
+  /* subtle vignette overlay */
+  .vignette {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+    background: radial-gradient(ellipse at center, transparent 40%, rgba(61, 15, 49, 0.6) 100%);
+  }
+</style>
+</head>
+<body>
+
+<div class="vignette"></div>
+
+<div class="overlay">
+  <a href="index.html" class="back-link"><span>←</span> Back to Gallery</a>
+  <div class="title-block">
+    <h1>DNA Ribbon</h1>
+    <p>A gentle double helix of glowing spheres, drifting through fluid space. Move your mouse to guide the rotation.</p>
+  </div>
+</div>
+
+<canvas id="scene"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // ─── Configuration ────────────────────────────────────────
+  const CONFIG = {
+    spheresPerStrand: 36,
+    helixRadius: 2.0,
+    helixPitch: 0.5,
+    verticalExtent: 9.0,
+    sphereRadiusMin: 0.15,
+    sphereRadiusMax: 0.25,
+    rungEvery: 3,
+    rungOpacity: 0.22,
+    baseRotationSpeed: 0.15,
+    undulateAmplitude: 0.3,
+    undulateFreqY: 0.5,
+    undulateSpeed: 0.3,
+    floatAmplitude: 0.04,
+    pulseAmplitude: 0.3,
+    pulseSpeed: 1.2,
+    mouseSensitivityX: 0.4,
+    mouseSensitivityY: 0.15,
+    cameraDistance: 12,
+    cameraPitchBase: 0.15,
+  };
+
+  // ─── Colors ───────────────────────────────────────────────
+  const COLORS = {
+    plum:     new THREE.Color(0x6C1A55),
+    teal:     new THREE.Color(0x4FA3B8),
+    lavender: new THREE.Color(0xC4B0D9),
+    blush:    new THREE.Color(0xD4899B),
+    cream:    new THREE.Color(0xFAF7F2),
+    bg:       new THREE.Color(0x3D0F31),
+  };
+
+  // ─── State ────────────────────────────────────────────────
+  let isVisible = true;
+  let animationId = null;
+  let mouseNorm = { x: 0.5, y: 0.5 };
+  let mouseSmooth = { x: 0.5, y: 0.5 };
+  let clock = new THREE.Clock();
+
+  // ─── Renderer ─────────────────────────────────────────────
+  const canvas = document.getElementById('scene');
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: false,
+    powerPreference: 'high-performance',
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setClearColor(COLORS.bg, 1);
+  renderer.sortObjects = true;
+
+  // ─── Scene & Camera ───────────────────────────────────────
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(COLORS.bg, 0.035);
+
+  const camera = new THREE.PerspectiveCamera(
+    50,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    100
+  );
+  camera.position.set(0, 0, CONFIG.cameraDistance);
+  camera.lookAt(0, 0, 0);
+
+  // ─── Lighting (subtle, mostly shader-driven) ──────────────
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.3);
+  scene.add(ambientLight);
+
+  const pointLight1 = new THREE.PointLight(0x6C1A55, 0.6, 30);
+  pointLight1.position.set(5, 5, 8);
+  scene.add(pointLight1);
+
+  const pointLight2 = new THREE.PointLight(0x4FA3B8, 0.4, 30);
+  pointLight2.position.set(-5, -3, 6);
+  scene.add(pointLight2);
+
+  // ─── Helix Group ──────────────────────────────────────────
+  const helixGroup = new THREE.Group();
+  scene.add(helixGroup);
+
+  // ─── Sphere Shader Material ───────────────────────────────
+  const sphereVertexShader = `
+    attribute float aPhase;
+    attribute vec3 aColor;
+    attribute float aRadius;
+
+    uniform float uTime;
+    uniform float uPulseAmplitude;
+    uniform float uPulseSpeed;
+
+    varying vec3 vColor;
+    varying vec3 vNormal;
+    varying vec3 vViewPosition;
+    varying float vPulse;
+
+    void main() {
+      vColor = aColor;
+      vNormal = normalize(normalMatrix * normal);
+
+      float pulse = 0.7 + uPulseAmplitude * sin(uTime * uPulseSpeed + aPhase);
+      vPulse = pulse;
+
+      vec3 transformed = position * aRadius;
+      vec4 mvPosition = modelViewMatrix * instanceMatrix * vec4(transformed, 1.0);
+      vViewPosition = -mvPosition.xyz;
+
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  `;
+
+  const sphereFragmentShader = `
+    varying vec3 vColor;
+    varying vec3 vNormal;
+    varying vec3 vViewPosition;
+    varying float vPulse;
+
+    void main() {
+      vec3 viewDir = normalize(vViewPosition);
+      float NdotV = max(dot(viewDir, vNormal), 0.0);
+      float fresnel = 1.0 - NdotV;
+      float fresnelSoft = pow(fresnel, 1.5);
+      float fresnelHard = pow(fresnel, 3.0);
+
+      // Fake lighting: hemisphere-style, top-lit
+      vec3 lightDir = normalize(vec3(0.3, 1.0, 0.6));
+      float NdotL = max(dot(vNormal, normalize(lightDir)), 0.0);
+      float diffuse = 0.5 + 0.5 * NdotL;
+
+      // Core color with pulse and diffuse shading
+      vec3 core = vColor * vPulse * diffuse;
+
+      // Bright center highlight (specular-like)
+      float specular = pow(NdotV, 6.0) * 0.4;
+      vec3 highlight = vec3(1.0, 0.95, 0.98) * specular;
+
+      // Soft glow halo at edges (additive)
+      vec3 glow = vColor * 1.8 * fresnelSoft;
+
+      // Combine: core shading + highlight + edge glow
+      vec3 finalColor = core * 1.2 + highlight + glow * 0.35;
+
+      // Depth fade: dimmer when further from camera
+      float dist = length(vViewPosition);
+      float depthFade = smoothstep(22.0, 5.0, dist);
+      finalColor *= mix(0.3, 1.0, depthFade);
+
+      // Alpha: solid center, soft glowing edge
+      float alpha = mix(0.92, 0.15, fresnelHard);
+      alpha *= mix(0.5, 1.0, depthFade);
+
+      gl_FragColor = vec4(finalColor, alpha);
+    }
+  `;
+
+  // ─── Build Helix Geometry Data ────────────────────────────
+  const N = CONFIG.spheresPerStrand;
+  const totalSpheres = N * 2;
+  const halfHeight = CONFIG.verticalExtent / 2;
+
+  // Pre-compute helix positions for both strands
+  function computeHelixPositions(time) {
+    const positions = [];
+
+    for (let strand = 0; strand < 2; strand++) {
+      const phaseOffset = strand * Math.PI;
+      for (let i = 0; i < N; i++) {
+        const t = i / (N - 1);
+        const y = -halfHeight + t * CONFIG.verticalExtent;
+        const angle = (t * CONFIG.verticalExtent / CONFIG.helixPitch) * Math.PI * 2 + phaseOffset;
+
+        // Undulation displacement
+        const undulateX = Math.sin(y * CONFIG.undulateFreqY + time * CONFIG.undulateSpeed) * CONFIG.undulateAmplitude;
+        const undulateZ = Math.cos(y * CONFIG.undulateFreqY * 0.7 + time * CONFIG.undulateSpeed * 0.8) * CONFIG.undulateAmplitude * 0.5;
+
+        const x = Math.cos(angle) * CONFIG.helixRadius + undulateX;
+        const z = Math.sin(angle) * CONFIG.helixRadius + undulateZ;
+
+        positions.push({ x, y, z, strand, index: i, t });
+      }
+    }
+    return positions;
+  }
+
+  // ─── Create Instanced Spheres ─────────────────────────────
+  const sphereGeo = new THREE.SphereBufferGeometry(1, 24, 16);
+  const instanceCount = totalSpheres;
+
+  // Custom attributes
+  const phases = new Float32Array(instanceCount);
+  const colors = new Float32Array(instanceCount * 3);
+  const radii = new Float32Array(instanceCount);
+  const floatOffsets = new Float32Array(instanceCount * 3); // random float offsets
+
+  for (let i = 0; i < instanceCount; i++) {
+    const strand = i < N ? 0 : 1;
+    const idx = i < N ? i : i - N;
+    const t = idx / (N - 1);
+
+    // Phase for pulsing
+    phases[i] = Math.random() * Math.PI * 2;
+
+    // Color: strand 0 = plum → teal, strand 1 = teal → lavender
+    const c = new THREE.Color();
+    if (strand === 0) {
+      c.copy(COLORS.plum).lerp(COLORS.teal, t);
+    } else {
+      c.copy(COLORS.teal).lerp(COLORS.lavender, t);
+    }
+    colors[i * 3]     = c.r;
+    colors[i * 3 + 1] = c.g;
+    colors[i * 3 + 2] = c.b;
+
+    // Radius variation
+    radii[i] = CONFIG.sphereRadiusMin + Math.random() * (CONFIG.sphereRadiusMax - CONFIG.sphereRadiusMin);
+
+    // Random float offsets
+    floatOffsets[i * 3]     = Math.random() * Math.PI * 2;
+    floatOffsets[i * 3 + 1] = Math.random() * Math.PI * 2;
+    floatOffsets[i * 3 + 2] = 0.5 + Math.random() * 1.0; // speed multiplier
+  }
+
+  sphereGeo.setAttribute('aPhase', new THREE.InstancedBufferAttribute(phases, 1));
+  sphereGeo.setAttribute('aColor', new THREE.InstancedBufferAttribute(colors, 3));
+  sphereGeo.setAttribute('aRadius', new THREE.InstancedBufferAttribute(radii, 1));
+
+  const sphereMaterial = new THREE.ShaderMaterial({
+    vertexShader: sphereVertexShader,
+    fragmentShader: sphereFragmentShader,
+    uniforms: {
+      uTime: { value: 0 },
+      uPulseAmplitude: { value: CONFIG.pulseAmplitude },
+      uPulseSpeed: { value: CONFIG.pulseSpeed },
+    },
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.CustomBlending,
+    blendEquation: THREE.AddEquation,
+    blendSrc: THREE.SrcAlphaFactor,
+    blendDst: THREE.OneMinusSrcAlphaFactor,
+    blendSrcAlpha: THREE.OneFactor,
+    blendDstAlpha: THREE.OneMinusSrcAlphaFactor,
+  });
+
+  const instancedMesh = new THREE.InstancedMesh(sphereGeo, sphereMaterial, instanceCount);
+  helixGroup.add(instancedMesh);
+
+  // ─── Glow Halos (larger, additive spheres behind each sphere) ──
+  const glowVertShader = `
+    attribute vec3 aColor;
+    attribute float aRadius;
+    attribute float aPhase;
+
+    uniform float uTime;
+
+    varying vec3 vColor;
+    varying vec3 vNormal;
+    varying vec3 vViewPosition;
+    varying float vPulse;
+
+    void main() {
+      vColor = aColor;
+      vNormal = normalize(normalMatrix * normal);
+
+      float pulse = 0.6 + 0.4 * sin(uTime * 0.8 + aPhase);
+      vPulse = pulse;
+
+      vec3 transformed = position * aRadius * 2.8;
+      vec4 mvPosition = modelViewMatrix * instanceMatrix * vec4(transformed, 1.0);
+      vViewPosition = -mvPosition.xyz;
+
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  `;
+
+  const glowFragShader = `
+    varying vec3 vColor;
+    varying vec3 vNormal;
+    varying vec3 vViewPosition;
+    varying float vPulse;
+
+    void main() {
+      vec3 viewDir = normalize(vViewPosition);
+      float NdotV = max(dot(viewDir, vNormal), 0.0);
+
+      // Radial falloff from center — soft halo
+      float glow = pow(NdotV, 1.5) * 0.35 * vPulse;
+
+      // Depth fade
+      float dist = length(vViewPosition);
+      float depthFade = smoothstep(22.0, 6.0, dist);
+      glow *= mix(0.2, 1.0, depthFade);
+
+      vec3 finalColor = vColor * 1.3;
+      float alpha = glow * 0.4;
+
+      gl_FragColor = vec4(finalColor, alpha);
+    }
+  `;
+
+  const glowGeo = new THREE.SphereBufferGeometry(1, 12, 8);
+  glowGeo.setAttribute('aPhase', new THREE.InstancedBufferAttribute(phases, 1));
+  glowGeo.setAttribute('aColor', new THREE.InstancedBufferAttribute(colors, 3));
+  glowGeo.setAttribute('aRadius', new THREE.InstancedBufferAttribute(radii, 1));
+
+  const glowMaterial = new THREE.ShaderMaterial({
+    vertexShader: glowVertShader,
+    fragmentShader: glowFragShader,
+    uniforms: {
+      uTime: { value: 0 },
+    },
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending,
+  });
+
+  const glowMesh = new THREE.InstancedMesh(glowGeo, glowMaterial, instanceCount);
+  glowMesh.renderOrder = -1; // render behind main spheres
+  helixGroup.add(glowMesh);
+
+  // Dummy for instance transforms
+  const dummy = new THREE.Object3D();
+
+  // ─── Connecting Rungs ─────────────────────────────────────
+  const rungMaterial = new THREE.LineBasicMaterial({
+    color: 0xC4B0D9,
+    transparent: true,
+    opacity: CONFIG.rungOpacity,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+  });
+
+  const rungCount = Math.floor(N / CONFIG.rungEvery);
+  const rungLines = [];
+
+  for (let r = 0; r < rungCount; r++) {
+    const geo = new THREE.BufferGeometry();
+    const positions = new Float32Array(6); // two vec3
+    geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    const line = new THREE.Line(geo, rungMaterial);
+    helixGroup.add(line);
+    rungLines.push(line);
+  }
+
+  // ─── Background Particles (ambient dust) ──────────────────
+  const dustCount = 200;
+  const dustGeo = new THREE.BufferGeometry();
+  const dustPos = new Float32Array(dustCount * 3);
+  const dustSizes = new Float32Array(dustCount);
+
+  for (let i = 0; i < dustCount; i++) {
+    dustPos[i * 3]     = (Math.random() - 0.5) * 30;
+    dustPos[i * 3 + 1] = (Math.random() - 0.5) * 20;
+    dustPos[i * 3 + 2] = (Math.random() - 0.5) * 20;
+    dustSizes[i] = 1 + Math.random() * 2;
+  }
+
+  dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPos, 3));
+  dustGeo.setAttribute('size', new THREE.BufferAttribute(dustSizes, 1));
+
+  const dustMaterial = new THREE.PointsMaterial({
+    color: 0x8B5A7C,
+    size: 0.04,
+    transparent: true,
+    opacity: 0.25,
+    blending: THREE.AdditiveBlending,
+    depthWrite: false,
+    sizeAttenuation: true,
+  });
+
+  const dustParticles = new THREE.Points(dustGeo, dustMaterial);
+  scene.add(dustParticles);
+
+  // ─── Update Helix ─────────────────────────────────────────
+  function updateHelix(time) {
+    const positions = computeHelixPositions(time);
+
+    for (let i = 0; i < totalSpheres; i++) {
+      const p = positions[i];
+
+      // Individual float
+      const fx = Math.sin(time * 0.8 + floatOffsets[i * 3]) * CONFIG.floatAmplitude;
+      const fy = Math.cos(time * 0.6 + floatOffsets[i * 3 + 1]) * CONFIG.floatAmplitude;
+      const fz = Math.sin(time * 0.7 + floatOffsets[i * 3] + 1.0) * CONFIG.floatAmplitude * 0.5;
+
+      dummy.position.set(p.x + fx, p.y + fy, p.z + fz);
+      dummy.scale.setScalar(1);
+      dummy.updateMatrix();
+      instancedMesh.setMatrixAt(i, dummy.matrix);
+      glowMesh.setMatrixAt(i, dummy.matrix);
+    }
+    instancedMesh.instanceMatrix.needsUpdate = true;
+    glowMesh.instanceMatrix.needsUpdate = true;
+
+    // Update rungs
+    for (let r = 0; r < rungCount; r++) {
+      const idx = r * CONFIG.rungEvery;
+      if (idx >= N) break;
+
+      const p0 = positions[idx];           // strand 0
+      const p1 = positions[idx + N];       // strand 1
+
+      const posAttr = rungLines[r].geometry.attributes.position;
+      posAttr.array[0] = p0.x;
+      posAttr.array[1] = p0.y;
+      posAttr.array[2] = p0.z;
+      posAttr.array[3] = p1.x;
+      posAttr.array[4] = p1.y;
+      posAttr.array[5] = p1.z;
+      posAttr.needsUpdate = true;
+    }
+  }
+
+  // ─── Animation Loop ───────────────────────────────────────
+  let helixRotation = 0;
+
+  function animate() {
+    if (!isVisible) {
+      animationId = null;
+      return;
+    }
+    animationId = requestAnimationFrame(animate);
+
+    const delta = clock.getDelta();
+    const elapsed = clock.getElapsedTime();
+
+    // Smooth mouse
+    mouseSmooth.x += (mouseNorm.x - mouseSmooth.x) * 0.04;
+    mouseSmooth.y += (mouseNorm.y - mouseSmooth.y) * 0.04;
+
+    // Rotation speed influenced by mouse X
+    const speedMult = 1.0 + (mouseSmooth.x - 0.5) * CONFIG.mouseSensitivityX * 4;
+    helixRotation += CONFIG.baseRotationSpeed * delta * speedMult;
+    helixGroup.rotation.y = helixRotation;
+
+    // Subtle tilt from mouse
+    const targetTiltX = (mouseSmooth.y - 0.5) * CONFIG.mouseSensitivityY;
+    helixGroup.rotation.x += (targetTiltX - helixGroup.rotation.x) * 0.03;
+
+    // Update sphere positions with undulation
+    updateHelix(elapsed);
+
+    // Update shader time
+    sphereMaterial.uniforms.uTime.value = elapsed;
+    glowMaterial.uniforms.uTime.value = elapsed;
+
+    // Camera subtle bob
+    camera.position.y = Math.sin(elapsed * 0.15) * 0.3;
+    camera.lookAt(0, 0, 0);
+
+    // Dust rotation
+    dustParticles.rotation.y = elapsed * 0.01;
+
+    renderer.render(scene, camera);
+  }
+
+  // ─── Resize ───────────────────────────────────────────────
+  function onResize() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  }
+  window.addEventListener('resize', onResize);
+
+  // ─── Mouse / Touch ────────────────────────────────────────
+  function onPointerMove(e) {
+    const x = e.clientX !== undefined ? e.clientX : (e.touches && e.touches[0] ? e.touches[0].clientX : undefined);
+    const y = e.clientY !== undefined ? e.clientY : (e.touches && e.touches[0] ? e.touches[0].clientY : undefined);
+    if (x === undefined) return;
+    mouseNorm.x = x / window.innerWidth;
+    mouseNorm.y = y / window.innerHeight;
+  }
+  window.addEventListener('mousemove', onPointerMove);
+  window.addEventListener('touchmove', onPointerMove, { passive: true });
+
+  // ─── IntersectionObserver (pause when offscreen) ──────────
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible && !animationId) {
+          clock.getDelta(); // reset delta to avoid large jump
+          animate();
+        }
+      });
+    },
+    { threshold: 0.05 }
+  );
+  observer.observe(canvas);
+
+  // ─── Start ────────────────────────────────────────────────
+  animate();
+
+})();
+</script>
+</body>
+</html>

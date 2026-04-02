@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scroll Fade-Up Animation | StemCyte Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #FAF7F2;
+      color: #5a4e47;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 100;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #FAF7F2;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+
+    .back-link:hover {
+      opacity: 1;
+    }
+
+    .back-link.scrolled {
+      color: #6C1A55;
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(160deg, #6C1A55, #3D0F31);
+      padding: 40px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(255,255,255,0.06) 0%, transparent 70%);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 6vw, 56px);
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.2;
+      max-width: 700px;
+      position: relative;
+    }
+
+    .hero p {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(16px, 2vw, 19px);
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 20px;
+      max-width: 520px;
+      position: relative;
+      font-weight: 300;
+    }
+
+    .hero .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.35);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero .scroll-hint span {
+      display: block;
+      margin-top: 8px;
+      animation: bounce 2s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(6px); }
+    }
+
+    /* Sections */
+    .section {
+      padding: 80px 24px;
+      border-bottom: 1px solid #E8E2DC;
+    }
+
+    .section:last-of-type {
+      border-bottom: none;
+    }
+
+    .section .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 38px);
+      color: #3D0F31;
+      font-weight: 600;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+
+    .section p {
+      font-size: 16px;
+      line-height: 1.7;
+      color: #5a4e47;
+      max-width: 520px;
+    }
+
+    /* Two-column layouts */
+    .two-col {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .two-col .text-col {
+      flex: 1;
+    }
+
+    .two-col .image-col {
+      flex: 1;
+    }
+
+    .two-col.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .image-placeholder {
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 500 / 300;
+      background: #F3F0F8;
+      border: 1px solid #E8E2DC;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #b8afc4;
+      font-size: 14px;
+      font-weight: 400;
+    }
+
+    /* Stats section */
+    .stats-section {
+      background: #F3F0F8;
+      border-bottom: 1px solid #E8E2DC;
+    }
+
+    .stats-row {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      text-align: center;
+    }
+
+    .stat-item {
+      flex: 1;
+      max-width: 280px;
+    }
+
+    .stat-number {
+      font-family: 'Source Serif 4', serif;
+      font-size: clamp(36px, 5vw, 48px);
+      font-weight: 700;
+      color: #6C1A55;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      color: #5a4e47;
+      margin-top: 8px;
+      font-weight: 400;
+    }
+
+    /* Full-width text section */
+    .text-full {
+      text-align: center;
+    }
+
+    .text-full h2 {
+      max-width: 700px;
+      margin: 0 auto 16px;
+    }
+
+    .text-full p {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+
+    /* CTA Banner */
+    .cta-banner {
+      background: linear-gradient(160deg, #6C1A55, #3D0F31);
+      padding: 80px 24px;
+      text-align: center;
+      border-bottom: none;
+    }
+
+    .cta-banner .container {
+      max-width: 700px;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(26px, 4vw, 36px);
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+
+    .cta-banner p {
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 480px;
+      margin: 0 auto 28px;
+      font-size: 16px;
+    }
+
+    .btn-pill {
+      display: inline-block;
+      background: #fff;
+      color: #6C1A55;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px 32px;
+      border-radius: 100px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-pill:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+    }
+
+    /* Animated elements: initial state */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    /* Reduced motion: skip animations, show everything */
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up {
+        opacity: 1;
+        transform: none;
+      }
+
+      .hero .scroll-hint span {
+        animation: none;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .two-col {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .two-col.reverse {
+        flex-direction: column;
+      }
+
+      .stats-row {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+      }
+
+      .section {
+        padding: 56px 24px;
+      }
+
+      .section p {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link" id="backLink">&larr; Back to Gallery</a>
+
+  <!-- 1. Hero (static, no scroll animation) -->
+  <section class="hero" id="hero">
+    <h1>How Cord Blood Banking Works</h1>
+    <p>A step-by-step look at how we collect, process, and preserve your baby's cord blood stem cells.</p>
+    <div class="scroll-hint">
+      Scroll to explore
+      <span>&darr;</span>
+    </div>
+  </section>
+
+  <!-- 2. Collection is simple -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col">
+        <div class="text-col">
+          <h2 class="fade-up">Collection is simple</h2>
+          <p class="fade-up">After your baby is born and the cord is clamped, our medical team collects the remaining blood from the umbilical cord. The process is painless and takes just a few minutes, with no risk to mother or child.</p>
+        </div>
+        <div class="image-col">
+          <div class="image-placeholder fade-up">500 &times; 300</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Your stem cells are processed -->
+  <section class="section">
+    <div class="container">
+      <div class="two-col reverse">
+        <div class="text-col">
+          <h2 class="fade-up">Your stem cells are processed</h2>
+          <p class="fade-up">Within 48 hours of collection, your cord blood arrives at our Baldwin Park laboratory. Our team processes and tests each unit to ensure viability, then prepares it for long-term cryogenic storage.</p>
+        </div>
+        <div class="image-col">
+          <div class="image-placeholder fade-up">500 &times; 300</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Stats row -->
+  <section class="section stats-section">
+    <div class="container">
+      <div class="stats-row">
+        <div class="stat-item fade-up">
+          <div class="stat-number">80+</div>
+          <div class="stat-label">Diseases Treated</div>
+        </div>
+        <div class="stat-item fade-up">
+          <div class="stat-number">40,000+</div>
+          <div class="stat-label">Units Shipped</div>
+        </div>
+        <div class="stat-item fade-up">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Years of Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Stored for a lifetime -->
+  <section class="section">
+    <div class="container text-full">
+      <h2 class="fade-up">Stored for a lifetime</h2>
+      <p class="fade-up">Your baby's cord blood is cryopreserved in our state-of-the-art facility, ready if your family ever needs it. Research shows properly stored cord blood remains viable indefinitely, giving you peace of mind for decades to come.</p>
+    </div>
+  </section>
+
+  <!-- 6. CTA Banner -->
+  <section class="section cta-banner">
+    <div class="container fade-up">
+      <h2>Protect your family's future</h2>
+      <p>Learn more about our cord blood banking plans and find the right option for your family.</p>
+      <a href="#" class="btn-pill">View Plans &amp; Pricing</a>
+    </div>
+  </section>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    // Respect prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Gather all sections (skip the hero)
+      const sections = document.querySelectorAll('.section');
+
+      sections.forEach((section) => {
+        const elements = section.querySelectorAll('.fade-up');
+
+        gsap.to(elements, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: 'power2.out',
+          stagger: 0.15,
+          scrollTrigger: {
+            trigger: section,
+            start: 'top 80%',
+            once: true,
+          },
+        });
+      });
+    }
+
+    // Back link color swap after scrolling past hero
+    const backLink = document.getElementById('backLink');
+    const hero = document.getElementById('hero');
+
+    if (backLink && hero) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          backLink.classList.toggle('scrolled', !entry.isIntersecting);
+        },
+        { threshold: 0 }
+      );
+      observer.observe(hero);
+    }
+  </script>
+</body>
+</html>

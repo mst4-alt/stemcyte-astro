@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Section Separation Styles - What Is Cord Blood</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:ital,wght@0,400;0,700;1,400&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --plum: #6C1A55;
+  --deep-plum: #3D0F31;
+  --cream: #FAF9F7;
+  --sand: #FAF7F2;
+  --sand-border: #E8E2DC;
+  --lavender: #F3F0F8;
+  --deep-lavender: #EDE8F5;
+  --blue: #3B6DC4;
+  --sage: #3D8B6A;
+  --gold: #C4943E;
+  --text: #2C2A26;
+  --muted: #6B6760;
+  --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  --card-radius: 16px;
+  --nav-h: 64px;
+  --panel-h: 56px;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: var(--text);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--nav-h); background: #fff;
+  border-bottom: 1px solid var(--sand-border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-weight: 600; font-size: 22px; color: var(--plum); }
+.nav-links { display: flex; align-items: center; gap: 28px; font-size: 14px; }
+.nav-links a { text-decoration: none; color: var(--muted); }
+.nav-links a.active { color: var(--plum); font-weight: 700; }
+.nav-links .cta-pill {
+  background: var(--plum); color: #fff; padding: 8px 20px;
+  border-radius: 100px; font-weight: 700; font-size: 13px;
+}
+
+/* CONTROL PANEL */
+.control-panel {
+  position: fixed; top: var(--nav-h); left: 0; right: 0; z-index: 99;
+  height: var(--panel-h); background: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  padding: 0 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.control-panel::-webkit-scrollbar { display: none; }
+.style-btn {
+  flex-shrink: 0;
+  padding: 7px 16px; border-radius: 100px;
+  border: 1px solid var(--sand-border);
+  background: var(--cream); color: var(--muted);
+  font-family: 'Lato', sans-serif; font-size: 12px; font-weight: 700;
+  cursor: pointer; transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.style-btn:hover { border-color: var(--plum); color: var(--plum); }
+.style-btn.active {
+  background: var(--plum); color: #fff;
+  border-color: var(--plum);
+}
+
+/* BREADCRUMB */
+.breadcrumb {
+  padding-top: calc(var(--nav-h) + var(--panel-h) + 24px);
+  padding-bottom: 8px;
+  max-width: 880px; margin: 0 auto;
+  padding-left: 40px; padding-right: 40px;
+  font-size: 13px; color: var(--muted);
+}
+.breadcrumb strong { color: var(--text); }
+
+/* MAIN WRAPPER */
+.page-wrapper {
+  max-width: 100%; transition: background 0.3s ease;
+}
+.sections-wrapper {
+  transition: background 0.3s ease, padding 0.3s ease;
+}
+
+/* SECTIONS BASE */
+.content-section {
+  padding: 80px 40px;
+  transition: background 0.3s ease, border 0.3s ease, box-shadow 0.3s ease, border-radius 0.3s ease, margin 0.3s ease, max-width 0.3s ease, padding 0.3s ease;
+}
+.content-section .inner {
+  max-width: 880px; margin: 0 auto;
+}
+
+/* SECTION LABEL */
+.section-label {
+  font-size: 12px; text-transform: uppercase;
+  letter-spacing: 0.12em; margin-bottom: 16px;
+  font-weight: 700;
+}
+.section-label.blue { color: var(--blue); }
+.section-label.plum-light { color: rgba(108,26,85,0.5); }
+.section-label.sage { color: var(--sage); }
+.section-label.white-light { color: rgba(255,255,255,0.4); }
+
+/* HEADLINES */
+h1, h2 {
+  font-family: 'Playfair Display', serif; font-weight: 500;
+  line-height: 1.25; margin-bottom: 20px; color: var(--text);
+}
+h1 { font-size: 40px; }
+h2 { font-size: 34px; }
+
+.lead {
+  font-size: 17px; line-height: 1.7; color: var(--muted);
+  max-width: 720px; margin-bottom: 40px;
+}
+
+/* STATS ROW */
+.stats-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  margin-top: 48px;
+}
+.stat-item { text-align: center; }
+.stat-number {
+  font-family: 'Source Serif 4', serif; font-weight: 600;
+  font-size: 36px; color: var(--plum); display: block;
+}
+.stat-suffix {
+  font-family: 'Source Serif 4', serif; font-weight: 600;
+  font-size: 36px; color: var(--plum);
+}
+.stat-label {
+  font-size: 14px; color: var(--muted); margin-top: 4px;
+}
+
+/* CARDS ROW */
+.cards-row {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-top: 40px;
+}
+.info-card {
+  background: #fff; border-radius: var(--card-radius); padding: 28px;
+  box-shadow: var(--card-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.info-card h3 {
+  font-family: 'Playfair Display', serif; font-weight: 500;
+  font-size: 18px; margin-bottom: 12px; color: var(--text);
+}
+.info-card p { font-size: 14px; line-height: 1.65; color: var(--muted); }
+
+/* TIERS */
+.tier-block { margin-bottom: 32px; }
+.tier-badge {
+  display: inline-block; padding: 4px 14px; border-radius: 100px;
+  font-size: 12px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.06em; margin-bottom: 12px;
+}
+.tier-badge.established { background: #F0F7F4; color: var(--sage); }
+.tier-badge.trials { background: #EDF5FF; color: var(--blue); }
+.tier-badge.early { background: #FDF5EB; color: var(--gold); }
+.tier-desc {
+  font-size: 15px; line-height: 1.7; color: var(--muted);
+  margin-bottom: 16px; max-width: 720px;
+}
+.pills-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill {
+  padding: 5px 14px; border-radius: 100px;
+  font-size: 12px; font-weight: 600;
+  border: 1px solid var(--sand-border); color: var(--text);
+  background: #fff;
+}
+
+/* SECTION 4: DARK PLUM (always) */
+.section-dark {
+  background: linear-gradient(160deg, #6C1A55, #3D0F31) !important;
+  color: #fff;
+  border: none !important;
+  box-shadow: none !important;
+  border-top: none !important;
+}
+.section-dark h2 { color: #fff; }
+.section-dark .lead { color: rgba(255,255,255,0.7); }
+.section-dark .blockquote {
+  font-family: 'Playfair Display', serif; font-style: italic;
+  font-size: 20px; line-height: 1.6; color: rgba(255,255,255,0.85);
+  border-left: 3px solid rgba(255,255,255,0.15);
+  padding-left: 24px; margin-bottom: 48px; max-width: 640px;
+}
+.frost-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.frost-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--card-radius); padding: 28px;
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: transform 0.25s ease;
+}
+.frost-card:hover { transform: translateY(-4px); }
+.frost-card .stat-number, .frost-card .stat-suffix {
+  color: #fff; font-size: 32px;
+}
+.frost-card .stat-label {
+  color: rgba(255,255,255,0.6); font-size: 13px;
+}
+.frost-card .stat-note { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+
+/* SECTION 5: CTA */
+.section-cta { text-align: center; }
+.section-cta .inner { max-width: 600px; }
+.section-cta p { font-size: 16px; color: var(--muted); margin-bottom: 28px; }
+.cta-buttons { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-block; padding: 12px 28px; border-radius: 100px;
+  background: var(--plum); color: #fff; font-weight: 700; font-size: 14px;
+  text-decoration: none; transition: transform 0.2s ease;
+}
+.btn-primary:hover { transform: translateY(-2px); }
+.btn-outline {
+  display: inline-block; padding: 12px 28px; border-radius: 100px;
+  border: 1px solid var(--sand-border); color: var(--text);
+  font-weight: 700; font-size: 14px; text-decoration: none;
+  transition: all 0.2s ease;
+}
+.btn-outline:hover { border-color: var(--plum); color: var(--plum); }
+
+/* ===== STYLE 1: THIN LINE ===== */
+.style-thin-line .content-section:not(.section-dark) { background: var(--cream); }
+.style-thin-line .content-section:not(:last-child):not(.section-dark) {
+  border-bottom: 1px solid var(--sand-border);
+}
+
+/* ===== STYLE 2: ALT BACKGROUNDS ===== */
+/* Full-bleed color via ::before pseudo-elements */
+.style-alt-bg .content-section:not(.section-dark) {
+  position: relative;
+  z-index: 0;
+}
+.style-alt-bg .content-section:not(.section-dark)::before {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  z-index: -1;
+  transition: background 0.3s ease;
+}
+.style-alt-bg #s1::before { background: var(--cream); }
+.style-alt-bg #s2::before { background: var(--lavender); }
+.style-alt-bg #s3::before { background: var(--cream); }
+.style-alt-bg #s5::before { background: var(--cream); }
+
+/* ===== STYLE 3: SHADOW BREAK ===== */
+.style-shadow .content-section:not(.section-dark) {
+  background: var(--cream);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  position: relative; z-index: 1;
+}
+
+/* ===== STYLE 4: CARD SECTIONS ===== */
+.style-cards { background: #F0EDEA !important; padding: 0 40px; }
+.style-cards .content-section:not(.section-dark) {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  margin: 20px auto;
+  max-width: 960px;
+}
+.style-cards .section-dark {
+  border-radius: 20px;
+  margin: 20px auto;
+  max-width: 960px;
+}
+
+/* ===== STYLE 5: INSET CARDS ===== */
+.style-inset { background: #F0EDEA !important; padding: 0 40px; }
+.style-inset .content-section:not(.section-dark) {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: var(--card-shadow);
+  margin: 20px auto;
+  max-width: 920px;
+}
+.style-inset .section-dark {
+  border-radius: 20px;
+  margin: 20px auto;
+  max-width: 920px;
+}
+
+/* ===== STYLE 6: GAP + COLOR ===== */
+.style-gap { background: var(--deep-lavender) !important; }
+.style-gap .content-section:not(.section-dark) {
+  background: var(--cream);
+  margin-bottom: 24px;
+}
+.style-gap .content-section:last-child { margin-bottom: 0; }
+
+/* ===== STYLE 7: ACCENT BORDER TOP ===== */
+.style-accent .content-section:not(.section-dark) {
+  background: var(--cream);
+}
+.style-accent .content-section:not(.section-dark):nth-child(5n+1) { border-top: 3px solid var(--plum); }
+.style-accent .content-section:not(.section-dark):nth-child(5n+2) { border-top: 3px solid var(--blue); }
+.style-accent .content-section:not(.section-dark):nth-child(5n+3) { border-top: 3px solid var(--sage); }
+.style-accent .content-section:not(.section-dark):nth-child(5n+4) { border-top: 3px solid var(--gold); }
+.style-accent .content-section:not(.section-dark):nth-child(5n+5) { border-top: 3px solid var(--plum); }
+
+/* ===== STYLE 8: THICK BAND ===== */
+.style-band .content-section:not(.section-dark) { background: var(--cream); }
+.style-band .divider-band {
+  display: block;
+  height: 48px;
+  background: linear-gradient(180deg, var(--cream), var(--lavender), var(--cream));
+}
+
+/* Hide divider bands by default */
+.divider-band { display: none; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .nav-links { display: none; }
+  .control-panel { justify-content: flex-start; gap: 6px; }
+  .breadcrumb { padding-left: 20px; padding-right: 20px; }
+  .content-section { padding: 60px 20px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 26px; }
+  .stats-row, .cards-row, .frost-cards { grid-template-columns: 1fr; gap: 20px; }
+  .style-cards, .style-inset { padding: 0 16px; }
+  .style-cards .content-section:not(.section-dark),
+  .style-cards .section-dark,
+  .style-inset .content-section:not(.section-dark),
+  .style-inset .section-dark { max-width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0s !important;
+    transition-duration: 0s !important;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">StemCyte</div>
+  <div class="nav-links">
+    <a href="#">Why StemCyte</a>
+    <a href="#">The Science</a>
+    <a href="#" class="active">Education</a>
+    <a href="#">Pricing</a>
+    <a href="#" class="cta-pill">Get Started</a>
+  </div>
+</nav>
+
+<!-- CONTROL PANEL -->
+<div class="control-panel">
+  <button class="style-btn active" data-style="thin-line">Thin Line</button>
+  <button class="style-btn" data-style="alt-bg">Alt Backgrounds</button>
+  <button class="style-btn" data-style="shadow">Shadow Break</button>
+  <button class="style-btn" data-style="cards">Card Sections</button>
+  <button class="style-btn" data-style="inset">Inset Cards</button>
+  <button class="style-btn" data-style="gap">Gap + Color</button>
+  <button class="style-btn" data-style="accent">Accent Border</button>
+  <button class="style-btn" data-style="band">Thick Band</button>
+</div>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb">Education / <strong>What Is Cord Blood</strong></div>
+
+<!-- PAGE WRAPPER -->
+<div class="page-wrapper">
+  <div class="sections-wrapper style-thin-line">
+
+    <!-- SECTION 1: THE SIMPLE VERSION -->
+    <section class="content-section anim-section" id="s1">
+      <div class="inner">
+        <div class="section-label blue">THE SIMPLE VERSION</div>
+        <h1>Cord blood is the blood left in your baby's umbilical cord after birth.</h1>
+        <p class="lead">It's collected in under five minutes, right after delivery, completely painless for both you and your baby. What makes it extraordinary is what's inside: stem cells that can rebuild a human blood and immune system from scratch. These cells are already used in transplant medicine worldwide. And they can only be collected once, at the moment of birth.</p>
+        <div class="stats-row">
+          <div class="stat-item anim-stat">
+            <span class="stat-number" data-target="1988">0</span>
+            <div class="stat-label">First cord blood transplant</div>
+          </div>
+          <div class="stat-item anim-stat">
+            <span class="stat-number" data-target="50000">0</span><span class="stat-suffix">+</span>
+            <div class="stat-label">Transplants performed globally</div>
+          </div>
+          <div class="stat-item anim-stat">
+            <span class="stat-number" data-target="5">0</span><span class="stat-suffix"> min</span>
+            <div class="stat-label">Collection time, painless</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-band"></div>
+
+    <!-- SECTION 2: WHAT'S INSIDE -->
+    <section class="content-section anim-section" id="s2">
+      <div class="inner">
+        <div class="section-label plum-light">WHAT'S INSIDE</div>
+        <h2>The cells that build your blood and immune system</h2>
+        <p class="lead">Cord blood contains hematopoietic stem cells. In plain English: these are the master cells that produce every red blood cell, white blood cell, and platelet in your body. Think of them as the factory that makes your blood.</p>
+        <div class="cards-row">
+          <div class="info-card anim-card">
+            <h3>They migrate to bone marrow</h3>
+            <p>When transplanted, cord blood stem cells travel through the bloodstream and find their way to the bone marrow, where blood cells are made.</p>
+          </div>
+          <div class="info-card anim-card">
+            <h3>They engraft and rebuild</h3>
+            <p>Once there, they engraft and begin producing an entirely new blood and immune system. This process is called hematopoietic reconstitution.</p>
+          </div>
+          <div class="info-card anim-card">
+            <h3>Younger, purer, more tolerant</h3>
+            <p>Collected at birth, these cells have zero exposure to aging, illness, or environmental damage. They also cause less immune rejection than adult donor cells.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-band"></div>
+
+    <!-- SECTION 3: WHAT IT CAN DO -->
+    <section class="content-section anim-section" id="s3">
+      <div class="inner">
+        <div class="section-label sage">WHAT IT CAN DO</div>
+        <h2>Honest answers, not inflated claims</h2>
+        <p class="lead">You may have heard "cord blood treats 80+ diseases." That's true for transplants using donor cord blood. Here's what the evidence actually shows, broken into three tiers.</p>
+
+        <div class="tier-block anim-card">
+          <span class="tier-badge established">Established</span>
+          <p class="tier-desc">Allogeneic cord blood transplants (using a donor's cord blood) treat blood cancers, bone marrow failure, inherited immune deficiencies, metabolic storage disorders, and hemoglobin disorders.</p>
+          <div class="pills-row">
+            <span class="pill anim-pill">Leukemia</span>
+            <span class="pill anim-pill">Lymphoma</span>
+            <span class="pill anim-pill">Sickle Cell Disease</span>
+            <span class="pill anim-pill">Thalassemia</span>
+            <span class="pill anim-pill">Krabbe Disease</span>
+            <span class="pill anim-pill">Fanconi Anemia</span>
+            <span class="pill anim-pill">SCID</span>
+            <span class="pill anim-pill">+ many more</span>
+          </div>
+        </div>
+
+        <div class="tier-block anim-card">
+          <span class="tier-badge trials">Clinical Trials</span>
+          <p class="tier-desc">Cord blood is in active clinical trials for cerebral palsy, stroke, autism, and HIV. StemCyte cord blood was part of the research behind the first woman to achieve HIV remission through a cord blood transplant.</p>
+          <div class="pills-row">
+            <span class="pill anim-pill">Cerebral Palsy</span>
+            <span class="pill anim-pill">Ischemic Stroke</span>
+            <span class="pill anim-pill">Autism (ongoing)</span>
+            <span class="pill anim-pill">HIV Remission</span>
+            <span class="pill anim-pill">HIE</span>
+          </div>
+        </div>
+
+        <div class="tier-block anim-card">
+          <span class="tier-badge early">Early Research</span>
+          <p class="tier-desc">Preclinical research is exploring cord blood for Alzheimer's, Parkinson's, spinal cord injury, and ALS. These are years from human application but represent the frontier of regenerative medicine.</p>
+          <div class="pills-row">
+            <span class="pill anim-pill">Alzheimer's</span>
+            <span class="pill anim-pill">Parkinson's</span>
+            <span class="pill anim-pill">Spinal Cord Injury</span>
+            <span class="pill anim-pill">ALS</span>
+            <span class="pill anim-pill">Traumatic Brain Injury</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-band"></div>
+
+    <!-- SECTION 4: WHY IT MATTERS (ALWAYS DARK) -->
+    <section class="content-section section-dark anim-section" id="s4">
+      <div class="inner">
+        <div class="section-label white-light">WHY IT MATTERS FOR YOUR FAMILY</div>
+        <h2>Protection that extends beyond your baby</h2>
+        <div class="blockquote">One collection. One moment. A biological resource for your entire family, preserved at the youngest, purest point it will ever be.</div>
+        <div class="frost-cards">
+          <div class="frost-card anim-card">
+            <span class="stat-number" data-target="100">0</span><span class="stat-suffix">%</span>
+            <div class="stat-label">Match for your baby</div>
+          </div>
+          <div class="frost-card anim-card">
+            <span class="stat-number" data-target="25">0</span><span class="stat-suffix">%</span>
+            <div class="stat-label">Perfect sibling match</div>
+            <div class="stat-note">50% partial match</div>
+          </div>
+          <div class="frost-card anim-card">
+            <span class="stat-number">Partial</span>
+            <div class="stat-label">Parents & extended family</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider-band"></div>
+
+    <!-- SECTION 5: NEXT STEP -->
+    <section class="content-section section-cta anim-section" id="s5">
+      <div class="inner">
+        <h2>Ready to learn more?</h2>
+        <p>Now that you understand what cord blood is and what it can do, explore how it's collected or see what plans fit your family.</p>
+        <div class="cta-buttons">
+          <a href="#" class="btn-primary">How Collection Works</a>
+          <a href="#" class="btn-outline">View Plans & Pricing</a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<div style="height: 120px;"></div>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const wrapper = document.querySelector('.sections-wrapper');
+const buttons = document.querySelectorAll('.style-btn');
+
+const styleClasses = [
+  'style-thin-line', 'style-alt-bg', 'style-shadow',
+  'style-cards', 'style-inset', 'style-gap',
+  'style-accent', 'style-band'
+];
+
+function initAnimations() {
+  // Kill existing
+  ScrollTrigger.getAll().forEach(t => t.kill());
+
+  // Reset elements
+  document.querySelectorAll('.anim-section').forEach(el => {
+    gsap.set(el, { clearProps: 'all' });
+  });
+  document.querySelectorAll('.anim-card, .anim-stat').forEach(el => {
+    gsap.set(el, { clearProps: 'all' });
+  });
+  document.querySelectorAll('.anim-pill').forEach(el => {
+    gsap.set(el, { clearProps: 'all' });
+  });
+
+  // Reduced motion check
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  // Section entrances
+  document.querySelectorAll('.anim-section').forEach(section => {
+    gsap.from(section, {
+      opacity: 0, y: 16, duration: 1.0, ease: 'power2.out',
+      scrollTrigger: {
+        trigger: section,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+  });
+
+  // Stat count-up
+  document.querySelectorAll('.anim-stat .stat-number[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    if (isNaN(target)) return;
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target, duration: 1.5, ease: 'power2.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      onUpdate: () => {
+        el.textContent = target > 1000
+          ? Math.round(obj.val).toLocaleString()
+          : Math.round(obj.val);
+      }
+    });
+  });
+
+  // Frost card count-up
+  document.querySelectorAll('.frost-card .stat-number[data-target]').forEach(el => {
+    const target = parseInt(el.dataset.target);
+    if (isNaN(target)) return;
+    const obj = { val: 0 };
+    gsap.to(obj, {
+      val: target, duration: 1.2, ease: 'power2.out',
+      scrollTrigger: {
+        trigger: el,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      },
+      onUpdate: () => { el.textContent = Math.round(obj.val); }
+    });
+  });
+
+  // Cards stagger
+  document.querySelectorAll('.cards-row, .frost-cards').forEach(row => {
+    const cards = row.querySelectorAll('.anim-card');
+    gsap.from(cards, {
+      opacity: 0, y: 16, duration: 1.0, stagger: 0.15, ease: 'power2.out',
+      scrollTrigger: {
+        trigger: row,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+  });
+
+  // Tier cards stagger
+  document.querySelectorAll('#s3 .tier-block').forEach((block, i) => {
+    gsap.from(block, {
+      opacity: 0, y: 16, duration: 1.0, delay: i * 0.15, ease: 'power2.out',
+      scrollTrigger: {
+        trigger: block,
+        start: 'top 85%',
+        toggleActions: 'play none none none'
+      }
+    });
+
+    // Pills stagger
+    const pills = block.querySelectorAll('.anim-pill');
+    gsap.from(pills, {
+      opacity: 0, scale: 0.8, duration: 0.3, stagger: 0.05, ease: 'power2.out',
+      scrollTrigger: {
+        trigger: block,
+        start: 'top 75%',
+        toggleActions: 'play none none none'
+      }
+    });
+  });
+
+  ScrollTrigger.refresh();
+}
+
+function switchStyle(styleName) {
+  // Remove all style classes
+  styleClasses.forEach(cls => wrapper.classList.remove(cls));
+  // Add new one
+  wrapper.classList.add('style-' + styleName);
+
+  // Update buttons
+  buttons.forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.style === styleName);
+  });
+
+  // Show/hide divider bands
+  const bands = document.querySelectorAll('.divider-band');
+  bands.forEach(b => b.style.display = styleName === 'band' ? 'block' : 'none');
+
+  // Re-init animations after brief delay for layout to settle
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      initAnimations();
+    });
+  });
+}
+
+// Button clicks
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => switchStyle(btn.dataset.style));
+});
+
+// Initial animations
+initAnimations();
+</script>
+</body>
+</html>

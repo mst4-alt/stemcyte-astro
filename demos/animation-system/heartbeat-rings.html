@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heartbeat Rings — StemCyte Animation System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FAF7F2;
+    font-family: 'Lato', sans-serif;
+    color: #3D0F31;
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+  }
+
+  .back-link {
+    position: fixed;
+    top: 24px;
+    left: 28px;
+    z-index: 20;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: #6C1A55;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  .back-link:hover { opacity: 1; }
+  .back-link svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  canvas {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    padding: 40px 40px 48px;
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.6) 60%, transparent 100%);
+  }
+
+  .overlay h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 500;
+    color: #3D0F31;
+    line-height: 1.15;
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .overlay p {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1.8vw, 17px);
+    font-weight: 300;
+    color: #6C1A55;
+    line-height: 1.6;
+    max-width: 520px;
+    opacity: 0.75;
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">
+  <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+  Back to Gallery
+</a>
+
+<canvas id="canvas"></canvas>
+
+<div class="overlay">
+  <h1>Heartbeat Rings</h1>
+  <p>Concentric pulses radiate from the center with the rhythm of a resting heartbeat. Move your cursor to shift the origin of life.</p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // --- Constants ---
+  const PLUM       = [108, 26, 85];    // #6C1A55
+  const DEEP_PLUM  = [61, 15, 49];     // #3D0F31
+  const TEAL       = [79, 163, 184];   // #4FA3B8
+  const LAVENDER   = [243, 240, 248];  // #F3F0F8
+  const BG         = '#FAF7F2';
+
+  const RING_COLORS = [
+    PLUM,
+    TEAL,
+    DEEP_PLUM,
+    LAVENDER,
+    PLUM,
+    TEAL,
+  ];
+
+  const HEARTBEAT_INTERVAL = 1200; // ms full cycle (~50 bpm)
+  const SECOND_BEAT_DELAY  = 200;  // ms after first beat
+  const SECOND_BEAT_SCALE  = 0.8;  // smaller/fainter
+  const JITTER_MS          = 100;  // timing jitter ±
+  const SPEED_JITTER       = 0.10; // ±10% expansion speed
+  const SIZE_JITTER         = 5;   // ±5px initial radius
+  const MAX_RADIUS_FACTOR  = 0.40; // fraction of viewport diagonal
+  const INITIAL_LINE_WIDTH = 4;
+  const FINAL_LINE_WIDTH   = 1;
+  const INITIAL_OPACITY    = 0.5;
+  const RING_LOBES         = 5;    // sine wave lobes for irregularity
+  const LOBE_AMPLITUDE     = 3;    // max displacement px
+  const LERP_FACTOR        = 0.05;
+  const GLOW_WIDTH_MULT    = 3.0;
+  const GLOW_ALPHA_MULT    = 0.25;
+  const CENTER_DOT_RADIUS  = 6;
+  const CENTER_GLOW_RADIUS = 40;
+
+  // --- State ---
+  const canvas = document.getElementById('canvas');
+  const ctx    = canvas.getContext('2d');
+
+  let W = 0, H = 0, dpr = 1, diag = 0;
+  let rings = [];
+  let colorIndex = 0;
+
+  // Cursor tracking
+  let targetX, targetY, currentX, currentY;
+  let hasCursor = false;
+
+  // Heartbeat timing
+  let lastBeatTime = 0;
+  let beatPhase = 0; // 0 = waiting, 1 = first beat spawned, 2 = second beat spawned
+  let nextCycleTime = 0;
+  let jitter = 0;
+
+  // Center glow pulse
+  let glowIntensity = 0;
+
+  // Visibility
+  let isVisible = true;
+  let animFrameId = null;
+
+  // --- Resize ---
+  function resize() {
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width  = W * dpr;
+    canvas.height = H * dpr;
+    canvas.style.width  = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    diag = Math.sqrt(W * W + H * H);
+
+    if (!hasCursor) {
+      targetX = currentX = W / 2;
+      targetY = currentY = H / 2;
+    }
+  }
+  window.addEventListener('resize', resize);
+  resize();
+
+  // Initialize center
+  targetX = currentX = W / 2;
+  targetY = currentY = H / 2;
+
+  // --- Input ---
+  function onPointerMove(x, y) {
+    hasCursor = true;
+    targetX = x;
+    targetY = y;
+  }
+
+  canvas.addEventListener('mousemove', function (e) {
+    onPointerMove(e.clientX, e.clientY);
+  });
+  canvas.addEventListener('touchmove', function (e) {
+    e.preventDefault();
+    var t = e.touches[0];
+    onPointerMove(t.clientX, t.clientY);
+  }, { passive: false });
+  canvas.addEventListener('touchstart', function (e) {
+    var t = e.touches[0];
+    onPointerMove(t.clientX, t.clientY);
+  }, { passive: true });
+  canvas.addEventListener('mouseleave', function () {
+    hasCursor = false;
+    targetX = W / 2;
+    targetY = H / 2;
+  });
+
+  // --- IntersectionObserver ---
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      isVisible = entry.isIntersecting;
+      if (isVisible && !animFrameId) {
+        lastBeatTime = performance.now();
+        nextCycleTime = lastBeatTime;
+        loop();
+      }
+    });
+  }, { threshold: 0.01 });
+  observer.observe(canvas);
+
+  // --- Ring class ---
+  function Ring(x, y, color, scale, speedMult) {
+    this.x = x;
+    this.y = y;
+    this.color = color;
+    this.scale = scale || 1;
+    this.speedMult = speedMult * (1 + (Math.random() * 2 - 1) * SPEED_JITTER);
+    this.radiusOffset = (Math.random() * 2 - 1) * SIZE_JITTER;
+    this.phaseOffset = Math.random() * Math.PI * 2;
+    this.lobeCount = RING_LOBES + Math.floor(Math.random() * 2);
+    this.lobeAmp = LOBE_AMPLITUDE * (0.7 + Math.random() * 0.6);
+    this.maxRadius = diag * MAX_RADIUS_FACTOR;
+    this.progress = 0; // 0 to 1
+    this.alive = true;
+  }
+
+  Ring.prototype.update = function (dt) {
+    // Speed: base traversal time ~3.5 seconds
+    var speed = (1 / 3500) * this.speedMult;
+    this.progress += dt * speed;
+    if (this.progress >= 1) {
+      this.alive = false;
+    }
+  };
+
+  Ring.prototype.draw = function (ctx) {
+    if (!this.alive) return;
+
+    // Easing: fast burst then slow (ease-out cubic)
+    var t = this.progress;
+    var eased = 1 - Math.pow(1 - t, 3);
+
+    var baseRadius = eased * this.maxRadius + this.radiusOffset;
+    if (baseRadius < 0) baseRadius = 0;
+
+    var opacity = INITIAL_OPACITY * this.scale * (1 - t);
+    if (opacity <= 0) return;
+
+    var lineWidth = INITIAL_LINE_WIDTH + (FINAL_LINE_WIDTH - INITIAL_LINE_WIDTH) * eased;
+    lineWidth *= this.scale;
+
+    var r = this.color[0], g = this.color[1], b = this.color[2];
+
+    // Draw glow layer
+    ctx.save();
+    ctx.globalAlpha = opacity * GLOW_ALPHA_MULT;
+    ctx.strokeStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+    ctx.lineWidth = lineWidth * GLOW_WIDTH_MULT;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    this._tracePath(ctx, baseRadius);
+    ctx.stroke();
+    ctx.restore();
+
+    // Draw main ring
+    ctx.save();
+    ctx.globalAlpha = opacity;
+    ctx.strokeStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+    ctx.lineWidth = lineWidth;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    this._tracePath(ctx, baseRadius);
+    ctx.stroke();
+    ctx.restore();
+  };
+
+  Ring.prototype._tracePath = function (ctx, baseRadius) {
+    var steps = 120;
+    var cx = this.x;
+    var cy = this.y;
+    ctx.beginPath();
+    for (var i = 0; i <= steps; i++) {
+      var angle = (i / steps) * Math.PI * 2;
+      var wobble = Math.sin(angle * this.lobeCount + this.phaseOffset) * this.lobeAmp;
+      var r = baseRadius + wobble;
+      var px = cx + Math.cos(angle) * r;
+      var py = cy + Math.sin(angle) * r;
+      if (i === 0) {
+        ctx.moveTo(px, py);
+      } else {
+        ctx.lineTo(px, py);
+      }
+    }
+    ctx.closePath();
+  };
+
+  // --- Spawn rings ---
+  function spawnRing(scale) {
+    var c = RING_COLORS[colorIndex % RING_COLORS.length];
+    colorIndex++;
+    rings.push(new Ring(currentX, currentY, c, scale, 1));
+  }
+
+  // --- Draw center glow ---
+  function drawCenter(ctx, x, y, intensity) {
+    // Outer glow
+    var grad = ctx.createRadialGradient(x, y, 0, x, y, CENTER_GLOW_RADIUS);
+    var alpha = 0.08 + intensity * 0.18;
+    grad.addColorStop(0, 'rgba(108, 26, 85, ' + alpha + ')');
+    grad.addColorStop(0.4, 'rgba(108, 26, 85, ' + (alpha * 0.4) + ')');
+    grad.addColorStop(1, 'rgba(108, 26, 85, 0)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(x, y, CENTER_GLOW_RADIUS, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Inner dot
+    var dotAlpha = 0.3 + intensity * 0.5;
+    var dotR = CENTER_DOT_RADIUS * (1 + intensity * 0.3);
+    var dotGrad = ctx.createRadialGradient(x, y, 0, x, y, dotR);
+    dotGrad.addColorStop(0, 'rgba(108, 26, 85, ' + dotAlpha + ')');
+    dotGrad.addColorStop(0.6, 'rgba(108, 26, 85, ' + (dotAlpha * 0.5) + ')');
+    dotGrad.addColorStop(1, 'rgba(108, 26, 85, 0)');
+    ctx.fillStyle = dotGrad;
+    ctx.beginPath();
+    ctx.arc(x, y, dotR, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // --- Main loop ---
+  var prevTime = performance.now();
+  nextCycleTime = prevTime + (Math.random() * 2 - 1) * JITTER_MS;
+
+  function loop() {
+    if (!isVisible) {
+      animFrameId = null;
+      return;
+    }
+
+    animFrameId = requestAnimationFrame(loop);
+    var now = performance.now();
+    var dt = Math.min(now - prevTime, 50); // cap delta to avoid jumps
+    prevTime = now;
+
+    // --- Heartbeat timing ---
+    if (beatPhase === 0 && now >= nextCycleTime) {
+      // First beat
+      spawnRing(1.0);
+      glowIntensity = 1.0;
+      beatPhase = 1;
+      lastBeatTime = now;
+    }
+
+    if (beatPhase === 1 && now >= lastBeatTime + SECOND_BEAT_DELAY) {
+      // Second beat (smaller, fainter)
+      spawnRing(SECOND_BEAT_SCALE);
+      glowIntensity = 0.7;
+      beatPhase = 2;
+    }
+
+    if (beatPhase === 2 && now >= lastBeatTime + HEARTBEAT_INTERVAL - SECOND_BEAT_DELAY) {
+      // Reset for next cycle
+      beatPhase = 0;
+      jitter = (Math.random() * 2 - 1) * JITTER_MS;
+      nextCycleTime = lastBeatTime + HEARTBEAT_INTERVAL + jitter;
+    }
+
+    // --- Lerp cursor ---
+    currentX += (targetX - currentX) * LERP_FACTOR;
+    currentY += (targetY - currentY) * LERP_FACTOR;
+
+    // --- Glow decay ---
+    glowIntensity *= 0.94;
+    if (glowIntensity < 0.01) glowIntensity = 0;
+
+    // --- Update rings ---
+    for (var i = rings.length - 1; i >= 0; i--) {
+      rings[i].update(dt);
+      if (!rings[i].alive) {
+        rings.splice(i, 1);
+      }
+    }
+
+    // --- Draw ---
+    ctx.clearRect(0, 0, W, H);
+
+    // Draw rings oldest first (furthest out, faintest)
+    for (var i = 0; i < rings.length; i++) {
+      rings[i].draw(ctx);
+    }
+
+    // Draw center glow
+    drawCenter(ctx, currentX, currentY, glowIntensity);
+  }
+
+  loop();
+})();
+</script>
+</body>
+</html>

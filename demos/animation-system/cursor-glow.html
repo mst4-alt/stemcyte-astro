@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor Glow Effect | StemCyte Animation Demos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      color: #2D2D2D;
+      background: #FAF7F2;
+      line-height: 1.6;
+    }
+
+    /* ── Back link ── */
+    .back-link {
+      position: fixed;
+      top: 20px;
+      left: 24px;
+      z-index: 100;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+      transition: color 0.3s ease;
+      mix-blend-mode: difference;
+    }
+
+    .back-link:hover {
+      color: #fff;
+    }
+
+    /* ── Section base ── */
+    section {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .section-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── Grain overlay for dark sections ── */
+    .glow-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      opacity: 0.035;
+      pointer-events: none;
+      background-image:
+        repeating-conic-gradient(
+          rgba(255, 255, 255, 0.06) 0% 25%,
+          transparent 0% 50%
+        );
+      background-size: 4px 4px;
+    }
+
+    /* ── Glow element ── */
+    .cursor-glow {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      will-change: transform, opacity;
+      transition: opacity 0.6s ease;
+      transform: translate3d(-300px, -300px, 0);
+      mix-blend-mode: screen;
+    }
+
+    .cursor-glow.active {
+      opacity: 1;
+    }
+
+    .cursor-glow.flash {
+      opacity: 1;
+      transition: opacity 0.05s ease;
+    }
+
+    /* ── Section content sits above glow ── */
+    .glow-section > .section-inner {
+      position: relative;
+      z-index: 3;
+    }
+
+    /* ── Hero section ── */
+    .hero {
+      background: #3D0F31;
+      padding: 160px 24px 120px;
+      text-align: center;
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 4rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+    }
+
+    .hero p {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.6);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── Light sections ── */
+    .light-section {
+      padding: 100px 24px;
+    }
+
+    .light-section.cream {
+      background: #FAF7F2;
+    }
+
+    .light-section.lavender {
+      background: #F3F0F8;
+    }
+
+    .light-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      font-weight: 600;
+      color: #3D0F31;
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .light-section p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: #5A5A5A;
+      max-width: 640px;
+      line-height: 1.75;
+    }
+
+    .light-section p + p {
+      margin-top: 16px;
+    }
+
+    .divider {
+      width: 48px;
+      height: 1px;
+      background: #E8E2DC;
+      margin: 20px 0 24px;
+    }
+
+    /* ── CTA banner ── */
+    .cta-banner {
+      background: linear-gradient(160deg, #6C1A55, #3D0F31);
+      padding: 100px 24px;
+      text-align: center;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .cta-banner p {
+      font-family: 'Lato', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.65);
+      max-width: 480px;
+      margin: 0 auto 32px;
+      line-height: 1.7;
+    }
+
+    .pill-btn {
+      display: inline-block;
+      padding: 14px 40px;
+      border-radius: 100px;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .pill-btn.white {
+      background: #fff;
+      color: #6C1A55;
+    }
+
+    .pill-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    /* ── Stats section ── */
+    .stats-section {
+      background: #3D0F31;
+      padding: 100px 24px;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .stat-item {
+      padding: 24px;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255, 255, 255, 0.5);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Footer section ── */
+    .footer-section {
+      background: #3D0F31;
+      padding: 60px 24px 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .footer-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      font-family: 'Lato', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.4);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-col a {
+      display: block;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.55);
+      text-decoration: none;
+      margin-bottom: 10px;
+      transition: color 0.2s ease;
+    }
+
+    .footer-col a:hover {
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    .footer-bottom {
+      max-width: 900px;
+      margin: 40px auto 0;
+      padding-top: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      text-align: center;
+    }
+
+    .footer-bottom p {
+      font-size: 13px;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .hero {
+        padding: 120px 20px 80px;
+        min-height: 60vh;
+      }
+
+      .light-section,
+      .cta-banner,
+      .stats-section {
+        padding: 72px 20px;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        gap: 32px;
+      }
+
+      .cursor-glow {
+        width: 400px;
+        height: 400px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link">&larr; Back to Gallery</a>
+
+  <!-- ─── 1. Hero Section ─── -->
+  <section class="hero glow-section"
+    data-glow-color="rgba(108, 26, 85, 0.15)"
+    data-glow-radius="300">
+    <div class="cursor-glow"></div>
+    <div class="section-inner">
+      <h1>Cursor Glow Effect</h1>
+      <p>A subtle ambient warmth that follows your cursor across dark sections. Barely noticeable, but it makes everything feel alive.</p>
+    </div>
+  </section>
+
+  <!-- ─── 2. Light Content (cream) ─── -->
+  <section class="light-section cream">
+    <div class="section-inner">
+      <h2>Light sections stay clean</h2>
+      <div class="divider"></div>
+      <p>The glow effect only activates on dark sections. Light backgrounds like this cream (#FAF7F2) remain untouched, providing visual contrast and letting the content breathe.</p>
+      <p>This approach keeps the effect subtle and purposeful. It enhances dark UI surfaces without overwhelming the page or creating visual noise on lighter sections where it would feel out of place.</p>
+    </div>
+  </section>
+
+  <!-- ─── 3. CTA Banner ─── -->
+  <section class="cta-banner glow-section"
+    data-glow-color="rgba(79, 163, 184, 0.12)"
+    data-glow-radius="300">
+    <div class="cursor-glow"></div>
+    <div class="section-inner">
+      <h2>Your baby's stem cells,<br>protected for life</h2>
+      <p>With cord blood and cord tissue banking, you're preserving access to therapies that could change everything.</p>
+      <a href="#" class="pill-btn white" onclick="return false">Get Started</a>
+    </div>
+  </section>
+
+  <!-- ─── 4. Light Content (lavender) ─── -->
+  <section class="light-section lavender">
+    <div class="section-inner">
+      <h2>Configured per section</h2>
+      <div class="divider"></div>
+      <p>Each dark section defines its own glow color and intensity via data attributes. The hero uses a warm plum tint, the CTA uses teal, and the stats section uses lavender. The system adapts to whatever context it lives in.</p>
+      <p>The glow uses <code>mix-blend-mode: screen</code> so it blends naturally with the underlying background without washing anything out.</p>
+    </div>
+  </section>
+
+  <!-- ─── 5. Stats Section ─── -->
+  <section class="stats-section glow-section"
+    data-glow-color="rgba(237, 232, 245, 0.08)"
+    data-glow-radius="300">
+    <div class="cursor-glow"></div>
+    <div class="section-inner">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">900K+</div>
+          <div class="stat-label">Units Stored</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">3</div>
+          <div class="stat-label">Clinical Trials</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── 6. Footer Section ─── -->
+  <section class="footer-section glow-section"
+    data-glow-color="rgba(108, 26, 85, 0.12)"
+    data-glow-radius="250">
+    <div class="cursor-glow"></div>
+    <div class="footer-inner" style="position: relative; z-index: 3;">
+      <div class="footer-col">
+        <h4>Banking</h4>
+        <a href="#">Cord Blood</a>
+        <a href="#">Cord Tissue</a>
+        <a href="#">REGENECYTE&reg;</a>
+      </div>
+      <div class="footer-col">
+        <h4>Science</h4>
+        <a href="#">How It Works</a>
+        <a href="#">Clinical Trials</a>
+        <a href="#">Research</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About Us</a>
+        <a href="#">Careers</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom" style="position: relative; z-index: 3;">
+      <p>Demo only. Not an actual website.</p>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      'use strict';
+
+      // ── Config ──
+      const LERP_FACTOR = 0.1;
+      const FLASH_DURATION = 200;
+      const TOUCH_FADE_DELAY = 1000;
+
+      // ── State per section ──
+      const sections = document.querySelectorAll('.glow-section');
+      const state = new Map();
+
+      sections.forEach(section => {
+        const glow = section.querySelector('.cursor-glow');
+        if (!glow) return;
+
+        const color = section.dataset.glowColor || 'rgba(108, 26, 85, 0.15)';
+        const radius = parseInt(section.dataset.glowRadius, 10) || 300;
+        const size = radius * 2;
+
+        glow.style.width = size + 'px';
+        glow.style.height = size + 'px';
+        glow.style.background = 'radial-gradient(circle, ' + color + ' 0%, transparent 70%)';
+
+        state.set(section, {
+          glow: glow,
+          targetX: 0,
+          targetY: 0,
+          currentX: 0,
+          currentY: 0,
+          active: false,
+          visible: false,
+          halfSize: size / 2,
+          animating: false,
+          touchTimer: null
+        });
+      });
+
+      // ── Smooth animation loop ──
+      function animate() {
+        let anyActive = false;
+
+        state.forEach((s) => {
+          if (!s.active && !s.animating) return;
+          anyActive = true;
+
+          s.currentX += (s.targetX - s.currentX) * LERP_FACTOR;
+          s.currentY += (s.targetY - s.currentY) * LERP_FACTOR;
+
+          const dx = Math.abs(s.targetX - s.currentX);
+          const dy = Math.abs(s.targetY - s.currentY);
+
+          s.glow.style.transform =
+            'translate3d(' + (s.currentX - s.halfSize) + 'px, ' +
+            (s.currentY - s.halfSize) + 'px, 0)';
+
+          // Stop animating when close enough and not active
+          if (!s.active && dx < 0.5 && dy < 0.5) {
+            s.animating = false;
+          }
+        });
+
+        if (anyActive) {
+          requestAnimationFrame(animate);
+        }
+      }
+
+      function ensureAnimating() {
+        let anyActive = false;
+        state.forEach(s => {
+          if (s.active || s.animating) anyActive = true;
+        });
+        if (anyActive) {
+          requestAnimationFrame(animate);
+        }
+      }
+
+      // ── Mouse events ──
+      sections.forEach(section => {
+        const s = state.get(section);
+        if (!s) return;
+
+        section.addEventListener('mousemove', function (e) {
+          const rect = section.getBoundingClientRect();
+          s.targetX = e.clientX - rect.left;
+          s.targetY = e.clientY - rect.top;
+
+          if (!s.active) {
+            s.active = true;
+            s.animating = true;
+            // Initialize position to avoid jump on first enter
+            if (!s.glow.classList.contains('active')) {
+              s.currentX = s.targetX;
+              s.currentY = s.targetY;
+              s.glow.style.transform =
+                'translate3d(' + (s.currentX - s.halfSize) + 'px, ' +
+                (s.currentY - s.halfSize) + 'px, 0)';
+            }
+            s.glow.classList.add('active');
+            ensureAnimating();
+          }
+        });
+
+        section.addEventListener('mouseleave', function () {
+          s.active = false;
+          s.animating = true;
+          s.glow.classList.remove('active');
+        });
+
+        // Click flash
+        section.addEventListener('mousedown', function () {
+          s.glow.classList.add('flash');
+          s.glow.style.background = s.glow.style.background.replace(
+            /[\d.]+\)(?=\s*0%)/,
+            function (match) {
+              const val = parseFloat(match);
+              return Math.min(val * 2.5, 0.4) + ')';
+            }
+          );
+
+          setTimeout(function () {
+            const color = section.dataset.glowColor || 'rgba(108, 26, 85, 0.15)';
+            s.glow.style.background = 'radial-gradient(circle, ' + color + ' 0%, transparent 70%)';
+            s.glow.classList.remove('flash');
+          }, FLASH_DURATION);
+        });
+
+        // ── Touch events ──
+        section.addEventListener('touchstart', function (e) {
+          if (s.touchTimer) clearTimeout(s.touchTimer);
+          const touch = e.touches[0];
+          const rect = section.getBoundingClientRect();
+          s.targetX = touch.clientX - rect.left;
+          s.targetY = touch.clientY - rect.top;
+          s.currentX = s.targetX;
+          s.currentY = s.targetY;
+          s.glow.style.transform =
+            'translate3d(' + (s.currentX - s.halfSize) + 'px, ' +
+            (s.currentY - s.halfSize) + 'px, 0)';
+          s.active = true;
+          s.animating = true;
+          s.glow.classList.add('active');
+          ensureAnimating();
+        }, { passive: true });
+
+        section.addEventListener('touchmove', function (e) {
+          const touch = e.touches[0];
+          const rect = section.getBoundingClientRect();
+          s.targetX = touch.clientX - rect.left;
+          s.targetY = touch.clientY - rect.top;
+        }, { passive: true });
+
+        section.addEventListener('touchend', function () {
+          s.touchTimer = setTimeout(function () {
+            s.active = false;
+            s.animating = true;
+            s.glow.classList.remove('active');
+          }, TOUCH_FADE_DELAY);
+        });
+      });
+
+      // ── IntersectionObserver: pause off-screen sections ──
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          const s = state.get(entry.target);
+          if (!s) return;
+          s.visible = entry.isIntersecting;
+          if (!entry.isIntersecting) {
+            s.active = false;
+            s.animating = false;
+            s.glow.classList.remove('active');
+          }
+        });
+      }, { threshold: 0 });
+
+      sections.forEach(function (section) {
+        observer.observe(section);
+      });
+
+    })();
+  </script>
+
+</body>
+</html>

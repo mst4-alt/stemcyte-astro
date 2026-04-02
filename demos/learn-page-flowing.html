@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Is Cord Blood — Flowing Layout</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lato:wght@300;400;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --plum: #6C1A55;
+      --plum-deep: #3D0F31;
+      --cream: #FAF7F2;
+      --cream-bg: #FAF9F7;
+      --lavender: #F3F0F8;
+      --lavender-deep: #EDE8F5;
+      --divider: #E8E2DC;
+      --text: #2C2A26;
+      --text-muted: #6B6760;
+      --blue: #3B6DC4;
+      --sage: #3D8B6A;
+      --gold: #C4943E;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+      --ff-display: 'Playfair Display', Georgia, serif;
+      --ff-body: 'Lato', -apple-system, sans-serif;
+      --ff-numbers: 'Source Serif 4', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      color: var(--text);
+      line-height: 1.7;
+      background: var(--cream);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0s !important;
+        transition-duration: 0s !important;
+      }
+      .reveal { opacity: 1 !important; transform: none !important; }
+    }
+
+    /* ── Layout ── */
+    .container { max-width: 960px; margin: 0 auto; padding: 0 24px; }
+    .container--wide { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+    /* ── FLOWING: Seamless color shifts ── */
+    .section { padding: 100px 0; position: relative; }
+    .section--hero { padding: 140px 0 120px; background: var(--cream-bg); }
+    .section--lavender { background: var(--lavender); }
+    .section--cream { background: var(--cream-bg); }
+    .section--gradient {
+      background: linear-gradient(160deg, #6C1A55, #3D0F31);
+      color: #fff;
+    }
+    .section--gradient .label { color: rgba(255,255,255,0.5); }
+
+    .color-bridge { display: none; }
+
+    /* ── Typography ── */
+    .label {
+      font-family: var(--ff-body);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--plum);
+      margin-bottom: 28px;
+      max-width: 720px;
+    }
+
+    h2 {
+      font-family: var(--ff-display);
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 600;
+      line-height: 1.25;
+      color: var(--plum);
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      font-family: var(--ff-display);
+      font-size: 1.25rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: var(--plum);
+      margin-bottom: 10px;
+    }
+
+    .section--gradient h2,
+    .section--gradient h3 { color: #fff; }
+
+    .lead {
+      font-size: 1.15rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 640px;
+    }
+
+    .body-text {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 640px;
+      margin-bottom: 48px;
+    }
+
+    /* ── Stats ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 56px;
+    }
+
+    .stat { text-align: center; }
+
+    .stat-number {
+      font-family: var(--ff-numbers);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700;
+      color: var(--plum);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ── Cards (shared) ── */
+    .cards-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 36px 28px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--lavender-deep);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 1.3rem;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    /* ── Treatment Tier Cards (Section 3) ── */
+    .tier-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 48px;
+    }
+
+    .tier-card {
+      background: rgba(255,255,255,0.7);
+      backdrop-filter: blur(8px);
+      border-radius: 16px;
+      padding: 36px 28px;
+      box-shadow: var(--card-shadow);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .tier-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .tier-badge {
+      display: inline-block;
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .tier-badge--green { background: rgba(61,139,106,0.12); color: var(--sage); }
+    .tier-badge--blue { background: rgba(59,109,196,0.12); color: var(--blue); }
+    .tier-badge--gold { background: rgba(196,148,62,0.12); color: var(--gold); }
+
+    .tier-card h3 { margin-bottom: 12px; }
+
+    .tier-card p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .tier-card .note {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--divider);
+    }
+
+    .condition-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .pill {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      background: rgba(0,0,0,0.04);
+      padding: 4px 12px;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    /* ── Section 4: Dark / Family ── */
+    .poetic-line {
+      font-family: var(--ff-display);
+      font-style: italic;
+      font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      line-height: 1.7;
+      color: rgba(255,255,255,0.85);
+      border-left: 3px solid rgba(255,255,255,0.3);
+      padding-left: 24px;
+      margin: 40px 0 56px;
+      max-width: 600px;
+    }
+
+    .match-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .match-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 16px;
+      padding: 36px 28px;
+      text-align: center;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .match-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .match-number {
+      font-family: var(--ff-numbers);
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .match-label {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
+    }
+
+    .match-sub {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.45);
+      margin-top: 4px;
+    }
+
+    /* ── CTA ── */
+    .cta-cluster {
+      text-align: center;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+
+    .cta-cluster p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-block;
+      font-family: var(--ff-body);
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 100px;
+      padding: 16px 40px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(108,26,85,0.25);
+    }
+
+    .btn--primary { background: var(--plum); color: #fff; }
+    .btn--ghost {
+      background: transparent;
+      color: var(--plum);
+      border: 1.5px solid var(--plum);
+      margin-left: 12px;
+    }
+
+    /* ── Nav ── */
+    .page-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(250,247,242,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,226,220,0.5);
+      font-size: 0.85rem;
+    }
+
+    .page-nav-left { display: flex; align-items: center; gap: 24px; }
+
+    .page-nav-logo {
+      font-family: var(--ff-display);
+      font-weight: 600;
+      color: var(--plum);
+      font-size: 1.15rem;
+    }
+
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .breadcrumb span { color: var(--text); }
+
+    /* ── Progress Bar ── */
+    .progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: var(--plum);
+      z-index: 200;
+      transform-origin: left;
+      transform: scaleX(0);
+      width: 100%;
+    }
+
+    /* ── Floating Badge ── */
+    .version-badge {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+      font-family: var(--ff-body);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(59,109,196,0.2);
+      padding: 8px 18px;
+      border-radius: 100px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    /* ── Reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .section { padding: 72px 0; }
+      .section--hero { padding: 110px 0 80px; }
+      .color-bridge { height: 60px; }
+      .stats-row, .cards-row, .tier-cards, .match-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .btn--ghost { margin-left: 0; margin-top: 12px; }
+      .breadcrumb { display: none; }
+      .page-nav-left { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- Nav -->
+  <nav class="page-nav">
+    <div class="page-nav-left">
+      <span class="page-nav-logo">StemCyte</span>
+      <span class="breadcrumb">Education / <span>What Is Cord Blood</span></span>
+    </div>
+  </nav>
+
+  <!-- Floating Badge -->
+  <div class="version-badge">Flowing</div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 1: The Simple Version
+       ═══════════════════════════════════════════ -->
+  <section class="section section--hero" id="s1">
+    <div class="container">
+      <div class="label reveal">THE SIMPLE VERSION</div>
+      <h1 class="reveal">Cord blood is the blood left in your baby's umbilical cord after birth.</h1>
+      <p class="body-text reveal">It's collected in under five minutes, right after delivery, completely painless for both you and your baby. What makes it extraordinary is what's inside: stem cells that can rebuild a human blood and immune system from scratch. These cells are already used in transplant medicine worldwide. And they can only be collected once, at the moment of birth.</p>
+
+      <div class="stats-row">
+        <div class="stat reveal">
+          <div class="stat-number" data-count="1988">0</div>
+          <div class="stat-label">First cord blood transplant</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-number" data-count="50000" data-suffix="+">0</div>
+          <div class="stat-label">Transplants performed globally</div>
+        </div>
+        <div class="stat reveal">
+          <div class="stat-number" data-count="5" data-suffix=" min">0</div>
+          <div class="stat-label">Collection time, painless</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="color-bridge color-bridge--cream-to-lavender"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 2: What's Inside
+       ═══════════════════════════════════════════ -->
+  <section class="section section--lavender" id="s2">
+    <div class="container--wide">
+      <div class="label reveal">WHAT'S INSIDE</div>
+      <h2 class="reveal">The cells that build your blood and immune system</h2>
+      <p class="lead reveal">Cord blood contains hematopoietic stem cells. In plain English: these are the master cells that produce every red blood cell, white blood cell, and platelet in your body. Think of them as the factory that makes your blood.</p>
+
+      <div class="cards-row">
+        <div class="card reveal">
+          <div class="card-icon">&#x1F9EC;</div>
+          <h3>They migrate to bone marrow</h3>
+          <p>When transplanted, cord blood stem cells travel through the bloodstream and find their way to the bone marrow, where blood cells are made.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">&#x1F504;</div>
+          <h3>They engraft and rebuild</h3>
+          <p>Once there, they engraft and begin producing an entirely new blood and immune system. This process is called hematopoietic reconstitution.</p>
+        </div>
+        <div class="card reveal">
+          <div class="card-icon">&#x2728;</div>
+          <h3>Younger, purer, more tolerant</h3>
+          <p>Collected at birth, these cells have zero exposure to aging, illness, or environmental damage. They also cause less immune rejection than adult donor cells.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="color-bridge color-bridge--lavender-to-cream"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 3: What It Can Do
+       ═══════════════════════════════════════════ -->
+  <section class="section section--cream" id="s3">
+    <div class="container--wide">
+      <div class="label reveal">WHAT IT CAN DO</div>
+      <h2 class="reveal">Honest answers, not inflated claims</h2>
+      <p class="lead reveal">You may have heard "cord blood treats 80+ diseases." That's true for transplants using donor cord blood. Here's what the evidence actually shows, broken into three tiers.</p>
+
+      <div class="tier-cards">
+        <div class="tier-card reveal">
+          <div class="tier-badge tier-badge--green">Established</div>
+          <h3>Standard transplant medicine</h3>
+          <p>Allogeneic transplants for blood cancers, bone marrow failure, immune deficiencies, metabolic disorders, and sickle cell disease.</p>
+          <div class="condition-pills">
+            <span class="pill">Leukemia</span>
+            <span class="pill">Lymphoma</span>
+            <span class="pill">Sickle Cell Disease</span>
+            <span class="pill">Thalassemia</span>
+            <span class="pill">Krabbe Disease</span>
+            <span class="pill">Fanconi Anemia</span>
+            <span class="pill">SCID</span>
+            <span class="pill">+ many more</span>
+          </div>
+        </div>
+        <div class="tier-card reveal">
+          <div class="tier-badge tier-badge--blue">Clinical Trials</div>
+          <h3>Active investigation</h3>
+          <p>Cerebral palsy, stroke, autism (ongoing, inconclusive), HIV remission.</p>
+          <div class="condition-pills">
+            <span class="pill">Cerebral Palsy</span>
+            <span class="pill">Stroke</span>
+            <span class="pill">Autism</span>
+            <span class="pill">HIV Remission</span>
+          </div>
+          <p class="note">StemCyte cord blood was part of the research behind the first woman to achieve HIV remission through a cord blood transplant.</p>
+        </div>
+        <div class="tier-card reveal">
+          <div class="tier-badge tier-badge--gold">Early Research</div>
+          <h3>Preclinical &amp; emerging</h3>
+          <p>Early-stage studies exploring potential applications across neurodegenerative and injury contexts.</p>
+          <div class="condition-pills">
+            <span class="pill">Alzheimer's</span>
+            <span class="pill">Parkinson's</span>
+            <span class="pill">Spinal Cord Injury</span>
+            <span class="pill">ALS</span>
+            <span class="pill">Traumatic Brain Injury</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="color-bridge color-bridge--cream-to-plum"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 4: Why It Matters for Your Family
+       ═══════════════════════════════════════════ -->
+  <section class="section section--gradient" id="s4">
+    <div class="container">
+      <div class="label reveal">WHY IT MATTERS FOR YOUR FAMILY</div>
+      <h2 class="reveal" style="color:#fff;">Protection that extends beyond your baby</h2>
+      <div class="poetic-line reveal">One collection. One moment. A biological resource for your entire family, preserved at the youngest, purest point it will ever be.</div>
+
+      <div class="match-cards">
+        <div class="match-card reveal">
+          <div class="match-number" data-count="100" data-suffix="%">0</div>
+          <div class="match-label">Match for your baby</div>
+        </div>
+        <div class="match-card reveal">
+          <div class="match-number" data-count="25" data-suffix="%">0</div>
+          <div class="match-label">Perfect sibling match</div>
+          <div class="match-sub">50% partial match</div>
+        </div>
+        <div class="match-card reveal">
+          <div class="match-number">Partial</div>
+          <div class="match-label">Match for parents &amp; extended family</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="color-bridge color-bridge--plum-to-cream"></div>
+
+  <!-- ═══════════════════════════════════════════
+       SECTION 5: Next Step
+       ═══════════════════════════════════════════ -->
+  <section class="section section--cream" id="s5" style="padding-bottom: 140px;">
+    <div class="container">
+      <div class="cta-cluster reveal">
+        <h2>Ready to learn more?</h2>
+        <p>Now that you understand what cord blood is and what it can do, explore how it's collected or see what plans fit your family.</p>
+        <a href="#" class="btn btn--primary">How Collection Works</a>
+        <a href="#" class="btn btn--ghost">View Plans &amp; Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       SCRIPTS
+       ═══════════════════════════════════════════ -->
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      document.querySelectorAll('.reveal').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+    } else {
+
+      // ── Progress bar ──
+      gsap.to('#progressBar', {
+        scaleX: 1,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: 'body',
+          start: 'top top',
+          end: 'bottom bottom',
+          scrub: 0.3
+        }
+      });
+
+      // ── Generic reveals ──
+      gsap.utils.toArray('.reveal').forEach(el => {
+        // Skip elements that will be handled by stagger animations
+        if (el.closest('.cards-row') || el.closest('.tier-cards') || el.closest('.match-cards') || el.closest('.stats-row')) return;
+        gsap.fromTo(el,
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1, y: 0,
+            duration: 1.0,
+            ease: 'power2.out',
+            scrollTrigger: {
+              trigger: el,
+              start: 'top 85%',
+              toggleActions: 'play none none none'
+            }
+          }
+        );
+      });
+
+      // ── Mechanism cards (Section 2): stagger 150ms ──
+      document.querySelectorAll('.cards-row').forEach(grid => {
+        gsap.fromTo(grid.querySelectorAll('.card'),
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1, y: 0,
+            duration: 1.0,
+            stagger: 0.15,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: grid, start: 'top 85%', toggleActions: 'play none none none' }
+          }
+        );
+      });
+
+      // ── Treatment tier cards (Section 3): stagger 200ms ──
+      document.querySelectorAll('.tier-cards').forEach(grid => {
+        const cards = grid.querySelectorAll('.tier-card');
+        gsap.fromTo(cards,
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1, y: 0,
+            duration: 1.0,
+            stagger: 0.2,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: grid, start: 'top 85%', toggleActions: 'play none none none' }
+          }
+        );
+
+        // Condition pills stagger after parent card
+        cards.forEach((card, i) => {
+          const pills = card.querySelectorAll('.pill');
+          if (pills.length) {
+            gsap.fromTo(pills,
+              { opacity: 0, scale: 0.85 },
+              {
+                opacity: 1, scale: 1,
+                duration: 0.35,
+                stagger: 0.05,
+                ease: 'power1.out',
+                scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' }
+              }
+            );
+          }
+        });
+      });
+
+      // ── Match stat cards (Section 4): stagger ──
+      document.querySelectorAll('.match-cards').forEach(grid => {
+        gsap.fromTo(grid.querySelectorAll('.match-card'),
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1, y: 0,
+            duration: 1.0,
+            stagger: 0.15,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: grid, start: 'top 85%', toggleActions: 'play none none none' }
+          }
+        );
+      });
+
+      // ── Stats row stagger ──
+      document.querySelectorAll('.stats-row').forEach(row => {
+        gsap.fromTo(row.querySelectorAll('.stat'),
+          { opacity: 0, y: 16 },
+          {
+            opacity: 1, y: 0,
+            duration: 1.0,
+            stagger: 0.12,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: row, start: 'top 85%', toggleActions: 'play none none none' }
+          }
+        );
+      });
+
+      // ── Stat / match number count-up ──
+      document.querySelectorAll('[data-count]').forEach(el => {
+        const target = parseInt(el.getAttribute('data-count'));
+        const suffix = el.getAttribute('data-suffix') || '';
+        const obj = { val: 0 };
+
+        gsap.to(obj, {
+          val: target,
+          duration: 1.8,
+          ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 85%',
+            toggleActions: 'play none none none'
+          },
+          onUpdate: () => {
+            el.textContent = Math.round(obj.val).toLocaleString() + suffix;
+          }
+        });
+      });
+    }
+  </script>
+
+</body>
+</html>

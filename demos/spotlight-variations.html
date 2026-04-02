@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StemCyte — Spotlight Menu Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   RESET & BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: 'Lato', sans-serif;
+  background: #FAF7F2;
+  color: #2D1A24;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+a { text-decoration: none; color: inherit; }
+button { border: none; background: none; cursor: pointer; font-family: inherit; }
+ul { list-style: none; }
+
+/* ============================================================
+   CSS VARIABLES
+   ============================================================ */
+:root {
+  --plum: #6C1A55;
+  --plum-deep: #3D0F31;
+  --plum-light: #8B3572;
+  --cream: #FAF7F2;
+  --warm-white: #FFFDF9;
+  --text-primary: #2D1A24;
+  --text-secondary: #6B5A63;
+  --text-light: #9A8B92;
+  --blush: #F2E0EB;
+  --lavender: #E8D5E0;
+  --lavender-light: #F5EDF2;
+  --spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --shadow-sm: 0 1px 3px rgba(61,15,49,0.06), 0 1px 2px rgba(61,15,49,0.04);
+  --shadow-md: 0 4px 16px rgba(61,15,49,0.08), 0 2px 6px rgba(61,15,49,0.04);
+  --shadow-lg: 0 12px 40px rgba(61,15,49,0.10), 0 4px 12px rgba(61,15,49,0.06);
+  --radius-panel: 16px;
+  --radius-sm: 10px;
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  background: var(--warm-white);
+  border-bottom: 1px solid rgba(108,26,85,0.06);
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.header-inner {
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.logo-icon {
+  width: 36px; height: 36px;
+  background: var(--plum);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-icon svg { width: 20px; height: 20px; }
+.logo-text {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--plum-deep);
+  letter-spacing: -0.01em;
+}
+
+/* Nav */
+.nav-items {
+  display: flex;
+  gap: 4px;
+}
+.nav-btn {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-secondary);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  position: relative;
+}
+.nav-btn:hover { color: var(--text-primary); background: var(--lavender-light); }
+.nav-btn.active { color: var(--plum); background: var(--blush); font-weight: 600; }
+.nav-btn .chevron {
+  width: 12px; height: 12px;
+  transition: transform 0.3s var(--spring);
+  opacity: 0.5;
+}
+.nav-btn.active .chevron {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* CTA */
+.cta-btn {
+  background: var(--plum);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 100px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: all 0.2s ease;
+}
+.cta-btn:hover { background: var(--plum-deep); transform: translateY(-1px); box-shadow: var(--shadow-md); }
+
+/* ============================================================
+   DROPDOWN SYSTEM
+   ============================================================ */
+.dropdown-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(45,26,36,0.18);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 900;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.dropdown-overlay.open { opacity: 1; pointer-events: auto; }
+
+.dropdown-container {
+  position: fixed;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 950;
+  width: 100%;
+  max-width: 960px;
+  padding: 8px 16px;
+  pointer-events: none;
+}
+
+.dropdown-panel {
+  background: var(--warm-white);
+  border-radius: var(--radius-panel);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(108,26,85,0.06);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-8px) scale(0.98);
+  transition: opacity 0.35s var(--spring), transform 0.35s var(--spring);
+  pointer-events: none;
+}
+.dropdown-panel.open {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* ============================================================
+   VARIATION SWITCHER (bottom bar)
+   ============================================================ */
+.variation-switcher {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 2000;
+  background: var(--warm-white);
+  border-top: 1px solid rgba(108,26,85,0.08);
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.var-btn {
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: 100px;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.var-btn:hover { color: var(--plum); background: var(--lavender-light); }
+.var-btn.active {
+  background: var(--plum);
+  color: #fff;
+  border-color: var(--plum);
+  font-weight: 600;
+}
+
+/* ============================================================
+   SHARED DROPDOWN INNER STYLES
+   ============================================================ */
+.dd-inner { padding: 28px 32px; }
+
+/* Left-right split layout */
+.dd-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  min-height: 320px;
+}
+.dd-list { padding: 28px 24px 28px 32px; }
+.dd-preview {
+  padding: 28px 32px 28px 24px;
+  border-left: 1px solid rgba(108,26,85,0.06);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Common list item */
+.dd-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.dd-item:hover, .dd-item.highlighted {
+  background: var(--lavender-light);
+}
+.dd-item.highlighted {
+  background: var(--blush);
+}
+.dd-item-num {
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-light);
+  min-width: 22px;
+  opacity: 0.6;
+  transition: all 0.2s ease;
+}
+.dd-item.highlighted .dd-item-num,
+.dd-item:hover .dd-item-num {
+  color: var(--plum);
+  opacity: 1;
+}
+.dd-item-label {
+  font-size: 0.925rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+.dd-item.highlighted .dd-item-label {
+  font-weight: 600;
+  color: var(--plum);
+}
+
+/* Preview content */
+.preview-icon-wrap {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  transition: all 0.3s var(--spring);
+}
+.preview-icon-wrap svg { width: 24px; height: 24px; stroke: var(--plum); }
+.preview-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  transition: all 0.3s var(--spring);
+}
+.preview-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+  transition: all 0.3s var(--spring);
+}
+.preview-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--plum);
+  transition: gap 0.2s ease;
+}
+.preview-link:hover { gap: 10px; }
+.preview-link svg { width: 14px; height: 14px; }
+
+/* Preview animation wrapper */
+.preview-content {
+  animation: previewIn 0.35s var(--spring);
+}
+@keyframes previewIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ============================================================
+   VARIATION 2: NO PREVIEW
+   ============================================================ */
+.v-nopreview .dd-inner { padding: 28px 40px; }
+.v-nopreview .np-list { display: flex; flex-direction: column; gap: 2px; }
+.v-nopreview .np-item {
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.25s var(--spring);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+}
+.v-nopreview .np-item:hover {
+  background: var(--lavender-light);
+  padding-left: 28px;
+}
+.v-nopreview .np-item-left {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.v-nopreview .np-item-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+}
+.v-nopreview .np-item:hover .np-item-title {
+  color: var(--plum);
+  font-weight: 600;
+}
+.v-nopreview .np-item-desc {
+  font-size: 0.8rem;
+  color: var(--text-light);
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: all 0.3s var(--spring);
+  line-height: 1.5;
+}
+.v-nopreview .np-item:hover .np-item-desc {
+  max-height: 60px;
+  opacity: 1;
+  margin-top: 4px;
+}
+.v-nopreview .np-arrow {
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: all 0.25s var(--spring);
+  color: var(--plum);
+}
+.v-nopreview .np-item:hover .np-arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ============================================================
+   VARIATION 3: MINIMAL TYPOGRAPHY
+   ============================================================ */
+.v-minimal .dd-inner { padding: 40px 48px; }
+.v-minimal .min-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 48px;
+}
+.v-minimal .min-item {
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(108,26,85,0.04);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.v-minimal .min-item:hover {
+  padding-left: 12px;
+}
+.v-minimal .min-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  transition: all 0.25s ease;
+  letter-spacing: -0.01em;
+}
+.v-minimal .min-item:hover .min-title {
+  color: var(--plum);
+  font-weight: 600;
+}
+.v-minimal .min-subtitle {
+  font-size: 0.78rem;
+  color: var(--text-light);
+  margin-top: 3px;
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: all 0.3s var(--spring);
+  line-height: 1.4;
+}
+.v-minimal .min-item:hover .min-subtitle {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================================
+   VARIATION 4: REVERSED LAYOUT
+   ============================================================ */
+.v-reversed .dd-split {
+  grid-template-columns: 1fr 1fr;
+}
+.v-reversed .dd-preview {
+  border-left: none;
+  border-right: 1px solid rgba(108,26,85,0.06);
+  order: -1;
+  padding: 28px 24px 28px 32px;
+}
+.v-reversed .dd-list {
+  padding: 28px 32px 28px 24px;
+}
+
+/* ============================================================
+   VARIATION 5: INLINE EXPAND
+   ============================================================ */
+.v-inline .dd-inner { padding: 24px 40px; }
+.v-inline .inl-list { display: flex; flex-direction: column; gap: 2px; }
+.v-inline .inl-item {
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.35s var(--spring);
+  overflow: hidden;
+}
+.v-inline .inl-header {
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.2s ease;
+  border-radius: var(--radius-sm);
+}
+.v-inline .inl-item:hover .inl-header,
+.v-inline .inl-item.expanded .inl-header {
+  background: var(--lavender-light);
+}
+.v-inline .inl-title {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s ease;
+}
+.v-inline .inl-item.expanded .inl-title {
+  color: var(--plum);
+  font-weight: 600;
+}
+.v-inline .inl-icon-sm {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.v-inline .inl-icon-sm svg { width: 16px; height: 16px; stroke: var(--plum); }
+.v-inline .inl-expand-icon {
+  width: 20px; height: 20px;
+  color: var(--text-light);
+  transition: all 0.3s var(--spring);
+}
+.v-inline .inl-item.expanded .inl-expand-icon {
+  transform: rotate(45deg);
+  color: var(--plum);
+}
+.v-inline .inl-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--spring);
+}
+.v-inline .inl-item.expanded .inl-body {
+  max-height: 140px;
+}
+.v-inline .inl-body-inner {
+  padding: 4px 20px 16px 64px;
+}
+.v-inline .inl-desc {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-bottom: 10px;
+}
+.v-inline .inl-link {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--plum);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.v-inline .inl-link svg { width: 12px; height: 12px; }
+
+/* ============================================================
+   VARIATION 6: VISUAL STAGE
+   ============================================================ */
+.v-visual .dd-split { grid-template-columns: 280px 1fr; min-height: 360px; }
+.v-visual .dd-preview {
+  padding: 0;
+  border-left: none;
+  position: relative;
+  overflow: hidden;
+  border-radius: 0 var(--radius-panel) var(--radius-panel) 0;
+}
+.v-visual .vis-stage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px;
+  transition: all 0.4s var(--spring);
+}
+.v-visual .vis-stage-bg {
+  position: absolute;
+  inset: 0;
+  transition: all 0.5s var(--spring);
+}
+.v-visual .vis-stage-content {
+  position: relative;
+  z-index: 1;
+  animation: previewIn 0.35s var(--spring);
+}
+.v-visual .vis-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 8px;
+}
+.v-visual .vis-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+.v-visual .vis-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.5;
+  max-width: 320px;
+}
+
+/* ============================================================
+   VARIATION 7: STATS-FORWARD
+   ============================================================ */
+.v-stats .dd-split { grid-template-columns: 1fr 1fr; min-height: 320px; }
+.v-stats .stats-preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 32px;
+  border-left: 1px solid rgba(108,26,85,0.06);
+}
+.v-stats .stat-number {
+  font-family: 'Source Serif 4', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: var(--plum);
+  line-height: 1;
+  margin-bottom: 6px;
+  transition: all 0.3s var(--spring);
+}
+.v-stats .stat-unit {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-light);
+  margin-bottom: 16px;
+}
+.v-stats .stat-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  max-width: 300px;
+  margin-bottom: 16px;
+}
+.v-stats .stat-bar {
+  height: 3px;
+  background: var(--lavender);
+  border-radius: 2px;
+  overflow: hidden;
+  max-width: 200px;
+  margin-bottom: 8px;
+}
+.v-stats .stat-bar-fill {
+  height: 100%;
+  background: var(--plum);
+  border-radius: 2px;
+  transition: width 0.6s var(--spring);
+}
+
+/* ============================================================
+   VARIATION 8: MICRO-CARDS
+   ============================================================ */
+.v-cards .dd-split { grid-template-columns: 260px 1fr; }
+.v-cards .cards-preview {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 24px;
+  border-left: 1px solid rgba(108,26,85,0.06);
+  align-content: center;
+}
+.v-cards .micro-card {
+  background: var(--cream);
+  border: 1px solid rgba(108,26,85,0.06);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  transition: all 0.25s var(--spring);
+  cursor: pointer;
+  animation: previewIn 0.3s var(--spring);
+}
+.v-cards .micro-card:hover {
+  background: var(--lavender-light);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+.v-cards .mc-icon {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.v-cards .mc-icon svg { width: 14px; height: 14px; }
+.v-cards .mc-title {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.v-cards .mc-desc {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  line-height: 1.4;
+}
+
+/* ============================================================
+   VARIATION 9: COMMAND PALETTE
+   ============================================================ */
+.v-command .dd-inner { padding: 0; }
+.v-command .cmd-search-wrap {
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(108,26,85,0.06);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.v-command .cmd-search-icon { color: var(--text-light); flex-shrink: 0; }
+.v-command .cmd-search-icon svg { width: 18px; height: 18px; }
+.v-command .cmd-input {
+  width: 100%;
+  border: none;
+  background: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-primary);
+  outline: none;
+}
+.v-command .cmd-input::placeholder { color: var(--text-light); }
+.v-command .cmd-hint {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  background: var(--lavender-light);
+  padding: 3px 8px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+.v-command .cmd-list { padding: 8px; max-height: 360px; overflow-y: auto; }
+.v-command .cmd-group-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-light);
+  padding: 10px 14px 6px;
+}
+.v-command .cmd-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.v-command .cmd-item:hover, .v-command .cmd-item.cmd-active {
+  background: var(--blush);
+}
+.v-command .cmd-item-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: var(--lavender-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.v-command .cmd-item-icon svg { width: 16px; height: 16px; stroke: var(--plum); }
+.v-command .cmd-item-text { flex: 1; }
+.v-command .cmd-item-title {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+.v-command .cmd-item-path {
+  font-size: 0.72rem;
+  color: var(--text-light);
+}
+.v-command .cmd-item-arrow {
+  opacity: 0;
+  color: var(--text-light);
+  transition: opacity 0.15s ease;
+}
+.v-command .cmd-item:hover .cmd-item-arrow { opacity: 1; }
+.v-command .cmd-empty {
+  padding: 32px;
+  text-align: center;
+  color: var(--text-light);
+  font-size: 0.88rem;
+}
+
+/* ============================================================
+   VARIATION 10: TIMELINE
+   ============================================================ */
+.v-timeline .dd-split { grid-template-columns: 1fr 1fr; min-height: 340px; }
+.v-timeline .tl-list { padding: 28px 24px 28px 32px; position: relative; }
+.v-timeline .tl-line {
+  position: absolute;
+  left: 52px;
+  top: 44px;
+  bottom: 44px;
+  width: 2px;
+  background: var(--lavender);
+  border-radius: 1px;
+}
+.v-timeline .tl-line-fill {
+  width: 100%;
+  background: var(--plum);
+  border-radius: 1px;
+  transition: height 0.4s var(--spring);
+}
+.v-timeline .tl-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+.v-timeline .tl-item:hover, .v-timeline .tl-item.highlighted {
+  background: var(--lavender-light);
+}
+.v-timeline .tl-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--lavender);
+  border: 2px solid var(--warm-white);
+  flex-shrink: 0;
+  margin-top: 6px;
+  transition: all 0.2s ease;
+  position: relative;
+  z-index: 1;
+}
+.v-timeline .tl-item.highlighted .tl-dot,
+.v-timeline .tl-item:hover .tl-dot {
+  background: var(--plum);
+  transform: scale(1.3);
+  box-shadow: 0 0 0 4px rgba(108,26,85,0.15);
+}
+.v-timeline .tl-item-label {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  transition: color 0.2s ease;
+  line-height: 1.4;
+}
+.v-timeline .tl-item.highlighted .tl-item-label {
+  font-weight: 600;
+  color: var(--plum);
+}
+.v-timeline .tl-item-sub {
+  font-size: 0.75rem;
+  color: var(--text-light);
+  margin-top: 2px;
+}
+
+/* ============================================================
+   PAGE CONTENT (behind the dropdown)
+   ============================================================ */
+.page-content {
+  padding-top: 64px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 80px;
+}
+.page-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 12px;
+}
+.page-content p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 480px;
+  line-height: 1.6;
+}
+.page-hint {
+  margin-top: 24px;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.page-hint .key-hint {
+  background: var(--lavender-light);
+  border: 1px solid var(--lavender);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================
+     SVG ICON DEFS
+     ============================================================ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+  <defs>
+    <!-- Heart (logo) -->
+    <symbol id="ico-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78z"/>
+    </symbol>
+    <!-- Chevron down -->
+    <symbol id="ico-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"/>
+    </symbol>
+    <!-- Arrow right -->
+    <symbol id="ico-arrow-r" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+    </symbol>
+    <!-- Blood drop -->
+    <symbol id="ico-drop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+    </symbol>
+    <!-- DNA / helix -->
+    <symbol id="ico-dna" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M2 15c6.667-6 13.333 0 20-6"/><path d="M9 22c1.798-1.998 2.573-3.995 2.572-5.993"/><path d="M15 2c-1.798 1.998-2.573 3.995-2.572 5.993"/><path d="M2 9c6.667 6 13.333 0 20 6"/>
+    </symbol>
+    <!-- Scale -->
+    <symbol id="ico-scale" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v18"/><path d="M3 7l4 9a5 5 0 0 0 10 0l4-9"/><path d="M3 7l9-4 9 4"/>
+    </symbol>
+    <!-- Activity / pulse -->
+    <symbol id="ico-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+    </symbol>
+    <!-- Users -->
+    <symbol id="ico-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+    </symbol>
+    <!-- Clock -->
+    <symbol id="ico-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    </symbol>
+    <!-- Help circle -->
+    <symbol id="ico-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+    </symbol>
+    <!-- Star -->
+    <symbol id="ico-star" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+    </symbol>
+    <!-- Shield -->
+    <symbol id="ico-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </symbol>
+    <!-- Globe -->
+    <symbol id="ico-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+    </symbol>
+    <!-- Tag / price -->
+    <symbol id="ico-tag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/>
+    </symbol>
+    <!-- Search -->
+    <symbol id="ico-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+    </symbol>
+    <!-- Gift -->
+    <symbol id="ico-gift" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 12 20 22 4 22 4 12"/><rect x="2" y="7" width="20" height="5"/><line x1="12" y1="22" x2="12" y2="7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/>
+    </symbol>
+    <!-- Plus -->
+    <symbol id="ico-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+    </symbol>
+    <!-- Book -->
+    <symbol id="ico-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">
+        <svg style="color:#fff"><use href="#ico-heart"/></svg>
+      </div>
+      <span class="logo-text">StemCyte</span>
+    </a>
+    <nav class="nav-items" id="mainNav">
+      <button class="nav-btn" data-nav="learn">Learn <svg class="chevron"><use href="#ico-chevron"/></svg></button>
+      <button class="nav-btn" data-nav="why">Why StemCyte <svg class="chevron"><use href="#ico-chevron"/></svg></button>
+      <button class="nav-btn" data-nav="story">Our Story <svg class="chevron"><use href="#ico-chevron"/></svg></button>
+      <button class="nav-btn" data-nav="plans">Plans <svg class="chevron"><use href="#ico-chevron"/></svg></button>
+    </nav>
+    <a class="cta-btn" href="#">Enroll Now</a>
+  </div>
+</header>
+
+<!-- Overlay -->
+<div class="dropdown-overlay" id="ddOverlay"></div>
+
+<!-- Dropdown container -->
+<div class="dropdown-container">
+  <div class="dropdown-panel" id="ddPanel"></div>
+</div>
+
+<!-- Page content -->
+<div class="page-content">
+  <h1>Spotlight Menu Variations</h1>
+  <p>Click any nav item above to see the dropdown. Use the switcher at the bottom to explore different structural patterns.</p>
+  <div class="page-hint">
+    <span class="key-hint">Esc</span> to close &nbsp;|&nbsp; Switch variations below
+  </div>
+</div>
+
+<!-- Variation switcher -->
+<div class="variation-switcher" id="varSwitcher"></div>
+
+<script>
+/* ============================================================
+   DATA
+   ============================================================ */
+const NAV_DATA = {
+  learn: {
+    label: 'Learn',
+    items: [
+      { title: 'What Is Cord Blood', href: '/learn/what-is-cord-blood', desc: "Your baby's umbilical cord blood is a rich source of hematopoietic stem cells, the same type used in bone marrow transplants. Collected once, at birth.", icon: 'ico-drop', iconBg: '#F9E8E8', stat: '5 min', statUnit: 'collection time', statBar: 0.3 },
+      { title: 'What Is Cord Tissue', href: '/learn/what-is-cord-tissue', desc: 'Cord tissue contains mesenchymal stem cells (MSCs), a different cell type with emerging applications in regenerative medicine.', icon: 'ico-dna', iconBg: '#E8F2E8', stat: 'MSCs', statUnit: 'cell type', statBar: 0.5 },
+      { title: 'Public vs. Private Banking', href: '/learn/public-vs-private-banking', desc: 'Public banking donates for anyone in need. Private banking reserves exclusively for your family.', icon: 'ico-scale', iconBg: '#E8EAF2', stat: '2', statUnit: 'banking options', statBar: 0.4 },
+      { title: 'Conditions Treated', href: '/learn/conditions-treated', desc: 'Cord blood stem cells have been used in the treatment of over 80 conditions including blood cancers and immune disorders.', icon: 'ico-pulse', iconBg: '#F2E8F0', stat: '80+', statUnit: 'conditions treated', statBar: 0.85 },
+      { title: 'How Your Family Can Use It', href: '/learn/how-your-family-can-use-it', desc: 'Cord blood can potentially be used by the child, siblings, and in some cases parents.', icon: 'ico-users', iconBg: '#FFF3E0', stat: '3', statUnit: 'types of family members', statBar: 0.6 },
+      { title: 'How Collection Works', href: '/learn/how-collection-works', desc: 'Collection is safe, painless, and takes less than 5 minutes after delivery.', icon: 'ico-clock', iconBg: '#E0F7FA', stat: '<5 min', statUnit: 'quick & painless', statBar: 0.25 },
+      { title: 'FAQ', href: '/learn/faq', desc: 'Answers to common questions about timing, cost, safety, storage, and when your family might need it.', icon: 'ico-help', iconBg: '#F3E5F5', stat: '20+', statUnit: 'questions answered', statBar: 0.7 },
+    ]
+  },
+  why: {
+    label: 'Why StemCyte',
+    items: [
+      { title: 'Patient Stories', href: '/patient-stories', desc: 'Real families whose lives were changed by cord blood transplants.', icon: 'ico-star', iconBg: '#FFF3E0', stat: '1000s', statUnit: 'families helped', statBar: 0.9 },
+      { title: 'LifeSaver Guarantee', href: '/lifesaver-guarantee', desc: 'If your child ever needs their cord blood for a qualifying transplant, StemCyte stands behind you.', icon: 'ico-shield', iconBg: '#E8F5E9', stat: '100%', statUnit: 'backed guarantee', statBar: 1.0 },
+    ]
+  },
+  story: {
+    label: 'Our Story',
+    items: [
+      { title: 'Our Impact', href: '/our-story/our-impact', desc: 'StemCyte cord blood units have been shipped to transplant centers worldwide.', icon: 'ico-globe', iconBg: '#E3F2FD', stat: 'Global', statUnit: 'reach worldwide', statBar: 0.95 },
+    ]
+  },
+  plans: {
+    label: 'Plans',
+    items: [
+      { title: 'Storage Plans', href: '/pricing', desc: 'Cord blood, cord tissue, or both. Flexible payment options available.', icon: 'ico-tag', iconBg: '#FFF8E1', stat: '3', statUnit: 'flexible plans', statBar: 0.5 },
+      { title: 'Public Bank Access', href: '/public-bank-access', desc: 'Search matching cord blood units. Paid add-on at $299, or free with Cord Blood & Tissue plans.', icon: 'ico-search', iconBg: '#F3E5F5', stat: '$299', statUnit: 'add-on price', statBar: 0.35 },
+      { title: 'Special Programs', href: '/special-programs', desc: 'Military families, healthcare workers, and partner organizations may qualify for special pricing.', icon: 'ico-gift', iconBg: '#E8F5E9', stat: '4+', statUnit: 'qualifying programs', statBar: 0.45 },
+    ]
+  }
+};
+
+/* Micro-card sub-links for each item */
+const MICRO_CARDS = {
+  'What Is Cord Blood': [
+    { title: 'Science Overview', desc: 'How stem cells work', icon: 'ico-book' },
+    { title: 'Collection Process', desc: 'Step by step guide', icon: 'ico-clock' },
+    { title: '80+ Conditions', desc: 'Treatment applications', icon: 'ico-pulse' },
+  ],
+  'What Is Cord Tissue': [
+    { title: 'MSC Research', desc: 'Latest clinical studies', icon: 'ico-dna' },
+    { title: 'Regenerative Medicine', desc: 'Future applications', icon: 'ico-pulse' },
+  ],
+  'Public vs. Private Banking': [
+    { title: 'Compare Options', desc: 'Side-by-side breakdown', icon: 'ico-scale' },
+    { title: 'Cost Analysis', desc: 'What to budget for', icon: 'ico-tag' },
+  ],
+  'Conditions Treated': [
+    { title: 'Blood Cancers', desc: 'Leukemia, lymphoma & more', icon: 'ico-pulse' },
+    { title: 'Immune Disorders', desc: 'Conditions treated today', icon: 'ico-shield' },
+    { title: 'Emerging Research', desc: 'Clinical trials & beyond', icon: 'ico-dna' },
+  ],
+  'How Your Family Can Use It': [
+    { title: 'For Your Child', desc: 'Autologous transplant', icon: 'ico-users' },
+    { title: 'For Siblings', desc: 'Matching probability', icon: 'ico-users' },
+  ],
+  'How Collection Works': [
+    { title: 'Day-of Timeline', desc: 'What to expect', icon: 'ico-clock' },
+    { title: 'Safety & Comfort', desc: 'Zero risk to baby', icon: 'ico-shield' },
+  ],
+  'FAQ': [
+    { title: 'Timing Questions', desc: 'When to decide', icon: 'ico-clock' },
+    { title: 'Cost & Coverage', desc: 'Insurance & payment', icon: 'ico-tag' },
+    { title: 'Safety & Storage', desc: 'How cells are kept', icon: 'ico-shield' },
+  ],
+  'Patient Stories': [
+    { title: 'Video Testimonials', desc: 'Hear from real families', icon: 'ico-star' },
+    { title: 'Written Stories', desc: 'In their own words', icon: 'ico-book' },
+  ],
+  'LifeSaver Guarantee': [
+    { title: 'How It Works', desc: 'Full guarantee details', icon: 'ico-shield' },
+    { title: 'Qualifying Conditions', desc: 'When you are covered', icon: 'ico-pulse' },
+  ],
+  'Our Impact': [
+    { title: 'By the Numbers', desc: 'Global shipment data', icon: 'ico-globe' },
+    { title: 'Research Partners', desc: 'Leading institutions', icon: 'ico-book' },
+    { title: 'Clinical Trials', desc: 'Sponsored research', icon: 'ico-dna' },
+  ],
+  'Storage Plans': [
+    { title: 'Cord Blood Only', desc: 'Starting plan', icon: 'ico-drop' },
+    { title: 'Cord Blood & Tissue', desc: 'Most popular', icon: 'ico-dna' },
+    { title: 'Payment Options', desc: 'Monthly or annual', icon: 'ico-tag' },
+  ],
+  'Public Bank Access': [
+    { title: 'Search Process', desc: 'How matching works', icon: 'ico-search' },
+    { title: 'Pricing Details', desc: '$299 or free w/ CB&T', icon: 'ico-tag' },
+  ],
+  'Special Programs': [
+    { title: 'Military Families', desc: 'Service member discount', icon: 'ico-shield' },
+    { title: 'Healthcare Workers', desc: 'Professional pricing', icon: 'ico-pulse' },
+    { title: 'Partner Orgs', desc: 'Affiliate programs', icon: 'ico-gift' },
+  ],
+};
+
+const VISUAL_GRADIENTS = [
+  'linear-gradient(135deg, #6C1A55, #3D0F31)',
+  'linear-gradient(135deg, #8B3572, #6C1A55)',
+  'linear-gradient(135deg, #3D0F31, #1a0612)',
+  'linear-gradient(135deg, #6C1A55, #8B3572)',
+  'linear-gradient(135deg, #4a1540, #6C1A55)',
+  'linear-gradient(135deg, #3D0F31, #6C1A55)',
+  'linear-gradient(135deg, #6C1A55, #4a2040)',
+];
+
+const VARIATIONS = [
+  { id: 'baseline', label: 'Baseline' },
+  { id: 'nopreview', label: 'No Preview' },
+  { id: 'minimal', label: 'Minimal' },
+  { id: 'reversed', label: 'Reversed' },
+  { id: 'inline', label: 'Inline Expand' },
+  { id: 'visual', label: 'Visual Stage' },
+  { id: 'stats', label: 'Stats-Forward' },
+  { id: 'cards', label: 'Micro-Cards' },
+  { id: 'command', label: 'Command Palette' },
+  { id: 'timeline', label: 'Timeline' },
+];
+
+/* ============================================================
+   STATE
+   ============================================================ */
+let currentVariation = 'baseline';
+let activeNav = null;
+let highlightedIndex = 0;
+
+/* ============================================================
+   DOM REFS
+   ============================================================ */
+const ddPanel = document.getElementById('ddPanel');
+const ddOverlay = document.getElementById('ddOverlay');
+const navBtns = document.querySelectorAll('.nav-btn');
+const varSwitcher = document.getElementById('varSwitcher');
+
+/* ============================================================
+   VARIATION SWITCHER
+   ============================================================ */
+function buildSwitcher() {
+  varSwitcher.innerHTML = VARIATIONS.map(v =>
+    `<button class="var-btn${v.id === currentVariation ? ' active' : ''}" data-var="${v.id}">${v.label}</button>`
+  ).join('');
+  varSwitcher.querySelectorAll('.var-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      currentVariation = btn.dataset.var;
+      document.querySelectorAll('.var-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      if (activeNav) renderDropdown(activeNav);
+    });
+  });
+}
+buildSwitcher();
+
+/* ============================================================
+   OPEN / CLOSE
+   ============================================================ */
+function openDropdown(navKey) {
+  activeNav = navKey;
+  highlightedIndex = 0;
+  navBtns.forEach(b => b.classList.toggle('active', b.dataset.nav === navKey));
+  ddOverlay.classList.add('open');
+  ddPanel.classList.add('open');
+  renderDropdown(navKey);
+}
+function closeDropdown() {
+  activeNav = null;
+  navBtns.forEach(b => b.classList.remove('active'));
+  ddOverlay.classList.remove('open');
+  ddPanel.classList.remove('open');
+}
+navBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    if (activeNav === btn.dataset.nav) closeDropdown();
+    else openDropdown(btn.dataset.nav);
+  });
+});
+ddOverlay.addEventListener('click', closeDropdown);
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDropdown(); });
+
+/* ============================================================
+   RENDERERS
+   ============================================================ */
+function renderDropdown(navKey) {
+  const data = NAV_DATA[navKey];
+  const items = data.items;
+  switch (currentVariation) {
+    case 'baseline': renderBaseline(items); break;
+    case 'nopreview': renderNoPreview(items); break;
+    case 'minimal': renderMinimal(items); break;
+    case 'reversed': renderReversed(items); break;
+    case 'inline': renderInline(items); break;
+    case 'visual': renderVisual(items); break;
+    case 'stats': renderStats(items); break;
+    case 'cards': renderCards(items); break;
+    case 'command': renderCommand(); break;
+    case 'timeline': renderTimeline(items); break;
+  }
+}
+
+/* Utility: set highlight and update preview */
+function setHighlight(container, index, items, updateFn) {
+  highlightedIndex = index;
+  container.querySelectorAll('[data-idx]').forEach((el, i) => {
+    el.classList.toggle('highlighted', i === index);
+  });
+  if (updateFn) updateFn(items[index], index);
+}
+
+/* --- V1: BASELINE --- */
+function renderBaseline(items) {
+  ddPanel.innerHTML = `
+    <div class="dd-split">
+      <div class="dd-list" id="bl-list"></div>
+      <div class="dd-preview" id="bl-preview"></div>
+    </div>`;
+  const listEl = document.getElementById('bl-list');
+  const prevEl = document.getElementById('bl-preview');
+  listEl.innerHTML = items.map((it, i) => `
+    <div class="dd-item${i === 0 ? ' highlighted' : ''}" data-idx="${i}">
+      <span class="dd-item-num">${String(i + 1).padStart(2, '0')}</span>
+      <span class="dd-item-label">${it.title}</span>
+    </div>`).join('');
+  function showPreview(item) {
+    prevEl.innerHTML = `
+      <div class="preview-content">
+        <div class="preview-icon-wrap" style="background:${item.iconBg}">
+          <svg><use href="#${item.icon}"/></svg>
+        </div>
+        <div class="preview-title">${item.title}</div>
+        <div class="preview-desc">${item.desc}</div>
+        <a class="preview-link" href="${item.href}">Learn more <svg><use href="#ico-arrow-r"/></svg></a>
+      </div>`;
+  }
+  showPreview(items[0]);
+  listEl.querySelectorAll('[data-idx]').forEach(el => {
+    el.addEventListener('mouseenter', () => setHighlight(listEl, +el.dataset.idx, items, showPreview));
+  });
+}
+
+/* --- V2: NO PREVIEW --- */
+function renderNoPreview(items) {
+  ddPanel.innerHTML = `<div class="v-nopreview"><div class="dd-inner"><div class="np-list" id="np-list"></div></div></div>`;
+  const listEl = document.getElementById('np-list');
+  listEl.innerHTML = items.map(it => `
+    <a class="np-item" href="${it.href}">
+      <div class="np-item-left">
+        <div class="np-item-title">${it.title}</div>
+        <div class="np-item-desc">${it.desc}</div>
+      </div>
+      <div class="np-arrow"><svg width="16" height="16"><use href="#ico-arrow-r"/></svg></div>
+    </a>`).join('');
+}
+
+/* --- V3: MINIMAL TYPOGRAPHY --- */
+function renderMinimal(items) {
+  ddPanel.innerHTML = `<div class="v-minimal"><div class="dd-inner"><div class="min-grid" id="min-grid"></div></div></div>`;
+  const grid = document.getElementById('min-grid');
+  grid.innerHTML = items.map(it => `
+    <a class="min-item" href="${it.href}">
+      <div class="min-title">${it.title}</div>
+      <div class="min-subtitle">${it.desc.substring(0, 70)}${it.desc.length > 70 ? '...' : ''}</div>
+    </a>`).join('');
+}
+
+/* --- V4: REVERSED LAYOUT --- */
+function renderReversed(items) {
+  ddPanel.innerHTML = `
+    <div class="v-reversed">
+      <div class="dd-split">
+        <div class="dd-preview" id="rv-preview"></div>
+        <div class="dd-list" id="rv-list"></div>
+      </div>
+    </div>`;
+  const listEl = document.getElementById('rv-list');
+  const prevEl = document.getElementById('rv-preview');
+  listEl.innerHTML = items.map((it, i) => `
+    <div class="dd-item${i === 0 ? ' highlighted' : ''}" data-idx="${i}">
+      <span class="dd-item-label">${it.title}</span>
+      <svg width="14" height="14" style="opacity:0.3;margin-left:auto"><use href="#ico-arrow-r"/></svg>
+    </div>`).join('');
+  function showPreview(item) {
+    prevEl.innerHTML = `
+      <div class="preview-content">
+        <div class="preview-icon-wrap" style="background:${item.iconBg}">
+          <svg><use href="#${item.icon}"/></svg>
+        </div>
+        <div class="preview-title">${item.title}</div>
+        <div class="preview-desc">${item.desc}</div>
+        <a class="preview-link" href="${item.href}">Learn more <svg><use href="#ico-arrow-r"/></svg></a>
+      </div>`;
+  }
+  showPreview(items[0]);
+  listEl.querySelectorAll('[data-idx]').forEach(el => {
+    el.addEventListener('mouseenter', () => setHighlight(listEl, +el.dataset.idx, items, showPreview));
+  });
+}
+
+/* --- V5: INLINE EXPAND --- */
+function renderInline(items) {
+  ddPanel.innerHTML = `<div class="v-inline"><div class="dd-inner"><div class="inl-list" id="inl-list"></div></div></div>`;
+  const listEl = document.getElementById('inl-list');
+  listEl.innerHTML = items.map((it, i) => `
+    <div class="inl-item${i === 0 ? ' expanded' : ''}" data-idx="${i}">
+      <div class="inl-header">
+        <div class="inl-title">
+          <div class="inl-icon-sm" style="background:${it.iconBg}">
+            <svg><use href="#${it.icon}"/></svg>
+          </div>
+          ${it.title}
+        </div>
+        <svg class="inl-expand-icon"><use href="#ico-plus"/></svg>
+      </div>
+      <div class="inl-body">
+        <div class="inl-body-inner">
+          <div class="inl-desc">${it.desc}</div>
+          <a class="inl-link" href="${it.href}">Learn more <svg><use href="#ico-arrow-r"/></svg></a>
+        </div>
+      </div>
+    </div>`).join('');
+  listEl.querySelectorAll('.inl-item').forEach(el => {
+    el.querySelector('.inl-header').addEventListener('click', () => {
+      const wasExpanded = el.classList.contains('expanded');
+      listEl.querySelectorAll('.inl-item').forEach(e => e.classList.remove('expanded'));
+      if (!wasExpanded) el.classList.add('expanded');
+    });
+  });
+}
+
+/* --- V6: VISUAL STAGE --- */
+function renderVisual(items) {
+  ddPanel.innerHTML = `
+    <div class="v-visual">
+      <div class="dd-split">
+        <div class="dd-list" id="vs-list"></div>
+        <div class="dd-preview" id="vs-preview"></div>
+      </div>
+    </div>`;
+  const listEl = document.getElementById('vs-list');
+  const prevEl = document.getElementById('vs-preview');
+  listEl.innerHTML = items.map((it, i) => `
+    <div class="dd-item${i === 0 ? ' highlighted' : ''}" data-idx="${i}">
+      <span class="dd-item-label">${it.title}</span>
+    </div>`).join('');
+  function showVisual(item, idx) {
+    const grad = VISUAL_GRADIENTS[idx % VISUAL_GRADIENTS.length];
+    prevEl.innerHTML = `
+      <div class="vis-stage">
+        <div class="vis-stage-bg" style="background:${grad}"></div>
+        <div class="vis-stage-content">
+          <div class="vis-tag">${NAV_DATA[activeNav].label}</div>
+          <div class="vis-title">${item.title}</div>
+          <div class="vis-desc">${item.desc.substring(0, 90)}${item.desc.length > 90 ? '...' : ''}</div>
+        </div>
+      </div>`;
+  }
+  showVisual(items[0], 0);
+  listEl.querySelectorAll('[data-idx]').forEach(el => {
+    el.addEventListener('mouseenter', () => setHighlight(listEl, +el.dataset.idx, items, showVisual));
+  });
+}
+
+/* --- V7: STATS-FORWARD --- */
+function renderStats(items) {
+  ddPanel.innerHTML = `
+    <div class="v-stats">
+      <div class="dd-split">
+        <div class="dd-list" id="st-list"></div>
+        <div class="stats-preview" id="st-preview"></div>
+      </div>
+    </div>`;
+  const listEl = document.getElementById('st-list');
+  const prevEl = document.getElementById('st-preview');
+  listEl.innerHTML = items.map((it, i) => `
+    <div class="dd-item${i === 0 ? ' highlighted' : ''}" data-idx="${i}">
+      <span class="dd-item-num">${String(i + 1).padStart(2, '0')}</span>
+      <span class="dd-item-label">${it.title}</span>
+    </div>`).join('');
+  function showStats(item) {
+    prevEl.innerHTML = `
+      <div class="preview-content">
+        <div class="stat-number">${item.stat}</div>
+        <div class="stat-unit">${item.statUnit}</div>
+        <div class="stat-bar"><div class="stat-bar-fill" style="width:0%"></div></div>
+        <div class="stat-desc">${item.desc}</div>
+        <a class="preview-link" href="${item.href}">Explore <svg><use href="#ico-arrow-r"/></svg></a>
+      </div>`;
+    requestAnimationFrame(() => {
+      const fill = prevEl.querySelector('.stat-bar-fill');
+      if (fill) fill.style.width = (item.statBar * 100) + '%';
+    });
+  }
+  showStats(items[0]);
+  listEl.querySelectorAll('[data-idx]').forEach(el => {
+    el.addEventListener('mouseenter', () => setHighlight(listEl, +el.dataset.idx, items, showStats));
+  });
+}
+
+/* --- V8: MICRO-CARDS --- */
+function renderCards(items) {
+  ddPanel.innerHTML = `
+    <div class="v-cards">
+      <div class="dd-split">
+        <div class="dd-list" id="mc-list"></div>
+        <div class="cards-preview" id="mc-preview"></div>
+      </div>
+    </div>`;
+  const listEl = document.getElementById('mc-list');
+  const prevEl = document.getElementById('mc-preview');
+  listEl.innerHTML = items.map((it, i) => `
+    <div class="dd-item${i === 0 ? ' highlighted' : ''}" data-idx="${i}">
+      <span class="dd-item-label">${it.title}</span>
+    </div>`).join('');
+  function showCards(item) {
+    const cards = MICRO_CARDS[item.title] || [{ title: item.title, desc: 'Learn more', icon: item.icon }];
+    const iconBgs = ['#F9E8E8', '#E8F2E8', '#E8EAF2', '#F2E8F0'];
+    prevEl.innerHTML = cards.map((c, ci) => `
+      <a class="micro-card" href="${item.href}" style="animation-delay:${ci * 0.05}s">
+        <div class="mc-icon" style="background:${iconBgs[ci % iconBgs.length]}">
+          <svg style="stroke:var(--plum)"><use href="#${c.icon}"/></svg>
+        </div>
+        <div class="mc-title">${c.title}</div>
+        <div class="mc-desc">${c.desc}</div>
+      </a>`).join('');
+  }
+  showCards(items[0]);
+  listEl.querySelectorAll('[data-idx]').forEach(el => {
+    el.addEventListener('mouseenter', () => setHighlight(listEl, +el.dataset.idx, items, showCards));
+  });
+}
+
+/* --- V9: COMMAND PALETTE --- */
+function renderCommand() {
+  // Flatten all items with section labels
+  const allItems = [];
+  Object.entries(NAV_DATA).forEach(([key, section]) => {
+    section.items.forEach(it => {
+      allItems.push({ ...it, section: section.label, navKey: key });
+    });
+  });
+  // Show only current section items initially but allow search across all
+  ddPanel.innerHTML = `
+    <div class="v-command">
+      <div class="dd-inner">
+        <div class="cmd-search-wrap">
+          <div class="cmd-search-icon"><svg><use href="#ico-search"/></svg></div>
+          <input class="cmd-input" id="cmd-input" type="text" placeholder="Search pages..." autocomplete="off" spellcheck="false">
+          <div class="cmd-hint">esc to close</div>
+        </div>
+        <div class="cmd-list" id="cmd-list"></div>
+      </div>
+    </div>`;
+  const input = document.getElementById('cmd-input');
+  const listEl = document.getElementById('cmd-list');
+  let cmdHighlight = 0;
+
+  function renderCmdList(filter) {
+    const q = (filter || '').toLowerCase();
+    const filtered = q ? allItems.filter(it =>
+      it.title.toLowerCase().includes(q) || it.desc.toLowerCase().includes(q) || it.section.toLowerCase().includes(q)
+    ) : allItems;
+
+    if (filtered.length === 0) {
+      listEl.innerHTML = '<div class="cmd-empty">No results found</div>';
+      return;
+    }
+
+    let html = '';
+    let currentSection = '';
+    filtered.forEach((it, i) => {
+      if (it.section !== currentSection) {
+        currentSection = it.section;
+        html += `<div class="cmd-group-label">${currentSection}</div>`;
+      }
+      html += `
+        <a class="cmd-item${i === 0 ? ' cmd-active' : ''}" href="${it.href}" data-cidx="${i}">
+          <div class="cmd-item-icon" style="background:${it.iconBg}">
+            <svg><use href="#${it.icon}"/></svg>
+          </div>
+          <div class="cmd-item-text">
+            <div class="cmd-item-title">${it.title}</div>
+            <div class="cmd-item-path">${it.href}</div>
+          </div>
+          <div class="cmd-item-arrow"><svg width="14" height="14"><use href="#ico-arrow-r"/></svg></div>
+        </a>`;
+    });
+    listEl.innerHTML = html;
+    cmdHighlight = 0;
+  }
+
+  renderCmdList('');
+  setTimeout(() => input.focus(), 50);
+  input.addEventListener('input', () => renderCmdList(input.value));
+
+  // Keyboard nav
+  input.addEventListener('keydown', e => {
+    const cmdItems = listEl.querySelectorAll('.cmd-item');
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      cmdHighlight = Math.min(cmdHighlight + 1, cmdItems.length - 1);
+      cmdItems.forEach((el, i) => el.classList.toggle('cmd-active', i === cmdHighlight));
+      cmdItems[cmdHighlight]?.scrollIntoView({ block: 'nearest' });
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      cmdHighlight = Math.max(cmdHighlight - 1, 0);
+      cmdItems.forEach((el, i) => el.classList.toggle('cmd-active', i === cmdHighlight));
+      cmdItems[cmdHighlight]?.scrollIntoView({ block: 'nearest' });
+    }
+  });
+}
+
+/* --- V10: TIMELINE --- */
+function renderTimeline(items) {
+  ddPanel.innerHTML = `
+    <div class="v-timeline">
+      <div class="dd-split">
+        <div class="tl-list" id="tl-list">
+          <div class="tl-line"><div class="tl-line-fill" id="tl-fill"></div></div>
+        </div>
+        <div class="dd-preview" id="tl-preview"></div>
+      </div>
+    </div>`;
+  const listEl = document.getElementById('tl-list');
+  const prevEl = document.getElementById('tl-preview');
+  const fillEl = document.getElementById('tl-fill');
+
+  // Add items after the line
+  items.forEach((it, i) => {
+    const el = document.createElement('div');
+    el.className = 'tl-item' + (i === 0 ? ' highlighted' : '');
+    el.dataset.idx = i;
+    el.innerHTML = `
+      <div class="tl-dot"></div>
+      <div>
+        <div class="tl-item-label">${it.title}</div>
+        <div class="tl-item-sub">${it.href}</div>
+      </div>`;
+    listEl.appendChild(el);
+  });
+
+  function updateFill(idx) {
+    const pct = items.length > 1 ? (idx / (items.length - 1)) * 100 : 100;
+    fillEl.style.height = pct + '%';
+  }
+
+  function showPreview(item) {
+    prevEl.innerHTML = `
+      <div class="preview-content">
+        <div class="preview-icon-wrap" style="background:${item.iconBg}">
+          <svg><use href="#${item.icon}"/></svg>
+        </div>
+        <div class="preview-title">${item.title}</div>
+        <div class="preview-desc">${item.desc}</div>
+        <a class="preview-link" href="${item.href}">Learn more <svg><use href="#ico-arrow-r"/></svg></a>
+      </div>`;
+  }
+
+  showPreview(items[0]);
+  updateFill(0);
+
+  listEl.querySelectorAll('[data-idx]').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      const idx = +el.dataset.idx;
+      listEl.querySelectorAll('[data-idx]').forEach((e, i) => e.classList.toggle('highlighted', i === idx));
+      showPreview(items[idx]);
+      updateFill(idx);
+    });
+  });
+}
+</script>
+</body>
+</html>

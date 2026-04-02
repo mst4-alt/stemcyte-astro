@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scroll Parallax Layers | StemCyte Animation Demos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: #FAF7F2;
+      color: #3D0F31;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 20px;
+      left: 24px;
+      z-index: 100;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #6C1A55;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: opacity 0.3s ease;
+    }
+    .back-link:hover {
+      opacity: 0.7;
+    }
+
+    /* Parallax section base */
+    .parallax-section {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .parallax-layer {
+      position: absolute;
+      inset: 0;
+      will-change: transform;
+    }
+
+    .parallax-layer--bg {
+      z-index: 1;
+    }
+    .parallax-layer--mid {
+      z-index: 2;
+    }
+    .parallax-layer--fg {
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Hero section backgrounds */
+    .hero-bg-gradient {
+      position: absolute;
+      width: 800px;
+      height: 800px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108, 26, 85, 0.12) 0%, rgba(108, 26, 85, 0.04) 40%, transparent 70%);
+    }
+
+    /* Decorative shapes */
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+    }
+
+    .shape--1 {
+      width: 220px;
+      height: 220px;
+      top: 15%;
+      left: 12%;
+      background: radial-gradient(circle, rgba(243, 240, 248, 0.5) 0%, rgba(243, 240, 248, 0.15) 60%, transparent 100%);
+      backdrop-filter: blur(1px);
+    }
+    .shape--2 {
+      width: 160px;
+      height: 160px;
+      top: 60%;
+      right: 15%;
+      background: radial-gradient(circle, rgba(79, 163, 184, 0.18) 0%, rgba(79, 163, 184, 0.06) 60%, transparent 100%);
+    }
+    .shape--3 {
+      width: 120px;
+      height: 180px;
+      top: 25%;
+      right: 25%;
+      border-radius: 60% 40% 50% 50%;
+      background: radial-gradient(circle, rgba(243, 240, 248, 0.35) 0%, rgba(237, 232, 245, 0.12) 60%, transparent 100%);
+    }
+    .shape--4 {
+      width: 100px;
+      height: 100px;
+      bottom: 20%;
+      left: 30%;
+      background: radial-gradient(circle, rgba(79, 163, 184, 0.15) 0%, transparent 70%);
+    }
+
+    /* Hero foreground text */
+    .hero-content {
+      text-align: center;
+      max-width: 700px;
+      padding: 0 24px;
+    }
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 600;
+      color: #3D0F31;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .hero-content p {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      font-weight: 300;
+      color: rgba(61, 15, 49, 0.7);
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Content sections */
+    .content-section {
+      padding: 100px 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .content-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+      font-weight: 600;
+      color: #3D0F31;
+      margin-bottom: 24px;
+      line-height: 1.25;
+    }
+    .content-section p {
+      font-size: 1.05rem;
+      color: rgba(61, 15, 49, 0.65);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .content-section .divider {
+      width: 60px;
+      height: 2px;
+      background: #6C1A55;
+      opacity: 0.3;
+      margin-bottom: 32px;
+    }
+
+    /* Second parallax section */
+    .parallax-section--two {
+      background: linear-gradient(180deg, #F3F0F8 0%, #FAF7F2 100%);
+    }
+    .section-two-bg {
+      position: absolute;
+      width: 900px;
+      height: 900px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(237, 232, 245, 0.6) 0%, rgba(243, 240, 248, 0.2) 50%, transparent 70%);
+    }
+
+    .shape--5 {
+      width: 280px;
+      height: 280px;
+      top: 20%;
+      right: 10%;
+      border-radius: 55% 45% 60% 40%;
+      background: radial-gradient(circle, rgba(243, 240, 248, 0.45) 0%, rgba(237, 232, 245, 0.15) 60%, transparent 100%);
+      backdrop-filter: blur(2px);
+    }
+    .shape--6 {
+      width: 200px;
+      height: 200px;
+      bottom: 25%;
+      left: 8%;
+      border-radius: 45% 55% 50% 50%;
+      background: radial-gradient(circle, rgba(79, 163, 184, 0.14) 0%, transparent 70%);
+    }
+    .shape--7 {
+      width: 150px;
+      height: 220px;
+      top: 40%;
+      left: 35%;
+      border-radius: 50% 50% 40% 60%;
+      background: radial-gradient(circle, rgba(108, 26, 85, 0.06) 0%, transparent 65%);
+    }
+
+    .section-two-content {
+      text-align: center;
+      max-width: 650px;
+      padding: 0 24px;
+    }
+    .section-two-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      font-weight: 600;
+      color: #3D0F31;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+    .section-two-content p {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      font-weight: 300;
+      color: rgba(61, 15, 49, 0.65);
+      line-height: 1.7;
+    }
+
+    /* Final dark parallax section */
+    .parallax-section--dark {
+      background: #3D0F31;
+    }
+    .dark-bg-glow {
+      position: absolute;
+      width: 700px;
+      height: 700px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(108, 26, 85, 0.4) 0%, rgba(108, 26, 85, 0.1) 40%, transparent 70%);
+    }
+    .dark-dots {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 30px 30px;
+    }
+
+    .dark-content {
+      text-align: center;
+      max-width: 600px;
+      padding: 0 24px;
+    }
+    .dark-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      font-weight: 600;
+      color: #FFFFFF;
+      line-height: 1.25;
+      margin-bottom: 18px;
+    }
+    .dark-content p {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .pill-btn {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #3D0F31;
+      background: #FAF7F2;
+      border: none;
+      border-radius: 100px;
+      padding: 16px 40px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      letter-spacing: 0.02em;
+    }
+    .pill-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Fade-up animation targets */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    /* Footer spacer */
+    .footer-spacer {
+      height: 80px;
+      background: #3D0F31;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero-bg-gradient {
+        width: 500px;
+        height: 500px;
+      }
+      .shape--1 { width: 140px; height: 140px; }
+      .shape--2 { width: 100px; height: 100px; }
+      .shape--3 { width: 80px; height: 120px; }
+      .shape--5 { width: 180px; height: 180px; }
+      .shape--6 { width: 130px; height: 130px; }
+      .content-section {
+        padding: 70px 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link">&larr; Back to Gallery</a>
+
+  <!-- PARALLAX HERO -->
+  <section class="parallax-section parallax-section--hero">
+    <!-- Background layer -->
+    <div class="parallax-layer parallax-layer--bg" data-parallax="bg">
+      <div class="hero-bg-gradient"></div>
+    </div>
+    <!-- Midground layer -->
+    <div class="parallax-layer parallax-layer--mid" data-parallax="mid">
+      <div class="shape shape--1"></div>
+      <div class="shape shape--2"></div>
+      <div class="shape shape--3"></div>
+      <div class="shape shape--4"></div>
+    </div>
+    <!-- Foreground layer -->
+    <div class="parallax-layer parallax-layer--fg" data-parallax="fg">
+      <div class="hero-content">
+        <h1>Banking your baby's stem cells</h1>
+        <p>A once-in-a-lifetime opportunity to preserve the building blocks of your child's future health.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT SECTION -->
+  <section class="content-section">
+    <div class="divider fade-up"></div>
+    <h2 class="fade-up">Why cord blood matters</h2>
+    <p class="fade-up">Cord blood is collected from the umbilical cord immediately after birth. It contains powerful stem cells that can be used in transplants to treat over 80 diseases, including leukemia, lymphoma, and inherited metabolic disorders.</p>
+    <p class="fade-up">Unlike bone marrow, cord blood does not require a perfect match between donor and recipient, making it a versatile and valuable medical resource for your family.</p>
+  </section>
+
+  <!-- SECOND PARALLAX SECTION -->
+  <section class="parallax-section parallax-section--two">
+    <!-- Background layer -->
+    <div class="parallax-layer parallax-layer--bg" data-parallax="bg-2">
+      <div class="section-two-bg"></div>
+    </div>
+    <!-- Midground layer -->
+    <div class="parallax-layer parallax-layer--mid" data-parallax="mid-2">
+      <div class="shape shape--5"></div>
+      <div class="shape shape--6"></div>
+      <div class="shape shape--7"></div>
+    </div>
+    <!-- Foreground layer -->
+    <div class="parallax-layer parallax-layer--fg" data-parallax="fg-2">
+      <div class="section-two-content">
+        <h2>Protection for generations</h2>
+        <p>Stem cells stored today can serve your child, their siblings, and potentially their children. It's a form of biological insurance that grows more valuable as medicine advances.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTENT SECTION TWO -->
+  <section class="content-section">
+    <div class="divider fade-up"></div>
+    <h2 class="fade-up">The science keeps advancing</h2>
+    <p class="fade-up">Every year, researchers discover new applications for cord blood stem cells. From regenerative medicine to immunotherapy, the possibilities continue to expand far beyond what was imaginable even a decade ago.</p>
+    <p class="fade-up">By banking today, you ensure access to treatments that may not yet exist -- but almost certainly will.</p>
+  </section>
+
+  <!-- FINAL DARK PARALLAX SECTION -->
+  <section class="parallax-section parallax-section--dark">
+    <!-- Background layer -->
+    <div class="parallax-layer parallax-layer--bg" data-parallax="bg-3">
+      <div class="dark-bg-glow"></div>
+      <div class="dark-dots"></div>
+    </div>
+    <!-- Foreground layer -->
+    <div class="parallax-layer parallax-layer--fg" data-parallax="fg-3">
+      <div class="dark-content">
+        <h2>Give your family the gift of possibility</h2>
+        <p>Learn how StemCyte's advanced processing and storage can protect what matters most.</p>
+        <a href="#" class="pill-btn">Get Started Today</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-spacer"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // -- Parallax Hero (Section 1) --
+    function setupParallax(section, bgSelector, midSelector, fgSelector, opts = {}) {
+      const bg = section.querySelector(bgSelector);
+      const mid = section.querySelector(midSelector);
+      const fg = section.querySelector(fgSelector);
+      const direction = opts.reverse ? 1 : -1;
+
+      // Background: slowest movement
+      if (bg) {
+        gsap.to(bg, {
+          y: direction * 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        });
+      }
+
+      // Midground: medium movement
+      if (mid) {
+        gsap.to(mid, {
+          y: direction * 60,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        });
+      }
+
+      // Foreground: fastest movement
+      if (fg) {
+        gsap.to(fg, {
+          y: direction * 90,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        });
+      }
+    }
+
+    // Section 1 -- normal direction
+    const hero = document.querySelector('.parallax-section--hero');
+    setupParallax(
+      hero,
+      '[data-parallax="bg"]',
+      '[data-parallax="mid"]',
+      '[data-parallax="fg"]'
+    );
+
+    // Section 2 -- reverse direction for depth contrast
+    const sectionTwo = document.querySelector('.parallax-section--two');
+    setupParallax(
+      sectionTwo,
+      '[data-parallax="bg-2"]',
+      '[data-parallax="mid-2"]',
+      '[data-parallax="fg-2"]',
+      { reverse: true }
+    );
+
+    // Section 3 -- dark CTA
+    const sectionDark = document.querySelector('.parallax-section--dark');
+    if (sectionDark) {
+      const bg3 = sectionDark.querySelector('[data-parallax="bg-3"]');
+      const fg3 = sectionDark.querySelector('[data-parallax="fg-3"]');
+
+      if (bg3) {
+        gsap.to(bg3, {
+          y: -25,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionDark,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        });
+      }
+      if (fg3) {
+        gsap.to(fg3, {
+          y: -70,
+          ease: "none",
+          scrollTrigger: {
+            trigger: sectionDark,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true,
+          }
+        });
+      }
+    }
+
+    // -- Fade-up animations for content sections --
+    const fadeEls = document.querySelectorAll('.fade-up');
+    fadeEls.forEach((el) => {
+      gsap.to(el, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+          toggleActions: "play none none none",
+        }
+      });
+    });
+  </script>
+</body>
+</html>

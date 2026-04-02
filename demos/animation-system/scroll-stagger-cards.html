@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scroll Stagger Cards — StemCyte Animation Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Playfair+Display:wght@500;600;700&family=Source+Serif+4:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #FAF7F2;
+      color: #3D0F31;
+      font-family: 'Lato', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 20px;
+      left: 24px;
+      z-index: 100;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .back-link:hover { color: #fff; }
+    .back-link.scrolled { color: #6C1A55; }
+
+    /* Hero */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(160deg, #6C1A55 0%, #3D0F31 100%);
+      padding: 80px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(79,163,184,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: clamp(48px, 8vw, 80px);
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-family: 'Lato', sans-serif;
+      font-size: 18px;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      line-height: 1.6;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(255,255,255,0.35);
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .scroll-hint .arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid rgba(255,255,255,0.35);
+      border-bottom: 2px solid rgba(255,255,255,0.35);
+      transform: rotate(45deg);
+      animation: bounce 2s ease infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50% { transform: rotate(45deg) translateY(6px); }
+    }
+
+    /* Sections */
+    .card-section {
+      padding: 100px 24px;
+      max-width: 1120px;
+      margin: 0 auto;
+    }
+    .card-section .section-label {
+      font-family: 'Lato', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #6C1A55;
+      margin-bottom: 12px;
+    }
+    .card-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: clamp(32px, 5vw, 44px);
+      color: #3D0F31;
+      margin-bottom: 16px;
+      line-height: 1.15;
+    }
+    .card-section .section-desc {
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      color: #5a4e47;
+      max-width: 560px;
+      line-height: 1.6;
+      margin-bottom: 56px;
+    }
+
+    /* Card grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    @media (max-width: 960px) {
+      .card-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px) {
+      .card-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Card */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      will-change: transform;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.05);
+    }
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .card-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+    .card-icon.plum    { background: linear-gradient(135deg, #6C1A55, #8B2E6E); }
+    .card-icon.teal    { background: linear-gradient(135deg, #4FA3B8, #3B8A9E); }
+    .card-icon.lavender { background: linear-gradient(135deg, #9B7EC8, #7B5FA8); }
+    .card-icon.warm    { background: linear-gradient(135deg, #C4785B, #A85D42); }
+
+    .card h3 {
+      font-family: 'Lato', sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #3D0F31;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+    .card p {
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: #5a4e47;
+      line-height: 1.55;
+    }
+
+    /* Stat number style */
+    .stat-num {
+      font-family: 'Source Serif 4', serif;
+      font-weight: 600;
+    }
+
+    /* Spacer between sections */
+    .section-divider {
+      max-width: 1120px;
+      margin: 0 auto;
+      border: none;
+      border-top: 1px solid #E8E2DC;
+    }
+
+    /* Second section alternate bg */
+    .alt-bg {
+      background: #F3F0F8;
+      padding: 100px 0;
+    }
+    .alt-bg .card-section {
+      padding: 0 24px;
+    }
+
+    /* Footer */
+    .demo-footer {
+      text-align: center;
+      padding: 60px 24px;
+      font-size: 13px;
+      color: #9a8e85;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      .card {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: box-shadow 0.3s ease !important;
+      }
+      .card:hover {
+        transform: none;
+      }
+      .scroll-hint .arrow {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link" id="backLink">&larr; Back to Gallery</a>
+
+  <!-- Hero -->
+  <section class="hero">
+    <span class="hero-badge">Animation Demo</span>
+    <h1>Why StemCyte</h1>
+    <p>The advantages that make us the trusted choice for families preserving their newborn's cord blood and tissue.</p>
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="arrow"></div>
+    </div>
+  </section>
+
+  <!-- Section 1: What sets us apart -->
+  <section class="card-section">
+    <div class="section-label">Our Advantages</div>
+    <h2>What sets us apart</h2>
+    <p class="section-desc">Four decades of science, innovation, and an unwavering commitment to the families who trust us with their most precious resource.</p>
+
+    <div class="card-grid" id="grid1">
+      <div class="card">
+        <div class="card-icon plum">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <h3><span class="stat-num">40,000+</span> Units Shipped</h3>
+        <p>Our cord blood units have been shipped to transplant centers worldwide, trusted by physicians across the globe.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <h3><span class="stat-num">80+</span> Diseases Treated</h3>
+        <p>Cord blood stem cells have been used in transplants for more than 80 diseases including leukemia and lymphoma.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon lavender">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <h3>FDA-Regulated Facility</h3>
+        <p>Our state-of-the-art processing and storage lab in Baldwin Park, CA operates under strict FDA regulations.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon warm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h3><span class="stat-num">3</span> Clinical Trials</h3>
+        <p>StemCyte-sponsored clinical trials advancing regenerative medicine and expanding treatment possibilities.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon teal">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15.05 5A5 5 0 0 1 19 8.95M15.05 1A9 9 0 0 1 23 8.94m-1 7.98v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        </div>
+        <h3>24/7 Medical Support</h3>
+        <p>Round-the-clock access to our medical team, because emergencies and questions don't wait for business hours.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon plum">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+        </div>
+        <h3>Dual Collection</h3>
+        <p>Collect both cord blood and cord tissue in a single, painless procedure at delivery for maximum preservation value.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon lavender">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+        </div>
+        <h3>REGENECYTE&reg;</h3>
+        <p>Our advanced cord tissue processing technology, engineered to preserve the maximum viable cell count for future use.</p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon warm">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <h3>Family Protection</h3>
+        <p>Stored cord blood can potentially benefit siblings, parents, and extended family members who are a match.</p>
+      </div>
+    </div>
+  </section>
+
+  <hr class="section-divider" />
+
+  <!-- Section 2: The science behind it -->
+  <div class="alt-bg">
+    <section class="card-section">
+      <div class="section-label">The Science</div>
+      <h2>Built on evidence</h2>
+      <p class="section-desc">Every decision we make is grounded in peer-reviewed research and decades of clinical experience in stem cell transplantation.</p>
+
+      <div class="card-grid" id="grid2">
+        <div class="card">
+          <div class="card-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Peer-Reviewed Research</h3>
+          <p>Published studies in leading medical journals validate our processing methods and transplant outcomes.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon plum">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <h3>Transplant Outcomes</h3>
+          <p>Engraftment and survival rates that consistently meet or exceed international cord blood banking benchmarks.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon warm">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <h3>Advanced Processing</h3>
+          <p>Proprietary protocols optimize cell viability and total nucleated cell recovery from every collection.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon lavender">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Long-Term Storage</h3>
+          <p>Cryogenic storage in vapor-phase liquid nitrogen maintains cell integrity for decades of reliable preservation.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon plum">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Expert Team</h3>
+          <p>Scientists, physicians, and lab technicians with deep specialization in hematopoietic stem cell transplantation.</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          </div>
+          <h3>Global Reach</h3>
+          <p>International shipping capabilities ensure units reach transplant centers anywhere they're needed, when they're needed.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <footer class="demo-footer">
+    StemCyte Animation System Demo &middot; GSAP ScrollTrigger Batch
+  </footer>
+
+  <!-- GSAP -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    // Respect prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Set initial state for all cards
+      gsap.set('#grid1 .card, #grid2 .card', {
+        opacity: 0,
+        y: 60
+      });
+
+      // Batch animation for grid 1
+      ScrollTrigger.batch('#grid1 .card', {
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power2.out',
+            stagger: 0.1,
+            overwrite: true
+          });
+        },
+        start: 'top 85%',
+        once: true
+      });
+
+      // Batch animation for grid 2
+      ScrollTrigger.batch('#grid2 .card', {
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            ease: 'power2.out',
+            stagger: 0.1,
+            overwrite: true
+          });
+        },
+        start: 'top 85%',
+        once: true
+      });
+    }
+
+    // Back link color change on scroll
+    const backLink = document.getElementById('backLink');
+    const hero = document.querySelector('.hero');
+
+    if (hero && backLink) {
+      const observer = new IntersectionObserver(
+        ([entry]) => {
+          backLink.classList.toggle('scrolled', !entry.isIntersecting);
+        },
+        { threshold: 0.1 }
+      );
+      observer.observe(hero);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Starburst — StemCyte Animation System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #3D0F31; }
+  canvas { display: block; width: 100%; height: 100%; position: fixed; top: 0; left: 0; }
+
+  .overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    pointer-events: none; z-index: 10;
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: center;
+    padding: 0 24px 64px;
+  }
+
+  .back {
+    position: fixed; top: 24px; left: 28px; z-index: 20;
+    font-family: 'Lato', sans-serif; font-weight: 300; font-size: 14px;
+    color: rgba(255,255,255,0.45); text-decoration: none; letter-spacing: 0.02em;
+    pointer-events: auto; transition: color 0.3s;
+  }
+  .back:hover { color: rgba(255,255,255,0.8); }
+  .back span { margin-right: 6px; }
+
+  .title {
+    font-family: 'Playfair Display', serif; font-weight: 300;
+    font-size: clamp(32px, 5vw, 56px); color: rgba(255,255,255,0.85);
+    letter-spacing: 0.01em; margin-bottom: 12px; text-align: center;
+  }
+  .desc {
+    font-family: 'Lato', sans-serif; font-weight: 300;
+    font-size: clamp(13px, 1.6vw, 16px); color: rgba(255,255,255,0.35);
+    max-width: 440px; text-align: center; line-height: 1.6; letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<canvas id="c"></canvas>
+
+<a class="back" href="index.html"><span>&larr;</span> Back to Gallery</a>
+
+<div class="overlay">
+  <h1 class="title">Starburst</h1>
+  <p class="desc">Radial nerve-fiber network. Signals propagate outward along organic, waving lines. Move your cursor to shape the field.</p>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  // --- Canvas setup ---
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+  let W, H, cx, cy, maxR;
+
+  function resize() {
+    W = window.innerWidth;
+    H = window.innerHeight;
+    canvas.width = W * DPR;
+    canvas.height = H * DPR;
+    canvas.style.width = W + 'px';
+    canvas.style.height = H + 'px';
+    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    cx = W / 2;
+    cy = H / 2;
+    maxR = Math.min(W, H) / 2;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // --- Mouse tracking ---
+  let mouse = { x: cx, y: cy, active: false };
+
+  function onPointerMove(e) {
+    const t = e.touches ? e.touches[0] : e;
+    mouse.x = t.clientX;
+    mouse.y = t.clientY;
+    mouse.active = true;
+  }
+  function onPointerLeave() { mouse.active = false; }
+
+  window.addEventListener('mousemove', onPointerMove);
+  window.addEventListener('touchmove', onPointerMove, { passive: true });
+  window.addEventListener('touchstart', onPointerMove, { passive: true });
+  window.addEventListener('mouseleave', onPointerLeave);
+  window.addEventListener('touchend', onPointerLeave);
+
+  // --- IntersectionObserver pause ---
+  let visible = true;
+  const observer = new IntersectionObserver(function (entries) {
+    visible = entries[0].isIntersecting;
+  }, { threshold: 0.05 });
+  observer.observe(canvas);
+
+  // Also pause on tab hidden
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) visible = false;
+    else visible = true;
+  });
+
+  // --- Color palette ---
+  const PLUM    = [108, 26, 85];
+  const TEAL    = [79, 163, 184];
+  const LAVENDER = [180, 160, 220];
+  const BLUSH   = [220, 160, 180];
+  const CREAM   = [250, 247, 242];
+
+  function rgb(c, a) { return 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + a + ')'; }
+
+  function lerpColor(a, b, t) {
+    return [
+      a[0] + (b[0] - a[0]) * t,
+      a[1] + (b[1] - a[1]) * t,
+      a[2] + (b[2] - a[2]) * t
+    ];
+  }
+
+  // --- Lines ---
+  const NUM_LINES = 72;
+  const SEGMENTS = 64;
+  const lines = [];
+
+  for (let i = 0; i < NUM_LINES; i++) {
+    const angle = (i / NUM_LINES) * Math.PI * 2;
+    lines.push({
+      angle: angle,
+      baseAngle: angle,
+      // wave parameters - unique per line
+      waveFreq1: 1.5 + Math.random() * 2.5,
+      waveAmp1: 3 + Math.random() * 8,
+      wavePhase1: Math.random() * Math.PI * 2,
+      waveFreq2: 3 + Math.random() * 4,
+      waveAmp2: 1 + Math.random() * 4,
+      wavePhase2: Math.random() * Math.PI * 2,
+      waveSpeed1: 0.3 + Math.random() * 0.5,
+      waveSpeed2: 0.5 + Math.random() * 0.8,
+      // reach as fraction of maxR (0.7 - 0.9)
+      reachFrac: 0.7 + Math.random() * 0.2,
+      // brightness pulse
+      pulsePhase: Math.random() * Math.PI * 2,
+      pulseSpeed: 0.4 + Math.random() * 0.6,
+      // dots
+      dots: [],
+    });
+  }
+
+  // --- Dot class ---
+  function spawnDot(line) {
+    const bright = Math.random() > 0.5;
+    return {
+      t: 0, // 0 = center, 1 = tip
+      speed: 0.003 + Math.random() * 0.006,
+      radius: 2 + Math.random() * 2,
+      color: Math.random() > 0.4 ? TEAL : LAVENDER,
+      alpha: 1,
+      trail: [], // recent positions [{x, y, a}]
+      fading: false,
+    };
+  }
+
+  // Init dots
+  for (let i = 0; i < NUM_LINES; i++) {
+    const n = Math.random() > 0.4 ? 2 : 1;
+    for (let j = 0; j < n; j++) {
+      const d = spawnDot(lines[i]);
+      d.t = Math.random() * 0.6; // stagger start
+      lines[i].dots.push(d);
+    }
+  }
+
+  // --- Smoothed interaction values ---
+  let smoothDist = 0.5; // normalized distance from center
+  let smoothAngle = 0;
+
+  // --- Main loop ---
+  let lastTime = 0;
+  let time = 0;
+
+  function frame(ts) {
+    requestAnimationFrame(frame);
+    if (!visible) { lastTime = ts; return; }
+
+    const dt = Math.min((ts - lastTime) / 1000, 0.05);
+    lastTime = ts;
+    time += dt;
+
+    // Clear
+    ctx.clearRect(0, 0, W, H);
+
+    // Mouse interaction
+    const mdx = mouse.x - cx;
+    const mdy = mouse.y - cy;
+    const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+    const mAngle = Math.atan2(mdy, mdx);
+    const normDist = Math.min(mDist / maxR, 1.5);
+
+    // Smooth interpolation
+    const lerpFactor = 1 - Math.pow(0.03, dt);
+    if (mouse.active) {
+      smoothDist += (normDist - smoothDist) * lerpFactor;
+      // Smooth angle (handle wrapping)
+      let angleDiff = mAngle - smoothAngle;
+      while (angleDiff > Math.PI) angleDiff -= Math.PI * 2;
+      while (angleDiff < -Math.PI) angleDiff += Math.PI * 2;
+      smoothAngle += angleDiff * lerpFactor;
+    } else {
+      smoothDist += (0.5 - smoothDist) * lerpFactor * 0.3;
+    }
+
+    // Reach multiplier based on distance
+    // Near center: 0.4, far: 1.2
+    const reachMult = 0.35 + smoothDist * 0.75;
+
+    // --- Draw center glow ---
+    const glowPulse = 0.7 + 0.3 * Math.sin(time * 1.2);
+    const glowR = maxR * 0.18 * glowPulse;
+
+    const grd = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR);
+    grd.addColorStop(0, 'rgba(255,255,255,0.15)');
+    grd.addColorStop(0.15, 'rgba(200,160,190,0.10)');
+    grd.addColorStop(0.5, 'rgba(108,26,85,0.06)');
+    grd.addColorStop(1, 'rgba(108,26,85,0)');
+    ctx.fillStyle = grd;
+    ctx.beginPath();
+    ctx.arc(cx, cy, glowR, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Inner hot core
+    const coreR = maxR * 0.04 * glowPulse;
+    const coreGrd = ctx.createRadialGradient(cx, cy, 0, cx, cy, coreR);
+    coreGrd.addColorStop(0, 'rgba(255,250,245,0.25)');
+    coreGrd.addColorStop(0.5, 'rgba(220,180,200,0.08)');
+    coreGrd.addColorStop(1, 'rgba(108,26,85,0)');
+    ctx.fillStyle = coreGrd;
+    ctx.beginPath();
+    ctx.arc(cx, cy, coreR, 0, Math.PI * 2);
+    ctx.fill();
+
+    // --- Draw lines ---
+    for (let i = 0; i < NUM_LINES; i++) {
+      const L = lines[i];
+      const reach = maxR * L.reachFrac * reachMult;
+
+      // Sector brightness: lines closer to mouse angle are brighter
+      let angleDelta = L.baseAngle - smoothAngle;
+      while (angleDelta > Math.PI) angleDelta -= Math.PI * 2;
+      while (angleDelta < -Math.PI) angleDelta += Math.PI * 2;
+      const sectorBrightness = mouse.active
+        ? 0.5 + 0.5 * Math.pow(Math.cos(angleDelta * 0.5), 4)
+        : 0.75;
+
+      // Brightness pulse
+      const pulse = 0.7 + 0.3 * Math.sin(time * L.pulseSpeed + L.pulsePhase);
+      const lineBrightness = sectorBrightness * pulse;
+
+      // Gravitational bend toward cursor
+      const bendStrength = mouse.active ? 0.08 * smoothDist * Math.pow(Math.cos(angleDelta * 0.5), 2) : 0;
+
+      // Compute points along the line
+      const points = [];
+      for (let s = 0; s <= SEGMENTS; s++) {
+        const frac = s / SEGMENTS;
+        const r = frac * reach;
+
+        // Wave displacement (perpendicular to radial direction)
+        const wave1 = Math.sin(frac * L.waveFreq1 * Math.PI + time * L.waveSpeed1 + L.wavePhase1) * L.waveAmp1 * frac;
+        const wave2 = Math.sin(frac * L.waveFreq2 * Math.PI + time * L.waveSpeed2 + L.wavePhase2) * L.waveAmp2 * frac;
+        const waveOffset = wave1 + wave2;
+
+        // Bend toward cursor
+        const bendOffset = bendStrength * r * Math.sin(angleDelta) * frac;
+
+        const baseAng = L.baseAngle;
+        const perpAng = baseAng + Math.PI / 2;
+
+        const px = cx + Math.cos(baseAng) * r + Math.cos(perpAng) * (waveOffset + bendOffset);
+        const py = cy + Math.sin(baseAng) * r + Math.sin(perpAng) * (waveOffset + bendOffset);
+
+        points.push({ x: px, y: py, frac: frac });
+      }
+
+      // Draw line segments
+      for (let s = 1; s <= SEGMENTS; s++) {
+        const p0 = points[s - 1];
+        const p1 = points[s];
+        const frac = p1.frac;
+
+        // Color: plum at center -> teal at mid -> transparent at tip
+        let col;
+        if (frac < 0.4) {
+          col = lerpColor(PLUM, TEAL, frac / 0.4);
+        } else {
+          col = lerpColor(TEAL, LAVENDER, (frac - 0.4) / 0.6);
+        }
+
+        // Opacity curve: higher near center, fading at tips
+        const baseAlpha = frac < 0.15
+          ? frac / 0.15 * 0.6
+          : 0.6 * Math.pow(1 - (frac - 0.15) / 0.85, 1.5);
+        const alpha = Math.max(0, baseAlpha * lineBrightness * 0.05 + baseAlpha * lineBrightness * 0.55);
+
+        // Thickness: thin at center, thicker mid, thin at tips
+        const thickness = frac < 0.3
+          ? 0.5 + frac / 0.3 * 1.0
+          : 1.5 - (frac - 0.3) / 0.7 * 1.0;
+
+        ctx.beginPath();
+        ctx.moveTo(p0.x, p0.y);
+        ctx.lineTo(p1.x, p1.y);
+        ctx.strokeStyle = rgb(col, alpha);
+        ctx.lineWidth = thickness;
+        ctx.stroke();
+      }
+
+      // --- Dots ---
+      for (let d = 0; d < L.dots.length; d++) {
+        const dot = L.dots[d];
+
+        // Speed boost in active sector
+        const speedMult = mouse.active ? (1 + sectorBrightness * 0.8) : 1;
+        dot.t += dot.speed * speedMult * dt * 60;
+
+        if (dot.t >= 1) {
+          dot.fading = true;
+        }
+
+        if (dot.fading) {
+          dot.alpha -= dt * 3;
+          if (dot.alpha <= 0) {
+            // Respawn
+            dot.t = 0;
+            dot.alpha = 1;
+            dot.fading = false;
+            dot.speed = 0.003 + Math.random() * 0.006;
+            dot.color = Math.random() > 0.4 ? TEAL : LAVENDER;
+            dot.trail = [];
+            continue;
+          }
+        }
+
+        // Find position on line at dot.t
+        const segIndex = Math.min(Math.floor(dot.t * SEGMENTS), SEGMENTS - 1);
+        const segFrac = (dot.t * SEGMENTS) - segIndex;
+        const pA = points[segIndex];
+        const pB = points[Math.min(segIndex + 1, SEGMENTS)];
+        const dx = pA.x + (pB.x - pA.x) * segFrac;
+        const dy = pA.y + (pB.y - pA.y) * segFrac;
+
+        // Trail
+        dot.trail.push({ x: dx, y: dy, a: dot.alpha });
+        if (dot.trail.length > 8) dot.trail.shift();
+
+        // Draw trail
+        for (let ti = 0; ti < dot.trail.length - 1; ti++) {
+          const tp = dot.trail[ti];
+          const trailAlpha = (ti / dot.trail.length) * 0.3 * dot.alpha;
+          ctx.beginPath();
+          ctx.arc(tp.x, tp.y, dot.radius * 0.6, 0, Math.PI * 2);
+          ctx.fillStyle = rgb(dot.color, trailAlpha);
+          ctx.fill();
+        }
+
+        // Glow
+        const glowAlpha = 0.2 * dot.alpha * lineBrightness;
+        ctx.beginPath();
+        ctx.arc(dx, dy, dot.radius * 3, 0, Math.PI * 2);
+        const dotGlow = ctx.createRadialGradient(dx, dy, 0, dx, dy, dot.radius * 3);
+        dotGlow.addColorStop(0, rgb(dot.color, glowAlpha));
+        dotGlow.addColorStop(1, rgb(dot.color, 0));
+        ctx.fillStyle = dotGlow;
+        ctx.fill();
+
+        // Core
+        ctx.beginPath();
+        ctx.arc(dx, dy, dot.radius, 0, Math.PI * 2);
+        ctx.fillStyle = rgb(dot.color, 0.8 * dot.alpha * lineBrightness);
+        ctx.fill();
+
+        // Bright center
+        ctx.beginPath();
+        ctx.arc(dx, dy, dot.radius * 0.4, 0, Math.PI * 2);
+        ctx.fillStyle = rgb(CREAM, 0.6 * dot.alpha * lineBrightness);
+        ctx.fill();
+      }
+    }
+  }
+
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>What Is Cord Blood — Flowing v2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: #2C2A26;
+  background: #FAF9F7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: #FAF9F7;
+  border-bottom: 1px solid #E8E2DC;
+  height: 56px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 40px;
+}
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: #2C2A26; }
+.nav-link { font-size: 14px; font-weight: 700; color: #6C1A55; text-decoration: none; }
+
+/* BREADCRUMB */
+.breadcrumb-wrap { padding-top: 56px; background: #FAF9F7; }
+.breadcrumb { max-width: 880px; margin: 0 auto; padding: 16px 40px; font-size: 13px; color: #9A958C; }
+.breadcrumb span { color: #6B6760; }
+
+/* CONTENT */
+.inner { max-width: 880px; margin: 0 auto; padding: 80px 40px; }
+
+/* TYPOGRAPHY */
+.section-label {
+  font-family: 'Lato', sans-serif;
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 16px;
+}
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 24px;
+  color: #2C2A26;
+}
+h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(26px, 4vw, 36px);
+  font-weight: 500;
+  line-height: 1.25;
+  margin-bottom: 16px;
+  color: #2C2A26;
+}
+.lead {
+  font-size: 17px; line-height: 1.75; color: #6B6760;
+  margin-bottom: 48px; max-width: 720px;
+}
+p { font-size: 15px; line-height: 1.75; }
+
+/* STAT CARDS */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+}
+.stat-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  transition: all 0.25s ease;
+}
+.stat-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.stat-number {
+  font-family: 'Source Serif 4', serif;
+  font-size: 36px; font-weight: 700;
+  color: #6C1A55;
+  margin-bottom: 8px;
+}
+.stat-label { font-size: 14px; color: #6B6760; }
+
+/* MECHANISM CARDS */
+.mech-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.mech-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 32px 28px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  transition: all 0.25s ease;
+}
+.mech-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.mech-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; font-weight: 500;
+  margin-bottom: 12px;
+}
+.mech-card p { font-size: 15px; line-height: 1.7; color: #6B6760; }
+
+/* TIER CARDS */
+.tier-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px 36px;
+  margin-bottom: 24px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+  transition: all 0.25s ease;
+}
+.tier-card:hover { transform: translateY(-4px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+.tier-badge {
+  display: inline-block;
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 6px 14px;
+  border-radius: 100px;
+  margin-bottom: 8px;
+}
+.tier-badge.established { background: #F0F7F4; color: #3D8B6A; }
+.tier-badge.trials { background: #EDF5FF; color: #3B6DC4; }
+.tier-badge.early { background: #FDF5EB; color: #C4943E; }
+.tier-sub { font-size: 15px; color: #6B6760; margin-bottom: 16px; }
+.tier-body { font-size: 15px; line-height: 1.75; color: #2C2A26; margin-bottom: 20px; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; }
+.pill {
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  background: #F3F0F8;
+  color: #6C1A55;
+  white-space: nowrap;
+}
+
+/* DARK SECTION */
+.dark-section { background: linear-gradient(160deg, #6C1A55, #3D0F31); }
+.dark-section h2, .dark-section .section-label, .dark-section p { color: #fff; }
+.dark-section .section-label { color: rgba(255,255,255,0.4); }
+.dark-quote {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.85);
+  border-left: 2px solid rgba(255,255,255,0.15);
+  padding-left: 24px;
+  margin-bottom: 48px;
+  max-width: 640px;
+}
+.glass-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+.glass-card {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-radius: 16px;
+  padding: 32px 24px;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+.glass-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.12); }
+.glass-number {
+  font-family: 'Source Serif 4', serif;
+  font-size: 36px; font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.glass-title { font-size: 14px; font-weight: 700; color: rgba(255,255,255,0.9); margin-bottom: 8px; }
+.glass-desc { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
+
+/* CTA SECTION */
+.cta-section { text-align: center; }
+.cta-section h2 { margin-bottom: 16px; }
+.cta-section p { font-size: 17px; color: #6B6760; margin-bottom: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
+.btn-row { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  display: inline-block; padding: 14px 32px;
+  background: #6C1A55; color: #fff;
+  border-radius: 100px; font-size: 15px; font-weight: 700;
+  text-decoration: none; transition: all 0.25s ease;
+}
+.btn-primary:hover { background: #5a1547; transform: translateY(-2px); }
+.btn-outline {
+  display: inline-block; padding: 14px 32px;
+  background: transparent; color: #6C1A55;
+  border: 1px solid #E8E2DC;
+  border-radius: 100px; font-size: 15px; font-weight: 700;
+  text-decoration: none; transition: all 0.25s ease;
+}
+.btn-outline:hover { border-color: #6C1A55; transform: translateY(-2px); }
+
+/* VERSION BADGE */
+.version-badge {
+  position: fixed; bottom: 20px; right: 20px; z-index: 200;
+  background: #2C2A26; color: #fff;
+  font-size: 12px; font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 100px;
+  letter-spacing: 0.05em;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .nav { padding: 0 20px; }
+  .breadcrumb { padding: 12px 20px; }
+  .inner { padding: 60px 20px; }
+  .stat-row, .mech-row, .glass-row { grid-template-columns: 1fr; }
+  .tier-card { padding: 28px 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-logo">StemCyte</div>
+  <a href="#" class="nav-link">Education</a>
+</nav>
+
+<!-- BREADCRUMB -->
+<div class="breadcrumb-wrap">
+  <div class="breadcrumb">Education / <span>What Is Cord Blood</span></div>
+</div>
+
+<!-- SECTION 1: The Simple Version -->
+<div style="background: #FAF9F7;">
+  <div class="inner">
+    <div class="section-label" style="color: #3B6DC4;">THE SIMPLE VERSION</div>
+    <h1>Cord blood is the blood left in your baby's umbilical cord after birth.</h1>
+    <p class="lead" style="margin-bottom: 24px;">It's collected in under five minutes, right after delivery, completely painless for both you and your baby. What makes it extraordinary is what's inside: stem cells that can rebuild a human blood and immune system from scratch.</p>
+    <p class="lead">These cells are already used in transplant medicine worldwide. And they can only be collected once, at the moment of birth.</p>
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-number" data-count="1988">0</div>
+        <div class="stat-label">First cord blood transplant</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-count="50000" data-suffix="+">0</div>
+        <div class="stat-label">Transplants performed globally</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-count="5" data-prefix="" data-suffix=" min">0</div>
+        <div class="stat-label">Collection time, painless</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: What's Inside -->
+<div style="background: #F3F0F8;">
+  <div class="inner">
+    <div class="section-label" style="color: rgba(108,26,85,0.5);">WHAT'S INSIDE</div>
+    <h2>The cells that build your blood and immune system</h2>
+    <p class="lead">Cord blood contains hematopoietic stem cells. In plain English: these are the master cells that produce every red blood cell, white blood cell, and platelet in your body. Think of them as the factory that makes your blood.</p>
+    <div class="mech-row">
+      <div class="mech-card">
+        <h3>They migrate to bone marrow</h3>
+        <p>When transplanted, cord blood stem cells travel through the bloodstream and find their way to the bone marrow, where blood cells are made.</p>
+      </div>
+      <div class="mech-card">
+        <h3>They engraft and rebuild</h3>
+        <p>Once there, they engraft and begin producing an entirely new blood and immune system. This process is called hematopoietic reconstitution.</p>
+      </div>
+      <div class="mech-card">
+        <h3>Younger, purer, more tolerant</h3>
+        <p>Collected at birth, these cells have zero exposure to aging, illness, or environmental damage. They also cause less immune rejection than adult donor cells.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: What It Can Do -->
+<div style="background: #FAF9F7;">
+  <div class="inner">
+    <div class="section-label" style="color: #3D8B6A;">WHAT IT CAN DO</div>
+    <h2>Honest answers, not inflated claims</h2>
+    <p class="lead">You may have heard "cord blood treats 80+ diseases." That's true for transplants using donor cord blood. Here's what the evidence actually shows, broken into three tiers.</p>
+
+    <div class="tier-card">
+      <span class="tier-badge established">ESTABLISHED</span>
+      <div class="tier-sub">Used in transplant medicine today</div>
+      <p class="tier-body">Allogeneic cord blood transplants (using a donor's cord blood) treat blood cancers, bone marrow failure, inherited immune deficiencies, metabolic disorders, and sickle cell disease.</p>
+      <div class="pills">
+        <span class="pill">Leukemia</span>
+        <span class="pill">Lymphoma</span>
+        <span class="pill">Sickle Cell Disease</span>
+        <span class="pill">Thalassemia</span>
+        <span class="pill">Krabbe Disease</span>
+        <span class="pill">Fanconi Anemia</span>
+        <span class="pill">SCID</span>
+        <span class="pill">+ many more</span>
+      </div>
+    </div>
+
+    <div class="tier-card">
+      <span class="tier-badge trials">CLINICAL TRIALS</span>
+      <div class="tier-sub">Actively being studied in humans</div>
+      <p class="tier-body">Cord blood is in active clinical trials for cerebral palsy, stroke, autism, and HIV. StemCyte cord blood was part of the research behind the first woman to achieve HIV remission through a cord blood transplant.</p>
+      <div class="pills">
+        <span class="pill">Cerebral Palsy</span>
+        <span class="pill">Ischemic Stroke</span>
+        <span class="pill">Autism (ongoing, inconclusive)</span>
+        <span class="pill">HIV Remission</span>
+        <span class="pill">Hypoxic-Ischemic Encephalopathy</span>
+      </div>
+    </div>
+
+    <div class="tier-card">
+      <span class="tier-badge early">EARLY RESEARCH</span>
+      <div class="tier-sub">Laboratory and animal studies</div>
+      <p class="tier-body">Preclinical research is exploring cord blood for Alzheimer's, Parkinson's, spinal cord injury, and ALS. These are years from human application but represent the frontier of regenerative medicine.</p>
+      <div class="pills">
+        <span class="pill">Alzheimer's</span>
+        <span class="pill">Parkinson's</span>
+        <span class="pill">Spinal Cord Injury</span>
+        <span class="pill">ALS</span>
+        <span class="pill">Traumatic Brain Injury</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: Why It Matters -->
+<div class="dark-section">
+  <div class="inner">
+    <div class="section-label">WHY IT MATTERS FOR YOUR FAMILY</div>
+    <h2>Protection that extends beyond your baby</h2>
+    <p class="dark-quote">One collection. One moment. A biological resource for your entire family, preserved at the youngest, purest point it will ever be.</p>
+    <div class="glass-row">
+      <div class="glass-card">
+        <div class="glass-number">100%</div>
+        <div class="glass-title">Match for your baby</div>
+        <div class="glass-desc">A guaranteed perfect match for the child whose cord blood is banked</div>
+      </div>
+      <div class="glass-card">
+        <div class="glass-number">25%</div>
+        <div class="glass-title">Perfect sibling match</div>
+        <div class="glass-desc">Plus a 50% chance of a partial match. Siblings are the most likely family beneficiaries.</div>
+      </div>
+      <div class="glass-card">
+        <div class="glass-number">Partial</div>
+        <div class="glass-title">Parents & extended family</div>
+        <div class="glass-desc">Cord blood requires less strict matching than bone marrow, opening possibilities for parents too.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: Next Step -->
+<div style="background: #FAF9F7;">
+  <div class="inner cta-section">
+    <h2>Ready to learn more?</h2>
+    <p>Now that you understand what cord blood is and what it can do, explore how it's collected or see what plans fit your family.</p>
+    <div class="btn-row">
+      <a href="#" class="btn-primary">How Collection Works</a>
+      <a href="#" class="btn-outline">View Plans & Pricing</a>
+    </div>
+  </div>
+</div>
+
+<!-- VERSION BADGE -->
+<div class="version-badge">FLOWING v2</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+const animDefaults = {
+  y: 16, opacity: 0, duration: 1.0, ease: "power2.out",
+  scrollTrigger: { start: "top 85%", toggleActions: "play none none none" }
+};
+
+function anim(el, extra = {}) {
+  const trigger = el;
+  gsap.from(el, { ...animDefaults, scrollTrigger: { ...animDefaults.scrollTrigger, trigger }, ...extra });
+}
+
+// Section labels and headings
+document.querySelectorAll('.section-label, h1, h2, .lead, .dark-quote').forEach(el => anim(el));
+
+// Stat cards
+gsap.from('.stat-card', {
+  ...animDefaults,
+  stagger: 0.15,
+  scrollTrigger: { trigger: '.stat-row', start: 'top 85%', toggleActions: 'play none none none' }
+});
+
+// Mechanism cards
+gsap.from('.mech-card', {
+  ...animDefaults,
+  stagger: 0.15,
+  scrollTrigger: { trigger: '.mech-row', start: 'top 85%', toggleActions: 'play none none none' }
+});
+
+// Tier cards
+gsap.from('.tier-card', {
+  ...animDefaults,
+  stagger: 0.2,
+  scrollTrigger: { trigger: '.tier-card', start: 'top 85%', toggleActions: 'play none none none' }
+});
+
+// Condition pills
+document.querySelectorAll('.tier-card').forEach(card => {
+  gsap.from(card.querySelectorAll('.pill'), {
+    ...animDefaults,
+    stagger: 0.05,
+    scrollTrigger: { trigger: card, start: 'top 85%', toggleActions: 'play none none none' }
+  });
+});
+
+// Glass cards
+gsap.from('.glass-card', {
+  ...animDefaults,
+  stagger: 0.15,
+  scrollTrigger: { trigger: '.glass-row', start: 'top 85%', toggleActions: 'play none none none' }
+});
+
+// CTA
+anim(document.querySelector('.cta-section'));
+
+// COUNT-UP for stat numbers
+function countUp(el) {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  const prefix = el.dataset.prefix || '';
+  const isYear = target === 1988;
+  const duration = isYear ? 1.5 : 2;
+  const start = isYear ? 1950 : 0;
+
+  gsap.fromTo(el, { innerText: start }, {
+    innerText: target,
+    duration: duration,
+    ease: 'power2.out',
+    snap: { innerText: 1 },
+    scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' },
+    onUpdate: function() {
+      const val = Math.round(gsap.getProperty(el, 'innerText'));
+      if (target >= 1000 && !isYear) {
+        el.textContent = prefix + val.toLocaleString() + suffix;
+      } else {
+        el.textContent = prefix + val + suffix;
+      }
+    }
+  });
+}
+
+document.querySelectorAll('.stat-number[data-count]').forEach(countUp);
+</script>
+
+</body>
+</html>

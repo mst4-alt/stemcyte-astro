@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Membrane Surface — StemCyte Animation System</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #FAF7F2;
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    color: #3D0F31;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  canvas {
+    display: block;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .back-link {
+    position: fixed;
+    top: 24px;
+    left: 28px;
+    z-index: 100;
+    font-family: 'Lato', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    color: #6C1A55;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.85;
+    transition: opacity 0.3s ease;
+  }
+
+  .back-link:hover { opacity: 1; }
+
+  .back-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .back-link:hover svg { transform: translateX(-3px); }
+
+  .overlay {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 48px 40px 40px;
+    background: linear-gradient(to top, rgba(250,247,242,0.92) 0%, rgba(250,247,242,0.6) 60%, transparent 100%);
+    pointer-events: none;
+    z-index: 10;
+  }
+
+  .overlay h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 5vw, 56px);
+    font-weight: 600;
+    color: #3D0F31;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .overlay p {
+    font-family: 'Lato', sans-serif;
+    font-size: clamp(14px, 1.8vw, 17px);
+    font-weight: 300;
+    color: #6C1A55;
+    max-width: 480px;
+    line-height: 1.6;
+    opacity: 0.85;
+  }
+
+  .tag {
+    display: inline-block;
+    font-family: 'Lato', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4FA3B8;
+    margin-bottom: 10px;
+  }
+
+  @media (max-width: 600px) {
+    .overlay { padding: 32px 24px 28px; }
+    .back-link { top: 16px; left: 16px; font-size: 13px; }
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <line x1="12" y1="8" x2="4" y2="8"/><polyline points="8,4 4,8 8,12"/>
+  </svg>
+  Back to Gallery
+</a>
+
+<canvas id="membrane"></canvas>
+
+<div class="overlay">
+  <span class="tag">WebGL Shader</span>
+  <h1>Membrane Surface</h1>
+  <p>A living, iridescent membrane — organic waves rendered with custom GLSL shaders, Fresnel translucency, and mouse-reactive displacement.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  'use strict';
+
+  // ── Config ──────────────────────────────────────────────
+  const COLORS = {
+    plum:      new THREE.Color(0x6C1A55),
+    deepPlum:  new THREE.Color(0x3D0F31),
+    lavender:  new THREE.Color(0xF3F0F8),
+    teal:      new THREE.Color(0x4FA3B8),
+    blush:     new THREE.Color(0xE8B4C8),
+    cream:     new THREE.Color(0xFAF7F2),
+    warmWhite: new THREE.Color(0xFFF8F0),
+  };
+
+  // ── Renderer ────────────────────────────────────────────
+  const canvas = document.getElementById('membrane');
+  const renderer = new THREE.WebGLRenderer({
+    canvas,
+    antialias: true,
+    alpha: true,
+  });
+  renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  renderer.setClearColor(0xFAF7F2, 1);
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure = 1.1;
+
+  const scene = new THREE.Scene();
+  scene.fog = new THREE.FogExp2(0xFAF7F2, 0.012);
+
+  // ── Camera ──────────────────────────────────────────────
+  const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 200);
+  camera.position.set(0, 18, 22);
+  camera.lookAt(0, 0, 0);
+
+  // ── Lighting ────────────────────────────────────────────
+  const ambient = new THREE.AmbientLight(0xFFF5E8, 0.5);
+  scene.add(ambient);
+
+  const dirLight = new THREE.DirectionalLight(0xFFE8D0, 0.9);
+  dirLight.position.set(-12, 20, 8);
+  scene.add(dirLight);
+
+  const pointLight = new THREE.PointLight(0xD4A0D0, 0.6, 60);
+  pointLight.position.set(8, 10, -6);
+  scene.add(pointLight);
+
+  const rimLight = new THREE.PointLight(0x4FA3B8, 0.3, 50);
+  rimLight.position.set(-10, 5, 12);
+  scene.add(rimLight);
+
+  // ── Shader Material ─────────────────────────────────────
+  const vertexShader = `
+    uniform float uTime;
+    uniform vec2 uMouse;
+    uniform float uMouseInfluence;
+
+    varying vec3 vNormal;
+    varying vec3 vPosition;
+    varying vec3 vWorldPosition;
+    varying float vElevation;
+    varying vec2 vUv;
+
+    // Simplex-style noise helper
+    vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+    vec4 permute(vec4 x) { return mod289(((x * 34.0) + 1.0) * x); }
+    vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+    float snoise(vec3 v) {
+      const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+      const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+      vec3 i  = floor(v + dot(v, C.yyy));
+      vec3 x0 = v - i + dot(i, C.xxx);
+      vec3 g = step(x0.yzx, x0.xyz);
+      vec3 l = 1.0 - g;
+      vec3 i1 = min(g.xyz, l.zxy);
+      vec3 i2 = max(g.xyz, l.zxy);
+      vec3 x1 = x0 - i1 + C.xxx;
+      vec3 x2 = x0 - i2 + C.yyy;
+      vec3 x3 = x0 - D.yyy;
+      i = mod289(i);
+      vec4 p = permute(permute(permute(
+                i.z + vec4(0.0, i1.z, i2.z, 1.0))
+              + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+              + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+      float n_ = 0.142857142857;
+      vec3 ns = n_ * D.wyz - D.xzx;
+      vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+      vec4 x_ = floor(j * ns.z);
+      vec4 y_ = floor(j - 7.0 * x_);
+      vec4 x = x_ * ns.x + ns.yyyy;
+      vec4 y = y_ * ns.x + ns.yyyy;
+      vec4 h = 1.0 - abs(x) - abs(y);
+      vec4 b0 = vec4(x.xy, y.xy);
+      vec4 b1 = vec4(x.zw, y.zw);
+      vec4 s0 = floor(b0) * 2.0 + 1.0;
+      vec4 s1 = floor(b1) * 2.0 + 1.0;
+      vec4 sh = -step(h, vec4(0.0));
+      vec4 a0 = b0.xzyw + s0.xzyw * sh.xxyy;
+      vec4 a1 = b1.xzyw + s1.xzyw * sh.zzww;
+      vec3 p0 = vec3(a0.xy, h.x);
+      vec3 p1 = vec3(a0.zw, h.y);
+      vec3 p2 = vec3(a1.xy, h.z);
+      vec3 p3 = vec3(a1.zw, h.w);
+      vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+      p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+      vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+      m = m * m;
+      return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+    }
+
+    void main() {
+      vUv = uv;
+      vec3 pos = position;
+
+      float t = uTime * 0.15;
+
+      // Octave 1: broad, slow swell
+      float wave1 = snoise(vec3(pos.x * 0.08, pos.z * 0.08, t * 0.6)) * 2.2;
+
+      // Octave 2: medium ripples
+      float wave2 = snoise(vec3(pos.x * 0.18 + 3.0, pos.z * 0.18 - 2.0, t * 0.9)) * 0.9;
+
+      // Octave 3: fine detail
+      float wave3 = snoise(vec3(pos.x * 0.4 + 7.0, pos.z * 0.4 + 5.0, t * 1.3)) * 0.35;
+
+      // Octave 4: micro texture
+      float wave4 = snoise(vec3(pos.x * 0.9 - 4.0, pos.z * 0.9 + 8.0, t * 1.8)) * 0.12;
+
+      float elevation = wave1 + wave2 + wave3 + wave4;
+
+      // Breathing effect — slow global pulse
+      float breath = sin(uTime * 0.3) * 0.4 + sin(uTime * 0.17) * 0.25;
+      elevation += breath;
+
+      // Mouse interaction — gaussian bump
+      float mouseDist = length(pos.xz - uMouse);
+      float mouseEffect = uMouseInfluence * exp(-mouseDist * mouseDist * 0.008) * 2.5;
+      elevation += mouseEffect;
+
+      pos.y += elevation;
+      vElevation = elevation;
+
+      // Compute displaced normal via finite differences
+      float eps = 0.3;
+      vec3 posX = position + vec3(eps, 0.0, 0.0);
+      vec3 posZ = position + vec3(0.0, 0.0, eps);
+
+      float eX1 = snoise(vec3(posX.x * 0.08, posX.z * 0.08, t * 0.6)) * 2.2;
+      float eX2 = snoise(vec3(posX.x * 0.18 + 3.0, posX.z * 0.18 - 2.0, t * 0.9)) * 0.9;
+      float eX3 = snoise(vec3(posX.x * 0.4 + 7.0, posX.z * 0.4 + 5.0, t * 1.3)) * 0.35;
+      float eX4 = snoise(vec3(posX.x * 0.9 - 4.0, posX.z * 0.9 + 8.0, t * 1.8)) * 0.12;
+      float elevX = eX1 + eX2 + eX3 + eX4 + breath;
+
+      float eZ1 = snoise(vec3(posZ.x * 0.08, posZ.z * 0.08, t * 0.6)) * 2.2;
+      float eZ2 = snoise(vec3(posZ.x * 0.18 + 3.0, posZ.z * 0.18 - 2.0, t * 0.9)) * 0.9;
+      float eZ3 = snoise(vec3(posZ.x * 0.4 + 7.0, posZ.z * 0.4 + 5.0, t * 1.3)) * 0.35;
+      float eZ4 = snoise(vec3(posZ.x * 0.9 - 4.0, posZ.z * 0.9 + 8.0, t * 1.8)) * 0.12;
+      float elevZ = eZ1 + eZ2 + eZ3 + eZ4 + breath;
+
+      vec3 tangentX = vec3(eps, elevX - elevation, 0.0);
+      vec3 tangentZ = vec3(0.0, elevZ - elevation, eps);
+      vec3 computedNormal = normalize(cross(tangentZ, tangentX));
+
+      vNormal = normalize(normalMatrix * computedNormal);
+      vPosition = pos;
+      vWorldPosition = (modelMatrix * vec4(pos, 1.0)).xyz;
+
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(pos, 1.0);
+    }
+  `;
+
+  const fragmentShader = `
+    uniform float uTime;
+    uniform vec3 uCameraPos;
+
+    // Palette colors
+    uniform vec3 uPlum;
+    uniform vec3 uDeepPlum;
+    uniform vec3 uLavender;
+    uniform vec3 uTeal;
+    uniform vec3 uBlush;
+    uniform vec3 uCream;
+
+    varying vec3 vNormal;
+    varying vec3 vPosition;
+    varying vec3 vWorldPosition;
+    varying float vElevation;
+    varying vec2 vUv;
+
+    void main() {
+      vec3 normal = normalize(vNormal);
+      vec3 viewDir = normalize(uCameraPos - vWorldPosition);
+
+      // Fresnel term — iridescence driver
+      float fresnel = 1.0 - max(dot(viewDir, normal), 0.0);
+      fresnel = pow(fresnel, 2.5);
+
+      // Iridescent color shift based on normal direction and elevation
+      float normalAngle = atan(normal.x, normal.z) * 0.5 + 0.5;
+      float colorPhase = normalAngle + vElevation * 0.15 + uTime * 0.04;
+
+      // Build iridescent palette
+      vec3 col1 = mix(uLavender, uBlush, sin(colorPhase * 6.2831) * 0.5 + 0.5);
+      vec3 col2 = mix(uTeal, uPlum, sin(colorPhase * 6.2831 + 2.094) * 0.5 + 0.5);
+      vec3 col3 = mix(uBlush, uLavender, sin(colorPhase * 6.2831 + 4.189) * 0.5 + 0.5);
+
+      // Blend colors using fresnel and elevation
+      vec3 baseColor = mix(col1, col2, fresnel);
+      baseColor = mix(baseColor, col3, smoothstep(-1.5, 2.5, vElevation));
+
+      // Pearlescent sheen — shift toward cream at grazing angles
+      vec3 pearlColor = mix(baseColor, uCream, fresnel * 0.55);
+
+      // Subtle specular highlight
+      vec3 lightDir = normalize(vec3(-0.6, 1.0, 0.4));
+      vec3 halfDir = normalize(lightDir + viewDir);
+      float spec = pow(max(dot(normal, halfDir), 0.0), 80.0);
+      float specBroad = pow(max(dot(normal, halfDir), 0.0), 20.0) * 0.15;
+
+      // Second light for depth
+      vec3 lightDir2 = normalize(vec3(0.5, 0.8, -0.6));
+      vec3 halfDir2 = normalize(lightDir2 + viewDir);
+      float spec2 = pow(max(dot(normal, halfDir2), 0.0), 60.0) * 0.4;
+
+      // Diffuse warmth
+      float diffuse = max(dot(normal, lightDir), 0.0) * 0.3 + 0.7;
+
+      vec3 finalColor = pearlColor * diffuse;
+      finalColor += vec3(1.0, 0.97, 0.93) * (spec * 0.7 + specBroad);
+      finalColor += uTeal * spec2 * 0.2;
+
+      // Translucency — light scattering through the membrane
+      float subsurface = pow(max(dot(-viewDir, lightDir), 0.0), 3.0) * 0.15;
+      finalColor += uBlush * subsurface;
+
+      // Slight depth fade at edges
+      float edgeFade = smoothstep(0.0, 0.3, fresnel);
+      float alpha = mix(0.88, 0.96, 1.0 - edgeFade);
+
+      // Elevation-based tinting — valleys slightly deeper
+      finalColor = mix(finalColor, uDeepPlum * 0.3 + finalColor * 0.7, smoothstep(0.0, -2.0, vElevation) * 0.2);
+
+      gl_FragColor = vec4(finalColor, alpha);
+    }
+  `;
+
+  const uniforms = {
+    uTime:           { value: 0.0 },
+    uMouse:          { value: new THREE.Vector2(100, 100) },
+    uMouseInfluence: { value: 0.0 },
+    uCameraPos:      { value: camera.position.clone() },
+    uPlum:           { value: COLORS.plum },
+    uDeepPlum:       { value: COLORS.deepPlum },
+    uLavender:       { value: COLORS.lavender },
+    uTeal:           { value: COLORS.teal },
+    uBlush:          { value: COLORS.blush },
+    uCream:          { value: COLORS.warmWhite },
+  };
+
+  const material = new THREE.ShaderMaterial({
+    vertexShader,
+    fragmentShader,
+    uniforms,
+    transparent: true,
+    side: THREE.DoubleSide,
+    depthWrite: true,
+  });
+
+  // ── Geometry ────────────────────────────────────────────
+  const geometry = new THREE.PlaneGeometry(50, 50, 128, 128);
+  geometry.rotateX(-Math.PI / 2);
+
+  const mesh = new THREE.Mesh(geometry, material);
+  scene.add(mesh);
+
+  // ── Mouse tracking ──────────────────────────────────────
+  const mouse = { x: 0, y: 0, worldX: 100, worldZ: 100, active: false };
+  const raycaster = new THREE.Raycaster();
+  const mouseNDC = new THREE.Vector2();
+  const targetMouseWorld = new THREE.Vector2(100, 100);
+  const currentMouseWorld = new THREE.Vector2(100, 100);
+  const planeForRaycast = new THREE.Plane(new THREE.Vector3(0, 1, 0), 0);
+
+  function onMouseMove(e) {
+    mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+    mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+    mouse.active = true;
+
+    mouseNDC.set(mouse.x, mouse.y);
+    raycaster.setFromCamera(mouseNDC, camera);
+    const intersection = new THREE.Vector3();
+    raycaster.ray.intersectPlane(planeForRaycast, intersection);
+    if (intersection) {
+      targetMouseWorld.set(intersection.x, intersection.z);
+    }
+  }
+
+  function onTouchMove(e) {
+    if (e.touches.length > 0) {
+      const t = e.touches[0];
+      mouse.x = (t.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(t.clientY / window.innerHeight) * 2 + 1;
+      mouse.active = true;
+
+      mouseNDC.set(mouse.x, mouse.y);
+      raycaster.setFromCamera(mouseNDC, camera);
+      const intersection = new THREE.Vector3();
+      raycaster.ray.intersectPlane(planeForRaycast, intersection);
+      if (intersection) {
+        targetMouseWorld.set(intersection.x, intersection.z);
+      }
+    }
+  }
+
+  function onMouseLeave() {
+    mouse.active = false;
+  }
+
+  window.addEventListener('mousemove', onMouseMove, { passive: true });
+  window.addEventListener('touchmove', onTouchMove, { passive: true });
+  window.addEventListener('mouseleave', onMouseLeave);
+
+  // ── Resize ──────────────────────────────────────────────
+  function onResize() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+    renderer.setSize(w, h);
+  }
+  window.addEventListener('resize', onResize);
+  onResize();
+
+  // ── Visibility / IntersectionObserver ───────────────────
+  let isVisible = true;
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          isVisible = entry.isIntersecting;
+        });
+      },
+      { threshold: 0.01 }
+    );
+    observer.observe(canvas);
+  }
+
+  // Also pause on tab hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) isVisible = false;
+    else isVisible = true;
+  });
+
+  // ── Camera orbit state ──────────────────────────────────
+  let orbitAngle = 0;
+  const orbitSpeed = 0.05;
+  const orbitRadius = 28;
+  const orbitHeight = 18;
+  const lookTarget = new THREE.Vector3(0, -1, 0);
+  const cameraTarget = new THREE.Vector3(0, -1, 0);
+
+  // ── Animation loop ──────────────────────────────────────
+  let lastTime = 0;
+
+  function animate(time) {
+    requestAnimationFrame(animate);
+
+    if (!isVisible) return;
+
+    const dt = Math.min((time - lastTime) / 1000, 0.05);
+    lastTime = time;
+
+    uniforms.uTime.value = time * 0.001;
+
+    // Smooth mouse tracking
+    currentMouseWorld.lerp(targetMouseWorld, 0.06);
+    uniforms.uMouse.value.copy(currentMouseWorld);
+
+    // Mouse influence fade in/out
+    const targetInfluence = mouse.active ? 1.0 : 0.0;
+    uniforms.uMouseInfluence.value += (targetInfluence - uniforms.uMouseInfluence.value) * 0.04;
+
+    // Camera orbit
+    orbitAngle += orbitSpeed * dt;
+    camera.position.x = Math.sin(orbitAngle) * orbitRadius;
+    camera.position.z = Math.cos(orbitAngle) * orbitRadius;
+    camera.position.y = orbitHeight + Math.sin(orbitAngle * 0.3) * 1.5;
+
+    // Subtle mouse influence on camera target
+    cameraTarget.x = lookTarget.x + mouse.x * 1.5;
+    cameraTarget.z = lookTarget.z + mouse.y * 1.5;
+    cameraTarget.y = lookTarget.y;
+    camera.lookAt(cameraTarget);
+
+    uniforms.uCameraPos.value.copy(camera.position);
+
+    renderer.render(scene, camera);
+  }
+
+  requestAnimationFrame(animate);
+})();
+</script>
+</body>
+</html>
