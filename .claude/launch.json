@@ -16,8 +16,9 @@
     {
       "name": "demos",
       "runtimeExecutable": "/usr/bin/python3",
-      "runtimeArgs": ["-m", "http.server", "5501", "-d", "demos"],
-      "port": 5501
+      "runtimeArgs": ["-m", "http.server", "-d", "demos"],
+      "port": 8123,
+      "autoPort": true
     }
   ]
 }

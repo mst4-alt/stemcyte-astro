@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scrollytelling — The Journey of a Stem Cell | StemCyte Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #FAF7F2;
+      color: #5a4e47;
+      font-family: 'Lato', sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* Back link */
+    .back-link {
+      position: fixed;
+      top: 24px;
+      left: 24px;
+      z-index: 100;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: #FAF7F2;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      opacity: 0.85;
+      transition: opacity 0.2s, color 0.3s;
+    }
+    .back-link:hover { opacity: 1; }
+    .back-link.scrolled { color: #6C1A55; }
+
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(160deg, #6C1A55 0%, #3D0F31 60%, #2a0a20 100%);
+      overflow: hidden;
+    }
+    .hero-particles {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 0 32px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      color: #FAF7F2;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .hero p {
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: rgba(250,247,242,0.65);
+      font-weight: 300;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(250,247,242,0.35);
+      font-size: 13px;
+      font-weight: 400;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    .scroll-hint::after {
+      content: '';
+      width: 1px;
+      height: 32px;
+      background: rgba(250,247,242,0.2);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.2; transform: scaleY(0.6); }
+      50% { opacity: 0.6; transform: scaleY(1); }
+    }
+
+    /* ── Intro ── */
+    .intro {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 120px 32px;
+      text-align: center;
+    }
+    .intro h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: #3D0F31;
+      margin-bottom: 24px;
+      line-height: 1.25;
+    }
+    .intro p {
+      font-size: 1.05rem;
+      color: #7a6e67;
+      line-height: 1.85;
+    }
+
+    /* ── Scrollytelling ── */
+    .scrollytelling {
+      position: relative;
+      /* wrapper for the pinned layout */
+    }
+    .scrolly-inner {
+      display: flex;
+      position: relative;
+    }
+
+    /* Text column */
+    .scrolly-text {
+      width: 40%;
+      position: relative;
+      z-index: 2;
+    }
+    .step {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 60px 48px 60px 64px;
+      opacity: 0.2;
+      transition: opacity 0.5s ease;
+    }
+    .step.is-active {
+      opacity: 1;
+    }
+    .step-inner {
+      max-width: 400px;
+    }
+    .step-number {
+      font-family: 'Source Serif 4', serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #b8a9b3;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+    .step h3 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: clamp(1.4rem, 2.5vw, 1.85rem);
+      color: #3D0F31;
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .step p {
+      font-size: 1rem;
+      color: #7a6e67;
+      line-height: 1.85;
+    }
+
+    /* Visual column */
+    .scrolly-visual {
+      width: 60%;
+      height: 100vh;
+      position: relative;
+    }
+    .scrolly-visual canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    /* ── Outro / CTA ── */
+    .outro {
+      padding: 120px 32px;
+      text-align: center;
+    }
+    .outro-inner {
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .outro h2 {
+      font-family: 'Playfair Display', serif;
+      font-weight: 500;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      color: #3D0F31;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .outro p {
+      font-size: 1.05rem;
+      color: #7a6e67;
+      line-height: 1.85;
+      margin-bottom: 40px;
+    }
+    .cta-btn {
+      display: inline-block;
+      padding: 16px 40px;
+      background: linear-gradient(160deg, #6C1A55, #3D0F31);
+      color: #FAF7F2;
+      font-family: 'Lato', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      border-radius: 100px;
+      letter-spacing: 0.03em;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(108,26,85,0.25);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(108,26,85,0.35);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .scrolly-inner {
+        flex-direction: column;
+      }
+      .scrolly-visual {
+        width: 100%;
+        height: 50vh;
+      }
+      .scrolly-text {
+        width: 100%;
+      }
+      .step {
+        min-height: 80vh;
+        padding: 48px 28px;
+      }
+      .step-inner {
+        max-width: 100%;
+      }
+      .intro { padding: 80px 24px; }
+      .outro { padding: 80px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <a href="index.html" class="back-link" id="backLink">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    Back to Gallery
+  </a>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="hero">
+    <canvas class="hero-particles" id="heroCanvas"></canvas>
+    <div class="hero-content">
+      <h1>The Journey of a Stem Cell</h1>
+      <p>From a single cell to a living system — how cord blood stem cells carry the potential to transform medicine.</p>
+    </div>
+    <div class="scroll-hint">Scroll to explore</div>
+  </section>
+
+  <!-- ── Intro ── -->
+  <section class="intro">
+    <h2>Every life begins with a single extraordinary cell</h2>
+    <p>Stem cells are the foundation of all human biology. They possess the unique ability to become any type of cell in the body — and when preserved at birth, they retain that potential for decades. Follow the journey from one cell to a complete biological network.</p>
+  </section>
+
+  <!-- ── Scrollytelling ── -->
+  <section class="scrollytelling" id="scrollytelling">
+    <div class="scrolly-inner">
+      <div class="scrolly-text" id="scrollyText">
+        <div class="step" data-step="0">
+          <div class="step-inner">
+            <div class="step-number">01 — A single cell</div>
+            <h3>Where it all begins</h3>
+            <p>Every person on Earth started as a single stem cell. These remarkable cells contain the blueprint for everything — every organ, every tissue, every system in your body.</p>
+          </div>
+        </div>
+        <div class="step" data-step="1">
+          <div class="step-inner">
+            <div class="step-number">02 — The first division</div>
+            <h3>Multiplication begins</h3>
+            <p>Within hours of collection, stem cells begin their work. They divide and multiply, each new cell carrying the same extraordinary potential as the original.</p>
+          </div>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-inner">
+            <div class="step-number">03 — Building connections</div>
+            <h3>A network takes shape</h3>
+            <p>Stem cells don't work alone. They communicate, forming networks that coordinate growth and repair. This intercellular signaling is what makes transplants effective.</p>
+          </div>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-inner">
+            <div class="step-number">04 — Specialization begins</div>
+            <h3>Differentiation</h3>
+            <p>Some stem cells differentiate — becoming red blood cells, white blood cells, platelets. Others remain undifferentiated, ready to become whatever the body needs.</p>
+          </div>
+        </div>
+        <div class="step" data-step="4">
+          <div class="step-inner">
+            <div class="step-number">05 — A living system</div>
+            <h3>The full network</h3>
+            <p>What began as a single cell becomes a complete, functioning biological system. This is the power your baby is born with — and the power cord blood banking preserves.</p>
+          </div>
+        </div>
+      </div>
+      <div class="scrolly-visual" id="scrollyVisual">
+        <canvas id="cellCanvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Outro ── -->
+  <section class="outro">
+    <div class="outro-inner">
+      <h2>Preserve their potential</h2>
+      <p>Cord blood banking captures this extraordinary biology at its most powerful moment — the day your baby is born. These stem cells can be stored for decades, ready when your family needs them most.</p>
+      <a href="#" class="cta-btn">Learn About Cord Blood Banking</a>
+    </div>
+  </section>
+
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ── Color palette ──
+    const COLORS = {
+      teal:     { r: 79,  g: 163, b: 184 },
+      plum:     { r: 108, g: 26,  b: 85  },
+      lavender: { r: 180, g: 160, b: 210 },
+      blush:    { r: 210, g: 140, b: 160 },
+      cream:    { r: 220, g: 200, b: 180 },
+    };
+
+    // ── Hero floating particles ──
+    (function initHeroParticles() {
+      const c = document.getElementById('heroCanvas');
+      const ctx = c.getContext('2d');
+      let W, H;
+      const particles = [];
+      function resize() {
+        W = c.width = c.offsetWidth;
+        H = c.height = c.offsetHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      for (let i = 0; i < 12; i++) {
+        const r = 8 + Math.random() * 50;
+        const col = [COLORS.teal, COLORS.lavender, COLORS.blush][Math.floor(Math.random() * 3)];
+        particles.push({
+          x: Math.random() * W, y: Math.random() * H,
+          vx: (Math.random() - 0.5) * 0.3, vy: (Math.random() - 0.5) * 0.3,
+          r, col, opacity: 0.06 + Math.random() * 0.12,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+
+      function draw(t) {
+        ctx.clearRect(0, 0, W, H);
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < -p.r) p.x = W + p.r;
+          if (p.x > W + p.r) p.x = -p.r;
+          if (p.y < -p.r) p.y = H + p.r;
+          if (p.y > H + p.r) p.y = -p.r;
+          const pulse = Math.sin(t * 0.001 + p.phase) * 0.15 + 1;
+          const rr = p.r * pulse;
+          const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, rr);
+          g.addColorStop(0, `rgba(${p.col.r},${p.col.g},${p.col.b},${p.opacity})`);
+          g.addColorStop(1, `rgba(${p.col.r},${p.col.g},${p.col.b},0)`);
+          ctx.fillStyle = g;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, rr, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        requestAnimationFrame(draw);
+      }
+      requestAnimationFrame(draw);
+    })();
+
+    // ── Back link color change ──
+    const backLink = document.getElementById('backLink');
+    window.addEventListener('scroll', () => {
+      backLink.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.7);
+    });
+
+    // ── Cell Canvas (main scrollytelling visual) ──
+    const canvas = document.getElementById('cellCanvas');
+    const ctx = canvas.getContext('2d');
+    let cW, cH;
+
+    function resizeCanvas() {
+      const rect = canvas.parentElement.getBoundingClientRect();
+      cW = canvas.width = rect.width * window.devicePixelRatio;
+      cH = canvas.height = rect.height * window.devicePixelRatio;
+      canvas.style.width = rect.width + 'px';
+      canvas.style.height = rect.height + 'px';
+      ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+    }
+    resizeCanvas();
+    window.addEventListener('resize', () => {
+      resizeCanvas();
+      buildCellStates();
+    });
+
+    // Get logical dimensions (CSS pixels)
+    function logW() { return cW / window.devicePixelRatio; }
+    function logH() { return cH / window.devicePixelRatio; }
+
+    // ── Draw a single cell (matching the-science.astro style) ──
+    function drawCell(ctx, x, y, r, col, opacity) {
+      if (r < 0.5 || opacity < 0.01) return;
+      const glowR = r * 1.5;
+
+      // Outer glow
+      const og = ctx.createRadialGradient(x, y, r * 0.3, x, y, glowR);
+      og.addColorStop(0, `rgba(${col.r},${col.g},${col.b},${opacity * 0.35})`);
+      og.addColorStop(0.5, `rgba(${col.r},${col.g},${col.b},${opacity * 0.12})`);
+      og.addColorStop(1, `rgba(${col.r},${col.g},${col.b},0)`);
+      ctx.fillStyle = og;
+      ctx.beginPath(); ctx.arc(x, y, glowR, 0, Math.PI * 2); ctx.fill();
+
+      // Body gradient
+      const bg = ctx.createRadialGradient(x - r * 0.12, y - r * 0.12, 0, x, y, r);
+      bg.addColorStop(0, `rgba(${Math.min(255, col.r + 25)},${Math.min(255, col.g + 25)},${Math.min(255, col.b + 25)},${opacity * 0.6})`);
+      bg.addColorStop(0.45, `rgba(${col.r},${col.g},${col.b},${opacity * 0.4})`);
+      bg.addColorStop(0.8, `rgba(${col.r},${col.g},${col.b},${opacity * 0.5})`);
+      bg.addColorStop(1, `rgba(${Math.max(0, col.r - 25)},${Math.max(0, col.g - 25)},${Math.max(0, col.b - 25)},${opacity * 0.15})`);
+      ctx.fillStyle = bg;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
+
+      // Edge stroke
+      ctx.strokeStyle = `rgba(${Math.min(255, col.r + 40)},${Math.min(255, col.g + 40)},${Math.min(255, col.b + 40)},${opacity * 0.18})`;
+      ctx.lineWidth = r > 30 ? 1.2 : 0.7;
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.stroke();
+
+      // Nucleus
+      const nr = r * 0.22;
+      const ng = ctx.createRadialGradient(x, y, 0, x, y, nr);
+      ng.addColorStop(0, `rgba(255,255,255,${opacity * 0.45})`);
+      ng.addColorStop(0.5, `rgba(${Math.min(255, col.r + 50)},${Math.min(255, col.g + 50)},${Math.min(255, col.b + 50)},${opacity * 0.2})`);
+      ng.addColorStop(1, `rgba(${col.r},${col.g},${col.b},0)`);
+      ctx.fillStyle = ng;
+      ctx.beginPath(); ctx.arc(x, y, nr, 0, Math.PI * 2); ctx.fill();
+
+      // Specular highlight
+      if (r > 14) {
+        const hx = x - r * 0.26, hy = y - r * 0.26, hr = r * 0.16;
+        const hg = ctx.createRadialGradient(hx, hy, 0, hx, hy, hr);
+        hg.addColorStop(0, `rgba(255,255,255,${opacity * 0.22})`);
+        hg.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = hg;
+        ctx.beginPath(); ctx.arc(hx, hy, hr, 0, Math.PI * 2); ctx.fill();
+      }
+    }
+
+    // ── Draw connections between cells ──
+    function drawConnection(ctx, ax, ay, bx, by, opacity) {
+      ctx.strokeStyle = `rgba(79,163,184,${opacity * 0.12})`;
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(ax, ay);
+      // Slight curve
+      const mx = (ax + bx) / 2 + (Math.random() - 0.5) * 8;
+      const my = (ay + by) / 2 + (Math.random() - 0.5) * 8;
+      ctx.quadraticCurveTo(mx, my, bx, by);
+      ctx.stroke();
+    }
+
+    // ── Cell state definitions for each step ──
+    // Each step produces an array of cell definitions: {x, y, r, col, opacity}
+    // Positions are relative to center (0-1 range), scaled at render time
+
+    let cellStates = [];
+
+    function buildCellStates() {
+      const w = logW();
+      const h = logH();
+      const cx = w * 0.5;
+      const cy = h * 0.5;
+
+      // Seeded pseudo-random for consistent layouts
+      let seed = 42;
+      function srand() { seed = (seed * 16807 + 0) % 2147483647; return (seed - 1) / 2147483646; }
+
+      // Step 0: Single cell, gently pulsing
+      const s0 = [
+        { x: cx, y: cy, r: 55, col: COLORS.teal, opacity: 0.9 }
+      ];
+
+      // Step 1: Cell dividing — two cells slightly apart
+      const gap = 45;
+      const s1 = [
+        { x: cx - gap, y: cy - 8, r: 42, col: COLORS.teal, opacity: 0.9 },
+        { x: cx + gap, y: cy + 8, r: 42, col: COLORS.teal, opacity: 0.9 }
+      ];
+
+      // Step 2: Small cluster (5-6 cells) with connections
+      seed = 42;
+      const s2 = [];
+      const s2Positions = [
+        { x: cx - 50, y: cy - 40 }, { x: cx + 55, y: cy - 25 },
+        { x: cx - 15, y: cy + 50 }, { x: cx + 40, y: cy + 45 },
+        { x: cx - 60, y: cy + 15 }, { x: cx + 10, y: cy - 10 }
+      ];
+      s2Positions.forEach((p, i) => {
+        s2.push({ x: p.x, y: p.y, r: 26 + srand() * 12, col: COLORS.teal, opacity: 0.85 });
+      });
+
+      // Step 3: Larger cluster (12-15), some differentiated
+      seed = 42;
+      const s3 = [];
+      const diffColors = [COLORS.teal, COLORS.teal, COLORS.teal, COLORS.plum, COLORS.lavender, COLORS.blush, COLORS.teal, COLORS.plum, COLORS.lavender, COLORS.teal, COLORS.blush, COLORS.teal, COLORS.plum, COLORS.cream];
+      for (let i = 0; i < 14; i++) {
+        const angle = (i / 14) * Math.PI * 2 + srand() * 0.6;
+        const dist = 40 + srand() * 80;
+        s3.push({
+          x: cx + Math.cos(angle) * dist,
+          y: cy + Math.sin(angle) * dist,
+          r: 18 + srand() * 14,
+          col: diffColors[i],
+          opacity: 0.82
+        });
+      }
+
+      // Step 4: Full network fills the canvas
+      seed = 42;
+      const s4 = [];
+      const allColors = [COLORS.teal, COLORS.plum, COLORS.lavender, COLORS.blush, COLORS.cream];
+      for (let i = 0; i < 28; i++) {
+        const angle = srand() * Math.PI * 2;
+        const maxDist = Math.min(w, h) * 0.38;
+        const dist = srand() * maxDist;
+        s4.push({
+          x: cx + Math.cos(angle) * dist,
+          y: cy + Math.sin(angle) * dist,
+          r: 12 + srand() * 22,
+          col: allColors[Math.floor(srand() * allColors.length)],
+          opacity: 0.75 + srand() * 0.2
+        });
+      }
+
+      cellStates = [s0, s1, s2, s3, s4];
+    }
+    buildCellStates();
+
+    // ── Interpolation engine ──
+    let currentStep = 0;
+    let targetStep = 0;
+    let transitionProgress = 1; // 0 = old state, 1 = current state
+    let prevStep = 0;
+    let time = 0;
+
+    function lerpColor(a, b, t) {
+      return {
+        r: a.r + (b.r - a.r) * t,
+        g: a.g + (b.g - a.g) * t,
+        b: a.b + (b.b - a.b) * t
+      };
+    }
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function setActiveStep(idx) {
+      if (idx === currentStep && transitionProgress >= 1) return;
+      if (idx !== currentStep) {
+        prevStep = currentStep;
+        currentStep = idx;
+        transitionProgress = 0;
+      }
+    }
+
+    // Get interpolated cell list for current transition state
+    function getInterpolatedCells(t) {
+      const from = cellStates[prevStep] || [];
+      const to = cellStates[currentStep] || [];
+      const maxLen = Math.max(from.length, to.length);
+      const easedT = easeInOutCubic(t);
+      const cells = [];
+      const w = logW(), h = logH();
+      const cx = w * 0.5, cy = h * 0.5;
+
+      for (let i = 0; i < maxLen; i++) {
+        const a = from[i] || { x: cx, y: cy, r: 0, col: COLORS.teal, opacity: 0 };
+        const b = to[i] || { x: cx, y: cy, r: 0, col: COLORS.teal, opacity: 0 };
+        cells.push({
+          x: lerp(a.x, b.x, easedT),
+          y: lerp(a.y, b.y, easedT),
+          r: lerp(a.r, b.r, easedT),
+          col: lerpColor(a.col, b.col, easedT),
+          opacity: lerp(a.opacity, b.opacity, easedT)
+        });
+      }
+      return cells;
+    }
+
+    // ── Connection pairs for steps 2+ ──
+    function getConnections(cells, step) {
+      if (step < 2) return [];
+      const conns = [];
+      const maxDist = step === 2 ? 140 : step === 3 ? 130 : 120;
+      for (let i = 0; i < cells.length; i++) {
+        for (let j = i + 1; j < cells.length; j++) {
+          const dx = cells[j].x - cells[i].x;
+          const dy = cells[j].y - cells[i].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < maxDist) {
+            conns.push({ a: i, b: j, dist });
+          }
+        }
+      }
+      return conns;
+    }
+
+    // ── Render loop ──
+    function render() {
+      time++;
+      const w = logW(), h = logH();
+
+      // Advance transition
+      if (transitionProgress < 1) {
+        transitionProgress = Math.min(1, transitionProgress + 0.025); // ~0.5s at 60fps
+      }
+
+      // Reset transform (devicePixelRatio scaling is set once on resize)
+      ctx.setTransform(window.devicePixelRatio, 0, 0, window.devicePixelRatio, 0, 0);
+      ctx.clearRect(0, 0, w, h);
+
+      // Subtle background gradient
+      const bg = ctx.createRadialGradient(w * 0.5, h * 0.45, 0, w * 0.5, h * 0.45, w * 0.5);
+      bg.addColorStop(0, 'rgba(243,240,248,0.5)');
+      bg.addColorStop(1, 'rgba(250,247,242,0)');
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, w, h);
+
+      const cells = getInterpolatedCells(transitionProgress);
+      const effectiveStep = transitionProgress > 0.5 ? currentStep : prevStep;
+
+      // Brownian motion offset
+      const animated = cells.map((c, i) => ({
+        ...c,
+        x: c.x + Math.sin(time * 0.008 + i * 1.7) * 3 + Math.cos(time * 0.005 + i * 2.3) * 2,
+        y: c.y + Math.cos(time * 0.007 + i * 1.3) * 3 + Math.sin(time * 0.006 + i * 2.7) * 2
+      }));
+
+      // Draw connections (behind cells)
+      if (effectiveStep >= 2) {
+        const conns = getConnections(animated, effectiveStep);
+        const connOpacity = effectiveStep >= 2 ? Math.min(1, transitionProgress) : 0;
+        conns.forEach(conn => {
+          const a = animated[conn.a];
+          const b = animated[conn.b];
+          const fade = 1 - conn.dist / 140;
+          ctx.strokeStyle = `rgba(79,163,184,${fade * connOpacity * 0.1})`;
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.moveTo(a.x, a.y);
+          const mx = (a.x + b.x) / 2;
+          const my = (a.y + b.y) / 2;
+          ctx.quadraticCurveTo(mx, my, b.x, b.y);
+          ctx.stroke();
+        });
+      }
+
+      // Draw cells (front to back by size — smaller on top)
+      const sorted = [...animated].sort((a, b) => b.r - a.r);
+      sorted.forEach(c => {
+        // Pulsing
+        const pulse = Math.sin(time * 0.015 + c.x * 0.01 + c.y * 0.01) * 2;
+        drawCell(ctx, c.x, c.y, c.r + pulse, c.col, c.opacity);
+      });
+
+      requestAnimationFrame(render);
+    }
+    requestAnimationFrame(render);
+
+    // ── ScrollTrigger: Pin the visual panel ──
+    const isMobile = window.innerWidth < 769;
+
+    ScrollTrigger.create({
+      trigger: '#scrollytelling',
+      start: 'top top',
+      end: 'bottom bottom',
+      pin: '#scrollyVisual',
+      pinSpacing: false,
+    });
+
+    // ── Step detection with IntersectionObserver ──
+    const steps = document.querySelectorAll('.step');
+    const observerOpts = {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = parseInt(entry.target.dataset.step);
+          // Update active class
+          steps.forEach(s => s.classList.remove('is-active'));
+          entry.target.classList.add('is-active');
+          // Trigger canvas transition
+          setActiveStep(idx);
+        }
+      });
+    }, observerOpts);
+
+    steps.forEach(step => observer.observe(step));
+
+    // Set initial active
+    steps[0].classList.add('is-active');
+
+    // ── GSAP fade-in for intro + outro ──
+    gsap.from('.intro h2', {
+      scrollTrigger: { trigger: '.intro', start: 'top 80%' },
+      y: 30, opacity: 0, duration: 0.8, ease: 'power2.out'
+    });
+    gsap.from('.intro p', {
+      scrollTrigger: { trigger: '.intro', start: 'top 75%' },
+      y: 20, opacity: 0, duration: 0.8, delay: 0.15, ease: 'power2.out'
+    });
+    gsap.from('.outro h2', {
+      scrollTrigger: { trigger: '.outro', start: 'top 80%' },
+      y: 30, opacity: 0, duration: 0.8, ease: 'power2.out'
+    });
+    gsap.from('.outro p', {
+      scrollTrigger: { trigger: '.outro', start: 'top 75%' },
+      y: 20, opacity: 0, duration: 0.8, delay: 0.15, ease: 'power2.out'
+    });
+    gsap.from('.cta-btn', {
+      scrollTrigger: { trigger: '.outro', start: 'top 70%' },
+      y: 15, opacity: 0, duration: 0.6, delay: 0.3, ease: 'power2.out'
+    });
+  </script>
+</body>
+</html>

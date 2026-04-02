@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>StemCyte Animation System — Demo Gallery</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&family=Source+Serif+4:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --plum: #6C1A55;
+      --deep-plum: #3D0F31;
+      --cream: #FAF7F2;
+      --lavender: #F3F0F8;
+      --deep-lavender: #EDE8F5;
+      --teal: #4FA3B8;
+      --divider: #E8E2DC;
+      --text: #3D0F31;
+      --muted: #5a4e47;
+      --card-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
+      --card-shadow-hover: 0 8px 25px rgba(0,0,0,0.08), 0 4px 10px rgba(0,0,0,0.05);
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ═══ HERO ═══ */
+    .hero {
+      background: linear-gradient(160deg, var(--plum), var(--deep-plum));
+      padding: 120px 40px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -20%;
+      width: 140%;
+      height: 200%;
+      background: radial-gradient(ellipse at 30% 40%, rgba(79,163,184,0.08) 0%, transparent 60%),
+                  radial-gradient(ellipse at 70% 60%, rgba(108,26,85,0.12) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      font-weight: 400;
+      color: #fff;
+      max-width: 700px;
+      margin: 0 auto 20px;
+      line-height: 1.15;
+      position: relative;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: rgba(255,255,255,0.5);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.7;
+      position: relative;
+    }
+
+    /* ═══ SECTIONS ═══ */
+    .section {
+      padding: 80px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      border: 1px solid;
+      margin-bottom: 16px;
+    }
+
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 3.5vw, 38px);
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      font-size: 15px;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.7;
+    }
+
+    .section-divider {
+      border: none;
+      height: 1px;
+      background: var(--divider);
+      margin: 0 40px;
+      max-width: 1120px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ═══ CARD GRID ═══ */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+    }
+
+    .demo-card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: var(--card-shadow);
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(0.4,0,0.2,1), box-shadow 0.3s cubic-bezier(0.4,0,0.2,1);
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .demo-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--card-shadow-hover);
+    }
+
+    .card-preview {
+      height: 180px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-preview-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .demo-card:hover .card-preview-inner {
+      transform: scale(1.03);
+    }
+
+    /* Preview backgrounds */
+    .preview-dark {
+      background: linear-gradient(135deg, var(--deep-plum), #2a0a20);
+    }
+
+    .preview-light {
+      background: var(--lavender);
+    }
+
+    .preview-gradient {
+      background: linear-gradient(160deg, var(--plum), var(--deep-plum));
+    }
+
+    /* Preview decorative elements */
+    .preview-dots {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+    }
+
+    .preview-dot {
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.15;
+    }
+
+    .card-body {
+      padding: 24px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-number {
+      font-family: 'Source Serif 4', serif;
+      font-size: 13px;
+      color: var(--teal);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .card-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .card-tags {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      background: var(--lavender);
+      color: var(--plum);
+    }
+
+    .tag-teal {
+      background: rgba(79,163,184,0.1);
+      color: var(--teal);
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--plum);
+      margin-top: 16px;
+      text-decoration: none;
+      transition: gap 0.2s ease;
+    }
+
+    .demo-card:hover .card-link {
+      gap: 10px;
+    }
+
+    .card-link span {
+      transition: transform 0.2s ease;
+    }
+
+    .demo-card:hover .card-link span {
+      transform: translateX(2px);
+    }
+
+    /* ═══ FOOTER ═══ */
+    .footer {
+      background: var(--deep-plum);
+      padding: 48px 40px;
+      text-align: center;
+    }
+
+    .footer p {
+      font-size: 14px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    .footer a {
+      color: var(--teal);
+      text-decoration: none;
+    }
+
+    /* ═══ RESPONSIVE ═══ */
+    @media (max-width: 768px) {
+      .hero { padding: 80px 24px 60px; }
+      .section { padding: 60px 24px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .section-divider { margin: 0 24px; }
+    }
+
+    @media (max-width: 480px) {
+      .hero { padding: 60px 16px 48px; }
+      .section { padding: 48px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══ HERO ═══ -->
+  <div class="hero">
+    <div class="hero-label">Design System</div>
+    <h1>Animation System</h1>
+    <p>Ambient animations, scroll-driven motion, and interaction primitives for StemCyte's design language. Warm, biological, alive.</p>
+  </div>
+
+  <!-- ═══ SECTION 1: FEEL ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-pill" style="color: var(--teal); border-color: rgba(79,163,184,0.2);">Feel</div>
+      <h2>Ambient &amp; Living Animations</h2>
+      <p>Background canvas animations that breathe and exist. Organic, warm, cursor-interactive. These live behind content — present but not performing.</p>
+    </div>
+
+    <div class="card-grid">
+
+      <!-- 1. Cell Field -->
+      <a href="cell-field.html" class="demo-card">
+        <div class="card-preview preview-light">
+          <div class="card-preview-inner">
+            <div class="preview-dots">
+              <div class="preview-dot" style="width:60px;height:60px;left:20%;top:30%;background:radial-gradient(circle,rgba(108,26,85,0.2),transparent);"></div>
+              <div class="preview-dot" style="width:40px;height:40px;left:55%;top:50%;background:radial-gradient(circle,rgba(79,163,184,0.25),transparent);"></div>
+              <div class="preview-dot" style="width:80px;height:80px;left:70%;top:20%;background:radial-gradient(circle,rgba(237,232,245,0.4),transparent);"></div>
+              <div class="preview-dot" style="width:35px;height:35px;left:35%;top:65%;background:radial-gradient(circle,rgba(108,26,85,0.15),transparent);"></div>
+              <div class="preview-dot" style="width:50px;height:50px;left:15%;top:60%;background:radial-gradient(circle,rgba(79,163,184,0.2),transparent);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">01</div>
+          <div class="card-title">Cell Field</div>
+          <div class="card-desc">Translucent stem cells drifting with brownian motion. Mouse repulsion. Occasional mitosis. Our hero wave.</div>
+          <div class="card-tags">
+            <span class="tag">Canvas 2D</span>
+            <span class="tag tag-teal">Interactive</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 2. Membrane Surface -->
+      <a href="membrane-surface.html" class="demo-card">
+        <div class="card-preview preview-gradient">
+          <div class="card-preview-inner">
+            <svg width="200" height="100" viewBox="0 0 200 100" style="opacity:0.25;">
+              <path d="M0,60 Q25,30 50,55 T100,50 T150,45 T200,55" stroke="rgba(255,255,255,0.5)" fill="none" stroke-width="1"/>
+              <path d="M0,65 Q25,40 50,60 T100,55 T150,50 T200,60" stroke="rgba(79,163,184,0.5)" fill="none" stroke-width="1"/>
+              <path d="M0,70 Q25,50 50,65 T100,60 T150,55 T200,65" stroke="rgba(255,255,255,0.3)" fill="none" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">02</div>
+          <div class="card-title">Membrane Surface</div>
+          <div class="card-desc">Undulating WebGL surface with iridescent shaders. Cell membrane meets amniotic fluid. Warm, organic waves.</div>
+          <div class="card-tags">
+            <span class="tag">Three.js</span>
+            <span class="tag">Shaders</span>
+            <span class="tag tag-teal">Interactive</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 3. Particle Flow -->
+      <a href="particle-flow.html" class="demo-card">
+        <div class="card-preview preview-dark">
+          <div class="card-preview-inner">
+            <div class="preview-dots">
+              <div class="preview-dot" style="width:2px;height:2px;left:20%;top:40%;background:#4FA3B8;opacity:0.6;"></div>
+              <div class="preview-dot" style="width:2px;height:2px;left:25%;top:42%;background:#6C1A55;opacity:0.5;"></div>
+              <div class="preview-dot" style="width:2px;height:2px;left:30%;top:38%;background:#4FA3B8;opacity:0.7;"></div>
+              <div class="preview-dot" style="width:2px;height:2px;left:45%;top:50%;background:#4FA3B8;opacity:0.6;"></div>
+              <div class="preview-dot" style="width:2px;height:2px;left:50%;top:48%;background:#6C1A55;opacity:0.5;"></div>
+              <div class="preview-dot" style="width:2px;height:2px;left:60%;top:55%;background:#4FA3B8;opacity:0.4;"></div>
+              <div class="preview-dot" style="width:2px;height:2px;left:70%;top:45%;background:#EDE8F5;opacity:0.5;"></div>
+              <div class="preview-dot" style="width:2px;height:2px;left:80%;top:50%;background:#4FA3B8;opacity:0.6;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">03</div>
+          <div class="card-title">Particle Flow</div>
+          <div class="card-desc">Thousands of particles flowing through Perlin noise fields. Cord blood cells traveling through an umbilical cord.</div>
+          <div class="card-tags">
+            <span class="tag">Canvas 2D</span>
+            <span class="tag">Perlin Noise</span>
+            <span class="tag tag-teal">Interactive</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 4. Growth Network -->
+      <a href="growth-network.html" class="demo-card">
+        <div class="card-preview preview-light">
+          <div class="card-preview-inner">
+            <svg width="180" height="120" viewBox="0 0 180 120" style="opacity:0.3;">
+              <circle cx="90" cy="60" r="5" fill="#6C1A55"/>
+              <circle cx="60" cy="40" r="4" fill="#4FA3B8"/>
+              <circle cx="120" cy="45" r="4" fill="#4FA3B8"/>
+              <circle cx="75" cy="80" r="3" fill="#EDE8F5"/>
+              <circle cx="110" cy="75" r="3.5" fill="#6C1A55"/>
+              <line x1="90" y1="60" x2="60" y2="40" stroke="#6C1A55" stroke-width="0.5" opacity="0.3"/>
+              <line x1="90" y1="60" x2="120" y2="45" stroke="#4FA3B8" stroke-width="0.5" opacity="0.3"/>
+              <line x1="90" y1="60" x2="75" y2="80" stroke="#4FA3B8" stroke-width="0.5" opacity="0.3"/>
+              <line x1="90" y1="60" x2="110" y2="75" stroke="#6C1A55" stroke-width="0.5" opacity="0.3"/>
+              <line x1="60" y1="40" x2="75" y2="80" stroke="#EDE8F5" stroke-width="0.5" opacity="0.2"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">04</div>
+          <div class="card-title">Growth Network</div>
+          <div class="card-desc">An organic network that grows in real time. Nodes appear, connections form. Neural network meets cellular development.</div>
+          <div class="card-tags">
+            <span class="tag">Canvas 2D</span>
+            <span class="tag tag-teal">Interactive</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 5. Cell Sphere -->
+      <a href="cell-sphere.html" class="demo-card">
+        <div class="card-preview preview-dark">
+          <div class="card-preview-inner">
+            <div style="width:100px;height:100px;border-radius:50%;background:radial-gradient(circle at 40% 35%, rgba(79,163,184,0.3), rgba(108,26,85,0.2) 50%, transparent 70%);border:1px solid rgba(79,163,184,0.15);"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">05</div>
+          <div class="card-title">Cell Sphere</div>
+          <div class="card-desc">Rotating sphere of translucent cell particles. Stripe's globe, but biological. Mouse tilt, warm glow, depth.</div>
+          <div class="card-tags">
+            <span class="tag">Three.js</span>
+            <span class="tag tag-teal">Interactive</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 6. Heartbeat Rings -->
+      <a href="heartbeat-rings.html" class="demo-card">
+        <div class="card-preview preview-light">
+          <div class="card-preview-inner">
+            <div style="position:relative;width:120px;height:120px;">
+              <div style="position:absolute;inset:0;border-radius:50%;border:2px solid rgba(108,26,85,0.15);"></div>
+              <div style="position:absolute;inset:15px;border-radius:50%;border:2px solid rgba(108,26,85,0.2);"></div>
+              <div style="position:absolute;inset:30px;border-radius:50%;border:2px solid rgba(108,26,85,0.25);"></div>
+              <div style="position:absolute;inset:45px;border-radius:50%;border:2px solid rgba(108,26,85,0.3);"></div>
+              <div style="position:absolute;inset:52px;border-radius:50%;background:radial-gradient(circle,rgba(108,26,85,0.4),transparent);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">06</div>
+          <div class="card-title">Heartbeat Rings</div>
+          <div class="card-desc">Concentric rings pulsing outward with organic, irregular rhythm. A resting heartbeat. Cursor moves the pulse origin.</div>
+          <div class="card-tags">
+            <span class="tag">Canvas 2D</span>
+            <span class="tag tag-teal">Interactive</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 7. DNA Ribbon -->
+      <a href="dna-ribbon.html" class="demo-card">
+        <div class="card-preview preview-dark">
+          <div class="card-preview-inner">
+            <svg width="80" height="140" viewBox="0 0 80 140" style="opacity:0.35;">
+              <circle cx="25" cy="10" r="4" fill="#4FA3B8"/>
+              <circle cx="55" cy="10" r="4" fill="#6C1A55"/>
+              <circle cx="55" cy="35" r="4" fill="#4FA3B8"/>
+              <circle cx="25" cy="35" r="4" fill="#6C1A55"/>
+              <circle cx="25" cy="60" r="4" fill="#4FA3B8"/>
+              <circle cx="55" cy="60" r="4" fill="#6C1A55"/>
+              <circle cx="55" cy="85" r="4" fill="#4FA3B8"/>
+              <circle cx="25" cy="85" r="4" fill="#6C1A55"/>
+              <circle cx="25" cy="110" r="4" fill="#4FA3B8"/>
+              <circle cx="55" cy="110" r="4" fill="#6C1A55"/>
+              <line x1="25" y1="10" x2="55" y2="10" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+              <line x1="25" y1="60" x2="55" y2="60" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+              <line x1="25" y1="110" x2="55" y2="110" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+            </svg>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">07</div>
+          <div class="card-title">DNA Ribbon</div>
+          <div class="card-desc">Artistic double helix of glowing spheres. Undulating in fluid. Soft depth blur and pulsing light. Mouse controls rotation.</div>
+          <div class="card-tags">
+            <span class="tag">Three.js</span>
+            <span class="tag tag-teal">Interactive</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 8. Starburst Bio -->
+      <a href="starburst-bio.html" class="demo-card">
+        <div class="card-preview preview-dark">
+          <div class="card-preview-inner">
+            <div style="position:relative;width:120px;height:120px;">
+              <div style="position:absolute;top:50%;left:50%;width:8px;height:8px;margin:-4px;border-radius:50%;background:radial-gradient(circle,rgba(79,163,184,0.8),rgba(108,26,85,0.3),transparent);"></div>
+              <div style="position:absolute;top:50%;left:50%;width:100px;height:1px;margin-top:-0.5px;margin-left:-50px;background:linear-gradient(90deg,transparent,rgba(79,163,184,0.2),transparent);transform:rotate(0deg);"></div>
+              <div style="position:absolute;top:50%;left:50%;width:100px;height:1px;margin-top:-0.5px;margin-left:-50px;background:linear-gradient(90deg,transparent,rgba(108,26,85,0.2),transparent);transform:rotate(30deg);"></div>
+              <div style="position:absolute;top:50%;left:50%;width:100px;height:1px;margin-top:-0.5px;margin-left:-50px;background:linear-gradient(90deg,transparent,rgba(79,163,184,0.2),transparent);transform:rotate(60deg);"></div>
+              <div style="position:absolute;top:50%;left:50%;width:100px;height:1px;margin-top:-0.5px;margin-left:-50px;background:linear-gradient(90deg,transparent,rgba(108,26,85,0.2),transparent);transform:rotate(90deg);"></div>
+              <div style="position:absolute;top:50%;left:50%;width:100px;height:1px;margin-top:-0.5px;margin-left:-50px;background:linear-gradient(90deg,transparent,rgba(79,163,184,0.2),transparent);transform:rotate(120deg);"></div>
+              <div style="position:absolute;top:50%;left:50%;width:100px;height:1px;margin-top:-0.5px;margin-left:-50px;background:linear-gradient(90deg,transparent,rgba(108,26,85,0.2),transparent);transform:rotate(150deg);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">08</div>
+          <div class="card-title">Starburst</div>
+          <div class="card-desc">Interactive radial burst with organic waving lines and traveling signal dots. Highly cursor-responsive. The showstopper.</div>
+          <div class="card-tags">
+            <span class="tag">Canvas 2D</span>
+            <span class="tag tag-teal">Highly Interactive</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ═══ SECTION 2: LEARN ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-pill" style="color: var(--plum); border-color: rgba(108,26,85,0.15);">Learn</div>
+      <h2>Scroll-Driven Motion</h2>
+      <p>GSAP + ScrollTrigger powered entrance animations, parallax, count-ups, timelines, and scrollytelling. Subtle, calm, content-first.</p>
+    </div>
+
+    <div class="card-grid">
+
+      <!-- 9. Scroll Fade Up -->
+      <a href="scroll-fade-up.html" class="demo-card">
+        <div class="card-preview preview-light">
+          <div class="card-preview-inner" style="flex-direction:column;gap:8px;padding:24px;">
+            <div style="width:70%;height:12px;background:rgba(61,15,49,0.12);border-radius:6px;"></div>
+            <div style="width:90%;height:8px;background:rgba(61,15,49,0.06);border-radius:4px;"></div>
+            <div style="width:80%;height:8px;background:rgba(61,15,49,0.06);border-radius:4px;"></div>
+            <div style="width:60%;height:40px;background:rgba(243,240,248,1);border-radius:8px;margin-top:8px;border:1px solid #E8E2DC;"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">09</div>
+          <div class="card-title">Scroll Fade Up</div>
+          <div class="card-desc">The default entrance. Elements fade up with staggered timing as they enter the viewport. The foundation for every page.</div>
+          <div class="card-tags">
+            <span class="tag">GSAP</span>
+            <span class="tag">ScrollTrigger</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 10. Scroll Stagger Cards -->
+      <a href="scroll-stagger-cards.html" class="demo-card">
+        <div class="card-preview preview-light">
+          <div class="card-preview-inner" style="gap:8px;padding:24px;">
+            <div style="width:60px;height:70px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);"></div>
+            <div style="width:60px;height:70px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);transform:translateY(8px);opacity:0.7;"></div>
+            <div style="width:60px;height:70px;background:#fff;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,0.06);transform:translateY(16px);opacity:0.4;"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">10</div>
+          <div class="card-title">Stagger Cards</div>
+          <div class="card-desc">Card grid with staggered entrance and hover lift with deepening shadow. Responsive 3/2/1 column layout.</div>
+          <div class="card-tags">
+            <span class="tag">GSAP</span>
+            <span class="tag">ScrollTrigger</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 11. Scroll Count Up -->
+      <a href="scroll-count-up.html" class="demo-card">
+        <div class="card-preview" style="background:var(--deep-lavender);">
+          <div class="card-preview-inner" style="gap:24px;">
+            <div style="text-align:center;">
+              <div style="font-family:'Source Serif 4',serif;font-size:32px;color:var(--plum);font-weight:600;">40K+</div>
+              <div style="font-size:10px;color:var(--muted);">shipped</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Source Serif 4',serif;font-size:32px;color:var(--teal);font-weight:600;">80+</div>
+              <div style="font-size:10px;color:var(--muted);">diseases</div>
+            </div>
+            <div style="text-align:center;">
+              <div style="font-family:'Source Serif 4',serif;font-size:32px;color:var(--plum);font-weight:600;">30+</div>
+              <div style="font-size:10px;color:var(--muted);">years</div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">11</div>
+          <div class="card-title">Count Up Stats</div>
+          <div class="card-desc">Numbers count up with easing when entering viewport. Source Serif 4 typography. Comma formatting, suffix preservation.</div>
+          <div class="card-tags">
+            <span class="tag">GSAP</span>
+            <span class="tag">ScrollTrigger</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 12. Scroll Parallax Layers -->
+      <a href="scroll-parallax-layers.html" class="demo-card">
+        <div class="card-preview preview-gradient">
+          <div class="card-preview-inner" style="flex-direction:column;">
+            <div style="font-size:10px;color:rgba(255,255,255,0.3);margin-bottom:4px;">↑ slower</div>
+            <div style="width:80%;height:1px;background:rgba(255,255,255,0.1);margin:2px 0;"></div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.5);margin:4px 0;">↕ medium</div>
+            <div style="width:80%;height:1px;background:rgba(255,255,255,0.1);margin:2px 0;"></div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.7);margin-top:4px;">↓ faster</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">12</div>
+          <div class="card-title">Parallax Layers</div>
+          <div class="card-desc">Layered parallax with background, midground, and foreground moving at different speeds. Subtle 20-30px depth effect.</div>
+          <div class="card-tags">
+            <span class="tag">GSAP</span>
+            <span class="tag">ScrollTrigger</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 13. Scroll Reveal Timeline -->
+      <a href="scroll-reveal-timeline.html" class="demo-card">
+        <div class="card-preview preview-light">
+          <div class="card-preview-inner" style="padding:20px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:4px;">
+              <div style="width:10px;height:10px;border-radius:50%;background:var(--plum);"></div>
+              <div style="width:1px;height:16px;background:rgba(108,26,85,0.2);"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:var(--teal);"></div>
+              <div style="width:1px;height:16px;background:rgba(79,163,184,0.2);"></div>
+              <div style="width:10px;height:10px;border-radius:50%;background:var(--plum);"></div>
+              <div style="width:1px;height:16px;background:rgba(108,26,85,0.2);"></div>
+              <div style="width:10px;height:10px;border-radius:50%;border:2px solid rgba(79,163,184,0.3);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">13</div>
+          <div class="card-title">Reveal Timeline</div>
+          <div class="card-desc">Vertical timeline with SVG line drawing, alternating left/right cards, and node pulse animation. Process flow visualization.</div>
+          <div class="card-tags">
+            <span class="tag">GSAP</span>
+            <span class="tag">SVG</span>
+            <span class="tag">ScrollTrigger</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 14. Scrollytelling Demo -->
+      <a href="scrollytelling-demo.html" class="demo-card">
+        <div class="card-preview preview-light">
+          <div class="card-preview-inner" style="padding:16px;gap:12px;">
+            <div style="width:45%;display:flex;flex-direction:column;gap:6px;">
+              <div style="height:6px;width:70%;background:rgba(61,15,49,0.15);border-radius:3px;"></div>
+              <div style="height:4px;width:90%;background:rgba(61,15,49,0.06);border-radius:2px;"></div>
+              <div style="height:4px;width:80%;background:rgba(61,15,49,0.06);border-radius:2px;"></div>
+            </div>
+            <div style="width:45%;height:80px;background:var(--deep-lavender);border-radius:8px;display:flex;align-items:center;justify-content:center;">
+              <div style="width:30px;height:30px;border-radius:50%;background:radial-gradient(circle,rgba(79,163,184,0.4),transparent);"></div>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">14</div>
+          <div class="card-title">Scrollytelling</div>
+          <div class="card-desc">Pinned visual with scrolling text steps. Canvas cell animation transforms between states. The most complex scroll pattern.</div>
+          <div class="card-tags">
+            <span class="tag">GSAP</span>
+            <span class="tag">Canvas</span>
+            <span class="tag">ScrollTrigger</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <hr class="section-divider">
+
+  <!-- ═══ SECTION 3: HYBRID ═══ -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-pill" style="color: #E8C06E; border-color: rgba(232,192,110,0.2);">Hybrid</div>
+      <h2>Interaction &amp; Micro-Motion</h2>
+      <p>Hover states, cursor effects, and micro-interactions. The small details that make the experience feel alive and responsive.</p>
+    </div>
+
+    <div class="card-grid">
+
+      <!-- 15. Hover States -->
+      <a href="hover-states.html" class="demo-card">
+        <div class="card-preview preview-light">
+          <div class="card-preview-inner" style="gap:12px;">
+            <div style="padding:10px 20px;background:var(--plum);color:#fff;border-radius:100px;font-size:12px;font-weight:700;">Primary</div>
+            <div style="padding:10px 20px;border:1px solid var(--plum);color:var(--plum);border-radius:100px;font-size:12px;font-weight:700;">Ghost</div>
+            <div style="padding:10px 20px;background:#fff;color:var(--plum);border-radius:100px;font-size:12px;font-weight:700;box-shadow:0 1px 3px rgba(0,0,0,0.06);">White</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">15</div>
+          <div class="card-title">Hover States</div>
+          <div class="card-desc">Complete reference: card lift, button variants, link underline animation, image zoom overlay. CSS-only transitions.</div>
+          <div class="card-tags">
+            <span class="tag">CSS</span>
+            <span class="tag">Reference</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+      <!-- 16. Cursor Glow -->
+      <a href="cursor-glow.html" class="demo-card">
+        <div class="card-preview preview-gradient">
+          <div class="card-preview-inner">
+            <div style="width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(79,163,184,0.15),transparent 70%);"></div>
+          </div>
+        </div>
+        <div class="card-body">
+          <div class="card-number">16</div>
+          <div class="card-title">Cursor Glow</div>
+          <div class="card-desc">Soft ambient glow that follows the cursor across dark sections. Large radius, very faint. Adds warmth and life.</div>
+          <div class="card-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag tag-teal">Interactive</span>
+          </div>
+          <div class="card-link">View demo <span>→</span></div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ═══ FOOTER ═══ -->
+  <div class="footer">
+    <p>StemCyte Animation System — Design System Demos</p>
+  </div>
+
+</body>
+</html>
