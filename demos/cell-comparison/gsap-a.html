@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GSAP — Variant A: DOM Elements</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0c1a20;
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+  }
+
+  #container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* Ambient glow */
+  #ambient-glow {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 500px;
+    height: 500px;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(79,163,184,0.08) 0%, rgba(42,130,155,0.03) 40%, transparent 70%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* Cell base */
+  .cell {
+    position: absolute;
+    border-radius: 50%;
+    will-change: transform, opacity;
+    pointer-events: none;
+  }
+
+  /* Nucleus pseudo-element */
+  .cell::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 22%;
+    height: 22%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.2) 40%, transparent 70%);
+    z-index: 1;
+  }
+
+  /* Specular highlight pseudo-element */
+  .cell::after {
+    content: '';
+    position: absolute;
+    top: 18%;
+    left: 22%;
+    width: 16%;
+    height: 16%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.22) 0%, transparent 70%);
+    z-index: 2;
+  }
+
+  /* Back layer */
+  .cell.layer-back {
+    z-index: 1;
+    filter: blur(6px);
+    opacity: 0.05;
+  }
+
+  /* Mid layer */
+  .cell.layer-mid {
+    z-index: 2;
+    filter: blur(2px);
+    opacity: 0.15;
+  }
+
+  /* Front layer */
+  .cell.layer-front {
+    z-index: 3;
+    opacity: 0.3;
+  }
+
+  /* Labels */
+  #label {
+    position: fixed;
+    bottom: 16px;
+    left: 20px;
+    color: rgba(255,255,255,0.45);
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    z-index: 100;
+    pointer-events: none;
+    letter-spacing: 0.3px;
+  }
+
+  #back-link {
+    position: fixed;
+    top: 16px;
+    left: 20px;
+    color: #4FA3B8;
+    font-size: 13px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+    z-index: 100;
+    letter-spacing: 0.3px;
+  }
+  #back-link:hover {
+    color: #6ec4d8;
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <div id="ambient-glow"></div>
+</div>
+
+<a id="back-link" href="index.html">&larr; Back to Gallery</a>
+<div id="label">GSAP &mdash; Variant A: DOM Elements</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+(function() {
+  const container = document.getElementById('container');
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+
+  // Mouse tracking
+  let mouseX = W / 2;
+  let mouseY = H / 2;
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  // Utility
+  function rand(min, max) {
+    return Math.random() * (max - min) + min;
+  }
+
+  // Teal palette
+  const teals = [
+    [79, 163, 184],
+    [42, 130, 155],
+    [42, 99, 124],
+    [60, 140, 165],
+    [90, 170, 190]
+  ];
+
+  // Cell definitions: layer, count, radius range
+  const layers = [
+    { name: 'back',  count: 3, rMin: 70,  rMax: 100, cls: 'layer-back' },
+    { name: 'mid',   count: 7, rMin: 18,  rMax: 40,  cls: 'layer-mid' },
+    { name: 'front', count: 5, rMin: 4,   rMax: 10,  cls: 'layer-front' }
+  ];
+
+  const cells = [];
+
+  layers.forEach(layer => {
+    for (let i = 0; i < layer.count; i++) {
+      const r = Math.round(rand(layer.rMin, layer.rMax));
+      const d = r * 2;
+      const teal = teals[Math.floor(Math.random() * teals.length)];
+
+      const el = document.createElement('div');
+      el.className = 'cell ' + layer.cls;
+
+      // Position randomly
+      const startX = rand(r, W - r);
+      const startY = rand(r, H - r);
+
+      el.style.width = d + 'px';
+      el.style.height = d + 'px';
+      el.style.left = startX + 'px';
+      el.style.top = startY + 'px';
+
+      // Radial gradient body
+      const cR = teal[0], cG = teal[1], cB = teal[2];
+      el.style.background = `radial-gradient(circle at 45% 40%,
+        rgba(${Math.min(cR + 25, 255)},${Math.min(cG + 25, 255)},${Math.min(cB + 25, 255)},0.6) 0%,
+        rgba(${cR},${cG},${cB},0.35) 40%,
+        rgba(${Math.max(cR - 37, 0)},${Math.max(cG - 64, 0)},${Math.max(cB - 60, 0)},0.12) 100%)`;
+
+      // Box shadows: outer glow + inner nucleus glow
+      const outerGlow = `0 0 ${Math.round(r * 0.8)}px ${Math.round(r * 0.3)}px rgba(${cR},${cG},${cB},0.2)`;
+      const innerGlow = `inset 0 0 ${Math.round(r * 0.3)}px rgba(255,255,255,0.3)`;
+      el.style.boxShadow = outerGlow + ', ' + innerGlow;
+
+      // Border edge stroke
+      el.style.border = `1px solid rgba(${Math.min(cR + 30, 255)},${Math.min(cG + 30, 255)},${Math.min(cB + 30, 255)},0.15)`;
+
+      container.appendChild(el);
+
+      cells.push({ el, r, x: startX, y: startY, layer: layer.name });
+    }
+  });
+
+  // GSAP animations for each cell
+  const quickTos = [];
+
+  cells.forEach((cell, i) => {
+    const { el, r } = cell;
+
+    // Drift ranges proportional to radius
+    const driftX = rand(40, 120);
+    const driftY = rand(40, 120);
+
+    // Horizontal drift
+    gsap.to(el, {
+      x: rand(-driftX, driftX),
+      duration: rand(15, 35),
+      ease: 'sine.inOut',
+      repeat: -1,
+      yoyo: true,
+      delay: rand(0, 5)
+    });
+
+    // Vertical drift
+    gsap.to(el, {
+      y: rand(-driftY, driftY),
+      duration: rand(18, 40),
+      ease: 'sine.inOut',
+      repeat: -1,
+      yoyo: true,
+      delay: rand(0, 5)
+    });
+
+    // Scale breathing
+    gsap.to(el, {
+      scale: rand(0.95, 1.05),
+      duration: rand(8, 15),
+      ease: 'sine.inOut',
+      repeat: -1,
+      yoyo: true,
+      delay: rand(0, 3)
+    });
+
+    // Quick-to for mouse repulsion
+    quickTos.push({
+      qx: gsap.quickTo(el, 'x', { duration: 0.8, ease: 'power2.out' }),
+      qy: gsap.quickTo(el, 'y', { duration: 0.8, ease: 'power2.out' }),
+      cell
+    });
+  });
+
+  // Mouse repulsion - runs on ticker
+  gsap.ticker.add(() => {
+    quickTos.forEach(({ qx, qy, cell }) => {
+      const rect = cell.el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
+      const dx = cx - mouseX;
+      const dy = cy - mouseY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+
+      if (dist < 150 && dist > 0) {
+        const force = (150 - dist) / 150;
+        const angle = Math.atan2(dy, dx);
+        const pushX = Math.cos(angle) * force * 30;
+        const pushY = Math.sin(angle) * force * 30;
+        // Get current gsap x/y and add push
+        const curX = gsap.getProperty(cell.el, 'x');
+        const curY = gsap.getProperty(cell.el, 'y');
+        qx(curX + pushX);
+        qy(curY + pushY);
+      }
+    });
+  });
+
+  // Ambient glow breathing
+  const glow = document.getElementById('ambient-glow');
+  gsap.to(glow, {
+    scale: 1.15,
+    opacity: 0.6,
+    duration: 6,
+    ease: 'sine.inOut',
+    repeat: -1,
+    yoyo: true
+  });
+
+  // Pause when tab hidden
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      gsap.globalTimeline.pause();
+    } else {
+      gsap.globalTimeline.play();
+    }
+  });
+
+  // Handle resize
+  window.addEventListener('resize', () => {
+    // No-op: cells stay put, relative positioning still works
+  });
+})();
+</script>
+</body>
+</html>

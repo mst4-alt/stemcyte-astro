@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cell Animation — Tech Comparison</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:#0c1a20;color:#fff;font-family:'Lato',sans-serif;min-height:100vh;padding:60px 40px 80px;}
+  h1{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,48px);font-weight:600;text-align:center;margin-bottom:12px;letter-spacing:-0.5px;}
+  .sub{text-align:center;color:#8aa;font-size:clamp(14px,1.8vw,18px);max-width:600px;margin:0 auto 60px;line-height:1.6;}
+  .grid{max-width:1100px;margin:0 auto;}
+  .row{margin-bottom:48px;}
+  .row-label{font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4FA3B8;margin-bottom:16px;padding-left:4px;}
+  .cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
+  .card{border:1px solid rgba(79,163,184,0.15);border-radius:12px;padding:28px 24px;background:rgba(79,163,184,0.03);transition:transform 0.3s ease,border-color 0.3s ease,background 0.3s ease;}
+  .card:hover{transform:translateY(-4px);border-color:rgba(79,163,184,0.35);background:rgba(79,163,184,0.06);}
+  .card h3{color:#4FA3B8;font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin-bottom:2px;}
+  .card .variant{color:#fff;font-size:15px;font-weight:700;margin-bottom:10px;}
+  .card p{color:#7a9a9a;font-size:13px;line-height:1.5;margin-bottom:16px;}
+  .card a{display:inline-block;color:#4FA3B8;font-size:13px;font-weight:700;text-decoration:none;border:1px solid rgba(79,163,184,0.3);padding:8px 20px;border-radius:100px;transition:all 0.2s;}
+  .card a:hover{background:rgba(79,163,184,0.12);border-color:#4FA3B8;}
+  @media(max-width:700px){.cards{grid-template-columns:1fr;}body{padding:40px 20px;}}
+</style>
+</head>
+<body>
+<h1>Cell Animation — Tech Comparison</h1>
+<p class="sub">Same visual, different rendering technology. Pick the one that feels right.</p>
+<div class="grid">
+
+  <div class="row">
+    <div class="row-label">CSS / SVG</div>
+    <div class="cards">
+      <div class="card">
+        <h3>CSS/SVG</h3>
+        <div class="variant">Variant A: Animated SVG Circles</div>
+        <p>Pure CSS + SVG, zero JavaScript. SVG circles with radial gradients animated via @keyframes. Layered blur filters fake depth. Simplest, lightest approach — no collision or mouse interaction.</p>
+        <a href="css-svg-a.html">View Demo</a>
+      </div>
+      <div class="card">
+        <h3>CSS/SVG</h3>
+        <div class="variant">Variant B: CSS Houdini Custom Properties</div>
+        <p>SVG circles driven by @property-registered custom properties with independent timing per axis. More organic, non-repeating motion than Variant A. Still zero JS.</p>
+        <a href="css-svg-b.html">View Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-label">Canvas 2D</div>
+    <div class="cards">
+      <div class="card">
+        <h3>Canvas 2D</h3>
+        <div class="variant">Variant A: Direct Port</div>
+        <p>Clean recreation of the science hero. 3-layer depth, drawCell with nucleus/specular/glow, brownian drift, soft collision physics, breathing animation. Plus gentle mouse repulsion.</p>
+        <a href="canvas2d-a.html">View Demo</a>
+      </div>
+      <div class="card">
+        <h3>Canvas 2D</h3>
+        <div class="variant">Variant B: Perlin Noise Flow</div>
+        <p>Same cell rendering, but driven by a Perlin noise flow field instead of brownian motion. Coordinated, river-like movement. Cursor creates a gentle vortex disturbance.</p>
+        <a href="canvas2d-b.html">View Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-label">WebGL (Custom Shaders)</div>
+    <div class="cards">
+      <div class="card">
+        <h3>WebGL</h3>
+        <div class="variant">Variant A: Metaball Shader</div>
+        <p>Raw WebGL with GLSL fragment shader. SDF metaballs that merge and separate organically. Mouse attracts/repels blobs. Zero dependencies.</p>
+        <a href="webgl-a.html">View Demo</a>
+      </div>
+      <div class="card">
+        <h3>WebGL</h3>
+        <div class="variant">Variant B: Volumetric Raymarched Cells</div>
+        <p>Raymarched sphere SDFs with inner nucleus, fake subsurface scattering at edges. Translucent, biological look that Canvas 2D can't achieve. Zero dependencies.</p>
+        <a href="webgl-b.html">View Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-label">Pixi.js</div>
+    <div class="cards">
+      <div class="card">
+        <h3>Pixi.js</h3>
+        <div class="variant">Variant A: Sprite-Based Cells</div>
+        <p>GPU-accelerated 2D sprites with programmatic gradient textures. Pixi blur filters per depth layer. 30-40 cells across 3 layers with brownian motion + collision. Mouse repulsion.</p>
+        <a href="pixi-a.html">View Demo</a>
+      </div>
+      <div class="card">
+        <h3>Pixi.js</h3>
+        <div class="variant">Variant B: Mesh + Custom Shader</div>
+        <p>Procedural cell rendering via Pixi mesh shaders — resolution-independent, sharp at any size. Displacement filter for "looking through water" effect. Mouse interaction via uniform.</p>
+        <a href="pixi-b.html">View Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-label">Three.js</div>
+    <div class="cards">
+      <div class="card">
+        <h3>Three.js</h3>
+        <div class="variant">Variant A: Instanced Spheres</div>
+        <p>InstancedMesh with custom ShaderMaterial — Fresnel edge glow, nucleus, radial gradient body. OrthographicCamera for 2D microscope feel. Subtle mouse tilt.</p>
+        <a href="threejs-a.html">View Demo</a>
+      </div>
+      <div class="card">
+        <h3>Three.js</h3>
+        <div class="variant">Variant B: Particle System</div>
+        <p>Points particle system with custom point-sprite ShaderMaterial. 50+ cells across 4 layers. Lightweight, high cell count. Mouse repulsion as a force on nearby particles.</p>
+        <a href="threejs-b.html">View Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="row-label">GSAP</div>
+    <div class="cards">
+      <div class="card">
+        <h3>GSAP</h3>
+        <div class="variant">Variant A: DOM Elements</div>
+        <p>Cells as real DOM divs with CSS radial-gradient and box-shadow. GSAP animates position/scale with long durations and yoyo. ~15 cells, no canvas. Mouse via gsap.quickTo.</p>
+        <a href="gsap-a.html">View Demo</a>
+      </div>
+      <div class="card">
+        <h3>GSAP</h3>
+        <div class="variant">Variant B: Canvas Orchestration</div>
+        <p>Canvas 2D drawCell rendering, but all motion orchestrated by GSAP timelines with MotionPathPlugin for curved paths. Buttery easing that's hard to replicate with manual physics.</p>
+        <a href="gsap-b.html">View Demo</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

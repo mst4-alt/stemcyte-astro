@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Three.js — Variant A: Instanced Spheres</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100vw; height: 100vh; overflow: hidden; background: #0c1a20; font-family: 'Lato', sans-serif; }
+  canvas { display: block; }
+  .back-link {
+    position: fixed; top: 20px; left: 24px; z-index: 10;
+    color: #4FA3B8; text-decoration: none; font-size: 13px; font-family: 'Lato', sans-serif;
+    opacity: 0.85; transition: opacity 0.2s;
+  }
+  .back-link:hover { opacity: 1; }
+  .label {
+    position: fixed; bottom: 20px; left: 24px; z-index: 10;
+    color: #fff; font-size: 12px; font-family: 'Lato', sans-serif; opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+<a class="back-link" href="index.html">&larr; Back to Gallery</a>
+<div class="label">Three.js &mdash; Variant A: Instanced Spheres</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+(function () {
+  // --- Config ---
+  const PALETTE = [
+    [0.31, 0.64, 0.72],
+    [0.165, 0.51, 0.61],
+    [0.165, 0.39, 0.49],
+    [0.235, 0.549, 0.647],
+    [0.353, 0.667, 0.745],
+    [0.275, 0.588, 0.686]
+  ];
+
+  const LAYERS = [
+    { count: 5,  sizeMin: 70, sizeMax: 120, opMin: 0.04, opMax: 0.06, blur: 0.6, speed: 0.08 },
+    { count: 12, sizeMin: 15, sizeMax: 45,  opMin: 0.10, opMax: 0.20, blur: 0.3, speed: 0.15 },
+    { count: 8,  sizeMin: 3,  sizeMax: 10,  opMin: 0.25, opMax: 0.40, blur: 0.1, speed: 0.25 }
+  ];
+
+  // --- Renderer ---
+  const W = window.innerWidth;
+  const H = window.innerHeight;
+  const dpr = Math.min(window.devicePixelRatio, 2);
+
+  const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+  renderer.setSize(W, H);
+  renderer.setPixelRatio(dpr);
+  document.body.appendChild(renderer.domElement);
+
+  // --- Scene ---
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x0c1a20);
+
+  // --- Orthographic camera ---
+  const hw = W / 2;
+  const hh = H / 2;
+  const camera = new THREE.OrthographicCamera(-hw, hw, hh, -hh, -1000, 1000);
+  camera.position.z = 100;
+
+  // --- Shaders ---
+  const vertexShader = `
+    attribute float aSize;
+    attribute float aOpacity;
+    attribute float aPhase;
+    attribute vec3 aColor;
+    attribute float aBlur;
+
+    varying vec3 vNormal;
+    varying vec3 vColor;
+    varying float vOpacity;
+    varying float vBlur;
+    varying vec2 vUv;
+
+    uniform float uTime;
+
+    void main() {
+      vNormal = normalize(normalMatrix * normal);
+      vColor = aColor;
+      vOpacity = aOpacity;
+      vBlur = aBlur;
+      vUv = uv;
+
+      float breath = 1.0 + sin(uTime * 0.003 + aPhase) * 0.03;
+
+      vec4 mvPos = modelViewMatrix * instanceMatrix * vec4(position * breath, 1.0);
+      gl_Position = projectionMatrix * mvPos;
+    }
+  `;
+
+  const fragmentShader = `
+    varying vec3 vNormal;
+    varying vec3 vColor;
+    varying float vOpacity;
+    varying float vBlur;
+    varying vec2 vUv;
+
+    void main() {
+      float fresnel = 1.0 - abs(dot(vNormal, vec3(0.0, 0.0, 1.0)));
+      fresnel = pow(fresnel, 2.0);
+
+      float centerDist = length(vUv - 0.5) * 2.0;
+      float body = smoothstep(1.0, 0.0, centerDist) * vOpacity * 0.5;
+
+      float nucleus = smoothstep(0.25, 0.0, centerDist) * vOpacity * 0.4;
+
+      vec2 specPos = vUv - vec2(0.35, 0.35);
+      float spec = smoothstep(0.15, 0.0, length(specPos)) * vOpacity * 0.2;
+
+      float edgeGlow = fresnel * vOpacity * 0.3;
+
+      vec3 color = vColor * (body + edgeGlow) + vec3(1.0) * (nucleus + spec);
+      float alpha = body + nucleus + spec + edgeGlow;
+
+      gl_FragColor = vec4(color, alpha);
+    }
+  `;
+
+  // --- Utility ---
+  function rand(a, b) { return a + Math.random() * (b - a); }
+  function pickColor() { return PALETTE[Math.floor(Math.random() * PALETTE.length)]; }
+
+  // --- Create instanced meshes ---
+  const baseGeo = new THREE.SphereGeometry(1, 32, 32);
+  const meshes = [];
+  const cellData = []; // per-layer array of per-instance data
+
+  LAYERS.forEach(function (layer, li) {
+    const count = layer.count;
+    const geo = baseGeo.clone();
+
+    // Per-instance attributes
+    const sizes = new Float32Array(count);
+    const opacities = new Float32Array(count);
+    const phases = new Float32Array(count);
+    const colors = new Float32Array(count * 3);
+    const blurs = new Float32Array(count);
+
+    const instances = [];
+
+    for (var i = 0; i < count; i++) {
+      var size = rand(layer.sizeMin, layer.sizeMax);
+      sizes[i] = size;
+      opacities[i] = rand(layer.opMin, layer.opMax);
+      phases[i] = rand(0, Math.PI * 2);
+      blurs[i] = layer.blur;
+      var c = pickColor();
+      colors[i * 3] = c[0];
+      colors[i * 3 + 1] = c[1];
+      colors[i * 3 + 2] = c[2];
+
+      instances.push({
+        x: rand(-hw - size, hw + size),
+        y: rand(-hh - size, hh + size),
+        size: size,
+        vx: rand(-0.15, 0.15) * layer.speed,
+        vy: rand(-0.15, 0.15) * layer.speed,
+        driftPhaseX: rand(0, Math.PI * 2),
+        driftPhaseY: rand(0, Math.PI * 2),
+        driftSpeed: rand(0.0003, 0.001)
+      });
+    }
+
+    geo.setAttribute('aSize', new THREE.InstancedBufferAttribute(sizes, 1));
+    geo.setAttribute('aOpacity', new THREE.InstancedBufferAttribute(opacities, 1));
+    geo.setAttribute('aPhase', new THREE.InstancedBufferAttribute(phases, 1));
+    geo.setAttribute('aColor', new THREE.InstancedBufferAttribute(colors, 3));
+    geo.setAttribute('aBlur', new THREE.InstancedBufferAttribute(blurs, 1));
+
+    var mat = new THREE.ShaderMaterial({
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
+      uniforms: { uTime: { value: 0 } },
+      transparent: true,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending
+    });
+
+    var mesh = new THREE.InstancedMesh(geo, mat, count);
+    mesh.frustumCulled = false;
+    scene.add(mesh);
+
+    meshes.push(mesh);
+    cellData.push(instances);
+  });
+
+  // --- Mouse ---
+  var mouse = { x: 0, y: 0 };
+  window.addEventListener('mousemove', function (e) {
+    mouse.x = (e.clientX / W - 0.5) * 2;
+    mouse.y = (e.clientY / H - 0.5) * 2;
+  });
+
+  // --- Collision (simple repulsion for mid & front layers) ---
+  function collide(instances) {
+    for (var i = 0; i < instances.length; i++) {
+      for (var j = i + 1; j < instances.length; j++) {
+        var a = instances[i];
+        var b = instances[j];
+        var dx = b.x - a.x;
+        var dy = b.y - a.y;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var minDist = (a.size + b.size) * 0.6;
+        if (dist < minDist && dist > 0.01) {
+          var overlap = (minDist - dist) * 0.02;
+          var nx = dx / dist;
+          var ny = dy / dist;
+          a.vx -= nx * overlap;
+          a.vy -= ny * overlap;
+          b.vx += nx * overlap;
+          b.vy += ny * overlap;
+        }
+      }
+    }
+  }
+
+  // --- Edge wrapping ---
+  function wrap(inst) {
+    var pad = inst.size * 1.2;
+    if (inst.x < -hw - pad) inst.x = hw + pad;
+    if (inst.x > hw + pad) inst.x = -hw - pad;
+    if (inst.y < -hh - pad) inst.y = hh + pad;
+    if (inst.y > hh + pad) inst.y = -hh - pad;
+  }
+
+  // --- Dummy matrix ---
+  var dummy = new THREE.Object3D();
+
+  // --- Animation ---
+  var startTime = performance.now();
+
+  function animate() {
+    requestAnimationFrame(animate);
+    if (document.hidden) return;
+
+    var t = performance.now() - startTime;
+
+    // Update each layer
+    LAYERS.forEach(function (layer, li) {
+      var mesh = meshes[li];
+      var instances = cellData[li];
+
+      mesh.material.uniforms.uTime.value = t;
+
+      // Collision on mid (1) and front (2) layers
+      if (li >= 1) collide(instances);
+
+      for (var i = 0; i < instances.length; i++) {
+        var inst = instances[i];
+
+        // Brownian drift
+        inst.x += inst.vx + Math.sin(t * inst.driftSpeed + inst.driftPhaseX) * 0.12 * layer.speed;
+        inst.y += inst.vy + Math.cos(t * inst.driftSpeed + inst.driftPhaseY) * 0.12 * layer.speed;
+
+        // Damping
+        inst.vx *= 0.998;
+        inst.vy *= 0.998;
+
+        // Edge wrap
+        wrap(inst);
+
+        // Update matrix
+        dummy.position.set(inst.x, inst.y, li * 10 - 10);
+        dummy.scale.set(inst.size, inst.size, inst.size);
+        dummy.updateMatrix();
+        mesh.setMatrixAt(i, dummy.matrix);
+      }
+
+      mesh.instanceMatrix.needsUpdate = true;
+    });
+
+    // Subtle mouse tilt
+    scene.rotation.x = -mouse.y * 0.015;
+    scene.rotation.y = mouse.x * 0.015;
+
+    renderer.render(scene, camera);
+  }
+
+  animate();
+
+  // --- Resize ---
+  window.addEventListener('resize', function () {
+    var w = window.innerWidth;
+    var h = window.innerHeight;
+    renderer.setSize(w, h);
+    camera.left = -w / 2;
+    camera.right = w / 2;
+    camera.top = h / 2;
+    camera.bottom = -h / 2;
+    camera.updateProjectionMatrix();
+  });
+})();
+</script>
+</body>
+</html>

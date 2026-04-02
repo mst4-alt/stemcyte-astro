@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Floating Cells — CSS Houdini Custom Properties</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  /* ── Register Custom Properties ── */
+  @property --x1  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y1  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s1  { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x2  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y2  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s2  { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x3  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y3  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s3  { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x4  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y4  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s4  { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x5  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y5  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s5  { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x6  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y6  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s6  { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x7  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y7  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s7  { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x8  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y8  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s8  { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x9  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y9  { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s9  { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x10 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y10 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s10 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x11 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y11 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s11 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x12 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y12 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s12 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x13 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y13 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s13 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x14 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y14 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s14 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x15 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y15 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s15 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x16 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y16 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s16 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x17 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y17 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s17 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x18 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y18 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s18 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x19 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y19 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s19 { syntax: '<number>'; inherits: false; initial-value: 1; }
+  @property --x20 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --y20 { syntax: '<length>'; inherits: false; initial-value: 0px; }
+  @property --s20 { syntax: '<number>'; inherits: false; initial-value: 1; }
+
+  /* ── Base ── */
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0c1a20;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    position: relative;
+  }
+
+  /* ── Hidden SVG definitions ── */
+  .svg-defs {
+    position: absolute;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  /* ── Cell base ── */
+  .cell {
+    position: absolute;
+    border-radius: 50%;
+    contain: strict;
+    will-change: transform;
+  }
+
+  /* ── Back layer: 4 large cells ── */
+  .back .cell { filter: blur(8px); opacity: 0.04; }
+
+  /* ── Mid layer: 10 medium cells ── */
+  .mid .cell { filter: blur(3px); opacity: 0.15; }
+
+  /* ── Front layer: 6 small cells ── */
+  .front .cell { filter: blur(0.5px); opacity: 0.3; }
+
+  /* ── Cell inner structure via SVG background ── */
+  .cell svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* ══════════════════════════════════
+     BACK LAYER — 4 large cells
+     ══════════════════════════════════ */
+
+  /* Cell 1: 130px */
+  .cell-1 {
+    width: 130px; height: 130px;
+    top: 15%; left: 20%;
+    transform: translate(var(--x1), var(--y1)) scale(var(--s1));
+    animation:
+      x1 23s ease-in-out infinite alternate,
+      y1 31s ease-in-out infinite alternate,
+      s1 17s ease-in-out infinite alternate;
+  }
+  @keyframes x1 { from { --x1: -60px; } to { --x1: 80px; } }
+  @keyframes y1 { from { --y1: -40px; } to { --y1: 50px; } }
+  @keyframes s1 { from { --s1: 0.85; } to { --s1: 1.1; } }
+
+  /* Cell 2: 100px */
+  .cell-2 {
+    width: 100px; height: 100px;
+    top: 60%; left: 65%;
+    transform: translate(var(--x2), var(--y2)) scale(var(--s2));
+    animation:
+      x2 29s ease-in-out infinite alternate,
+      y2 19s ease-in-out infinite alternate,
+      s2 13s ease-in-out infinite alternate;
+  }
+  @keyframes x2 { from { --x2: 40px; } to { --x2: -70px; } }
+  @keyframes y2 { from { --y2: -50px; } to { --y2: 60px; } }
+  @keyframes s2 { from { --s2: 0.9; } to { --s2: 1.15; } }
+
+  /* Cell 3: 80px */
+  .cell-3 {
+    width: 80px; height: 80px;
+    top: 30%; left: 75%;
+    transform: translate(var(--x3), var(--y3)) scale(var(--s3));
+    animation:
+      x3 37s ease-in-out infinite alternate,
+      y3 23s ease-in-out infinite alternate,
+      s3 19s ease-in-out infinite alternate;
+  }
+  @keyframes x3 { from { --x3: -30px; } to { --x3: 50px; } }
+  @keyframes y3 { from { --y3: 30px; } to { --y3: -40px; } }
+  @keyframes s3 { from { --s3: 0.88; } to { --s3: 1.08; } }
+
+  /* Cell 4: 70px */
+  .cell-4 {
+    width: 70px; height: 70px;
+    top: 75%; left: 15%;
+    transform: translate(var(--x4), var(--y4)) scale(var(--s4));
+    animation:
+      x4 19s ease-in-out infinite alternate,
+      y4 29s ease-in-out infinite alternate,
+      s4 11s ease-in-out infinite alternate;
+  }
+  @keyframes x4 { from { --x4: 50px; } to { --x4: -40px; } }
+  @keyframes y4 { from { --y4: -30px; } to { --y4: 45px; } }
+  @keyframes s4 { from { --s4: 0.92; } to { --s4: 1.12; } }
+
+  /* ══════════════════════════════════
+     MID LAYER — 10 medium cells
+     ══════════════════════════════════ */
+
+  /* Cell 5: 45px */
+  .cell-5 {
+    width: 45px; height: 45px;
+    top: 10%; left: 50%;
+    transform: translate(var(--x5), var(--y5)) scale(var(--s5));
+    animation:
+      x5 23s ease-in-out infinite alternate,
+      y5 37s ease-in-out infinite alternate,
+      s5 11s ease-in-out infinite alternate;
+  }
+  @keyframes x5 { from { --x5: -80px; } to { --x5: 90px; } }
+  @keyframes y5 { from { --y5: -30px; } to { --y5: 40px; } }
+  @keyframes s5 { from { --s5: 0.8; } to { --s5: 1.2; } }
+
+  /* Cell 6: 38px */
+  .cell-6 {
+    width: 38px; height: 38px;
+    top: 25%; left: 35%;
+    transform: translate(var(--x6), var(--y6)) scale(var(--s6));
+    animation:
+      x6 31s ease-in-out infinite alternate,
+      y6 19s ease-in-out infinite alternate,
+      s6 14s ease-in-out infinite alternate;
+  }
+  @keyframes x6 { from { --x6: 50px; } to { --x6: -60px; } }
+  @keyframes y6 { from { --y6: -50px; } to { --y6: 70px; } }
+  @keyframes s6 { from { --s6: 0.85; } to { --s6: 1.15; } }
+
+  /* Cell 7: 30px */
+  .cell-7 {
+    width: 30px; height: 30px;
+    top: 45%; left: 10%;
+    transform: translate(var(--x7), var(--y7)) scale(var(--s7));
+    animation:
+      x7 41s ease-in-out infinite alternate,
+      y7 23s ease-in-out infinite alternate,
+      s7 17s ease-in-out infinite alternate;
+  }
+  @keyframes x7 { from { --x7: -40px; } to { --x7: 60px; } }
+  @keyframes y7 { from { --y7: 40px; } to { --y7: -50px; } }
+  @keyframes s7 { from { --s7: 0.9; } to { --s7: 1.1; } }
+
+  /* Cell 8: 25px */
+  .cell-8 {
+    width: 25px; height: 25px;
+    top: 55%; left: 45%;
+    transform: translate(var(--x8), var(--y8)) scale(var(--s8));
+    animation:
+      x8 19s ease-in-out infinite alternate,
+      y8 29s ease-in-out infinite alternate,
+      s8 13s ease-in-out infinite alternate;
+  }
+  @keyframes x8 { from { --x8: 70px; } to { --x8: -50px; } }
+  @keyframes y8 { from { --y8: -60px; } to { --y8: 40px; } }
+  @keyframes s8 { from { --s8: 0.82; } to { --s8: 1.18; } }
+
+  /* Cell 9: 20px */
+  .cell-9 {
+    width: 20px; height: 20px;
+    top: 70%; left: 80%;
+    transform: translate(var(--x9), var(--y9)) scale(var(--s9));
+    animation:
+      x9 27s ease-in-out infinite alternate,
+      y9 41s ease-in-out infinite alternate,
+      s9 11s ease-in-out infinite alternate;
+  }
+  @keyframes x9 { from { --x9: -50px; } to { --x9: 40px; } }
+  @keyframes y9 { from { --y9: 30px; } to { --y9: -50px; } }
+  @keyframes s9 { from { --s9: 0.88; } to { --s9: 1.12; } }
+
+  /* Cell 10: 42px */
+  .cell-10 {
+    width: 42px; height: 42px;
+    top: 80%; left: 40%;
+    transform: translate(var(--x10), var(--y10)) scale(var(--s10));
+    animation:
+      x10 37s ease-in-out infinite alternate,
+      y10 17s ease-in-out infinite alternate,
+      s10 23s ease-in-out infinite alternate;
+  }
+  @keyframes x10 { from { --x10: 30px; } to { --x10: -60px; } }
+  @keyframes y10 { from { --y10: -40px; } to { --y10: 50px; } }
+  @keyframes s10 { from { --s10: 0.86; } to { --s10: 1.14; } }
+
+  /* Cell 11: 15px */
+  .cell-11 {
+    width: 15px; height: 15px;
+    top: 35%; left: 55%;
+    transform: translate(var(--x11), var(--y11)) scale(var(--s11));
+    animation:
+      x11 17s ease-in-out infinite alternate,
+      y11 31s ease-in-out infinite alternate,
+      s11 19s ease-in-out infinite alternate;
+  }
+  @keyframes x11 { from { --x11: -60px; } to { --x11: 70px; } }
+  @keyframes y11 { from { --y11: 50px; } to { --y11: -30px; } }
+  @keyframes s11 { from { --s11: 0.9; } to { --s11: 1.1; } }
+
+  /* Cell 12: 35px */
+  .cell-12 {
+    width: 35px; height: 35px;
+    top: 15%; left: 85%;
+    transform: translate(var(--x12), var(--y12)) scale(var(--s12));
+    animation:
+      x12 29s ease-in-out infinite alternate,
+      y12 41s ease-in-out infinite alternate,
+      s12 13s ease-in-out infinite alternate;
+  }
+  @keyframes x12 { from { --x12: 40px; } to { --x12: -50px; } }
+  @keyframes y12 { from { --y12: -20px; } to { --y12: 60px; } }
+  @keyframes s12 { from { --s12: 0.84; } to { --s12: 1.16; } }
+
+  /* Cell 13: 28px */
+  .cell-13 {
+    width: 28px; height: 28px;
+    top: 90%; left: 60%;
+    transform: translate(var(--x13), var(--y13)) scale(var(--s13));
+    animation:
+      x13 43s ease-in-out infinite alternate,
+      y13 23s ease-in-out infinite alternate,
+      s13 17s ease-in-out infinite alternate;
+  }
+  @keyframes x13 { from { --x13: -30px; } to { --x13: 50px; } }
+  @keyframes y13 { from { --y13: 20px; } to { --y13: -40px; } }
+  @keyframes s13 { from { --s13: 0.9; } to { --s13: 1.1; } }
+
+  /* Cell 14: 18px */
+  .cell-14 {
+    width: 18px; height: 18px;
+    top: 50%; left: 25%;
+    transform: translate(var(--x14), var(--y14)) scale(var(--s14));
+    animation:
+      x14 23s ease-in-out infinite alternate,
+      y14 37s ease-in-out infinite alternate,
+      s14 11s ease-in-out infinite alternate;
+  }
+  @keyframes x14 { from { --x14: 60px; } to { --x14: -40px; } }
+  @keyframes y14 { from { --y14: -30px; } to { --y14: 50px; } }
+  @keyframes s14 { from { --s14: 0.85; } to { --s14: 1.15; } }
+
+  /* ══════════════════════════════════
+     FRONT LAYER — 6 small cells
+     ══════════════════════════════════ */
+
+  /* Cell 15: 8px */
+  .cell-15 {
+    width: 8px; height: 8px;
+    top: 20%; left: 30%;
+    transform: translate(var(--x15), var(--y15)) scale(var(--s15));
+    animation:
+      x15 13s ease-in-out infinite alternate,
+      y15 19s ease-in-out infinite alternate,
+      s15 7s ease-in-out infinite alternate;
+  }
+  @keyframes x15 { from { --x15: -100px; } to { --x15: 120px; } }
+  @keyframes y15 { from { --y15: -80px; } to { --y15: 90px; } }
+  @keyframes s15 { from { --s15: 0.7; } to { --s15: 1.3; } }
+
+  /* Cell 16: 5px */
+  .cell-16 {
+    width: 5px; height: 5px;
+    top: 40%; left: 70%;
+    transform: translate(var(--x16), var(--y16)) scale(var(--s16));
+    animation:
+      x16 17s ease-in-out infinite alternate,
+      y16 11s ease-in-out infinite alternate,
+      s16 23s ease-in-out infinite alternate;
+  }
+  @keyframes x16 { from { --x16: 80px; } to { --x16: -90px; } }
+  @keyframes y16 { from { --y16: 60px; } to { --y16: -70px; } }
+  @keyframes s16 { from { --s16: 0.75; } to { --s16: 1.25; } }
+
+  /* Cell 17: 6px */
+  .cell-17 {
+    width: 6px; height: 6px;
+    top: 65%; left: 20%;
+    transform: translate(var(--x17), var(--y17)) scale(var(--s17));
+    animation:
+      x17 29s ease-in-out infinite alternate,
+      y17 13s ease-in-out infinite alternate,
+      s17 19s ease-in-out infinite alternate;
+  }
+  @keyframes x17 { from { --x17: -70px; } to { --x17: 100px; } }
+  @keyframes y17 { from { --y17: -60px; } to { --y17: 80px; } }
+  @keyframes s17 { from { --s17: 0.8; } to { --s17: 1.2; } }
+
+  /* Cell 18: 3px */
+  .cell-18 {
+    width: 3px; height: 3px;
+    top: 85%; left: 50%;
+    transform: translate(var(--x18), var(--y18)) scale(var(--s18));
+    animation:
+      x18 11s ease-in-out infinite alternate,
+      y18 23s ease-in-out infinite alternate,
+      s18 13s ease-in-out infinite alternate;
+  }
+  @keyframes x18 { from { --x18: 60px; } to { --x18: -80px; } }
+  @keyframes y18 { from { --y18: -40px; } to { --y18: 60px; } }
+  @keyframes s18 { from { --s18: 0.8; } to { --s18: 1.3; } }
+
+  /* Cell 19: 7px */
+  .cell-19 {
+    width: 7px; height: 7px;
+    top: 30%; left: 90%;
+    transform: translate(var(--x19), var(--y19)) scale(var(--s19));
+    animation:
+      x19 19s ease-in-out infinite alternate,
+      y19 31s ease-in-out infinite alternate,
+      s19 11s ease-in-out infinite alternate;
+  }
+  @keyframes x19 { from { --x19: -90px; } to { --x19: 60px; } }
+  @keyframes y19 { from { --y19: 50px; } to { --y19: -70px; } }
+  @keyframes s19 { from { --s19: 0.7; } to { --s19: 1.25; } }
+
+  /* Cell 20: 4px */
+  .cell-20 {
+    width: 4px; height: 4px;
+    top: 55%; left: 5%;
+    transform: translate(var(--x20), var(--y20)) scale(var(--s20));
+    animation:
+      x20 37s ease-in-out infinite alternate,
+      y20 17s ease-in-out infinite alternate,
+      s20 29s ease-in-out infinite alternate;
+  }
+  @keyframes x20 { from { --x20: 40px; } to { --x20: -60px; } }
+  @keyframes y20 { from { --y20: -50px; } to { --y20: 70px; } }
+  @keyframes s20 { from { --s20: 0.75; } to { --s20: 1.2; } }
+
+  /* ── UI overlays ── */
+  .back-link {
+    position: fixed;
+    top: 20px;
+    left: 24px;
+    color: #4FA3B8;
+    font-size: 13px;
+    font-family: 'Lato', sans-serif;
+    text-decoration: none;
+    z-index: 100;
+    letter-spacing: 0.02em;
+    transition: opacity 0.3s;
+  }
+  .back-link:hover { opacity: 0.7; }
+
+  .label {
+    position: fixed;
+    bottom: 20px;
+    left: 24px;
+    color: #fff;
+    font-size: 12px;
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    z-index: 100;
+    opacity: 0.6;
+    letter-spacing: 0.02em;
+  }
+</style>
+</head>
+<body>
+
+<!-- Hidden SVG definitions for cell gradients -->
+<svg class="svg-defs" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Large cell gradient (back layer) with off-center specular highlight -->
+    <radialGradient id="cell-large-1" cx="40%" cy="35%" r="55%" fx="35%" fy="30%">
+      <stop offset="0%" stop-color="rgb(140,210,220)" stop-opacity="1"/>
+      <stop offset="15%" stop-color="rgb(90,170,190)" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="rgb(60,140,165)" stop-opacity="0.6"/>
+      <stop offset="70%" stop-color="rgb(42,130,155)" stop-opacity="0.4"/>
+      <stop offset="90%" stop-color="rgb(42,99,124)" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="rgb(30,70,90)" stop-opacity="0.1"/>
+    </radialGradient>
+    <radialGradient id="cell-large-2" cx="55%" cy="40%" r="55%" fx="50%" fy="35%">
+      <stop offset="0%" stop-color="rgb(150,220,230)" stop-opacity="1"/>
+      <stop offset="12%" stop-color="rgb(79,163,184)" stop-opacity="0.85"/>
+      <stop offset="38%" stop-color="rgb(60,140,165)" stop-opacity="0.55"/>
+      <stop offset="68%" stop-color="rgb(42,130,155)" stop-opacity="0.35"/>
+      <stop offset="88%" stop-color="rgb(42,99,124)" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="rgb(25,60,80)" stop-opacity="0.08"/>
+    </radialGradient>
+    <!-- Specular highlight overlay for large cells -->
+    <radialGradient id="specular-1" cx="35%" cy="30%" r="30%">
+      <stop offset="0%" stop-color="rgba(200,240,250,0.6)"/>
+      <stop offset="100%" stop-color="rgba(200,240,250,0)"/>
+    </radialGradient>
+    <radialGradient id="specular-2" cx="60%" cy="35%" r="28%">
+      <stop offset="0%" stop-color="rgba(200,240,250,0.5)"/>
+      <stop offset="100%" stop-color="rgba(200,240,250,0)"/>
+    </radialGradient>
+    <!-- Nucleus gradient for large cells -->
+    <radialGradient id="nucleus-large" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgb(180,230,240)" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="rgb(79,163,184)" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Medium cell gradient (mid layer) -->
+    <radialGradient id="cell-med" cx="45%" cy="42%" r="55%" fx="40%" fy="38%">
+      <stop offset="0%" stop-color="rgb(130,205,215)" stop-opacity="1"/>
+      <stop offset="20%" stop-color="rgb(79,163,184)" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="rgb(42,130,155)" stop-opacity="0.5"/>
+      <stop offset="80%" stop-color="rgb(42,99,124)" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="rgb(30,70,90)" stop-opacity="0.1"/>
+    </radialGradient>
+    <!-- Nucleus gradient for medium cells -->
+    <radialGradient id="nucleus-med" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgb(160,220,230)" stop-opacity="0.7"/>
+      <stop offset="50%" stop-color="rgb(60,140,165)" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Small cell gradient (front layer) -->
+    <radialGradient id="cell-small" cx="45%" cy="45%" r="55%">
+      <stop offset="0%" stop-color="rgb(170,230,240)" stop-opacity="1"/>
+      <stop offset="30%" stop-color="rgb(90,170,190)" stop-opacity="0.8"/>
+      <stop offset="70%" stop-color="rgb(42,130,155)" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0.15"/>
+    </radialGradient>
+    <!-- Outer glow filter -->
+    <filter id="glow-large" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.31  0 0 0 0 0.64  0 0 0 0 0.72  0 0 0 0.15 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-med" x="-40%" y="-40%" width="180%" height="180%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.31  0 0 0 0 0.64  0 0 0 0 0.72  0 0 0 0.2 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="glow-small" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="1.5" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.35  0 0 0 0 0.67  0 0 0 0 0.75  0 0 0 0.3 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ══════════════════════════════════
+     BACK LAYER — 4 large cells
+     ══════════════════════════════════ -->
+<div class="back">
+  <div class="cell cell-1">
+    <svg viewBox="0 0 130 130" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="65" cy="65" r="62" fill="url(#cell-large-1)" stroke="rgba(79,163,184,0.15)" stroke-width="1.5" filter="url(#glow-large)"/>
+      <circle cx="65" cy="65" r="62" fill="url(#specular-1)"/>
+      <circle cx="55" cy="58" r="18" fill="url(#nucleus-large)"/>
+    </svg>
+  </div>
+  <div class="cell cell-2">
+    <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="47" fill="url(#cell-large-2)" stroke="rgba(60,140,165,0.15)" stroke-width="1.5" filter="url(#glow-large)"/>
+      <circle cx="50" cy="50" r="47" fill="url(#specular-2)"/>
+      <circle cx="55" cy="45" r="14" fill="url(#nucleus-large)"/>
+    </svg>
+  </div>
+  <div class="cell cell-3">
+    <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="40" cy="40" r="37" fill="url(#cell-large-1)" stroke="rgba(90,170,190,0.12)" stroke-width="1.2" filter="url(#glow-large)"/>
+      <circle cx="40" cy="40" r="37" fill="url(#specular-1)"/>
+      <circle cx="36" cy="36" r="10" fill="url(#nucleus-large)"/>
+    </svg>
+  </div>
+  <div class="cell cell-4">
+    <svg viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="35" cy="35" r="32" fill="url(#cell-large-2)" stroke="rgba(42,130,155,0.12)" stroke-width="1" filter="url(#glow-large)"/>
+      <circle cx="35" cy="35" r="32" fill="url(#specular-2)"/>
+      <circle cx="38" cy="32" r="9" fill="url(#nucleus-large)"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     MID LAYER — 10 medium cells
+     ══════════════════════════════════ -->
+<div class="mid">
+  <div class="cell cell-5">
+    <svg viewBox="0 0 45 45" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="22.5" cy="22.5" r="20" fill="url(#cell-med)" stroke="rgba(79,163,184,0.2)" stroke-width="0.8" filter="url(#glow-med)"/>
+      <circle cx="20" cy="20" r="6" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+  <div class="cell cell-6">
+    <svg viewBox="0 0 38 38" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="19" cy="19" r="17" fill="url(#cell-med)" stroke="rgba(60,140,165,0.2)" stroke-width="0.8" filter="url(#glow-med)"/>
+      <circle cx="17" cy="17" r="5" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+  <div class="cell cell-7">
+    <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="15" cy="15" r="13" fill="url(#cell-med)" stroke="rgba(90,170,190,0.2)" stroke-width="0.7" filter="url(#glow-med)"/>
+      <circle cx="13" cy="13" r="4" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+  <div class="cell cell-8">
+    <svg viewBox="0 0 25 25" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12.5" cy="12.5" r="11" fill="url(#cell-med)" stroke="rgba(42,130,155,0.2)" stroke-width="0.7" filter="url(#glow-med)"/>
+      <circle cx="11" cy="11" r="3.5" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+  <div class="cell cell-9">
+    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="8.5" fill="url(#cell-med)" stroke="rgba(79,163,184,0.2)" stroke-width="0.6" filter="url(#glow-med)"/>
+      <circle cx="9" cy="9" r="2.5" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+  <div class="cell cell-10">
+    <svg viewBox="0 0 42 42" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="21" cy="21" r="19" fill="url(#cell-med)" stroke="rgba(60,140,165,0.2)" stroke-width="0.8" filter="url(#glow-med)"/>
+      <circle cx="19" cy="19" r="5.5" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+  <div class="cell cell-11">
+    <svg viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="7.5" cy="7.5" r="6.5" fill="url(#cell-med)" stroke="rgba(90,170,190,0.2)" stroke-width="0.5" filter="url(#glow-med)"/>
+      <circle cx="6.5" cy="6.5" r="2" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+  <div class="cell cell-12">
+    <svg viewBox="0 0 35 35" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="17.5" cy="17.5" r="15.5" fill="url(#cell-med)" stroke="rgba(42,130,155,0.2)" stroke-width="0.7" filter="url(#glow-med)"/>
+      <circle cx="15.5" cy="15.5" r="4.5" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+  <div class="cell cell-13">
+    <svg viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="14" cy="14" r="12.5" fill="url(#cell-med)" stroke="rgba(79,163,184,0.2)" stroke-width="0.6" filter="url(#glow-med)"/>
+      <circle cx="12.5" cy="12.5" r="3.5" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+  <div class="cell cell-14">
+    <svg viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="9" cy="9" r="7.5" fill="url(#cell-med)" stroke="rgba(60,140,165,0.2)" stroke-width="0.5" filter="url(#glow-med)"/>
+      <circle cx="8" cy="8" r="2.5" fill="url(#nucleus-med)"/>
+    </svg>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     FRONT LAYER — 6 small cells
+     ══════════════════════════════════ -->
+<div class="front">
+  <div class="cell cell-15">
+    <svg viewBox="0 0 8 8" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="4" cy="4" r="3.5" fill="url(#cell-small)" stroke="rgba(90,170,190,0.3)" stroke-width="0.3" filter="url(#glow-small)"/>
+      <circle cx="3.5" cy="3.5" r="1" fill="rgba(170,230,240,0.5)"/>
+    </svg>
+  </div>
+  <div class="cell cell-16">
+    <svg viewBox="0 0 5 5" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="2.5" cy="2.5" r="2" fill="url(#cell-small)" stroke="rgba(79,163,184,0.3)" stroke-width="0.25" filter="url(#glow-small)"/>
+      <circle cx="2.2" cy="2.2" r="0.6" fill="rgba(170,230,240,0.5)"/>
+    </svg>
+  </div>
+  <div class="cell cell-17">
+    <svg viewBox="0 0 6 6" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="3" cy="3" r="2.5" fill="url(#cell-small)" stroke="rgba(60,140,165,0.3)" stroke-width="0.25" filter="url(#glow-small)"/>
+      <circle cx="2.7" cy="2.7" r="0.8" fill="rgba(170,230,240,0.5)"/>
+    </svg>
+  </div>
+  <div class="cell cell-18">
+    <svg viewBox="0 0 3 3" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="1.5" cy="1.5" r="1.2" fill="url(#cell-small)" stroke="rgba(90,170,190,0.3)" stroke-width="0.2" filter="url(#glow-small)"/>
+    </svg>
+  </div>
+  <div class="cell cell-19">
+    <svg viewBox="0 0 7 7" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="3.5" cy="3.5" r="3" fill="url(#cell-small)" stroke="rgba(42,130,155,0.3)" stroke-width="0.3" filter="url(#glow-small)"/>
+      <circle cx="3" cy="3" r="0.9" fill="rgba(170,230,240,0.5)"/>
+    </svg>
+  </div>
+  <div class="cell cell-20">
+    <svg viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="2" cy="2" r="1.5" fill="url(#cell-small)" stroke="rgba(79,163,184,0.3)" stroke-width="0.2" filter="url(#glow-small)"/>
+    </svg>
+  </div>
+</div>
+
+<!-- UI -->
+<a href="index.html" class="back-link">&larr; Back to Gallery</a>
+<div class="label">CSS/SVG &mdash; Variant B: CSS Houdini Custom Properties</div>
+
+</body>
+</html>

@@ -15,8 +15,8 @@
     },
     {
       "name": "demos",
-      "runtimeExecutable": "/usr/bin/python3",
-      "runtimeArgs": ["-m", "http.server", "-d", "demos"],
+      "runtimeExecutable": "/usr/local/bin/node",
+      "runtimeArgs": ["-e", "require('http').createServer((q,r)=>{const fs=require('fs'),p=require('path'),f=p.join('demos',q.url==='/'?'index.html':q.url);fs.readFile(f,(e,d)=>{if(e){r.writeHead(404);r.end('Not found')}else{r.writeHead(200,{'Content-Type':'text/html'});r.end(d)}})}).listen(process.env.PORT||8123,()=>console.log('listening'))"],
       "port": 8123,
       "autoPort": true
     }

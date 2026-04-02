@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSS/SVG Variant A: Animated SVG Circles</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #0c1a20;
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Lato', sans-serif;
+  }
+
+  .scene {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .scene svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  /* --- Back layer: large, very blurry, very faint --- */
+  .layer-back {
+    filter: blur(8px);
+    opacity: 0.04;
+    mix-blend-mode: screen;
+  }
+
+  /* --- Mid layer: moderate blur, moderate opacity --- */
+  .layer-mid {
+    filter: blur(3px);
+    opacity: 0.15;
+    mix-blend-mode: screen;
+  }
+
+  /* --- Front layer: sharp, brighter --- */
+  .layer-front {
+    filter: blur(0.5px);
+    opacity: 0.3;
+    mix-blend-mode: lighten;
+  }
+
+  /* ========== DRIFT KEYFRAMES ========== */
+  @keyframes drift1 {
+    0%   { transform: translate(0, 0) scale(1); }
+    25%  { transform: translate(30px, -20px) scale(1.02); }
+    50%  { transform: translate(-15px, 25px) scale(0.98); }
+    75%  { transform: translate(20px, 10px) scale(1.03); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes drift2 {
+    0%   { transform: translate(0, 0) scale(1); }
+    25%  { transform: translate(-25px, 15px) scale(0.97); }
+    50%  { transform: translate(20px, -30px) scale(1.04); }
+    75%  { transform: translate(-10px, -15px) scale(0.96); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes drift3 {
+    0%   { transform: translate(0, 0) scale(1); }
+    33%  { transform: translate(40px, 20px) scale(1.05); }
+    66%  { transform: translate(-30px, -10px) scale(0.95); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes drift4 {
+    0%   { transform: translate(0, 0) scale(1); }
+    20%  { transform: translate(-20px, -25px) scale(1.01); }
+    40%  { transform: translate(15px, 30px) scale(0.97); }
+    60%  { transform: translate(35px, -5px) scale(1.04); }
+    80%  { transform: translate(-10px, 15px) scale(0.99); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+  @keyframes drift5 {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(25px, -35px); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes drift6 {
+    0%   { transform: translate(0, 0); }
+    33%  { transform: translate(-35px, 10px); }
+    66%  { transform: translate(15px, 25px); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes drift7 {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(18px, 22px); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes drift8 {
+    0%   { transform: translate(0, 0); }
+    25%  { transform: translate(-12px, -18px); }
+    75%  { transform: translate(22px, 12px); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes drift9 {
+    0%   { transform: translate(0, 0); }
+    40%  { transform: translate(28px, -15px); }
+    100% { transform: translate(0, 0); }
+  }
+  @keyframes drift10 {
+    0%   { transform: translate(0, 0); }
+    50%  { transform: translate(-20px, 28px); }
+    100% { transform: translate(0, 0); }
+  }
+
+  /* ========== BREATHING KEYFRAMES ========== */
+  @keyframes breathe1 {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(1.05); opacity: 0.85; }
+  }
+  @keyframes breathe2 {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50%      { transform: scale(0.95); opacity: 0.9; }
+  }
+  @keyframes breathe3 {
+    0%, 100% { transform: scale(0.97); opacity: 0.9; }
+    50%      { transform: scale(1.04); opacity: 1; }
+  }
+
+  /* ========== OPACITY SHIMMER ========== */
+  @keyframes shimmer1 {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.7; }
+  }
+  @keyframes shimmer2 {
+    0%, 100% { opacity: 0.8; }
+    50%      { opacity: 1; }
+  }
+
+  /* ========== BACK LAYER CELLS ========== */
+  .back-cell-1 { animation: drift1 35s ease-in-out infinite, breathe1 12s ease-in-out infinite; }
+  .back-cell-2 { animation: drift2 28s ease-in-out infinite, breathe2 10s ease-in-out infinite; }
+  .back-cell-3 { animation: drift3 40s ease-in-out infinite, breathe3 14s ease-in-out infinite; }
+  .back-cell-4 { animation: drift4 32s ease-in-out infinite, breathe1 11s ease-in-out infinite; }
+
+  /* ========== MID LAYER CELLS ========== */
+  .mid-cell-1  { animation: drift5 24s ease-in-out infinite, shimmer1 9s ease-in-out infinite; }
+  .mid-cell-2  { animation: drift6 30s ease-in-out infinite, shimmer2 11s ease-in-out infinite; }
+  .mid-cell-3  { animation: drift7 22s ease-in-out infinite, breathe2 8s ease-in-out infinite; }
+  .mid-cell-4  { animation: drift8 26s ease-in-out infinite, shimmer1 13s ease-in-out infinite; }
+  .mid-cell-5  { animation: drift9 28s ease-in-out infinite, breathe3 10s ease-in-out infinite; }
+  .mid-cell-6  { animation: drift10 34s ease-in-out infinite, shimmer2 12s ease-in-out infinite; }
+  .mid-cell-7  { animation: drift1 20s ease-in-out infinite, breathe1 9s ease-in-out infinite; }
+  .mid-cell-8  { animation: drift3 25s ease-in-out infinite, shimmer1 15s ease-in-out infinite; }
+  .mid-cell-9  { animation: drift4 32s ease-in-out infinite, breathe2 11s ease-in-out infinite; }
+  .mid-cell-10 { animation: drift2 27s ease-in-out infinite, shimmer2 8s ease-in-out infinite; }
+
+  /* ========== FRONT LAYER CELLS ========== */
+  .front-cell-1 { animation: drift6 21s ease-in-out infinite, breathe1 8s ease-in-out infinite; }
+  .front-cell-2 { animation: drift8 25s ease-in-out infinite, shimmer1 10s ease-in-out infinite; }
+  .front-cell-3 { animation: drift5 30s ease-in-out infinite, breathe3 9s ease-in-out infinite; }
+  .front-cell-4 { animation: drift9 23s ease-in-out infinite, shimmer2 11s ease-in-out infinite; }
+  .front-cell-5 { animation: drift7 28s ease-in-out infinite, breathe2 12s ease-in-out infinite; }
+  .front-cell-6 { animation: drift10 20s ease-in-out infinite, shimmer1 7s ease-in-out infinite; }
+
+  /* ========== UI OVERLAY ========== */
+  .nav-back {
+    position: fixed;
+    top: 20px;
+    left: 24px;
+    color: rgb(79, 163, 184);
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.02em;
+    z-index: 10;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+  .nav-back:hover { opacity: 1; }
+
+  .label {
+    position: fixed;
+    bottom: 16px;
+    left: 24px;
+    color: #fff;
+    font-family: 'Lato', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    letter-spacing: 0.03em;
+    opacity: 0.5;
+    z-index: 10;
+  }
+</style>
+</head>
+<body>
+
+<a href="index.html" class="nav-back">&larr; Back to Gallery</a>
+<div class="label">CSS/SVG &mdash; Variant A: Animated SVG Circles</div>
+
+<div class="scene">
+<svg viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- ===== RADIAL GRADIENTS FOR CELL BODIES ===== -->
+
+    <!-- Large cell gradients (back layer) -->
+    <radialGradient id="cellGradL1" cx="45%" cy="40%" r="50%">
+      <stop offset="0%" stop-color="rgb(90,170,190)" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="rgb(42,130,155)" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="rgb(42,99,124)" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cellGradL2" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="rgb(79,163,184)" stop-opacity="0.85"/>
+      <stop offset="30%" stop-color="rgb(60,140,165)" stop-opacity="0.45"/>
+      <stop offset="65%" stop-color="rgb(42,99,124)" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cellGradL3" cx="55%" cy="42%" r="50%">
+      <stop offset="0%" stop-color="rgb(70,150,175)" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="rgb(42,130,155)" stop-opacity="0.4"/>
+      <stop offset="75%" stop-color="rgb(42,99,124)" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cellGradL4" cx="48%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgb(60,140,165)" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="rgb(79,163,184)" stop-opacity="0.4"/>
+      <stop offset="70%" stop-color="rgb(42,99,124)" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Specular highlight gradient (for large cells) -->
+    <radialGradient id="specular1" cx="35%" cy="30%" r="25%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="specular2" cx="30%" cy="35%" r="20%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Medium cell gradients (mid layer) -->
+    <radialGradient id="cellGradM1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="rgb(90,170,190)" stop-opacity="0.95"/>
+      <stop offset="30%" stop-color="rgb(79,163,184)" stop-opacity="0.6"/>
+      <stop offset="65%" stop-color="rgb(42,130,155)" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cellGradM2" cx="45%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="rgb(70,150,175)" stop-opacity="0.9"/>
+      <stop offset="35%" stop-color="rgb(60,140,165)" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="rgb(42,99,124)" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cellGradM3" cx="55%" cy="48%" r="50%">
+      <stop offset="0%" stop-color="rgb(79,163,184)" stop-opacity="0.85"/>
+      <stop offset="40%" stop-color="rgb(42,130,155)" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Small cell gradients (front layer) -->
+    <radialGradient id="cellGradS1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="20%" stop-color="rgb(90,170,190)" stop-opacity="0.8"/>
+      <stop offset="60%" stop-color="rgb(79,163,184)" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="rgb(42,130,155)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="cellGradS2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.8"/>
+      <stop offset="25%" stop-color="rgb(70,150,175)" stop-opacity="0.7"/>
+      <stop offset="65%" stop-color="rgb(60,140,165)" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="rgb(42,99,124)" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Nucleus gradient -->
+    <radialGradient id="nucleus1" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.9"/>
+      <stop offset="40%" stop-color="rgb(90,170,190)" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="rgb(79,163,184)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nucleus2" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.8"/>
+      <stop offset="35%" stop-color="rgb(70,150,175)" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="rgb(60,140,165)" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="nucleusBright" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="1"/>
+      <stop offset="30%" stop-color="rgb(90,170,190)" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="rgb(79,163,184)" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- ============================================================ -->
+  <!-- BACK LAYER: 4 large cells, very blurry, very faint           -->
+  <!-- ============================================================ -->
+  <g class="layer-back">
+
+    <!-- Back cell 1: r=130 -->
+    <g class="back-cell-1">
+      <circle cx="350" cy="300" r="130" fill="url(#cellGradL1)" stroke="rgb(90,170,190)" stroke-width="0.8" stroke-opacity="0.08"/>
+      <circle cx="350" cy="300" r="130" fill="url(#specular1)"/>
+      <circle cx="335" cy="280" r="28" fill="url(#nucleus1)"/>
+      <circle cx="335" cy="280" r="10" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Back cell 2: r=100 -->
+    <g class="back-cell-2">
+      <circle cx="1400" cy="200" r="100" fill="url(#cellGradL2)" stroke="rgb(79,163,184)" stroke-width="0.6" stroke-opacity="0.06"/>
+      <circle cx="1400" cy="200" r="100" fill="url(#specular2)"/>
+      <circle cx="1385" cy="185" r="22" fill="url(#nucleus2)"/>
+      <circle cx="1385" cy="185" r="8" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Back cell 3: r=110 -->
+    <g class="back-cell-3">
+      <circle cx="900" cy="750" r="110" fill="url(#cellGradL3)" stroke="rgb(70,150,175)" stroke-width="0.7" stroke-opacity="0.07"/>
+      <circle cx="900" cy="750" r="110" fill="url(#specular1)"/>
+      <circle cx="880" cy="730" r="25" fill="url(#nucleus1)"/>
+      <circle cx="880" cy="730" r="9" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Back cell 4: r=70 -->
+    <g class="back-cell-4">
+      <circle cx="1600" cy="800" r="70" fill="url(#cellGradL4)" stroke="rgb(60,140,165)" stroke-width="0.5" stroke-opacity="0.05"/>
+      <circle cx="1600" cy="800" r="70" fill="url(#specular2)"/>
+      <circle cx="1590" cy="790" r="16" fill="url(#nucleus2)"/>
+      <circle cx="1590" cy="790" r="5" fill="url(#nucleusBright)"/>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- MID LAYER: 10 medium cells                                   -->
+  <!-- ============================================================ -->
+  <g class="layer-mid">
+
+    <!-- Mid cell 1: r=40 -->
+    <g class="mid-cell-1">
+      <circle cx="250" cy="500" r="40" fill="url(#cellGradM1)" stroke="rgb(90,170,190)" stroke-width="0.5" stroke-opacity="0.12"/>
+      <circle cx="245" cy="495" r="10" fill="url(#nucleus1)"/>
+      <circle cx="245" cy="495" r="3.5" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Mid cell 2: r=30 -->
+    <g class="mid-cell-2">
+      <circle cx="600" cy="180" r="30" fill="url(#cellGradM2)" stroke="rgb(79,163,184)" stroke-width="0.4" stroke-opacity="0.1"/>
+      <circle cx="596" cy="175" r="8" fill="url(#nucleus2)"/>
+      <circle cx="596" cy="175" r="3" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Mid cell 3: r=45 -->
+    <g class="mid-cell-3">
+      <circle cx="1050" cy="400" r="45" fill="url(#cellGradM3)" stroke="rgb(70,150,175)" stroke-width="0.5" stroke-opacity="0.1"/>
+      <circle cx="1043" cy="392" r="11" fill="url(#nucleus1)"/>
+      <circle cx="1043" cy="392" r="4" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Mid cell 4: r=25 -->
+    <g class="mid-cell-4">
+      <circle cx="1500" cy="550" r="25" fill="url(#cellGradM1)" stroke="rgb(60,140,165)" stroke-width="0.4" stroke-opacity="0.1"/>
+      <circle cx="1497" cy="546" r="6" fill="url(#nucleus2)"/>
+      <circle cx="1497" cy="546" r="2.5" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Mid cell 5: r=35 -->
+    <g class="mid-cell-5">
+      <circle cx="780" cy="620" r="35" fill="url(#cellGradM2)" stroke="rgb(90,170,190)" stroke-width="0.5" stroke-opacity="0.12"/>
+      <circle cx="775" cy="614" r="9" fill="url(#nucleus1)"/>
+      <circle cx="775" cy="614" r="3" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Mid cell 6: r=20 -->
+    <g class="mid-cell-6">
+      <circle cx="150" cy="850" r="20" fill="url(#cellGradM3)" stroke="rgb(79,163,184)" stroke-width="0.3" stroke-opacity="0.1"/>
+      <circle cx="148" cy="847" r="5" fill="url(#nucleus2)"/>
+      <circle cx="148" cy="847" r="2" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Mid cell 7: r=38 -->
+    <g class="mid-cell-7">
+      <circle cx="1750" cy="350" r="38" fill="url(#cellGradM1)" stroke="rgb(70,150,175)" stroke-width="0.5" stroke-opacity="0.1"/>
+      <circle cx="1744" cy="343" r="10" fill="url(#nucleus1)"/>
+      <circle cx="1744" cy="343" r="3.5" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Mid cell 8: r=15 -->
+    <g class="mid-cell-8">
+      <circle cx="450" cy="900" r="15" fill="url(#cellGradM2)" stroke="rgb(60,140,165)" stroke-width="0.3" stroke-opacity="0.08"/>
+      <circle cx="448" cy="897" r="4" fill="url(#nucleus2)"/>
+      <circle cx="448" cy="897" r="1.5" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Mid cell 9: r=28 -->
+    <g class="mid-cell-9">
+      <circle cx="1200" cy="150" r="28" fill="url(#cellGradM3)" stroke="rgb(90,170,190)" stroke-width="0.4" stroke-opacity="0.1"/>
+      <circle cx="1196" cy="146" r="7" fill="url(#nucleus1)"/>
+      <circle cx="1196" cy="146" r="2.5" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Mid cell 10: r=33 -->
+    <g class="mid-cell-10">
+      <circle cx="550" cy="450" r="33" fill="url(#cellGradM1)" stroke="rgb(79,163,184)" stroke-width="0.4" stroke-opacity="0.1"/>
+      <circle cx="546" cy="445" r="8" fill="url(#nucleus2)"/>
+      <circle cx="546" cy="445" r="3" fill="url(#nucleusBright)"/>
+    </g>
+  </g>
+
+  <!-- ============================================================ -->
+  <!-- FRONT LAYER: 6 small cells, sharp, bright                    -->
+  <!-- ============================================================ -->
+  <g class="layer-front">
+
+    <!-- Front cell 1: r=6 -->
+    <g class="front-cell-1">
+      <circle cx="480" cy="350" r="6" fill="url(#cellGradS1)" stroke="rgb(90,170,190)" stroke-width="0.3" stroke-opacity="0.25"/>
+      <circle cx="479" cy="349" r="2" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Front cell 2: r=8 -->
+    <g class="front-cell-2">
+      <circle cx="1100" cy="580" r="8" fill="url(#cellGradS2)" stroke="rgb(79,163,184)" stroke-width="0.3" stroke-opacity="0.2"/>
+      <circle cx="1098" cy="578" r="2.5" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Front cell 3: r=4 -->
+    <g class="front-cell-3">
+      <circle cx="300" cy="700" r="4" fill="url(#cellGradS1)" stroke="rgb(70,150,175)" stroke-width="0.2" stroke-opacity="0.3"/>
+      <circle cx="299" cy="699" r="1.5" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Front cell 4: r=5 -->
+    <g class="front-cell-4">
+      <circle cx="1650" cy="250" r="5" fill="url(#cellGradS2)" stroke="rgb(60,140,165)" stroke-width="0.2" stroke-opacity="0.25"/>
+      <circle cx="1649" cy="249" r="1.8" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Front cell 5: r=7 -->
+    <g class="front-cell-5">
+      <circle cx="850" cy="100" r="7" fill="url(#cellGradS1)" stroke="rgb(90,170,190)" stroke-width="0.3" stroke-opacity="0.22"/>
+      <circle cx="849" cy="99" r="2.2" fill="url(#nucleusBright)"/>
+    </g>
+
+    <!-- Front cell 6: r=3 -->
+    <g class="front-cell-6">
+      <circle cx="1350" cy="900" r="3" fill="url(#cellGradS2)" stroke="rgb(79,163,184)" stroke-width="0.2" stroke-opacity="0.3"/>
+      <circle cx="1349" cy="899" r="1.2" fill="url(#nucleusBright)"/>
+    </g>
+  </g>
+
+</svg>
+</div>
+
+</body>
+</html>

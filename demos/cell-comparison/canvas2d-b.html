@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas 2D — Perlin Noise Flow Field Cells</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0c1a20; overflow: hidden; font-family: 'Lato', sans-serif; }
+  canvas { display: block; width: 100vw; height: 100vh; }
+  .label {
+    position: fixed; bottom: 16px; left: 20px;
+    color: #fff; font-size: 12px; font-family: 'Lato', sans-serif;
+    opacity: 0.7; pointer-events: none; z-index: 10;
+  }
+  .back {
+    position: fixed; top: 16px; left: 20px;
+    color: #4FA3B8; font-size: 13px; font-family: 'Lato', sans-serif;
+    text-decoration: none; z-index: 10; opacity: 0.85;
+  }
+  .back:hover { opacity: 1; text-decoration: underline; }
+</style>
+</head>
+<body>
+<a class="back" href="index.html">&larr; Back to Gallery</a>
+<div class="label">Canvas 2D — Variant B: Perlin Noise Flow Field</div>
+<canvas id="c"></canvas>
+<script>
+(function() {
+  // --- Perlin noise (classic permutation table) ---
+  const perm = new Uint8Array(512);
+  const grad3 = [
+    [1,1,0],[-1,1,0],[1,-1,0],[-1,-1,0],
+    [1,0,1],[-1,0,1],[1,0,-1],[-1,0,-1],
+    [0,1,1],[0,-1,1],[0,1,-1],[0,-1,-1]
+  ];
+  (function initPerm() {
+    const p = new Uint8Array(256);
+    for (let i = 0; i < 256; i++) p[i] = i;
+    for (let i = 255; i > 0; i--) {
+      const j = (Math.random() * (i + 1)) | 0;
+      const t = p[i]; p[i] = p[j]; p[j] = t;
+    }
+    for (let i = 0; i < 512; i++) perm[i] = p[i & 255];
+  })();
+
+  function fade(t) { return t * t * t * (t * (t * 6 - 15) + 10); }
+  function lerp(a, b, t) { return a + t * (b - a); }
+  function dot3(g, x, y, z) { return g[0]*x + g[1]*y + g[2]*z; }
+
+  function perlin3(x, y, z) {
+    const X = Math.floor(x) & 255, Y = Math.floor(y) & 255, Z = Math.floor(z) & 255;
+    x -= Math.floor(x); y -= Math.floor(y); z -= Math.floor(z);
+    const u = fade(x), v = fade(y), w = fade(z);
+    const A = perm[X] + Y, AA = perm[A] + Z, AB = perm[A+1] + Z;
+    const B = perm[X+1] + Y, BA = perm[B] + Z, BB = perm[B+1] + Z;
+    return lerp(
+      lerp(
+        lerp(dot3(grad3[perm[AA]%12],x,y,z), dot3(grad3[perm[BA]%12],x-1,y,z), u),
+        lerp(dot3(grad3[perm[AB]%12],x,y-1,z), dot3(grad3[perm[BB]%12],x-1,y-1,z), u),
+        v),
+      lerp(
+        lerp(dot3(grad3[perm[AA+1]%12],x,y,z-1), dot3(grad3[perm[BA+1]%12],x-1,y,z-1), u),
+        lerp(dot3(grad3[perm[AB+1]%12],x,y-1,z-1), dot3(grad3[perm[BB+1]%12],x-1,y-1,z-1), u),
+        v),
+      w);
+  }
+
+  // --- Canvas setup ---
+  const canvas = document.getElementById('c');
+  const ctx = canvas.getContext('2d');
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let W, H;
+
+  function resize() {
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  // --- Palette ---
+  const palette = [
+    {r:79,g:163,b:184},{r:42,g:130,b:155},{r:42,g:99,b:124},{r:60,g:140,b:165},
+    {r:90,g:170,b:190},{r:70,g:150,b:175},{r:100,g:180,b:200},{r:55,g:125,b:150}
+  ];
+
+  // --- Flow field config ---
+  const GRID_SIZE = 30;
+  const NOISE_SCALE = 0.012;
+  const TIME_SPEED = 0.04;
+
+  // --- Layer configs ---
+  const layers = [
+    { count: 25, rMin: 30, rMax: 55, opacity: 0.18, blur: 2.0, speed: 0.25 },
+    { count: 35, rMin: 16, rMax: 35, opacity: 0.4,  blur: 1.0, speed: 0.5  },
+    { count: 20, rMin: 8,  rMax: 20, opacity: 0.7,  blur: 0.6, speed: 0.8  }
+  ];
+
+  // --- Cell class ---
+  function Cell(layer) {
+    this.x = Math.random() * W;
+    this.y = Math.random() * H;
+    this.r = layer.rMin + Math.random() * (layer.rMax - layer.rMin);
+    this.col = palette[(Math.random() * palette.length) | 0];
+    this.opacity = layer.opacity * (0.7 + Math.random() * 0.3);
+    this.blur = layer.blur;
+    this.speed = layer.speed * (0.7 + Math.random() * 0.6);
+    this.breathPhase = Math.random() * Math.PI * 2;
+    this.breathSpeed = 0.3 + Math.random() * 0.4;
+    this.breathAmp = 0.03 + Math.random() * 0.03;
+    this.baseR = this.r;
+  }
+
+  // --- Create cells ---
+  let allCells = [];
+  function createCells() {
+    allCells = [];
+    for (let li = 0; li < layers.length; li++) {
+      const L = layers[li];
+      for (let i = 0; i < L.count; i++) {
+        allCells.push({ cell: new Cell(L), layerIdx: li });
+      }
+    }
+    // Sort by layer for draw order
+    allCells.sort((a, b) => a.layerIdx - b.layerIdx);
+  }
+  createCells();
+
+  // --- Mouse ---
+  let mx = -9999, my = -9999;
+  window.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  window.addEventListener('mouseleave', () => { mx = -9999; my = -9999; });
+
+  // --- Draw cell (reference implementation) ---
+  function drawCell(ctx, x, y, r, col, opacity, blur) {
+    const bm = blur || 1;
+    const glowR = r * (1.2 + bm * 0.4);
+    // Outer glow
+    const og = ctx.createRadialGradient(x, y, r*0.3, x, y, glowR);
+    og.addColorStop(0, `rgba(${col.r},${col.g},${col.b},${opacity*0.4*bm})`);
+    og.addColorStop(0.5, `rgba(${col.r},${col.g},${col.b},${opacity*0.15*bm})`);
+    og.addColorStop(1, `rgba(${col.r},${col.g},${col.b},0)`);
+    ctx.fillStyle = og; ctx.beginPath(); ctx.arc(x, y, glowR, 0, Math.PI*2); ctx.fill();
+    // Body gradient
+    const bg = ctx.createRadialGradient(x - r*0.12, y - r*0.12, 0, x, y, r);
+    bg.addColorStop(0, `rgba(${Math.min(255,col.r+25)},${Math.min(255,col.g+25)},${Math.min(255,col.b+25)},${opacity*0.6})`);
+    bg.addColorStop(0.45, `rgba(${col.r},${col.g},${col.b},${opacity*0.35})`);
+    bg.addColorStop(0.8, `rgba(${col.r},${col.g},${col.b},${opacity*0.45})`);
+    bg.addColorStop(1, `rgba(${Math.max(0,col.r-25)},${Math.max(0,col.g-25)},${Math.max(0,col.b-25)},${opacity*0.12})`);
+    ctx.fillStyle = bg; ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.fill();
+    if (bm >= 1.5) return;
+    // Edge stroke
+    ctx.strokeStyle = `rgba(${Math.min(255,col.r+40)},${Math.min(255,col.g+40)},${Math.min(255,col.b+40)},${opacity*0.18/bm})`;
+    ctx.lineWidth = r > 30 ? 1.2 : 0.7;
+    ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI*2); ctx.stroke();
+    // Nucleus
+    const nr = r * 0.22;
+    const ng = ctx.createRadialGradient(x, y, 0, x, y, nr);
+    ng.addColorStop(0, `rgba(255,255,255,${opacity*0.45})`);
+    ng.addColorStop(0.5, `rgba(${Math.min(255,col.r+50)},${Math.min(255,col.g+50)},${Math.min(255,col.b+50)},${opacity*0.2})`);
+    ng.addColorStop(1, `rgba(${col.r},${col.g},${col.b},0)`);
+    ctx.fillStyle = ng; ctx.beginPath(); ctx.arc(x, y, nr, 0, Math.PI*2); ctx.fill();
+    // Specular highlight
+    if (r > 18) {
+      const hx = x - r*0.26, hy = y - r*0.26;
+      const hg = ctx.createRadialGradient(hx, hy, 0, hx, hy, r*0.16);
+      hg.addColorStop(0, `rgba(255,255,255,${opacity*0.22})`);
+      hg.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = hg; ctx.beginPath(); ctx.arc(hx, hy, r*0.16, 0, Math.PI*2); ctx.fill();
+    }
+  }
+
+  // --- Get flow angle at position ---
+  function getFlowAngle(x, y, t) {
+    const n = perlin3(x * NOISE_SCALE, y * NOISE_SCALE, t);
+    return n * Math.PI * 2;
+  }
+
+  // --- Animation ---
+  let time = 0;
+  let lastFrame = 0;
+  let paused = false;
+
+  document.addEventListener('visibilitychange', () => {
+    paused = document.hidden;
+    if (!paused) lastFrame = performance.now();
+  });
+
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (paused) return;
+
+    const dt = Math.min((now - lastFrame) / 1000, 0.05);
+    lastFrame = now;
+    time += dt * TIME_SPEED;
+
+    ctx.clearRect(0, 0, W, H);
+
+    // Update and draw cells
+    for (let i = 0; i < allCells.length; i++) {
+      const c = allCells[i].cell;
+
+      // Breathing
+      c.breathPhase += c.breathSpeed * dt;
+      c.r = c.baseR * (1 + Math.sin(c.breathPhase) * c.breathAmp);
+
+      // Flow field angle at cell position
+      let angle = getFlowAngle(c.x, c.y, time);
+
+      // Mouse vortex interaction
+      const dx = c.x - mx, dy = c.y - my;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 200 && dist > 1) {
+        const influence = 1 - dist / 200;
+        const smooth = influence * influence * (3 - 2 * influence); // smoothstep
+        // Tangential direction (perpendicular to radial) for swirl
+        const tangentAngle = Math.atan2(dy, dx) + Math.PI * 0.5;
+        const vortexStrength = smooth * 2.5;
+        angle = angle + (tangentAngle - angle) * smooth * 0.6;
+        // Also add a slight push away
+        c.x += dx / dist * smooth * 0.3;
+        c.y += dy / dist * smooth * 0.3;
+      }
+
+      // Move along flow field
+      const vx = Math.cos(angle) * c.speed * 60 * dt;
+      const vy = Math.sin(angle) * c.speed * 60 * dt;
+      c.x += vx;
+      c.y += vy;
+
+      // Wrap at edges (with padding)
+      const pad = c.r * 2;
+      if (c.x < -pad) c.x += W + pad * 2;
+      if (c.x > W + pad) c.x -= W + pad * 2;
+      if (c.y < -pad) c.y += H + pad * 2;
+      if (c.y > H + pad) c.y -= H + pad * 2;
+
+      drawCell(ctx, c.x, c.y, c.r, c.col, c.opacity, c.blur);
+    }
+  }
+
+  lastFrame = performance.now();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

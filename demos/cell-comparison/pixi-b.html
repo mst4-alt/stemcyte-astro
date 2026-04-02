@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pixi.js — Mesh + Custom Shader Cells</title>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0c1a20; overflow: hidden; font-family: 'Lato', sans-serif; }
+  canvas { display: block; }
+  .label {
+    position: fixed; bottom: 16px; left: 20px;
+    color: #fff; font-size: 12px; font-family: 'Lato', sans-serif;
+    opacity: 0.7; pointer-events: none; z-index: 10;
+  }
+  .back {
+    position: fixed; top: 16px; left: 20px;
+    color: #4FA3B8; font-size: 13px; font-family: 'Lato', sans-serif;
+    text-decoration: none; z-index: 10; opacity: 0.85;
+  }
+  .back:hover { opacity: 1; text-decoration: underline; }
+</style>
+</head>
+<body>
+<a class="back" href="index.html">&larr; Back to Gallery</a>
+<div class="label">Pixi.js — Variant B: Mesh + Custom Shader</div>
+<script src="https://cdn.jsdelivr.net/npm/pixi.js@7.x/dist/pixi.min.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  // --- Config ---
+  const BG = 0x0c1a20;
+  const DPR = Math.min(window.devicePixelRatio || 1, 2);
+  const PALETTE = [
+    [0.31, 0.64, 0.72],
+    [0.165, 0.51, 0.61],
+    [0.165, 0.39, 0.49],
+    [0.235, 0.549, 0.647]
+  ];
+
+  // --- Pixi App ---
+  const app = new PIXI.Application({
+    width: window.innerWidth,
+    height: window.innerHeight,
+    backgroundColor: BG,
+    resolution: DPR,
+    autoDensity: true,
+    antialias: true,
+  });
+  document.body.appendChild(app.view);
+  app.view.style.width = '100vw';
+  app.view.style.height = '100vh';
+
+  // --- Shader source ---
+  const vertexSrc = `
+    attribute vec2 aVertexPosition;
+    attribute vec2 aUV;
+    uniform mat3 translationMatrix;
+    uniform mat3 projectionMatrix;
+    varying vec2 vUV;
+    void main() {
+      vUV = aUV;
+      gl_Position = vec4((projectionMatrix * translationMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);
+    }
+  `;
+
+  const fragmentSrc = `
+    precision mediump float;
+    varying vec2 vUV;
+    uniform vec3 u_color;
+    uniform float u_opacity;
+    uniform float u_time;
+
+    void main() {
+      float dist = length(vUV - 0.5) * 2.0;
+
+      // Outer glow
+      float glow = smoothstep(1.4, 0.3, dist) * u_opacity * 0.4;
+
+      // Body
+      float body = smoothstep(1.0, 0.0, dist);
+      float bodyAlpha = body * u_opacity * 0.5;
+
+      // Nucleus — subtle pulse
+      float nucRadius = 0.25 + 0.02 * sin(u_time * 1.5);
+      float nuc = smoothstep(nucRadius, 0.0, dist);
+      float nucAlpha = nuc * u_opacity * 0.45;
+
+      // Specular highlight
+      vec2 specPos = vUV - vec2(0.36, 0.36);
+      float spec = smoothstep(0.12, 0.0, length(specPos));
+      float specAlpha = spec * u_opacity * 0.22;
+
+      vec3 color = u_color;
+      vec3 finalColor = color * (glow + bodyAlpha) + vec3(1.0) * (nucAlpha + specAlpha);
+      float finalAlpha = glow + bodyAlpha + nucAlpha + specAlpha;
+
+      gl_FragColor = vec4(finalColor, finalAlpha);
+    }
+  `;
+
+  // --- Cell mesh factory ---
+  function createCellMesh(size, color, opacity) {
+    const geometry = new PIXI.Geometry()
+      .addAttribute('aVertexPosition', [
+        -size / 2, -size / 2,
+         size / 2, -size / 2,
+         size / 2,  size / 2,
+        -size / 2,  size / 2
+      ], 2)
+      .addAttribute('aUV', [
+        0, 0,
+        1, 0,
+        1, 1,
+        0, 1
+      ], 2)
+      .addIndex([0, 1, 2, 0, 2, 3]);
+
+    const uniforms = {
+      u_color: color,
+      u_opacity: opacity,
+      u_time: 0
+    };
+
+    const shader = PIXI.Shader.from(vertexSrc, fragmentSrc, uniforms);
+    const mesh = new PIXI.Mesh(geometry, shader);
+    mesh.state.blend = true;
+    mesh.state.blendMode = PIXI.BLEND_MODES.ADD;
+    return mesh;
+  }
+
+  // --- Displacement filter for water distortion ---
+  function createDisplacementFilter() {
+    const noiseSize = 128;
+    const canvas = document.createElement('canvas');
+    canvas.width = noiseSize;
+    canvas.height = noiseSize;
+    const ctx = canvas.getContext('2d');
+    const imgData = ctx.createImageData(noiseSize, noiseSize);
+    for (let i = 0; i < imgData.data.length; i += 4) {
+      const v = Math.random() * 255;
+      imgData.data[i] = v;
+      imgData.data[i + 1] = v;
+      imgData.data[i + 2] = v;
+      imgData.data[i + 3] = 255;
+    }
+    ctx.putImageData(imgData, 0, 0);
+
+    const tex = PIXI.Texture.from(canvas);
+    const sprite = new PIXI.Sprite(tex);
+    sprite.texture.baseTexture.wrapMode = PIXI.WRAP_MODES.REPEAT;
+    sprite.width = app.screen.width;
+    sprite.height = app.screen.height;
+
+    const filter = new PIXI.DisplacementFilter(sprite, 8);
+    return { filter, sprite };
+  }
+
+  // --- Layers ---
+  const backContainer = new PIXI.Container();
+  const midContainer = new PIXI.Container();
+  const frontContainer = new PIXI.Container();
+
+  app.stage.addChild(backContainer);
+  app.stage.addChild(midContainer);
+  app.stage.addChild(frontContainer);
+
+  // --- Cell data ---
+  const W = app.screen.width;
+  const H = app.screen.height;
+  const cells = [];
+
+  function rng(min, max) { return min + Math.random() * (max - min); }
+
+  const layerDefs = [
+    { container: backContainer, count: 5, sizeMin: 130, sizeMax: 220, opacity: 0.2, blurAmt: 4, speed: 0.15 },
+    { container: midContainer, count: 10, sizeMin: 60, sizeMax: 120, opacity: 0.4, blurAmt: 1.5, speed: 0.3 },
+    { container: frontContainer, count: 10, sizeMin: 30, sizeMax: 70, opacity: 0.65, blurAmt: 0, speed: 0.5 },
+  ];
+
+  layerDefs.forEach(layer => {
+    if (layer.blurAmt > 0) {
+      layer.container.filters = [new PIXI.BlurFilter(layer.blurAmt)];
+    }
+    for (let i = 0; i < layer.count; i++) {
+      const palColor = PALETTE[Math.floor(Math.random() * PALETTE.length)];
+      const size = rng(layer.sizeMin, layer.sizeMax);
+      const mesh = createCellMesh(size, palColor, layer.opacity);
+
+      const x = rng(size, W - size);
+      const y = rng(size, H - size);
+      mesh.position.set(x, y);
+      layer.container.addChild(mesh);
+
+      const angle = Math.random() * Math.PI * 2;
+      cells.push({
+        mesh,
+        x, y,
+        vx: Math.cos(angle) * layer.speed,
+        vy: Math.sin(angle) * layer.speed,
+        size,
+        baseScale: 1,
+        breathPhase: Math.random() * Math.PI * 2,
+        breathSpeed: rng(0.3, 0.8),
+        breathAmp: rng(0.02, 0.06),
+        speed: layer.speed,
+        layer
+      });
+    }
+  });
+
+  // --- Displacement ---
+  const { filter: dispFilter, sprite: dispSprite } = createDisplacementFilter();
+  app.stage.addChild(dispSprite);
+  app.stage.filters = [dispFilter];
+
+  // --- Mouse ---
+  let mouseX = W / 2;
+  let mouseY = H / 2;
+  app.view.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+  app.view.addEventListener('touchmove', e => {
+    if (e.touches.length > 0) {
+      mouseX = e.touches[0].clientX;
+      mouseY = e.touches[0].clientY;
+    }
+  }, { passive: true });
+
+  // --- Pause on hidden ---
+  let paused = false;
+  document.addEventListener('visibilitychange', () => {
+    paused = document.hidden;
+    if (!paused) app.ticker.start();
+    else app.ticker.stop();
+  });
+
+  // --- Animate ---
+  let elapsed = 0;
+
+  app.ticker.add((delta) => {
+    if (paused) return;
+
+    const dt = delta / 60;
+    elapsed += dt;
+
+    // Animate displacement
+    dispSprite.x += 0.3;
+    dispSprite.y += 0.2;
+
+    // Update cells
+    for (let i = 0; i < cells.length; i++) {
+      const c = cells[i];
+
+      // Brownian drift
+      c.vx += (Math.random() - 0.5) * 0.08;
+      c.vy += (Math.random() - 0.5) * 0.08;
+
+      // Damping
+      c.vx *= 0.995;
+      c.vy *= 0.995;
+
+      // Clamp speed
+      const spd = Math.sqrt(c.vx * c.vx + c.vy * c.vy);
+      const maxSpd = c.speed * 2;
+      if (spd > maxSpd) {
+        c.vx = (c.vx / spd) * maxSpd;
+        c.vy = (c.vy / spd) * maxSpd;
+      }
+
+      // Mouse repulsion
+      const dx = c.x - mouseX;
+      const dy = c.y - mouseY;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      const repulseRadius = 150;
+      if (dist < repulseRadius && dist > 1) {
+        const force = (1 - dist / repulseRadius) * 1.5;
+        c.vx += (dx / dist) * force;
+        c.vy += (dy / dist) * force;
+      }
+
+      c.x += c.vx;
+      c.y += c.vy;
+
+      // Wrap edges with padding
+      const pad = c.size;
+      if (c.x < -pad) c.x = W + pad;
+      if (c.x > W + pad) c.x = -pad;
+      if (c.y < -pad) c.y = H + pad;
+      if (c.y > H + pad) c.y = -pad;
+
+      // Simple collision (push apart)
+      for (let j = i + 1; j < cells.length; j++) {
+        const o = cells[j];
+        const cdx = c.x - o.x;
+        const cdy = c.y - o.y;
+        const cdist = Math.sqrt(cdx * cdx + cdy * cdy);
+        const minDist = (c.size + o.size) * 0.35;
+        if (cdist < minDist && cdist > 0.1) {
+          const push = (minDist - cdist) * 0.02;
+          const nx = cdx / cdist;
+          const ny = cdy / cdist;
+          c.vx += nx * push;
+          c.vy += ny * push;
+          o.vx -= nx * push;
+          o.vy -= ny * push;
+        }
+      }
+
+      // Breathing
+      const breath = 1 + Math.sin(elapsed * c.breathSpeed + c.breathPhase) * c.breathAmp;
+      c.mesh.scale.set(breath);
+
+      // Position
+      c.mesh.position.set(c.x, c.y);
+
+      // Update time uniform for nucleus pulse
+      c.mesh.shader.uniforms.u_time = elapsed;
+    }
+  });
+
+  // --- Resize ---
+  function resize() {
+    const w = window.innerWidth;
+    const h = window.innerHeight;
+    app.renderer.resize(w, h);
+    dispSprite.width = w;
+    dispSprite.height = h;
+  }
+  window.addEventListener('resize', resize);
+
+})();
+</script>
+</body>
+</html>

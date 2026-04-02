@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas 2D — Variant A: Direct Port</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: #0c1a20; }
+  canvas { display: block; }
+
+  /* Back link — top-left */
+  .back-link {
+    position: fixed; top: 16px; left: 20px; z-index: 10;
+    font-family: 'Lato', sans-serif; font-size: 13px;
+    color: #4FA3B8; text-decoration: none; opacity: 0.85;
+    transition: opacity 0.2s;
+  }
+  .back-link:hover { opacity: 1; text-decoration: underline; }
+
+  /* Label — bottom-left */
+  .label {
+    position: fixed; bottom: 16px; left: 20px; z-index: 10;
+    font-family: 'Lato', sans-serif; font-size: 12px;
+    color: rgba(255,255,255,0.45); pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+<a class="back-link" href="index.html">← Back to Gallery</a>
+<div class="label">Canvas 2D — Variant A: Direct Port</div>
+<canvas id="c"></canvas>
+
+<script>
+// ============================================================================
+//  Canvas 2D — Variant A: Direct Port
+//  Reference cell animation. Standalone, no dependencies.
+// ============================================================================
+
+// ---------------------------------------------------------------------------
+//  Canvas setup
+// ---------------------------------------------------------------------------
+
+const canvas = document.getElementById('c');
+const ctx    = canvas.getContext('2d');
+
+// Cap DPR at 2 for performance
+const DPR = Math.min(window.devicePixelRatio || 1, 2);
+
+let W, H; // logical dimensions
+
+function resize() {
+  W = window.innerWidth;
+  H = window.innerHeight;
+  canvas.width  = W * DPR;
+  canvas.height = H * DPR;
+  canvas.style.width  = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+}
+resize();
+window.addEventListener('resize', resize);
+
+// ---------------------------------------------------------------------------
+//  Color palette — cool teals & aquas
+// ---------------------------------------------------------------------------
+
+const PALETTE = [
+  { r: 79,  g: 163, b: 184 },
+  { r: 42,  g: 130, b: 155 },
+  { r: 42,  g: 99,  b: 124 },
+  { r: 60,  g: 140, b: 165 },
+  { r: 90,  g: 170, b: 190 },
+  { r: 70,  g: 150, b: 175 },
+  { r: 100, g: 180, b: 200 },
+  { r: 55,  g: 125, b: 150 },
+];
+
+function pickColor() {
+  return PALETTE[Math.floor(Math.random() * PALETTE.length)];
+}
+
+// ---------------------------------------------------------------------------
+//  Mouse / touch tracking
+// ---------------------------------------------------------------------------
+
+let mouse = { x: -9999, y: -9999, active: false };
+
+canvas.addEventListener('mousemove',  e => { mouse.x = e.clientX; mouse.y = e.clientY; mouse.active = true; });
+canvas.addEventListener('mouseleave', () => { mouse.active = false; });
+canvas.addEventListener('touchmove',  e => {
+  const t = e.touches[0];
+  mouse.x = t.clientX; mouse.y = t.clientY; mouse.active = true;
+}, { passive: true });
+canvas.addEventListener('touchend', () => { mouse.active = false; });
+
+// ---------------------------------------------------------------------------
+//  Cell factory
+// ---------------------------------------------------------------------------
+
+/**
+ * Create a single cell object.
+ * @param {string} layer  - 'back', 'mid', or 'front'
+ */
+function createCell(layer) {
+  let r, speed, opacityBase, blur;
+
+  if (layer === 'back') {
+    r           = 70 + Math.random() * 60;      // 70–130
+    speed       = 0.03;
+    opacityBase = 0.035;
+    blur        = 2;
+  } else if (layer === 'mid') {
+    r           = 15 + Math.random() * 30;       // 15–45
+    speed       = 0.15;
+    opacityBase = 0.1;
+    blur        = 1;
+  } else {
+    r           = 3 + Math.random() * 3;         // 3–6
+    speed       = 0.3;
+    opacityBase = 0.25;
+    blur        = 0.7;
+  }
+
+  const color = pickColor();
+
+  return {
+    x:           Math.random() * W,
+    y:           Math.random() * H,
+    vx:          (Math.random() - 0.5) * speed,
+    vy:          (Math.random() - 0.5) * speed,
+    r:           r,
+    baseR:       r,                               // for breathing
+    mass:        r * r,
+    color:       color,
+    opacity:     opacityBase + Math.random() * 0.04,
+    phase:       Math.random() * Math.PI * 2,
+    breathSpeed: 0.0008 + Math.random() * 0.0006,
+    breathAmp:   r * 0.03,
+    parallax:    layer === 'back' ? 0.3 : layer === 'mid' ? 0.6 : 1.0,
+    blur:        blur,
+    layer:       layer,
+  };
+}
+
+// ---------------------------------------------------------------------------
+//  Build cell layers:  back (4), mid (10), front (6)
+// ---------------------------------------------------------------------------
+
+const backCells  = Array.from({ length: 4  }, () => createCell('back'));
+const midCells   = Array.from({ length: 10 }, () => createCell('mid'));
+const frontCells = Array.from({ length: 6  }, () => createCell('front'));
+
+// Ordered back-to-front for painter's algorithm
+const allCells = [...backCells, ...midCells, ...frontCells];
+
+// ---------------------------------------------------------------------------
+//  Draw a single cell
+// ---------------------------------------------------------------------------
+
+/**
+ * Renders one cell with glow, body, edge stroke, nucleus, and specular.
+ */
+function drawCell(cell) {
+  const { x, y, r, color, opacity, blur } = cell;
+  const { r: cr, g: cg, b: cb } = color;
+
+  ctx.save();
+
+  // -- 1. Outer glow --
+  const glowR = r * (1.2 + blur * 0.4);
+  const glow  = ctx.createRadialGradient(x, y, r * 0.3, x, y, glowR);
+  glow.addColorStop(0, `rgba(${cr},${cg},${cb},${(opacity * 0.4 * blur).toFixed(4)})`);
+  glow.addColorStop(1, `rgba(${cr},${cg},${cb},0)`);
+  ctx.fillStyle = glow;
+  ctx.beginPath();
+  ctx.arc(x, y, glowR, 0, Math.PI * 2);
+  ctx.fill();
+
+  // -- 2. Body gradient (offset for 3-D illusion) --
+  const offX = x - r * 0.12;
+  const offY = y - r * 0.12;
+  const body = ctx.createRadialGradient(offX, offY, 0, x, y, r);
+  body.addColorStop(0,    `rgba(${Math.min(cr + 60, 255)},${Math.min(cg + 60, 255)},${Math.min(cb + 60, 255)},${(opacity * 0.9).toFixed(4)})`);
+  body.addColorStop(0.45, `rgba(${cr},${cg},${cb},${(opacity * 0.75).toFixed(4)})`);
+  body.addColorStop(0.8,  `rgba(${Math.max(cr - 20, 0)},${Math.max(cg - 20, 0)},${Math.max(cb - 20, 0)},${(opacity * 0.6).toFixed(4)})`);
+  body.addColorStop(1,    `rgba(${Math.max(cr - 40, 0)},${Math.max(cg - 40, 0)},${Math.max(cb - 40, 0)},${(opacity * 0.3).toFixed(4)})`);
+  ctx.fillStyle = body;
+  ctx.beginPath();
+  ctx.arc(x, y, r, 0, Math.PI * 2);
+  ctx.fill();
+
+  // -- 3. Edge stroke (skip for very blurry background cells) --
+  if (blur < 1.5) {
+    ctx.strokeStyle = `rgba(${Math.min(cr + 40, 255)},${Math.min(cg + 40, 255)},${Math.min(cb + 40, 255)},${(opacity * 0.5).toFixed(4)})`;
+    ctx.lineWidth   = r > 20 ? 1.2 : 0.7;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.stroke();
+  }
+
+  // -- 4. Nucleus (skip for very blurry) --
+  if (blur < 1.5) {
+    const nr  = r * 0.22;
+    const nuc = ctx.createRadialGradient(x, y, 0, x, y, nr);
+    nuc.addColorStop(0,   `rgba(255,255,255,${(opacity * 0.6).toFixed(4)})`);
+    nuc.addColorStop(0.5, `rgba(${cr},${cg},${cb},${(opacity * 0.4).toFixed(4)})`);
+    nuc.addColorStop(1,   `rgba(${cr},${cg},${cb},0)`);
+    ctx.fillStyle = nuc;
+    ctx.beginPath();
+    ctx.arc(x, y, nr, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  // -- 5. Specular highlight (only for cells large enough to see it) --
+  if (r > 18) {
+    const sx = x - r * 0.26;
+    const sy = y - r * 0.26;
+    const sr = r * 0.16;
+    const spec = ctx.createRadialGradient(sx, sy, 0, sx, sy, sr);
+    spec.addColorStop(0, `rgba(255,255,255,${(opacity * 0.7).toFixed(4)})`);
+    spec.addColorStop(1, `rgba(255,255,255,0)`);
+    ctx.fillStyle = spec;
+    ctx.beginPath();
+    ctx.arc(sx, sy, sr, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  ctx.restore();
+}
+
+// ---------------------------------------------------------------------------
+//  Soft collision between two cells (mass-based push)
+// ---------------------------------------------------------------------------
+
+function collide(a, b) {
+  const dx   = b.x - a.x;
+  const dy   = b.y - a.y;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  const minD = a.r + b.r;
+
+  if (dist < minD && dist > 0.1) {
+    const nx     = dx / dist;
+    const ny     = dy / dist;
+    const overlap = minD - dist;
+    const total  = a.mass + b.mass;
+
+    // Soft push proportional to mass ratio
+    const factor = 0.01;
+    a.vx -= nx * overlap * factor * (b.mass / total);
+    a.vy -= ny * overlap * factor * (b.mass / total);
+    b.vx += nx * overlap * factor * (a.mass / total);
+    b.vy += ny * overlap * factor * (a.mass / total);
+  }
+}
+
+// ---------------------------------------------------------------------------
+//  Mouse repulsion — gentle drift away from cursor
+// ---------------------------------------------------------------------------
+
+const MOUSE_RADIUS = 150;
+const MOUSE_FORCE  = 0.02;
+
+function applyMouseRepulsion(cell) {
+  if (!mouse.active) return;
+  const dx   = cell.x - mouse.x;
+  const dy   = cell.y - mouse.y;
+  const dist = Math.sqrt(dx * dx + dy * dy);
+  if (dist < MOUSE_RADIUS && dist > 0.1) {
+    const strength = MOUSE_FORCE * (MOUSE_RADIUS - dist) / MOUSE_RADIUS;
+    cell.vx += (dx / dist) * strength;
+    cell.vy += (dy / dist) * strength;
+  }
+}
+
+// ---------------------------------------------------------------------------
+//  Physics update for one cell
+// ---------------------------------------------------------------------------
+
+function updateCell(cell, time) {
+  // Brownian drift
+  cell.vx += Math.sin(time * 0.002 + cell.phase) * 0.0006;
+  cell.vy += Math.cos(time * 0.0015 + cell.phase) * 0.0006;
+
+  // Velocity damping
+  cell.vx *= 0.997;
+  cell.vy *= 0.997;
+
+  // Speed cap — smaller cells can move faster
+  const maxSpeed = cell.layer === 'back' ? 0.3 : cell.layer === 'mid' ? 0.6 : 1.0;
+  const speed    = Math.sqrt(cell.vx * cell.vx + cell.vy * cell.vy);
+  if (speed > maxSpeed) {
+    cell.vx = (cell.vx / speed) * maxSpeed;
+    cell.vy = (cell.vy / speed) * maxSpeed;
+  }
+
+  // Mouse repulsion
+  applyMouseRepulsion(cell);
+
+  // Integrate position
+  cell.x += cell.vx;
+  cell.y += cell.vy;
+
+  // Breathing (oscillate radius)
+  cell.r = cell.baseR + Math.sin(time * cell.breathSpeed + cell.phase) * cell.breathAmp;
+
+  // Edge wrapping with margin
+  const margin = cell.r + 40;
+  if (cell.x < -margin)     cell.x = W + margin;
+  if (cell.x > W + margin)  cell.x = -margin;
+  if (cell.y < -margin)     cell.y = H + margin;
+  if (cell.y > H + margin)  cell.y = -margin;
+}
+
+// ---------------------------------------------------------------------------
+//  Main animation loop
+// ---------------------------------------------------------------------------
+
+function frame(time) {
+  requestAnimationFrame(frame);
+
+  // Pause when tab is hidden
+  if (document.hidden) return;
+
+  // Clear
+  ctx.clearRect(0, 0, W, H);
+
+  // -- Ambient gradient overlay (subtle atmosphere) --
+  const ambX = W * 0.4;
+  const ambY = H * 0.35;
+  const ambR = Math.max(W, H) * 0.7;
+  const amb  = ctx.createRadialGradient(ambX, ambY, 0, ambX, ambY, ambR);
+  amb.addColorStop(0, 'rgba(60,140,165,0.03)');
+  amb.addColorStop(1, 'rgba(12,26,32,0)');
+  ctx.fillStyle = amb;
+  ctx.fillRect(0, 0, W, H);
+
+  // -- Update physics --
+  for (const cell of allCells) {
+    updateCell(cell, time);
+  }
+
+  // -- Collisions on mid & front layers only --
+  const collidable = [...midCells, ...frontCells];
+  for (let i = 0; i < collidable.length; i++) {
+    for (let j = i + 1; j < collidable.length; j++) {
+      collide(collidable[i], collidable[j]);
+    }
+  }
+
+  // -- Draw all cells back-to-front --
+  for (const cell of allCells) {
+    drawCell(cell);
+  }
+}
+
+// Kick off
+requestAnimationFrame(frame);
+</script>
+</body>
+</html>
