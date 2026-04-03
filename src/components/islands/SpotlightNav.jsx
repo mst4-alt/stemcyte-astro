@@ -365,7 +365,7 @@ export default function SpotlightNav() {
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
                     fontWeight: 600,
-                    color: '#998B90',
+                    color: '#9B6B8A',
                     marginBottom: '14px',
                     fontFamily: 'Lato, sans-serif',
                     opacity: cascadeVisible ? 1 : 0,
