@@ -79,7 +79,7 @@ const SECTIONS = [
         ],
       },
       {
-        name: 'Special Offers',
+        name: 'Community Programs',
         items: [
           { title: 'Special Programs', href: '/special-programs', icon: 'Gift' },
           { title: 'LifeSaver Guarantee', href: '/lifesaver-guarantee', icon: 'Shield' },
