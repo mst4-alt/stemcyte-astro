@@ -14,7 +14,7 @@ const ICON_MAP = {
 
 const SECTIONS = [
   {
-    label: 'Learn the Science',
+    label: 'Cord Blood Guide',
     href: '/learn/',
     groups: [
       {
@@ -56,7 +56,7 @@ const SECTIONS = [
     ],
   },
   {
-    label: 'Our Story',
+    label: 'Why StemCyte',
     href: '/our-story/',
     groups: [
       {
@@ -70,53 +70,12 @@ const SECTIONS = [
         name: 'Community',
         items: [
           { title: 'Patient Stories', href: '/patient-stories', icon: 'BookHeart' },
-          { title: 'LifeSaver Guarantee', href: '/lifesaver-guarantee', icon: 'Shield' },
         ],
       },
     ],
   },
 ];
 
-// ── Animation Styles ──────────────────────────────────────────
-const ANIM_STYLES = [
-  {
-    name: 'Fade',
-    panel: { closed: { opacity: 0, transform: 'none' }, open: { opacity: 1, transform: 'none' }, transition: 'opacity 0.3s ease' },
-    itemStagger: 0, itemDuration: '0.3s', itemEasing: 'ease',
-    itemFrom: { opacity: 0, transform: 'none' }, itemTo: { opacity: 1, transform: 'none' },
-    overlay: '0.3s ease',
-  },
-  {
-    name: 'Slide',
-    panel: { closed: { opacity: 0, transform: 'translateY(-8px)' }, open: { opacity: 1, transform: 'translateY(0)' }, transition: 'opacity 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1)' },
-    itemStagger: 40, itemDuration: '0.3s', itemEasing: 'cubic-bezier(0.16,1,0.3,1)',
-    itemFrom: { opacity: 0, transform: 'translateY(6px)' }, itemTo: { opacity: 1, transform: 'translateY(0)' },
-    overlay: '0.35s ease',
-  },
-  {
-    name: 'Scale',
-    panel: { closed: { opacity: 0, transform: 'scale(0.97) translateY(-4px)' }, open: { opacity: 1, transform: 'scale(1) translateY(0)' }, transition: 'opacity 0.3s cubic-bezier(0.34,1.56,0.64,1), transform 0.3s cubic-bezier(0.34,1.56,0.64,1)' },
-    itemStagger: 30, itemDuration: '0.28s', itemEasing: 'cubic-bezier(0.34,1.56,0.64,1)',
-    itemFrom: { opacity: 0, transform: 'scale(0.95)' }, itemTo: { opacity: 1, transform: 'scale(1)' },
-    overlay: '0.3s ease',
-  },
-  {
-    name: 'Cascade',
-    panel: { closed: { opacity: 0, transform: 'translateY(-6px)' }, open: { opacity: 1, transform: 'translateY(0)' }, transition: 'opacity 0.3s ease, transform 0.3s ease' },
-    itemStagger: 60, itemDuration: '0.32s', itemEasing: 'cubic-bezier(0.16,1,0.3,1)',
-    itemFrom: { opacity: 0, transform: 'translateX(12px)' }, itemTo: { opacity: 1, transform: 'translateX(0)' },
-    overlay: '0.3s ease',
-  },
-  {
-    name: 'Soft',
-    panel: { closed: { opacity: 0, transform: 'translateY(-3px)' }, open: { opacity: 1, transform: 'translateY(0)' }, transition: 'opacity 0.5s ease, transform 0.5s ease' },
-    itemStagger: 50, itemDuration: '0.4s', itemEasing: 'ease',
-    itemFrom: { opacity: 0, transform: 'translateY(4px)' }, itemTo: { opacity: 1, transform: 'translateY(0)' },
-    overlay: '0.5s ease',
-  },
-];
-
-// Pages that exist — all others get href="#"
 const EXISTING_PAGES = new Set([
   '/pricing', '/public-bank-access', '/special-programs',
   '/our-story/', '/why-stemcyte', '/patient-stories', '/lifesaver-guarantee',
@@ -127,44 +86,22 @@ function resolveHref(href) {
   return EXISTING_PAGES.has(href) ? href : '#';
 }
 
+// Cascade stagger: 60ms between items, slides in from right
+const CASCADE_STAGGER = 50;
+const CASCADE_DURATION = '0.35s';
+const CASCADE_EASING = 'cubic-bezier(0.16, 1, 0.3, 1)';
+
 export default function SpotlightNav() {
   const [openIdx, setOpenIdx] = useState(-1);
   const [isScrolled, setIsScrolled] = useState(false);
   const [hoveredItem, setHoveredItem] = useState(null);
-  const [animIdx, setAnimIdx] = useState(() => {
-    if (typeof window !== 'undefined') {
-      const saved = localStorage.getItem('spotlightNavAnimStyle');
-      return saved !== null ? parseInt(saved, 10) : 1;
-    }
-    return 1;
-  });
-  const [itemsVisible, setItemsVisible] = useState(false);
+  const [cascadeVisible, setCascadeVisible] = useState(false);
   const navRef = useRef(null);
-
-  const anim = ANIM_STYLES[animIdx];
-
-  const cycleAnim = useCallback(() => {
-    setAnimIdx(prev => {
-      const next = (prev + 1) % ANIM_STYLES.length;
-      localStorage.setItem('spotlightNavAnimStyle', next);
-      return next;
-    });
-  }, []);
-
-  // Keyboard shortcut: A to cycle animation style
-  useEffect(() => {
-    const handler = (e) => {
-      if ((e.key === 'a' || e.key === 'A') && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-        cycleAnim();
-      }
-    };
-    document.addEventListener('keydown', handler);
-    return () => document.removeEventListener('keydown', handler);
-  }, [cycleAnim]);
+  const panelRef = useRef(null);
+  const contentRef = useRef(null);
 
   const [navTheme, setNavTheme] = useState('light');
 
-  // Watch nav scroll state and theme
   useEffect(() => {
     const nav = document.getElementById('nav');
     if (!nav) return;
@@ -193,23 +130,27 @@ export default function SpotlightNav() {
   const close = useCallback(() => {
     setOpenIdx(-1);
     setHoveredItem(null);
-    setItemsVisible(false);
+    setCascadeVisible(false);
   }, []);
 
   const toggle = useCallback((idx) => {
     if (openIdx === idx) {
       close();
     } else {
+      setCascadeVisible(false);
       setOpenIdx(idx);
       setHoveredItem(null);
-      setItemsVisible(false);
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setItemsVisible(true);
-        });
-      });
     }
   }, [openIdx, close]);
+
+  // Trigger cascade after open
+  useEffect(() => {
+    if (isOpen) {
+      setCascadeVisible(false);
+      const t = setTimeout(() => setCascadeVisible(true), 80);
+      return () => clearTimeout(t);
+    }
+  }, [openIdx]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Escape key
   useEffect(() => {
@@ -219,7 +160,7 @@ export default function SpotlightNav() {
     return () => document.removeEventListener('keydown', handler);
   }, [isOpen, close]);
 
-  // Lock body scroll when open
+  // Lock body scroll
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -229,7 +170,7 @@ export default function SpotlightNav() {
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
-  // Force nav to scrolled state when dropdown is open
+  // Force nav to scrolled state when open
   useEffect(() => {
     const nav = document.getElementById('nav');
     if (!nav) return;
@@ -237,8 +178,8 @@ export default function SpotlightNav() {
       nav.classList.remove('at-top');
       nav.classList.add('scrolled');
       nav.style.background = '#ffffff';
-      nav.style.borderBottom = '1px solid rgba(108,26,85,0.10)';
-      nav.style.boxShadow = '0 2px 8px rgba(61,15,49,0.07)';
+      nav.style.borderBottom = 'none';
+      nav.style.boxShadow = 'none';
     } else {
       nav.style.background = '';
       nav.style.borderBottom = '';
@@ -251,6 +192,9 @@ export default function SpotlightNav() {
     }
   }, [isOpen]);
 
+  // Collect all animatable items in DOM order for cascade indexing
+  let cascadeIdx = 0;
+
   return (
     <>
       {/* Nav buttons */}
@@ -260,8 +204,8 @@ export default function SpotlightNav() {
           const defaultColor = isScrolled ? '#6B5A63' : navTheme === 'dark' ? 'rgba(44,42,38,0.6)' : 'rgba(255,255,255,0.75)';
           const hoverColor = isScrolled ? '#2D1A24' : navTheme === 'dark' ? '#2C2A26' : '#fff';
           const hoverBg = isScrolled ? '#F5EDF2' : navTheme === 'dark' ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.12)';
-          const activeColor = isScrolled ? '#6C1A55' : navTheme === 'dark' ? '#2C2A26' : '#fff';
-          const activeBg = isScrolled ? '#F2E0EB' : navTheme === 'dark' ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.18)';
+          const activeColor = isScrolled ? '#803366' : navTheme === 'dark' ? '#2C2A26' : '#fff';
+          const activeBg = isScrolled ? '#F2E6EE' : navTheme === 'dark' ? 'rgba(0,0,0,0.10)' : 'rgba(255,255,255,0.18)';
 
           return (
             <button
@@ -284,7 +228,11 @@ export default function SpotlightNav() {
                 WebkitFontSmoothing: 'antialiased',
               }}
               onMouseEnter={(e) => {
-                if (!isActive) {
+                if (isOpen && !isActive) {
+                  // Switch sections on hover when menu is already open
+                  setOpenIdx(i);
+                  setHoveredItem(null);
+                } else if (!isActive) {
                   e.currentTarget.style.color = hoverColor;
                   e.currentTarget.style.background = hoverBg;
                 }
@@ -315,7 +263,7 @@ export default function SpotlightNav() {
         onClick={close}
         style={{
           position: 'fixed',
-          top: '64px',
+          top: '72px',
           left: 0,
           right: 0,
           bottom: 0,
@@ -325,39 +273,51 @@ export default function SpotlightNav() {
           WebkitBackdropFilter: 'blur(8px)',
           opacity: isOpen ? 1 : 0,
           pointerEvents: isOpen ? 'auto' : 'none',
-          transition: `opacity ${anim.overlay}`,
+          transition: 'opacity 0.4s ease',
         }}
       />
 
-      {/* Dropdown panel — edge-to-edge */}
-      <div
-        style={{
-          position: 'fixed',
-          top: '64px',
-          left: 0,
-          right: 0,
-          zIndex: 999,
-          background: '#ffffff',
-          borderBottom: '1px solid rgba(108,26,85,0.10)',
-          boxShadow: '0 10px 30px rgba(61,15,49,0.07)',
-          opacity: isOpen ? anim.panel.open.opacity : anim.panel.closed.opacity,
-          pointerEvents: isOpen ? 'auto' : 'none',
-          transform: isOpen ? anim.panel.open.transform : anim.panel.closed.transform,
-          transition: anim.panel.transition,
-          boxSizing: 'border-box',
-        }}
-      >
+      {/* Clip region — hides panel when slid up above nav */}
+      <div style={{
+        position: 'fixed',
+        top: '72px',
+        left: 0,
+        right: 0,
+        zIndex: 999,
+        overflow: 'hidden',
+        pointerEvents: isOpen ? 'auto' : 'none',
+      }}>
+        {/* Dropdown panel — slides down/up */}
+        <div
+          ref={panelRef}
+          style={{
+            background: '#ffffff',
+            borderTop: '1px solid #E8E2DC',
+            borderBottom: '1px solid rgba(108,26,85,0.10)',
+            boxShadow: '0 10px 30px rgba(61,15,49,0.07)',
+            transform: isOpen ? 'translateY(0)' : 'translateY(-100%)',
+            transition: isOpen
+              ? 'transform 0.4s cubic-bezier(0.16, 1, 0.3, 1)'
+              : 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            boxSizing: 'border-box',
+          }}
+        >
         {section && (
-          <div style={{
-            maxWidth: '1200px',
-            margin: '0 auto',
-            padding: '32px 48px 36px',
-            display: 'flex',
-            gap: '56px',
-          }}>
-            {(() => {
-              let globalIdx = 0;
-              return section.groups.map((group) => (
+          <div
+            ref={contentRef}
+            style={{
+              maxWidth: '1200px',
+              margin: '0 auto',
+              padding: '28px 48px 32px',
+              display: 'flex',
+              gap: '48px',
+            }}
+          >
+            {section.groups.map((group) => {
+              // Group label gets its own cascade slot
+              const labelIdx = cascadeIdx++;
+
+              return (
                 <div key={group.name} style={{ flex: 1, minWidth: 0 }}>
                   {/* Group label */}
                   <div style={{
@@ -365,114 +325,81 @@ export default function SpotlightNav() {
                     textTransform: 'uppercase',
                     letterSpacing: '0.08em',
                     fontWeight: 600,
-                    color: 'rgba(0,0,0,0.35)',
-                    marginBottom: '16px',
+                    color: '#998B90',
+                    marginBottom: '14px',
                     fontFamily: 'Lato, sans-serif',
-                    opacity: anim.itemStagger > 0 ? (itemsVisible ? 1 : 0) : 1,
-                    transform: anim.itemStagger > 0 ? (itemsVisible ? 'none' : anim.itemFrom.transform || 'none') : 'none',
-                    transition: `opacity ${anim.itemDuration} ${anim.itemEasing}, transform ${anim.itemDuration} ${anim.itemEasing}`,
-                    transitionDelay: anim.itemStagger > 0 ? `${60 + globalIdx * anim.itemStagger}ms` : '0s',
+                    opacity: cascadeVisible ? 1 : 0,
+                    transform: cascadeVisible ? 'translateX(0)' : 'translateX(12px)',
+                    transition: `opacity ${CASCADE_DURATION} ${CASCADE_EASING} ${labelIdx * CASCADE_STAGGER}ms, transform ${CASCADE_DURATION} ${CASCADE_EASING} ${labelIdx * CASCADE_STAGGER}ms`,
                   }}>
                     {group.name}
                   </div>
 
                   {/* Items */}
-                  {group.items.map((it) => {
-                    const Icon = ICON_MAP[it.icon];
-                    const itemId = `${group.name}-${it.title}`;
-                    const isHovered = hoveredItem === itemId;
-                    const staggerDelay = 80 + globalIdx * anim.itemStagger;
-                    globalIdx++;
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                    {group.items.map((it) => {
+                      const Icon = ICON_MAP[it.icon];
+                      const itemId = `${group.name}-${it.title}`;
+                      const isHovered = hoveredItem === itemId;
+                      const idx = cascadeIdx++;
 
-                    return (
-                      <a
-                        key={it.title}
-                        href={resolveHref(it.href)}
-                        onMouseEnter={() => setHoveredItem(itemId)}
-                        onMouseLeave={() => setHoveredItem(null)}
-                        style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          gap: '14px',
-                          padding: '10px 12px',
-                          borderRadius: '8px',
-                          textDecoration: 'none',
-                          cursor: 'pointer',
-                          background: isHovered ? 'rgba(0,0,0,0.03)' : 'transparent',
-                          transition: `background 0.15s, opacity ${anim.itemDuration} ${anim.itemEasing}, transform ${anim.itemDuration} ${anim.itemEasing}`,
-                          transitionDelay: anim.itemStagger > 0 ? `0s, ${staggerDelay}ms, ${staggerDelay}ms` : '0s',
-                          opacity: anim.itemStagger > 0 ? (itemsVisible ? anim.itemTo.opacity : anim.itemFrom.opacity) : 1,
-                          transform: anim.itemStagger > 0 ? (itemsVisible ? (anim.itemTo.transform || 'none') : (anim.itemFrom.transform || 'none')) : 'none',
-                        }}
-                      >
-                        {Icon && (
-                          <span style={{
-                            width: '20px',
-                            height: '20px',
-                            flexShrink: 0,
+                      return (
+                        <a
+                          key={it.title}
+                          href={resolveHref(it.href)}
+                          onMouseEnter={() => setHoveredItem(itemId)}
+                          onMouseLeave={() => setHoveredItem(null)}
+                          style={{
                             display: 'flex',
                             alignItems: 'center',
-                            justifyContent: 'center',
+                            gap: '14px',
+                            padding: '12px 16px',
+                            borderRadius: '10px',
+                            textDecoration: 'none',
+                            cursor: 'pointer',
+                            background: isHovered ? '#F8F3F6' : 'transparent',
+                            transition: `background 0.15s, opacity ${CASCADE_DURATION} ${CASCADE_EASING} ${idx * CASCADE_STAGGER}ms, transform ${CASCADE_DURATION} ${CASCADE_EASING} ${idx * CASCADE_STAGGER}ms`,
+                            opacity: cascadeVisible ? 1 : 0,
+                            transform: cascadeVisible ? 'translateX(0)' : 'translateX(12px)',
+                          }}
+                        >
+                          {Icon && (
+                            <span style={{
+                              width: '20px',
+                              height: '20px',
+                              flexShrink: 0,
+                              display: 'flex',
+                              alignItems: 'center',
+                              justifyContent: 'center',
+                            }}>
+                              <Icon
+                                size={18}
+                                strokeWidth={1.5}
+                                color={isHovered ? '#733A5C' : '#998B90'}
+                                style={{ transition: 'color 0.15s' }}
+                              />
+                            </span>
+                          )}
+                          <span style={{
+                            fontFamily: 'Lato, sans-serif',
+                            fontSize: '0.925rem',
+                            fontWeight: isHovered ? 500 : 400,
+                            color: isHovered ? '#8C4670' : '#635558',
+                            transition: 'color 0.15s',
+                            whiteSpace: 'nowrap',
                           }}>
-                            <Icon
-                              size={18}
-                              strokeWidth={1.5}
-                              color="rgba(0,0,0,0.4)"
-                            />
+                            {it.title}
                           </span>
-                        )}
-                        <span style={{
-                          fontFamily: 'Lato, sans-serif',
-                          fontSize: '0.9rem',
-                          fontWeight: 500,
-                          color: '#1d1d1f',
-                        }}>
-                          {it.title}
-                        </span>
-                      </a>
-                    );
-                  })}
+                        </a>
+                      );
+                    })}
+                  </div>
                 </div>
-              ));
-            })()}
+              );
+            })}
           </div>
         )}
-      </div>
-
-      {/* Animation style toggle pill */}
-      <div
-        onClick={cycleAnim}
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          zIndex: 9999,
-          padding: '8px 18px',
-          borderRadius: '100px',
-          background: 'rgba(45, 26, 36, 0.85)',
-          backdropFilter: 'blur(12px)',
-          WebkitBackdropFilter: 'blur(12px)',
-          color: 'rgba(255,255,255,0.7)',
-          fontSize: '12px',
-          fontFamily: 'Lato, sans-serif',
-          fontWeight: 600,
-          letterSpacing: '0.5px',
-          cursor: 'pointer',
-          userSelect: 'none',
-          transition: 'background 0.2s, transform 0.15s',
-          boxShadow: '0 4px 20px rgba(0,0,0,0.25)',
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.background = 'rgba(108, 26, 85, 0.9)';
-          e.currentTarget.style.transform = 'scale(1.03)';
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.background = 'rgba(45, 26, 36, 0.85)';
-          e.currentTarget.style.transform = 'scale(1)';
-        }}
-        title="Press A to cycle"
-      >
-        Animation: {anim.name} ({animIdx + 1}/{ANIM_STYLES.length})
+        </div>
       </div>
     </>
   );
