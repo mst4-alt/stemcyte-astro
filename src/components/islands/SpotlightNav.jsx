@@ -38,7 +38,7 @@ const SECTIONS = [
     ],
   },
   {
-    label: 'Cord Blood Basics',
+    label: 'The Science',
     href: '/learn/',
     groups: [
       {
