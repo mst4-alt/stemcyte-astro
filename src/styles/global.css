@@ -239,6 +239,14 @@ body {
 .sheet-hcp { padding: 8px 28px 24px; text-align: center; }
 .sheet-hcp a { font-size: 12px; font-weight: 700; color: #8A857A; text-decoration: none; letter-spacing: 0.3px; }
 
+/* === CONTAINERS === */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+.container-narrow { max-width: 860px; margin: 0 auto; padding: 0 48px; }
+
+@media (max-width: 900px) {
+  .container, .container-narrow { padding: 0 24px; }
+}
+
 /* === FOOTER === */
 .footer {
   background: #3D0F31;
