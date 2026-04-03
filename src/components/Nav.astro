@@ -1,14 +1,8 @@
 ---
+import SpotlightNav from './islands/SpotlightNav.jsx';
+
 const pathname = Astro.url.pathname;
 const isClinical = pathname.startsWith('/biologics');
-
-const consumerLinks = [
-  { label: 'The Science', href: '/the-science' },
-  { label: 'Why StemCyte', href: '/why-stemcyte' },
-  { label: 'Pricing', href: '/pricing' },
-  { label: 'Patient Stories', href: '/patient-stories' },
-  { label: 'Our Story', href: '/our-story' },
-];
 
 const clinicalLinks = [
   { label: 'Overview', href: '/biologics' },
@@ -17,7 +11,6 @@ const clinicalLinks = [
   { label: 'Manufacturing', href: '/biologics/manufacturing' },
 ];
 
-const navLinks = isClinical ? clinicalLinks : consumerLinks;
 const ctaText = isClinical ? 'Request Information' : 'Enroll now';
 const ctaHref = isClinical ? '/biologics/contact' : '/pricing';
 ---
@@ -28,16 +21,22 @@ const ctaHref = isClinical ? '/biologics/contact' : '/pricing';
     <img src="/images/logos/fullcolor_stemcyte.webp" alt="StemCyte" class="logo-color" width="150" height="28" fetchpriority="low" />
     <img src="/images/logos/black_stemcyte.webp" alt="StemCyte" class="logo-black" width="150" height="28" fetchpriority="low" />
   </a>
-  <div class="links">
-    {isClinical && <a href="/" class="back-link">&larr; stemcyte.com</a>}
-    {isClinical && <span class="lane-badge">Biologics</span>}
-    {isClinical && <span class="links-sep"></span>}
-    {navLinks.map(({ label, href }) => (
-      <a href={href} class={pathname.replace(/\/$/, '') === href || (href !== '/biologics' && pathname.startsWith(href + '/')) ? 'active' : ''}>
-        {label}
-      </a>
-    ))}
-  </div>
+  {isClinical ? (
+    <div class="links">
+      <a href="/" class="back-link">&larr; stemcyte.com</a>
+      <span class="lane-badge">Biologics</span>
+      <span class="links-sep"></span>
+      {clinicalLinks.map(({ label, href }) => (
+        <a href={href} class={pathname.replace(/\/$/, '') === href || (href !== '/biologics' && pathname.startsWith(href + '/')) ? 'active' : ''}>
+          {label}
+        </a>
+      ))}
+    </div>
+  ) : (
+    <div class="links">
+      <SpotlightNav client:load />
+    </div>
+  )}
   <div class="rg">
     <a href={ctaHref} class="cta">{ctaText}</a>
   </div>
@@ -57,11 +56,21 @@ const ctaHref = isClinical ? '/biologics/contact' : '/pricing';
     </div>
   )}
   <div class="sheet-links">
-    {navLinks.map(({ label, href }) => (
-      <a href={href} class={pathname.replace(/\/$/, '') === href || (href !== '/biologics' && pathname.startsWith(href + '/')) ? 'active' : ''}>
-        {label}
-      </a>
-    ))}
+    {isClinical ? (
+      clinicalLinks.map(({ label, href }) => (
+        <a href={href} class={pathname.replace(/\/$/, '') === href || (href !== '/biologics' && pathname.startsWith(href + '/')) ? 'active' : ''}>
+          {label}
+        </a>
+      ))
+    ) : (
+      <>
+        <a href="/learn/" class="sheet-section-label">Cord Blood Guide</a>
+        <a href="/pricing" class={pathname === '/pricing' ? 'active' : ''}>Plans & Programs</a>
+        <a href="/our-story/" class={pathname.startsWith('/our-story') ? 'active' : ''}>Our Story</a>
+        <a href="/why-stemcyte" class={pathname === '/why-stemcyte' ? 'active' : ''}>Why StemCyte</a>
+        <a href="/patient-stories" class={pathname === '/patient-stories' ? 'active' : ''}>Patient Stories</a>
+      </>
+    )}
   </div>
   <div class="sheet-cta">
     <a href={ctaHref}>{ctaText}</a>

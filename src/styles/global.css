@@ -50,9 +50,10 @@ body {
 }
 .nav.at-top { background: transparent; }
 .nav.scrolled {
-  background: #FAFAF9;
-  backdrop-filter: none;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
+  background: #FFFDF9;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(108,26,85,0.06);
   box-shadow: 0 1px 3px rgba(0,0,0,0.04), 0 1px 2px rgba(0,0,0,0.03);
 }
 .nav .logo {
@@ -74,6 +75,7 @@ body {
   gap: 24px;
   font-size: 14px;
   margin-left: auto;
+  align-items: center;
 }
 .nav .links a {
   text-decoration: none;
