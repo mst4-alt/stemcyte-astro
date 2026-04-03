@@ -42,7 +42,7 @@ const SECTIONS = [
     href: '/learn/',
     groups: [
       {
-        name: 'For Parents',
+        name: 'Cord Blood 101',
         items: [
           { title: 'Why Stem Cells Matter', href: '#', icon: 'Sparkles' },
           { title: 'What Is Cord Blood', href: '/learn/what-is-cord-blood', icon: 'Droplet' },
@@ -52,11 +52,11 @@ const SECTIONS = [
       },
     ],
     clinicalGroup: {
-      name: 'For Clinicians & Industry',
+      name: 'Treatment & Research',
       items: [
         { title: 'REGENECYTE®', href: '/biologics/regenecyte', icon: 'FlaskConical' },
-        { title: 'Clinical Trials', href: '#', icon: 'Dna' },
         { title: 'Publications', href: '/biologics/publications', icon: 'BookHeart' },
+        { title: 'Manufacturing', href: '/biologics/manufacturing', icon: 'Shield' },
       ],
       link: { label: 'StemCyte Biologics', href: '/biologics/' },
     },
@@ -531,7 +531,7 @@ export default function SpotlightNav() {
                             <Icon
                               size={18}
                               strokeWidth={1.5}
-                              color={isHovered ? '#2A637C' : '#4FA3B8'}
+                              color={isHovered ? '#1A3F50' : '#6B9AAA'}
                               style={{ transition: 'color 0.15s' }}
                             />
                           </span>
@@ -540,7 +540,7 @@ export default function SpotlightNav() {
                           fontFamily: 'Lato, sans-serif',
                           fontSize: '0.925rem',
                           fontWeight: isHovered ? 500 : 400,
-                          color: isHovered ? '#1A3F50' : '#3A5F6F',
+                          color: isHovered ? '#1A3F50' : '#4A6E7C',
                           transition: 'color 0.15s',
                           whiteSpace: 'nowrap',
                         }}>
