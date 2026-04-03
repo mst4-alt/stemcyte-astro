@@ -62,10 +62,11 @@ export default function SpotlightNav() {
   const [activeItem, setActiveItem] = useState(0);
   const [prevKey, setPrevKey] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
+  const [itemsWidth, setItemsWidth] = useState(0);
   const panelRef = useRef(null);
   const navRef = useRef(null);
 
-  const [navTheme, setNavTheme] = useState('light'); // 'light' = white text on hero, 'dark' = dark text on light hero, 'scrolled' = scrolled state
+  const [navTheme, setNavTheme] = useState('light');
 
   // Watch nav scroll state and theme
   useEffect(() => {
@@ -90,6 +91,19 @@ export default function SpotlightNav() {
     return () => observer.disconnect();
   }, []);
 
+  // Measure nav buttons position to align dropdown items
+  const measureNavLinks = useCallback(() => {
+    if (!navRef.current) return;
+    const rect = navRef.current.getBoundingClientRect();
+    setItemsWidth(window.innerWidth - rect.left);
+  }, []);
+
+  useEffect(() => {
+    measureNavLinks();
+    window.addEventListener('resize', measureNavLinks);
+    return () => window.removeEventListener('resize', measureNavLinks);
+  }, [measureNavLinks]);
+
   const isOpen = openIdx >= 0;
   const section = isOpen ? SECTIONS[openIdx] : null;
   const item = section ? section.items[activeItem] : null;
@@ -105,11 +119,12 @@ export default function SpotlightNav() {
     if (openIdx === idx) {
       close();
     } else {
+      measureNavLinks();
       setOpenIdx(idx);
       setActiveItem(0);
       setPrevKey(`${idx}-0`);
     }
-  }, [openIdx, close]);
+  }, [openIdx, close, measureNavLinks]);
 
   // Escape key
   useEffect(() => {
@@ -152,7 +167,6 @@ export default function SpotlightNav() {
       <div ref={navRef} style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
         {SECTIONS.map((sec, i) => {
           const isActive = openIdx === i;
-          // Scrolled: plum tones. At-top light hero: white text. At-top dark/plum hero: dark text.
           const defaultColor = isScrolled ? '#6B5A63' : navTheme === 'dark' ? 'rgba(44,42,38,0.6)' : 'rgba(255,255,255,0.75)';
           const hoverColor = isScrolled ? '#2D1A24' : navTheme === 'dark' ? '#2C2A26' : '#fff';
           const hoverBg = isScrolled ? '#F5EDF2' : navTheme === 'dark' ? 'rgba(0,0,0,0.06)' : 'rgba(255,255,255,0.12)';
@@ -223,39 +237,116 @@ export default function SpotlightNav() {
         }}
       />
 
-      {/* Dropdown panel */}
+      {/* Dropdown panel — edge-to-edge */}
       <div
         ref={panelRef}
         style={{
           position: 'fixed',
           top: '64px',
-          left: '50%',
-          transform: isOpen
-            ? 'translateX(-50%) translateY(0) scale(1)'
-            : 'translateX(-50%) translateY(-8px) scale(0.98)',
-          maxWidth: '960px',
-          width: 'calc(100vw - 48px)',
+          left: 0,
+          right: 0,
           zIndex: 999,
           background: '#FFFDF9',
-          borderRadius: '16px',
-          boxShadow: '0 12px 40px rgba(61,15,49,0.10), 0 4px 12px rgba(61,15,49,0.06)',
-          border: '1px solid rgba(108,26,85,0.06)',
+          borderBottom: '1px solid rgba(108,26,85,0.08)',
+          boxShadow: '0 12px 40px rgba(61,15,49,0.08)',
           opacity: isOpen ? 1 : 0,
           pointerEvents: isOpen ? 'auto' : 'none',
+          transform: isOpen ? 'translateY(0)' : 'translateY(-4px)',
           transition: 'opacity 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1)',
-          padding: '8px 16px',
           boxSizing: 'border-box',
         }}
       >
         {section && (
           <div style={{
-            display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
+            display: 'flex',
             minHeight: '320px',
           }}>
-            {/* Left panel — list */}
+            {/* Left panel — preview */}
             <div style={{
-              padding: '28px 24px 28px 32px',
+              flex: 1,
+              padding: '32px 48px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              borderRight: '1px solid rgba(108,26,85,0.06)',
+            }}>
+              {item && (
+                <div
+                  ref={previewRef}
+                  style={{
+                    textAlign: 'center',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                  }}
+                >
+                  <div style={{
+                    width: '56px',
+                    height: '56px',
+                    borderRadius: '15px',
+                    background: '#FAF5F8',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    marginBottom: '24px',
+                  }}>
+                    {IconComponent && (
+                      <IconComponent
+                        size={28}
+                        strokeWidth={1.1}
+                        color="#6C1A55"
+                      />
+                    )}
+                  </div>
+
+                  <h3 style={{
+                    fontFamily: "'Playfair Display', serif",
+                    fontSize: '1.55rem',
+                    fontWeight: 500,
+                    color: '#2D1A24',
+                    lineHeight: 1.2,
+                    margin: '0 0 14px 0',
+                  }}>
+                    {item.title}
+                  </h3>
+
+                  <p style={{
+                    fontSize: '0.925rem',
+                    lineHeight: 1.75,
+                    color: '#6B5A63',
+                    maxWidth: '340px',
+                    margin: '0 0 24px 0',
+                  }}>
+                    {item.desc}
+                  </p>
+
+                  <a
+                    href={resolveHref(item.href)}
+                    style={{
+                      fontSize: '0.875rem',
+                      fontWeight: 600,
+                      color: '#6C1A55',
+                      textDecoration: 'none',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '8px',
+                      transition: 'gap 0.2s',
+                      fontFamily: 'Lato, sans-serif',
+                    }}
+                    onMouseEnter={(e) => { e.currentTarget.style.gap = '12px'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.gap = '8px'; }}
+                  >
+                    Learn more <ArrowRight size={14} strokeWidth={2} />
+                  </a>
+                </div>
+              )}
+            </div>
+
+            {/* Right panel — items list, aligned to nav buttons */}
+            <div style={{
+              width: itemsWidth > 0 ? `${itemsWidth}px` : '40%',
+              flexShrink: 0,
+              padding: '28px 48px 28px 24px',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
@@ -297,98 +388,13 @@ export default function SpotlightNav() {
                       fontWeight: isActive ? 500 : 400,
                       color: isActive ? '#8C4670' : '#635558',
                       transition: 'color 0.15s, font-weight 0.15s',
+                      whiteSpace: 'nowrap',
                     }}>
                       {it.title}
                     </span>
                   </a>
                 );
               })}
-            </div>
-
-            {/* Right panel — preview */}
-            <div style={{
-              borderLeft: '1px solid rgba(108,26,85,0.06)',
-              padding: '32px 36px 32px 28px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              {item && (
-                <div
-                  ref={previewRef}
-                  style={{
-                    textAlign: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
-                  {/* Icon */}
-                  <div style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '15px',
-                    background: '#FAF5F8',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '24px',
-                  }}>
-                    {IconComponent && (
-                      <IconComponent
-                        size={28}
-                        strokeWidth={1.1}
-                        color="#6C1A55"
-                      />
-                    )}
-                  </div>
-
-                  {/* Title */}
-                  <h3 style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: '1.55rem',
-                    fontWeight: 500,
-                    color: '#2D1A24',
-                    marginBottom: '14px',
-                    lineHeight: 1.2,
-                    margin: '0 0 14px 0',
-                  }}>
-                    {item.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p style={{
-                    fontSize: '0.925rem',
-                    lineHeight: 1.75,
-                    color: '#6B5A63',
-                    marginBottom: '24px',
-                    maxWidth: '340px',
-                    margin: '0 0 24px 0',
-                  }}>
-                    {item.desc}
-                  </p>
-
-                  {/* Link */}
-                  <a
-                    href={resolveHref(item.href)}
-                    style={{
-                      fontSize: '0.875rem',
-                      fontWeight: 600,
-                      color: '#6C1A55',
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      transition: 'gap 0.2s',
-                      fontFamily: 'Lato, sans-serif',
-                    }}
-                    onMouseEnter={(e) => { e.currentTarget.style.gap = '12px'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.gap = '8px'; }}
-                  >
-                    Learn more <ArrowRight size={14} strokeWidth={2} />
-                  </a>
-                </div>
-              )}
             </div>
           </div>
         )}
