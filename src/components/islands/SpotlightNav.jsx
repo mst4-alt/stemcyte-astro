@@ -51,12 +51,14 @@ const SECTIONS = [
         ],
       },
     ],
-    featured: {
-      label: 'For Clinicians & Industry',
-      title: 'StemCyte Biologics',
-      desc: 'REGENECYTE® & clinical trials.',
-      href: '/biologics/',
-      cta: 'Explore',
+    clinicalGroup: {
+      name: 'For Clinicians & Industry',
+      items: [
+        { title: 'REGENECYTE®', href: '/biologics/regenecyte', icon: 'FlaskConical' },
+        { title: 'Clinical Trials', href: '#', icon: 'Dna' },
+        { title: 'Publications', href: '/biologics/publications', icon: 'BookHeart' },
+      ],
+      link: { label: 'StemCyte Biologics', href: '/biologics/' },
     },
   },
   {
@@ -360,7 +362,7 @@ export default function SpotlightNav() {
           <div
             ref={contentRef}
             style={{
-              maxWidth: (section.groups.length <= 1 && section.featured) ? '820px' : section.groups.length <= 2 && !section.featured ? '820px' : '1200px',
+              maxWidth: (section.groups.length <= 1 && section.clinicalGroup) ? '820px' : section.groups.length <= 2 && !section.clinicalGroup ? '820px' : '1200px',
               margin: '0 auto',
               padding: '28px 48px 32px',
               display: 'flex',
@@ -460,84 +462,122 @@ export default function SpotlightNav() {
               );
             })}
 
-            {/* Featured card (e.g. Biologics) */}
-            {section.featured && (() => {
-              const featIdx = cascadeIdx++;
+            {/* Clinical/Biologics column — teal-tinted */}
+            {section.clinicalGroup && (() => {
+              const cg = section.clinicalGroup;
+              const labelIdx = cascadeIdx++;
               return (
               <div style={{
                 flex: 1,
                 minWidth: 0,
                 borderLeft: '1px solid rgba(108,26,85,0.08)',
                 paddingLeft: '32px',
+                paddingRight: '16px',
                 marginLeft: '32px',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                opacity: cascadeVisible ? 1 : 0,
-                transform: cascadeVisible ? 'translateX(0)' : 'translateX(12px)',
-                transition: `opacity ${CASCADE_DURATION} ${CASCADE_EASING} ${featIdx * CASCADE_STAGGER}ms, transform ${CASCADE_DURATION} ${CASCADE_EASING} ${featIdx * CASCADE_STAGGER}ms`,
               }}>
-                <a
-                  href={section.featured.href}
-                  style={{
-                    display: 'block',
-                    textDecoration: 'none',
-                    background: '#F0F6F8',
-                    border: '1px solid rgba(42,99,124,0.18)',
-                    borderRadius: '14px',
-                    padding: '24px 22px',
-                    color: '#0F2B35',
-                    transition: 'background 0.2s, border-color 0.2s',
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.background = '#E4EFF3';
-                    e.currentTarget.style.borderColor = 'rgba(42,99,124,0.3)';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.background = '#F0F6F8';
-                    e.currentTarget.style.borderColor = 'rgba(42,99,124,0.18)';
-                  }}
-                >
-                  <div style={{
-                    fontSize: '0.65rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    color: '#367A94',
-                    marginBottom: '10px',
-                    fontWeight: 600,
-                    fontFamily: 'Lato, sans-serif',
-                  }}>
-                    {section.featured.label}
-                  </div>
-                  <div style={{
-                    fontSize: '1.05rem',
-                    fontWeight: 600,
-                    lineHeight: 1.3,
-                    marginBottom: '8px',
-                    color: '#1A3F50',
-                    fontFamily: 'Lato, sans-serif',
-                  }}>
-                    {section.featured.title}
-                  </div>
-                  <div style={{
-                    fontSize: '0.8rem',
-                    color: '#5A7A88',
-                    lineHeight: 1.5,
-                    marginBottom: '14px',
-                  }}>
-                    {section.featured.desc}
-                  </div>
-                  <div style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    fontSize: '0.8rem',
-                    fontWeight: 600,
-                    color: '#2A637C',
-                  }}>
-                    {section.featured.cta} <ArrowRight size={14} strokeWidth={2} />
-                  </div>
-                </a>
+                {/* Group label */}
+                <div style={{
+                  fontSize: '0.7rem',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.08em',
+                  fontWeight: 600,
+                  color: '#2A637C',
+                  marginBottom: '14px',
+                  fontFamily: 'Lato, sans-serif',
+                  opacity: cascadeVisible ? 1 : 0,
+                  transform: cascadeVisible ? 'translateX(0)' : 'translateX(12px)',
+                  transition: `opacity ${CASCADE_DURATION} ${CASCADE_EASING} ${labelIdx * CASCADE_STAGGER}ms, transform ${CASCADE_DURATION} ${CASCADE_EASING} ${labelIdx * CASCADE_STAGGER}ms`,
+                }}>
+                  {cg.name}
+                </div>
+
+                {/* Items */}
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '2px' }}>
+                  {cg.items.map((it) => {
+                    const Icon = ICON_MAP[it.icon];
+                    const itemId = `clinical-${it.title}`;
+                    const isHovered = hoveredItem === itemId;
+                    const idx = cascadeIdx++;
+
+                    return (
+                      <a
+                        key={it.title}
+                        href={resolveHref(it.href)}
+                        onMouseEnter={() => setHoveredItem(itemId)}
+                        onMouseLeave={() => setHoveredItem(null)}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '14px',
+                          padding: '12px 16px',
+                          borderRadius: '10px',
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                          background: isHovered ? '#EDF5F7' : 'transparent',
+                          transition: `background 0.15s, opacity ${CASCADE_DURATION} ${CASCADE_EASING} ${idx * CASCADE_STAGGER}ms, transform ${CASCADE_DURATION} ${CASCADE_EASING} ${idx * CASCADE_STAGGER}ms`,
+                          opacity: cascadeVisible ? 1 : 0,
+                          transform: cascadeVisible ? 'translateX(0)' : 'translateX(12px)',
+                        }}
+                      >
+                        {Icon && (
+                          <span style={{
+                            width: '20px',
+                            height: '20px',
+                            flexShrink: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                            <Icon
+                              size={18}
+                              strokeWidth={1.5}
+                              color={isHovered ? '#2A637C' : '#4FA3B8'}
+                              style={{ transition: 'color 0.15s' }}
+                            />
+                          </span>
+                        )}
+                        <span style={{
+                          fontFamily: 'Lato, sans-serif',
+                          fontSize: '0.925rem',
+                          fontWeight: isHovered ? 500 : 400,
+                          color: isHovered ? '#1A3F50' : '#3A5F6F',
+                          transition: 'color 0.15s',
+                          whiteSpace: 'nowrap',
+                        }}>
+                          {it.title}
+                        </span>
+                      </a>
+                    );
+                  })}
+                </div>
+
+                {/* Biologics link */}
+                {cg.link && (() => {
+                  const linkIdx = cascadeIdx++;
+                  return (
+                    <a
+                      href={cg.link.href}
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        fontSize: '0.8rem',
+                        fontWeight: 600,
+                        color: '#2A637C',
+                        textDecoration: 'none',
+                        marginTop: '10px',
+                        paddingLeft: '16px',
+                        opacity: cascadeVisible ? 1 : 0,
+                        transform: cascadeVisible ? 'translateX(0)' : 'translateX(12px)',
+                        transition: `opacity ${CASCADE_DURATION} ${CASCADE_EASING} ${linkIdx * CASCADE_STAGGER}ms, transform ${CASCADE_DURATION} ${CASCADE_EASING} ${linkIdx * CASCADE_STAGGER}ms, gap 0.2s`,
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.gap = '10px'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.gap = '6px'; }}
+                    >
+                      {cg.link.label} <ArrowRight size={12} strokeWidth={2.5} />
+                    </a>
+                  );
+                })()}
               </div>
               );
             })()}
