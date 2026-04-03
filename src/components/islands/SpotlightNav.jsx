@@ -247,17 +247,18 @@ export default function SpotlightNav() {
                 gridTemplateColumns: '1fr auto',
                 alignItems: 'center',
                 gap: '4px',
-                fontSize: '0.9rem',
+                fontSize: '13.5px',
                 fontWeight: isActive ? 600 : 400,
                 color: isActive ? activeColor : defaultColor,
                 background: isActive ? activeBg : 'transparent',
                 border: 'none',
                 borderRadius: '8px',
-                padding: '8px 16px',
+                padding: '8px 14px',
                 cursor: 'pointer',
                 fontFamily: 'Lato, sans-serif',
                 transition: 'color 0.2s, background 0.2s',
                 WebkitFontSmoothing: 'antialiased',
+                whiteSpace: 'nowrap',
               }}
               onMouseEnter={(e) => {
                 if (isOpen && !isActive) {

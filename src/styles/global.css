@@ -77,7 +77,7 @@ body {
 .nav.scrolled .logo-color { display: block; }
 .nav .links {
   display: flex;
-  gap: 24px;
+  gap: 4px;
   font-size: 14px;
   margin-left: auto;
   align-items: center;
