@@ -225,8 +225,10 @@ export default function SpotlightNav() {
         onClick={close}
         style={{
           position: 'fixed',
-          inset: 0,
-          top: 0,
+          top: '64px',
+          left: 0,
+          right: 0,
+          bottom: 0,
           zIndex: 998,
           background: 'rgba(45, 26, 36, 0.35)',
           backdropFilter: 'blur(8px)',
