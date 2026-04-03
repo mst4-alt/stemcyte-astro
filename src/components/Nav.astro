@@ -16,7 +16,8 @@ const ctaHref = isClinical ? '/biologics/contact' : '/pricing';
 ---
 
 <nav class:list={['nav', 'at-top', { clinical: isClinical }]} id="nav">
-  <a href={isClinical ? '/biologics/' : '/'} class="logo">
+  <div class="nav-inner">
+    <a href={isClinical ? '/biologics/' : '/'} class="logo">
     <img src="/images/logos/white_stemcyte.webp" alt="StemCyte" class="logo-white" width="150" height="28" fetchpriority="low" />
     <img src="/images/logos/fullcolor_stemcyte.webp" alt="StemCyte" class="logo-color" width="150" height="28" fetchpriority="low" />
     <img src="/images/logos/black_stemcyte.webp" alt="StemCyte" class="logo-black" width="150" height="28" fetchpriority="low" />
@@ -45,6 +46,7 @@ const ctaHref = isClinical ? '/biologics/contact' : '/pricing';
     <span></span>
     <span></span>
   </button>
+  </div>
 </nav>
 
 <div class="sheet-scrim" id="sheet-scrim"></div>

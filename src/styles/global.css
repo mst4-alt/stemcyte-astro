@@ -42,11 +42,16 @@ body {
   left: 0;
   right: 0;
   z-index: 1000;
-  padding: 18px 48px;
+  padding: 18px 0;
+  transition: all 0.35s;
+}
+.nav-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 48px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transition: all 0.35s;
 }
 .nav.at-top { background: transparent; }
 .nav.scrolled {
@@ -382,7 +387,8 @@ body {
 
 /* === RESPONSIVE === */
 @media (max-width: 900px) {
-  .nav { padding: 16px 24px; }
+  .nav { padding: 16px 0; }
+  .nav-inner { padding: 0 24px; }
   .nav .links, .nav .rg { display: none; }
   .hamburger { display: flex; }
   .sheet-links a {
