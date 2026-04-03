@@ -42,7 +42,7 @@ const SECTIONS = [
     href: '/learn/',
     groups: [
       {
-        name: 'The Science',
+        name: 'For Parents',
         items: [
           { title: 'Why Stem Cells Matter', href: '#', icon: 'Sparkles' },
           { title: 'What Is Cord Blood', href: '/learn/what-is-cord-blood', icon: 'Droplet' },
@@ -461,7 +461,9 @@ export default function SpotlightNav() {
             })}
 
             {/* Featured card (e.g. Biologics) */}
-            {section.featured && (
+            {section.featured && (() => {
+              const featIdx = cascadeIdx++;
+              return (
               <div style={{
                 flex: 1,
                 minWidth: 0,
@@ -471,6 +473,9 @@ export default function SpotlightNav() {
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'center',
+                opacity: cascadeVisible ? 1 : 0,
+                transform: cascadeVisible ? 'translateX(0)' : 'translateX(12px)',
+                transition: `opacity ${CASCADE_DURATION} ${CASCADE_EASING} ${featIdx * CASCADE_STAGGER}ms, transform ${CASCADE_DURATION} ${CASCADE_EASING} ${featIdx * CASCADE_STAGGER}ms`,
               }}>
                 <a
                   href={section.featured.href}
@@ -534,7 +539,8 @@ export default function SpotlightNav() {
                   </div>
                 </a>
               </div>
-            )}
+              );
+            })()}
           </div>
         )}
         </div>
