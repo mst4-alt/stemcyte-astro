@@ -198,16 +198,19 @@ export default function SpotlightNav() {
     if (!isOpen) return;
     const onScroll = () => close();
     const onClick = (e) => {
-      // If click is inside the nav buttons or dropdown, ignore
       if (navRef.current && navRef.current.contains(e.target)) return;
       if (panelRef.current && panelRef.current.contains(e.target)) return;
       close();
     };
-    window.addEventListener('scroll', onScroll, { passive: true });
-    document.addEventListener('mousedown', onClick);
+    // Delay adding listeners so they don't fire from the opening interaction
+    const timer = setTimeout(() => {
+      window.addEventListener('scroll', onScroll, { passive: true });
+      document.addEventListener('click', onClick);
+    }, 100);
     return () => {
+      clearTimeout(timer);
       window.removeEventListener('scroll', onScroll);
-      document.removeEventListener('mousedown', onClick);
+      document.removeEventListener('click', onClick);
     };
   }, [isOpen, close]);
 
