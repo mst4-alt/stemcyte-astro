@@ -3,7 +3,7 @@ import {
   Droplet, Dna, Scale, Users, Clock, CircleHelp,
   Tag, Search, Gift, Shield,
   Star, Globe, BookHeart,
-  ChevronDown, ArrowRight,
+  ChevronDown,
 } from 'lucide-react';
 
 const ICON_MAP = {
@@ -16,32 +16,63 @@ const SECTIONS = [
   {
     label: 'Learn the Science',
     href: '/learn/',
-    items: [
-      { title: 'What Is Cord Blood', href: '/learn/what-is-cord-blood', icon: 'Droplet', desc: 'Your baby\u2019s umbilical cord blood is a rich source of hematopoietic stem cells, the same type used in bone marrow transplants. Collected once, at birth.' },
-      { title: 'What Is Cord Tissue', href: '/learn/what-is-cord-tissue', icon: 'Dna', desc: 'Cord tissue contains mesenchymal stem cells (MSCs), a different cell type with emerging applications in regenerative medicine.' },
-      { title: 'Public vs. Private Banking', href: '/learn/public-vs-private-banking', icon: 'Scale', desc: 'Public banking donates for anyone in need. Private banking reserves exclusively for your family.' },
-      { title: 'How Your Family Can Use It', href: '/learn/how-your-family-can-use-it', icon: 'Users', desc: 'Cord blood can potentially be used by the child, siblings, and in some cases parents.' },
-      { title: 'How Collection Works', href: '/learn/how-collection-works', icon: 'Clock', desc: 'Collection is safe, painless, and takes less than 5 minutes after delivery.' },
-      { title: 'FAQ', href: '/learn/faq', icon: 'CircleHelp', desc: 'Answers to common questions about cord blood banking, including timing, cost, safety, and storage.' },
+    groups: [
+      {
+        name: 'The Science',
+        items: [
+          { title: 'What Is Cord Blood', href: '/learn/what-is-cord-blood', icon: 'Droplet' },
+          { title: 'What Is Cord Tissue', href: '/learn/what-is-cord-tissue', icon: 'Dna' },
+          { title: 'Public vs. Private Banking', href: '/learn/public-vs-private-banking', icon: 'Scale' },
+        ],
+      },
+      {
+        name: 'Getting Started',
+        items: [
+          { title: 'How Your Family Can Use It', href: '/learn/how-your-family-can-use-it', icon: 'Users' },
+          { title: 'How Collection Works', href: '/learn/how-collection-works', icon: 'Clock' },
+          { title: 'FAQ', href: '/learn/faq', icon: 'CircleHelp' },
+        ],
+      },
     ],
   },
   {
     label: 'Plans & Programs',
     href: '/pricing',
-    items: [
-      { title: 'Pricing', href: '/pricing', icon: 'Tag', desc: 'Cord blood, cord tissue, or both. Find the plan that fits your family with flexible payment options.' },
-      { title: 'Public Bank Access', href: '/public-bank-access', icon: 'Search', desc: 'Search StemCyte\u2019s public bank inventory for matching cord blood units. Available as a paid add-on at $299, or included free with Cord Blood & Tissue plans.' },
-      { title: 'Special Programs', href: '/special-programs', icon: 'Gift', desc: 'Military families, healthcare workers, and partner organizations may qualify for special pricing and programs.' },
-      { title: 'LifeSaver Guarantee', href: '/lifesaver-guarantee', icon: 'Shield', desc: 'If your child ever needs their cord blood for a qualifying transplant, StemCyte stands behind you.' },
+    groups: [
+      {
+        name: 'Choose Your Plan',
+        items: [
+          { title: 'Pricing', href: '/pricing', icon: 'Tag' },
+          { title: 'Public Bank Access', href: '/public-bank-access', icon: 'Search' },
+        ],
+      },
+      {
+        name: 'Special Offers',
+        items: [
+          { title: 'Special Programs', href: '/special-programs', icon: 'Gift' },
+          { title: 'LifeSaver Guarantee', href: '/lifesaver-guarantee', icon: 'Shield' },
+        ],
+      },
     ],
   },
   {
     label: 'Our Story',
     href: '/our-story/',
-    items: [
-      { title: 'Why StemCyte', href: '/why-stemcyte', icon: 'Star', desc: 'What sets StemCyte apart: our science, our people, and our commitment to every family we serve.' },
-      { title: 'Our Impact', href: '#', icon: 'Globe', desc: 'StemCyte cord blood units have been shipped to transplant centers worldwide, helping patients find a path forward.' },
-      { title: 'Patient Stories', href: '/patient-stories', icon: 'BookHeart', desc: 'Real families whose lives were changed by cord blood transplants. Their stories, in their own words.' },
+    groups: [
+      {
+        name: 'About',
+        items: [
+          { title: 'Why StemCyte', href: '/why-stemcyte', icon: 'Star' },
+          { title: 'Our Impact', href: '#', icon: 'Globe' },
+        ],
+      },
+      {
+        name: 'Community',
+        items: [
+          { title: 'Patient Stories', href: '/patient-stories', icon: 'BookHeart' },
+          { title: 'LifeSaver Guarantee', href: '/lifesaver-guarantee', icon: 'Shield' },
+        ],
+      },
     ],
   },
 ];
@@ -50,77 +81,37 @@ const SECTIONS = [
 const ANIM_STYLES = [
   {
     name: 'Fade',
-    panel: { transform: 'none', opacity: 0, transition: 'opacity 0.3s ease' },
-    panelOpen: { transform: 'none', opacity: 1 },
-    itemStagger: 0,
-    itemFrom: { opacity: 0, transform: 'none' },
-    itemTo: { opacity: 1, transform: 'none' },
-    itemDuration: '0.3s',
-    itemEasing: 'ease',
-    previewFrom: { opacity: 0, transform: 'none' },
-    previewTo: { opacity: 1, transform: 'none' },
-    previewDuration: '0.3s',
-    previewEasing: 'ease',
+    panel: { closed: { opacity: 0, transform: 'none' }, open: { opacity: 1, transform: 'none' }, transition: 'opacity 0.3s ease' },
+    itemStagger: 0, itemDuration: '0.3s', itemEasing: 'ease',
+    itemFrom: { opacity: 0, transform: 'none' }, itemTo: { opacity: 1, transform: 'none' },
     overlay: '0.3s ease',
   },
   {
     name: 'Slide',
-    panel: { transform: 'translateY(-8px)', opacity: 0, transition: 'opacity 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1)' },
-    panelOpen: { transform: 'translateY(0)', opacity: 1 },
-    itemStagger: 40,
-    itemFrom: { opacity: 0, transform: 'translateY(6px)' },
-    itemTo: { opacity: 1, transform: 'translateY(0)' },
-    itemDuration: '0.3s',
-    itemEasing: 'cubic-bezier(0.16,1,0.3,1)',
-    previewFrom: { opacity: 0, transform: 'translateY(8px) scale(0.97)' },
-    previewTo: { opacity: 1, transform: 'translateY(0) scale(1)' },
-    previewDuration: '0.35s',
-    previewEasing: 'cubic-bezier(0.16,1,0.3,1)',
+    panel: { closed: { opacity: 0, transform: 'translateY(-8px)' }, open: { opacity: 1, transform: 'translateY(0)' }, transition: 'opacity 0.35s cubic-bezier(0.16,1,0.3,1), transform 0.35s cubic-bezier(0.16,1,0.3,1)' },
+    itemStagger: 40, itemDuration: '0.3s', itemEasing: 'cubic-bezier(0.16,1,0.3,1)',
+    itemFrom: { opacity: 0, transform: 'translateY(6px)' }, itemTo: { opacity: 1, transform: 'translateY(0)' },
     overlay: '0.35s ease',
   },
   {
     name: 'Scale',
-    panel: { transform: 'scale(0.97) translateY(-4px)', opacity: 0, transition: 'opacity 0.3s cubic-bezier(0.34,1.56,0.64,1), transform 0.3s cubic-bezier(0.34,1.56,0.64,1)' },
-    panelOpen: { transform: 'scale(1) translateY(0)', opacity: 1 },
-    itemStagger: 30,
-    itemFrom: { opacity: 0, transform: 'scale(0.95)' },
-    itemTo: { opacity: 1, transform: 'scale(1)' },
-    itemDuration: '0.28s',
-    itemEasing: 'cubic-bezier(0.34,1.56,0.64,1)',
-    previewFrom: { opacity: 0, transform: 'scale(0.92)' },
-    previewTo: { opacity: 1, transform: 'scale(1)' },
-    previewDuration: '0.35s',
-    previewEasing: 'cubic-bezier(0.34,1.56,0.64,1)',
+    panel: { closed: { opacity: 0, transform: 'scale(0.97) translateY(-4px)' }, open: { opacity: 1, transform: 'scale(1) translateY(0)' }, transition: 'opacity 0.3s cubic-bezier(0.34,1.56,0.64,1), transform 0.3s cubic-bezier(0.34,1.56,0.64,1)' },
+    itemStagger: 30, itemDuration: '0.28s', itemEasing: 'cubic-bezier(0.34,1.56,0.64,1)',
+    itemFrom: { opacity: 0, transform: 'scale(0.95)' }, itemTo: { opacity: 1, transform: 'scale(1)' },
     overlay: '0.3s ease',
   },
   {
     name: 'Cascade',
-    panel: { transform: 'translateY(-6px)', opacity: 0, transition: 'opacity 0.3s ease, transform 0.3s ease' },
-    panelOpen: { transform: 'translateY(0)', opacity: 1 },
-    itemStagger: 60,
-    itemFrom: { opacity: 0, transform: 'translateX(12px)' },
-    itemTo: { opacity: 1, transform: 'translateX(0)' },
-    itemDuration: '0.32s',
-    itemEasing: 'cubic-bezier(0.16,1,0.3,1)',
-    previewFrom: { opacity: 0, transform: 'translateX(-12px)' },
-    previewTo: { opacity: 1, transform: 'translateX(0)' },
-    previewDuration: '0.35s',
-    previewEasing: 'cubic-bezier(0.16,1,0.3,1)',
+    panel: { closed: { opacity: 0, transform: 'translateY(-6px)' }, open: { opacity: 1, transform: 'translateY(0)' }, transition: 'opacity 0.3s ease, transform 0.3s ease' },
+    itemStagger: 60, itemDuration: '0.32s', itemEasing: 'cubic-bezier(0.16,1,0.3,1)',
+    itemFrom: { opacity: 0, transform: 'translateX(12px)' }, itemTo: { opacity: 1, transform: 'translateX(0)' },
     overlay: '0.3s ease',
   },
   {
     name: 'Soft',
-    panel: { transform: 'translateY(-3px)', opacity: 0, transition: 'opacity 0.5s ease, transform 0.5s ease' },
-    panelOpen: { transform: 'translateY(0)', opacity: 1 },
-    itemStagger: 50,
-    itemFrom: { opacity: 0, transform: 'translateY(4px)' },
-    itemTo: { opacity: 1, transform: 'translateY(0)' },
-    itemDuration: '0.4s',
-    itemEasing: 'ease',
-    previewFrom: { opacity: 0, transform: 'translateY(4px)' },
-    previewTo: { opacity: 1, transform: 'translateY(0)' },
-    previewDuration: '0.4s',
-    previewEasing: 'ease',
+    panel: { closed: { opacity: 0, transform: 'translateY(-3px)' }, open: { opacity: 1, transform: 'translateY(0)' }, transition: 'opacity 0.5s ease, transform 0.5s ease' },
+    itemStagger: 50, itemDuration: '0.4s', itemEasing: 'ease',
+    itemFrom: { opacity: 0, transform: 'translateY(4px)' }, itemTo: { opacity: 1, transform: 'translateY(0)' },
     overlay: '0.5s ease',
   },
 ];
@@ -138,27 +129,20 @@ function resolveHref(href) {
 
 export default function SpotlightNav() {
   const [openIdx, setOpenIdx] = useState(-1);
-  const [activeItem, setActiveItem] = useState(0);
-  const [prevKey, setPrevKey] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
-  const [itemsWidth, setItemsWidth] = useState(0);
+  const [hoveredItem, setHoveredItem] = useState(null);
   const [animIdx, setAnimIdx] = useState(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('spotlightNavAnimStyle');
-      return saved !== null ? parseInt(saved, 10) : 1; // default to Slide
+      return saved !== null ? parseInt(saved, 10) : 1;
     }
     return 1;
   });
   const [itemsVisible, setItemsVisible] = useState(false);
-  const panelRef = useRef(null);
   const navRef = useRef(null);
-  const itemRefs = useRef([]);
 
   const anim = ANIM_STYLES[animIdx];
 
-  const [navTheme, setNavTheme] = useState('light');
-
-  // Cycle animation style
   const cycleAnim = useCallback(() => {
     setAnimIdx(prev => {
       const next = (prev + 1) % ANIM_STYLES.length;
@@ -167,18 +151,18 @@ export default function SpotlightNav() {
     });
   }, []);
 
-  // Keyboard shortcut: A to cycle
+  // Keyboard shortcut: A to cycle animation style
   useEffect(() => {
     const handler = (e) => {
-      if (e.key === 'a' || e.key === 'A') {
-        if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
-          cycleAnim();
-        }
+      if ((e.key === 'a' || e.key === 'A') && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA') {
+        cycleAnim();
       }
     };
     document.addEventListener('keydown', handler);
     return () => document.removeEventListener('keydown', handler);
   }, [cycleAnim]);
+
+  const [navTheme, setNavTheme] = useState('light');
 
   // Watch nav scroll state and theme
   useEffect(() => {
@@ -203,28 +187,12 @@ export default function SpotlightNav() {
     return () => observer.disconnect();
   }, []);
 
-  // Measure nav buttons position to align dropdown items
-  const measureNavLinks = useCallback(() => {
-    if (!navRef.current) return;
-    const rect = navRef.current.getBoundingClientRect();
-    setItemsWidth(window.innerWidth - rect.left);
-  }, []);
-
-  useEffect(() => {
-    measureNavLinks();
-    window.addEventListener('resize', measureNavLinks);
-    return () => window.removeEventListener('resize', measureNavLinks);
-  }, [measureNavLinks]);
-
   const isOpen = openIdx >= 0;
   const section = isOpen ? SECTIONS[openIdx] : null;
-  const item = section ? section.items[activeItem] : null;
-  const itemKey = section ? `${openIdx}-${activeItem}` : '';
 
   const close = useCallback(() => {
     setOpenIdx(-1);
-    setActiveItem(0);
-    setPrevKey('');
+    setHoveredItem(null);
     setItemsVisible(false);
   }, []);
 
@@ -232,23 +200,8 @@ export default function SpotlightNav() {
     if (openIdx === idx) {
       close();
     } else {
-      measureNavLinks();
       setOpenIdx(idx);
-      setActiveItem(0);
-      setPrevKey(`${idx}-0`);
-      setItemsVisible(false);
-      // Trigger items animation after panel starts opening
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          setItemsVisible(true);
-        });
-      });
-    }
-  }, [openIdx, close, measureNavLinks]);
-
-  // Also trigger items visible when switching sections
-  useEffect(() => {
-    if (isOpen) {
+      setHoveredItem(null);
       setItemsVisible(false);
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -256,7 +209,7 @@ export default function SpotlightNav() {
         });
       });
     }
-  }, [openIdx]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [openIdx, close]);
 
   // Escape key
   useEffect(() => {
@@ -297,23 +250,6 @@ export default function SpotlightNav() {
       }
     }
   }, [isOpen]);
-
-  // Animate preview on item change
-  const previewRef = useRef(null);
-  useEffect(() => {
-    if (!previewRef.current || itemKey === prevKey) return;
-    const el = previewRef.current;
-    el.style.opacity = anim.previewFrom.opacity ?? '0';
-    el.style.transform = anim.previewFrom.transform || 'none';
-    requestAnimationFrame(() => {
-      el.style.transition = `opacity ${anim.previewDuration} ${anim.previewEasing}, transform ${anim.previewDuration} ${anim.previewEasing}`;
-      el.style.opacity = anim.previewTo.opacity ?? '1';
-      el.style.transform = anim.previewTo.transform || 'none';
-    });
-    setPrevKey(itemKey);
-  }, [itemKey, prevKey, anim]);
-
-  const IconComponent = item ? ICON_MAP[item.icon] : null;
 
   return (
     <>
@@ -395,176 +331,115 @@ export default function SpotlightNav() {
 
       {/* Dropdown panel — edge-to-edge */}
       <div
-        ref={panelRef}
         style={{
           position: 'fixed',
           top: '64px',
           left: 0,
           right: 0,
           zIndex: 999,
-          background: 'transparent',
+          background: '#ffffff',
           borderBottom: '1px solid rgba(108,26,85,0.10)',
           boxShadow: '0 10px 30px rgba(61,15,49,0.07)',
-          opacity: isOpen ? anim.panelOpen.opacity : anim.panel.opacity,
+          opacity: isOpen ? anim.panel.open.opacity : anim.panel.closed.opacity,
           pointerEvents: isOpen ? 'auto' : 'none',
-          transform: isOpen ? anim.panelOpen.transform : anim.panel.transform,
+          transform: isOpen ? anim.panel.open.transform : anim.panel.closed.transform,
           transition: anim.panel.transition,
           boxSizing: 'border-box',
         }}
       >
         {section && (
           <div style={{
+            maxWidth: '1200px',
+            margin: '0 auto',
+            padding: '32px 48px 36px',
             display: 'flex',
-            minHeight: '320px',
+            gap: '56px',
           }}>
-            {/* Left panel — preview */}
-            <div style={{
-              flex: 1,
-              padding: '32px 48px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: '#ffffff',
-              borderRight: '1px solid rgba(108,26,85,0.08)',
-            }}>
-              {item && (
-                <div
-                  ref={previewRef}
-                  style={{
-                    textAlign: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                  }}
-                >
+            {(() => {
+              let globalIdx = 0;
+              return section.groups.map((group) => (
+                <div key={group.name} style={{ flex: 1, minWidth: 0 }}>
+                  {/* Group label */}
                   <div style={{
-                    width: '56px',
-                    height: '56px',
-                    borderRadius: '15px',
-                    background: '#FAF5F8',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    marginBottom: '24px',
+                    fontSize: '0.7rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    fontWeight: 600,
+                    color: 'rgba(0,0,0,0.35)',
+                    marginBottom: '16px',
+                    fontFamily: 'Lato, sans-serif',
+                    opacity: anim.itemStagger > 0 ? (itemsVisible ? 1 : 0) : 1,
+                    transform: anim.itemStagger > 0 ? (itemsVisible ? 'none' : anim.itemFrom.transform || 'none') : 'none',
+                    transition: `opacity ${anim.itemDuration} ${anim.itemEasing}, transform ${anim.itemDuration} ${anim.itemEasing}`,
+                    transitionDelay: anim.itemStagger > 0 ? `${60 + globalIdx * anim.itemStagger}ms` : '0s',
                   }}>
-                    {IconComponent && (
-                      <IconComponent
-                        size={28}
-                        strokeWidth={1.1}
-                        color="#6C1A55"
-                      />
-                    )}
+                    {group.name}
                   </div>
 
-                  <h3 style={{
-                    fontFamily: "'Playfair Display', serif",
-                    fontSize: '1.55rem',
-                    fontWeight: 500,
-                    color: '#2D1A24',
-                    lineHeight: 1.2,
-                    margin: '0 0 14px 0',
-                  }}>
-                    {item.title}
-                  </h3>
+                  {/* Items */}
+                  {group.items.map((it) => {
+                    const Icon = ICON_MAP[it.icon];
+                    const itemId = `${group.name}-${it.title}`;
+                    const isHovered = hoveredItem === itemId;
+                    const staggerDelay = 80 + globalIdx * anim.itemStagger;
+                    globalIdx++;
 
-                  <p style={{
-                    fontSize: '0.925rem',
-                    lineHeight: 1.75,
-                    color: '#6B5A63',
-                    maxWidth: '340px',
-                    margin: '0 0 24px 0',
-                  }}>
-                    {item.desc}
-                  </p>
-
-                  <a
-                    href={resolveHref(item.href)}
-                    style={{
-                      fontSize: '0.875rem',
-                      fontWeight: 600,
-                      color: '#6C1A55',
-                      textDecoration: 'none',
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      gap: '8px',
-                      transition: 'gap 0.2s',
-                      fontFamily: 'Lato, sans-serif',
-                    }}
-                    onMouseEnter={(e) => { e.currentTarget.style.gap = '12px'; }}
-                    onMouseLeave={(e) => { e.currentTarget.style.gap = '8px'; }}
-                  >
-                    Learn more <ArrowRight size={14} strokeWidth={2} />
-                  </a>
+                    return (
+                      <a
+                        key={it.title}
+                        href={resolveHref(it.href)}
+                        onMouseEnter={() => setHoveredItem(itemId)}
+                        onMouseLeave={() => setHoveredItem(null)}
+                        style={{
+                          display: 'flex',
+                          alignItems: 'center',
+                          gap: '14px',
+                          padding: '10px 12px',
+                          borderRadius: '8px',
+                          textDecoration: 'none',
+                          cursor: 'pointer',
+                          background: isHovered ? 'rgba(0,0,0,0.03)' : 'transparent',
+                          transition: `background 0.15s, opacity ${anim.itemDuration} ${anim.itemEasing}, transform ${anim.itemDuration} ${anim.itemEasing}`,
+                          transitionDelay: anim.itemStagger > 0 ? `0s, ${staggerDelay}ms, ${staggerDelay}ms` : '0s',
+                          opacity: anim.itemStagger > 0 ? (itemsVisible ? anim.itemTo.opacity : anim.itemFrom.opacity) : 1,
+                          transform: anim.itemStagger > 0 ? (itemsVisible ? (anim.itemTo.transform || 'none') : (anim.itemFrom.transform || 'none')) : 'none',
+                        }}
+                      >
+                        {Icon && (
+                          <span style={{
+                            width: '20px',
+                            height: '20px',
+                            flexShrink: 0,
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                          }}>
+                            <Icon
+                              size={18}
+                              strokeWidth={1.5}
+                              color="rgba(0,0,0,0.4)"
+                            />
+                          </span>
+                        )}
+                        <span style={{
+                          fontFamily: 'Lato, sans-serif',
+                          fontSize: '0.9rem',
+                          fontWeight: 500,
+                          color: '#1d1d1f',
+                        }}>
+                          {it.title}
+                        </span>
+                      </a>
+                    );
+                  })}
                 </div>
-              )}
-            </div>
-
-            {/* Right panel — items list */}
-            <div style={{
-              width: itemsWidth > 0 ? `${itemsWidth}px` : '40%',
-              flexShrink: 0,
-              padding: '28px 48px 28px 24px',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              gap: '2px',
-              background: '#ffffff',
-            }}>
-              {section.items.map((it, idx) => {
-                const isItemActive = activeItem === idx;
-                const staggerDelay = anim.itemStagger > 0 ? (80 + idx * anim.itemStagger) : 0;
-                const shouldAnimate = itemsVisible && anim.itemStagger > 0;
-
-                return (
-                  <a
-                    key={it.title}
-                    href={resolveHref(it.href)}
-                    onMouseEnter={() => setActiveItem(idx)}
-                    style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '14px',
-                      padding: '12px 16px',
-                      borderRadius: '10px',
-                      background: isItemActive ? '#F8F3F6' : 'transparent',
-                      textDecoration: 'none',
-                      cursor: 'pointer',
-                      transition: `background 0.15s, color 0.15s, opacity ${anim.itemDuration} ${anim.itemEasing}, transform ${anim.itemDuration} ${anim.itemEasing}`,
-                      transitionDelay: shouldAnimate ? `0s, 0s, ${staggerDelay}ms, ${staggerDelay}ms` : '0s',
-                      opacity: anim.itemStagger > 0 ? (itemsVisible ? anim.itemTo.opacity : anim.itemFrom.opacity) : 1,
-                      transform: anim.itemStagger > 0 ? (itemsVisible ? (anim.itemTo.transform || 'none') : (anim.itemFrom.transform || 'none')) : 'none',
-                    }}
-                    onMouseLeave={() => {}}
-                  >
-                    <span style={{
-                      fontFamily: "'Source Serif 4', serif",
-                      fontSize: '0.75rem',
-                      fontWeight: isItemActive ? 500 : 400,
-                      color: isItemActive ? '#733A5C' : '#998B90',
-                      minWidth: '20px',
-                      transition: 'color 0.15s, font-weight 0.15s',
-                    }}>
-                      {String(idx + 1).padStart(2, '0')}
-                    </span>
-                    <span style={{
-                      fontFamily: 'Lato, sans-serif',
-                      fontSize: '0.925rem',
-                      fontWeight: isItemActive ? 500 : 400,
-                      color: isItemActive ? '#8C4670' : '#635558',
-                      transition: 'color 0.15s, font-weight 0.15s',
-                      whiteSpace: 'nowrap',
-                    }}>
-                      {it.title}
-                    </span>
-                  </a>
-                );
-              })}
-            </div>
+              ));
+            })()}
           </div>
         )}
       </div>
 
-      {/* Animation style toggle — floating pill */}
+      {/* Animation style toggle pill */}
       <div
         onClick={cycleAnim}
         style={{
