@@ -350,15 +350,22 @@ export default function SpotlightNav() {
               margin: '0 auto',
               padding: '28px 48px 32px',
               display: 'flex',
-              gap: '48px',
+              gap: '0',
             }}
           >
-            {section.groups.map((group) => {
+            {section.groups.map((group, groupIdx) => {
               // Group label gets its own cascade slot
               const labelIdx = cascadeIdx++;
+              const isFirst = groupIdx === 0;
 
               return (
-                <div key={group.name} style={{ flex: 1, minWidth: 0 }}>
+                <div key={group.name} style={{
+                  flex: 1,
+                  minWidth: 0,
+                  borderLeft: isFirst ? 'none' : '1px solid rgba(108,26,85,0.08)',
+                  paddingLeft: isFirst ? '0' : '32px',
+                  marginLeft: isFirst ? '0' : '32px',
+                }}>
                   {/* Group label */}
                   <div style={{
                     fontSize: '0.7rem',
