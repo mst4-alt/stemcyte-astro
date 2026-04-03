@@ -363,7 +363,7 @@ export default function SpotlightNav() {
                   flex: 1,
                   minWidth: 0,
                   borderLeft: isFirst ? 'none' : '1px solid rgba(108,26,85,0.08)',
-                  paddingLeft: isFirst ? '16px' : '32px',
+                  paddingLeft: '32px',
                   paddingRight: '16px',
                   marginLeft: isFirst ? '0' : '32px',
                 }}>
