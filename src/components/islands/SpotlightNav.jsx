@@ -193,12 +193,22 @@ export default function SpotlightNav() {
     return () => document.removeEventListener('keydown', handler);
   }, [isOpen, close]);
 
-  // Allow scrolling while menu is open — close menu on scroll
+  // Close menu on scroll or click outside
   useEffect(() => {
     if (!isOpen) return;
-    const handler = () => close();
-    window.addEventListener('scroll', handler, { passive: true });
-    return () => window.removeEventListener('scroll', handler);
+    const onScroll = () => close();
+    const onClick = (e) => {
+      // If click is inside the nav buttons or dropdown, ignore
+      if (navRef.current && navRef.current.contains(e.target)) return;
+      if (panelRef.current && panelRef.current.contains(e.target)) return;
+      close();
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    document.addEventListener('mousedown', onClick);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('mousedown', onClick);
+    };
   }, [isOpen, close]);
 
   // Force nav to scrolled state when open
