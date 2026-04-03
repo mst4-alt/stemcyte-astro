@@ -151,7 +151,11 @@ export default function SpotlightNav() {
     if (isOpen) {
       nav.classList.remove('at-top');
       nav.classList.add('scrolled');
+      nav.style.borderBottom = '1px solid rgba(108,26,85,0.12)';
+      nav.style.boxShadow = '0 1px 4px rgba(61,15,49,0.06)';
     } else {
+      nav.style.borderBottom = '';
+      nav.style.boxShadow = '';
       // Restore based on actual scroll position
       const hero = document.getElementById('hero');
       if (hero && hero.getBoundingClientRect().bottom >= 80) {
