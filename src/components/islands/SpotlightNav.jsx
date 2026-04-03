@@ -151,9 +151,11 @@ export default function SpotlightNav() {
     if (isOpen) {
       nav.classList.remove('at-top');
       nav.classList.add('scrolled');
-      nav.style.borderBottom = '1px solid rgba(108,26,85,0.12)';
-      nav.style.boxShadow = '0 1px 4px rgba(61,15,49,0.06)';
+      nav.style.background = '#fffbf5';
+      nav.style.borderBottom = '1px solid rgba(108,26,85,0.08)';
+      nav.style.boxShadow = '0 2px 6px rgba(61,15,49,0.06)';
     } else {
+      nav.style.background = '';
       nav.style.borderBottom = '';
       nav.style.boxShadow = '';
       // Restore based on actual scroll position
@@ -269,9 +271,9 @@ export default function SpotlightNav() {
           left: 0,
           right: 0,
           zIndex: 999,
-          background: '#FFFDF9',
+          background: 'transparent',
           borderBottom: '1px solid rgba(108,26,85,0.08)',
-          boxShadow: '0 12px 40px rgba(61,15,49,0.08)',
+          boxShadow: '0 8px 20px rgba(61,15,49,0.06)',
           opacity: isOpen ? 1 : 0,
           pointerEvents: isOpen ? 'auto' : 'none',
           transform: isOpen ? 'translateY(0)' : 'translateY(-4px)',
@@ -291,6 +293,7 @@ export default function SpotlightNav() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
+              background: '#fffdfa',
               borderRight: '1px solid rgba(108,26,85,0.06)',
             }}>
               {item && (
@@ -374,6 +377,7 @@ export default function SpotlightNav() {
               flexDirection: 'column',
               justifyContent: 'center',
               gap: '2px',
+              background: '#fffbf5',
             }}>
               {section.items.map((it, idx) => {
                 const isActive = activeItem === idx;
