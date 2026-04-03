@@ -3,6 +3,8 @@ import {
   Droplet, Dna, Scale, Users, Clock, CircleHelp,
   Tag, Search, Gift, Shield,
   Star, Globe, BookHeart,
+  Sparkles, UserPlus, FlaskConical, Baby,
+  Heart, BabyIcon, ClipboardList, FileText, Stethoscope,
   ChevronDown,
 } from 'lucide-react';
 
@@ -10,16 +12,39 @@ const ICON_MAP = {
   Droplet, Dna, Scale, Users, Clock, CircleHelp,
   Tag, Search, Gift, Shield,
   Star, Globe, BookHeart,
+  Sparkles, UserPlus, FlaskConical, Baby,
+  Heart, BabyIcon, ClipboardList, FileText, Stethoscope,
 };
 
 const SECTIONS = [
   {
-    label: 'Cord Blood Guide',
+    label: 'Your Pregnancy',
+    href: '#',
+    groups: [
+      {
+        name: 'Resources',
+        items: [
+          { title: 'Your Personal Guide to Pregnancy', href: '#', icon: 'Heart' },
+          { title: 'Hospital Bag Checklist', href: '#', icon: 'ClipboardList' },
+        ],
+      },
+      {
+        name: 'Planning',
+        items: [
+          { title: 'Birth Plan Template', href: '#', icon: 'FileText' },
+          { title: 'Understanding Your Screenings', href: '#', icon: 'Stethoscope' },
+        ],
+      },
+    ],
+  },
+  {
+    label: 'Cord Blood Basics',
     href: '/learn/',
     groups: [
       {
         name: 'The Science',
         items: [
+          { title: 'Why Stem Cells Matter', href: '#', icon: 'Sparkles' },
           { title: 'What Is Cord Blood', href: '/learn/what-is-cord-blood', icon: 'Droplet' },
           { title: 'What Is Cord Tissue', href: '/learn/what-is-cord-tissue', icon: 'Dna' },
           { title: 'Public vs. Private Banking', href: '/learn/public-vs-private-banking', icon: 'Scale' },
@@ -28,8 +53,8 @@ const SECTIONS = [
       {
         name: 'Getting Started',
         items: [
-          { title: 'How Your Family Can Use It', href: '/learn/how-your-family-can-use-it', icon: 'Users' },
           { title: 'How Collection Works', href: '/learn/how-collection-works', icon: 'Clock' },
+          { title: 'How Your Family Can Use It', href: '/learn/how-your-family-can-use-it', icon: 'Users' },
           { title: 'FAQ', href: '/learn/faq', icon: 'CircleHelp' },
         ],
       },
@@ -40,17 +65,25 @@ const SECTIONS = [
     href: '/pricing',
     groups: [
       {
-        name: 'Choose Your Plan',
+        name: 'Get Started',
         items: [
-          { title: 'Pricing', href: '/pricing', icon: 'Tag' },
+          { title: 'Build Your Plan', href: '/pricing', icon: 'Tag' },
+          { title: 'Special Programs', href: '/special-programs', icon: 'Gift' },
+        ],
+      },
+      {
+        name: 'Advanced Protection',
+        items: [
           { title: 'Public Bank Access', href: '/public-bank-access', icon: 'Search' },
+          { title: 'HLA Matching', href: '#', icon: 'Dna' },
+          { title: 'Newborn Genetic Analysis', href: '#', icon: 'FlaskConical' },
         ],
       },
       {
         name: 'Special Offers',
         items: [
-          { title: 'Special Programs', href: '/special-programs', icon: 'Gift' },
           { title: 'LifeSaver Guarantee', href: '/lifesaver-guarantee', icon: 'Shield' },
+          { title: 'Refer a Friend', href: '#', icon: 'UserPlus' },
         ],
       },
     ],
@@ -62,7 +95,7 @@ const SECTIONS = [
       {
         name: 'About',
         items: [
-          { title: 'Why StemCyte', href: '/why-stemcyte', icon: 'Star' },
+          { title: 'Who We Are', href: '#', icon: 'Star' },
           { title: 'Our Impact', href: '#', icon: 'Globe' },
         ],
       },
