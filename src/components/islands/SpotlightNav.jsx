@@ -51,9 +51,9 @@ const SECTIONS = [
         ],
       },
       {
-        name: 'Getting Started',
+        name: 'How It Works',
         items: [
-          { title: 'How Collection Works', href: '/learn/how-collection-works', icon: 'Clock' },
+          { title: 'Collection: Step by Step', href: '/learn/how-collection-works', icon: 'Clock' },
           { title: 'How Your Family Can Use It', href: '/learn/how-your-family-can-use-it', icon: 'Users' },
           { title: 'FAQ', href: '/learn/faq', icon: 'CircleHelp' },
         ],
@@ -68,7 +68,6 @@ const SECTIONS = [
         name: 'Get Started',
         items: [
           { title: 'Build Your Plan', href: '/pricing', icon: 'Tag' },
-          { title: 'Special Programs', href: '/special-programs', icon: 'Gift' },
         ],
       },
       {
@@ -82,6 +81,7 @@ const SECTIONS = [
       {
         name: 'Special Offers',
         items: [
+          { title: 'Special Programs', href: '/special-programs', icon: 'Gift' },
           { title: 'LifeSaver Guarantee', href: '/lifesaver-guarantee', icon: 'Shield' },
           { title: 'Refer a Friend', href: '#', icon: 'UserPlus' },
         ],
@@ -193,15 +193,13 @@ export default function SpotlightNav() {
     return () => document.removeEventListener('keydown', handler);
   }, [isOpen, close]);
 
-  // Lock body scroll
+  // Allow scrolling while menu is open — close menu on scroll
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => { document.body.style.overflow = ''; };
-  }, [isOpen]);
+    if (!isOpen) return;
+    const handler = () => close();
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, [isOpen, close]);
 
   // Force nav to scrolled state when open
   useEffect(() => {
@@ -245,7 +243,8 @@ export default function SpotlightNav() {
               key={sec.label}
               onClick={() => toggle(i)}
               style={{
-                display: 'inline-flex',
+                display: 'inline-grid',
+                gridTemplateColumns: '1fr auto',
                 alignItems: 'center',
                 gap: '4px',
                 fontSize: '0.9rem',
@@ -277,7 +276,15 @@ export default function SpotlightNav() {
                 }
               }}
             >
-              {sec.label}
+              {/* Label with bold-width reservation to prevent layout shift */}
+              <span style={{
+                display: 'grid',
+                gridTemplateAreas: '"text"',
+                justifyItems: 'start',
+              }}>
+                <span style={{ gridArea: 'text', visibility: 'hidden', fontWeight: 600, pointerEvents: 'none' }} aria-hidden="true">{sec.label}</span>
+                <span style={{ gridArea: 'text' }}>{sec.label}</span>
+              </span>
               <ChevronDown
                 size={14}
                 strokeWidth={2}
