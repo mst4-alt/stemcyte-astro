@@ -144,6 +144,23 @@ export default function SpotlightNav() {
     return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
+  // Force nav to scrolled state when dropdown is open
+  useEffect(() => {
+    const nav = document.getElementById('nav');
+    if (!nav) return;
+    if (isOpen) {
+      nav.classList.remove('at-top');
+      nav.classList.add('scrolled');
+    } else {
+      // Restore based on actual scroll position
+      const hero = document.getElementById('hero');
+      if (hero && hero.getBoundingClientRect().bottom >= 80) {
+        nav.classList.add('at-top');
+        nav.classList.remove('scrolled');
+      }
+    }
+  }, [isOpen]);
+
   // Animate preview on item change
   const previewRef = useRef(null);
   useEffect(() => {
