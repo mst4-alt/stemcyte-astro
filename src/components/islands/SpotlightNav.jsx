@@ -346,7 +346,7 @@ export default function SpotlightNav() {
           <div
             ref={contentRef}
             style={{
-              maxWidth: '1200px',
+              maxWidth: section.groups.length <= 2 ? '820px' : '1200px',
               margin: '0 auto',
               padding: '28px 48px 32px',
               display: 'flex',
