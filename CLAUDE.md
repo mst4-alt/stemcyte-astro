@@ -103,3 +103,10 @@ import PricingForm from '../components/islands/PricingForm.jsx';
 
 ## GIT RULES
 - When committing, always run `git add -A` to include all new files, including images and other binary assets in `public/images/`. Never skip binary files.
+
+---
+
+## CHROME PREVIEW
+- After finishing any visual work (new pages, components, standalone HTML demos, design explorations), always open the result in Chrome using the Claude in Chrome MCP tools.
+- Use `tabs_context_mcp` to get/create a tab, then `navigate` to `http://localhost:8787/<path>` (start a local server with `python3 -m http.server 8787` from the repo root if not already running).
+- Take a screenshot to confirm it rendered correctly.
