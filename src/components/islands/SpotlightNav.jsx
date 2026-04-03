@@ -253,7 +253,7 @@ export default function SpotlightNav() {
                 background: isActive ? activeBg : 'transparent',
                 border: 'none',
                 borderRadius: '8px',
-                padding: '8px 14px',
+                padding: '8px 12px',
                 cursor: 'pointer',
                 fontFamily: 'Lato, sans-serif',
                 transition: 'color 0.2s, background 0.2s',
