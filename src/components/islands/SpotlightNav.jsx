@@ -67,7 +67,7 @@ const SECTIONS = [
       {
         name: 'Get Started',
         items: [
-          { title: 'Build Your Plan', href: '/pricing', icon: 'Tag' },
+          { title: 'Plan Options', href: '/pricing', icon: 'Tag' },
         ],
       },
       {
