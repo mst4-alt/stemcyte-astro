@@ -5,7 +5,7 @@ import {
   Star, Globe, BookHeart,
   Sparkles, UserPlus, FlaskConical, Baby,
   Heart, BabyIcon, ClipboardList, FileText, Stethoscope,
-  ChevronDown,
+  ChevronDown, ArrowRight,
 } from 'lucide-react';
 
 const ICON_MAP = {
@@ -50,15 +50,14 @@ const SECTIONS = [
           { title: 'Public vs. Private Banking', href: '/learn/public-vs-private-banking', icon: 'Scale' },
         ],
       },
-      {
-        name: 'How It Works',
-        items: [
-          { title: 'Collection: Step by Step', href: '/learn/how-collection-works', icon: 'Clock' },
-          { title: 'How Your Family Can Use It', href: '/learn/how-your-family-can-use-it', icon: 'Users' },
-          { title: 'FAQ', href: '/learn/faq', icon: 'CircleHelp' },
-        ],
-      },
     ],
+    featured: {
+      label: 'For Clinicians & Industry',
+      title: 'StemCyte Biologics',
+      desc: 'REGENECYTE® & clinical trials.',
+      href: '/biologics/',
+      cta: 'Explore',
+    },
   },
   {
     label: 'Plans & Programs',
@@ -68,6 +67,7 @@ const SECTIONS = [
         name: 'Get Started',
         items: [
           { title: 'Plan Options', href: '/pricing', icon: 'Tag' },
+          { title: 'FAQ', href: '/learn/faq', icon: 'CircleHelp' },
         ],
       },
       {
@@ -360,7 +360,7 @@ export default function SpotlightNav() {
           <div
             ref={contentRef}
             style={{
-              maxWidth: section.groups.length <= 2 ? '820px' : '1200px',
+              maxWidth: (section.groups.length <= 1 && section.featured) ? '820px' : section.groups.length <= 2 && !section.featured ? '820px' : '1200px',
               margin: '0 auto',
               padding: '28px 48px 32px',
               display: 'flex',
@@ -459,6 +459,82 @@ export default function SpotlightNav() {
                 </div>
               );
             })}
+
+            {/* Featured card (e.g. Biologics) */}
+            {section.featured && (
+              <div style={{
+                flex: 1,
+                minWidth: 0,
+                borderLeft: '1px solid rgba(108,26,85,0.08)',
+                paddingLeft: '32px',
+                marginLeft: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+              }}>
+                <a
+                  href={section.featured.href}
+                  style={{
+                    display: 'block',
+                    textDecoration: 'none',
+                    background: '#F0F6F8',
+                    border: '1px solid rgba(42,99,124,0.18)',
+                    borderRadius: '14px',
+                    padding: '24px 22px',
+                    color: '#0F2B35',
+                    transition: 'background 0.2s, border-color 0.2s',
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = '#E4EFF3';
+                    e.currentTarget.style.borderColor = 'rgba(42,99,124,0.3)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = '#F0F6F8';
+                    e.currentTarget.style.borderColor = 'rgba(42,99,124,0.18)';
+                  }}
+                >
+                  <div style={{
+                    fontSize: '0.65rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    color: '#367A94',
+                    marginBottom: '10px',
+                    fontWeight: 600,
+                    fontFamily: 'Lato, sans-serif',
+                  }}>
+                    {section.featured.label}
+                  </div>
+                  <div style={{
+                    fontSize: '1.05rem',
+                    fontWeight: 600,
+                    lineHeight: 1.3,
+                    marginBottom: '8px',
+                    color: '#1A3F50',
+                    fontFamily: 'Lato, sans-serif',
+                  }}>
+                    {section.featured.title}
+                  </div>
+                  <div style={{
+                    fontSize: '0.8rem',
+                    color: '#5A7A88',
+                    lineHeight: 1.5,
+                    marginBottom: '14px',
+                  }}>
+                    {section.featured.desc}
+                  </div>
+                  <div style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    fontSize: '0.8rem',
+                    fontWeight: 600,
+                    color: '#2A637C',
+                  }}>
+                    {section.featured.cta} <ArrowRight size={14} strokeWidth={2} />
+                  </div>
+                </a>
+              </div>
+            )}
           </div>
         )}
         </div>
