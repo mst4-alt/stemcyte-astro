@@ -55,8 +55,8 @@ const SECTIONS = [
       name: 'Treatment & Research',
       items: [
         { title: 'REGENECYTE®', href: '/biologics/regenecyte', icon: 'FlaskConical' },
-        { title: 'Publications', href: '/biologics/publications', icon: 'BookHeart' },
-        { title: 'Manufacturing', href: '/biologics/manufacturing', icon: 'Shield' },
+        { title: 'Clinical Trials', href: '/biologics/clinical-trials', icon: 'BookHeart' },
+        { title: 'Cellular Materials', href: '/biologics/cellular-materials', icon: 'Shield' },
       ],
       link: { label: 'StemCyte Biologics', href: '/biologics/' },
     },
